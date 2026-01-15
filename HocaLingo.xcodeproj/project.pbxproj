@@ -29,12 +29,30 @@
 		0EC909E52F18743F00FEBC67 /* HocaLingoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HocaLingoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		0EC909D02F18743E00FEBC67 /* HocaLingo */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = HocaLingo;
-			sourceTree = "<group>";
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0EC90A0B2F18860100FEBC67 /* Exceptions for "HocaLingo" folder in "HocaLingo" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				ContentView.swift,
+				en_tr_a1_001.json,
+				HocaLingoApp.swift,
+			);
+			target = 0EC909CD2F18743E00FEBC67 /* HocaLingo */;
 		};
+		0EC90A0C2F18860100FEBC67 /* Exceptions for "HocaLingo" folder in "HocaLingoTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				ContentView.swift,
+				en_tr_a1_001.json,
+				HocaLingoApp.swift,
+			);
+			target = 0EC909DA2F18743F00FEBC67 /* HocaLingoTests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
 		0EC909DE2F18743F00FEBC67 /* HocaLingoTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = HocaLingoTests;
@@ -43,6 +61,15 @@
 		0EC909E82F18743F00FEBC67 /* HocaLingoUITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = HocaLingoUITests;
+			sourceTree = "<group>";
+		};
+		0EC90A072F18860100FEBC67 /* HocaLingo */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0EC90A0B2F18860100FEBC67 /* Exceptions for "HocaLingo" folder in "HocaLingo" target */,
+				0EC90A0C2F18860100FEBC67 /* Exceptions for "HocaLingo" folder in "HocaLingoTests" target */,
+			);
+			path = HocaLingo;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -75,7 +102,7 @@
 		0EC909C52F18743E00FEBC67 = {
 			isa = PBXGroup;
 			children = (
-				0EC909D02F18743E00FEBC67 /* HocaLingo */,
+				0EC90A072F18860100FEBC67 /* HocaLingo */,
 				0EC909DE2F18743F00FEBC67 /* HocaLingoTests */,
 				0EC909E82F18743F00FEBC67 /* HocaLingoUITests */,
 				0EC909CF2F18743E00FEBC67 /* Products */,
@@ -107,9 +134,6 @@
 			);
 			dependencies = (
 			);
-			fileSystemSynchronizedGroups = (
-				0EC909D02F18743E00FEBC67 /* HocaLingo */,
-			);
 			name = HocaLingo;
 			packageProductDependencies = (
 			);
@@ -132,6 +156,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				0EC909DE2F18743F00FEBC67 /* HocaLingoTests */,
+				0EC90A072F18860100FEBC67 /* HocaLingo */,
 			);
 			name = HocaLingoTests;
 			packageProductDependencies = (
