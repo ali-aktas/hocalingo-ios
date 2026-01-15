@@ -34,3 +34,28 @@
 "package_words_count" = "%d words";
 "package_selected" = "Selected";
 "package_select" = "Select";
+
+/* Study Screen */
+"study_title" = "Study";
+"hard_button" = "Hard";
+"medium_button" = "Medium";
+"easy_button" = "Easy";
+
+/* Profile Screen */
+"profile_welcome" = "Welcome";
+"premium_active" = "Premium Active";
+"premium_upgrade_title" = "Upgrade to Premium";
+"premium_upgrade_subtitle" = "Unlimited access, no ads";
+"stats_streak" = "Streak";
+"stats_words" = "Words";
+"stats_mastered" = "Mastered";
+"settings_title" = "Settings";
+"settings_theme" = "Theme";
+"settings_notifications" = "Notifications";
+"settings_direction" = "Study Direction";
+"settings_daily_goal" = "Daily Goal";
+"legal_title" = "Legal & Support";
+"legal_privacy" = "Privacy Policy";
+"legal_terms" = "Terms of Service";
+"legal_rate_app" = "Rate App";
+"legal_support" = "Contact Support";

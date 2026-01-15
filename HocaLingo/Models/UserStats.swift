@@ -1,37 +1,32 @@
-//
-//  UserStats.swift
-//  HocaLingo
-//
-//  Models package - User statistics
-//
-
 import Foundation
 
 // MARK: - User Stats Model
-/// Daily statistics and streak tracking
-struct UserStats: Codable {
-    var dailyStudyCount: Int
-    var dailyGoal: Int
-    var currentStreak: Int
-    var longestStreak: Int
-    var totalWordsLearned: Int
-    var totalReviews: Int
-    var lastStudyDate: Date?
+/// User statistics for profile display
+struct UserStats {
+    let totalWordsSelected: Int
+    let wordsStudiedToday: Int
+    let masteredWordsCount: Int
+    let currentStreak: Int
+    let studyTimeThisWeek: Int // minutes
+    let averageAccuracy: Float // 0.0 - 1.0
     
-    // Today's progress
-    var todayCorrect: Int
-    var todayIncorrect: Int
+    /// Default empty stats
+    static let empty = UserStats(
+        totalWordsSelected: 0,
+        wordsStudiedToday: 0,
+        masteredWordsCount: 0,
+        currentStreak: 0,
+        studyTimeThisWeek: 0,
+        averageAccuracy: 0.0
+    )
     
-    // Timestamps
-    let createdAt: Date
-    var updatedAt: Date
-    
-    // Computed property
-    var isGoalReached: Bool {
-        dailyStudyCount >= dailyGoal
-    }
-    
-    var studyProgress: Double {
-        min(Double(dailyStudyCount) / Double(dailyGoal), 1.0)
-    }
+    /// Dummy stats for testing
+    static let dummy = UserStats(
+        totalWordsSelected: 127,
+        wordsStudiedToday: 15,
+        masteredWordsCount: 43,
+        currentStreak: 7,
+        studyTimeThisWeek: 145,
+        averageAccuracy: 0.87
+    )
 }

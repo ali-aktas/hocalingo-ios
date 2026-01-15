@@ -33,12 +33,6 @@ struct Progress: Codable, Identifiable {
     var updatedAt: Date
 }
 
-// MARK: - Study Direction
-enum StudyDirection: String, Codable {
-    case enToTr = "en_tr"
-    case trToEn = "tr_en"
-}
-
 // MARK: - Learning Phase
 enum LearningPhase: String, Codable {
     case learning = "LEARNING"    // New words

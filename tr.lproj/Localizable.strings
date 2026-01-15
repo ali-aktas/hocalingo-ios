@@ -34,3 +34,28 @@
 "package_words_count" = "%d kelime";
 "package_selected" = "Seçili";
 "package_select" = "Seç";
+
+/* Study Screen */
+"study_title" = "Çalışma";
+"hard_button" = "Zor";
+"medium_button" = "Orta";
+"easy_button" = "Kolay";
+
+/* Profile Screen */
+"profile_welcome" = "Hoş Geldin";
+"premium_active" = "Premium Aktif";
+"premium_upgrade_title" = "Premium'a Geç";
+"premium_upgrade_subtitle" = "Sınırsız erişim, reklamsız";
+"stats_streak" = "Seri";
+"stats_words" = "Kelime";
+"stats_mastered" = "Öğrenildi";
+"settings_title" = "Ayarlar";
+"settings_theme" = "Tema";
+"settings_notifications" = "Bildirimler";
+"settings_direction" = "Çalışma Yönü";
+"settings_daily_goal" = "Günlük Hedef";
+"legal_title" = "Yasal & Destek";
+"legal_privacy" = "Gizlilik Politikası";
+"legal_terms" = "Kullanım Şartları";
+"legal_rate_app" = "Uygulamayı Oyla";
+"legal_support" = "Destek İlet";
