@@ -1,18 +1,26 @@
+//
+//  HomeViewModel.swift
+//  HocaLingo
+//
+//  Updated on 15.01.2026.
+//
+
 import SwiftUI
 import Combine
 
 // MARK: - Home View Model
-/// Business logic for HomeView
+/// Business logic for home screen - EXACTLY matches HomeView requirements
 /// Location: HocaLingo/Features/Home/HomeViewModel.swift
 class HomeViewModel: ObservableObject {
-    // MARK: - Published Properties
+    
+    // MARK: - Published Properties (EXACTLY as HomeView expects)
     @Published var greetingText: String = ""
     @Published var motivationText: String = ""
     @Published var streakDays: Int = 0
     @Published var todaysWords: Int = 0
     @Published var totalLearned: Int = 0
     
-    // Motivation texts (rotate daily)
+    // MARK: - Private Properties
     private let motivationTexts = [
         "Your English adventure awaits",
         "New words, new opportunities",
@@ -40,20 +48,22 @@ class HomeViewModel: ObservableObject {
         let dayOfYear = calendar.ordinality(of: .day, in: .year, for: Date()) ?? 1
         motivationText = motivationTexts[dayOfYear % motivationTexts.count]
         
-        // Load user stats (fake data for now)
+        // Load real user stats from UserDefaults
         loadUserStats()
     }
     
+    /// Load real user stats
     private func loadUserStats() {
-        // TODO: Replace with real data from UserDefaults/CoreData
-        // For now, using fake data for testing
+        let stats = UserDefaultsManager.shared.loadUserStats()
         
-        streakDays = 7
-        todaysWords = 15
-        totalLearned = 234
+        streakDays = stats.currentStreak
+        todaysWords = stats.totalWordsStudied
+        totalLearned = stats.wordsLearned
+        
+        print("📊 Loaded stats: streak=\(streakDays), today=\(todaysWords), total=\(totalLearned)")
     }
     
-    // MARK: - Greeting Generation
+    /// Generate greeting based on time
     private func generateGreeting() -> String {
         let hour = Calendar.current.component(.hour, from: Date())
         
@@ -69,38 +79,38 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Actions
+    // MARK: - Actions (EXACTLY as HomeView calls them)
+    
+    /// Start study session - called by HomeView play button
     func startStudy() {
-        // TODO: Navigate to study screen
-        // Check if there are cards to study
+        let selectedWordsCount = UserDefaultsManager.shared.loadSelectedWords().count
         
-        let cardsAvailable = todaysWords > 0
-        
-        if cardsAvailable {
-            print("Starting study session...")
+        if selectedWordsCount > 0 {
+            print("✅ Starting study session with \(selectedWordsCount) words")
             // Navigation will be handled by parent view
         } else {
-            print("No cards available. Navigate to package selection.")
+            print("⚠️ No words selected. Navigate to package selection.")
             // Show alert or navigate to package selection
         }
     }
     
+    /// Refresh data (call after returning from study)
     func refreshData() {
         loadDashboardData()
     }
     
-    // MARK: - Public Methods for Data Updates
-    /// Call this when user completes a study session
+    /// Update stats after study session
     func updateAfterStudy(wordsLearned: Int) {
         todaysWords += wordsLearned
         totalLearned += wordsLearned
         
-        // TODO: Persist to UserDefaults/CoreData
+        // Update in UserDefaults
+        UserDefaultsManager.shared.updateStats(wordsStudiedToday: wordsLearned)
     }
     
-    /// Call this when app launches (for streak tracking)
+    /// Track app launch for streak
     func trackAppLaunch() {
-        // TODO: Implement streak logic
+        // TODO: Implement streak logic in Day 8-11
         // - Check if last launch was yesterday -> maintain streak
         // - Check if last launch was today -> do nothing
         // - Otherwise -> reset streak to 1

@@ -1,24 +1,32 @@
+//
+//  WordSelectionViewModel.swift
+//  HocaLingo
+//
+//  Updated on 15.01.2026.
+//
+
 import SwiftUI
 import Combine
 
 // MARK: - Word Selection View Model
-/// Business logic for word selection screen
+/// Business logic for word selection screen with persistence
 /// Location: HocaLingo/Features/Selection/WordSelectionViewModel.swift
 class WordSelectionViewModel: ObservableObject {
+    
     // MARK: - Published Properties
     @Published var words: [Word] = []
     @Published var selectedWordIds: Set<Int> = []
     @Published var isLoading: Bool = false
-    @Published var errorMessage: String? = nil
-    
-    // MARK: - Computed Properties
-    var selectedCount: Int {
-        selectedWordIds.count
-    }
+    @Published var errorMessage: String?
     
     // MARK: - Private Properties
     private let packageId: String
     private let jsonLoader = JSONLoader()
+    
+    // MARK: - Computed Properties
+    var selectedCount: Int {
+        return selectedWordIds.count
+    }
     
     // MARK: - Initialization
     init(packageId: String) {
@@ -27,16 +35,18 @@ class WordSelectionViewModel: ObservableObject {
         loadPreviousSelection()
     }
     
-    // MARK: - Load Words
+    // MARK: - Data Loading
+    
+    /// Load words from JSON file
     func loadWords() {
         isLoading = true
         errorMessage = nil
         
-        // Load words from JSON
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
             
             do {
+                // Load vocabulary package (throws error, doesn't return optional)
                 let vocabularyPackage = try self.jsonLoader.loadVocabularyPackage(filename: self.packageId)
                 
                 DispatchQueue.main.async {
@@ -54,55 +64,64 @@ class WordSelectionViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Selection Management
+    // MARK: - Selection Actions
+    
+    /// Toggle word selection
     func toggleWordSelection(_ wordId: Int) {
         if selectedWordIds.contains(wordId) {
             selectedWordIds.remove(wordId)
         } else {
             selectedWordIds.insert(wordId)
         }
-        
-        // Save to UserDefaults
-        saveSelection()
     }
     
+    /// Check if word is selected
     func isWordSelected(_ wordId: Int) -> Bool {
-        selectedWordIds.contains(wordId)
+        return selectedWordIds.contains(wordId)
     }
     
+    /// Select all words
+    func selectAll() {
+        selectedWordIds = Set(words.map { $0.id })
+    }
+    
+    /// Clear all selections
     func clearSelection() {
         selectedWordIds.removeAll()
-        saveSelection()
     }
     
+    /// Finish selection and save to UserDefaults
     func finishSelection() {
         guard selectedCount > 0 else {
             print("⚠️ No words selected")
             return
         }
         
-        print("✅ Selection finished: \(selectedCount) words")
-        saveSelection()
+        let wordIdsArray = Array(selectedWordIds).sorted()
         
-        // TODO: Navigate to study screen
+        // Save selected words
+        UserDefaultsManager.shared.saveSelectedWords(wordIdsArray)
+        
+        // Save selected package
+        UserDefaultsManager.shared.saveSelectedPackage(packageId)
+        
+        print("✅ Selection finished: \(selectedCount) words saved")
     }
     
-    // MARK: - Persistence (UserDefaults)
-    private func saveSelection() {
-        let selectedArray = Array(selectedWordIds)
-        UserDefaults.standard.set(selectedArray, forKey: "selectedWords_\(packageId)")
-        print("💾 Saved \(selectedCount) words to UserDefaults")
-    }
+    // MARK: - Persistence
     
+    /// Load previously selected words
     private func loadPreviousSelection() {
-        if let savedIds = UserDefaults.standard.array(forKey: "selectedWords_\(packageId)") as? [Int] {
-            selectedWordIds = Set(savedIds)
+        let savedWordIds = UserDefaultsManager.shared.loadSelectedWords()
+        selectedWordIds = Set(savedWordIds)
+        
+        if !savedWordIds.isEmpty {
             print("📂 Loaded \(selectedCount) previously selected words")
         }
     }
     
-    // MARK: - Helper Methods
+    /// Get selected words as array
     func getSelectedWords() -> [Word] {
-        words.filter { selectedWordIds.contains($0.id) }
+        return words.filter { selectedWordIds.contains($0.id) }
     }
 }
