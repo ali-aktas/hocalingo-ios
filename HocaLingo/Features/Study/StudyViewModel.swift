@@ -68,6 +68,88 @@ class StudyViewModel: ObservableObject {
         return Double(currentCardIndex) / Double(totalCards)
     }
     
+    // ✅ Button time texts (like Android)
+    var hardTimeText: String {
+        return "Birazdan" // HARD always shows soon (10 min)
+    }
+    
+    var mediumTimeText: String {
+        return "Sonra" // MEDIUM shows later (1 hour for learning, adaptive for review)
+    }
+    
+    var easyTimeText: String {
+        guard currentCardIndex < studyQueue.count else { return "Bugün" }
+        let card = studyQueue[currentCardIndex]
+        
+        // Get current progress
+        if let progress = currentProgress[card.wordId] {
+            // Simulate what EASY would result in
+            let simulatedProgress = SpacedRepetition.calculateNextReview(
+                currentProgress: progress,
+                quality: SpacedRepetition.QUALITY_EASY,
+                currentSessionMaxPosition: currentSessionMaxPosition
+            )
+            return SpacedRepetition.getTimeUntilReview(nextReviewAt: simulatedProgress.nextReviewAt)
+        }
+        return "Bugün"
+    }
+    
+    /// ✅ Dynamic card color based on progress
+    var currentCardColor: Color {
+        guard let progress = currentProgress[currentCard.wordId] else {
+            return Color(hex: "FF6B6B") // Red for new words
+        }
+        
+        // Color based on ease factor and repetitions
+        let easeFactor = progress.easeFactor
+        let reps = progress.repetitions
+        
+        if progress.isMastered {
+            return Color(hex: "4CAF50") // Green - Mastered
+        } else if reps >= 5 {
+            return Color(hex: "2196F3") // Blue - Advanced
+        } else if reps >= 3 {
+            return Color(hex: "9C27B0") // Purple - Intermediate
+        } else if reps >= 1 {
+            return Color(hex: "FF9800") // Orange - Learning
+        } else {
+            return Color(hex: "FF6B6B") // Red - New
+        }
+    }
+    
+    /// ✅ Dynamic button time texts
+    var buttonTimeTexts: (hard: String, medium: String, easy: String) {
+        // Preview what happens if user presses each button
+        guard let progress = currentProgress[currentCard.wordId] else {
+            return ("Birazdan", "Sonra", "1 saat")
+        }
+        
+        // Calculate preview times
+        let hardPreview = SpacedRepetition.calculateNextReview(
+            currentProgress: progress,
+            quality: SpacedRepetition.QUALITY_HARD,
+            currentSessionMaxPosition: currentSessionMaxPosition
+        )
+        
+        let mediumPreview = SpacedRepetition.calculateNextReview(
+            currentProgress: progress,
+            quality: SpacedRepetition.QUALITY_MEDIUM,
+            currentSessionMaxPosition: currentSessionMaxPosition
+        )
+        
+        let easyPreview = SpacedRepetition.calculateNextReview(
+            currentProgress: progress,
+            quality: SpacedRepetition.QUALITY_EASY,
+            currentSessionMaxPosition: currentSessionMaxPosition
+        )
+        
+        return (
+            hard: SpacedRepetition.getTimeUntilReview(nextReviewAt: hardPreview.nextReviewAt),
+            medium: SpacedRepetition.getTimeUntilReview(nextReviewAt: mediumPreview.nextReviewAt),
+            easy: SpacedRepetition.getTimeUntilReview(nextReviewAt: easyPreview.nextReviewAt)
+        )
+    }
+    
     // MARK: - Init
     init() {
         loadStudySession()

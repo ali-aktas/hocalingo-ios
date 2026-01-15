@@ -4,62 +4,62 @@ import SwiftUI
 struct StudyView: View {
     @StateObject private var viewModel = StudyViewModel()
     @Environment(\.dismiss) private var dismiss
+    @Namespace private var cardNamespace
     
     var body: some View {
         NavigationView {
             ZStack {
-                Color(hex: "F5F5F5")
+                Color(.systemBackground)
                     .ignoresSafeArea()
                 
                 VStack(spacing: 16) {
-                    // Progress Indicator
-                    StudyProgressIndicator(
+                    // Progress Indicator (DYNAMIC)
+                    StudyProgressBar(
                         currentIndex: viewModel.currentCardIndex,
-                        totalWords: viewModel.totalCards,
-                        progress: viewModel.progressPercentage
+                        totalCards: viewModel.totalCards
                     )
                     
-                    // Flashcard
-                    FlashcardView(
-                        frontText: viewModel.currentCard.frontText,
-                        backText: viewModel.currentCard.backText,
-                        isFlipped: viewModel.isCardFlipped,
-                        onTap: {
-                            viewModel.flipCard()
+                    // Flashcard with smooth transition
+                    ZStack {
+                        if viewModel.totalCards > 0 {
+                            StudyFlashCard(
+                                card: viewModel.currentCard,
+                                isFlipped: viewModel.isCardFlipped,
+                                onTap: { viewModel.flipCard() }
+                            )
+                            .matchedGeometryEffect(id: "card", in: cardNamespace)
+                            .transition(.asymmetric(
+                                insertion: .move(edge: .trailing).combined(with: .opacity),
+                                removal: .move(edge: .leading).combined(with: .opacity)
+                            ))
                         }
-                    )
-                    .frame(maxHeight: .infinity)
-                    
-                    // Action Buttons (only show when card is flipped)
-                    if viewModel.isCardFlipped {
-                        StudyActionButtons(
-                            onHard: {
-                                viewModel.answerCard(difficulty: .hard)
-                            },
-                            onMedium: {
-                                viewModel.answerCard(difficulty: .medium)
-                            },
-                            onEasy: {
-                                viewModel.answerCard(difficulty: .easy)
-                            }
-                        )
                     }
+                    .frame(maxHeight: .infinity)
+                    .animation(.spring(response: 0.4, dampingFraction: 0.8), value: viewModel.currentCardIndex)
+                    
+                    // Action Buttons
+                    StudyButtons(
+                        isCardFlipped: viewModel.isCardFlipped,
+                        hardTime: viewModel.hardTimeText,
+                        mediumTime: viewModel.mediumTimeText,
+                        easyTime: viewModel.easyTimeText,
+                        onHard: { viewModel.answerCard(difficulty: .hard) },
+                        onMedium: { viewModel.answerCard(difficulty: .medium) },
+                        onEasy: { viewModel.answerCard(difficulty: .easy) }
+                    )
                 }
                 .padding(16)
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        dismiss()
-                    }) {
+                    Button(action: { dismiss() }) {
                         Image(systemName: "chevron.left")
                             .foregroundColor(.primary)
                     }
                 }
-                
                 ToolbarItem(placement: .principal) {
-                    Text("study_title")
+                    Text("Çalışma")
                         .font(.system(size: 17, weight: .semibold))
                 }
             }
@@ -73,59 +73,57 @@ struct StudyView: View {
     }
 }
 
-// MARK: - Progress Indicator
-struct StudyProgressIndicator: View {
+// MARK: - Progress Bar (DYNAMIC like Android)
+struct StudyProgressBar: View {
     let currentIndex: Int
-    let totalWords: Int
-    let progress: Double
+    let totalCards: Int
+    
+    var progress: Double {
+        guard totalCards > 0 else { return 0 }
+        return Double(currentIndex) / Double(totalCards)
+    }
     
     var body: some View {
-        VStack(spacing: 8) {
-            // Progress bar
+        HStack(spacing: 16) {
+            Text("\(currentIndex + 1)/\(totalCards)")
+                .font(.system(size: 14, weight: .medium))
+                .foregroundColor(.secondary)
+                .frame(width: 50, alignment: .leading)
+            
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
                     // Background
-                    Rectangle()
+                    RoundedRectangle(cornerRadius: 3)
                         .fill(Color.gray.opacity(0.2))
-                        .frame(height: 8)
-                        .cornerRadius(4)
+                        .frame(height: 6)
                     
-                    // Progress fill
-                    Rectangle()
-                        .fill(Color(hex: "4CAF50"))
-                        .frame(width: geometry.size.width * progress, height: 8)
-                        .cornerRadius(4)
+                    // Progress
+                    RoundedRectangle(cornerRadius: 3)
+                        .fill(Color(hex: "4ECDC4"))
+                        .frame(width: geometry.size.width * progress, height: 6)
+                        .animation(.spring(response: 0.3), value: progress)
                 }
             }
-            .frame(height: 8)
-            
-            // Progress text
-            HStack {
-                Text("\(currentIndex + 1) / \(totalWords)")
-                    .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(.secondary)
-                
-                Spacer()
-                
-                Text("\(Int(progress * 100))%")
-                    .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(.secondary)
-            }
+            .frame(height: 6)
         }
     }
 }
 
-// MARK: - Flashcard View
-struct FlashcardView: View {
-    let frontText: String
-    let backText: String
+// MARK: - Flashcard with Colors
+struct StudyFlashCard: View {
+    let card: StudyCard
     let isFlipped: Bool
     let onTap: () -> Void
+    
+    // Card colors (like Android)
+    private var cardColor: Color {
+        Color(hex: "FFFFFF")
+    }
     
     var body: some View {
         ZStack {
             // Back side
-            CardSide(text: backText, backgroundColor: Color(hex: "FFFFFF"))
+            CardSide(text: card.backText, backgroundColor: cardColor)
                 .opacity(isFlipped ? 1 : 0)
                 .rotation3DEffect(
                     .degrees(isFlipped ? 0 : -90),
@@ -133,31 +131,30 @@ struct FlashcardView: View {
                 )
             
             // Front side
-            CardSide(text: frontText, backgroundColor: Color(hex: "FFFFFF"))
+            CardSide(text: card.frontText, backgroundColor: cardColor)
                 .opacity(isFlipped ? 0 : 1)
                 .rotation3DEffect(
                     .degrees(isFlipped ? 90 : 0),
                     axis: (x: 0, y: 1, z: 0)
                 )
         }
+        .shadow(color: Color.black.opacity(0.15), radius: 12, x: 0, y: 4)
         .onTapGesture {
-            withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.85)) {
                 onTap()
             }
         }
     }
 }
 
-// MARK: - Card Side
 struct CardSide: View {
     let text: String
     let backgroundColor: Color
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: 20)
                 .fill(backgroundColor)
-                .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 2)
             
             Text(text)
                 .font(.system(size: 28, weight: .semibold))
@@ -168,57 +165,103 @@ struct CardSide: View {
     }
 }
 
-// MARK: - Action Buttons
-struct StudyActionButtons: View {
+// MARK: - Action Buttons (WITH TIME TEXT like Android)
+struct StudyButtons: View {
+    let isCardFlipped: Bool
+    let hardTime: String
+    let mediumTime: String
+    let easyTime: String
     let onHard: () -> Void
     let onMedium: () -> Void
     let onEasy: () -> Void
     
     var body: some View {
-        HStack(spacing: 12) {
-            // Hard button
-            Button(action: onHard) {
-                VStack(spacing: 4) {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 28))
-                    Text("Hard")
-                        .font(.system(size: 14, weight: .medium))
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 16)
-                .background(Color(hex: "F44336"))
-                .foregroundColor(.white)
-                .cornerRadius(12)
+        if !isCardFlipped {
+            // Tap instruction
+            HStack(spacing: 8) {
+                Image(systemName: "hand.tap.fill")
+                    .font(.system(size: 16))
+                    .foregroundColor(.secondary)
+                Text("Kartı çevir")
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundColor(.secondary)
             }
-            
-            // Medium button
-            Button(action: onMedium) {
-                VStack(spacing: 4) {
-                    Image(systemName: "minus.circle.fill")
-                        .font(.system(size: 28))
-                    Text("Medium")
-                        .font(.system(size: 14, weight: .medium))
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 16)
-                .background(Color(hex: "FF9800"))
-                .foregroundColor(.white)
-                .cornerRadius(12)
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 16)
+            .background(Color.gray.opacity(0.1))
+            .cornerRadius(12)
+        } else {
+            // Difficulty buttons
+            HStack(spacing: 12) {
+                DifficultyButton(
+                    mainText: "Zor",
+                    timeText: hardTime,
+                    color: Color(hex: "FF3B30"),
+                    onTap: onHard
+                )
+                
+                DifficultyButton(
+                    mainText: "Orta",
+                    timeText: mediumTime,
+                    color: Color(hex: "FF9500"),
+                    onTap: onMedium
+                )
+                
+                DifficultyButton(
+                    mainText: "Kolay",
+                    timeText: easyTime,
+                    color: Color(hex: "34C759"),
+                    onTap: onEasy
+                )
             }
-            
-            // Easy button
-            Button(action: onEasy) {
-                VStack(spacing: 4) {
-                    Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 28))
-                    Text("Easy")
-                        .font(.system(size: 14, weight: .medium))
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 16)
-                .background(Color(hex: "4CAF50"))
+        }
+    }
+}
+
+// MARK: - Difficulty Button (3D Style like Android)
+struct DifficultyButton: View {
+    let mainText: String
+    let timeText: String
+    let color: Color
+    let onTap: () -> Void
+    
+    @State private var isPressed = false
+    
+    var body: some View {
+        VStack(spacing: 4) {
+            // Main text
+            Text(mainText)
+                .font(.system(size: 16, weight: .bold))
                 .foregroundColor(.white)
-                .cornerRadius(12)
+            
+            // Time text
+            Text(timeText)
+                .font(.system(size: 11, weight: .medium))
+                .foregroundColor(.white.opacity(0.9))
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 16)
+        .background(
+            ZStack {
+                // Shadow layer (bottom)
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(color.opacity(0.7))
+                    .offset(y: isPressed ? 2 : 4)
+                
+                // Main layer (top)
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(color)
+                    .offset(y: isPressed ? 2 : 0)
+            }
+        )
+        .scaleEffect(isPressed ? 0.95 : 1.0)
+        .animation(.spring(response: 0.2, dampingFraction: 0.6), value: isPressed)
+        .onTapGesture {
+            // Press animation
+            isPressed = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                isPressed = false
+                onTap()
             }
         }
     }
@@ -251,10 +294,3 @@ extension Color {
     }
 }
 
-
-// MARK: - Preview
-struct StudyView_Previews: PreviewProvider {
-    static var previews: some View {
-        StudyView()
-    }
-}
