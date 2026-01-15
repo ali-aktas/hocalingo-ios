@@ -63,6 +63,11 @@ struct StudyView: View {
                         .font(.system(size: 17, weight: .semibold))
                 }
             }
+            .onChange(of: viewModel.shouldDismiss) {
+                if viewModel.shouldDismiss {
+                    dismiss()
+                }
+            }
         }
         .navigationViewStyle(.stack)
     }
@@ -80,28 +85,32 @@ struct StudyProgressIndicator: View {
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
                     // Background
-                    RoundedRectangle(cornerRadius: 8)
+                    Rectangle()
                         .fill(Color.gray.opacity(0.2))
                         .frame(height: 8)
+                        .cornerRadius(4)
                     
-                    // Progress
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(
-                            LinearGradient(
-                                colors: [Color(hex: "6366F1"), Color(hex: "8B5CF6")],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
+                    // Progress fill
+                    Rectangle()
+                        .fill(Color(hex: "4CAF50"))
                         .frame(width: geometry.size.width * progress, height: 8)
+                        .cornerRadius(4)
                 }
             }
             .frame(height: 8)
             
-            // Counter text
-            Text("\(currentIndex + 1) / \(totalWords)")
-                .font(.system(size: 14, weight: .medium))
-                .foregroundColor(.secondary)
+            // Progress text
+            HStack {
+                Text("\(currentIndex + 1) / \(totalWords)")
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundColor(.secondary)
+                
+                Spacer()
+                
+                Text("\(Int(progress * 100))%")
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundColor(.secondary)
+            }
         }
     }
 }
@@ -115,54 +124,44 @@ struct FlashcardView: View {
     
     var body: some View {
         ZStack {
-            // Front side (English word) - visible when NOT flipped
-            CardSide(
-                text: frontText,
-                backgroundColor: .white,
-                textColor: .primary
-            )
-            .rotation3DEffect(
-                .degrees(isFlipped ? -180 : 0),
-                axis: (x: 0, y: 1, z: 0)
-            )
-            .opacity(isFlipped ? 0 : 1)
+            // Back side
+            CardSide(text: backText, backgroundColor: Color(hex: "FFFFFF"))
+                .opacity(isFlipped ? 1 : 0)
+                .rotation3DEffect(
+                    .degrees(isFlipped ? 0 : -90),
+                    axis: (x: 0, y: 1, z: 0)
+                )
             
-            // Back side (Turkish translation) - visible when flipped
-            // Starts at 180° rotation (facing backward), rotates to 0° when flipped
-            CardSide(
-                text: backText,
-                backgroundColor: Color(hex: "8B5CF6"),
-                textColor: .white
-            )
-            .rotation3DEffect(
-                .degrees(isFlipped ? 0 : 180),
-                axis: (x: 0, y: 1, z: 0)
-            )
-            .opacity(isFlipped ? 1 : 0)
+            // Front side
+            CardSide(text: frontText, backgroundColor: Color(hex: "FFFFFF"))
+                .opacity(isFlipped ? 0 : 1)
+                .rotation3DEffect(
+                    .degrees(isFlipped ? 90 : 0),
+                    axis: (x: 0, y: 1, z: 0)
+                )
         }
         .onTapGesture {
-            withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.8)) {
                 onTap()
             }
         }
     }
 }
 
-// MARK: - Card Side Component
+// MARK: - Card Side
 struct CardSide: View {
     let text: String
     let backgroundColor: Color
-    let textColor: Color
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 16)
                 .fill(backgroundColor)
-                .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 4)
+                .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 2)
             
             Text(text)
-                .font(.system(size: 28, weight: .bold))
-                .foregroundColor(textColor)
+                .font(.system(size: 28, weight: .semibold))
+                .foregroundColor(.primary)
                 .multilineTextAlignment(.center)
                 .padding(32)
         }
@@ -177,60 +176,85 @@ struct StudyActionButtons: View {
     
     var body: some View {
         HStack(spacing: 12) {
-            // Hard Button
-            DifficultyButton(
-                title: "hard_button",
-                subtitle: "< 1m",
-                color: Color(hex: "EF4444"),
-                action: onHard
-            )
+            // Hard button
+            Button(action: onHard) {
+                VStack(spacing: 4) {
+                    Image(systemName: "xmark.circle.fill")
+                        .font(.system(size: 28))
+                    Text("Hard")
+                        .font(.system(size: 14, weight: .medium))
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 16)
+                .background(Color(hex: "F44336"))
+                .foregroundColor(.white)
+                .cornerRadius(12)
+            }
             
-            // Medium Button
-            DifficultyButton(
-                title: "medium_button",
-                subtitle: "< 10m",
-                color: Color(hex: "F59E0B"),
-                action: onMedium
-            )
+            // Medium button
+            Button(action: onMedium) {
+                VStack(spacing: 4) {
+                    Image(systemName: "minus.circle.fill")
+                        .font(.system(size: 28))
+                    Text("Medium")
+                        .font(.system(size: 14, weight: .medium))
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 16)
+                .background(Color(hex: "FF9800"))
+                .foregroundColor(.white)
+                .cornerRadius(12)
+            }
             
-            // Easy Button
-            DifficultyButton(
-                title: "easy_button",
-                subtitle: "4d",
-                color: Color(hex: "10B981"),
-                action: onEasy
-            )
+            // Easy button
+            Button(action: onEasy) {
+                VStack(spacing: 4) {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 28))
+                    Text("Easy")
+                        .font(.system(size: 14, weight: .medium))
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 16)
+                .background(Color(hex: "4CAF50"))
+                .foregroundColor(.white)
+                .cornerRadius(12)
+            }
         }
     }
 }
 
-// MARK: - Difficulty Button Component
-struct DifficultyButton: View {
-    let title: LocalizedStringKey
-    let subtitle: String
-    let color: Color
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            VStack(spacing: 4) {
-                Text(title)
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundColor(.white)
-                
-                Text(subtitle)
-                    .font(.system(size: 12, weight: .regular))
-                    .foregroundColor(.white.opacity(0.8))
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 16)
-            .background(color)
-            .cornerRadius(12)
+// MARK: - Color Extension
+extension Color {
+    init(hexString: String) {
+        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3:
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6:
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8:
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            (a, r, g, b) = (255, 0, 0, 0)
         }
+        self.init(
+            .sRGB,
+            red: Double(r) / 255,
+            green: Double(g) / 255,
+            blue: Double(b) / 255,
+            opacity: Double(a) / 255
+        )
     }
 }
+
 
 // MARK: - Preview
-#Preview {
-    StudyView()
+struct StudyView_Previews: PreviewProvider {
+    static var previews: some View {
+        StudyView()
+    }
 }
