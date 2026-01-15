@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  HocaLingo
+
+  Created by Auralian on 15.01.2026.
+  
+*/
+
+// Tab Titles
+"home_tab" = "Ana Sayfa";
+"study_tab" = "Çalış";
+"profile_tab" = "Profil";
+
+// Home Screen
+"stat_streak_days" = "Gün Serisi";
+"stat_today_words" = "Bugünkü Kelimeler";
+"stat_total_learned" = "Toplam Öğrenilen";
+
+// Actions
+"action_select_package" = "Paket Seç";
+"action_select_package_desc" = "Öğrenmek için kelime seç";
+"action_ai_assistant" = "AI Asistan";
+"action_ai_assistant_desc" = "AI'dan yardım al";
+
+// Study Screen
+"study_screen_title" = "Çalışma";
+
+// Profile Screen
+"profile_screen_title" = "Profil";
+
+// Package Selection
+"package_selection_title" = "Paket Seç";
+"package_selection_subtitle" = "Seviyeni seç ve öğrenmeye başla";
+"package_words_count" = "%d kelime";
+"package_selected" = "Seçili";
+"package_select" = "Seç";

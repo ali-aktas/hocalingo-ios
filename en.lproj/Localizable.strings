@@ -1,0 +1,36 @@
+/* 
+  Localizable.strings
+  HocaLingo
+
+  Created by Auralian on 15.01.2026.
+  
+*/
+
+// Tab Titles
+"home_tab" = "Home";
+"study_tab" = "Study";
+"profile_tab" = "Profile";
+
+// Home Screen
+"stat_streak_days" = "Day Streak";
+"stat_today_words" = "Today's Words";
+"stat_total_learned" = "Total Learned";
+
+// Actions
+"action_select_package" = "Select Package";
+"action_select_package_desc" = "Choose words to learn";
+"action_ai_assistant" = "AI Assistant";
+"action_ai_assistant_desc" = "Get help from AI";
+
+// Study Screen
+"study_screen_title" = "Study";
+
+// Profile Screen
+"profile_screen_title" = "Profile";
+
+// Package Selection
+"package_selection_title" = "Select Package";
+"package_selection_subtitle" = "Choose your level and start learning";
+"package_words_count" = "%d words";
+"package_selected" = "Selected";
+"package_select" = "Select";

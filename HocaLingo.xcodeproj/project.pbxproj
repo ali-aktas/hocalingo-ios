@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0EC5FC772F192647002129FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EC5FC752F192647002129FC /* Localizable.strings */; };
+		0EC5FC782F192647002129FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EC5FC752F192647002129FC /* Localizable.strings */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		0EC909DC2F18743F00FEBC67 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0EC5FC762F192647002129FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		0EC5FC792F192821002129FC /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0EC909CE2F18743E00FEBC67 /* HocaLingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HocaLingo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC909DB2F18743F00FEBC67 /* HocaLingoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HocaLingoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0EC909E52F18743F00FEBC67 /* HocaLingoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HocaLingoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,20 +40,48 @@
 		0EC90A0B2F18860100FEBC67 /* Exceptions for "HocaLingo" folder in "HocaLingo" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				App/MainTabView.swift,
 				Assets.xcassets,
 				ContentView.swift,
+				Core/Storage/JSONLoader.swift,
 				en_tr_a1_001.json,
+				Features/Home/HomeView.swift,
+				Features/Home/HomeViewModel.swift,
+				Features/Selection/PackageSelectionView.swift,
+				Features/Selection/PackageSelectionViewModel.swift,
+				Features/Selection/WordSelectionView.swift,
+				Features/Selection/WordSelectionViewModel.swift,
 				HocaLingoApp.swift,
+				Models/Package.swift,
+				Models/PackageInfo.swift,
+				Models/Progress.swift,
+				Models/UserStats.swift,
+				Models/VocabularyPackage.swift,
+				Models/Word.swift,
 			);
 			target = 0EC909CD2F18743E00FEBC67 /* HocaLingo */;
 		};
 		0EC90A0C2F18860100FEBC67 /* Exceptions for "HocaLingo" folder in "HocaLingoTests" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				App/MainTabView.swift,
 				Assets.xcassets,
 				ContentView.swift,
+				Core/Storage/JSONLoader.swift,
 				en_tr_a1_001.json,
+				Features/Home/HomeView.swift,
+				Features/Home/HomeViewModel.swift,
+				Features/Selection/PackageSelectionView.swift,
+				Features/Selection/PackageSelectionViewModel.swift,
+				Features/Selection/WordSelectionView.swift,
+				Features/Selection/WordSelectionViewModel.swift,
 				HocaLingoApp.swift,
+				Models/Package.swift,
+				Models/PackageInfo.swift,
+				Models/Progress.swift,
+				Models/UserStats.swift,
+				Models/VocabularyPackage.swift,
+				Models/Word.swift,
 			);
 			target = 0EC909DA2F18743F00FEBC67 /* HocaLingoTests */;
 		};
@@ -102,6 +137,7 @@
 		0EC909C52F18743E00FEBC67 = {
 			isa = PBXGroup;
 			children = (
+				0EC5FC752F192647002129FC /* Localizable.strings */,
 				0EC90A072F18860100FEBC67 /* HocaLingo */,
 				0EC909DE2F18743F00FEBC67 /* HocaLingoTests */,
 				0EC909E82F18743F00FEBC67 /* HocaLingoUITests */,
@@ -217,6 +253,7 @@
 			knownRegions = (
 				en,
 				Base,
+				tr,
 			);
 			mainGroup = 0EC909C52F18743E00FEBC67;
 			minimizedProjectReferenceProxies = 1;
@@ -237,6 +274,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EC5FC782F192647002129FC /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,6 +282,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EC5FC772F192647002129FC /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,12 +332,26 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		0EC5FC752F192647002129FC /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				0EC5FC762F192647002129FC /* en */,
+				0EC5FC792F192821002129FC /* tr */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+			usesTabs = 0;
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		0EC909ED2F18743F00FEBC67 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -362,6 +415,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
