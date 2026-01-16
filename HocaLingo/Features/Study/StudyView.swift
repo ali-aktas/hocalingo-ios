@@ -52,7 +52,7 @@ struct StudyView: View {
                     // Action Buttons
                     StudyButtons(
                         isCardFlipped: viewModel.isCardFlipped,
-                        hardTime: viewModel.hardTimeText,
+                        hardTime: viewModel.hardTimeText,   // ✅ DOĞRU
                         mediumTime: viewModel.mediumTimeText,
                         easyTime: viewModel.easyTimeText,
                         onHard: { viewModel.answerCard(difficulty: .hard) },

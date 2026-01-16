@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0E8BC8112F19B59300BDDDBF /* card_flip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E8BC80D2F19B56B00BDDDBF /* card_flip.wav */; };
-		0E8BC8122F19B59800BDDDBF /* click_sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E8BC80E2F19B56B00BDDDBF /* click_sound.wav */; };
-		0E8BC8132F19B59E00BDDDBF /* swipe_left.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E8BC80F2F19B56B00BDDDBF /* swipe_left.wav */; };
-		0E8BC8142F19B5A200BDDDBF /* swipe_right.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0E8BC8102F19B56B00BDDDBF /* swipe_right.wav */; };
 		0EC5FC772F192647002129FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EC5FC752F192647002129FC /* Localizable.strings */; };
 		0EC5FC782F192647002129FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EC5FC752F192647002129FC /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -33,10 +29,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0E8BC80D2F19B56B00BDDDBF /* card_flip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = card_flip.wav; sourceTree = "<group>"; };
-		0E8BC80E2F19B56B00BDDDBF /* click_sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click_sound.wav; sourceTree = "<group>"; };
-		0E8BC80F2F19B56B00BDDDBF /* swipe_left.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = swipe_left.wav; sourceTree = "<group>"; };
-		0E8BC8102F19B56B00BDDDBF /* swipe_right.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = swipe_right.wav; sourceTree = "<group>"; };
 		0EC5FC762F192647002129FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0EC5FC792F192821002129FC /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0EC909CE2F18743E00FEBC67 /* HocaLingo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HocaLingo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -77,6 +69,10 @@
 				Models/UserStats.swift,
 				Models/VocabularyPackage.swift,
 				Models/Word.swift,
+				Resources/Sounds/card_flip.wav,
+				Resources/Sounds/click_sound.wav,
+				Resources/Sounds/swipe_left.wav,
+				Resources/Sounds/swipe_right.wav,
 			);
 			target = 0EC909CD2F18743E00FEBC67 /* HocaLingo */;
 		};
@@ -104,6 +100,10 @@
 				Models/UserStats.swift,
 				Models/VocabularyPackage.swift,
 				Models/Word.swift,
+				Resources/Sounds/card_flip.wav,
+				Resources/Sounds/click_sound.wav,
+				Resources/Sounds/swipe_left.wav,
+				Resources/Sounds/swipe_right.wav,
 			);
 			target = 0EC909DA2F18743F00FEBC67 /* HocaLingoTests */;
 		};
@@ -156,29 +156,9 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0E8BC80B2F19B53100BDDDBF /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				0E8BC80C2F19B54200BDDDBF /* Sounds */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		0E8BC80C2F19B54200BDDDBF /* Sounds */ = {
-			isa = PBXGroup;
-			children = (
-				0E8BC80D2F19B56B00BDDDBF /* card_flip.wav */,
-				0E8BC80E2F19B56B00BDDDBF /* click_sound.wav */,
-				0E8BC80F2F19B56B00BDDDBF /* swipe_left.wav */,
-				0E8BC8102F19B56B00BDDDBF /* swipe_right.wav */,
-			);
-			path = Sounds;
-			sourceTree = "<group>";
-		};
 		0EC909C52F18743E00FEBC67 = {
 			isa = PBXGroup;
 			children = (
-				0E8BC80B2F19B53100BDDDBF /* Resources */,
 				0EC5FC752F192647002129FC /* Localizable.strings */,
 				0EC90A072F18860100FEBC67 /* HocaLingo */,
 				0EC909DE2F18743F00FEBC67 /* HocaLingoTests */,
@@ -316,10 +296,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E8BC8112F19B59300BDDDBF /* card_flip.wav in Resources */,
-				0E8BC8132F19B59E00BDDDBF /* swipe_left.wav in Resources */,
-				0E8BC8142F19B5A200BDDDBF /* swipe_right.wav in Resources */,
-				0E8BC8122F19B59800BDDDBF /* click_sound.wav in Resources */,
 				0EC5FC782F192647002129FC /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -2,7 +2,8 @@
 //  WordSelectionViewModel.swift
 //  HocaLingo
 //
-//  Updated on 15.01.2026.
+//  ✅ UPDATED: Dual progress creation (EN→TR + TR→EN) for each word
+//  Location: HocaLingo/Features/Selection/WordSelectionViewModel.swift
 //
 
 import SwiftUI
@@ -10,7 +11,7 @@ import Combine
 
 // MARK: - Word Selection View Model
 /// Business logic for word selection screen with persistence
-/// Location: HocaLingo/Features/Selection/WordSelectionViewModel.swift
+/// ✅ Creates independent progress for both study directions
 class WordSelectionViewModel: ObservableObject {
     
     // MARK: - Published Properties
@@ -90,7 +91,7 @@ class WordSelectionViewModel: ObservableObject {
         selectedWordIds.removeAll()
     }
     
-    /// Finish selection and save to UserDefaults
+    /// ✅ UPDATED: Finish selection and create dual progress for each word
     func finishSelection() {
         guard selectedCount > 0 else {
             print("⚠️ No words selected")
@@ -105,7 +106,79 @@ class WordSelectionViewModel: ObservableObject {
         // Save selected package
         UserDefaultsManager.shared.saveSelectedPackage(packageId)
         
-        print("✅ Selection finished: \(selectedCount) words saved")
+        // ✅ CRITICAL: Create dual progress for each selected word
+        createDualProgressForSelectedWords(wordIdsArray)
+        
+        print("✅ Selection finished:")
+        print("   - Words selected: \(selectedCount)")
+        print("   - Progress records created: \(selectedCount * 2) (both directions)")
+    }
+    
+    /// ✅ NEW: Create progress for both directions (EN→TR and TR→EN)
+    /// This ensures each word has independent progress tracking for each study direction
+    private func createDualProgressForSelectedWords(_ wordIds: [Int]) {
+        let currentTime = Date()
+        var progressCreatedCount = 0
+        
+        for wordId in wordIds {
+            // ✅ Check if progress already exists for both directions
+            let existingProgressEnToTr = UserDefaultsManager.shared.loadProgress(for: wordId, direction: .enToTr)
+            let existingProgressTrToEn = UserDefaultsManager.shared.loadProgress(for: wordId, direction: .trToEn)
+            
+            // ✅ Create EN→TR progress if not exists
+            if existingProgressEnToTr == nil {
+                let progressEnToTr = Progress(
+                    wordId: wordId,
+                    direction: .enToTr,
+                    repetitions: 0,
+                    intervalDays: 0,
+                    easeFactor: 2.5,
+                    nextReviewAt: currentTime,
+                    lastReviewAt: nil,
+                    learningPhase: true,
+                    sessionPosition: 1,
+                    successfulReviews: 0,
+                    hardPresses: 0,
+                    isSelected: true,
+                    isMastered: false,
+                    createdAt: currentTime,
+                    updatedAt: currentTime
+                )
+                
+                UserDefaultsManager.shared.saveProgress(progressEnToTr, for: wordId)
+                progressCreatedCount += 1
+                
+                print("   ✅ Created EN→TR progress for word \(wordId)")
+            }
+            
+            // ✅ Create TR→EN progress if not exists
+            if existingProgressTrToEn == nil {
+                let progressTrToEn = Progress(
+                    wordId: wordId,
+                    direction: .trToEn,
+                    repetitions: 0,
+                    intervalDays: 0,
+                    easeFactor: 2.5,
+                    nextReviewAt: currentTime,
+                    lastReviewAt: nil,
+                    learningPhase: true,
+                    sessionPosition: 1,
+                    successfulReviews: 0,
+                    hardPresses: 0,
+                    isSelected: true,
+                    isMastered: false,
+                    createdAt: currentTime,
+                    updatedAt: currentTime
+                )
+                
+                UserDefaultsManager.shared.saveProgress(progressTrToEn, for: wordId)
+                progressCreatedCount += 1
+                
+                print("   ✅ Created TR→EN progress for word \(wordId)")
+            }
+        }
+        
+        print("   📊 Total new progress records: \(progressCreatedCount)")
     }
     
     // MARK: - Persistence
