@@ -2,7 +2,7 @@
 //  StudyView.swift
 //  HocaLingo
 //
-//  ✅ FIXED: Unlimited flip + Auto TTS (Report compliant)
+//  ✅ COMPLETE FIX: 3D flip + Direction-aware speaker + Completion screen
 //  Location: HocaLingo/Features/Study/StudyView.swift
 //
 
@@ -12,47 +12,64 @@ import SwiftUI
 struct StudyView: View {
     @StateObject private var viewModel = StudyViewModel()
     @Environment(\.dismiss) private var dismiss
-    @Namespace private var cardNamespace
     
     var body: some View {
+        ZStack {
+            if viewModel.isSessionComplete {
+                // ✅ FIX 8: Show completion screen
+                StudyCompletionView(
+                    onContinue: { dismiss() },
+                    onRestart: { viewModel.restartSession() }
+                )
+                .transition(.opacity)
+            } else {
+                // Normal study UI
+                studyInterface
+            }
+        }
+        .navigationViewStyle(.stack)
+        .animation(.easeInOut(duration: 0.3), value: viewModel.isSessionComplete)
+    }
+    
+    private var studyInterface: some View {
         NavigationView {
             ZStack {
                 Color(.systemBackground)
                     .ignoresSafeArea()
                 
                 VStack(spacing: 16) {
-                    // Progress Indicator (DYNAMIC)
+                    // Progress Bar
                     StudyProgressBar(
                         currentIndex: viewModel.currentCardIndex,
                         totalCards: viewModel.totalCards
                     )
                     
-                    // Flashcard with smooth transition
-                    ZStack {
-                        if viewModel.totalCards > 0 {
-                            StudyFlashCard(
-                                card: viewModel.currentCard,
-                                isFlipped: viewModel.isCardFlipped,
-                                cardColor: viewModel.currentCardColor,
-                                exampleSentence: viewModel.currentExampleSentence,
-                                showSpeakerButton: !viewModel.isCardFlipped,
-                                onTap: { viewModel.flipCard() },
-                                onSpeakerTap: { viewModel.replayAudio() }
-                            )
-                            .matchedGeometryEffect(id: "card", in: cardNamespace)
-                            .transition(.asymmetric(
-                                insertion: .move(edge: .trailing).combined(with: .opacity),
-                                removal: .move(edge: .leading).combined(with: .opacity)
-                            ))
-                        }
+                    // Flashcard
+                    if viewModel.totalCards > 0 {
+                        StudyFlashCard(
+                            card: viewModel.currentCard,
+                            isFlipped: viewModel.isCardFlipped,
+                            cardColor: viewModel.currentCardColor,
+                            exampleSentence: viewModel.currentExampleSentence,
+                            shouldShowSpeakerOnFront: viewModel.shouldShowSpeakerOnFront,  // ✅ FIX 3
+                            isCardFlipped: viewModel.isCardFlipped,
+                            onTap: { viewModel.flipCard() },
+                            onSpeakerTap: { viewModel.replayAudio() }
+                        )
+                        .transition(.asymmetric(
+                            insertion: .move(edge: .trailing).combined(with: .opacity),
+                            removal: .move(edge: .leading).combined(with: .opacity)
+                        ))
+                    } else {
+                        Text("Çalışacak kelime yok")
+                            .font(.system(size: 18))
+                            .foregroundColor(.secondary)
                     }
-                    .frame(maxHeight: .infinity)
-                    .animation(.spring(response: 0.4, dampingFraction: 0.8), value: viewModel.currentCardIndex)
                     
                     // Action Buttons
                     StudyButtons(
                         isCardFlipped: viewModel.isCardFlipped,
-                        hardTime: viewModel.hardTimeText,   // ✅ DOĞRU
+                        hardTime: viewModel.hardTimeText,
                         mediumTime: viewModel.mediumTimeText,
                         easyTime: viewModel.easyTimeText,
                         onHard: { viewModel.answerCard(difficulty: .hard) },
@@ -64,28 +81,16 @@ struct StudyView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: { dismiss() }) {
-                        Image(systemName: "chevron.left")
-                            .foregroundColor(.primary)
-                    }
-                }
                 ToolbarItem(placement: .principal) {
                     Text("Çalışma")
                         .font(.system(size: 17, weight: .semibold))
                 }
             }
-            .onChange(of: viewModel.shouldDismiss) {
-                if viewModel.shouldDismiss {
-                    dismiss()
-                }
-            }
         }
-        .navigationViewStyle(.stack)
     }
 }
 
-// MARK: - Progress Bar (DYNAMIC like Android)
+// MARK: - Progress Bar
 struct StudyProgressBar: View {
     let currentIndex: Int
     let totalCards: Int
@@ -109,7 +114,7 @@ struct StudyProgressBar: View {
                         .frame(height: 6)
                     
                     RoundedRectangle(cornerRadius: 3)
-                        .fill(Color(hex: "4ECDC4")) // Turquoise
+                        .fill(Color(hex: "4ECDC4"))
                         .frame(width: geometry.size.width * progress, height: 6)
                         .animation(.spring(response: 0.3), value: progress)
                 }
@@ -119,75 +124,63 @@ struct StudyProgressBar: View {
     }
 }
 
-
-// MARK: - Flashcard with Colors & Example Sentences
+// MARK: - Flashcard with 3D Animation
 struct StudyFlashCard: View {
     let card: StudyCard
     let isFlipped: Bool
     let cardColor: Color
     let exampleSentence: String
-    let showSpeakerButton: Bool
+    let shouldShowSpeakerOnFront: Bool  // ✅ FIX 3
+    let isCardFlipped: Bool
     let onTap: () -> Void
     let onSpeakerTap: () -> Void
     
-    // ✅ TTS auto-play control (per card)
-    @State private var hasPlayedAudio = false
-    
     var body: some View {
         ZStack {
-            // Back side (Turkish)
-            CardContent(
-                mainText: card.backText,
-                exampleText: exampleSentence,
-                backgroundColor: cardColor,
-                showSpeakerButton: false,
-                onSpeakerTap: {}
-            )
-            .opacity(isFlipped ? 1 : 0)
-            .rotation3DEffect(
-                .degrees(isFlipped ? 0 : -90),
-                axis: (x: 0, y: 1, z: 0)
-            )
-            
-            // Front side (English)
-            CardContent(
-                mainText: card.frontText,
-                exampleText: exampleSentence,
-                backgroundColor: cardColor,
-                showSpeakerButton: showSpeakerButton,
-                onSpeakerTap: onSpeakerTap
-            )
-            .opacity(isFlipped ? 0 : 1)
-            .rotation3DEffect(
-                .degrees(isFlipped ? 90 : 0),
-                axis: (x: 0, y: 1, z: 0)
-            )
+            // ✅ FIX 6: Improved 3D flip with perspective
+            Group {
+                // Back side
+                CardContent(
+                    mainText: card.backText,
+                    exampleText: exampleSentence,
+                    backgroundColor: cardColor,
+                    showSpeakerButton: !shouldShowSpeakerOnFront && isCardFlipped,  // ✅ FIX 3
+                    onSpeakerTap: onSpeakerTap
+                )
+                .opacity(isFlipped ? 1 : 0)
+                .rotation3DEffect(
+                    .degrees(isFlipped ? 0 : -180),
+                    axis: (x: 0, y: 1, z: 0),
+                    perspective: 0.5  // ✅ FIX 6: Add perspective
+                )
+                
+                // Front side
+                CardContent(
+                    mainText: card.frontText,
+                    exampleText: exampleSentence,
+                    backgroundColor: cardColor,
+                    showSpeakerButton: shouldShowSpeakerOnFront && !isCardFlipped,  // ✅ FIX 3
+                    onSpeakerTap: onSpeakerTap
+                )
+                .opacity(isFlipped ? 0 : 1)
+                .rotation3DEffect(
+                    .degrees(isFlipped ? 180 : 0),
+                    axis: (x: 0, y: 1, z: 0),
+                    perspective: 0.5  // ✅ FIX 6: Add perspective
+                )
+            }
         }
-        .shadow(color: Color.black.opacity(0.15), radius: 12, x: 0, y: 4)
+        .frame(maxHeight: .infinity)
+        .shadow(color: Color.black.opacity(0.15), radius: 12, x: 0, y: 6)  // ✅ FIX 6: Enhanced shadow
         .onTapGesture {
-            // ✅ Unlimited flip with animation
             withAnimation(.spring(response: 0.6, dampingFraction: 0.85)) {
                 onTap()
             }
         }
-        // ✅ CRITICAL: Auto-play TTS ONCE when card first appears
-        .onAppear {
-            if !hasPlayedAudio {
-                hasPlayedAudio = true
-                // Small delay to let animation finish
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    onSpeakerTap()
-                }
-            }
-        }
-        // ✅ CRITICAL: Reset audio flag when card changes
-        .onChange(of: card.id) { _, _ in
-            hasPlayedAudio = false
-        }
     }
 }
 
-// MARK: - Card Content (One Side)
+// MARK: - Card Content
 struct CardContent: View {
     let mainText: String
     let exampleText: String
@@ -203,14 +196,14 @@ struct CardContent: View {
             VStack(spacing: 16) {
                 Spacer()
                 
-                // Main word
+                // Main text
                 Text(mainText)
                     .font(.system(size: 32, weight: .bold))
                     .foregroundColor(.primary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 24)
                 
-                // Example sentence (if exists)
+                // Example sentence
                 if !exampleText.isEmpty {
                     Text(exampleText)
                         .font(.system(size: 14, weight: .regular))
@@ -222,7 +215,7 @@ struct CardContent: View {
                 
                 Spacer()
                 
-                // Speaker button (only on front/English side)
+                // Speaker button
                 if showSpeakerButton {
                     Button(action: onSpeakerTap) {
                         Image(systemName: "speaker.wave.2.fill")
@@ -231,7 +224,6 @@ struct CardContent: View {
                     }
                     .padding(.bottom, 16)
                 } else {
-                    // Spacer to maintain layout
                     Color.clear
                         .frame(height: 40)
                 }
@@ -240,7 +232,7 @@ struct CardContent: View {
     }
 }
 
-// MARK: - Action Buttons (WITH TIME TEXT like Android)
+// MARK: - Action Buttons
 struct StudyButtons: View {
     let isCardFlipped: Bool
     let hardTime: String
@@ -269,21 +261,21 @@ struct StudyButtons: View {
                 DifficultyButton(
                     mainText: "Zor",
                     timeText: hardTime,
-                    color: Color(hex: "FF3B30"), // iOS Red
+                    color: Color(hex: "FF3B30"),
                     onTap: onHard
                 )
                 
                 DifficultyButton(
                     mainText: "Orta",
                     timeText: mediumTime,
-                    color: Color(hex: "FF9500"), // iOS Orange
+                    color: Color(hex: "FF9500"),
                     onTap: onMedium
                 )
                 
                 DifficultyButton(
                     mainText: "Kolay",
                     timeText: easyTime,
-                    color: Color(hex: "34C759"), // iOS Green
+                    color: Color(hex: "34C759"),
                     onTap: onEasy
                 )
             }
@@ -291,8 +283,7 @@ struct StudyButtons: View {
     }
 }
 
-
-// MARK: - Difficulty Button (3D Android style)
+// MARK: - Difficulty Button
 struct DifficultyButton: View {
     let mainText: String
     let timeText: String
