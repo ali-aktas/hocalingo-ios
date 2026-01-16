@@ -2,7 +2,7 @@
 //  ProfileViewModel.swift
 //  HocaLingo
 //
-//  ✅ UPDATED: Better direction change handling with user feedback
+//  ✅ MEGA UPDATE: NotificationCenter post on direction change (real-time update)
 //  Location: HocaLingo/Features/Profile/ProfileViewModel.swift
 //
 
@@ -42,7 +42,7 @@ class ProfileViewModel: ObservableObject {
     
     // MARK: - Settings Actions
     
-    /// ✅ UPDATED: Change study direction with logging
+    /// ✅ MEGA FIX 3: Change study direction with NotificationCenter
     func changeStudyDirection(to direction: StudyDirection) {
         let oldDirection = studyDirection
         
@@ -52,12 +52,18 @@ class ProfileViewModel: ObservableObject {
         // Save to UserDefaults
         UserDefaultsManager.shared.saveStudyDirection(direction)
         
+        // ✅ NEW: Post notification to StudyViewModel
+        NotificationCenter.default.post(
+            name: NSNotification.Name("StudyDirectionChanged"),
+            object: nil
+        )
+        
         // Log the change
         print("🔄 Direction changed:")
         print("   - From: \(oldDirection.displayName)")
         print("   - To: \(direction.displayName)")
         print("   - Saved to UserDefaults")
-        print("   ℹ️ Next study session will use new direction")
+        print("   📡 Notification posted to StudyViewModel")
     }
     
     /// Change theme mode
@@ -90,30 +96,64 @@ class ProfileViewModel: ObservableObject {
     func changeNotificationTime(to hour: Int) {
         notificationTime = hour
         UserDefaultsManager.shared.saveNotificationTime(hour)
+        
+        if notificationsEnabled {
+            scheduleNotifications()
+        }
+        
         print("⏰ Notification time changed to: \(hour):00")
     }
     
-    /// Refresh stats from storage
-    func refreshStats() {
-        userStats = UserDefaultsManager.shared.loadUserStats()
-        print("🔄 Stats refreshed")
-    }
+    // MARK: - Notification Management
     
-    // MARK: - Notification Permission
-    
+    /// Request notification permission
     private func requestNotificationPermission() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
-            DispatchQueue.main.async {
-                if granted {
-                    print("✅ Notification permission granted")
-                } else if let error = error {
-                    print("❌ Notification permission error: \(error.localizedDescription)")
-                } else {
-                    print("⚠️ Notification permission denied")
-                    self.notificationsEnabled = false
-                    UserDefaultsManager.shared.saveNotificationsEnabled(false)
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            if granted {
+                self.scheduleNotifications()
+                print("✅ Notification permission granted")
+            } else {
+                print("❌ Notification permission denied")
+                if let error = error {
+                    print("Error: \(error.localizedDescription)")
                 }
             }
         }
+    }
+    
+    /// Schedule daily notifications
+    private func scheduleNotifications() {
+        let content = UNMutableNotificationContent()
+        content.title = "HocaLingo"
+        content.body = "Bugünkü kelimelerini çalışma zamanı! 📚"
+        content.sound = .default
+        
+        var dateComponents = DateComponents()
+        dateComponents.hour = notificationTime
+        dateComponents.minute = 0
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        let request = UNNotificationRequest(identifier: "daily_study_reminder", content: content, trigger: trigger)
+        
+        UNUserNotificationCenter.current().add(request) { error in
+            if let error = error {
+                print("❌ Failed to schedule notification: \(error.localizedDescription)")
+            } else {
+                print("✅ Daily notification scheduled for \(self.notificationTime):00")
+            }
+        }
+    }
+    
+    /// Remove all scheduled notifications
+    private func removeNotifications() {
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        print("🗑️ All notifications removed")
+    }
+    
+    // MARK: - Premium Actions
+    
+    func upgradeToPremium() {
+        // TODO: Connect to RevenueCat
+        print("💎 Premium upgrade requested")
     }
 }

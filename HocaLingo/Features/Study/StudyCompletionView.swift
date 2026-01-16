@@ -2,7 +2,7 @@
 //  StudyCompletionView.swift
 //  HocaLingo
 //
-//  ✅ NEW: Completion screen for study session end
+//  ✅ UPDATED: "Yeni Kelimeler Ekle" button navigates to PackageSelection
 //  Location: HocaLingo/Features/Study/StudyCompletionView.swift
 //
 
@@ -13,6 +13,8 @@ import SwiftUI
 struct StudyCompletionView: View {
     let onContinue: () -> Void
     let onRestart: () -> Void
+    
+    @State private var showPackageSelection = false
     
     var body: some View {
         VStack(spacing: 32) {
@@ -53,9 +55,11 @@ struct StudyCompletionView: View {
             
             // Action Buttons
             VStack(spacing: 16) {
-                // Continue Button
-                Button(action: onContinue) {
-                    Text("Devam Et")
+                // ✅ FIX 2: "Yeni Kelimeler Ekle" button
+                Button(action: {
+                    showPackageSelection = true
+                }) {
+                    Text("Yeni Kelimeler Ekle")
                         .font(.system(size: 18, weight: .semibold))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
@@ -71,9 +75,9 @@ struct StudyCompletionView: View {
                         .shadow(color: Color(hex: "4ECDC4").opacity(0.3), radius: 10, x: 0, y: 5)
                 }
                 
-                // Restart Button
-                Button(action: onRestart) {
-                    Text("Tekrar Çalış")
+                // Continue to Home Button
+                Button(action: onContinue) {
+                    Text("Ana Sayfaya Dön")
                         .font(.system(size: 16, weight: .medium))
                         .foregroundColor(Color(hex: "4ECDC4"))
                         .frame(maxWidth: .infinity)
@@ -86,6 +90,9 @@ struct StudyCompletionView: View {
             .padding(.bottom, 40)
         }
         .background(Color(.systemBackground))
+        .sheet(isPresented: $showPackageSelection) {
+            PackageSelectionView()
+        }
     }
 }
 

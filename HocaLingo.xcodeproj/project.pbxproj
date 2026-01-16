@@ -37,6 +37,26 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		0E12B1B92F1A98E2002FCE76 /* Exceptions for "Resources" folder in "HocaLingo" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Sounds/card_flip.wav,
+				Sounds/click_sound.wav,
+				Sounds/swipe_left.wav,
+				Sounds/swipe_right.wav,
+			);
+			target = 0EC909CD2F18743E00FEBC67 /* HocaLingo */;
+		};
+		0E12B1BA2F1A98E2002FCE76 /* Exceptions for "Resources" folder in "HocaLingoTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Sounds/card_flip.wav,
+				Sounds/click_sound.wav,
+				Sounds/swipe_left.wav,
+				Sounds/swipe_right.wav,
+			);
+			target = 0EC909DA2F18743F00FEBC67 /* HocaLingoTests */;
+		};
 		0EC90A0B2F18860100FEBC67 /* Exceptions for "HocaLingo" folder in "HocaLingo" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -70,10 +90,6 @@
 				Models/UserStats.swift,
 				Models/VocabularyPackage.swift,
 				Models/Word.swift,
-				Resources/Sounds/card_flip.wav,
-				Resources/Sounds/click_sound.wav,
-				Resources/Sounds/swipe_left.wav,
-				Resources/Sounds/swipe_right.wav,
 			);
 			target = 0EC909CD2F18743E00FEBC67 /* HocaLingo */;
 		};
@@ -101,16 +117,21 @@
 				Models/UserStats.swift,
 				Models/VocabularyPackage.swift,
 				Models/Word.swift,
-				Resources/Sounds/card_flip.wav,
-				Resources/Sounds/click_sound.wav,
-				Resources/Sounds/swipe_left.wav,
-				Resources/Sounds/swipe_right.wav,
 			);
 			target = 0EC909DA2F18743F00FEBC67 /* HocaLingoTests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		0E12B1B42F1A98E2002FCE76 /* Resources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				0E12B1B92F1A98E2002FCE76 /* Exceptions for "Resources" folder in "HocaLingo" target */,
+				0E12B1BA2F1A98E2002FCE76 /* Exceptions for "Resources" folder in "HocaLingoTests" target */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		0EC909DE2F18743F00FEBC67 /* HocaLingoTests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = HocaLingoTests;
@@ -165,6 +186,7 @@
 				0EC909DE2F18743F00FEBC67 /* HocaLingoTests */,
 				0EC909E82F18743F00FEBC67 /* HocaLingoUITests */,
 				0EC909CF2F18743E00FEBC67 /* Products */,
+				0E12B1B42F1A98E2002FCE76 /* Resources */,
 			);
 			sourceTree = "<group>";
 		};
@@ -214,6 +236,7 @@
 				0EC909DD2F18743F00FEBC67 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
+				0E12B1B42F1A98E2002FCE76 /* Resources */,
 				0EC909DE2F18743F00FEBC67 /* HocaLingoTests */,
 				0EC90A072F18860100FEBC67 /* HocaLingo */,
 			);

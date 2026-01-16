@@ -2,7 +2,7 @@
 //  WordSelectionViewModel.swift
 //  HocaLingo
 //
-//  ✅ UPDATED: Dual progress creation (EN→TR + TR→EN) for each word
+//  ✅ MEGA UPDATE: NotificationCenter post after word selection (real-time update)
 //  Location: HocaLingo/Features/Selection/WordSelectionViewModel.swift
 //
 
@@ -10,15 +10,14 @@ import SwiftUI
 import Combine
 
 // MARK: - Word Selection View Model
-/// Business logic for word selection screen with persistence
-/// ✅ Creates independent progress for both study directions
+/// Business logic for word selection with dual progress creation
 class WordSelectionViewModel: ObservableObject {
     
     // MARK: - Published Properties
     @Published var words: [Word] = []
     @Published var selectedWordIds: Set<Int> = []
     @Published var isLoading: Bool = false
-    @Published var errorMessage: String?
+    @Published var errorMessage: String? = nil
     
     // MARK: - Private Properties
     private let packageId: String
@@ -33,35 +32,24 @@ class WordSelectionViewModel: ObservableObject {
     init(packageId: String) {
         self.packageId = packageId
         loadWords()
-        loadPreviousSelection()
     }
     
     // MARK: - Data Loading
-    
-    /// Load words from JSON file
     func loadWords() {
         isLoading = true
         errorMessage = nil
         
-        DispatchQueue.global(qos: .userInitiated).async { [weak self] in
-            guard let self = self else { return }
+        do {
+            let vocabPackage = try jsonLoader.loadVocabularyPackage(filename: packageId)
+            words = vocabPackage.words
+            isLoading = false
             
-            do {
-                // Load vocabulary package (throws error, doesn't return optional)
-                let vocabularyPackage = try self.jsonLoader.loadVocabularyPackage(filename: self.packageId)
-                
-                DispatchQueue.main.async {
-                    self.words = vocabularyPackage.words
-                    self.isLoading = false
-                    print("✅ Loaded \(self.words.count) words from \(self.packageId)")
-                }
-            } catch {
-                DispatchQueue.main.async {
-                    self.errorMessage = "Failed to load words: \(error.localizedDescription)"
-                    self.isLoading = false
-                    print("❌ Error loading words: \(error)")
-                }
-            }
+            print("✅ Loaded \(words.count) words from package: \(packageId)")
+        } catch {
+            errorMessage = "Failed to load words: \(error.localizedDescription)"
+            isLoading = false
+            
+            print("❌ Failed to load words: \(error.localizedDescription)")
         }
     }
     
@@ -91,7 +79,7 @@ class WordSelectionViewModel: ObservableObject {
         selectedWordIds.removeAll()
     }
     
-    /// ✅ UPDATED: Finish selection and create dual progress for each word
+    /// ✅ MEGA FIX 3: Finish selection + NotificationCenter
     func finishSelection() {
         guard selectedCount > 0 else {
             print("⚠️ No words selected")
@@ -109,92 +97,36 @@ class WordSelectionViewModel: ObservableObject {
         // ✅ CRITICAL: Create dual progress for each selected word
         createDualProgressForSelectedWords(wordIdsArray)
         
+        // ✅ NEW: Post notification to StudyViewModel
+        NotificationCenter.default.post(
+            name: NSNotification.Name("WordSelectionChanged"),
+            object: nil
+        )
+        
         print("✅ Selection finished:")
         print("   - Words selected: \(selectedCount)")
         print("   - Progress records created: \(selectedCount * 2) (both directions)")
+        print("   📡 Notification posted to StudyViewModel")
     }
     
     /// ✅ NEW: Create progress for both directions (EN→TR and TR→EN)
     /// This ensures each word has independent progress tracking for each study direction
     private func createDualProgressForSelectedWords(_ wordIds: [Int]) {
-        let currentTime = Date()
-        var progressCreatedCount = 0
+        let directions: [StudyDirection] = [.enToTr, .trToEn]
         
         for wordId in wordIds {
-            // ✅ Check if progress already exists for both directions
-            let existingProgressEnToTr = UserDefaultsManager.shared.loadProgress(for: wordId, direction: .enToTr)
-            let existingProgressTrToEn = UserDefaultsManager.shared.loadProgress(for: wordId, direction: .trToEn)
-            
-            // ✅ Create EN→TR progress if not exists
-            if existingProgressEnToTr == nil {
-                let progressEnToTr = Progress(
-                    wordId: wordId,
-                    direction: .enToTr,
-                    repetitions: 0,
-                    intervalDays: 0,
-                    easeFactor: 2.5,
-                    nextReviewAt: currentTime,
-                    lastReviewAt: nil,
-                    learningPhase: true,
-                    sessionPosition: 1,
-                    successfulReviews: 0,
-                    hardPresses: 0,
-                    isSelected: true,
-                    isMastered: false,
-                    createdAt: currentTime,
-                    updatedAt: currentTime
-                )
+            for direction in directions {
+                // Check if progress already exists for this word+direction
+                let existingProgress = UserDefaultsManager.shared.loadProgress(for: wordId, direction: direction)
                 
-                UserDefaultsManager.shared.saveProgress(progressEnToTr, for: wordId)
-                progressCreatedCount += 1
-                
-                print("   ✅ Created EN→TR progress for word \(wordId)")
-            }
-            
-            // ✅ Create TR→EN progress if not exists
-            if existingProgressTrToEn == nil {
-                let progressTrToEn = Progress(
-                    wordId: wordId,
-                    direction: .trToEn,
-                    repetitions: 0,
-                    intervalDays: 0,
-                    easeFactor: 2.5,
-                    nextReviewAt: currentTime,
-                    lastReviewAt: nil,
-                    learningPhase: true,
-                    sessionPosition: 1,
-                    successfulReviews: 0,
-                    hardPresses: 0,
-                    isSelected: true,
-                    isMastered: false,
-                    createdAt: currentTime,
-                    updatedAt: currentTime
-                )
-                
-                UserDefaultsManager.shared.saveProgress(progressTrToEn, for: wordId)
-                progressCreatedCount += 1
-                
-                print("   ✅ Created TR→EN progress for word \(wordId)")
+                if existingProgress == nil {
+                    // Create new progress
+                    let newProgress = Progress(wordId: wordId, direction: direction)
+                    UserDefaultsManager.shared.saveProgress(newProgress, for: wordId)
+                    
+                    print("📝 Created progress: wordId=\(wordId), direction=\(direction.displayName)")
+                }
             }
         }
-        
-        print("   📊 Total new progress records: \(progressCreatedCount)")
-    }
-    
-    // MARK: - Persistence
-    
-    /// Load previously selected words
-    private func loadPreviousSelection() {
-        let savedWordIds = UserDefaultsManager.shared.loadSelectedWords()
-        selectedWordIds = Set(savedWordIds)
-        
-        if !savedWordIds.isEmpty {
-            print("📂 Loaded \(selectedCount) previously selected words")
-        }
-    }
-    
-    /// Get selected words as array
-    func getSelectedWords() -> [Word] {
-        return words.filter { selectedWordIds.contains($0.id) }
     }
 }

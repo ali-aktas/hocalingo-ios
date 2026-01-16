@@ -2,7 +2,13 @@
 //  StudyViewModel.swift
 //  HocaLingo
 //
-//  ✅ COMPLETE FIX: TTS auto-play + Direction-aware speaker + Progress colors + Completion
+//  ✅ MEGA FIX:
+//  1. Random 30 pastel colors (not progress-based)
+//  2. Real-time update system (NotificationCenter)
+//  3. TTS timing fix (TR->EN only on flip)
+//  4. No TTS on init (fixes home screen sound bug)
+//  5. First card direction fix (proper front/back logic)
+//
 //  Location: HocaLingo/Features/Study/StudyViewModel.swift
 //
 
@@ -37,11 +43,16 @@ class StudyViewModel: ObservableObject {
     // MARK: - Published Properties
     @Published var currentCardIndex: Int = 0 {
         didSet {
-            // ✅ FIX 2: Auto-play TTS when card changes
+            // ✅ FIX: Only trigger TTS for EN->TR direction
+            // TR->EN: TTS will be triggered on flip, not on card change
             if currentCardIndex != oldValue && currentCardIndex < studyQueue.count {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-                    self?.playCurrentWordAudio()
+                if studyDirection == .enToTr {
+                    // EN->TR: Auto-play immediately (English on front)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+                        self?.playCurrentWordAudio()
+                    }
                 }
+                // TR->EN: Do NOT auto-play here, will play on flip
             }
         }
     }
@@ -49,13 +60,20 @@ class StudyViewModel: ObservableObject {
     @Published var studyQueue: [StudyCard] = []
     @Published var studyDirection: StudyDirection = .enToTr
     @Published var shouldDismiss: Bool = false
-    @Published var isSessionComplete: Bool = false  // ✅ FIX 8: Completion state
+    @Published var isSessionComplete: Bool = false
     
     // MARK: - Private Properties
     private var allWords: [Word] = []
     private var currentProgress: [Int: Progress] = [:]
     private let jsonLoader = JSONLoader()
     private var currentSessionMaxPosition: Int = 0
+    private var cancellables = Set<AnyCancellable>()
+    
+    // ✅ FIX 4: Track if this is first load (to prevent init TTS)
+    private var isFirstLoad: Bool = true
+    
+    // ✅ FIX 5: Track if TTS already played for current card (TR->EN only once)
+    private var ttsPlayedForCurrentCard: Bool = false
     
     // Audio Managers
     private let ttsManager = TTSManager.shared
@@ -106,26 +124,9 @@ class StudyViewModel: ObservableObject {
         }
     }
     
-    /// ✅ FIX 7: Progress-based card colors (not index-based)
+    /// ✅ FIX 1: Random pastel color based on wordId (not progress)
     var currentCardColor: Color {
-        guard let progress = currentProgress[currentCard.wordId] else {
-            // New word: Light red
-            return Color(hex: "FFE5E5")
-        }
-        
-        if progress.isMastered {
-            // Mastered: Light green
-            return Color(hex: "E8F5E9")
-        } else if progress.repetitions >= 5 {
-            // Advanced: Light yellow
-            return Color(hex: "FFF9C4")
-        } else if progress.learningPhase {
-            // Learning: Light orange
-            return Color(hex: "FFF3E0")
-        } else {
-            // Review: Light blue
-            return Color(hex: "E1F5FE")
-        }
+        return Color.pastelColor(for: currentCard.wordId)
     }
     
     /// ✅ FIX 3: Direction-aware speaker button placement
@@ -160,7 +161,50 @@ class StudyViewModel: ObservableObject {
     // MARK: - Initialization
     
     init() {
+        setupNotificationObservers()
         loadWords()
+        // ✅ FIX 4: Mark first load complete after init
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
+            self?.isFirstLoad = false
+        }
+    }
+    
+    // MARK: - Notification Observers
+    
+    /// ✅ FIX 2: Setup real-time update observers
+    private func setupNotificationObservers() {
+        // Observe direction changes from ProfileView
+        NotificationCenter.default.publisher(for: NSNotification.Name("StudyDirectionChanged"))
+            .sink { [weak self] _ in
+                print("📡 StudyViewModel: Direction changed notification received")
+                self?.reloadStudySession()
+            }
+            .store(in: &cancellables)
+        
+        // Observe word selection changes from WordSelectionView
+        NotificationCenter.default.publisher(for: NSNotification.Name("WordSelectionChanged"))
+            .sink { [weak self] _ in
+                print("📡 StudyViewModel: Word selection changed notification received")
+                self?.reloadStudySession()
+            }
+            .store(in: &cancellables)
+    }
+    
+    /// ✅ FIX 2: Reload study session (for real-time updates)
+    func reloadStudySession() {
+        print("🔄 Reloading study session...")
+        
+        // Reset state
+        currentCardIndex = 0
+        isCardFlipped = false
+        isSessionComplete = false
+        currentSessionMaxPosition = 0
+        ttsPlayedForCurrentCard = false
+        
+        // Reload data
+        loadWords()
+        
+        print("✅ Study session reloaded!")
     }
     
     // MARK: - Data Loading
@@ -223,15 +267,15 @@ class StudyViewModel: ObservableObject {
         
         currentCardIndex = 0
         currentSessionMaxPosition = 0
+        ttsPlayedForCurrentCard = false
         
         print("✅ Study queue initialized with \(studyQueue.count) cards")
         
-        // Auto-play first card TTS
-        if !studyQueue.isEmpty {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                self?.playCurrentWordAudio()
-            }
-        }
+        // ✅ FIX 4: Do NOT auto-play TTS on init (prevents home screen bug)
+        // TTS will only play:
+        // - EN->TR: When currentCardIndex changes (didSet)
+        // - TR->EN: When card is flipped (flipCard())
+        print("🔇 Skipping initial TTS (will play on card change or flip)")
     }
     
     private func getCardTexts(for word: Word) -> (front: String, back: String) {
@@ -255,6 +299,15 @@ class StudyViewModel: ObservableObject {
         }
         
         print("🔄 Card flipped - isFlipped: \(isCardFlipped)")
+        
+        // ✅ FIX 3: TR->EN TTS timing - ONLY on flip, and ONLY ONCE
+        if isCardFlipped && studyDirection == .trToEn && !ttsPlayedForCurrentCard {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
+                self?.playCurrentWordAudio()
+                self?.ttsPlayedForCurrentCard = true
+                print("🔊 TR->EN: TTS played on flip (one time only)")
+            }
+        }
     }
     
     func replayAudio() {
@@ -266,7 +319,7 @@ class StudyViewModel: ObservableObject {
         guard let word = allWords.first(where: { $0.id == currentCard.wordId }) else { return }
         
         ttsManager.speak(text: word.english, languageCode: "en-US")
-        print("🔊 TTS auto-play: \(word.english)")
+        print("🔊 TTS playing: \(word.english)")
     }
     
     func answerCard(difficulty: CardDifficulty) {
@@ -297,6 +350,9 @@ class StudyViewModel: ObservableObject {
         print("   - Quality: \(quality)")
         print("   - Learning Phase: \(progress.learningPhase)")
         print("   - Interval: \(Int(progress.intervalDays)) days")
+        
+        // Reset TTS flag for next card
+        ttsPlayedForCurrentCard = false
         
         withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
             isCardFlipped = false
@@ -362,6 +418,7 @@ class StudyViewModel: ObservableObject {
             }
             
             currentCardIndex = 0
+            ttsPlayedForCurrentCard = false
         } else {
             print("🎉 All cards graduated! Session complete for direction: \(studyDirection.displayName)")
             completeSession()
@@ -376,6 +433,7 @@ class StudyViewModel: ObservableObject {
     func restartSession() {
         isSessionComplete = false
         currentCardIndex = 0
+        ttsPlayedForCurrentCard = false
         loadWords()
     }
 }
