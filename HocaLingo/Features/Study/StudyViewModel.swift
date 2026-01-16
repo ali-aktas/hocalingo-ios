@@ -2,7 +2,8 @@
 //  StudyViewModel.swift
 //  HocaLingo
 //
-//  ✅ COMPLETE REWRITE: Android-style queue management with same-day reviews
+//  ✅ FIXED: Unlimited flip + TTS + Sound effects (Report compliant)
+//  Location: HocaLingo/Features/Study/StudyViewModel.swift
 //
 
 import SwiftUI
@@ -36,7 +37,7 @@ class StudyViewModel: ObservableObject {
     // MARK: - Published Properties
     @Published var currentCardIndex: Int = 0
     @Published var isCardFlipped: Bool = false
-    @Published var studyQueue: [StudyCard] = []  // ✅ Active queue (like Android)
+    @Published var studyQueue: [StudyCard] = []
     @Published var studyDirection: StudyDirection = .enToTr
     @Published var shouldDismiss: Bool = false
     
@@ -45,6 +46,10 @@ class StudyViewModel: ObservableObject {
     private var currentProgress: [Int: Progress] = [:]
     private let jsonLoader = JSONLoader()
     private var currentSessionMaxPosition: Int = 0
+    
+    // Audio Managers
+    private let ttsManager = TTSManager.shared
+    private let soundManager = SoundManager.shared
     
     // MARK: - Computed Properties
     var currentCard: StudyCard {
@@ -63,183 +68,137 @@ class StudyViewModel: ObservableObject {
         return studyQueue.count
     }
     
-    var progressPercentage: Double {
-        guard totalCards > 0 else { return 0 }
-        return Double(currentCardIndex) / Double(totalCards)
+    var remainingCards: Int {
+        return max(0, totalCards - currentCardIndex)
     }
     
-    // ✅ Button time texts (like Android)
+    var progressText: String {
+        return "\(currentCardIndex + 1) / \(totalCards)"
+    }
+    
+    // Button time texts (Android-style)
     var hardTimeText: String {
-        return "Birazdan" // HARD always shows soon (10 min)
+        guard let progress = currentProgress[currentCard.wordId] else { return "Birazdan" }
+        if progress.learningPhase {
+            return "Birazdan" // Learning: will repeat soon
+        } else {
+            return "Sonra" // Review: later today/tomorrow
+        }
     }
     
     var mediumTimeText: String {
-        return "Sonra" // MEDIUM shows later (1 hour for learning, adaptive for review)
+        guard let progress = currentProgress[currentCard.wordId] else { return "Sonra" }
+        if progress.learningPhase {
+            return "Sonra" // Learning: will repeat in a bit
+        } else {
+            return "Bugün" // Review: today or tomorrow
+        }
     }
     
     var easyTimeText: String {
-        guard currentCardIndex < studyQueue.count else { return "Bugün" }
-        let card = studyQueue[currentCardIndex]
-        
-        // Get current progress
-        if let progress = currentProgress[card.wordId] {
-            // Simulate what EASY would result in
-            let simulatedProgress = SpacedRepetition.calculateNextReview(
-                currentProgress: progress,
-                quality: SpacedRepetition.QUALITY_EASY,
-                currentSessionMaxPosition: currentSessionMaxPosition
-            )
-            return SpacedRepetition.getTimeUntilReview(nextReviewAt: simulatedProgress.nextReviewAt)
+        guard let progress = currentProgress[currentCard.wordId] else { return "Bugün" }
+        if progress.learningPhase {
+            return "Bugün" // Learning: might graduate today
+        } else {
+            let days = Int(progress.intervalDays)
+            return days <= 1 ? "Bugün" : "\(days)g" // Review: actual interval
         }
-        return "Bugün"
     }
     
-    /// ✅ Dynamic card color based on progress
+    // Card color based on progress (Android-style)
     var currentCardColor: Color {
         guard let progress = currentProgress[currentCard.wordId] else {
-            return Color(hex: "FF6B6B") // Red for new words
+            return Color(hex: "FFE5E5") // Light red for new words
         }
-        
-        // Color based on ease factor and repetitions
-        let easeFactor = progress.easeFactor
-        let reps = progress.repetitions
         
         if progress.isMastered {
-            return Color(hex: "4CAF50") // Green - Mastered
-        } else if reps >= 5 {
-            return Color(hex: "2196F3") // Blue - Advanced
-        } else if reps >= 3 {
-            return Color(hex: "9C27B0") // Purple - Intermediate
-        } else if reps >= 1 {
-            return Color(hex: "FF9800") // Orange - Learning
+            return Color(hex: "E8F5E9") // Light green - Mastered
+        } else if progress.repetitions >= 5 {
+            return Color(hex: "FFF9C4") // Light yellow - Advanced
+        } else if progress.learningPhase {
+            return Color(hex: "FFF3E0") // Light orange - Learning
         } else {
-            return Color(hex: "FF6B6B") // Red - New
+            return Color(hex: "E1F5FE") // Light blue - Review
         }
     }
     
-    /// ✅ Dynamic button time texts
-    var buttonTimeTexts: (hard: String, medium: String, easy: String) {
-        // Preview what happens if user presses each button
-        guard let progress = currentProgress[currentCard.wordId] else {
-            return ("Birazdan", "Sonra", "1 saat")
+    // Example sentence for current card
+    var currentExampleSentence: String {
+        // Get the word object
+        guard let word = allWords.first(where: { $0.id == currentCard.wordId }) else {
+            return ""
         }
         
-        // Calculate preview times
-        let hardPreview = SpacedRepetition.calculateNextReview(
-            currentProgress: progress,
-            quality: SpacedRepetition.QUALITY_HARD,
-            currentSessionMaxPosition: currentSessionMaxPosition
-        )
-        
-        let mediumPreview = SpacedRepetition.calculateNextReview(
-            currentProgress: progress,
-            quality: SpacedRepetition.QUALITY_MEDIUM,
-            currentSessionMaxPosition: currentSessionMaxPosition
-        )
-        
-        let easyPreview = SpacedRepetition.calculateNextReview(
-            currentProgress: progress,
-            quality: SpacedRepetition.QUALITY_EASY,
-            currentSessionMaxPosition: currentSessionMaxPosition
-        )
-        
-        return (
-            hard: SpacedRepetition.getTimeUntilReview(nextReviewAt: hardPreview.nextReviewAt),
-            medium: SpacedRepetition.getTimeUntilReview(nextReviewAt: mediumPreview.nextReviewAt),
-            easy: SpacedRepetition.getTimeUntilReview(nextReviewAt: easyPreview.nextReviewAt)
-        )
+        // Return example based on study direction
+        switch studyDirection {
+        case .enToTr:
+            return word.example.en
+        case .trToEn:
+            return word.example.tr
+        case .mixed:
+            // Show example in the language of front text
+            if currentCard.frontText == word.english {
+                return word.example.en
+            } else {
+                return word.example.tr
+            }
+        }
     }
     
-    // MARK: - Init
+    // MARK: - Initialization
     init() {
-        loadStudySession()
+        loadStudyData()
     }
     
     // MARK: - Data Loading
-    
-    /// Load study session with real data
-    func loadStudySession() {
+    private func loadStudyData() {
+        let selectedWordIds = UserDefaultsManager.shared.loadSelectedWords()
+        let selectedPackageId = UserDefaultsManager.shared.loadSelectedPackage() ?? ""
+        
+        guard !selectedWordIds.isEmpty, !selectedPackageId.isEmpty else {
+            print("⚠️ No selected words or package")
+            return
+        }
+        
+        // Load package from JSON
+        do {
+            let vocabPackage = try jsonLoader.loadVocabularyPackage(filename: selectedPackageId)
+            allWords = vocabPackage.words.filter { selectedWordIds.contains($0.id) }
+            print("✅ Loaded \(allWords.count) words from package: \(selectedPackageId)")
+        } catch {
+            print("❌ Failed to load package: \(error.localizedDescription)")
+        }
+        
+        // Load existing progress
+        loadProgress()
+        
+        // Load study direction
         studyDirection = UserDefaultsManager.shared.loadStudyDirection()
         
-        let selectedWordIds = UserDefaultsManager.shared.loadSelectedWords()
-        guard !selectedWordIds.isEmpty else {
-            print("⚠️ No words selected, loading dummy data")
-            loadDummyCards()
-            return
-        }
-        
-        guard let packageId = UserDefaultsManager.shared.loadSelectedPackage() else {
-            print("⚠️ No package selected, loading dummy data")
-            loadDummyCards()
-            return
-        }
-        
-        do {
-            let vocabularyPackage = try jsonLoader.loadVocabularyPackage(filename: packageId)
-            allWords = vocabularyPackage.words.filter { selectedWordIds.contains($0.id) }
-            
-            print("✅ Loaded \(allWords.count) words from package: \(packageId)")
-            
-            loadProgressData()
-            createStudyQueue()
-            
-        } catch {
-            print("❌ Error loading vocabulary: \(error)")
-            loadDummyCards()
-        }
+        // Initialize study queue
+        initializeStudyQueue()
     }
     
-    /// Reload session (for new words added)
-    func reloadSession() {
-        currentCardIndex = 0
-        isCardFlipped = false
-        loadStudySession()
+    private func loadProgress() {
+        let progressDict = UserDefaultsManager.shared.loadAllProgress()
+        currentProgress = progressDict
+        print("✅ Loaded progress for \(currentProgress.count) words")
     }
     
-    /// Load progress data for all selected words
-    private func loadProgressData() {
-        currentProgress = UserDefaultsManager.shared.loadAllProgress()
-        currentSessionMaxPosition = currentProgress.values
-            .compactMap { $0.sessionPosition }
-            .max() ?? 0
-        
-        print("📊 Loaded progress for \(currentProgress.count) words, maxPosition: \(currentSessionMaxPosition)")
-    }
-    
-    /// ✅ CRITICAL: Create study queue (learning + due review cards)
-    private func createStudyQueue() {
-        // Filter words that need study
-        let dueWords = allWords.filter { word in
-            guard let progress = currentProgress[word.id] else {
-                return true // New words always included
-            }
-            return progress.nextReviewAt <= Date()
+    private func initializeStudyQueue() {
+        // Filter words: New + Learning phase only
+        let newWords = allWords.filter { currentProgress[$0.id] == nil }
+        let learningWords = allWords.filter {
+            guard let progress = currentProgress[$0.id] else { return false }
+            return progress.learningPhase
         }
         
-        // ✅ FALLBACK: If no due words, show all selected words
-        let wordsToStudy = dueWords.isEmpty ? allWords : dueWords
+        let wordsToStudy = newWords + learningWords
         
-        // Sort by priority
-        let sortedWords = wordsToStudy.sorted { word1, word2 in
-            let progress1 = currentProgress[word1.id]
-            let progress2 = currentProgress[word2.id]
-            
-            if let p1 = progress1, let p2 = progress2 {
-                if p1.learningPhase != p2.learningPhase {
-                    return p1.learningPhase
-                }
-                if p1.learningPhase && p2.learningPhase {
-                    let pos1 = p1.sessionPosition ?? 0
-                    let pos2 = p2.sessionPosition ?? 0
-                    return pos1 < pos2
-                }
-                return p1.nextReviewAt < p2.nextReviewAt
-            }
-            return progress1 == nil
-        }
+        print("📚 Words to study: \(wordsToStudy.count) (new: \(newWords.count), learning: \(learningWords.count))")
         
-        // Create queue
-        studyQueue = sortedWords.map { word in
+        // Create study queue
+        studyQueue = wordsToStudy.map { word in
             let (front, back) = getCardTexts(for: word)
             return StudyCard(
                 id: UUID(),
@@ -249,62 +208,96 @@ class StudyViewModel: ObservableObject {
             )
         }
         
-        if dueWords.isEmpty && !allWords.isEmpty {
-            print("⚠️ No words due - showing all \(studyQueue.count) selected words")
-        } else {
-            print("🎴 Created \(studyQueue.count) study cards")
-        }
+        currentCardIndex = 0
+        currentSessionMaxPosition = 0
+        
+        print("✅ Study queue initialized with \(studyQueue.count) cards")
     }
     
-    /// Get card texts based on direction
-    private func getCardTexts(for word: Word) -> (String, String) {
+    private func getCardTexts(for word: Word) -> (front: String, back: String) {
         switch studyDirection {
         case .enToTr:
             return (word.english, word.turkish)
         case .trToEn:
             return (word.turkish, word.english)
         case .mixed:
-            return Bool.random()
-            ? (word.english, word.turkish)
-            : (word.turkish, word.english)
+            return Bool.random() ? (word.english, word.turkish) : (word.turkish, word.english)
         }
     }
     
-    // MARK: - Actions
+    // MARK: - Card Actions
     
+    /// ✅ FIXED: Unlimited flip with toggle + sound on EVERY flip
     func flipCard() {
-        isCardFlipped.toggle()
+        // Play flip sound on EVERY flip (front→back AND back→front)
+        soundManager.playCardFlip()
+        
+        // Toggle flip state (unlimited flips)
+        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+            isCardFlipped.toggle()
+        }
+        
+        print("🔄 Card flipped - isFlipped: \(isCardFlipped)")
     }
     
-    /// ✅ MAIN ACTION: Answer card and manage queue
+    /// Manual audio replay (speaker button)
+    func replayAudio() {
+        playCurrentWordAudio()
+        print("🔊 Manual audio replay")
+    }
+    
+    /// Play TTS for English word only (front side)
+    /// ✅ Called by View on first card appearance (auto-play once)
+    func playCurrentWordAudio() {
+        guard let word = allWords.first(where: { $0.id == currentCard.wordId }) else { return }
+        
+        // ALWAYS speak English word with English voice
+        ttsManager.speak(text: word.english, languageCode: "en-US")
+        print("🔊 TTS playing: \(word.english)")
+    }
+    
+    /// Answer card with difficulty (HARD/MEDIUM/EASY)
     func answerCard(difficulty: CardDifficulty) {
-        guard currentCardIndex < studyQueue.count else { return }
+        guard isCardFlipped else { return }
         
-        let card = studyQueue[currentCardIndex]
+        // Play click sound
+        soundManager.playClickSound()
         
-        // Save progress with SM-2 algorithm
-        let updatedProgress = saveProgressWithAlgorithm(for: card, difficulty: difficulty)
+        let card = currentCard
+        let quality = difficulty.quality
         
-        // Play haptic
-        playHapticFeedback(for: difficulty)
+        // Get or create progress
+        var progress = currentProgress[card.wordId] ?? Progress(wordId: card.wordId, direction: studyDirection)
         
-        // ✅ CRITICAL: Queue management (like Android)
-        handleQueueAfterResponse(card: card, progress: updatedProgress, quality: difficulty.quality)
+        // Update progress using SpacedRepetition algorithm (static method)
+        progress = SpacedRepetition.calculateNextReview(
+            currentProgress: progress,
+            quality: quality,
+            currentSessionMaxPosition: currentSessionMaxPosition
+        )
         
-        // Reset flip
-        isCardFlipped = false
-    }
-    
-    /// ✅ CRITICAL: Handle queue after user response (Android logic)
-    private func handleQueueAfterResponse(card: StudyCard, progress: Progress, quality: Int) {
-        // Remove current card from queue
-        studyQueue.remove(at: currentCardIndex)
+        // Save updated progress
+        currentProgress[card.wordId] = progress
+        UserDefaultsManager.shared.saveProgress(progress, for: card.wordId)
         
-        // ✅ If still in learning phase → REINSERT into queue
-        if progress.learningPhase {
-            reinsertCardInQueue(card: card, quality: quality)
-        } else {
-            print("🎓 Card graduated - removed from queue: wordId=\(card.wordId)")
+        print("📝 Progress updated: wordId=\(card.wordId), quality=\(quality), learning=\(progress.learningPhase), interval=\(Int(progress.intervalDays))d")
+        
+        // Move to next card with animation
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+            isCardFlipped = false
+            currentCardIndex += 1
+            currentSessionMaxPosition = max(currentSessionMaxPosition, currentCardIndex)
+        }
+        
+        // ANDROID LOGIC: Reinsert card if still learning
+        if currentCardIndex < studyQueue.count {
+            let answeredCard = studyQueue.remove(at: currentCardIndex - 1)
+            
+            if progress.learningPhase {
+                reinsertCardInQueue(card: answeredCard, quality: quality)
+            } else {
+                print("🎓 Card graduated - removed from queue: wordId=\(answeredCard.wordId)")
+            }
         }
         
         // Check if queue is empty
@@ -313,7 +306,7 @@ class StudyViewModel: ObservableObject {
         }
     }
     
-    /// ✅ ANDROID LOGIC: Reinsert card into queue based on quality
+    /// ANDROID LOGIC: Reinsert card into queue based on quality
     private func reinsertCardInQueue(card: StudyCard, quality: Int) {
         let remainingSize = studyQueue.count
         
@@ -335,11 +328,11 @@ class StudyViewModel: ObservableObject {
         print("🔄 Reinserted card: wordId=\(card.wordId), quality=\(quality), position=\(currentCardIndex)→\(newIndex), queue=\(studyQueue.count)")
     }
     
-    /// ✅ Handle queue completion (filter learning cards or end session)
+    /// Handle queue completion
     private func handleQueueCompletion() {
         print("🏁 Queue completed at index \(currentCardIndex)")
         
-        // ✅ Filter learning phase cards from current progress
+        // Filter learning phase cards
         let learningWordIds = currentProgress.filter { $0.value.learningPhase }.map { $0.key }
         let learningWords = allWords.filter { learningWordIds.contains($0.id) }
         
@@ -367,75 +360,6 @@ class StudyViewModel: ObservableObject {
     /// Complete study session
     private func completeSession() {
         print("✅ Study session complete!")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            self?.shouldDismiss = true
-        }
-    }
-    
-    /// Save progress with algorithm
-    private func saveProgressWithAlgorithm(for card: StudyCard, difficulty: CardDifficulty) -> Progress {
-        let wordId = card.wordId
-        
-        var progress: Progress
-        if let existingProgress = currentProgress[wordId] {
-            progress = existingProgress
-        } else {
-            progress = Progress(
-                wordId: wordId,
-                direction: studyDirection,
-                repetitions: 0,
-                intervalDays: 0,
-                easeFactor: 2.5,
-                nextReviewAt: Date(),
-                lastReviewAt: nil,
-                learningPhase: true,
-                sessionPosition: currentSessionMaxPosition + 1,
-                successfulReviews: 0,
-                hardPresses: 0,
-                isSelected: true,
-                isMastered: false,
-                createdAt: Date(),
-                updatedAt: Date()
-            )
-            currentSessionMaxPosition += 1
-        }
-        
-        let updatedProgress = SpacedRepetition.calculateNextReview(
-            currentProgress: progress,
-            quality: difficulty.quality,
-            currentSessionMaxPosition: currentSessionMaxPosition
-        )
-        
-        if updatedProgress.learningPhase, let position = updatedProgress.sessionPosition {
-            currentSessionMaxPosition = max(currentSessionMaxPosition, position)
-        }
-        
-        currentProgress[wordId] = updatedProgress
-        UserDefaultsManager.shared.saveProgress(updatedProgress, for: wordId)
-        UserDefaultsManager.shared.updateStats(wordsStudiedToday: 1)
-        
-        print("💾 Progress saved: wordId=\(wordId), quality=\(difficulty.quality), nextReview=\(SpacedRepetition.getTimeUntilReview(nextReviewAt: updatedProgress.nextReviewAt))")
-        
-        return updatedProgress
-    }
-    
-    private func playHapticFeedback(for difficulty: CardDifficulty) {
-        let generator = UIImpactFeedbackGenerator()
-        switch difficulty {
-        case .hard: generator.impactOccurred(intensity: 0.5)
-        case .medium: generator.impactOccurred(intensity: 0.7)
-        case .easy: generator.impactOccurred(intensity: 1.0)
-        }
-    }
-    
-    // MARK: - Dummy Data
-    private func loadDummyCards() {
-        studyQueue = [
-            StudyCard(id: UUID(), wordId: 1, frontText: "Hello", backText: "Merhaba"),
-            StudyCard(id: UUID(), wordId: 2, frontText: "Good morning", backText: "Günaydın"),
-            StudyCard(id: UUID(), wordId: 3, frontText: "Thank you", backText: "Teşekkür ederim"),
-            StudyCard(id: UUID(), wordId: 4, frontText: "How are you?", backText: "Nasılsın?"),
-            StudyCard(id: UUID(), wordId: 5, frontText: "I'm fine", backText: "İyiyim")
-        ]
+        shouldDismiss = true
     }
 }

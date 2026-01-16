@@ -1,3 +1,11 @@
+//
+//  StudyView.swift
+//  HocaLingo
+//
+//  ✅ FIXED: Unlimited flip + Auto TTS (Report compliant)
+//  Location: HocaLingo/Features/Study/StudyView.swift
+//
+
 import SwiftUI
 
 // MARK: - StudyView
@@ -25,7 +33,11 @@ struct StudyView: View {
                             StudyFlashCard(
                                 card: viewModel.currentCard,
                                 isFlipped: viewModel.isCardFlipped,
-                                onTap: { viewModel.flipCard() }
+                                cardColor: viewModel.currentCardColor,
+                                exampleSentence: viewModel.currentExampleSentence,
+                                showSpeakerButton: !viewModel.isCardFlipped,
+                                onTap: { viewModel.flipCard() },
+                                onSpeakerTap: { viewModel.replayAudio() }
                             )
                             .matchedGeometryEffect(id: "card", in: cardNamespace)
                             .transition(.asymmetric(
@@ -80,7 +92,7 @@ struct StudyProgressBar: View {
     
     var progress: Double {
         guard totalCards > 0 else { return 0 }
-        return Double(currentIndex) / Double(totalCards)
+        return Double(currentIndex + 1) / Double(totalCards)
     }
     
     var body: some View {
@@ -92,14 +104,12 @@ struct StudyProgressBar: View {
             
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
-                    // Background
                     RoundedRectangle(cornerRadius: 3)
                         .fill(Color.gray.opacity(0.2))
                         .frame(height: 6)
                     
-                    // Progress
                     RoundedRectangle(cornerRadius: 3)
-                        .fill(Color(hex: "4ECDC4"))
+                        .fill(Color(hex: "4ECDC4")) // Turquoise
                         .frame(width: geometry.size.width * progress, height: 6)
                         .animation(.spring(response: 0.3), value: progress)
                 }
@@ -109,58 +119,123 @@ struct StudyProgressBar: View {
     }
 }
 
-// MARK: - Flashcard with Colors
+
+// MARK: - Flashcard with Colors & Example Sentences
 struct StudyFlashCard: View {
     let card: StudyCard
     let isFlipped: Bool
+    let cardColor: Color
+    let exampleSentence: String
+    let showSpeakerButton: Bool
     let onTap: () -> Void
+    let onSpeakerTap: () -> Void
     
-    // Card colors (like Android)
-    private var cardColor: Color {
-        Color(hex: "FFFFFF")
-    }
+    // ✅ TTS auto-play control (per card)
+    @State private var hasPlayedAudio = false
     
     var body: some View {
         ZStack {
-            // Back side
-            CardSide(text: card.backText, backgroundColor: cardColor)
-                .opacity(isFlipped ? 1 : 0)
-                .rotation3DEffect(
-                    .degrees(isFlipped ? 0 : -90),
-                    axis: (x: 0, y: 1, z: 0)
-                )
+            // Back side (Turkish)
+            CardContent(
+                mainText: card.backText,
+                exampleText: exampleSentence,
+                backgroundColor: cardColor,
+                showSpeakerButton: false,
+                onSpeakerTap: {}
+            )
+            .opacity(isFlipped ? 1 : 0)
+            .rotation3DEffect(
+                .degrees(isFlipped ? 0 : -90),
+                axis: (x: 0, y: 1, z: 0)
+            )
             
-            // Front side
-            CardSide(text: card.frontText, backgroundColor: cardColor)
-                .opacity(isFlipped ? 0 : 1)
-                .rotation3DEffect(
-                    .degrees(isFlipped ? 90 : 0),
-                    axis: (x: 0, y: 1, z: 0)
-                )
+            // Front side (English)
+            CardContent(
+                mainText: card.frontText,
+                exampleText: exampleSentence,
+                backgroundColor: cardColor,
+                showSpeakerButton: showSpeakerButton,
+                onSpeakerTap: onSpeakerTap
+            )
+            .opacity(isFlipped ? 0 : 1)
+            .rotation3DEffect(
+                .degrees(isFlipped ? 90 : 0),
+                axis: (x: 0, y: 1, z: 0)
+            )
         }
         .shadow(color: Color.black.opacity(0.15), radius: 12, x: 0, y: 4)
         .onTapGesture {
+            // ✅ Unlimited flip with animation
             withAnimation(.spring(response: 0.6, dampingFraction: 0.85)) {
                 onTap()
             }
         }
+        // ✅ CRITICAL: Auto-play TTS ONCE when card first appears
+        .onAppear {
+            if !hasPlayedAudio {
+                hasPlayedAudio = true
+                // Small delay to let animation finish
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    onSpeakerTap()
+                }
+            }
+        }
+        // ✅ CRITICAL: Reset audio flag when card changes
+        .onChange(of: card.id) { _, _ in
+            hasPlayedAudio = false
+        }
     }
 }
 
-struct CardSide: View {
-    let text: String
+// MARK: - Card Content (One Side)
+struct CardContent: View {
+    let mainText: String
+    let exampleText: String
     let backgroundColor: Color
+    let showSpeakerButton: Bool
+    let onSpeakerTap: () -> Void
     
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
                 .fill(backgroundColor)
             
-            Text(text)
-                .font(.system(size: 28, weight: .semibold))
-                .foregroundColor(.primary)
-                .multilineTextAlignment(.center)
-                .padding(32)
+            VStack(spacing: 16) {
+                Spacer()
+                
+                // Main word
+                Text(mainText)
+                    .font(.system(size: 32, weight: .bold))
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 24)
+                
+                // Example sentence (if exists)
+                if !exampleText.isEmpty {
+                    Text(exampleText)
+                        .font(.system(size: 14, weight: .regular))
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+                        .lineLimit(2)
+                }
+                
+                Spacer()
+                
+                // Speaker button (only on front/English side)
+                if showSpeakerButton {
+                    Button(action: onSpeakerTap) {
+                        Image(systemName: "speaker.wave.2.fill")
+                            .font(.system(size: 24))
+                            .foregroundColor(.gray.opacity(0.6))
+                    }
+                    .padding(.bottom, 16)
+                } else {
+                    // Spacer to maintain layout
+                    Color.clear
+                        .frame(height: 40)
+                }
+            }
         }
     }
 }
@@ -177,7 +252,6 @@ struct StudyButtons: View {
     
     var body: some View {
         if !isCardFlipped {
-            // Tap instruction
             HStack(spacing: 8) {
                 Image(systemName: "hand.tap.fill")
                     .font(.system(size: 16))
@@ -191,26 +265,25 @@ struct StudyButtons: View {
             .background(Color.gray.opacity(0.1))
             .cornerRadius(12)
         } else {
-            // Difficulty buttons
             HStack(spacing: 12) {
                 DifficultyButton(
                     mainText: "Zor",
                     timeText: hardTime,
-                    color: Color(hex: "FF3B30"),
+                    color: Color(hex: "FF3B30"), // iOS Red
                     onTap: onHard
                 )
                 
                 DifficultyButton(
                     mainText: "Orta",
                     timeText: mediumTime,
-                    color: Color(hex: "FF9500"),
+                    color: Color(hex: "FF9500"), // iOS Orange
                     onTap: onMedium
                 )
                 
                 DifficultyButton(
                     mainText: "Kolay",
                     timeText: easyTime,
-                    color: Color(hex: "34C759"),
+                    color: Color(hex: "34C759"), // iOS Green
                     onTap: onEasy
                 )
             }
@@ -218,7 +291,8 @@ struct StudyButtons: View {
     }
 }
 
-// MARK: - Difficulty Button (3D Style like Android)
+
+// MARK: - Difficulty Button (3D Android style)
 struct DifficultyButton: View {
     let mainText: String
     let timeText: String
@@ -228,69 +302,51 @@ struct DifficultyButton: View {
     @State private var isPressed = false
     
     var body: some View {
-        VStack(spacing: 4) {
-            // Main text
-            Text(mainText)
-                .font(.system(size: 16, weight: .bold))
-                .foregroundColor(.white)
-            
-            // Time text
-            Text(timeText)
-                .font(.system(size: 11, weight: .medium))
-                .foregroundColor(.white.opacity(0.9))
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 16)
-        .background(
-            ZStack {
-                // Shadow layer (bottom)
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(color.opacity(0.7))
-                    .offset(y: isPressed ? 2 : 4)
+        Button(action: onTap) {
+            VStack(spacing: 4) {
+                Text(mainText)
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(.white)
                 
-                // Main layer (top)
+                Text(timeText)
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundColor(.white.opacity(0.9))
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 16)
+            .background(
                 RoundedRectangle(cornerRadius: 12)
                     .fill(color)
-                    .offset(y: isPressed ? 2 : 0)
-            }
-        )
-        .scaleEffect(isPressed ? 0.95 : 1.0)
-        .animation(.spring(response: 0.2, dampingFraction: 0.6), value: isPressed)
-        .onTapGesture {
-            // Press animation
-            isPressed = true
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                isPressed = false
-                onTap()
-            }
+            )
+            .shadow(
+                color: color.opacity(0.4),
+                radius: isPressed ? 2 : 8,
+                x: 0,
+                y: isPressed ? 2 : 4
+            )
+            .scaleEffect(isPressed ? 0.95 : 1.0)
+            .offset(y: isPressed ? 2 : 0)
         }
-    }
-}
-
-// MARK: - Color Extension
-extension Color {
-    init(hexString: String) {
-        let hex = hexString.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int: UInt64 = 0
-        Scanner(string: hex).scanHexInt64(&int)
-        let a, r, g, b: UInt64
-        switch hex.count {
-        case 3:
-            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6:
-            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8:
-            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-        default:
-            (a, r, g, b) = (255, 0, 0, 0)
-        }
-        self.init(
-            .sRGB,
-            red: Double(r) / 255,
-            green: Double(g) / 255,
-            blue: Double(b) / 255,
-            opacity: Double(a) / 255
+        .buttonStyle(PlainButtonStyle())
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { _ in
+                    if !isPressed {
+                        withAnimation(.easeInOut(duration: 0.1)) {
+                            isPressed = true
+                        }
+                    }
+                }
+                .onEnded { _ in
+                    withAnimation(.easeInOut(duration: 0.1)) {
+                        isPressed = false
+                    }
+                }
         )
     }
 }
 
+// MARK: - Preview
+#Preview {
+    StudyView()
+}

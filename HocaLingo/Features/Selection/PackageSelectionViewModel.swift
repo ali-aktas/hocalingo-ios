@@ -9,8 +9,6 @@ import SwiftUI
 import Combine
 
 // MARK: - Package Model
-/// Represents a vocabulary package (A1-C2)
-/// Location: HocaLingo/Features/Selection/PackageSelectionViewModel.swift
 struct PackageModel: Identifiable, Codable {
     let id: String
     let level: String
@@ -20,28 +18,24 @@ struct PackageModel: Identifiable, Codable {
     let colorHex: String
     
     var color: Color {
-        Color(hex: colorHex)
+        Color.fromHex(colorHex)
     }
 }
 
 // MARK: - Package Selection View Model
-/// Business logic for package selection
 class PackageSelectionViewModel: ObservableObject {
-    // MARK: - Published Properties
+    
     @Published var packages: [PackageModel] = []
     @Published var selectedPackageId: String? = nil
     @Published var isLoading: Bool = false
     
-    // MARK: - Initialization
     init() {
         loadPackages()
     }
     
-    // MARK: - Load Packages
     private func loadPackages() {
         isLoading = true
         
-        // Create default packages (same as Android)
         packages = [
             PackageModel(
                 id: "en_tr_a1_001",
@@ -49,7 +43,7 @@ class PackageSelectionViewModel: ObservableObject {
                 name: "Beginner",
                 description: "Basic everyday words",
                 wordCount: 500,
-                colorHex: "FFB3BA" // Light pink
+                colorHex: "FFB3BA"
             ),
             PackageModel(
                 id: "a2_en_tr_v1",
@@ -57,7 +51,7 @@ class PackageSelectionViewModel: ObservableObject {
                 name: "Elementary",
                 description: "Common phrases",
                 wordCount: 600,
-                colorHex: "FFDFBA" // Light orange
+                colorHex: "FFDFBA"
             ),
             PackageModel(
                 id: "b1_en_tr_v1",
@@ -65,7 +59,7 @@ class PackageSelectionViewModel: ObservableObject {
                 name: "Intermediate",
                 description: "Work and travel",
                 wordCount: 800,
-                colorHex: "FFFFBA" // Light yellow
+                colorHex: "FFFFBA"
             ),
             PackageModel(
                 id: "b2_en_tr_v1",
@@ -73,7 +67,7 @@ class PackageSelectionViewModel: ObservableObject {
                 name: "Upper Intermediate",
                 description: "Complex topics",
                 wordCount: 1000,
-                colorHex: "BAFFC9" // Light green
+                colorHex: "BAFFC9"
             ),
             PackageModel(
                 id: "c1_en_tr_v1",
@@ -81,7 +75,7 @@ class PackageSelectionViewModel: ObservableObject {
                 name: "Advanced",
                 description: "Academic language",
                 wordCount: 1200,
-                colorHex: "BAE1FF" // Light blue
+                colorHex: "BAE1FF"
             ),
             PackageModel(
                 id: "c2_en_tr_v1",
@@ -89,52 +83,46 @@ class PackageSelectionViewModel: ObservableObject {
                 name: "Mastery",
                 description: "Native-like fluency",
                 wordCount: 1500,
-                colorHex: "D4BAFF" // Light purple
+                colorHex: "D4BAFF"
             )
         ]
         
         isLoading = false
     }
     
-    // MARK: - Actions
     func selectPackage(_ packageId: String) {
         selectedPackageId = packageId
-        print("Selected package: \(packageId)")
-        
-        // TODO: Load actual word count from JSON
-        // TODO: Navigate to word selection
     }
     
     func loadPackageWordCount(_ packageId: String) -> Int {
-        // TODO: Load from JSON using JSONLoader
-        // For now, return fake data
-        return packages.first(where: { $0.id == packageId })?.wordCount ?? 0
+        packages.first(where: { $0.id == packageId })?.wordCount ?? 0
     }
 }
 
 // MARK: - Color Extension
 extension Color {
-    init(hex: String) {
+    static func fromHex(_ hex: String) -> Color {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int: UInt64 = 0
         Scanner(string: hex).scanHexInt64(&int)
+        
         let a, r, g, b: UInt64
         switch hex.count {
-        case 3: // RGB (12-bit)
+        case 3:
             (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6: // RGB (24-bit)
+        case 6:
             (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8: // ARGB (32-bit)
+        case 8:
             (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
         default:
             (a, r, g, b) = (255, 0, 0, 0)
         }
         
-        self.init(
+        return Color(
             .sRGB,
             red: Double(r) / 255,
             green: Double(g) / 255,
-            blue:  Double(b) / 255,
+            blue: Double(b) / 255,
             opacity: Double(a) / 255
         )
     }
