@@ -1,15 +1,8 @@
 //
-//  StudyViewModel.swift
+//  StudyViewModel.swift (FINAL FIX)
 //  HocaLingo
 //
-//  ✅ MEGA FIX:
-//  1. Random 30 pastel colors (not progress-based)
-//  2. Real-time update system (NotificationCenter)
-//  3. TTS timing fix (TR->EN only on flip)
-//  4. No TTS on init (fixes home screen sound bug)
-//  5. First card direction fix (proper front/back logic)
-//  6. ✅ NEW FIX: Corrected saveProgress call with proper parameters
-//
+//  ✅ FIXED: Removed duplicate shouldShowSpeakerOnFront, added .mixed case
 //  Location: HocaLingo/Features/Study/StudyViewModel.swift
 //
 
@@ -44,16 +37,12 @@ class StudyViewModel: ObservableObject {
     // MARK: - Published Properties
     @Published var currentCardIndex: Int = 0 {
         didSet {
-            // ✅ FIX: Only trigger TTS for EN->TR direction
-            // TR->EN: TTS will be triggered on flip, not on card change
             if currentCardIndex != oldValue && currentCardIndex < studyQueue.count {
                 if studyDirection == .enToTr {
-                    // EN->TR: Auto-play immediately (English on front)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
                         self?.playCurrentWordAudio()
                     }
                 }
-                // TR->EN: Do NOT auto-play here, will play on flip
             }
         }
     }
@@ -69,88 +58,149 @@ class StudyViewModel: ObservableObject {
     private let jsonLoader = JSONLoader()
     private var currentSessionMaxPosition: Int = 0
     private var cancellables = Set<AnyCancellable>()
-    
-    // ✅ FIX 4: Track if this is first load (to prevent init TTS)
     private var isFirstLoad: Bool = true
-    
-    // ✅ FIX 5: Track if TTS already played for current card (TR->EN only once)
     private var ttsPlayedForCurrentCard: Bool = false
     
-    // Audio Managers
-    private let ttsManager = TTSManager.shared
+    // Managers
     private let soundManager = SoundManager.shared
+    private let ttsManager = TTSManager.shared
+    private let userDefaults = UserDefaultsManager.shared
+    
+    // MARK: - Initialization
+    init() {
+        loadStudyQueue()
+        setupDirectionObserver()
+    }
+    
+    // MARK: - Setup
+    
+    private func setupDirectionObserver() {
+        NotificationCenter.default.publisher(for: .studyDirectionChanged)
+            .sink { [weak self] notification in
+                if let newDirection = notification.object as? StudyDirection {
+                    self?.handleDirectionChange(to: newDirection)
+                }
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func handleDirectionChange(to newDirection: StudyDirection) {
+        guard newDirection != studyDirection else { return }
+        
+        print("🔄 Direction changed: \(studyDirection.displayName) → \(newDirection.displayName)")
+        studyDirection = newDirection
+        loadStudyQueue()
+    }
+    
+    // MARK: - Load Queue
+    
+    private func loadStudyQueue() {
+        do {
+            let selectedWordIds = userDefaults.loadSelectedWords()
+            guard !selectedWordIds.isEmpty else {
+                isSessionComplete = true
+                return
+            }
+            
+            allWords = try loadAllSelectedWords()
+            currentProgress = userDefaults.loadAllProgress(for: studyDirection)
+            let sortedWords = sortWordsByPriority(allWords, direction: studyDirection)
+            
+            studyQueue = sortedWords.map { word in
+                let (front, back) = getCardTexts(for: word)
+                return StudyCard(
+                    id: UUID(),
+                    wordId: word.id,
+                    frontText: front,
+                    backText: back
+                )
+            }
+            
+            currentSessionMaxPosition = calculateMaxSessionPosition()
+            
+            print("📚 Study queue loaded:")
+            print("   - Total words: \(studyQueue.count)")
+            print("   - Direction: \(studyDirection.displayName)")
+            print("   - Max session position: \(currentSessionMaxPosition)")
+            
+            isFirstLoad = false
+            
+        } catch {
+            print("❌ Failed to load study queue: \(error)")
+            isSessionComplete = true
+        }
+    }
+    
+    private func sortWordsByPriority(_ words: [Word], direction: StudyDirection) -> [Word] {
+        return words.sorted { word1, word2 in
+            let progress1 = currentProgress[word1.id] ?? Progress(wordId: word1.id, direction: direction)
+            let progress2 = currentProgress[word2.id] ?? Progress(wordId: word2.id, direction: direction)
+            return progress1.studyPriority > progress2.studyPriority
+        }
+    }
+    
+    private func loadAllSelectedWords() throws -> [Word] {
+        let selectedIds = userDefaults.loadSelectedWords()
+        var loadedWords: [Word] = []
+        
+        let packageFiles = ["en_tr_a1_001", "en_tr_a2_001", "en_tr_b1_001"]
+        
+        for packageId in packageFiles {
+            do {
+                let package = try jsonLoader.loadVocabularyPackage(filename: packageId)
+                let selectedFromPackage = package.words.filter { selectedIds.contains($0.id) }
+                loadedWords.append(contentsOf: selectedFromPackage)
+            } catch {
+                continue
+            }
+        }
+        
+        return loadedWords
+    }
+    
+    private func calculateMaxSessionPosition() -> Int {
+        let learningProgress = currentProgress.values.filter { $0.learningPhase }
+        return learningProgress.map { $0.sessionPosition ?? 0 }.max() ?? 0
+    }
     
     // MARK: - Computed Properties
+    
     var currentCard: StudyCard {
-        guard !studyQueue.isEmpty, currentCardIndex < studyQueue.count else {
-            return StudyCard(
-                id: UUID(),
-                wordId: 0,
-                frontText: "No cards",
-                backText: "No cards"
-            )
+        guard currentCardIndex < studyQueue.count else {
+            return StudyCard(id: UUID(), wordId: 0, frontText: "", backText: "")
         }
         return studyQueue[currentCardIndex]
     }
     
-    var totalCards: Int {
-        return studyQueue.count
-    }
-    
-    var remainingCards: Int {
-        return max(0, totalCards - currentCardIndex)
-    }
-    
-    var progressText: String {
-        return "\(currentCardIndex + 1) / \(totalCards)"
-    }
-    
-    var hardTimeText: String {
-        guard let progress = currentProgress[currentCard.wordId] else { return "Birazdan" }
-        return progress.learningPhase ? "Birazdan" : "Sonra"
-    }
-    
-    var mediumTimeText: String {
-        guard let progress = currentProgress[currentCard.wordId] else { return "Sonra" }
-        return progress.learningPhase ? "Sonra" : "Bugün"
-    }
-    
-    var easyTimeText: String {
-        guard let progress = currentProgress[currentCard.wordId] else { return "Bugün" }
-        if progress.learningPhase {
-            return "Bugün"
-        } else {
-            let days = Int(progress.intervalDays)
-            return days <= 1 ? "Bugün" : "\(days)g"
-        }
-    }
-    
-    /// ✅ FIX 1: Random pastel color based on wordId (not progress)
-    var currentCardColor: Color {
-        return Color.pastelColor(for: currentCard.wordId)
-    }
-    
-    /// ✅ FIX 3: Direction-aware speaker button placement
-    /// EN→TR: Speaker on FRONT (English front)
-    /// TR→EN: Speaker on BACK (English back)
     var shouldShowSpeakerOnFront: Bool {
         return studyDirection == .enToTr
     }
     
-    /// ✅ FIX 5: Example sentence based on direction and flip state
+    var hardTimeText: String {
+        getCurrentTimeText(for: .hard)
+    }
+    
+    var mediumTimeText: String {
+        getCurrentTimeText(for: .medium)
+    }
+    
+    var easyTimeText: String {
+        getCurrentTimeText(for: .easy)
+    }
+    
+    var currentCardColor: Color {
+        return Color.pastelColor(for: currentCard.wordId)
+    }
+    
     var currentExampleSentence: String {
         guard let word = allWords.first(where: { $0.id == currentCard.wordId }) else { return "" }
         
-        // Show appropriate example based on which side is visible
         switch studyDirection {
         case .enToTr:
-            // English front, Turkish back
             return isCardFlipped ? word.example.tr : word.example.en
         case .trToEn:
-            // Turkish front, English back
             return isCardFlipped ? word.example.en : word.example.tr
         case .mixed:
-            // Random: show example matching front text
             if currentCard.frontText == word.english {
                 return isCardFlipped ? word.example.tr : word.example.en
             } else {
@@ -159,127 +209,16 @@ class StudyViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Initialization
-    
-    init() {
-        setupNotificationObservers()
-        loadWords()
-        // ✅ FIX 4: Mark first load complete after init
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) { [weak self] in
-            self?.isFirstLoad = false
-        }
-    }
-    
-    // MARK: - Notification Observers
-    
-    /// ✅ FIX 2: Setup real-time update observers
-    private func setupNotificationObservers() {
-        // Observe direction changes from ProfileView
-        NotificationCenter.default.publisher(for: NSNotification.Name("StudyDirectionChanged"))
-            .sink { [weak self] _ in
-                print("📡 StudyViewModel: Direction changed notification received")
-                self?.reloadStudySession()
-            }
-            .store(in: &cancellables)
-        
-        // Observe word selection changes from WordSelectionView
-        NotificationCenter.default.publisher(for: NSNotification.Name("WordSelectionChanged"))
-            .sink { [weak self] _ in
-                print("📡 StudyViewModel: Word selection changed notification received")
-                self?.reloadStudySession()
-            }
-            .store(in: &cancellables)
-    }
-    
-    /// ✅ FIX 2: Reload study session (for real-time updates)
-    func reloadStudySession() {
-        print("🔄 Reloading study session...")
-        
-        // Reset state
-        currentCardIndex = 0
-        isCardFlipped = false
-        isSessionComplete = false
-        currentSessionMaxPosition = 0
-        ttsPlayedForCurrentCard = false
-        
-        // Reload data
-        loadWords()
-        
-        print("✅ Study session reloaded!")
-    }
-    
-    // MARK: - Data Loading
-    
-    private func loadWords() {
-        let selectedWordIds = UserDefaultsManager.shared.loadSelectedWords()
-        let selectedPackageId = UserDefaultsManager.shared.loadSelectedPackage() ?? ""
-        
-        guard !selectedWordIds.isEmpty, !selectedPackageId.isEmpty else {
-            print("⚠️ No selected words or package")
-            return
+    private func getCurrentTimeText(for difficulty: CardDifficulty) -> String {
+        guard let word = allWords.first(where: { $0.id == currentCard.wordId }) else {
+            return "Soon"
         }
         
-        do {
-            let vocabPackage = try jsonLoader.loadVocabularyPackage(filename: selectedPackageId)
-            allWords = vocabPackage.words.filter { selectedWordIds.contains($0.id) }
-            print("✅ Loaded \(allWords.count) words from package: \(selectedPackageId)")
-        } catch {
-            print("❌ Failed to load package: \(error.localizedDescription)")
-        }
-        
-        studyDirection = UserDefaultsManager.shared.loadStudyDirection()
-        print("🔄 Study direction loaded: \(studyDirection.displayName)")
-        
-        loadProgress()
-        initializeStudyQueue()
+        let progress = currentProgress[word.id] ?? Progress(wordId: word.id, direction: studyDirection)
+        return progress.getButtonTimeText(quality: difficulty.quality)
     }
     
-    private func loadProgress() {
-        currentProgress = UserDefaultsManager.shared.loadAllProgress(for: studyDirection)
-        print("✅ Loaded \(currentProgress.count) progress records for direction: \(studyDirection.displayName)")
-    }
-    
-    private func initializeStudyQueue() {
-        let newWords = allWords.filter { word in
-            currentProgress[word.id] == nil
-        }
-        
-        let learningWords = allWords.filter { word in
-            guard let progress = currentProgress[word.id] else { return false }
-            return progress.learningPhase && progress.direction == studyDirection
-        }
-        
-        let wordsToStudy = newWords + learningWords
-        
-        print("📚 Words to study for \(studyDirection.displayName):")
-        print("   - New words: \(newWords.count)")
-        print("   - Learning words: \(learningWords.count)")
-        print("   - Total: \(wordsToStudy.count)")
-        
-        studyQueue = wordsToStudy.map { word in
-            let (front, back) = getCardTexts(for: word)
-            return StudyCard(
-                id: UUID(),
-                wordId: word.id,
-                frontText: front,
-                backText: back
-            )
-        }
-        
-        currentCardIndex = 0
-        currentSessionMaxPosition = 0
-        ttsPlayedForCurrentCard = false
-        
-        print("✅ Study queue initialized with \(studyQueue.count) cards")
-        
-        // ✅ FIX 4: Do NOT auto-play TTS on init (prevents home screen bug)
-        // TTS will only play:
-        // - EN->TR: When currentCardIndex changes (didSet)
-        // - TR->EN: When card is flipped (flipCard())
-        print("🔇 Skipping initial TTS (will play on card change or flip)")
-    }
-    
-    private func getCardTexts(for word: Word) -> (front: String, back: String) {
+    private func getCardTexts(for word: Word) -> (String, String) {
         switch studyDirection {
         case .enToTr:
             return (word.english, word.turkish)
@@ -301,12 +240,11 @@ class StudyViewModel: ObservableObject {
         
         print("🔄 Card flipped - isFlipped: \(isCardFlipped)")
         
-        // ✅ FIX 3: TR->EN TTS timing - ONLY on flip, and ONLY ONCE
         if isCardFlipped && studyDirection == .trToEn && !ttsPlayedForCurrentCard {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
                 self?.playCurrentWordAudio()
                 self?.ttsPlayedForCurrentCard = true
-                print("🔊 TR->EN: TTS played on flip (one time only)")
+                print("🔊 TR->EN: TTS played on flip")
             }
         }
     }
@@ -318,7 +256,6 @@ class StudyViewModel: ObservableObject {
     
     func playCurrentWordAudio() {
         guard let word = allWords.first(where: { $0.id == currentCard.wordId }) else { return }
-        
         ttsManager.speak(text: word.english, languageCode: "en-US")
         print("🔊 TTS playing: \(word.english)")
     }
@@ -331,116 +268,67 @@ class StudyViewModel: ObservableObject {
         let card = currentCard
         let quality = difficulty.quality
         
-        var progress = currentProgress[card.wordId] ?? Progress(
+        var oldProgress = currentProgress[card.wordId] ?? Progress(
             wordId: card.wordId,
             direction: studyDirection
         )
         
-        progress = SpacedRepetition.calculateNextReview(
-            currentProgress: progress,
+        let wasInLearning = oldProgress.learningPhase
+        
+        var progress = SpacedRepetition.calculateNextReview(
+            currentProgress: oldProgress,
             quality: quality,
             currentSessionMaxPosition: currentSessionMaxPosition
         )
         
+        let isNowInReview = !progress.learningPhase
+        let hasGraduated = wasInLearning && isNowInReview
+        
         currentProgress[card.wordId] = progress
         
-        // ✅ FIX 6: Corrected saveProgress call with proper variable names
-        UserDefaultsManager.shared.saveProgress(
+        userDefaults.saveProgress(
             progress,
-            for: card.wordId,           // ✅ FIXED: card.wordId (not just wordId)
-            direction: studyDirection   // ✅ FIXED: studyDirection (not just direction)
+            for: card.wordId,
+            direction: studyDirection
         )
         
         print("📝 Progress updated:")
         print("   - Word ID: \(card.wordId)")
         print("   - Direction: \(progress.direction.displayName)")
         print("   - Quality: \(quality)")
-        print("   - Learning Phase: \(progress.learningPhase)")
+        print("   - Was in learning: \(wasInLearning)")
+        print("   - Is now in review: \(isNowInReview)")
+        print("   - HAS GRADUATED: \(hasGraduated)")
         print("   - Interval: \(Int(progress.intervalDays)) days")
         
-        // Reset TTS flag for next card
+        if hasGraduated {
+            userDefaults.incrementDailyGraduations()
+            userDefaults.updateMasteredWordsCount()
+            print("🎓 WORD GRADUATED! Daily progress +1")
+        }
+        
+        userDefaults.incrementCardsStudied()
+        
         ttsPlayedForCurrentCard = false
         
         withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
             isCardFlipped = false
-            currentCardIndex += 1
-            currentSessionMaxPosition = max(currentSessionMaxPosition, currentCardIndex)
         }
         
-        if currentCardIndex < studyQueue.count {
-            let answeredCard = studyQueue.remove(at: currentCardIndex - 1)
-            
-            if progress.learningPhase {
-                reinsertCardInQueue(card: answeredCard, quality: quality)
-            } else {
-                print("🎓 Card graduated - removed from queue: wordId=\(answeredCard.wordId)")
-            }
-        }
+        moveToNextCard()
+    }
+    
+    private func moveToNextCard() {
+        currentCardIndex += 1
         
         if currentCardIndex >= studyQueue.count {
-            handleQueueCompletion()
+            isSessionComplete = true
+            print("✅ Study session complete!")
         }
     }
-    
-    private func reinsertCardInQueue(card: StudyCard, quality: Int) {
-        let remainingSize = studyQueue.count
-        
-        let offsetPercentage: Float = {
-            switch quality {
-            case SpacedRepetition.QUALITY_HARD: return 0.60
-            case SpacedRepetition.QUALITY_MEDIUM: return 0.80
-            case SpacedRepetition.QUALITY_EASY: return 1.0
-            default: return 1.0
-            }
-        }()
-        
-        let offset = Int(Float(remainingSize) * offsetPercentage)
-        let newIndex = min(offset, remainingSize)
-        
-        studyQueue.insert(card, at: newIndex)
-        
-        print("🔄 Reinserted card: wordId=\(card.wordId), quality=\(quality), position=\(currentCardIndex)→\(newIndex), queue=\(studyQueue.count)")
-    }
-    
-    private func handleQueueCompletion() {
-        print("🏁 Queue completed at index \(currentCardIndex)")
-        
-        let learningWordIds = currentProgress.filter { (wordId, progress) in
-            progress.learningPhase && progress.direction == studyDirection
-        }.map { $0.key }
-        
-        let learningWords = allWords.filter { learningWordIds.contains($0.id) }
-        
-        if !learningWords.isEmpty {
-            print("🔄 \(learningWords.count) learning cards remain - reloading queue")
-            
-            studyQueue = learningWords.map { word in
-                let (front, back) = getCardTexts(for: word)
-                return StudyCard(
-                    id: UUID(),
-                    wordId: word.id,
-                    frontText: front,
-                    backText: back
-                )
-            }
-            
-            currentCardIndex = 0
-            ttsPlayedForCurrentCard = false
-        } else {
-            print("🎉 All cards graduated! Session complete for direction: \(studyDirection.displayName)")
-            completeSession()
-        }
-    }
-    
-    private func completeSession() {
-        print("✅ Study session complete!")
-        isSessionComplete = true
-    }
-    
-    func restartSession() {
-        isSessionComplete = false
-        currentCardIndex = 0
-        ttsPlayedForCurrentCard = false
-        loadWords()
-    }
+}
+
+// MARK: - Notification Names
+extension Notification.Name {
+    static let studyDirectionChanged = Notification.Name("studyDirectionChanged")
 }

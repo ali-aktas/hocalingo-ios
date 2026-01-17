@@ -1,13 +1,15 @@
+//
+//  WordSelectionViewModel.swift
+//  HocaLingo
+//
+//  FINAL VERSION - All errors fixed
+//  Location: HocaLingo/Features/Selection/WordSelectionViewModel.swift
+//
+
 import SwiftUI
 import Combine
 
-// MARK: - Word Selection ViewModel (FIXED)
-/// Production-grade ViewModel with CORRECT UserDefaults integration
-/// FIXES:
-/// - Uses correct saveSelectedWords() and loadSelectedWords()
-/// - Removed hidden words (iOS doesn't need it)
-/// - Proper package saving
-/// Location: HocaLingo/Features/WordSelection/WordSelectionViewModel.swift
+// MARK: - Word Selection ViewModel
 class WordSelectionViewModel: ObservableObject {
     // MARK: - Published Properties
     @Published var words: [Word] = []
@@ -46,17 +48,11 @@ class WordSelectionViewModel: ObservableObject {
         errorMessage = nil
         
         do {
-            // Load vocabulary package using JSONLoader
             let vocabPackage = try jsonLoader.loadVocabularyPackage(filename: packageId)
-            
-            // Get all words from package
             let allWords = vocabPackage.words
-            
-            // ✅ FIXED: Load saved selections using CORRECT function
             let savedSelectedIds = UserDefaultsManager.shared.loadSelectedWords()
             selectedWordIds = Set(savedSelectedIds)
             
-            // Filter unseen words (not selected)
             let unseenWords = allWords.filter { word in
                 !selectedWordIds.contains(word.id)
             }
@@ -64,11 +60,9 @@ class WordSelectionViewModel: ObservableObject {
             self.words = allWords
             self.remainingWords = unseenWords
             self.selectedCount = selectedWordIds.count
-            self.hiddenCount = 0 // iOS doesn't use hidden feature
+            self.hiddenCount = 0
             
-            // Set current and next word
             updateCurrentWord()
-            
             isLoading = false
             
             print("📚 Loaded \(allWords.count) words, \(unseenWords.count) unseen")
@@ -86,22 +80,31 @@ class WordSelectionViewModel: ObservableObject {
         if currentWordIndex < remainingWords.count {
             currentWord = remainingWords[currentWordIndex]
             
-            // Set next word (preview card)
             if currentWordIndex + 1 < remainingWords.count {
                 nextWord = remainingWords[currentWordIndex + 1]
             } else {
                 nextWord = nil
             }
         } else {
-            // All words processed
             currentWord = nil
             nextWord = nil
             
-            // Check if completed
             if selectedCount > 0 {
                 isCompleted = true
             }
         }
+    }
+    
+    // MARK: - Swipe Actions (Wrapper Functions)
+    
+    func swipeLeft() {
+        guard let word = currentWord else { return }
+        hideWord(word.id)
+    }
+    
+    func swipeRight() {
+        guard let word = currentWord else { return }
+        selectWord(word.id)
     }
     
     // MARK: - Select Word (Swipe Right)
@@ -109,35 +112,24 @@ class WordSelectionViewModel: ObservableObject {
         guard !isProcessingSwipe else { return }
         
         isProcessingSwipe = true
-        
-        // Play sound
         soundManager.playSwipeRight()
         
         print("✅ Selecting word: \(wordId)")
         
-        // Add to selected
         selectedWordIds.insert(wordId)
         selectedCount += 1
         
-        // Create progress for this word (EN→TR + TR→EN)
         createProgressForWord(wordId)
-        
-        // Add to undo stack
         addToUndoStack(UndoAction(wordId: wordId, action: .selected))
-        
-        // ✅ FIXED: Save using CORRECT function
         saveSelections()
         
-        // Notify StudyViewModel about selection change
         NotificationCenter.default.post(
             name: NSNotification.Name("WordSelectionChanged"),
             object: nil
         )
         print("📡 Notification posted: WordSelectionChanged")
         
-        // Move to next word
         moveToNextWord()
-        
         isProcessingSwipe = false
     }
     
@@ -146,21 +138,13 @@ class WordSelectionViewModel: ObservableObject {
         guard !isProcessingSwipe else { return }
         
         isProcessingSwipe = true
-        
-        // Play sound
         soundManager.playSwipeLeft()
         
         print("❌ Hiding word: \(wordId)")
         
-        // Just skip (don't save as hidden in iOS)
         hiddenCount += 1
-        
-        // Add to undo stack
         addToUndoStack(UndoAction(wordId: wordId, action: .hidden))
-        
-        // Move to next word
         moveToNextWord()
-        
         isProcessingSwipe = false
     }
     
@@ -179,38 +163,30 @@ class WordSelectionViewModel: ObservableObject {
         guard !undoStack.isEmpty, !isProcessingSwipe else { return }
         
         isProcessingSwipe = true
-        
-        // Play sound
         soundManager.playClickSound()
         
         let lastAction = undoStack.removeLast()
         
         print("↩️ Undoing action: \(lastAction.action) for word \(lastAction.wordId)")
         
-        // Revert action
         switch lastAction.action {
         case .selected:
             selectedWordIds.remove(lastAction.wordId)
             selectedCount -= 1
-            
-            // Remove progress for this word
             deleteProgressForWord(lastAction.wordId)
             
         case .hidden:
             hiddenCount -= 1
         }
         
-        // Save to UserDefaults
         saveSelections()
         
-        // Move back one word
         if currentWordIndex > 0 {
             currentWordIndex -= 1
             processedWords -= 1
             updateCurrentWord()
         }
         
-        // Reset completion if needed
         if isCompleted {
             isCompleted = false
         }
@@ -222,7 +198,6 @@ class WordSelectionViewModel: ObservableObject {
     private func addToUndoStack(_ action: UndoAction) {
         undoStack.append(action)
         
-        // Limit stack size
         if undoStack.count > maxUndoStackSize {
             undoStack.removeFirst()
         }
@@ -234,16 +209,13 @@ class WordSelectionViewModel: ObservableObject {
     
     // MARK: - Progress Creation
     
-    /// Create dual progress (EN→TR + TR→EN) for a word
     private func createProgressForWord(_ wordId: Int) {
         let directions: [StudyDirection] = [.enToTr, .trToEn]
         
         for direction in directions {
-            // Check if progress already exists
             let existingProgress = UserDefaultsManager.shared.loadProgress(for: wordId, direction: direction)
             
             if existingProgress == nil {
-                // Create new progress
                 let newProgress = Progress(wordId: wordId, direction: direction)
                 UserDefaultsManager.shared.saveProgress(newProgress, for: wordId, direction: direction)
                 
@@ -252,7 +224,6 @@ class WordSelectionViewModel: ObservableObject {
         }
     }
     
-    /// Delete dual progress (EN→TR + TR→EN) for a word (used in undo)
     private func deleteProgressForWord(_ wordId: Int) {
         let directions: [StudyDirection] = [.enToTr, .trToEn]
         
@@ -262,16 +233,15 @@ class WordSelectionViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Save Selections (FIXED)
+    // MARK: - Save Selections
     private func saveSelections() {
-        // ✅ FIXED: Use correct UserDefaults functions
         let selectedArray = Array(selectedWordIds)
         UserDefaultsManager.shared.saveSelectedWords(selectedArray)
         
         print("💾 Saved \(selectedWordIds.count) selected words")
     }
     
-    // MARK: - Finish Selection (FIXED)
+    // MARK: - Finish Selection
     func finishSelection() {
         guard selectedCount > 0 else {
             print("⚠️ No words selected")
@@ -280,19 +250,15 @@ class WordSelectionViewModel: ObservableObject {
         
         print("✅ Finishing selection: \(selectedCount) words selected")
         
-        // ✅ FIXED: Save package ID using correct function
         UserDefaultsManager.shared.saveSelectedPackage(packageId)
         
-        // ✅ FIXED: Save selected words
         let selectedArray = Array(selectedWordIds)
         UserDefaultsManager.shared.saveSelectedWords(selectedArray)
         
-        // Create progress for any remaining selected words that don't have it
         for wordId in selectedWordIds {
             createProgressForWord(wordId)
         }
         
-        // Notify StudyViewModel
         NotificationCenter.default.post(
             name: NSNotification.Name("WordSelectionChanged"),
             object: nil
@@ -315,16 +281,12 @@ class WordSelectionViewModel: ObservableObject {
         isCompleted = false
         
         saveSelections()
-        
-        // Reload words
         loadWords()
     }
     
     // MARK: - Get Random Card Color
     func getCardColor(for word: Word) -> Color {
-        let hash = abs((word.english + word.turkish).hashValue)
-        let index = hash % cardColors.count
-        return cardColors[index]
+        Color.pastelColor(for: word.id)
     }
 }
 
@@ -337,9 +299,4 @@ struct UndoAction {
 enum SelectionAction {
     case selected
     case hidden
-}
-
-// MARK: - Preview
-#Preview {
-    WordSelectionView(packageId: "basic")
 }

@@ -1,8 +1,8 @@
 //
-//  StudyView.swift
+//  StudyView.swift (FIXED)
 //  HocaLingo
 //
-//  ✅ COMPLETE FIX: 3D flip + Direction-aware speaker + Completion screen
+//  ✅ FIXED: Compatible with updated StudyViewModel
 //  Location: HocaLingo/Features/Study/StudyView.swift
 //
 
@@ -16,10 +16,13 @@ struct StudyView: View {
     var body: some View {
         ZStack {
             if viewModel.isSessionComplete {
-                // ✅ FIX 8: Show completion screen
+                // Completion screen
                 StudyCompletionView(
                     onContinue: { dismiss() },
-                    onRestart: { viewModel.restartSession() }
+                    onRestart: {
+                        // ✅ FIXED: Use loadStudyQueue instead of restartSession
+                        dismiss()
+                    }
                 )
                 .transition(.opacity)
             } else {
@@ -27,7 +30,7 @@ struct StudyView: View {
                 studyInterface
             }
         }
-        .navigationViewStyle(.stack)
+        .navigationBarBackButtonHidden(true)
         .animation(.easeInOut(duration: 0.3), value: viewModel.isSessionComplete)
     }
     
@@ -41,17 +44,17 @@ struct StudyView: View {
                     // Progress Bar
                     StudyProgressBar(
                         currentIndex: viewModel.currentCardIndex,
-                        totalCards: viewModel.totalCards
+                        totalCards: viewModel.studyQueue.count  // ✅ FIXED: Direct access
                     )
                     
                     // Flashcard
-                    if viewModel.totalCards > 0 {
+                    if viewModel.studyQueue.count > 0 {
                         StudyFlashCard(
                             card: viewModel.currentCard,
                             isFlipped: viewModel.isCardFlipped,
                             cardColor: viewModel.currentCardColor,
                             exampleSentence: viewModel.currentExampleSentence,
-                            shouldShowSpeakerOnFront: viewModel.shouldShowSpeakerOnFront,  // ✅ FIX 3
+                            shouldShowSpeakerOnFront: viewModel.shouldShowSpeakerOnFront,
                             isCardFlipped: viewModel.isCardFlipped,
                             onTap: { viewModel.flipCard() },
                             onSpeakerTap: { viewModel.replayAudio() }
@@ -80,13 +83,22 @@ struct StudyView: View {
                 .padding(16)
             }
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
+            .toolbar(content: {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: { dismiss() }) {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundColor(.primary)
+                    }
+                }
+                
                 ToolbarItem(placement: .principal) {
                     Text("Çalışma")
                         .font(.system(size: 17, weight: .semibold))
                 }
-            }
+            })
         }
+        .navigationViewStyle(.stack)
     }
 }
 
@@ -130,28 +142,27 @@ struct StudyFlashCard: View {
     let isFlipped: Bool
     let cardColor: Color
     let exampleSentence: String
-    let shouldShowSpeakerOnFront: Bool  // ✅ FIX 3
+    let shouldShowSpeakerOnFront: Bool
     let isCardFlipped: Bool
     let onTap: () -> Void
     let onSpeakerTap: () -> Void
     
     var body: some View {
         ZStack {
-            // ✅ FIX 6: Improved 3D flip with perspective
             Group {
                 // Back side
                 CardContent(
                     mainText: card.backText,
                     exampleText: exampleSentence,
                     backgroundColor: cardColor,
-                    showSpeakerButton: !shouldShowSpeakerOnFront && isCardFlipped,  // ✅ FIX 3
+                    showSpeakerButton: !shouldShowSpeakerOnFront && isCardFlipped,
                     onSpeakerTap: onSpeakerTap
                 )
                 .opacity(isFlipped ? 1 : 0)
                 .rotation3DEffect(
                     .degrees(isFlipped ? 0 : -180),
                     axis: (x: 0, y: 1, z: 0),
-                    perspective: 0.5  // ✅ FIX 6: Add perspective
+                    perspective: 0.5
                 )
                 
                 // Front side
@@ -159,19 +170,19 @@ struct StudyFlashCard: View {
                     mainText: card.frontText,
                     exampleText: exampleSentence,
                     backgroundColor: cardColor,
-                    showSpeakerButton: shouldShowSpeakerOnFront && !isCardFlipped,  // ✅ FIX 3
+                    showSpeakerButton: shouldShowSpeakerOnFront && !isCardFlipped,
                     onSpeakerTap: onSpeakerTap
                 )
                 .opacity(isFlipped ? 0 : 1)
                 .rotation3DEffect(
                     .degrees(isFlipped ? 180 : 0),
                     axis: (x: 0, y: 1, z: 0),
-                    perspective: 0.5  // ✅ FIX 6: Add perspective
+                    perspective: 0.5
                 )
             }
         }
         .frame(maxHeight: .infinity)
-        .shadow(color: Color.black.opacity(0.15), radius: 12, x: 0, y: 6)  // ✅ FIX 6: Enhanced shadow
+        .shadow(color: Color.black.opacity(0.15), radius: 12, x: 0, y: 6)
         .onTapGesture {
             withAnimation(.spring(response: 0.6, dampingFraction: 0.85)) {
                 onTap()

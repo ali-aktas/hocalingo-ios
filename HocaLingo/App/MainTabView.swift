@@ -1,3 +1,11 @@
+//
+//  MainTabView.swift
+//  HocaLingo
+//
+//  FINAL VERSION - Home and Profile only
+//  Location: HocaLingo/App/MainTabView.swift
+//
+
 import SwiftUI
 
 struct MainTabView: View {
@@ -11,19 +19,13 @@ struct MainTabView: View {
                 }
                 .tag(0)
             
-            StudyView()
-                .tabItem {
-                    Label("study_tab", systemImage: "book.fill")
-                }
-                .tag(1)
-            
             ProfileView()
                 .tabItem {
                     Label("profile_tab", systemImage: "person.fill")
                 }
-                .tag(2)
+                .tag(1)
         }
-        .accentColor(.blue)
+        .accentColor(Color(hex: "4ECDC4"))
     }
 }
 

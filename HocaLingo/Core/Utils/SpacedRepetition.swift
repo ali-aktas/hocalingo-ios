@@ -124,7 +124,6 @@ class SpacedRepetition {
             updated.sessionPosition = currentSessionMaxPosition + HARD_POSITION_INCREMENT
             updated.hardPresses = (currentProgress.hardPresses ?? 0) + 1
             updated.successfulReviews = 0
-            updated.isMastered = false
             updated.updatedAt = currentTime
             
             return updated
@@ -154,7 +153,6 @@ class SpacedRepetition {
                 updated.learningPhase = true
                 updated.sessionPosition = currentSessionMaxPosition + MEDIUM_POSITION_INCREMENT
                 updated.successfulReviews = newSuccessful  // ✅ Half point added
-                updated.isMastered = false
                 updated.updatedAt = currentTime
                 
                 return updated
@@ -185,7 +183,6 @@ class SpacedRepetition {
                 updated.learningPhase = true
                 updated.sessionPosition = currentSessionMaxPosition + EASY_POSITION_INCREMENT
                 updated.successfulReviews = newSuccessful  // ✅ Full point added
-                updated.isMastered = false
                 updated.updatedAt = currentTime
                 
                 return updated
@@ -224,7 +221,6 @@ class SpacedRepetition {
             updated.sessionPosition = nil
             updated.hardPresses = (currentProgress.hardPresses ?? 0) + 1
             updated.successfulReviews = 0
-            updated.isMastered = false
             updated.updatedAt = currentTime
             
             return updated
@@ -262,7 +258,6 @@ class SpacedRepetition {
             updated.lastReviewAt = currentTime
             updated.learningPhase = false
             updated.sessionPosition = nil
-            updated.isMastered = finalInterval >= 21 && newReps >= 4
             updated.updatedAt = currentTime
             
             return updated
@@ -297,7 +292,6 @@ class SpacedRepetition {
             updated.lastReviewAt = currentTime
             updated.learningPhase = false
             updated.sessionPosition = nil
-            updated.isMastered = finalInterval >= 21 && newReps >= 4
             updated.updatedAt = currentTime
             
             return updated
@@ -339,7 +333,6 @@ class SpacedRepetition {
         updated.lastReviewAt = currentTime
         updated.learningPhase = false  // ✅ GRADUATE
         updated.sessionPosition = nil
-        updated.isMastered = false
         updated.updatedAt = currentTime
         
         return updated

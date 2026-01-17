@@ -1,36 +1,27 @@
+//
+//  WordSelectionView.swift
+//  HocaLingo
+//
+//  FINAL VERSION - All errors fixed
+//  Location: HocaLingo/Features/Selection/WordSelectionView.swift
+//
+
 import SwiftUI
 
-// MARK: - Word Selection View (FIXED NAVIGATION)
-/// Production-grade word selection screen with proper navigation
-/// FIXES:
-/// - Added NavigationStack (works inside .sheet)
-/// - Study button navigation fixed
-/// - Proper dismiss handling
-/// Location: HocaLingo/Features/WordSelection/WordSelectionView.swift
+// MARK: - Word Selection View
 struct WordSelectionView: View {
-    // MARK: - Properties
     @StateObject private var viewModel: WordSelectionViewModel
     @Environment(\.dismiss) var dismiss
-    
-    // MARK: - State
     @State private var navigateToStudy: Bool = false
-    @State private var currentCardId: UUID = UUID() // Force card refresh
+    @State private var currentCardId: UUID = UUID()
     
-    // MARK: - Card Reference (for button triggers)
-    @State private var triggerSwipeLeft: Bool = false
-    @State private var triggerSwipeRight: Bool = false
-    
-    // MARK: - Initialization
     init(packageId: String) {
         _viewModel = StateObject(wrappedValue: WordSelectionViewModel(packageId: packageId))
     }
     
-    // MARK: - Body
     var body: some View {
-        // ✅ FIXED: NavigationStack wrapper for .sheet presentation
-        NavigationStack {
+        NavigationView {
             ZStack {
-                // Background
                 Color(.systemGroupedBackground)
                     .ignoresSafeArea()
                 
@@ -43,9 +34,17 @@ struct WordSelectionView: View {
                 } else {
                     mainContent
                 }
+                
+                NavigationLink(
+                    destination: StudyView(),
+                    isActive: $navigateToStudy
+                ) {
+                    EmptyView()
+                }
+                .hidden()
             }
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
+            .toolbar(content: {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: { dismiss() }) {
                         HStack(spacing: 4) {
@@ -62,26 +61,25 @@ struct WordSelectionView: View {
                         .font(.system(size: 24, weight: .bold))
                         .foregroundColor(.primary)
                 }
-            }
-            // ✅ FIXED: Navigation destination inside NavigationStack
-            .navigationDestination(isPresented: $navigateToStudy) {
-                StudyView()
-            }
+            })
         }
+        .navigationViewStyle(.stack)
     }
     
-    // MARK: - Main Content
     private var mainContent: some View {
         VStack(spacing: 0) {
-            // Card stack area (full height)
             ZStack {
-                // Processing indicator overlay
                 if viewModel.isProcessingSwipe {
-                    ProcessingIndicator(isProcessing: true)
+                    Color.black.opacity(0.3)
+                        .ignoresSafeArea()
+                        .overlay(
+                            ProgressView()
+                                .scaleEffect(1.5)
+                                .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                        )
                         .zIndex(10)
                 }
                 
-                // Card stack
                 cardStack
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -91,10 +89,8 @@ struct WordSelectionView: View {
         }
     }
     
-    // MARK: - Card Stack
     private var cardStack: some View {
         ZStack {
-            // Next card (background preview)
             if let nextWord = viewModel.nextWord {
                 SwipeableCardView(
                     word: nextWord.english,
@@ -109,175 +105,137 @@ struct WordSelectionView: View {
                 .zIndex(0)
             }
             
-            // Current card (foreground interactive)
             if let currentWord = viewModel.currentWord {
-                SwipeableCardViewWrapper(
+                SwipeableCardView(
                     word: currentWord.english,
                     translation: currentWord.turkish,
                     cardColor: viewModel.getCardColor(for: currentWord),
-                    triggerSwipeLeft: $triggerSwipeLeft,
-                    triggerSwipeRight: $triggerSwipeRight,
-                    onSwipeLeft: {
-                        viewModel.hideWord(currentWord.id)
-                        currentCardId = UUID() // Force refresh
-                    },
-                    onSwipeRight: {
-                        viewModel.selectWord(currentWord.id)
-                        currentCardId = UUID() // Force refresh
-                    }
+                    onSwipeLeft: { viewModel.swipeLeft() },
+                    onSwipeRight: { viewModel.swipeRight() }
                 )
-                .id(currentCardId) // Force new card instance
+                .id(currentCardId)
                 .zIndex(1)
             } else {
-                // No words left
-                noWordsView
+                Text("Kelime yükleniyor...")
+                    .font(.system(size: 16))
+                    .foregroundColor(.secondary)
             }
         }
-    }
-    
-    // MARK: - Action Buttons (Clean Layout)
-    private var actionButtons: some View {
-        HStack(spacing: 0) {
-            Spacer()
-            
-            // ✅ FIXED: Study button navigation
-            SelectionSmallButton(
-                icon: "play.fill",
-                backgroundColor: Color(hex: "66BB6A"),
-                isEnabled: viewModel.selectedCount > 0 && !viewModel.isProcessingSwipe
-            ) {
-                // Finish selection and navigate
-                viewModel.finishSelection()
-                
-                // Small delay to ensure data is saved
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    navigateToStudy = true
-                }
-            }
-            
-            Spacer()
-            
-            // Skip button (large) - RED
-            SelectionActionButton(
-                icon: "xmark",
-                backgroundColor: Color(hex: "EF5350"),
-                size: 80,
-                isEnabled: !viewModel.isProcessingSwipe && viewModel.currentWord != nil
-            ) {
-                triggerSwipeLeft = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                    triggerSwipeLeft = false
-                }
-            }
-            
-            Spacer()
-            
-            // Learn button (large) - GREEN
-            SelectionActionButton(
-                icon: "checkmark",
-                backgroundColor: Color(hex: "66BB6A"),
-                size: 80,
-                isEnabled: !viewModel.isProcessingSwipe && viewModel.currentWord != nil
-            ) {
-                triggerSwipeRight = true
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.05) {
-                    triggerSwipeRight = false
-                }
-            }
-            
-            Spacer()
-            
-            // Undo button
-            SelectionSmallButton(
-                icon: "arrow.uturn.backward",
-                backgroundColor: Color(hex: "2196F3"),
-                isEnabled: viewModel.canUndo
-            ) {
-                viewModel.undo()
-                currentCardId = UUID() // Force refresh
-            }
-            
-            Spacer()
-        }
-        .padding(.vertical, 32)
         .padding(.horizontal, 20)
-        .background(
-            Color(.systemBackground)
-                .ignoresSafeArea(edges: .bottom)
-        )
+        .padding(.vertical, 40)
     }
     
-    // MARK: - Completion View
-    private var completionView: some View {
-        CompletionView(
-            selectedCount: viewModel.selectedCount,
-            hiddenCount: viewModel.hiddenCount,
-            onContinue: {
-                viewModel.finishSelection()
+    private var actionButtons: some View {
+        VStack(spacing: 16) {
+            HStack(spacing: 16) {
+                Text("\(viewModel.selectedCount) seçildi")
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundColor(.secondary)
                 
-                // Small delay to ensure data is saved
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                    navigateToStudy = true
+                Spacer()
+                
+                Button(action: {
+                    viewModel.undo()
+                    currentCardId = UUID()
+                }) {
+                    HStack(spacing: 6) {
+                        Image(systemName: "arrow.uturn.backward")
+                        Text("Geri Al")
+                    }
+                    .font(.system(size: 14, weight: .medium))
+                    .foregroundColor(viewModel.canUndo ? Color(hex: "FF9500") : .gray)
                 }
-            },
-            onGoHome: {
-                dismiss()
+                .disabled(!viewModel.canUndo)
             }
-        )
+            .padding(.horizontal, 20)
+            
+            HStack(spacing: 12) {
+                Button(action: {
+                    viewModel.swipeLeft()
+                    currentCardId = UUID()
+                }) {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundColor(.white)
+                        .frame(width: 64, height: 64)
+                        .background(Color(hex: "FF6B6B"))
+                        .clipShape(Circle())
+                        .shadow(color: .black.opacity(0.2), radius: 8, x: 0, y: 4)
+                }
+                
+                Button(action: {
+                    navigateToStudy = true
+                }) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "play.fill")
+                        Text("Çalış (\(viewModel.selectedCount))")
+                            .font(.system(size: 16, weight: .semibold))
+                    }
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 16)
+                    .background(
+                        LinearGradient(
+                            colors: [Color(hex: "4ECDC4"), Color(hex: "45B7D1")],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                    .cornerRadius(32)
+                    .shadow(color: Color(hex: "4ECDC4").opacity(0.4), radius: 12, x: 0, y: 6)
+                }
+                .disabled(viewModel.selectedCount == 0)
+                .opacity(viewModel.selectedCount == 0 ? 0.5 : 1.0)
+                
+                Button(action: {
+                    viewModel.swipeRight()
+                    currentCardId = UUID()
+                }) {
+                    Image(systemName: "checkmark")
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundColor(.white)
+                        .frame(width: 64, height: 64)
+                        .background(Color(hex: "66BB6A"))
+                        .clipShape(Circle())
+                        .shadow(color: .black.opacity(0.2), radius: 8, x: 0, y: 4)
+                }
+            }
+            .padding(.horizontal, 20)
+            .padding(.bottom, 20)
+        }
     }
     
-    // MARK: - Loading View
     private var loadingView: some View {
         VStack(spacing: 16) {
             ProgressView()
                 .scaleEffect(1.5)
-            
             Text("Kelimeler yükleniyor...")
-                .font(.system(size: 16, weight: .medium))
+                .font(.system(size: 16))
                 .foregroundColor(.secondary)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    // MARK: - Error View
     private func errorView(_ message: String) -> some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 16) {
             Image(systemName: "exclamationmark.triangle.fill")
-                .font(.system(size: 60))
-                .foregroundColor(Color(hex: "FF6B6B"))
-            
-            Text("Hata")
-                .font(.system(size: 24, weight: .bold))
+                .font(.system(size: 48))
+                .foregroundColor(.red)
             
             Text(message)
                 .font(.system(size: 16))
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 40)
-            
-            Button(action: {
-                viewModel.loadWords()
-            }) {
-                Text("Tekrar Dene")
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundColor(.white)
-                    .padding(.horizontal, 32)
-                    .padding(.vertical, 12)
-                    .background(Color(hex: "FF6B6B"))
-                    .cornerRadius(12)
-            }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
     
-    // MARK: - No Words View
-    private var noWordsView: some View {
+    private var completionView: some View {
         VStack(spacing: 24) {
             Image(systemName: "checkmark.circle.fill")
-                .font(.system(size: 80))
+                .font(.system(size: 72))
                 .foregroundColor(Color(hex: "66BB6A"))
             
-            Text("Tüm Kelimeler İşlendi! 🎉")
+            Text("Tamamlandı! 🎉")
                 .font(.system(size: 24, weight: .bold))
                 .multilineTextAlignment(.center)
             
@@ -307,52 +265,9 @@ struct WordSelectionView: View {
     }
 }
 
-// MARK: - Swipeable Card Wrapper
-/// Wrapper to handle button triggers and communicate with card
-struct SwipeableCardViewWrapper: View {
-    let word: String
-    let translation: String
-    let cardColor: Color
-    @Binding var triggerSwipeLeft: Bool
-    @Binding var triggerSwipeRight: Bool
-    let onSwipeLeft: () -> Void
-    let onSwipeRight: () -> Void
-    
-    var body: some View {
-        SwipeableCardView(
-            word: word,
-            translation: translation,
-            cardColor: cardColor,
-            onSwipeLeft: onSwipeLeft,
-            onSwipeRight: onSwipeRight
-        )
-        .onChange(of: triggerSwipeLeft) { _, newValue in
-            if newValue {
-                // Trigger left swipe programmatically
-                performSwipe(direction: .left)
-            }
-        }
-        .onChange(of: triggerSwipeRight) { _, newValue in
-            if newValue {
-                // Trigger right swipe programmatically
-                performSwipe(direction: .right)
-            }
-        }
-    }
-    
-    private func performSwipe(direction: SwipeDirection) {
-        // Swipe is handled by callbacks
-        if direction == .left {
-            onSwipeLeft()
-        } else {
-            onSwipeRight()
-        }
-    }
-}
-
 // MARK: - Preview
-#Preview {
-    NavigationStack {
-        WordSelectionView(packageId: "basic")
+struct WordSelectionView_Previews: PreviewProvider {
+    static var previews: some View {
+        WordSelectionView(packageId: "en_tr_a1_001")
     }
 }

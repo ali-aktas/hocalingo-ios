@@ -3,7 +3,7 @@
 //  HocaLingo
 //
 //  Models package - User progress tracking
-//  ✅ FIXED: Removed duplicate StudyDirection enum
+//  ✅ FIXED: Removed isMastered stored property (now computed in extension)
 //
 
 import Foundation
@@ -15,7 +15,7 @@ struct Progress: Codable, Identifiable {
     // MARK: - Identity
     var id: String { "\(wordId)_\(direction.rawValue)" } // Auto-generated ID
     let wordId: Int
-    let direction: StudyDirection // en_tr or tr_en (uses existing enum!)
+    let direction: StudyDirection // en_tr or tr_en
     
     // MARK: - Spaced Repetition Core Data (SM-2 Algorithm)
     var repetitions: Int                    // Number of successful reviews
@@ -32,20 +32,21 @@ struct Progress: Codable, Identifiable {
     
     // MARK: - Status Flags
     var isSelected: Bool                    // Is this word selected for study?
-    var isMastered: Bool                    // Has this word been mastered? (21+ days interval)
+    // ✅ REMOVED: isMastered (now computed property in Progress+Extensions.swift)
     
     // MARK: - Timestamps
     let createdAt: Date
     var updatedAt: Date
     
-    // MARK: - CodingKeys (exclude computed 'id' property)
+    // MARK: - CodingKeys (exclude computed properties)
     enum CodingKeys: String, CodingKey {
         case wordId, direction
         case repetitions, intervalDays, easeFactor
         case nextReviewAt, lastReviewAt
         case learningPhase, sessionPosition
         case successfulReviews, hardPresses
-        case isSelected, isMastered
+        case isSelected
+        // ✅ REMOVED: isMastered (computed property, not stored)
         case createdAt, updatedAt
         // Note: 'id' is not included - it's computed
     }
@@ -64,7 +65,7 @@ struct Progress: Codable, Identifiable {
         successfulReviews: Float? = 0,
         hardPresses: Int? = 0,
         isSelected: Bool = true,
-        isMastered: Bool = false,
+        // ✅ REMOVED: isMastered parameter (now computed)
         createdAt: Date = Date(),
         updatedAt: Date = Date()
     ) {
@@ -80,7 +81,7 @@ struct Progress: Codable, Identifiable {
         self.successfulReviews = successfulReviews
         self.hardPresses = hardPresses
         self.isSelected = isSelected
-        self.isMastered = isMastered
+        // ✅ REMOVED: self.isMastered (computed automatically)
         self.createdAt = createdAt
         self.updatedAt = updatedAt
     }
