@@ -1,138 +1,151 @@
 import SwiftUI
 
 // MARK: - Home View
-/// Main home screen with user stats, motivation, and play button
-/// Location: HocaLingo/Features/Home/HomeView.swift
+/// Premium Home Screen – Focused, Motivational, Production-Grade
 struct HomeView: View {
+    
     @StateObject private var viewModel = HomeViewModel()
     @State private var showPackageSelection = false
+    @State private var animateHero = false
     
     var body: some View {
-        NavigationView {
-            ScrollView {
-                VStack(spacing: 16) {
-                    // Greeting Section
-                    greetingSection
+        NavigationStack {
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 28) {
                     
-                    // Hero Card (Play Button + Motivation)
-                    heroCard
+                    headerSection
                     
-                    // Stats Section
+                    heroSection
+                    
                     statsSection
                     
-                    // Action Buttons
-                    actionButtons
-                    
-                    Spacer(minLength: 20)
+                    actionSection
                 }
-                .padding(.horizontal, 16)
-                .padding(.top, 20)
+                .padding(.horizontal, 20)
+                .padding(.top, 24)
+                .padding(.bottom, 32)
             }
-            .navigationBarHidden(true)
             .background(Color(.systemBackground))
+            .navigationBarHidden(true)
         }
     }
+}
+
+// MARK: - Header
+private extension HomeView {
     
-    // MARK: - Greeting Section
-    private var greetingSection: some View {
-        VStack(alignment: .leading, spacing: 4) {
+    var headerSection: some View {
+        VStack(alignment: .leading, spacing: 6) {
             Text("HocaLingo")
-                .font(.system(size: 28, weight: .bold))
-                .foregroundColor(.primary)
+                .font(.system(size: 32, weight: .bold))
             
             Text(viewModel.greetingText)
                 .font(.system(size: 14))
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
+}
+
+// MARK: - Hero
+private extension HomeView {
     
-    // MARK: - Hero Card
-    private var heroCard: some View {
+    var heroSection: some View {
         ZStack {
-            // Background gradient
-            RoundedRectangle(cornerRadius: 20)
+            RoundedRectangle(cornerRadius: 28)
                 .fill(
                     LinearGradient(
-                        colors: [Color.blue.opacity(0.8), Color.purple.opacity(0.6)],
+                        colors: [
+                            Color.blue.opacity(0.9),
+                            Color.purple.opacity(0.85)
+                        ],
                         startPoint: .topLeading,
                         endPoint: .bottomTrailing
                     )
                 )
-                .frame(height: 180)
+                .shadow(color: .black.opacity(0.25), radius: 20, y: 10)
             
-            VStack(spacing: 12) {
-                // Play Button
-                Button(action: {
+            VStack(spacing: 20) {
+                
+                Button {
                     viewModel.startStudy()
-                }) {
+                } label: {
                     ZStack {
                         Circle()
-                            .fill(Color.white)
-                            .frame(width: 80, height: 80)
-                            .shadow(color: .black.opacity(0.2), radius: 8, x: 0, y: 4)
+                            .fill(.ultraThinMaterial)
+                            .frame(width: 92, height: 92)
+                            .shadow(color: .black.opacity(0.3), radius: 12, y: 6)
                         
                         Image(systemName: "play.fill")
-                            .font(.system(size: 32))
-                            .foregroundColor(.blue)
+                            .font(.system(size: 34, weight: .bold))
+                            .foregroundStyle(.blue)
+                            .offset(x: 2)
                     }
                 }
-                .buttonStyle(PlainButtonStyle())
+                .scaleEffect(animateHero ? 1 : 0.85)
                 
-                // Motivation Text
                 Text(viewModel.motivationText)
-                    .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(.white)
+                    .font(.system(size: 15, weight: .medium))
+                    .foregroundStyle(.white.opacity(0.95))
                     .multilineTextAlignment(.center)
-                    .padding(.horizontal, 20)
+                    .padding(.horizontal, 32)
+            }
+            .padding(.vertical, 28)
+        }
+        .frame(height: 220)
+        .onAppear {
+            withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
+                animateHero = true
             }
         }
     }
+}
+
+// MARK: - Stats
+private extension HomeView {
     
-    // MARK: - Stats Section
-    private var statsSection: some View {
-        VStack(spacing: 12) {
-            // Row 1: Streak + Today's Words
-            HStack(spacing: 12) {
+    var statsSection: some View {
+        VStack(spacing: 14) {
+            HStack(spacing: 14) {
                 StatCard(
                     icon: "flame.fill",
                     value: "\(viewModel.streakDays)",
                     label: "stat_streak_days",
-                    color: .orange
+                    accent: .orange
                 )
                 
                 StatCard(
                     icon: "checkmark.circle.fill",
                     value: "\(viewModel.todaysWords)",
                     label: "stat_today_words",
-                    color: .green
+                    accent: .green
                 )
             }
             
-            // Row 2: Total Learned
-            HStack(spacing: 12) {
+            HStack(spacing: 14) {
                 StatCard(
                     icon: "star.fill",
                     value: "\(viewModel.totalLearned)",
                     label: "stat_total_learned",
-                    color: .blue
+                    accent: .blue
                 )
                 
-                // Placeholder for balance
                 Spacer()
-                    .frame(maxWidth: .infinity)
             }
         }
     }
+}
+
+// MARK: - Actions
+private extension HomeView {
     
-    // MARK: - Action Buttons
-    private var actionButtons: some View {
-        VStack(spacing: 12) {
-            ActionButton(
+    var actionSection: some View {
+        VStack(spacing: 14) {
+            ActionRow(
                 icon: "square.grid.2x2.fill",
                 title: "action_select_package",
                 subtitle: "action_select_package_desc",
-                color: .purple
+                tint: .purple
             ) {
                 showPackageSelection = true
             }
@@ -140,89 +153,89 @@ struct HomeView: View {
                 PackageSelectionView()
             }
             
-            ActionButton(
+            ActionRow(
                 icon: "sparkles",
                 title: "action_ai_assistant",
                 subtitle: "action_ai_assistant_desc",
-                color: .cyan
+                tint: .cyan
             ) {
-                // TODO: Navigate to AI assistant
+                // Navigate to AI assistant
             }
         }
     }
 }
 
-// MARK: - Stat Card Component
+// MARK: - Stat Card
 struct StatCard: View {
+    
     let icon: String
     let value: String
     let label: String
-    let color: Color
+    let accent: Color
     
     var body: some View {
-        VStack(spacing: 8) {
-            HStack {
-                Image(systemName: icon)
-                    .font(.system(size: 20))
-                    .foregroundColor(color)
-                
-                Spacer()
-            }
+        VStack(alignment: .leading, spacing: 10) {
+            Image(systemName: icon)
+                .font(.system(size: 20))
+                .foregroundStyle(accent)
             
             Text(value)
-                .font(.system(size: 28, weight: .bold))
-                .foregroundColor(.primary)
+                .font(.system(size: 30, weight: .bold))
             
             Text(LocalizedStringKey(label))
                 .font(.system(size: 12))
-                .foregroundColor(.secondary)
+                .foregroundStyle(.secondary)
         }
-        .frame(maxWidth: .infinity)
-        .padding(12)
-        .background(Color(.systemGray6))
-        .cornerRadius(16)
+        .padding(16)
+        .frame(maxWidth: .infinity, minHeight: 120)
+        .background(
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color(.secondarySystemBackground))
+        )
     }
 }
 
-// MARK: - Action Button Component
-struct ActionButton: View {
+// MARK: - Action Row
+struct ActionRow: View {
+    
     let icon: String
     let title: String
     let subtitle: String
-    let color: Color
+    let tint: Color
     let action: () -> Void
     
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 12) {
+            HStack(spacing: 16) {
                 Image(systemName: icon)
-                    .font(.system(size: 24))
-                    .foregroundColor(color)
-                    .frame(width: 40, height: 40)
-                    .background(color.opacity(0.15))
-                    .cornerRadius(10)
+                    .font(.system(size: 22))
+                    .foregroundStyle(tint)
+                    .frame(width: 44, height: 44)
+                    .background(tint.opacity(0.15))
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
                 
-                VStack(alignment: .leading, spacing: 2) {
+                VStack(alignment: .leading, spacing: 4) {
                     Text(LocalizedStringKey(title))
                         .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.primary)
                     
                     Text(LocalizedStringKey(subtitle))
                         .font(.system(size: 12))
-                        .foregroundColor(.secondary)
+                        .foregroundStyle(.secondary)
                 }
                 
                 Spacer()
                 
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 14))
-                    .foregroundColor(.gray)
+                    .font(.system(size: 13, weight: .semibold))
+                    .foregroundStyle(.tertiary)
             }
-            .padding(12)
-            .background(Color(.systemGray6))
-            .cornerRadius(16)
+            .padding(16)
+            .background(
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(Color(.secondarySystemBackground))
+            )
         }
-        .buttonStyle(PlainButtonStyle())
+        .buttonStyle(.plain)
     }
 }
 

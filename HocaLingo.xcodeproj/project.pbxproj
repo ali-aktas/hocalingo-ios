@@ -42,8 +42,8 @@
 			membershipExceptions = (
 				Sounds/card_flip.wav,
 				Sounds/click_sound.wav,
-				Sounds/swipe_left.wav,
-				Sounds/swipe_right.wav,
+				Sounds/playSwipeLeft.wav,
+				Sounds/playSwipeRight.wav,
 			);
 			target = 0EC909CD2F18743E00FEBC67 /* HocaLingo */;
 		};
@@ -52,8 +52,8 @@
 			membershipExceptions = (
 				Sounds/card_flip.wav,
 				Sounds/click_sound.wav,
-				Sounds/swipe_left.wav,
-				Sounds/swipe_right.wav,
+				Sounds/playSwipeLeft.wav,
+				Sounds/playSwipeRight.wav,
 			);
 			target = 0EC909DA2F18743F00FEBC67 /* HocaLingoTests */;
 		};
@@ -76,6 +76,8 @@
 				Features/Profile/ProfileViewModel.swift,
 				Features/Selection/PackageSelectionView.swift,
 				Features/Selection/PackageSelectionViewModel.swift,
+				Features/Selection/SwipeableCardView.swift,
+				Features/Selection/WordSelectionComponents.swift,
 				Features/Selection/WordSelectionView.swift,
 				Features/Selection/WordSelectionViewModel.swift,
 				Features/Study/StudyCompletionView.swift,
@@ -106,6 +108,8 @@
 				Features/Home/HomeViewModel.swift,
 				Features/Selection/PackageSelectionView.swift,
 				Features/Selection/PackageSelectionViewModel.swift,
+				Features/Selection/SwipeableCardView.swift,
+				Features/Selection/WordSelectionComponents.swift,
 				Features/Selection/WordSelectionView.swift,
 				Features/Selection/WordSelectionViewModel.swift,
 				HocaLingoApp.swift,

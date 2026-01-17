@@ -1,32 +1,38 @@
-//
-//  WordSelectionViewModel.swift
-//  HocaLingo
-//
-//  ✅ MEGA UPDATE: NotificationCenter post after word selection (real-time update)
-//  Location: HocaLingo/Features/Selection/WordSelectionViewModel.swift
-//
-
 import SwiftUI
 import Combine
 
-// MARK: - Word Selection View Model
-/// Business logic for word selection with dual progress creation
+// MARK: - Word Selection ViewModel (FIXED)
+/// Production-grade ViewModel with CORRECT UserDefaults integration
+/// FIXES:
+/// - Uses correct saveSelectedWords() and loadSelectedWords()
+/// - Removed hidden words (iOS doesn't need it)
+/// - Proper package saving
+/// Location: HocaLingo/Features/WordSelection/WordSelectionViewModel.swift
 class WordSelectionViewModel: ObservableObject {
-    
     // MARK: - Published Properties
     @Published var words: [Word] = []
-    @Published var selectedWordIds: Set<Int> = []
-    @Published var isLoading: Bool = false
-    @Published var errorMessage: String? = nil
+    @Published var currentWord: Word?
+    @Published var nextWord: Word?
+    @Published var selectedCount: Int = 0
+    @Published var hiddenCount: Int = 0
+    @Published var processedWords: Int = 0
+    @Published var isLoading: Bool = true
+    @Published var isProcessingSwipe: Bool = false
+    @Published var isCompleted: Bool = false
+    @Published var errorMessage: String?
     
     // MARK: - Private Properties
     private let packageId: String
+    private var currentWordIndex: Int = 0
+    private var remainingWords: [Word] = []
+    private var selectedWordIds: Set<Int> = []
+    private var hiddenWordIds: Set<Int> = []
+    private var undoStack: [UndoAction] = []
+    private let soundManager = SoundManager.shared
     private let jsonLoader = JSONLoader()
     
-    // MARK: - Computed Properties
-    var selectedCount: Int {
-        return selectedWordIds.count
-    }
+    // MARK: - Constants
+    private let maxUndoStackSize = 5
     
     // MARK: - Initialization
     init(packageId: String) {
@@ -34,99 +40,306 @@ class WordSelectionViewModel: ObservableObject {
         loadWords()
     }
     
-    // MARK: - Data Loading
+    // MARK: - Load Words
     func loadWords() {
         isLoading = true
         errorMessage = nil
         
         do {
+            // Load vocabulary package using JSONLoader
             let vocabPackage = try jsonLoader.loadVocabularyPackage(filename: packageId)
-            words = vocabPackage.words
+            
+            // Get all words from package
+            let allWords = vocabPackage.words
+            
+            // ✅ FIXED: Load saved selections using CORRECT function
+            let savedSelectedIds = UserDefaultsManager.shared.loadSelectedWords()
+            selectedWordIds = Set(savedSelectedIds)
+            
+            // Filter unseen words (not selected)
+            let unseenWords = allWords.filter { word in
+                !selectedWordIds.contains(word.id)
+            }
+            
+            self.words = allWords
+            self.remainingWords = unseenWords
+            self.selectedCount = selectedWordIds.count
+            self.hiddenCount = 0 // iOS doesn't use hidden feature
+            
+            // Set current and next word
+            updateCurrentWord()
+            
             isLoading = false
             
-            print("✅ Loaded \(words.count) words from package: \(packageId)")
+            print("📚 Loaded \(allWords.count) words, \(unseenWords.count) unseen")
+            print("✅ Selected: \(selectedCount)")
+            
         } catch {
             errorMessage = "Failed to load words: \(error.localizedDescription)"
             isLoading = false
+            print("❌ Failed to load words: \(error)")
+        }
+    }
+    
+    // MARK: - Update Current Word
+    private func updateCurrentWord() {
+        if currentWordIndex < remainingWords.count {
+            currentWord = remainingWords[currentWordIndex]
             
-            print("❌ Failed to load words: \(error.localizedDescription)")
-        }
-    }
-    
-    // MARK: - Selection Actions
-    
-    /// Toggle word selection
-    func toggleWordSelection(_ wordId: Int) {
-        if selectedWordIds.contains(wordId) {
-            selectedWordIds.remove(wordId)
+            // Set next word (preview card)
+            if currentWordIndex + 1 < remainingWords.count {
+                nextWord = remainingWords[currentWordIndex + 1]
+            } else {
+                nextWord = nil
+            }
         } else {
-            selectedWordIds.insert(wordId)
+            // All words processed
+            currentWord = nil
+            nextWord = nil
+            
+            // Check if completed
+            if selectedCount > 0 {
+                isCompleted = true
+            }
         }
     }
     
-    /// Check if word is selected
-    func isWordSelected(_ wordId: Int) -> Bool {
-        return selectedWordIds.contains(wordId)
+    // MARK: - Select Word (Swipe Right)
+    func selectWord(_ wordId: Int) {
+        guard !isProcessingSwipe else { return }
+        
+        isProcessingSwipe = true
+        
+        // Play sound
+        soundManager.playSwipeRight()
+        
+        print("✅ Selecting word: \(wordId)")
+        
+        // Add to selected
+        selectedWordIds.insert(wordId)
+        selectedCount += 1
+        
+        // Create progress for this word (EN→TR + TR→EN)
+        createProgressForWord(wordId)
+        
+        // Add to undo stack
+        addToUndoStack(UndoAction(wordId: wordId, action: .selected))
+        
+        // ✅ FIXED: Save using CORRECT function
+        saveSelections()
+        
+        // Notify StudyViewModel about selection change
+        NotificationCenter.default.post(
+            name: NSNotification.Name("WordSelectionChanged"),
+            object: nil
+        )
+        print("📡 Notification posted: WordSelectionChanged")
+        
+        // Move to next word
+        moveToNextWord()
+        
+        isProcessingSwipe = false
     }
     
-    /// Select all words
-    func selectAll() {
-        selectedWordIds = Set(words.map { $0.id })
+    // MARK: - Hide Word (Swipe Left)
+    func hideWord(_ wordId: Int) {
+        guard !isProcessingSwipe else { return }
+        
+        isProcessingSwipe = true
+        
+        // Play sound
+        soundManager.playSwipeLeft()
+        
+        print("❌ Hiding word: \(wordId)")
+        
+        // Just skip (don't save as hidden in iOS)
+        hiddenCount += 1
+        
+        // Add to undo stack
+        addToUndoStack(UndoAction(wordId: wordId, action: .hidden))
+        
+        // Move to next word
+        moveToNextWord()
+        
+        isProcessingSwipe = false
     }
     
-    /// Clear all selections
-    func clearSelection() {
-        selectedWordIds.removeAll()
+    // MARK: - Move to Next Word
+    private func moveToNextWord() {
+        currentWordIndex += 1
+        processedWords += 1
+        
+        print("➡️ Moving to next word: \(currentWordIndex) / \(remainingWords.count)")
+        
+        updateCurrentWord()
     }
     
-    /// ✅ MEGA FIX 3: Finish selection + NotificationCenter
+    // MARK: - Undo
+    func undo() {
+        guard !undoStack.isEmpty, !isProcessingSwipe else { return }
+        
+        isProcessingSwipe = true
+        
+        // Play sound
+        soundManager.playClickSound()
+        
+        let lastAction = undoStack.removeLast()
+        
+        print("↩️ Undoing action: \(lastAction.action) for word \(lastAction.wordId)")
+        
+        // Revert action
+        switch lastAction.action {
+        case .selected:
+            selectedWordIds.remove(lastAction.wordId)
+            selectedCount -= 1
+            
+            // Remove progress for this word
+            deleteProgressForWord(lastAction.wordId)
+            
+        case .hidden:
+            hiddenCount -= 1
+        }
+        
+        // Save to UserDefaults
+        saveSelections()
+        
+        // Move back one word
+        if currentWordIndex > 0 {
+            currentWordIndex -= 1
+            processedWords -= 1
+            updateCurrentWord()
+        }
+        
+        // Reset completion if needed
+        if isCompleted {
+            isCompleted = false
+        }
+        
+        isProcessingSwipe = false
+    }
+    
+    // MARK: - Undo Stack Management
+    private func addToUndoStack(_ action: UndoAction) {
+        undoStack.append(action)
+        
+        // Limit stack size
+        if undoStack.count > maxUndoStackSize {
+            undoStack.removeFirst()
+        }
+    }
+    
+    var canUndo: Bool {
+        !undoStack.isEmpty && !isProcessingSwipe
+    }
+    
+    // MARK: - Progress Creation
+    
+    /// Create dual progress (EN→TR + TR→EN) for a word
+    private func createProgressForWord(_ wordId: Int) {
+        let directions: [StudyDirection] = [.enToTr, .trToEn]
+        
+        for direction in directions {
+            // Check if progress already exists
+            let existingProgress = UserDefaultsManager.shared.loadProgress(for: wordId, direction: direction)
+            
+            if existingProgress == nil {
+                // Create new progress
+                let newProgress = Progress(wordId: wordId, direction: direction)
+                UserDefaultsManager.shared.saveProgress(newProgress, for: wordId, direction: direction)
+                
+                print("📝 Created progress: wordId=\(wordId), direction=\(direction.displayName)")
+            }
+        }
+    }
+    
+    /// Delete dual progress (EN→TR + TR→EN) for a word (used in undo)
+    private func deleteProgressForWord(_ wordId: Int) {
+        let directions: [StudyDirection] = [.enToTr, .trToEn]
+        
+        for direction in directions {
+            UserDefaultsManager.shared.deleteProgress(for: wordId, direction: direction)
+            print("🗑️ Deleted progress: wordId=\(wordId), direction=\(direction.displayName)")
+        }
+    }
+    
+    // MARK: - Save Selections (FIXED)
+    private func saveSelections() {
+        // ✅ FIXED: Use correct UserDefaults functions
+        let selectedArray = Array(selectedWordIds)
+        UserDefaultsManager.shared.saveSelectedWords(selectedArray)
+        
+        print("💾 Saved \(selectedWordIds.count) selected words")
+    }
+    
+    // MARK: - Finish Selection (FIXED)
     func finishSelection() {
         guard selectedCount > 0 else {
             print("⚠️ No words selected")
             return
         }
         
-        let wordIdsArray = Array(selectedWordIds).sorted()
+        print("✅ Finishing selection: \(selectedCount) words selected")
         
-        // Save selected words
-        UserDefaultsManager.shared.saveSelectedWords(wordIdsArray)
-        
-        // Save selected package
+        // ✅ FIXED: Save package ID using correct function
         UserDefaultsManager.shared.saveSelectedPackage(packageId)
         
-        // ✅ CRITICAL: Create dual progress for each selected word
-        createDualProgressForSelectedWords(wordIdsArray)
+        // ✅ FIXED: Save selected words
+        let selectedArray = Array(selectedWordIds)
+        UserDefaultsManager.shared.saveSelectedWords(selectedArray)
         
-        // ✅ NEW: Post notification to StudyViewModel
+        // Create progress for any remaining selected words that don't have it
+        for wordId in selectedWordIds {
+            createProgressForWord(wordId)
+        }
+        
+        // Notify StudyViewModel
         NotificationCenter.default.post(
             name: NSNotification.Name("WordSelectionChanged"),
             object: nil
         )
-        
-        print("✅ Selection finished:")
-        print("   - Words selected: \(selectedCount)")
-        print("   - Progress records created: \(selectedCount * 2) (both directions)")
-        print("   📡 Notification posted to StudyViewModel")
+        print("📡 Final notification posted: WordSelectionChanged")
+        print("   - Package: \(packageId)")
+        print("   - Words: \(selectedArray)")
+        print("   - Progress records: \(selectedCount * 2) (both directions)")
     }
     
-    /// ✅ NEW: Create progress for both directions (EN→TR and TR→EN)
-    /// This ensures each word has independent progress tracking for each study direction
-    private func createDualProgressForSelectedWords(_ wordIds: [Int]) {
-        let directions: [StudyDirection] = [.enToTr, .trToEn]
+    // MARK: - Reset All
+    func resetAllSelections() {
+        selectedWordIds.removeAll()
+        hiddenWordIds.removeAll()
+        selectedCount = 0
+        hiddenCount = 0
+        currentWordIndex = 0
+        processedWords = 0
+        undoStack.removeAll()
+        isCompleted = false
         
-        for wordId in wordIds {
-            for direction in directions {
-                // Check if progress already exists for this word+direction
-                let existingProgress = UserDefaultsManager.shared.loadProgress(for: wordId, direction: direction)
-                
-                if existingProgress == nil {
-                    // Create new progress
-                    let newProgress = Progress(wordId: wordId, direction: direction)
-                    UserDefaultsManager.shared.saveProgress(newProgress, for: wordId)
-                    
-                    print("📝 Created progress: wordId=\(wordId), direction=\(direction.displayName)")
-                }
-            }
-        }
+        saveSelections()
+        
+        // Reload words
+        loadWords()
     }
+    
+    // MARK: - Get Random Card Color
+    func getCardColor(for word: Word) -> Color {
+        let hash = abs((word.english + word.turkish).hashValue)
+        let index = hash % cardColors.count
+        return cardColors[index]
+    }
+}
+
+// MARK: - Undo Action
+struct UndoAction {
+    let wordId: Int
+    let action: SelectionAction
+}
+
+enum SelectionAction {
+    case selected
+    case hidden
+}
+
+// MARK: - Preview
+#Preview {
+    WordSelectionView(packageId: "basic")
 }

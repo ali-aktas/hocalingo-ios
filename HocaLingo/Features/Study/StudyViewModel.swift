@@ -8,6 +8,7 @@
 //  3. TTS timing fix (TR->EN only on flip)
 //  4. No TTS on init (fixes home screen sound bug)
 //  5. First card direction fix (proper front/back logic)
+//  6. ✅ NEW FIX: Corrected saveProgress call with proper parameters
 //
 //  Location: HocaLingo/Features/Study/StudyViewModel.swift
 //
@@ -342,7 +343,13 @@ class StudyViewModel: ObservableObject {
         )
         
         currentProgress[card.wordId] = progress
-        UserDefaultsManager.shared.saveProgress(progress, for: card.wordId)
+        
+        // ✅ FIX 6: Corrected saveProgress call with proper variable names
+        UserDefaultsManager.shared.saveProgress(
+            progress,
+            for: card.wordId,           // ✅ FIXED: card.wordId (not just wordId)
+            direction: studyDirection   // ✅ FIXED: studyDirection (not just direction)
+        )
         
         print("📝 Progress updated:")
         print("   - Word ID: \(card.wordId)")

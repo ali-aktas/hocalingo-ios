@@ -48,6 +48,28 @@ class UserDefaultsManager {
         UserDefaults.standard.removeObject(forKey: Keys.selectedWordIds)
     }
     
+    // MARK: - Word Selections (Selected + Hidden)
+        
+    /// Get word selections for a package (selected and hidden)
+    func getWordSelections(packageId: String) -> (selected: [Int], hidden: [Int]) {
+        let selectedKey = "package_\(packageId)_selected"
+        let hiddenKey = "package_\(packageId)_hidden"
+            
+        let selected = UserDefaults.standard.array(forKey: selectedKey) as? [Int] ?? []
+        let hidden = UserDefaults.standard.array(forKey: hiddenKey) as? [Int] ?? []
+            
+        return (selected, hidden)
+    }
+        
+    /// Save word selections for a package (selected and hidden)
+    func saveWordSelections(packageId: String, selected: [Int], hidden: [Int]) {
+        let selectedKey = "package_\(packageId)_selected"
+        let hiddenKey = "package_\(packageId)_hidden"
+        
+        UserDefaults.standard.set(selected, forKey: selectedKey)
+        UserDefaults.standard.set(hidden, forKey: hiddenKey)
+    }
+    
     /// Save selected package ID
     func saveSelectedPackage(_ packageId: String) {
         UserDefaults.standard.set(packageId, forKey: Keys.selectedPackageId)
@@ -122,12 +144,9 @@ class UserDefaultsManager {
     
     // MARK: - Progress Management (Direction-Aware)
     
-    /// ✅ UPDATED: Save progress with direction (composite key: wordId + direction)
-    /// This allows storing separate progress for EN→TR and TR→EN
-    func saveProgress(_ progress: Progress, for wordId: Int) {
-        // ✅ CRITICAL: Use composite key (wordId + direction)
-        let key = Keys.progressData + "\(wordId)_\(progress.direction.rawValue)"
-        
+    /// ✅ UPDATED: Save progress for a specific word with direction
+    func saveProgress(_ progress: Progress, for wordId: Int, direction: StudyDirection) {
+        let key = Keys.progressData + "\(wordId)_\(direction.rawValue)"
         if let encoded = try? JSONEncoder().encode(progress) {
             UserDefaults.standard.set(encoded, forKey: key)
         }
