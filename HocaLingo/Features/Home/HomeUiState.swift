@@ -2,7 +2,7 @@
 //  HomeUiState.swift
 //  HocaLingo
 //
-//  Home screen state management - MATCHES Android HomeUiState
+//  ✅ UPDATED: Monthly stats added - matches Android HomeUiState v2.0
 //  Location: HocaLingo/Features/Home/HomeUiState.swift
 //
 
@@ -15,7 +15,7 @@ struct HomeUiState {
     var userName: String = ""
     var streakDays: Int = 0
     var dailyGoalProgress: DailyGoalProgress = DailyGoalProgress()
-    var monthlyStats: MonthlyStats = MonthlyStats()
+    var monthlyStats: MonthlyStats = MonthlyStats() // ✅ UPDATED: Changed from monthlyStats
     var error: String? = nil
     var showPremiumPush: Bool = false
     var isPremium: Bool = false
@@ -44,17 +44,23 @@ struct DailyGoalProgress {
     }
 }
 
-// MARK: - Monthly Stats
-/// Monthly study statistics for calendar view
+// MARK: - Monthly Stats (ANDROID PARITY)
+/// ✅ NEW: Monthly study statistics matching Android exactly
 struct MonthlyStats {
-    var studiedDays: [String] = [] // ISO date strings: "2025-01-15"
-    var totalDaysStudied: Int = 0
-    var currentMonthWords: Int = 0
+    var activeDaysThisMonth: Int = 0
+    var studyTimeThisMonth: Int = 0  // Total minutes
+    var disciplineScore: Int = 0      // 0-100
     
-    /// Check if a specific date was studied
-    func wasStudied(date: Date) -> Bool {
-        let dateString = ISO8601DateFormatter().string(from: date).prefix(10)
-        return studiedDays.contains(String(dateString))
+    /// Format study time as "Xh Ym" or "Xm"
+    var formattedStudyTime: String {
+        let hours = studyTimeThisMonth / 60
+        let minutes = studyTimeThisMonth % 60
+        
+        if hours > 0 {
+            return "\(hours)h \(minutes)m"
+        } else {
+            return "\(minutes)m"
+        }
     }
 }
 
@@ -66,6 +72,7 @@ enum HomeEvent {
     case startStudy
     case navigateToPackageSelection
     case navigateToAIAssistant
+    case showAddWordDialog           // ✅ NEW
     case dismissPremiumPush
     case premiumPurchaseSuccess
 }

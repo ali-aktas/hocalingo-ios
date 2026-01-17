@@ -1,61 +1,152 @@
-/* 
-  Localizable.strings
+/*
+  Localizable.strings (Turkish)
   HocaLingo
 
+  ✅ UPDATED: All Android strings ported to iOS
   Created by Auralian on 15.01.2026.
   
 */
 
-// Tab Titles
+// MARK: - Tab Titles
 "home_tab" = "Ana Sayfa";
 "study_tab" = "Çalış";
 "profile_tab" = "Profil";
 
-// Home Screen
+// MARK: - Common
+"loading" = "Yükleniyor…";
+"error" = "Hata";
+"retry" = "Tekrar Dene";
+"continue_btn" = "Devam Et";
+"cancel" = "İptal";
+"save" = "Kaydet";
+"delete" = "Sil";
+"edit" = "Düzenle";
+"finish" = "Bitir";
+"skip" = "Geç";
+"next" = "Sonraki";
+"previous" = "Önceki";
+"close" = "Kapat";
+
+// MARK: - Home Screen
+"home_title" = "HocaLingo";
+"home_greeting_morning" = "Günaydın! ☀️";
+"home_greeting_afternoon" = "İyi günler! 🌤️";
+"home_greeting_evening" = "İyi akşamlar! 🌙";
+"home_greeting_night" = "İyi geceler! ✨";
 "stat_streak_days" = "Gün Serisi";
 "stat_today_words" = "Bugünkü Kelimeler";
 "stat_total_learned" = "Toplam Öğrenilen";
-
-// Actions
+"stat_this_month_days" = "Bu Ay Aktif Günler";
+"stat_this_month_time" = "Bu Ay Çalışma Süresi";
+"stat_discipline_score" = "Disiplin Puanı";
+"action_start_study" = "Çalışmaya Başla";
 "action_select_package" = "Paket Seç";
 "action_select_package_desc" = "Öğrenmek için kelime seç";
 "action_ai_assistant" = "AI Asistan";
 "action_ai_assistant_desc" = "AI'dan yardım al";
+"action_add_word" = "Kelime Ekle";
 
-// Study Screen
-"study_screen_title" = "Çalışma";
-
-// Profile Screen
-"profile_screen_title" = "Profil";
-
-// Package Selection
-"package_selection_title" = "Paket Seç";
-"package_selection_subtitle" = "Seviyeni seç ve öğrenmeye başla";
-"package_words_count" = "%d kelime";
-"package_selected" = "Seçili";
-"package_select" = "Seç";
-
-/* Study Screen */
+// MARK: - Study Screen
 "study_title" = "Çalışma";
 "hard_button" = "Zor";
 "medium_button" = "Orta";
 "easy_button" = "Kolay";
+"flip_card" = "Kartı Çevir";
+"show_answer" = "Cevabı Göster";
+"study_completed_title" = "Harika!";
+"study_completed_message" = "Bugünkü hedefini tamamladın!";
+"study_progress" = "İlerleme: %d/%d";
 
-/* Profile Screen */
+// MARK: - Profile Screen
 "profile_welcome" = "Hoş Geldin";
 "premium_active" = "Premium Aktif";
 "premium_upgrade_title" = "Premium'a Geç";
 "premium_upgrade_subtitle" = "Sınırsız erişim, reklamsız";
+"stats_title" = "İstatistikler";
 "stats_streak" = "Seri";
 "stats_words" = "Kelime";
 "stats_mastered" = "Öğrenildi";
+"stats_this_year_days" = "Bu Yıl Aktif Günler";
+"stats_this_year_hours" = "Bu Yıl Çalışma Saatleri";
+"stats_words_skipped" = "Geçilen Kelimeler";
 "settings_title" = "Ayarlar";
 "settings_theme" = "Tema";
 "settings_notifications" = "Bildirimler";
 "settings_direction" = "Çalışma Yönü";
 "settings_daily_goal" = "Günlük Hedef";
+"settings_language" = "Arayüz Dili";
 "legal_title" = "Yasal & Destek";
 "legal_privacy" = "Gizlilik Politikası";
 "legal_terms" = "Kullanım Şartları";
 "legal_rate_app" = "Uygulamayı Oyla";
 "legal_support" = "Destek İlet";
+"legal_support_subtitle" = "Geri Bildirim";
+"privacy_policy" = "Gizlilik Politikası";
+"terms_of_service" = "Kullanım Şartları";
+"contact_support" = "Destek";
+
+// MARK: - Theme Modes
+"theme_light" = "Açık Tema";
+"theme_dark" = "Koyu Tema";
+"theme_system" = "Sistem";
+
+// MARK: - Study Directions
+"direction_en_to_tr" = "İngilizce → Türkçe";
+"direction_tr_to_en" = "Türkçe → İngilizce";
+"direction_mixed" = "Karışık";
+
+// MARK: - Package Selection
+"package_selection_title" = "Paket Seç";
+"package_selection_subtitle" = "Seviyeni seç ve öğrenmeye başla";
+"package_words_count" = "%d kelime";
+"package_selected" = "Seçili";
+"package_select" = "Seç";
+"package_downloaded" = "İndirildi";
+"package_download" = "İndir";
+"package_all_completed" = "Bu paketteki tüm kelimeleri tamamladınız!";
+
+// MARK: - Word Selection
+"word_selection_title" = "Kelime Seçimi";
+"word_selection_selected" = "Seçilen";
+"word_selection_daily_limit" = "Günlük Limit";
+"word_selection_swipe_hint" = "← Geç   |   Öğren →";
+"word_selection_undo" = "Geri Al";
+"word_selection_start_study" = "Çalış (%d)";
+"word_selection_limit_reached_title" = "Günlük Limit Doldu";
+"word_selection_limit_reached_message" = "Bugün için kelime seçme hakkınız doldu. Premium'a geçin veya yarın tekrar deneyin.";
+
+// MARK: - Add Word
+"add_word_title" = "Kelime Ekle";
+"add_word_english" = "İngilizce";
+"add_word_turkish" = "Türkçe";
+"add_word_example_en" = "İngilizce Örnek Cümle (opsiyonel)";
+"add_word_example_tr" = "Türkçe Örnek Cümle (opsiyonel)";
+"add_word_save" = "Kaydet";
+"add_word_success" = "Kelime başarıyla eklendi!";
+"add_word_error" = "Kelime eklenirken hata oluştu";
+"add_word_info" = "Kendi kelimelerinizi ekleyerek çalışma listenizi özelleştirin";
+
+// MARK: - AI Assistant
+"ai_title" = "AI Asistan";
+"ai_subtitle" = "Öğrendiğiniz kelimelerle hikayeler";
+"ai_premium_required" = "Bu özellik Premium üyelik gerektirir";
+"ai_generate_story" = "Hikaye Oluştur";
+"ai_coming_soon" = "Yakında...";
+
+// MARK: - Empty States
+"empty_words_title" = "Henüz kelime yok";
+"empty_words_subtitle" = "Kelime paketi seçin veya kendi kelimelerinizi ekleyin";
+"empty_study_title" = "Çalışılacak kelime yok";
+"empty_study_subtitle" = "Yeni kelimeler seçin";
+"empty_package_title" = "Bu paketteki tüm kelimeleri tamamladınız!";
+"empty_package_subtitle" = "Başka bir paket seçebilirsiniz";
+
+// MARK: - Error Messages
+"error_network" = "İnternet bağlantınızı kontrol edin";
+"error_unknown" = "Beklenmeyen bir hata oluştu";
+"error_no_words" = "Çalışılacak kelime yok";
+
+// MARK: - Success Messages
+"success_word_added" = "Kelime başarıyla eklendi!";
+"success_study_completed" = "Harika! Bugünkü hedefini tamamladın!";
+"success_changes_saved" = "Değişiklikler kaydedildi";

@@ -2,7 +2,7 @@
 //  HomeViewModel.swift
 //  HocaLingo
 //
-//  Complete Home ViewModel - MATCHES Android HomeViewModel v2.1
+//  ✅ UPDATED: Navigation logic + Monthly stats - matches Android HomeViewModel v2.1
 //  Location: HocaLingo/Features/Home/HomeViewModel.swift
 //
 
@@ -15,6 +15,12 @@ class HomeViewModel: ObservableObject {
     
     // MARK: - Published Properties
     @Published var uiState = HomeUiState()
+    
+    // ✅ NEW: Navigation triggers
+    @Published var shouldNavigateToStudy: Bool = false
+    @Published var shouldNavigateToPackageSelection: Bool = false
+    @Published var shouldNavigateToAIAssistant: Bool = false
+    @Published var shouldShowAddWordDialog: Bool = false
     
     // MARK: - Motivational Texts
     private let motivationTexts = [
@@ -37,13 +43,13 @@ class HomeViewModel: ObservableObject {
         let hour = Calendar.current.component(.hour, from: Date())
         switch hour {
         case 5..<12:
-            return "Good Morning! ☀️"
+            return NSLocalizedString("home_greeting_morning", comment: "")
         case 12..<17:
-            return "Good Afternoon! 🌤️"
+            return NSLocalizedString("home_greeting_afternoon", comment: "")
         case 17..<22:
-            return "Good Evening! 🌙"
+            return NSLocalizedString("home_greeting_evening", comment: "")
         default:
-            return "Good Night! ✨"
+            return NSLocalizedString("home_greeting_night", comment: "")
         }
     }
     
@@ -77,124 +83,90 @@ class HomeViewModel: ObservableObject {
         // Update streak
         uiState.streakDays = stats.currentStreak
         
-        // ✅ FIXED: Load today's ACTUAL graduation count (Android parity)
+        // Load today's graduation count
         let todayStats = userDefaults.getTodayDailyStats()
         
-        // Update daily goal progress with ACTUAL graduations
+        // Update daily goal progress
+        let dailyGoal = userDefaults.loadDailyGoal()
         uiState.dailyGoalProgress = DailyGoalProgress(
-            currentWords: todayStats.wordsGraduated, // ✅ Real graduations, not simple count
-            targetWords: 20 // TODO: Load from settings
+            currentWords: todayStats.wordsGraduated,
+            targetWords: dailyGoal
         )
         
-        // Load monthly stats
+        // ✅ NEW: Load monthly stats (Android parity)
         loadMonthlyStats()
         
         // Get user name (if available)
-        uiState.userName = userDefaults.loadUserName() ?? "Student"
-        
-        // Clear old monthly data if new month
-        userDefaults.clearMonthlyStatsIfNeeded()
-        
-        // Reset weekly stats if new week
-        userDefaults.resetWeeklyStatsIfNeeded()
+        uiState.userName = userDefaults.loadUserName() ?? "HocaLingo User"
         
         uiState.isLoading = false
         
-        print("📊 Dashboard loaded:")
+        print("✅ Dashboard data loaded:")
         print("   - Streak: \(uiState.streakDays) days")
-        print("   - Today graduations: \(uiState.dailyGoalProgress.currentWords)/\(uiState.dailyGoalProgress.targetWords)")
-        print("   - Total cards studied: \(todayStats.wordsStudied)")
-        print("   - Total learned: \(stats.wordsLearned)")
+        print("   - Daily progress: \(todayStats.wordsGraduated)/\(dailyGoal)")
+        print("   - Monthly days: \(uiState.monthlyStats.activeDaysThisMonth)")
     }
     
-    /// Load monthly study statistics
+    /// ✅ NEW: Load monthly statistics (Android parity)
     private func loadMonthlyStats() {
-        // TODO: Implement monthly stats tracking
-        // For now, use simple data from UserDefaults
-        let stats = userDefaults.loadUserStats()
+        let calendar = Calendar.current
+        let now = Date()
         
+        // Get start and end of current month
+        guard let monthStart = calendar.date(from: calendar.dateComponents([.year, .month], from: now)),
+              let monthEnd = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: monthStart) else {
+            return
+        }
+        
+        // Date formatter for daily stats
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = [.withFullDate]
+        
+        var activeDays = 0
+        var totalMinutes = 0
+        
+        // Iterate through each day of the current month
+        var currentDate = monthStart
+        while currentDate <= min(monthEnd, now) {
+            let dateString = dateFormatter.string(from: currentDate)
+            
+            // Load stats for this date
+            if let dayStats = userDefaults.loadDailyStats(for: dateString) {
+                if dayStats.wordsStudied > 0 {
+                    activeDays += 1
+                }
+                totalMinutes += dayStats.studyTimeMinutes
+            }
+            
+            // Move to next day
+            guard let nextDate = calendar.date(byAdding: .day, value: 1, to: currentDate) else {
+                break
+            }
+            currentDate = nextDate
+        }
+        
+        // Update UI state
         uiState.monthlyStats = MonthlyStats(
-            studiedDays: [], // Will be populated in Day 8-11
-            totalDaysStudied: stats.currentStreak,
-            currentMonthWords: stats.wordsStudiedToday
+            activeDaysThisMonth: activeDays,
+            studyTimeThisMonth: totalMinutes,
+            disciplineScore: calculateDisciplineScore(activeDays: activeDays)
         )
     }
     
-    /// Refresh data (call after returning from study)
+    /// Calculate discipline score (0-100)
+    private func calculateDisciplineScore(activeDays: Int) -> Int {
+        let calendar = Calendar.current
+        let daysInMonth = calendar.range(of: .day, in: .month, for: Date())?.count ?? 30
+        let percentage = Float(activeDays) / Float(daysInMonth) * 100
+        return min(100, Int(percentage))
+    }
+    
+    /// Refresh data (pull-to-refresh)
     func refreshData() {
         loadDashboardData()
     }
     
-    // MARK: - Premium Management
-    
-    /// Check premium status
-    private func checkPremiumStatus() {
-        // TODO: Implement premium check with RevenueCat
-        uiState.isPremium = false
-    }
-    
-    /// Show premium push notification
-    func showPremiumPush() {
-        uiState.showPremiumPush = true
-    }
-    
-    /// Dismiss premium push
-    func dismissPremiumPush() {
-        uiState.showPremiumPush = false
-    }
-    
-    /// Handle successful premium purchase
-    func onPremiumPurchaseSuccess() {
-        uiState.isPremium = true
-        uiState.showPremiumPush = false
-    }
-    
-    // MARK: - Streak Tracking
-    
-    /// Track app launch for streak calculation
-    private func trackAppLaunch() {
-        let lastLaunchDate = userDefaults.loadLastLaunchDate()
-        let today = Date()
-        
-        // Check if this is first launch today
-        if !Calendar.current.isDateInToday(lastLaunchDate) {
-            // Save today as last launch
-            userDefaults.saveLastLaunchDate(today)
-            
-            // Update streak
-            updateStreak(lastLaunchDate: lastLaunchDate, today: today)
-        }
-        
-        print("📅 App launched - Streak tracking updated")
-    }
-    
-    /// Update streak based on launch dates
-    private func updateStreak(lastLaunchDate: Date, today: Date) {
-        let calendar = Calendar.current
-        
-        // Check if last launch was yesterday
-        if let yesterday = calendar.date(byAdding: .day, value: -1, to: today),
-           calendar.isDate(lastLaunchDate, inSameDayAs: yesterday) {
-            // Continue streak
-            var stats = userDefaults.loadUserStats()
-            stats.currentStreak += 1
-            userDefaults.saveUserStats(stats)
-            
-            print("🔥 Streak continued: \(stats.currentStreak) days")
-        } else if calendar.isDate(lastLaunchDate, inSameDayAs: today) {
-            // Same day, do nothing
-            print("✅ Same day launch")
-        } else {
-            // Streak broken, reset to 1
-            var stats = userDefaults.loadUserStats()
-            stats.currentStreak = 1
-            userDefaults.saveUserStats(stats)
-            
-            print("💔 Streak reset to 1")
-        }
-    }
-    
-    // MARK: - Event Handling
+    // MARK: - User Actions (Events)
     
     /// Handle user events
     func onEvent(_ event: HomeEvent) {
@@ -214,6 +186,9 @@ class HomeViewModel: ObservableObject {
         case .navigateToAIAssistant:
             handleNavigateToAIAssistant()
             
+        case .showAddWordDialog:
+            handleShowAddWordDialog()
+            
         case .dismissPremiumPush:
             dismissPremiumPush()
             
@@ -222,35 +197,69 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Actions
+    // MARK: - Navigation Handlers
     
-    /// Handle start study action
+    /// ✅ FIXED: Handle start study action with navigation
     private func handleStartStudy() {
-        soundManager.playClickSound()  // ✅ FIXED: Direct function call
+        soundManager.playClickSound()
         
         let selectedWordsCount = userDefaults.loadSelectedWords().count
         
         if selectedWordsCount > 0 {
-            print("✅ Starting study with \(selectedWordsCount) words")
-            // Navigation handled by parent view
+            print("✅ Navigating to study with \(selectedWordsCount) words")
+            // ✅ Trigger navigation via published property
+            shouldNavigateToStudy = true
         } else {
-            print("⚠️ No words selected")
-            // Show message or navigate to package selection
+            print("⚠️ No words selected - navigating to package selection")
+            shouldNavigateToPackageSelection = true
         }
     }
     
-    /// Handle navigate to package selection
+    /// ✅ Handle navigate to package selection
     private func handleNavigateToPackageSelection() {
-        soundManager.playClickSound()  // ✅ FIXED: Direct function call
+        soundManager.playClickSound()
         print("📦 Navigating to package selection")
-        // Navigation handled by parent view
+        shouldNavigateToPackageSelection = true
     }
     
-    /// Handle navigate to AI assistant
+    /// ✅ Handle navigate to AI assistant
     private func handleNavigateToAIAssistant() {
-        soundManager.playClickSound()  // ✅ FIXED: Direct function call
+        soundManager.playClickSound()
         print("🤖 Navigating to AI assistant")
-        // Navigation handled by parent view
+        shouldNavigateToAIAssistant = true
+    }
+    
+    /// ✅ NEW: Handle show add word dialog
+    private func handleShowAddWordDialog() {
+        soundManager.playClickSound()
+        print("➕ Showing add word dialog")
+        shouldShowAddWordDialog = true
+    }
+    
+    // MARK: - Other Actions
+    
+    /// Track app launch (for statistics)
+    private func trackAppLaunch() {
+        // TODO: Implement app launch tracking
+        print("📱 App launched")
+    }
+    
+    /// Check premium status
+    private func checkPremiumStatus() {
+        // TODO: Implement premium check
+        uiState.isPremium = false
+    }
+    
+    /// Dismiss premium push
+    private func dismissPremiumPush() {
+        uiState.showPremiumPush = false
+    }
+    
+    /// Handle premium purchase success
+    private func onPremiumPurchaseSuccess() {
+        uiState.isPremium = true
+        uiState.showPremiumPush = false
+        print("🎉 Premium purchase successful!")
     }
     
     // MARK: - Stats Update

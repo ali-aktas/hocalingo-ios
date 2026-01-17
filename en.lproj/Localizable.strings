@@ -1,61 +1,152 @@
-/* 
-  Localizable.strings
+/*
+  Localizable.strings (English)
   HocaLingo
 
+  ✅ UPDATED: All Android strings ported to iOS
   Created by Auralian on 15.01.2026.
   
 */
 
-// Tab Titles
+// MARK: - Tab Titles
 "home_tab" = "Home";
 "study_tab" = "Study";
 "profile_tab" = "Profile";
 
-// Home Screen
+// MARK: - Common
+"loading" = "Loading…";
+"error" = "Error";
+"retry" = "Retry";
+"continue_btn" = "Continue";
+"cancel" = "Cancel";
+"save" = "Save";
+"delete" = "Delete";
+"edit" = "Edit";
+"finish" = "Finish";
+"skip" = "Skip";
+"next" = "Next";
+"previous" = "Previous";
+"close" = "Close";
+
+// MARK: - Home Screen
+"home_title" = "HocaLingo";
+"home_greeting_morning" = "Good Morning! ☀️";
+"home_greeting_afternoon" = "Good Afternoon! 🌤️";
+"home_greeting_evening" = "Good Evening! 🌙";
+"home_greeting_night" = "Good Night! ✨";
 "stat_streak_days" = "Day Streak";
 "stat_today_words" = "Today's Words";
 "stat_total_learned" = "Total Learned";
-
-// Actions
+"stat_this_month_days" = "Days Active This Month";
+"stat_this_month_time" = "Study Time This Month";
+"stat_discipline_score" = "Discipline Score";
+"action_start_study" = "Start Studying";
 "action_select_package" = "Select Package";
 "action_select_package_desc" = "Choose words to learn";
 "action_ai_assistant" = "AI Assistant";
 "action_ai_assistant_desc" = "Get help from AI";
+"action_add_word" = "Add Word";
 
-// Study Screen
-"study_screen_title" = "Study";
-
-// Profile Screen
-"profile_screen_title" = "Profile";
-
-// Package Selection
-"package_selection_title" = "Select Package";
-"package_selection_subtitle" = "Choose your level and start learning";
-"package_words_count" = "%d words";
-"package_selected" = "Selected";
-"package_select" = "Select";
-
-/* Study Screen */
+// MARK: - Study Screen
 "study_title" = "Study";
 "hard_button" = "Hard";
 "medium_button" = "Medium";
 "easy_button" = "Easy";
+"flip_card" = "Flip Card";
+"show_answer" = "Show Answer";
+"study_completed_title" = "Great!";
+"study_completed_message" = "You've completed today's goal!";
+"study_progress" = "Progress: %d/%d";
 
-/* Profile Screen */
+// MARK: - Profile Screen
 "profile_welcome" = "Welcome";
 "premium_active" = "Premium Active";
 "premium_upgrade_title" = "Upgrade to Premium";
 "premium_upgrade_subtitle" = "Unlimited access, no ads";
+"stats_title" = "Statistics";
 "stats_streak" = "Streak";
 "stats_words" = "Words";
 "stats_mastered" = "Mastered";
+"stats_this_year_days" = "Days Active This Year";
+"stats_this_year_hours" = "Study Hours This Year";
+"stats_words_skipped" = "Words Skipped";
 "settings_title" = "Settings";
 "settings_theme" = "Theme";
 "settings_notifications" = "Notifications";
 "settings_direction" = "Study Direction";
 "settings_daily_goal" = "Daily Goal";
+"settings_language" = "App Language";
 "legal_title" = "Legal & Support";
 "legal_privacy" = "Privacy Policy";
 "legal_terms" = "Terms of Service";
 "legal_rate_app" = "Rate App";
 "legal_support" = "Contact Support";
+"legal_support_subtitle" = "Feedback";
+"privacy_policy" = "Privacy Policy";
+"terms_of_service" = "Terms of Service";
+"contact_support" = "Support";
+
+// MARK: - Theme Modes
+"theme_light" = "Light Mode";
+"theme_dark" = "Dark Mode";
+"theme_system" = "System";
+
+// MARK: - Study Directions
+"direction_en_to_tr" = "English → Turkish";
+"direction_tr_to_en" = "Turkish → English";
+"direction_mixed" = "Mixed";
+
+// MARK: - Package Selection
+"package_selection_title" = "Select Package";
+"package_selection_subtitle" = "Choose your level and start learning";
+"package_words_count" = "%d words";
+"package_selected" = "Selected";
+"package_select" = "Select";
+"package_downloaded" = "Downloaded";
+"package_download" = "Download";
+"package_all_completed" = "You've completed all words in this package!";
+
+// MARK: - Word Selection
+"word_selection_title" = "Word Selection";
+"word_selection_selected" = "Selected";
+"word_selection_daily_limit" = "Daily Limit";
+"word_selection_swipe_hint" = "← Skip   |   Learn →";
+"word_selection_undo" = "Undo";
+"word_selection_start_study" = "Study (%d)";
+"word_selection_limit_reached_title" = "Daily Limit Reached";
+"word_selection_limit_reached_message" = "You've reached your daily word selection limit. Upgrade to Premium or try again tomorrow.";
+
+// MARK: - Add Word
+"add_word_title" = "Add Word";
+"add_word_english" = "English";
+"add_word_turkish" = "Turkish";
+"add_word_example_en" = "English Example Sentence (optional)";
+"add_word_example_tr" = "Turkish Example Sentence (optional)";
+"add_word_save" = "Save";
+"add_word_success" = "Word added successfully!";
+"add_word_error" = "Error adding word";
+"add_word_info" = "Customize your study list by adding your own words";
+
+// MARK: - AI Assistant
+"ai_title" = "AI Assistant";
+"ai_subtitle" = "Stories with your learned words";
+"ai_premium_required" = "This feature requires Premium membership";
+"ai_generate_story" = "Generate Story";
+"ai_coming_soon" = "Coming soon...";
+
+// MARK: - Empty States
+"empty_words_title" = "No words yet";
+"empty_words_subtitle" = "Select a word package or add your own words";
+"empty_study_title" = "No words to study";
+"empty_study_subtitle" = "Select new words";
+"empty_package_title" = "You've completed all words in this package!";
+"empty_package_subtitle" = "You can select another package";
+
+// MARK: - Error Messages
+"error_network" = "Please check your internet connection";
+"error_unknown" = "An unexpected error occurred";
+"error_no_words" = "No words to study";
+
+// MARK: - Success Messages
+"success_word_added" = "Word added successfully!";
+"success_study_completed" = "Great! You've completed today's goal!";
+"success_changes_saved" = "Changes saved";
