@@ -1,14 +1,14 @@
 //
-//  StudyView.swift (FIXED)
+//  StudyView.swift
 //  HocaLingo
 //
-//  ✅ FIXED: Compatible with updated StudyViewModel
+//  ✅ COMPLETE REDESIGN: Full-screen, perfect FlipCard, Ad support - Android parity
 //  Location: HocaLingo/Features/Study/StudyView.swift
 //
 
 import SwiftUI
 
-// MARK: - StudyView
+// MARK: - Study View
 struct StudyView: View {
     @StateObject private var viewModel = StudyViewModel()
     @Environment(\.dismiss) private var dismiss
@@ -19,10 +19,7 @@ struct StudyView: View {
                 // Completion screen
                 StudyCompletionView(
                     onContinue: { dismiss() },
-                    onRestart: {
-                        // ✅ FIXED: Use loadStudyQueue instead of restartSession
-                        dismiss()
-                    }
+                    onRestart: { dismiss() }
                 )
                 .transition(.opacity)
             } else {
@@ -30,46 +27,65 @@ struct StudyView: View {
                 studyInterface
             }
         }
-        .navigationBarBackButtonHidden(true)
         .animation(.easeInOut(duration: 0.3), value: viewModel.isSessionComplete)
     }
     
     private var studyInterface: some View {
-        NavigationView {
-            ZStack {
-                Color(.systemBackground)
-                    .ignoresSafeArea()
+        ZStack {
+            Color(.systemBackground)
+                .ignoresSafeArea()
+            
+            VStack(spacing: 0) {
+                // Top bar
+                StudyTopBar(onClose: { dismiss() })
+                    .padding(.horizontal, 16)
+                    .padding(.top, 8)
                 
-                VStack(spacing: 16) {
-                    // Progress Bar
+                // Progress indicator
+                if viewModel.studyQueue.count > 0 {
                     StudyProgressBar(
                         currentIndex: viewModel.currentCardIndex,
-                        totalCards: viewModel.studyQueue.count  // ✅ FIXED: Direct access
+                        totalCards: viewModel.studyQueue.count
                     )
-                    
-                    // Flashcard
-                    if viewModel.studyQueue.count > 0 {
-                        StudyFlashCard(
-                            card: viewModel.currentCard,
-                            isFlipped: viewModel.isCardFlipped,
-                            cardColor: viewModel.currentCardColor,
-                            exampleSentence: viewModel.currentExampleSentence,
-                            shouldShowSpeakerOnFront: viewModel.shouldShowSpeakerOnFront,
-                            isCardFlipped: viewModel.isCardFlipped,
-                            onTap: { viewModel.flipCard() },
-                            onSpeakerTap: { viewModel.replayAudio() }
-                        )
-                        .transition(.asymmetric(
-                            insertion: .move(edge: .trailing).combined(with: .opacity),
-                            removal: .move(edge: .leading).combined(with: .opacity)
-                        ))
-                    } else {
-                        Text("Çalışacak kelime yok")
-                            .font(.system(size: 18))
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    // Action Buttons
+                    .padding(.horizontal, 16)
+                    .padding(.top, 16)
+                }
+                
+                Spacer(minLength: 20)
+                
+                // ✅ Main content: Either ad overlay or flashcard
+                if viewModel.showNativeAd {
+                    // Native Ad Placeholder (Premium users won't see this)
+                    NativeAdPlaceholder(onClose: {
+                        viewModel.closeNativeAd()
+                    })
+                    .padding(.horizontal, 16)
+                } else if viewModel.studyQueue.count > 0 {
+                    // ✅ NEW: Perfect FlipCard component
+                    StudyFlipCard(
+                        card: viewModel.currentCard,
+                        isFlipped: viewModel.isCardFlipped,
+                        cardColor: viewModel.currentCardColor,
+                        exampleSentence: viewModel.currentExampleSentence,
+                        shouldShowSpeakerOnFront: viewModel.shouldShowSpeakerOnFront,
+                        isCardFlipped: viewModel.isCardFlipped,
+                        onTap: { viewModel.flipCard() },
+                        onSpeakerTap: { viewModel.replayAudio() }
+                    )
+                    .padding(.horizontal, 24)
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .trailing).combined(with: .opacity),
+                        removal: .move(edge: .leading).combined(with: .opacity)
+                    ))
+                } else {
+                    // Empty state
+                    StudyEmptyStateView()
+                }
+                
+                Spacer(minLength: 20)
+                
+                // Action buttons
+                if !viewModel.showNativeAd && viewModel.studyQueue.count > 0 {
                     StudyButtons(
                         isCardFlipped: viewModel.isCardFlipped,
                         hardTime: viewModel.hardTimeText,
@@ -79,26 +95,48 @@ struct StudyView: View {
                         onMedium: { viewModel.answerCard(difficulty: .medium) },
                         onEasy: { viewModel.answerCard(difficulty: .easy) }
                     )
+                    .padding(.horizontal, 16)
+                    .padding(.bottom, 32)
                 }
-                .padding(16)
             }
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar(content: {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: { dismiss() }) {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 16, weight: .semibold))
-                            .foregroundColor(.primary)
-                    }
-                }
-                
-                ToolbarItem(placement: .principal) {
-                    Text("Çalışma")
-                        .font(.system(size: 17, weight: .semibold))
-                }
-            })
         }
-        .navigationViewStyle(.stack)
+        .navigationBarHidden(true)  // ✅ Full-screen (hide default nav)
+    }
+}
+
+// MARK: - Top Bar
+struct StudyTopBar: View {
+    let onClose: () -> Void
+    
+    var body: some View {
+        HStack {
+            Button(action: onClose) {
+                Image(systemName: "xmark")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(.primary)
+                    .frame(width: 36, height: 36)
+                    .background(Color.gray.opacity(0.1))
+                    .clipShape(Circle())
+            }
+            
+            Spacer()
+            
+            Text("Çalışma")
+                .font(.system(size: 17, weight: .semibold))
+                .foregroundColor(.primary)
+            
+            Spacer()
+            
+            // Settings button (placeholder)
+            Button(action: {}) {
+                Image(systemName: "gearshape")
+                    .font(.system(size: 16, weight: .semibold))
+                    .foregroundColor(.primary)
+                    .frame(width: 36, height: 36)
+                    .background(Color.gray.opacity(0.1))
+                    .clipShape(Circle())
+            }
+        }
     }
 }
 
@@ -136,114 +174,7 @@ struct StudyProgressBar: View {
     }
 }
 
-// MARK: - Flashcard with 3D Animation
-struct StudyFlashCard: View {
-    let card: StudyCard
-    let isFlipped: Bool
-    let cardColor: Color
-    let exampleSentence: String
-    let shouldShowSpeakerOnFront: Bool
-    let isCardFlipped: Bool
-    let onTap: () -> Void
-    let onSpeakerTap: () -> Void
-    
-    var body: some View {
-        ZStack {
-            Group {
-                // Back side
-                CardContent(
-                    mainText: card.backText,
-                    exampleText: exampleSentence,
-                    backgroundColor: cardColor,
-                    showSpeakerButton: !shouldShowSpeakerOnFront && isCardFlipped,
-                    onSpeakerTap: onSpeakerTap
-                )
-                .opacity(isFlipped ? 1 : 0)
-                .rotation3DEffect(
-                    .degrees(isFlipped ? 0 : -180),
-                    axis: (x: 0, y: 1, z: 0),
-                    perspective: 0.5
-                )
-                
-                // Front side
-                CardContent(
-                    mainText: card.frontText,
-                    exampleText: exampleSentence,
-                    backgroundColor: cardColor,
-                    showSpeakerButton: shouldShowSpeakerOnFront && !isCardFlipped,
-                    onSpeakerTap: onSpeakerTap
-                )
-                .opacity(isFlipped ? 0 : 1)
-                .rotation3DEffect(
-                    .degrees(isFlipped ? 180 : 0),
-                    axis: (x: 0, y: 1, z: 0),
-                    perspective: 0.5
-                )
-            }
-        }
-        .frame(maxHeight: .infinity)
-        .shadow(color: Color.black.opacity(0.15), radius: 12, x: 0, y: 6)
-        .onTapGesture {
-            withAnimation(.spring(response: 0.6, dampingFraction: 0.85)) {
-                onTap()
-            }
-        }
-    }
-}
-
-// MARK: - Card Content
-struct CardContent: View {
-    let mainText: String
-    let exampleText: String
-    let backgroundColor: Color
-    let showSpeakerButton: Bool
-    let onSpeakerTap: () -> Void
-    
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 20)
-                .fill(backgroundColor)
-            
-            VStack(spacing: 16) {
-                Spacer()
-                
-                // Main text
-                Text(mainText)
-                    .font(.system(size: 32, weight: .bold))
-                    .foregroundColor(.primary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 24)
-                
-                // Example sentence
-                if !exampleText.isEmpty {
-                    Text(exampleText)
-                        .font(.system(size: 14, weight: .regular))
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 32)
-                        .lineLimit(2)
-                }
-                
-                Spacer()
-                
-                // Speaker button
-                if showSpeakerButton {
-                    Button(action: onSpeakerTap) {
-                        Image(systemName: "speaker.wave.2.fill")
-                            .font(.system(size: 24))
-                            .foregroundColor(.gray.opacity(0.6))
-                    }
-                    .padding(.bottom, 16)
-                } else {
-                    Color.clear
-                        .frame(height: 40)
-                }
-            }
-        }
-    }
-}
-
-// MARK: - Action Buttons
+// MARK: - Study Buttons (Hard, Medium, Easy)
 struct StudyButtons: View {
     let isCardFlipped: Bool
     let hardTime: String
@@ -254,97 +185,118 @@ struct StudyButtons: View {
     let onEasy: () -> Void
     
     var body: some View {
-        if !isCardFlipped {
-            HStack(spacing: 8) {
-                Image(systemName: "hand.tap.fill")
-                    .font(.system(size: 16))
-                    .foregroundColor(.secondary)
-                Text("Kartı çevir")
-                    .font(.system(size: 14, weight: .medium))
-                    .foregroundColor(.secondary)
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 16)
-            .background(Color.gray.opacity(0.1))
-            .cornerRadius(12)
-        } else {
+        if isCardFlipped {
             HStack(spacing: 12) {
-                DifficultyButton(
-                    mainText: "Zor",
+                // Hard button
+                StudyActionButton(
+                    title: "Zor",
                     timeText: hardTime,
-                    color: Color(hex: "FF3B30"),
+                    color: Color(hex: "EF4444"),
+                    isEnabled: true,
                     onTap: onHard
                 )
                 
-                DifficultyButton(
-                    mainText: "Orta",
+                // Medium button
+                StudyActionButton(
+                    title: "Orta",
                     timeText: mediumTime,
-                    color: Color(hex: "FF9500"),
+                    color: Color(hex: "F97316"),
+                    isEnabled: true,
                     onTap: onMedium
                 )
                 
-                DifficultyButton(
-                    mainText: "Kolay",
+                // Easy button
+                StudyActionButton(
+                    title: "Kolay",
                     timeText: easyTime,
-                    color: Color(hex: "34C759"),
+                    color: Color(hex: "10B981"),
+                    isEnabled: true,
                     onTap: onEasy
                 )
             }
+        } else {
+            // Flip card prompt
+            Button(action: {}) {
+                Text("Kartı çevir")
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 16)
+                    .background(Color(hex: "4ECDC4"))
+                    .cornerRadius(16)
+            }
+            .disabled(true)
+            .opacity(0.6)
         }
     }
 }
 
-// MARK: - Difficulty Button
-struct DifficultyButton: View {
-    let mainText: String
+// MARK: - Action Button
+struct StudyActionButton: View {
+    let title: String
     let timeText: String
     let color: Color
+    let isEnabled: Bool
     let onTap: () -> Void
-    
-    @State private var isPressed = false
     
     var body: some View {
         Button(action: onTap) {
             VStack(spacing: 4) {
-                Text(mainText)
-                    .font(.system(size: 16, weight: .bold))
+                Text(title)
+                    .font(.system(size: 14, weight: .semibold))
                     .foregroundColor(.white)
                 
                 Text(timeText)
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(.white.opacity(0.9))
+                    .font(.system(size: 11, weight: .medium))
+                    .foregroundColor(.white.opacity(0.8))
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 16)
-            .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(color)
-            )
-            .shadow(
-                color: color.opacity(0.4),
-                radius: isPressed ? 2 : 8,
-                x: 0,
-                y: isPressed ? 2 : 4
-            )
-            .scaleEffect(isPressed ? 0.95 : 1.0)
-            .offset(y: isPressed ? 2 : 0)
+            .padding(.vertical, 14)
+            .background(color)
+            .cornerRadius(12)
         }
-        .buttonStyle(PlainButtonStyle())
-        .simultaneousGesture(
-            DragGesture(minimumDistance: 0)
-                .onChanged { _ in
-                    if !isPressed {
-                        withAnimation(.easeInOut(duration: 0.1)) {
-                            isPressed = true
-                        }
-                    }
+        .disabled(!isEnabled)
+    }
+}
+
+// MARK: - Native Ad Placeholder
+struct NativeAdPlaceholder: View {
+    let onClose: () -> Void
+    
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 20)
+                .fill(Color.gray.opacity(0.1))
+                .frame(maxWidth: .infinity)
+                .aspectRatio(0.7, contentMode: .fit)
+            
+            VStack(spacing: 16) {
+                Image(systemName: "rectangle.stack.fill")
+                    .font(.system(size: 48))
+                    .foregroundColor(.gray.opacity(0.4))
+                
+                Text("Reklam Alanı")
+                    .font(.system(size: 16, weight: .medium))
+                    .foregroundColor(.gray)
+                
+                Text("Premium'a geç, reklamsız çalış!")
+                    .font(.system(size: 14))
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                
+                Button(action: onClose) {
+                    Text("Kapat")
+                        .font(.system(size: 14, weight: .medium))
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 10)
+                        .background(Color(hex: "4ECDC4"))
+                        .cornerRadius(8)
                 }
-                .onEnded { _ in
-                    withAnimation(.easeInOut(duration: 0.1)) {
-                        isPressed = false
-                    }
-                }
-        )
+                .padding(.top, 8)
+            }
+            .padding(32)
+        }
     }
 }
 

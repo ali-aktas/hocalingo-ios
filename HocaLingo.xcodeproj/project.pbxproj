@@ -85,6 +85,8 @@
 				Features/Selection/WordSelectionView.swift,
 				Features/Selection/WordSelectionViewModel.swift,
 				Features/Study/StudyCompletionView.swift,
+				Features/Study/StudyEmptyStateView.swift,
+				Features/Study/StudyFlipCard.swift,
 				Features/Study/StudyView.swift,
 				Features/Study/StudyViewModel.swift,
 				HocaLingoApp.swift,
