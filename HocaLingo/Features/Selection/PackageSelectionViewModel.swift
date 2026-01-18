@@ -2,7 +2,8 @@
 //  PackageSelectionViewModel.swift
 //  HocaLingo
 //
-//  Created by Auralian on 15.01.2026.
+//  ✅ UPDATED: Real word counts from JSON files (Android parity)
+//  Location: HocaLingo/Features/Selection/PackageSelectionViewModel.swift
 //
 
 import SwiftUI
@@ -14,116 +15,136 @@ struct PackageModel: Identifiable, Codable {
     let level: String
     let name: String
     let description: String
-    let wordCount: Int
+    let wordCount: Int // ✅ Now dynamically loaded from JSON
     let colorHex: String
     
     var color: Color {
-        Color.fromHex(colorHex)
+        Color(hex: colorHex)
     }
 }
 
 // MARK: - Package Selection View Model
 class PackageSelectionViewModel: ObservableObject {
     
+    // MARK: - Published Properties
     @Published var packages: [PackageModel] = []
     @Published var selectedPackageId: String? = nil
     @Published var isLoading: Bool = false
     
+    // MARK: - Private Properties
+    private let jsonLoader = JSONLoader()
+    private let userDefaults = UserDefaultsManager.shared
+    
+    // MARK: - Initialization
     init() {
         loadPackages()
     }
     
+    // MARK: - Load Packages
     private func loadPackages() {
         isLoading = true
         
-        packages = [
-            PackageModel(
+        // Package metadata with JSON filenames
+        let packageMetadata: [(id: String, level: String, name: String, description: String, colorHex: String)] = [
+            (
                 id: "en_tr_a1_001",
                 level: "A1",
                 name: "Beginner",
                 description: "Basic everyday words",
-                wordCount: 500,
                 colorHex: "FFB3BA"
             ),
-            PackageModel(
-                id: "a2_en_tr_v1",
+            (
+                id: "en_tr_a2_001",
                 level: "A2",
                 name: "Elementary",
                 description: "Common phrases",
-                wordCount: 600,
                 colorHex: "FFDFBA"
             ),
-            PackageModel(
-                id: "b1_en_tr_v1",
+            (
+                id: "en_tr_b1_001",
                 level: "B1",
                 name: "Intermediate",
                 description: "Work and travel",
-                wordCount: 800,
                 colorHex: "FFFFBA"
             ),
-            PackageModel(
-                id: "b2_en_tr_v1",
+            (
+                id: "en_tr_b2_001",
                 level: "B2",
                 name: "Upper Intermediate",
                 description: "Complex topics",
-                wordCount: 1000,
                 colorHex: "BAFFC9"
             ),
-            PackageModel(
-                id: "c1_en_tr_v1",
+            (
+                id: "en_tr_c1_001",
                 level: "C1",
                 name: "Advanced",
                 description: "Academic language",
-                wordCount: 1200,
                 colorHex: "BAE1FF"
             ),
-            PackageModel(
-                id: "c2_en_tr_v1",
+            (
+                id: "en_tr_c2_001",
                 level: "C2",
                 name: "Mastery",
                 description: "Native-like fluency",
-                wordCount: 1500,
                 colorHex: "D4BAFF"
             )
         ]
         
-        isLoading = false
-    }
-    
-    func selectPackage(_ packageId: String) {
-        selectedPackageId = packageId
-    }
-    
-    func loadPackageWordCount(_ packageId: String) -> Int {
-        packages.first(where: { $0.id == packageId })?.wordCount ?? 0
-    }
-}
-
-// MARK: - Color Extension
-extension Color {
-    static func fromHex(_ hex: String) -> Color {
-        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
-        var int: UInt64 = 0
-        Scanner(string: hex).scanHexInt64(&int)
-        
-        let a, r, g, b: UInt64
-        switch hex.count {
-        case 3:
-            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
-        case 6:
-            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
-        case 8:
-            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
-        default:
-            (a, r, g, b) = (255, 0, 0, 0)
+        // Load real word counts from JSON files
+        packages = packageMetadata.map { metadata in
+            // Try to load word count from JSON
+            let wordCount = loadWordCount(for: metadata.id)
+            
+            print("📦 Package \(metadata.level): \(wordCount) words")
+            
+            return PackageModel(
+                id: metadata.id,
+                level: metadata.level,
+                name: metadata.name,
+                description: metadata.description,
+                wordCount: wordCount,
+                colorHex: metadata.colorHex
+            )
         }
         
-        return Color(
-            .sRGB,
-            red: Double(r) / 255,
-            green: Double(g) / 255,
-            blue: Double(b) / 255,
-            opacity: Double(a) / 255
-        )
+        isLoading = false
+        print("✅ Loaded \(packages.count) packages with real word counts")
+    }
+    
+    // MARK: - Load Word Count
+    /// Load real word count from JSON file
+    /// - Parameter packageId: Package ID (JSON filename)
+    /// - Returns: Number of words in package (0 if file not found)
+    private func loadWordCount(for packageId: String) -> Int {
+        do {
+            let vocabPackage = try jsonLoader.loadVocabularyPackage(filename: packageId)
+            return vocabPackage.words.count
+        } catch {
+            print("⚠️ Could not load word count for \(packageId): \(error.localizedDescription)")
+            return 0
+        }
+    }
+    
+    // MARK: - Select Package
+    func selectPackage(_ packageId: String) {
+        selectedPackageId = packageId
+        print("✅ Selected package: \(packageId)")
+    }
+    
+    // MARK: - Get Package Info
+    func getPackage(_ packageId: String) -> PackageModel? {
+        return packages.first(where: { $0.id == packageId })
+    }
+    
+    // MARK: - Get Total Unseen Words
+    /// Get number of unseen words in a package
+    /// - Parameter packageId: Package ID
+    /// - Returns: Number of unseen words
+    func getUnseenWordCount(for packageId: String) -> Int {
+        let selections = userDefaults.getWordSelections(packageId: packageId)
+        let totalWords = loadWordCount(for: packageId)
+        let processedWords = selections.selected.count + selections.hidden.count
+        
+        return max(0, totalWords - processedWords)
     }
 }

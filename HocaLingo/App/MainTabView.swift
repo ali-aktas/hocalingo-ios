@@ -26,6 +26,13 @@ struct MainTabView: View {
                 }
                 .tag(0)
             
+            // Study Tab
+            StudyView()
+                .tabItem {
+                    Label("study_tab", systemImage: "play.fill")
+                }
+                .tag(0)
+            
             // Profile Tab
             ProfileView()
                 .tabItem {

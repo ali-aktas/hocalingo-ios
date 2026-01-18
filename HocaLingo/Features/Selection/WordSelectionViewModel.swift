@@ -2,7 +2,7 @@
 //  WordSelectionViewModel.swift
 //  HocaLingo
 //
-//  FINAL VERSION - All errors fixed
+//  ✅ FINAL: Learn is limited, Skip is free
 //  Location: HocaLingo/Features/Selection/WordSelectionViewModel.swift
 //
 
@@ -23,6 +23,11 @@ class WordSelectionViewModel: ObservableObject {
     @Published var isCompleted: Bool = false
     @Published var errorMessage: String?
     
+    @Published var remainingSelections: Int? = nil
+    @Published var showSelectionWarning: Bool = false
+    @Published var selectionLimitReached: Bool = false
+    @Published var isPremium: Bool = false
+    
     // MARK: - Private Properties
     private let packageId: String
     private var currentWordIndex: Int = 0
@@ -32,17 +37,26 @@ class WordSelectionViewModel: ObservableObject {
     private var undoStack: [UndoAction] = []
     private let soundManager = SoundManager.shared
     private let jsonLoader = JSONLoader()
+    private let userDefaults = UserDefaultsManager.shared
+    private let selectionLimitManager = DailySelectionLimitManager.shared
     
-    // MARK: - Constants
     private let maxUndoStackSize = 5
     
-    // MARK: - Initialization
-    init(packageId: String) {
-        self.packageId = packageId
-        loadWords()
+    var totalWordsCount: Int {
+        remainingWords.count
     }
     
-    // MARK: - Load Words
+    var canUndo: Bool {
+        !undoStack.isEmpty
+    }
+    
+    init(packageId: String) {
+        self.packageId = packageId
+        self.isPremium = selectionLimitManager.isPremium
+        loadWords()
+        updateSelectionLimit()
+    }
+    
     func loadWords() {
         isLoading = true
         errorMessage = nil
@@ -50,23 +64,31 @@ class WordSelectionViewModel: ObservableObject {
         do {
             let vocabPackage = try jsonLoader.loadVocabularyPackage(filename: packageId)
             let allWords = vocabPackage.words
-            let savedSelectedIds = UserDefaultsManager.shared.loadSelectedWords()
-            selectedWordIds = Set(savedSelectedIds)
+            
+            let selections = userDefaults.getWordSelections(packageId: packageId)
+            selectedWordIds = Set(selections.selected)
+            hiddenWordIds = Set(selections.hidden)
             
             let unseenWords = allWords.filter { word in
-                !selectedWordIds.contains(word.id)
+                !selectedWordIds.contains(word.id) && !hiddenWordIds.contains(word.id)
             }
             
             self.words = allWords
             self.remainingWords = unseenWords
             self.selectedCount = selectedWordIds.count
-            self.hiddenCount = 0
+            self.hiddenCount = hiddenWordIds.count
+            
+            if unseenWords.isEmpty {
+                self.isCompleted = true
+                self.isLoading = false
+                print("✅ Package completed")
+                return
+            }
             
             updateCurrentWord()
             isLoading = false
             
-            print("📚 Loaded \(allWords.count) words, \(unseenWords.count) unseen")
-            print("✅ Selected: \(selectedCount)")
+            print("📚 Loaded \(allWords.count) words")
             
         } catch {
             errorMessage = "Failed to load words: \(error.localizedDescription)"
@@ -75,7 +97,6 @@ class WordSelectionViewModel: ObservableObject {
         }
     }
     
-    // MARK: - Update Current Word
     private func updateCurrentWord() {
         if currentWordIndex < remainingWords.count {
             currentWord = remainingWords[currentWordIndex]
@@ -88,215 +109,146 @@ class WordSelectionViewModel: ObservableObject {
         } else {
             currentWord = nil
             nextWord = nil
-            
-            if selectedCount > 0 {
-                isCompleted = true
-            }
+            isCompleted = true
         }
     }
     
-    // MARK: - Swipe Actions (Wrapper Functions)
-    
     func swipeLeft() {
         guard let word = currentWord else { return }
-        hideWord(word.id)
-    }
-    
-    func swipeRight() {
-        guard let word = currentWord else { return }
-        selectWord(word.id)
-    }
-    
-    // MARK: - Select Word (Swipe Right)
-    func selectWord(_ wordId: Int) {
-        guard !isProcessingSwipe else { return }
-        
-        isProcessingSwipe = true
-        soundManager.playSwipeRight()
-        
-        print("✅ Selecting word: \(wordId)")
-        
-        selectedWordIds.insert(wordId)
-        selectedCount += 1
-        
-        createProgressForWord(wordId)
-        addToUndoStack(UndoAction(wordId: wordId, action: .selected))
-        saveSelections()
-        
-        NotificationCenter.default.post(
-            name: NSNotification.Name("WordSelectionChanged"),
-            object: nil
-        )
-        print("📡 Notification posted: WordSelectionChanged")
-        
-        moveToNextWord()
-        isProcessingSwipe = false
-    }
-    
-    // MARK: - Hide Word (Swipe Left)
-    func hideWord(_ wordId: Int) {
         guard !isProcessingSwipe else { return }
         
         isProcessingSwipe = true
         soundManager.playSwipeLeft()
         
-        print("❌ Hiding word: \(wordId)")
-        
-        hiddenCount += 1
-        addToUndoStack(UndoAction(wordId: wordId, action: .hidden))
-        moveToNextWord()
-        isProcessingSwipe = false
-    }
-    
-    // MARK: - Move to Next Word
-    private func moveToNextWord() {
-        currentWordIndex += 1
-        processedWords += 1
-        
-        print("➡️ Moving to next word: \(currentWordIndex) / \(remainingWords.count)")
-        
-        updateCurrentWord()
-    }
-    
-    // MARK: - Undo
-    func undo() {
-        guard !undoStack.isEmpty, !isProcessingSwipe else { return }
-        
-        isProcessingSwipe = true
-        soundManager.playClickSound()
-        
-        let lastAction = undoStack.removeLast()
-        
-        print("↩️ Undoing action: \(lastAction.action) for word \(lastAction.wordId)")
-        
-        switch lastAction.action {
-        case .selected:
-            selectedWordIds.remove(lastAction.wordId)
-            selectedCount -= 1
-            deleteProgressForWord(lastAction.wordId)
-            
-        case .hidden:
-            hiddenCount -= 1
-        }
-        
-        saveSelections()
-        
-        if currentWordIndex > 0 {
-            currentWordIndex -= 1
-            processedWords -= 1
-            updateCurrentWord()
-        }
-        
-        if isCompleted {
-            isCompleted = false
-        }
-        
-        isProcessingSwipe = false
-    }
-    
-    // MARK: - Undo Stack Management
-    private func addToUndoStack(_ action: UndoAction) {
-        undoStack.append(action)
-        
+        undoStack.append(UndoAction(wordId: word.id, action: .hide))
         if undoStack.count > maxUndoStackSize {
             undoStack.removeFirst()
         }
-    }
-    
-    var canUndo: Bool {
-        !undoStack.isEmpty && !isProcessingSwipe
-    }
-    
-    // MARK: - Progress Creation
-    
-    private func createProgressForWord(_ wordId: Int) {
-        let directions: [StudyDirection] = [.enToTr, .trToEn]
         
-        for direction in directions {
-            let existingProgress = UserDefaultsManager.shared.loadProgress(for: wordId, direction: direction)
-            
-            if existingProgress == nil {
-                let newProgress = Progress(wordId: wordId, direction: direction)
-                UserDefaultsManager.shared.saveProgress(newProgress, for: wordId, direction: direction)
-                
-                print("📝 Created progress: wordId=\(wordId), direction=\(direction.displayName)")
-            }
+        hiddenWordIds.insert(word.id)
+        hiddenCount += 1
+        
+        saveSelections()
+        currentWordIndex += 1
+        updateCurrentWord()
+        
+        print("⬅️ Swiped left (skip): \(word.english) - FREE!")
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            self.isProcessingSwipe = false
         }
     }
     
-    private func deleteProgressForWord(_ wordId: Int) {
-        let directions: [StudyDirection] = [.enToTr, .trToEn]
+    func swipeRight() {
+        guard let word = currentWord else { return }
+        guard !isProcessingSwipe else { return }
         
-        for direction in directions {
-            UserDefaultsManager.shared.deleteProgress(for: wordId, direction: direction)
-            print("🗑️ Deleted progress: wordId=\(wordId), direction=\(direction.displayName)")
-        }
-    }
-    
-    // MARK: - Save Selections
-    private func saveSelections() {
-        let selectedArray = Array(selectedWordIds)
-        UserDefaultsManager.shared.saveSelectedWords(selectedArray)
-        
-        print("💾 Saved \(selectedWordIds.count) selected words")
-    }
-    
-    // MARK: - Finish Selection
-    func finishSelection() {
-        guard selectedCount > 0 else {
-            print("⚠️ No words selected")
+        if !selectionLimitManager.canSelect() {
+            selectionLimitReached = true
+            print("❌ Daily selection limit reached!")
             return
         }
         
-        print("✅ Finishing selection: \(selectedCount) words selected")
+        isProcessingSwipe = true
         
-        UserDefaultsManager.shared.saveSelectedPackage(packageId)
+        let remaining = selectionLimitManager.recordSelection()
+        updateSelectionLimit()
         
-        let selectedArray = Array(selectedWordIds)
-        UserDefaultsManager.shared.saveSelectedWords(selectedArray)
+        soundManager.playSwipeRight()
         
-        for wordId in selectedWordIds {
-            createProgressForWord(wordId)
+        undoStack.append(UndoAction(wordId: word.id, action: .select))
+        if undoStack.count > maxUndoStackSize {
+            undoStack.removeFirst()
         }
         
-        NotificationCenter.default.post(
-            name: NSNotification.Name("WordSelectionChanged"),
-            object: nil
-        )
-        print("📡 Final notification posted: WordSelectionChanged")
-        print("   - Package: \(packageId)")
-        print("   - Words: \(selectedArray)")
-        print("   - Progress records: \(selectedCount * 2) (both directions)")
-    }
-    
-    // MARK: - Reset All
-    func resetAllSelections() {
-        selectedWordIds.removeAll()
-        hiddenWordIds.removeAll()
-        selectedCount = 0
-        hiddenCount = 0
-        currentWordIndex = 0
-        processedWords = 0
-        undoStack.removeAll()
-        isCompleted = false
+        selectedWordIds.insert(word.id)
+        selectedCount += 1
+        processedWords += 1
         
         saveSelections()
-        loadWords()
+        currentWordIndex += 1
+        updateCurrentWord()
+        
+        print("➡️ Swiped right (learn): \(word.english)")
+        if let remaining = remaining {
+            print("   Remaining: \(remaining)/15")
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
+            self.isProcessingSwipe = false
+        }
     }
     
-    // MARK: - Get Random Card Color
-    func getCardColor(for word: Word) -> Color {
-        Color.pastelColor(for: word.id)
+    func undoLastAction() {
+        guard let lastAction = undoStack.popLast() else {
+            print("⚠️ No action to undo")
+            return
+        }
+        
+        if lastAction.action == .select {
+            selectionLimitManager.undoSelection()
+            updateSelectionLimit()
+            
+            if selectionLimitReached {
+                selectionLimitReached = false
+            }
+        }
+        
+        guard let word = words.first(where: { $0.id == lastAction.wordId }) else {
+            print("⚠️ Word not found for undo")
+            return
+        }
+        
+        soundManager.playClickSound()
+        
+        switch lastAction.action {
+        case .select:
+            selectedWordIds.remove(lastAction.wordId)
+            selectedCount -= 1
+            processedWords -= 1
+            print("↩️ Undone select: \(word.english)")
+            
+        case .hide:
+            hiddenWordIds.remove(lastAction.wordId)
+            hiddenCount -= 1
+            print("↩️ Undone skip: \(word.english)")
+        }
+        
+        currentWordIndex = max(0, currentWordIndex - 1)
+        updateCurrentWord()
+        saveSelections()
+    }
+    
+    func navigateToStudy() {
+        saveSelections()
+        print("📖 Navigating to study with \(selectedCount) selected words")
+    }
+    
+    private func updateSelectionLimit() {
+        if selectionLimitManager.isPremium {
+            remainingSelections = nil
+            showSelectionWarning = false
+        } else {
+            remainingSelections = selectionLimitManager.getRemainingSelections()
+            showSelectionWarning = selectionLimitManager.shouldShowWarning()
+        }
+    }
+    
+    private func saveSelections() {
+        userDefaults.saveWordSelections(
+            packageId: packageId,
+            selected: Array(selectedWordIds),
+            hidden: Array(hiddenWordIds)
+        )
     }
 }
 
-// MARK: - Undo Action
-struct UndoAction {
+private struct UndoAction {
     let wordId: Int
-    let action: SelectionAction
-}
-
-enum SelectionAction {
-    case selected
-    case hidden
+    let action: ActionType
+    
+    enum ActionType {
+        case select
+        case hide
+    }
 }
