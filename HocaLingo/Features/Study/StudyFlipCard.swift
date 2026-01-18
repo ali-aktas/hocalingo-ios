@@ -189,11 +189,9 @@ private struct CardFace: View {
                 if showSpeakerButton {
                     Button(action: onSpeakerTap) {
                         Image(systemName: "speaker.wave.2.fill")
-                            .font(.system(size: 24))
+                            .font(.system(size: 28))
                             .foregroundColor(.white)
-                            .frame(width: 56, height: 56)
-                            .background(Color.white.opacity(0.2))
-                            .clipShape(Circle())
+                            .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
                     }
                     .padding(.bottom, 24)
                 }

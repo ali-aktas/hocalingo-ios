@@ -286,10 +286,9 @@ class StudyViewModel: ObservableObject {
     func replayAudio() {
         guard let word = allWords.first(where: { $0.id == currentCard.wordId }) else { return }
         
-        let textToSpeak = studyDirection == .enToTr ? word.english : word.turkish
-        let languageCode = studyDirection == .enToTr ? "en" : "tr"
-        
-        ttsManager.speak(text: textToSpeak, languageCode: languageCode)
+        // ✅ CRITICAL FIX: ALWAYS speak English word (regardless of direction)
+        // TTS button is always on the English side
+        ttsManager.speak(text: word.english, languageCode: "en")
     }
     
     func playCurrentWordAudio() {
@@ -345,11 +344,23 @@ class StudyViewModel: ObservableObject {
         
         ttsPlayedForCurrentCard = false
         
-        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+        // ✅ YÖNTEM 3: Two-Phase Animation
+        guard isCardFlipped else {
+            // Kart zaten false ise direkt geç
+            moveToNextCard()
+            return
+        }
+        
+        // 1. Flip back animasyonu başlat (0.25 saniye)
+        withAnimation(.spring(response: 0.25, dampingFraction: 0.9)) {
             isCardFlipped = false
         }
         
-        moveToNextCard()
+        // 2. Flip yarı noktasında (90°) content değiştir
+        // Timing: 0.12 saniye = flip animasyonunun yarısı
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) { [weak self] in
+            self?.moveToNextCard()  // Renk ve kelimeler değişir
+        }
     }
     
     private func moveToNextCard() {
