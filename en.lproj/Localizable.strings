@@ -150,3 +150,33 @@
 "success_word_added" = "Word added successfully!";
 "success_study_completed" = "Great! You've completed today's goal!";
 "success_changes_saved" = "Changes saved";
+
+// MARK: - Profile Screen - NEW ADDITIONS for Profile Refresh
+
+// Annual Statistics
+"annual_stats_title" = "This Year";
+"annual_stats_days_label" = "Active Days";
+"annual_stats_hours_label" = "Study Hours";
+"annual_stats_skipped_label" = "Words Skipped";
+
+// Language Selection
+"language_selection_title" = "App Language";
+"language_turkish" = "Türkçe";
+"language_english" = "English";
+"language_change_restart" = "App restart required for language change";
+
+// Notification Settings
+"notification_time_picker_title" = "Daily Reminder Time";
+"notification_time_picker_message" = "Choose when you want to receive your daily study reminder";
+"notification_scheduled" = "Daily reminder scheduled for %@";
+"notification_permission_denied" = "Notification permission denied. Enable in Settings.";
+
+// Study Direction Card
+"study_direction_card_title" = "Study Direction";
+"study_direction_card_subtitle" = "Choose how you want to learn";
+"study_direction_changed" = "Study direction updated";
+
+// Theme Settings
+"theme_changed" = "Theme updated";
+"theme_restart_info" = "Some UI elements may require app restart";
+

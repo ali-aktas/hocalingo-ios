@@ -2,7 +2,8 @@
 //  ProfileView.swift
 //  HocaLingo
 //
-//  ✅ UPDATED: Direction picker now functional
+//  ✅ COMPLETE REDESIGN: Modern profile screen with language selection, annual stats, and improved UI
+//  ✅ FIX: ThemeViewModel now properly using environment injection
 //  Location: HocaLingo/Features/Profile/ProfileView.swift
 //
 
@@ -11,18 +12,13 @@ import SwiftUI
 // MARK: - Profile View
 struct ProfileView: View {
     @StateObject private var viewModel = ProfileViewModel()
+    @Environment(\.themeViewModel) private var themeViewModel  // ✅ FIX: Use environment instead of @StateObject
     @State private var showPremiumSheet = false
-    @State private var showDirectionPicker = false  // ✅ NEW
-    @State private var showThemePicker = false      // ✅ NEW (for future)
-    @State private var showGoalPicker = false       // ✅ NEW (for future)
     
     var body: some View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 20) {
-                    // Header
-                    ProfileHeader()
-                    
                     // Premium Card
                     PremiumCard(
                         isPremium: viewModel.isPremium,
@@ -31,96 +27,66 @@ struct ProfileView: View {
                         }
                     )
                     
-                    // Stats Row
-                    StatsRow(stats: viewModel.userStats)
+                    // Annual Statistics Section (NEW)
+                    AnnualStatsSection(annualStats: viewModel.annualStats)
                     
-                    // Settings Card
-                    SettingsCard(
-                        themeMode: viewModel.themeMode,
-                        notificationsEnabled: $viewModel.notificationsEnabled,
-                        studyDirection: viewModel.studyDirection,
-                        dailyGoal: viewModel.dailyGoal,
-                        onThemeClick: {
-                            showThemePicker = true  // TODO: Implement later
-                        },
-                        onDirectionClick: {
-                            showDirectionPicker = true  // ✅ NEW
-                        },
-                        onGoalClick: {
-                            showGoalPicker = true  // TODO: Implement later
-                        },
-                        onNotificationToggle: {
-                            viewModel.toggleNotifications()
+                    // Language Selection Card (NEW)
+                    LanguageSelectionCard(
+                        selectedLanguage: $viewModel.appLanguage,
+                        onLanguageChange: { language in
+                            viewModel.changeLanguage(to: language)
                         }
                     )
                     
-                    // Legal & Support
-                    LegalAndSupportCard()
-                    
-                    // Bottom spacer
-                    Color.clear.frame(height: 80)
-                }
-                .padding(16)
-            }
-            .background(Color(hex: "F5F5F5"))
-            .navigationTitle("profile_tab")
-            .navigationBarTitleDisplayMode(.large)
-        }
-        .sheet(isPresented: $showPremiumSheet) {
-            PremiumSheetPlaceholder()
-        }
-        // ✅ NEW: Direction Picker ActionSheet
-        .confirmationDialog(
-            "Çalışma Yönü Seçin",
-            isPresented: $showDirectionPicker,
-            titleVisibility: .visible
-        ) {
-            ForEach(StudyDirection.allCases, id: \.self) { direction in
-                Button(direction.displayName) {
-                    viewModel.changeStudyDirection(to: direction)
-                }
-            }
-            
-            Button("İptal", role: .cancel) {}
-        } message: {
-            Text("Yeni yön seçtiğinizde, her kelime için ayrı ilerleme takibi olacaktır.")
-        }
-    }
-}
-
-// MARK: - Profile Header
-struct ProfileHeader: View {
-    var body: some View {
-        VStack(spacing: 8) {
-            // Avatar
-            Circle()
-                .fill(
-                    LinearGradient(
-                        colors: [Color(hex: "6366F1"), Color(hex: "8B5CF6")],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
+                    // Study Direction Card (NEW - Distinct Design)
+                    StudyDirectionCard(
+                        selectedDirection: $viewModel.studyDirection,
+                        onDirectionChange: { direction in
+                            viewModel.changeStudyDirection(to: direction)
+                        }
                     )
-                )
-                .frame(width: 80, height: 80)
-                .overlay(
-                    Image(systemName: "person.fill")
-                        .font(.system(size: 36))
-                        .foregroundColor(.white)
-                )
-            
-            Text("HocaLingo Kullanıcısı")
-                .font(.system(size: 18, weight: .semibold))
-                .foregroundColor(.primary)
-            
-            Text("Başarılı bir öğrenme yolculuğu!")
-                .font(.system(size: 14))
-                .foregroundColor(.secondary)
+                    
+                    // Notification Card (NEW - Professional)
+                    NotificationCard(
+                        isEnabled: $viewModel.notificationsEnabled,
+                        notificationHour: $viewModel.notificationTime,
+                        onToggle: {
+                            viewModel.toggleNotifications()
+                        },
+                        onTimeChange: { hour in
+                            viewModel.changeNotificationTime(to: hour)
+                        }
+                    )
+                    
+                    // Theme Selection Card
+                    ThemeSelectionCard(
+                        selectedTheme: $viewModel.themeMode,
+                        onThemeChange: { theme in
+                            viewModel.changeThemeMode(to: theme)
+                            themeViewModel.updateTheme(to: theme)  // ✅ FIX: Correct method name
+                        }
+                    )
+                    
+                    // Legal & Support Section (UPDATED - Working Links)
+                    LegalSupportSection()
+                    
+                    // Bottom Padding
+                    Color.clear.frame(height: 20)
+                }
+                .padding(.horizontal, 20)
+                .padding(.top, 20)
+            }
+            .background(Color(hex: "F8F9FA").ignoresSafeArea())
+            .navigationTitle("profile_welcome")
+            .navigationBarTitleDisplayMode(.large)
+            .sheet(isPresented: $showPremiumSheet) {
+                PremiumSheetPlaceholder()
+            }
+            .onAppear {
+                // Refresh stats when view appears
+                viewModel.refreshAnnualStats()
+            }
         }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 20)
-        .background(Color.white)
-        .cornerRadius(16)
-        .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
     }
 }
 
@@ -130,261 +96,97 @@ struct PremiumCard: View {
     let onUpgradeClick: () -> Void
     
     var body: some View {
-        HStack {
-            HStack(spacing: 12) {
-                Image(systemName: "crown.fill")
-                    .font(.system(size: 24))
-                    .foregroundColor(Color(hex: "FFD700"))
+        HStack(spacing: 16) {
+            // Icon
+            ZStack {
+                Circle()
+                    .fill(
+                        LinearGradient(
+                            colors: isPremium ? [
+                                Color(hex: "F59E0B"),
+                                Color(hex: "EF4444")
+                            ] : [
+                                Color(hex: "6366F1"),
+                                Color(hex: "8B5CF6")
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .frame(width: 56, height: 56)
                 
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(isPremium ? "Premium Üye" : "Premium'a Geç")
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.primary)
-                    
-                    Text(isPremium ? "Sınırsız özelliklerin keyfini çıkarın" : "Tüm özellikleri aç")
-                        .font(.system(size: 13))
-                        .foregroundColor(.secondary)
-                }
+                Image(systemName: isPremium ? "crown.fill" : "star.fill")
+                    .font(.system(size: 28))
+                    .foregroundColor(.white)
+            }
+            
+            // Text Content
+            VStack(alignment: .leading, spacing: 4) {
+                Text(isPremium ? "premium_active" : "premium_upgrade_title")
+                    .font(.system(size: 18, weight: .bold))
+                    .foregroundColor(.primary)
+                
+                Text(isPremium ? "Sınırsız Erişim" : "premium_upgrade_subtitle")
+                    .font(.system(size: 14))
+                    .foregroundColor(.secondary)
             }
             
             Spacer()
             
+            // Action Button (only for non-premium)
             if !isPremium {
                 Button(action: onUpgradeClick) {
-                    Text("Yükselt")
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                        .background(
-                            LinearGradient(
-                                colors: [Color(hex: "6366F1"), Color(hex: "8B5CF6")],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
+                    HStack(spacing: 6) {
+                        Text("Geç")
+                            .font(.system(size: 15, weight: .semibold))
+                        
+                        Image(systemName: "arrow.right")
+                            .font(.system(size: 13, weight: .bold))
+                    }
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(
+                        LinearGradient(
+                            colors: [
+                                Color(hex: "6366F1"),
+                                Color(hex: "8B5CF6")
+                            ],
+                            startPoint: .leading,
+                            endPoint: .trailing
                         )
-                        .cornerRadius(20)
+                    )
+                    .cornerRadius(20)
                 }
             }
         }
-        .padding(16)
-        .background(
-            isPremium ?
-            LinearGradient(
-                colors: [Color(hex: "FFD700").opacity(0.1), Color(hex: "FFA500").opacity(0.1)],
-                startPoint: .leading,
-                endPoint: .trailing
-            ) :
-            LinearGradient(
-                colors: [Color.white, Color.white],
-                startPoint: .leading,
-                endPoint: .trailing
-            )
-        )
+        .padding(20)
+        .background(Color.white)
         .cornerRadius(16)
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(isPremium ? Color(hex: "FFD700") : Color.clear, lineWidth: 1)
-        )
         .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
     }
 }
 
-// MARK: - Stats Row
-struct StatsRow: View {
-    let stats: UserStats
-    
-    var body: some View {
-        HStack(spacing: 12) {
-            StatItem(
-                icon: "checkmark.circle.fill",
-                value: "\(stats.totalWordsStudied)",
-                label: "Çalışılan",
-                color: Color(hex: "4ECDC4")
-            )
-            
-            StatItem(
-                icon: "star.fill",
-                value: "\(stats.masteredWordsCount)",
-                label: "Öğrenilen",
-                color: Color(hex: "FFD93D")
-            )
-            
-            StatItem(
-                icon: "flame.fill",
-                value: "\(stats.currentStreak)",
-                label: "Seri",
-                color: Color(hex: "FF6B6B")
-            )
-        }
-    }
-}
-
-// MARK: - Stat Item
-struct StatItem: View {
-    let icon: String
-    let value: String
-    let label: String
-    let color: Color
-    
-    var body: some View {
-        VStack(spacing: 8) {
-            Image(systemName: icon)
-                .font(.system(size: 24))
-                .foregroundColor(color)
-            
-            Text(value)
-                .font(.system(size: 20, weight: .bold))
-                .foregroundColor(.primary)
-            
-            Text(label)
-                .font(.system(size: 12))
-                .foregroundColor(.secondary)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 16)
-        .background(Color.white)
-        .cornerRadius(12)
-        .shadow(color: .black.opacity(0.05), radius: 4, x: 0, y: 2)
-    }
-}
-
-// MARK: - Settings Card
-/// ✅ UPDATED: Added action callbacks for each setting
-struct SettingsCard: View {
-    let themeMode: ThemeMode
-    @Binding var notificationsEnabled: Bool
-    let studyDirection: StudyDirection
-    let dailyGoal: Int
-    let onThemeClick: () -> Void
-    let onDirectionClick: () -> Void  // ✅ NEW
-    let onGoalClick: () -> Void
-    let onNotificationToggle: () -> Void
+// MARK: - Theme Selection Card
+struct ThemeSelectionCard: View {
+    @Binding var selectedTheme: ThemeMode
+    let onThemeChange: (ThemeMode) -> Void
     
     var body: some View {
         VStack(spacing: 0) {
             // Header
             HStack {
-                Text("settings_title")
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.primary)
-                Spacer()
-            }
-            .padding(.horizontal, 16)
-            .padding(.top, 16)
-            .padding(.bottom, 12)
-            
-            Divider()
-            
-            // Theme Setting
-            SettingRow(
-                icon: "moon.fill",
-                title: "settings_theme",
-                subtitle: themeMode.displayName
-            ) {
-                onThemeClick()
-            }
-            
-            Divider()
-            
-            // Notifications Toggle
-            HStack {
                 HStack(spacing: 12) {
-                    Image(systemName: "bell.fill")
+                    Image(systemName: "moon.fill")
                         .font(.system(size: 20))
                         .foregroundColor(Color(hex: "6366F1"))
                         .frame(width: 32)
                     
-                    Text("settings_notifications")
-                        .font(.system(size: 16))
+                    Text("settings_theme")
+                        .font(.system(size: 16, weight: .medium))
                         .foregroundColor(.primary)
                 }
                 
-                Spacer()
-                
-                Toggle("", isOn: $notificationsEnabled)
-                    .labelsHidden()
-                    .onChange(of: notificationsEnabled) { _ in
-                        onNotificationToggle()
-                    }
-            }
-            .padding(16)
-            
-            Divider()
-            
-            // ✅ UPDATED: Study Direction with action
-            SettingRow(
-                icon: "arrow.left.arrow.right",
-                title: "settings_direction",
-                subtitle: studyDirection.displayName
-            ) {
-                onDirectionClick()  // ✅ Calls the action
-            }
-            
-            Divider()
-            
-            // Daily Goal
-            SettingRow(
-                icon: "target",
-                title: "settings_daily_goal",
-                subtitle: "\(dailyGoal) words"
-            ) {
-                onGoalClick()
-            }
-        }
-        .background(Color.white)
-        .cornerRadius(16)
-        .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
-    }
-}
-
-// MARK: - Setting Row
-struct SettingRow: View {
-    let icon: String
-    let title: String
-    let subtitle: String
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            HStack(spacing: 12) {
-                Image(systemName: icon)
-                    .font(.system(size: 20))
-                    .foregroundColor(Color(hex: "6366F1"))
-                    .frame(width: 32)
-                
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(title)
-                        .font(.system(size: 16))
-                        .foregroundColor(.primary)
-                    
-                    Text(subtitle)
-                        .font(.system(size: 13))
-                        .foregroundColor(.secondary)
-                }
-                
-                Spacer()
-                
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(.secondary)
-            }
-            .padding(16)
-            .contentShape(Rectangle())
-        }
-        .buttonStyle(PlainButtonStyle())
-    }
-}
-
-// MARK: - Legal & Support Card
-struct LegalAndSupportCard: View {
-    var body: some View {
-        VStack(spacing: 0) {
-            // Header
-            HStack {
-                Text("legal_support")
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.primary)
                 Spacer()
             }
             .padding(.horizontal, 16)
@@ -393,23 +195,21 @@ struct LegalAndSupportCard: View {
             
             Divider()
             
-            // Privacy Policy
-            LegalRow(icon: "lock.shield.fill", title: "privacy_policy") {
-                // TODO: Open privacy policy
-            }
-            
-            Divider()
-            
-            // Terms of Service
-            LegalRow(icon: "doc.text.fill", title: "terms_of_service") {
-                // TODO: Open terms
-            }
-            
-            Divider()
-            
-            // Contact Support
-            LegalRow(icon: "envelope.fill", title: "contact_support") {
-                // TODO: Open support
+            // Theme Options
+            ForEach([ThemeMode.system, ThemeMode.light, ThemeMode.dark], id: \.self) { theme in
+                ThemeOptionRow(
+                    theme: theme,
+                    isSelected: selectedTheme == theme,
+                    onSelect: {
+                        selectedTheme = theme
+                        onThemeChange(theme)
+                    }
+                )
+                
+                if theme != ThemeMode.dark {
+                    Divider()
+                        .padding(.leading, 60)
+                }
             }
         }
         .background(Color.white)
@@ -418,34 +218,52 @@ struct LegalAndSupportCard: View {
     }
 }
 
-// MARK: - Legal Row
-struct LegalRow: View {
-    let icon: String
-    let title: String
-    let action: () -> Void
+// MARK: - Theme Option Row
+struct ThemeOptionRow: View {
+    let theme: ThemeMode
+    let isSelected: Bool
+    let onSelect: () -> Void
     
     var body: some View {
-        Button(action: action) {
+        Button(action: onSelect) {
             HStack(spacing: 12) {
-                Image(systemName: icon)
+                Image(systemName: themeIcon)
                     .font(.system(size: 20))
-                    .foregroundColor(Color(hex: "6366F1"))
+                    .foregroundColor(isSelected ? Color(hex: "6366F1") : .gray)
                     .frame(width: 32)
                 
-                Text(title)
+                Text(theme.displayName)
                     .font(.system(size: 16))
                     .foregroundColor(.primary)
                 
                 Spacer()
                 
-                Image(systemName: "chevron.right")
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(.secondary)
+                if isSelected {
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 20))
+                        .foregroundColor(Color(hex: "6366F1"))
+                } else {
+                    Image(systemName: "circle")
+                        .font(.system(size: 20))
+                        .foregroundColor(.gray.opacity(0.3))
+                }
             }
-            .padding(16)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
             .contentShape(Rectangle())
         }
         .buttonStyle(PlainButtonStyle())
+    }
+    
+    private var themeIcon: String {
+        switch theme {
+        case .light:
+            return "sun.max.fill"
+        case .dark:
+            return "moon.fill"
+        case .system:
+            return "circle.lefthalf.filled"
+        }
     }
 }
 
@@ -474,5 +292,6 @@ struct PremiumSheetPlaceholder: View {
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
         ProfileView()
+            .environment(\.themeViewModel, ThemeViewModel.shared)
     }
 }

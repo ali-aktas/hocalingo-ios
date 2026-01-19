@@ -150,3 +150,32 @@
 "success_word_added" = "Kelime başarıyla eklendi!";
 "success_study_completed" = "Harika! Bugünkü hedefini tamamladın!";
 "success_changes_saved" = "Değişiklikler kaydedildi";
+
+// MARK: - Profile Screen - YENİ EKLENTİLER Profile Yenilemesi için
+
+// Yıllık İstatistikler
+"annual_stats_title" = "Bu Yıl";
+"annual_stats_days_label" = "Aktif Gün";
+"annual_stats_hours_label" = "Çalışma Saati";
+"annual_stats_skipped_label" = "Geçilen Kelime";
+
+// Dil Seçimi
+"language_selection_title" = "Arayüz Dili";
+"language_turkish" = "Türkçe";
+"language_english" = "English";
+"language_change_restart" = "Dil değişikliği için uygulama yeniden başlatılmalı";
+
+// Bildirim Ayarları
+"notification_time_picker_title" = "Günlük Hatırlatma Saati";
+"notification_time_picker_message" = "Günlük çalışma hatırlatmanızı almak istediğiniz saati seçin";
+"notification_scheduled" = "%@ için günlük hatırlatma ayarlandı";
+"notification_permission_denied" = "Bildirim izni reddedildi. Ayarlar'dan etkinleştirin.";
+
+// Çalışma Yönü Kartı
+"study_direction_card_title" = "Çalışma Yönü";
+"study_direction_card_subtitle" = "Nasıl öğrenmek istediğinizi seçin";
+"study_direction_changed" = "Çalışma yönü güncellendi";
+
+// Tema Ayarları
+"theme_changed" = "Tema güncellendi";
+"theme_restart_info" = "Bazı arayüz öğeleri için uygulama yeniden başlatılması gerekebilir";
