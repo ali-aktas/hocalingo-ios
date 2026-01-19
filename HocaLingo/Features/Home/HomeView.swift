@@ -51,8 +51,8 @@ struct HomeView: View {
                             
                         }
                         .padding(.horizontal, 20)
-                        .padding(.top, 64)  // For safe area
-                        .padding(.bottom, 100) // Space for bottom nav
+                        .padding(.top, 12)  // For safe area
+                        .padding(.bottom, 52) // Space for bottom nav
                     }
                 }
             }

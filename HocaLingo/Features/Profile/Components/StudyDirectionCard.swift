@@ -2,7 +2,7 @@
 //  StudyDirectionCard.swift
 //  HocaLingo
 //
-//  Premium study direction selection card - highly visible and distinct
+//  ✅ UPDATED: Removed mixed option, added dark theme support
 //  Location: HocaLingo/Features/Profile/Components/StudyDirectionCard.swift
 //
 
@@ -40,11 +40,11 @@ struct StudyDirectionCard: View {
                 VStack(alignment: .leading, spacing: 4) {
                     Text("study_direction_card_title")
                         .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(.primary)
+                        .foregroundColor(.themePrimary)
                     
                     Text("study_direction_card_subtitle")
                         .font(.system(size: 13))
-                        .foregroundColor(.secondary)
+                        .foregroundColor(.themeSecondary)
                 }
                 
                 Spacer()
@@ -52,43 +52,36 @@ struct StudyDirectionCard: View {
             .padding(16)
             
             Divider()
+                .background(Color.themeDivider)
             
-            // Direction Options
+            // Direction Options (ONLY 2 OPTIONS - NO MIXED)
             VStack(spacing: 0) {
-                ForEach([StudyDirection.enToTr, StudyDirection.trToEn, StudyDirection.mixed], id: \.self) { direction in
-                    DirectionOptionRow(
-                        direction: direction,
-                        isSelected: selectedDirection == direction,
-                        onSelect: {
-                            selectedDirection = direction
-                            onDirectionChange(direction)
-                        }
-                    )
-                    
-                    if direction != StudyDirection.mixed {
-                        Divider()
-                            .padding(.leading, 60)
+                DirectionOptionRow(
+                    direction: .enToTr,
+                    isSelected: selectedDirection == .enToTr,
+                    onSelect: {
+                        selectedDirection = .enToTr
+                        onDirectionChange(.enToTr)
                     }
-                }
+                )
+                
+                Divider()
+                    .padding(.leading, 60)
+                    .background(Color.themeDivider)
+                
+                DirectionOptionRow(
+                    direction: .trToEn,
+                    isSelected: selectedDirection == .trToEn,
+                    onSelect: {
+                        selectedDirection = .trToEn
+                        onDirectionChange(.trToEn)
+                    }
+                )
             }
         }
-        .background(Color.white)
+        .background(Color.themeCard)
         .cornerRadius(16)
-        .shadow(color: Color(hex: "6366F1").opacity(0.15), radius: 12, x: 0, y: 4)
-        .overlay(
-            RoundedRectangle(cornerRadius: 16)
-                .stroke(
-                    LinearGradient(
-                        colors: [
-                            Color(hex: "6366F1").opacity(0.3),
-                            Color(hex: "8B5CF6").opacity(0.3)
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    ),
-                    lineWidth: 2
-                )
-        )
+        .shadow(color: Color.themeShadow, radius: 8, x: 0, y: 2)
     }
 }
 
@@ -101,39 +94,29 @@ struct DirectionOptionRow: View {
     var body: some View {
         Button(action: onSelect) {
             HStack(spacing: 12) {
-                // Direction Icon
                 Image(systemName: directionIcon)
                     .font(.system(size: 20))
-                    .foregroundColor(isSelected ? Color(hex: "6366F1") : .gray)
+                    .foregroundColor(isSelected ? .accentPurple : .themeSecondary)
                     .frame(width: 32)
                 
-                // Direction Name
                 Text(direction.displayName)
-                    .font(.system(size: 16, weight: isSelected ? .semibold : .regular))
-                    .foregroundColor(isSelected ? Color(hex: "6366F1") : .primary)
+                    .font(.system(size: 16))
+                    .foregroundColor(.themePrimary)
                 
                 Spacer()
                 
-                // Selection Indicator
                 if isSelected {
-                    ZStack {
-                        Circle()
-                            .fill(Color(hex: "6366F1").opacity(0.1))
-                            .frame(width: 28, height: 28)
-                        
-                        Image(systemName: "checkmark.circle.fill")
-                            .font(.system(size: 24))
-                            .foregroundColor(Color(hex: "6366F1"))
-                    }
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 20))
+                        .foregroundColor(.accentPurple)
                 } else {
                     Image(systemName: "circle")
-                        .font(.system(size: 24))
-                        .foregroundColor(.gray.opacity(0.3))
+                        .font(.system(size: 20))
+                        .foregroundColor(.themeTertiary)
                 }
             }
             .padding(.horizontal, 16)
-            .padding(.vertical, 14)
-            .background(isSelected ? Color(hex: "6366F1").opacity(0.05) : Color.clear)
+            .padding(.vertical, 12)
             .contentShape(Rectangle())
         }
         .buttonStyle(PlainButtonStyle())
@@ -145,8 +128,6 @@ struct DirectionOptionRow: View {
             return "arrow.right.circle.fill"
         case .trToEn:
             return "arrow.left.circle.fill"
-        case .mixed:
-            return "shuffle.circle.fill"
         }
     }
 }
@@ -156,13 +137,28 @@ struct StudyDirectionCard_Previews: PreviewProvider {
     @State static var direction = StudyDirection.enToTr
     
     static var previews: some View {
-        StudyDirectionCard(
-            selectedDirection: $direction,
-            onDirectionChange: { dir in
-                print("Direction changed to: \(dir.displayName)")
-            }
-        )
-        .padding()
-        .background(Color.gray.opacity(0.1))
+        Group {
+            StudyDirectionCard(
+                selectedDirection: $direction,
+                onDirectionChange: { dir in
+                    print("Direction changed to: \(dir.displayName)")
+                }
+            )
+            .padding()
+            .background(Color.themeBackground)
+            .preferredColorScheme(.light)
+            .previewDisplayName("Light Theme")
+            
+            StudyDirectionCard(
+                selectedDirection: $direction,
+                onDirectionChange: { dir in
+                    print("Direction changed to: \(dir.displayName)")
+                }
+            )
+            .padding()
+            .background(Color.themeBackground)
+            .preferredColorScheme(.dark)
+            .previewDisplayName("Dark Theme")
+        }
     }
 }

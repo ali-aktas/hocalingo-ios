@@ -2,7 +2,7 @@
 //  LegalSupportSection.swift
 //  HocaLingo
 //
-//  Legal and support section with working links
+//  ✅ UPDATED: Added dark theme support for legal and support section
 //  Location: HocaLingo/Features/Profile/Components/LegalSupportSection.swift
 //
 
@@ -19,7 +19,7 @@ struct LegalSupportSection: View {
             HStack {
                 Text("legal_title")
                     .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.primary)
+                    .foregroundColor(.themePrimary)
                 Spacer()
             }
             .padding(.horizontal, 16)
@@ -27,6 +27,7 @@ struct LegalSupportSection: View {
             .padding(.bottom, 12)
             
             Divider()
+                .background(Color.themeDivider)
             
             // Privacy Policy
             LegalRow(
@@ -38,6 +39,7 @@ struct LegalSupportSection: View {
             )
             
             Divider()
+                .background(Color.themeDivider)
             
             // Terms of Service
             LegalRow(
@@ -49,6 +51,7 @@ struct LegalSupportSection: View {
             )
             
             Divider()
+                .background(Color.themeDivider)
             
             // Rate App
             LegalRow(
@@ -60,6 +63,7 @@ struct LegalSupportSection: View {
             )
             
             Divider()
+                .background(Color.themeDivider)
             
             // Contact Support
             LegalRow(
@@ -71,9 +75,9 @@ struct LegalSupportSection: View {
                 }
             )
         }
-        .background(Color.white)
+        .background(Color.themeCard)
         .cornerRadius(16)
-        .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
+        .shadow(color: Color.themeShadow, radius: 8, x: 0, y: 2)
     }
     
     // MARK: - Actions
@@ -125,18 +129,18 @@ struct LegalRow: View {
             HStack(spacing: 12) {
                 Image(systemName: icon)
                     .font(.system(size: 20))
-                    .foregroundColor(Color(hex: "6366F1"))
+                    .foregroundColor(.accentPurple)
                     .frame(width: 32)
                 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(title)
                         .font(.system(size: 16))
-                        .foregroundColor(.primary)
+                        .foregroundColor(.themePrimary)
                     
                     if let subtitle = subtitle {
                         Text(subtitle)
                             .font(.system(size: 13))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.themeSecondary)
                     }
                 }
                 
@@ -144,7 +148,7 @@ struct LegalRow: View {
                 
                 Image(systemName: "chevron.right")
                     .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.themeSecondary)
             }
             .padding(16)
             .contentShape(Rectangle())
@@ -156,8 +160,18 @@ struct LegalRow: View {
 // MARK: - Preview
 struct LegalSupportSection_Previews: PreviewProvider {
     static var previews: some View {
-        LegalSupportSection()
-            .padding()
-            .background(Color.gray.opacity(0.1))
+        Group {
+            LegalSupportSection()
+                .padding()
+                .background(Color.themeBackground)
+                .preferredColorScheme(.light)
+                .previewDisplayName("Light Theme")
+            
+            LegalSupportSection()
+                .padding()
+                .background(Color.themeBackground)
+                .preferredColorScheme(.dark)
+                .previewDisplayName("Dark Theme")
+        }
     }
 }

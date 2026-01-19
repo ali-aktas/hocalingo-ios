@@ -2,7 +2,7 @@
 //  NotificationCard.swift
 //  HocaLingo
 //
-//  Professional notification card with toggle and time picker
+//  ✅ UPDATED: Added dark theme support for notification card
 //  Location: HocaLingo/Features/Profile/Components/NotificationCard.swift
 //
 
@@ -24,18 +24,18 @@ struct NotificationCard: View {
                 HStack(spacing: 12) {
                     Image(systemName: "bell.fill")
                         .font(.system(size: 20))
-                        .foregroundColor(Color(hex: "6366F1"))
+                        .foregroundColor(.accentPurple)
                         .frame(width: 32)
                     
                     VStack(alignment: .leading, spacing: 2) {
                         Text("settings_notifications")
                             .font(.system(size: 16, weight: .medium))
-                            .foregroundColor(.primary)
+                            .foregroundColor(.themePrimary)
                         
                         if isEnabled {
-                            Text("notification_scheduled")
+                            Text(formattedNotificationTime)
                                 .font(.system(size: 13))
-                                .foregroundColor(.secondary)
+                                .foregroundColor(.themeSecondary)
                         }
                     }
                 }
@@ -53,30 +53,30 @@ struct NotificationCard: View {
             // Time Picker (shown when enabled)
             if isEnabled {
                 Divider()
+                    .background(Color.themeDivider)
                 
                 Button(action: {
                     showTimePicker = true
                 }) {
                     HStack(spacing: 12) {
-                        Image(systemName: "clock.fill")
+                        Image(systemName: "clock")
                             .font(.system(size: 18))
-                            .foregroundColor(Color(hex: "6366F1").opacity(0.7))
+                            .foregroundColor(.themeSecondary)
                             .frame(width: 32)
                         
-                        Text("notification_time_picker_title")
+                        Text("Bildirim Saati")
                             .font(.system(size: 15))
-                            .foregroundColor(.primary)
+                            .foregroundColor(.themePrimary)
                         
                         Spacer()
                         
-                        // Display current time
                         Text(String(format: "%02d:00", notificationHour))
                             .font(.system(size: 15, weight: .semibold))
-                            .foregroundColor(Color(hex: "6366F1"))
+                            .foregroundColor(.accentPurple)
                         
                         Image(systemName: "chevron.right")
                             .font(.system(size: 13, weight: .semibold))
-                            .foregroundColor(.secondary)
+                            .foregroundColor(.themeSecondary)
                     }
                     .padding(.horizontal, 16)
                     .padding(.vertical, 12)
@@ -85,34 +85,38 @@ struct NotificationCard: View {
                 .buttonStyle(PlainButtonStyle())
             }
         }
-        .background(Color.white)
+        .background(Color.themeCard)
         .cornerRadius(16)
-        .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
+        .shadow(color: Color.themeShadow, radius: 8, x: 0, y: 2)
         .sheet(isPresented: $showTimePicker) {
-            TimePickerSheet(
-                selectedHour: $notificationHour,
-                onConfirm: {
-                    onTimeChange(notificationHour)
+            NotificationTimePickerSheet(
+                selectedHour: notificationHour,
+                onConfirm: { newHour in
+                    notificationHour = newHour
+                    onTimeChange(newHour)
                     showTimePicker = false
                 }
             )
         }
     }
+    
+    private var formattedNotificationTime: String {
+        String(format: "%02d:00", notificationHour)
+    }
 }
 
-// MARK: - Time Picker Sheet
-struct TimePickerSheet: View {
-    @Binding var selectedHour: Int
-    let onConfirm: () -> Void
+// MARK: - Notification Time Picker Sheet
+struct NotificationTimePickerSheet: View {
     @Environment(\.dismiss) private var dismiss
+    @State var selectedHour: Int
+    let onConfirm: (Int) -> Void
     
     var body: some View {
         NavigationView {
-            VStack(spacing: 20) {
-                // Info Text
+            VStack(spacing: 0) {
                 Text("notification_time_picker_message")
                     .font(.system(size: 15))
-                    .foregroundColor(.secondary)
+                    .foregroundColor(.themeSecondary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 20)
                     .padding(.top, 20)
@@ -130,6 +134,7 @@ struct TimePickerSheet: View {
                 
                 Spacer()
             }
+            .background(Color.themeBackground)
             .navigationTitle("notification_time_picker_title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -141,7 +146,7 @@ struct TimePickerSheet: View {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
-                        onConfirm()
+                        onConfirm(selectedHour)
                     }
                     .fontWeight(.semibold)
                 }
@@ -157,19 +162,40 @@ struct NotificationCard_Previews: PreviewProvider {
     @State static var hour = 12
     
     static var previews: some View {
-        VStack(spacing: 20) {
-            NotificationCard(
-                isEnabled: $isEnabled,
-                notificationHour: $hour,
-                onToggle: {
-                    print("Toggle: \(isEnabled)")
-                },
-                onTimeChange: { newHour in
-                    print("Time changed to: \(newHour):00")
-                }
-            )
-            .padding()
+        Group {
+            VStack(spacing: 20) {
+                NotificationCard(
+                    isEnabled: $isEnabled,
+                    notificationHour: $hour,
+                    onToggle: {
+                        print("Toggle: \(isEnabled)")
+                    },
+                    onTimeChange: { newHour in
+                        print("Time changed to: \(newHour):00")
+                    }
+                )
+                .padding()
+            }
+            .background(Color.themeBackground)
+            .preferredColorScheme(.light)
+            .previewDisplayName("Light Theme")
+            
+            VStack(spacing: 20) {
+                NotificationCard(
+                    isEnabled: $isEnabled,
+                    notificationHour: $hour,
+                    onToggle: {
+                        print("Toggle: \(isEnabled)")
+                    },
+                    onTimeChange: { newHour in
+                        print("Time changed to: \(newHour):00")
+                    }
+                )
+                .padding()
+            }
+            .background(Color.themeBackground)
+            .preferredColorScheme(.dark)
+            .previewDisplayName("Dark Theme")
         }
-        .background(Color.gray.opacity(0.1))
     }
 }

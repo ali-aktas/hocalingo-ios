@@ -58,7 +58,7 @@
 "study_progress" = "Progress: %d/%d";
 
 // MARK: - Profile Screen
-"profile_welcome" = "Welcome";
+"profile_welcome" = "Profile";
 "premium_active" = "Premium Active";
 "premium_upgrade_title" = "Upgrade to Premium";
 "premium_upgrade_subtitle" = "Unlimited access, no ads";

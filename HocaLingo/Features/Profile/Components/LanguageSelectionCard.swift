@@ -2,7 +2,7 @@
 //  LanguageSelectionCard.swift
 //  HocaLingo
 //
-//  Language selection card component for Profile screen
+//  ✅ UPDATED: Added dark theme support for language selection card
 //  Location: HocaLingo/Features/Profile/Components/LanguageSelectionCard.swift
 //
 
@@ -20,12 +20,12 @@ struct LanguageSelectionCard: View {
                 HStack(spacing: 12) {
                     Image(systemName: "globe")
                         .font(.system(size: 20))
-                        .foregroundColor(Color(hex: "6366F1"))
+                        .foregroundColor(.accentPurple)
                         .frame(width: 32)
                     
                     Text("language_selection_title")
                         .font(.system(size: 16, weight: .medium))
-                        .foregroundColor(.primary)
+                        .foregroundColor(.themePrimary)
                 }
                 
                 Spacer()
@@ -35,6 +35,7 @@ struct LanguageSelectionCard: View {
             .padding(.bottom, 12)
             
             Divider()
+                .background(Color.themeDivider)
             
             // Language Options
             ForEach(AppLanguage.allCases, id: \.self) { language in
@@ -50,12 +51,13 @@ struct LanguageSelectionCard: View {
                 if language != AppLanguage.allCases.last {
                     Divider()
                         .padding(.leading, 60)
+                        .background(Color.themeDivider)
                 }
             }
         }
-        .background(Color.white)
+        .background(Color.themeCard)
         .cornerRadius(16)
-        .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
+        .shadow(color: Color.themeShadow, radius: 8, x: 0, y: 2)
     }
 }
 
@@ -71,7 +73,7 @@ struct LanguageOptionRow: View {
                 // Flag + Language Name
                 Text(language.displayNameWithFlag)
                     .font(.system(size: 16))
-                    .foregroundColor(.primary)
+                    .foregroundColor(.themePrimary)
                 
                 Spacer()
                 
@@ -79,11 +81,11 @@ struct LanguageOptionRow: View {
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 20))
-                        .foregroundColor(Color(hex: "6366F1"))
+                        .foregroundColor(.accentPurple)
                 } else {
                     Image(systemName: "circle")
                         .font(.system(size: 20))
-                        .foregroundColor(.gray.opacity(0.3))
+                        .foregroundColor(.themeTertiary)
                 }
             }
             .padding(.horizontal, 16)
@@ -99,13 +101,28 @@ struct LanguageSelectionCard_Previews: PreviewProvider {
     @State static var language = AppLanguage.turkish
     
     static var previews: some View {
-        LanguageSelectionCard(
-            selectedLanguage: $language,
-            onLanguageChange: { lang in
-                print("Language changed to: \(lang.displayName)")
-            }
-        )
-        .padding()
-        .background(Color.gray.opacity(0.1))
+        Group {
+            LanguageSelectionCard(
+                selectedLanguage: $language,
+                onLanguageChange: { lang in
+                    print("Language changed to: \(lang.displayName)")
+                }
+            )
+            .padding()
+            .background(Color.themeBackground)
+            .preferredColorScheme(.light)
+            .previewDisplayName("Light Theme")
+            
+            LanguageSelectionCard(
+                selectedLanguage: $language,
+                onLanguageChange: { lang in
+                    print("Language changed to: \(lang.displayName)")
+                }
+            )
+            .padding()
+            .background(Color.themeBackground)
+            .preferredColorScheme(.dark)
+            .previewDisplayName("Dark Theme")
+        }
     }
 }

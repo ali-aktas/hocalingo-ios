@@ -2,7 +2,7 @@
 //  StudyViewModel.swift
 //  HocaLingo
 //
-//  ✅ UPDATED: 20 vibrant card colors - Android parity
+//  ✅ UPDATED: Removed mixed study direction (only EN→TR and TR→EN)
 //  Location: HocaLingo/Features/Study/StudyViewModel.swift
 //
 
@@ -61,39 +61,36 @@ class StudyViewModel: ObservableObject {
     @Published var studyDirection: StudyDirection = .enToTr
     @Published var shouldDismiss: Bool = false
     @Published var isSessionComplete: Bool = false
-    @Published var showNativeAd: Bool = false  // ✅ NEW: Ad support
+    @Published var cardsCompletedCount: Int = 0
+    @Published var showNativeAd: Bool = false  // ✅ For ad support
+    
+    // MARK: - Dependencies
+    private let userDefaults = UserDefaultsManager.shared
+    private let jsonLoader = JSONLoader()
+    private let soundManager = SoundManager.shared
+    private let ttsManager = TTSManager.shared
     
     // MARK: - Private Properties
     private var allWords: [Word] = []
     private var currentProgress: [Int: Progress] = [:]
-    private let jsonLoader = JSONLoader()
     private var currentSessionMaxPosition: Int = 0
-    private var cancellables = Set<AnyCancellable>()
-    private var isFirstLoad: Bool = true
     private var ttsPlayedForCurrentCard: Bool = false
-    private var cardsCompletedCount: Int = 0  // ✅ NEW: For ad triggers
-    
-    // Managers
-    private let soundManager = SoundManager.shared
-    private let ttsManager = TTSManager.shared
-    private let userDefaults = UserDefaultsManager.shared
+    private var cancellables = Set<AnyCancellable>()
     
     // MARK: - Initialization
     init() {
+        observeDirectionChanges()
         loadStudyQueue()
-        setupDirectionObserver()
     }
     
-    // MARK: - Setup
-    
-    private func setupDirectionObserver() {
-        NotificationCenter.default.publisher(for: .studyDirectionChanged)
-            .sink { [weak self] notification in
-                if let newDirection = notification.object as? StudyDirection {
-                    print("📡 Direction changed to: \(newDirection.displayName)")
-                    self?.studyDirection = newDirection
-                    self?.loadStudyQueue()
-                }
+    private func observeDirectionChanges() {
+        NotificationCenter.default.publisher(for: NSNotification.Name("StudyDirectionChanged"))
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                let newDirection = UserDefaultsManager.shared.loadStudyDirection()
+                print("📡 Direction changed to: \(newDirection.displayName)")
+                self.studyDirection = newDirection
+                self.loadStudyQueue()
             }
             .store(in: &cancellables)
     }
@@ -133,7 +130,7 @@ class StudyViewModel: ObservableObject {
             
             currentCardIndex = 0
             isSessionComplete = studyQueue.isEmpty
-            cardsCompletedCount = 0  // ✅ Reset ad counter
+            cardsCompletedCount = 0
             
         } catch {
             print("❌ Load queue error: \(error)")
@@ -154,19 +151,19 @@ class StudyViewModel: ObservableObject {
         print("📊 Loaded progress for \(currentProgress.count) words")
     }
     
+    // ✅ UPDATED: Removed .mixed case
     private func getFrontText(for word: Word) -> String {
         switch studyDirection {
         case .enToTr: return word.english
         case .trToEn: return word.turkish
-        case .mixed: return Bool.random() ? word.english : word.turkish
         }
     }
     
+    // ✅ UPDATED: Removed .mixed case
     private func getBackText(for word: Word) -> String {
         switch studyDirection {
         case .enToTr: return word.turkish
         case .trToEn: return word.english
-        case .mixed: return studyQueue[currentCardIndex].frontText == word.english ? word.turkish : word.english
         }
     }
     
@@ -227,12 +224,12 @@ class StudyViewModel: ObservableObject {
         getCurrentTimeText(for: .easy)
     }
     
-    /// ✅ UPDATED: Uses Android's 20 vibrant colors
     var currentCardColor: Color {
         let colorIndex = abs(currentCard.wordId) % studyCardColors.count
         return studyCardColors[colorIndex]
     }
     
+    // ✅ UPDATED: Removed .mixed case
     var currentExampleSentence: String {
         guard let word = allWords.first(where: { $0.id == currentCard.wordId }) else { return "" }
         
@@ -241,12 +238,6 @@ class StudyViewModel: ObservableObject {
             return isCardFlipped ? word.example.tr : word.example.en
         case .trToEn:
             return isCardFlipped ? word.example.en : word.example.tr
-        case .mixed:
-            if currentCard.frontText == word.english {
-                return isCardFlipped ? word.example.tr : word.example.en
-            } else {
-                return isCardFlipped ? word.example.en : word.example.tr
-            }
         }
     }
     
@@ -286,8 +277,7 @@ class StudyViewModel: ObservableObject {
     func replayAudio() {
         guard let word = allWords.first(where: { $0.id == currentCard.wordId }) else { return }
         
-        // ✅ CRITICAL FIX: ALWAYS speak English word (regardless of direction)
-        // TTS button is always on the English side
+        // ✅ CRITICAL: ALWAYS speak English word (regardless of direction)
         ttsManager.speak(text: word.english, languageCode: "en")
     }
     
@@ -304,90 +294,61 @@ class StudyViewModel: ObservableObject {
         let card = currentCard
         let quality = difficulty.quality
         
-        let oldProgress = currentProgress[card.wordId] ?? Progress(
-            wordId: card.wordId,
-            direction: studyDirection
-        )
+        let oldProgress = currentProgress[card.wordId] ?? Progress(wordId: card.wordId, direction: studyDirection)
         
-        let wasInLearning = oldProgress.learningPhase
-        
-        var progress = SpacedRepetition.calculateNextReview(
+        let newProgress = SpacedRepetition.calculateNextReview(
             currentProgress: oldProgress,
             quality: quality,
             currentSessionMaxPosition: currentSessionMaxPosition
         )
         
-        let isNowInReview = !progress.learningPhase
-        let hasGraduated = wasInLearning && isNowInReview
+        currentProgress[card.wordId] = newProgress
+        userDefaults.saveProgress(newProgress, for: card.wordId, direction: studyDirection)  // ✅ FIXED: Add missing parameters
         
-        currentProgress[card.wordId] = progress
-        
-        userDefaults.saveProgress(
-            progress,
-            for: card.wordId,
-            direction: studyDirection
-        )
-        
-        print("📝 Progress updated:")
-        print("   - Word ID: \(card.wordId)")
-        print("   - Direction: \(progress.direction.displayName)")
-        print("   - Quality: \(quality)")
-        print("   - HAS GRADUATED: \(hasGraduated)")
-        
-        if hasGraduated {
-            userDefaults.incrementDailyGraduations()
-            userDefaults.updateMasteredWordsCount()
-            print("🎓 WORD GRADUATED! Daily progress +1")
+        if newProgress.learningPhase && newProgress.sessionPosition ?? 0 > currentSessionMaxPosition {
+            currentSessionMaxPosition = newProgress.sessionPosition ?? 0
         }
         
-        userDefaults.incrementCardsStudied()
-        
-        ttsPlayedForCurrentCard = false
-        
-        // ✅ YÖNTEM 3: Two-Phase Animation
-        guard isCardFlipped else {
-            // Kart zaten false ise direkt geç
-            moveToNextCard()
-            return
-        }
-        
-        // 1. Flip back animasyonu başlat (0.25 saniye)
-        withAnimation(.spring(response: 0.25, dampingFraction: 0.9)) {
-            isCardFlipped = false
-        }
-        
-        // 2. Flip yarı noktasında (90°) content değiştir
-        // Timing: 0.12 saniye = flip animasyonunun yarısı
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) { [weak self] in
-            self?.moveToNextCard()  // Renk ve kelimeler değişir
-        }
+        // Move to next card with animation
+        moveToNextCard()
     }
     
     private func moveToNextCard() {
-        currentCardIndex += 1
+        soundManager.playSwipeRight()  // ✅ FIXED: Use correct method name
+        
         cardsCompletedCount += 1
         
-        // ✅ ANDROID PARITY: Show ad every 12 cards
-        if cardsCompletedCount % 12 == 0 && cardsCompletedCount > 0 {
-            showNativeAd = true
-            print("📢 Showing native ad (12 cards completed)")
+        if currentCardIndex < studyQueue.count - 1 {
+            withAnimation(.easeInOut(duration: 0.3)) {
+                currentCardIndex += 1
+                isCardFlipped = false
+                ttsPlayedForCurrentCard = false
+            }
+            
+            // ✅ Show ad every 12 cards (Android parity)
+            if cardsCompletedCount % 12 == 0 && cardsCompletedCount > 0 {
+                showNativeAd = true
+                print("📢 Showing native ad (12 cards completed)")
+            }
+        } else {
+            isSessionComplete = true
         }
         
-        if currentCardIndex >= studyQueue.count {
-            isSessionComplete = true
-            print("✅ Study session complete!")
-        }
+        updateUserStats()
     }
     
-    /// ✅ NEW: Close native ad
+    /// ✅ Close native ad and continue studying
     func closeNativeAd() {
         withAnimation {
             showNativeAd = false
         }
+        print("❌ Native ad closed")
     }
-}
-
-// MARK: - Notification Names
-extension Notification.Name {
-    static let studyDirectionChanged = Notification.Name("studyDirectionChanged")
+    
+    private func updateUserStats() {
+        var stats = userDefaults.loadUserStats()
+        stats.wordsLearned += 1  // ✅ FIXED: Use correct property name
+        stats.totalStudyTime += 1
+        userDefaults.saveUserStats(stats)
+    }
 }

@@ -53,7 +53,7 @@ struct PackageSelectionView: View {
                             .padding(.horizontal, 20)
                         }
                         .padding(.top, 20)
-                        .padding(.bottom, 100) // Space for bottom nav
+                        .padding(.bottom, 50) // Space for bottom nav
                     }
                 }
             }

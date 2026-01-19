@@ -70,6 +70,7 @@
 				"Core/Storage/UserDefaultsManager+Home.swift",
 				"Core/Storage/UserDefaultsManager+Language.swift",
 				"Core/Storage/UserDefaultsManager+Stats.swift",
+				"Core/Utils/Color+Theme.swift",
 				Core/Utils/ColorExtension.swift,
 				Core/Utils/SoundManager.swift,
 				Core/Utils/SpacedRepetition.swift,

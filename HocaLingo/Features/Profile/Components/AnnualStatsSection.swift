@@ -2,13 +2,13 @@
 //  AnnualStatsSection.swift
 //  HocaLingo
 //
-//  Annual statistics section - displays 3 key yearly metrics
+//  ✅ REDESIGNED: Compact horizontal 3-card layout for annual statistics
 //  Location: HocaLingo/Features/Profile/Components/AnnualStatsSection.swift
 //
 
 import SwiftUI
 
-// MARK: - Annual Stats Section
+// MARK: - Annual Stats Section (COMPACT LAYOUT)
 struct AnnualStatsSection: View {
     let annualStats: AnnualStats
     
@@ -18,91 +18,110 @@ struct AnnualStatsSection: View {
             HStack {
                 Text("annual_stats_title")
                     .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.primary)
+                    .foregroundColor(.themePrimary)
                 Spacer()
             }
             
-            // Stats Grid (3 cards)
-            VStack(spacing: 12) {
-                // Row 1: Active Days
-                AnnualStatCard(
+            // Compact 3-card horizontal layout
+            HStack(spacing: 12) {
+                // Active Days Card
+                CompactStatCard(
                     icon: "calendar.circle.fill",
                     title: "annual_stats_days_label",
                     value: "\(annualStats.activeDaysThisYear)",
-                    color: Color(hex: "10B981")
+                    color: .accentGreen
                 )
                 
-                // Row 2: Study Hours
-                AnnualStatCard(
+                // Study Hours Card
+                CompactStatCard(
                     icon: "clock.circle.fill",
                     title: "annual_stats_hours_label",
                     value: "\(annualStats.studyHoursThisYear)",
-                    color: Color(hex: "6366F1")
+                    color: .accentPurple
                 )
                 
-                // Row 3: Words Skipped
-                AnnualStatCard(
+                // Words Skipped Card
+                CompactStatCard(
                     icon: "hand.raised.circle.fill",
                     title: "annual_stats_skipped_label",
                     value: "\(annualStats.wordsSkippedThisYear)",
-                    color: Color(hex: "F59E0B")
+                    color: .accentOrange
                 )
             }
         }
     }
 }
 
-// MARK: - Annual Stat Card
-struct AnnualStatCard: View {
+// MARK: - Compact Stat Card (Small Card Design)
+struct CompactStatCard: View {
     let icon: String
     let title: String
     let value: String
     let color: Color
     
     var body: some View {
-        HStack(spacing: 16) {
-            // Icon
+        VStack(spacing: 8) {
+            // Icon Circle
             ZStack {
                 Circle()
-                    .fill(color.opacity(0.1))
-                    .frame(width: 48, height: 48)
+                    .fill(color.opacity(0.15))
+                    .frame(width: 44, height: 44)
                 
                 Image(systemName: icon)
-                    .font(.system(size: 24))
+                    .font(.system(size: 20))
                     .foregroundColor(color)
             }
             
-            // Text Content
-            VStack(alignment: .leading, spacing: 4) {
-                Text(title)
-                    .font(.system(size: 14))
-                    .foregroundColor(.secondary)
-                
-                Text(value)
-                    .font(.system(size: 24, weight: .bold))
-                    .foregroundColor(.primary)
-            }
+            // Value
+            Text(value)
+                .font(.system(size: 22, weight: .bold))
+                .foregroundColor(.themePrimary)
+                .lineLimit(1)
             
-            Spacer()
+            // Label
+            Text(title)
+                .font(.system(size: 11, weight: .medium))
+                .foregroundColor(.themeSecondary)
+                .multilineTextAlignment(.center)
+                .lineLimit(2)
+                .fixedSize(horizontal: false, vertical: true)
         }
-        .padding(16)
-        .background(Color.white)
+        .frame(maxWidth: .infinity)
+        .padding(.vertical, 16)
+        .padding(.horizontal, 8)
+        .background(Color.themeCard)
         .cornerRadius(12)
-        .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
+        .shadow(color: Color.themeShadow, radius: 6, x: 0, y: 2)
     }
 }
 
 // MARK: - Preview
 struct AnnualStatsSection_Previews: PreviewProvider {
     static var previews: some View {
-        AnnualStatsSection(
-            annualStats: AnnualStats(
-                activeDaysThisYear: 45,
-                studyHoursThisYear: 23,
-                wordsSkippedThisYear: 120
+        Group {
+            AnnualStatsSection(
+                annualStats: AnnualStats(
+                    activeDaysThisYear: 45,
+                    studyHoursThisYear: 23,
+                    wordsSkippedThisYear: 120
+                )
             )
-        )
-        .padding()
-        .background(Color.gray.opacity(0.1))
+            .padding()
+            .background(Color.themeBackground)
+            .preferredColorScheme(.light)
+            .previewDisplayName("Light Theme")
+            
+            AnnualStatsSection(
+                annualStats: AnnualStats(
+                    activeDaysThisYear: 45,
+                    studyHoursThisYear: 23,
+                    wordsSkippedThisYear: 120
+                )
+            )
+            .padding()
+            .background(Color.themeBackground)
+            .preferredColorScheme(.dark)
+            .previewDisplayName("Dark Theme")
+        }
     }
 }
