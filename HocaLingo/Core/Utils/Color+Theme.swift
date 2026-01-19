@@ -2,7 +2,10 @@
 //  Color+Theme.swift
 //  HocaLingo
 //
-//  Theme-aware color system for light/dark mode support
+//  ✅ UPDATED: Added dynamic button colors for light/dark mode
+//  Light mode: Orange (FB9322)
+//  Dark mode: Purple (9333EA)
+//
 //  Location: HocaLingo/Core/Utils/Color+Theme.swift
 //
 
@@ -86,6 +89,50 @@ extension Color {
             traitCollection.userInterfaceStyle == .dark
                 ? UIColor(Color(hex: "3C3C3E"))  // Dark theme
                 : UIColor(Color(hex: "E5E7EB"))  // Light theme
+        })
+    }
+    
+    // MARK: - ✅ NEW: Dynamic Button Colors (Light/Dark Mode)
+    
+    /// Primary button color - adapts to theme
+    /// Light mode: Orange (FB9322)
+    /// Dark mode: Purple (9333EA)
+    static var themePrimaryButton: Color {
+        Color(UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor(Color(hex: "9333EA"))  // Dark mode: Purple
+                : UIColor(Color(hex: "FB9322"))  // Light mode: Orange
+        })
+    }
+    
+    /// Primary button gradient start - adapts to theme
+    static var themePrimaryButtonGradientStart: Color {
+        Color(UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor(Color(hex: "9333EA"))  // Dark mode: Purple
+                : UIColor(Color(hex: "FB9322"))  // Light mode: Orange
+        })
+    }
+    
+    /// Primary button gradient end - adapts to theme
+    static var themePrimaryButtonGradientEnd: Color {
+        Color(UIColor { traitCollection in
+            traitCollection.userInterfaceStyle == .dark
+                ? UIColor(Color(hex: "7C3AED"))  // Dark mode: Darker Purple
+                : UIColor(Color(hex: "FF6B00"))  // Light mode: Darker Orange
+        })
+    }
+    
+    /// Primary button shadow color - adapts to theme
+    static var themePrimaryButtonShadow: Color {
+        Color(UIColor { traitCollection in
+            if traitCollection.userInterfaceStyle == .dark {
+                // Dark mode: Purple shadow with alpha
+                return UIColor(red: 147/255, green: 51/255, blue: 234/255, alpha: 0.4)
+            } else {
+                // Light mode: Orange shadow with alpha
+                return UIColor(red: 251/255, green: 147/255, blue: 34/255, alpha: 0.4)
+            }
         })
     }
     

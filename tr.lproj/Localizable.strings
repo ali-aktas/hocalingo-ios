@@ -2,8 +2,8 @@
   Localizable.strings (Turkish)
   HocaLingo
 
-  ✅ UPDATED: All Android strings ported to iOS
-  Created by Auralian on 15.01.2026.
+  ✅ UPDATED: Added 10 motivation texts for hero card
+  Created by Auralian on 19.01.2026.
   
 */
 
@@ -33,18 +33,38 @@
 "home_greeting_afternoon" = "İyi günler! 🌤️";
 "home_greeting_evening" = "İyi akşamlar! 🌙";
 "home_greeting_night" = "İyi geceler! ✨";
-"stat_streak_days" = "Gün Serisi";
+
+// ✅ NEW: Motivation Texts (10 total)
+"motivation_1" = "Sadece 10 dakika ile bir yıl sonra bin kelime öğrenebilirsin";
+"motivation_2" = "Kelimeleri anlamaya başladığında İngilizcenin ne kadar kolay olduğunu göreceksin";
+"motivation_3" = "Küçük adımlar, büyük hedefler yaratır";
+"motivation_4" = "Her kelime seni hedefe bir adım daha yaklaştırıyor";
+"motivation_5" = "Pratik mükemmelleştirir, hadi başlayalım!";
+"motivation_6" = "İngilizce yolculuğun devam ediyor, bugün de harikasın!";
+"motivation_7" = "Bugün öğrenmek için harika bir gün";
+"motivation_8" = "Başarı sabırla gelir, devam et!";
+"motivation_9" = "İngilizce dünyasına hoş geldin";
+"motivation_10" = "Momentumunu koru, ilerlemeye devam!";
+
+// Stats
+"stat_streak_days" = "Günlük Seri";
 "stat_today_words" = "Bugünkü Kelimeler";
 "stat_total_learned" = "Toplam Öğrenilen";
 "stat_this_month_days" = "Bu Ay Aktif Günler";
 "stat_this_month_time" = "Bu Ay Çalışma Süresi";
 "stat_discipline_score" = "Disiplin Puanı";
+"stat_active_days" = "Aktif Gün";
+"stat_study_time_min" = "dakika";
+"stat_monthly_stats" = "Bu ayın istatistikleri";
+
+// Actions
 "action_start_study" = "Çalışmaya Başla";
 "action_select_package" = "Paket Seç";
 "action_select_package_desc" = "Öğrenmek için kelime seç";
 "action_ai_assistant" = "AI Asistan";
 "action_ai_assistant_desc" = "AI'dan yardım al";
 "action_add_word" = "Kelime Ekle";
+"action_add_word_desc" = "Kendi kelimeni ekle";
 
 // MARK: - Study Screen
 "study_title" = "Çalışma";
@@ -122,60 +142,7 @@
 "add_word_example_en" = "İngilizce Örnek Cümle (opsiyonel)";
 "add_word_example_tr" = "Türkçe Örnek Cümle (opsiyonel)";
 "add_word_save" = "Kaydet";
-"add_word_success" = "Kelime başarıyla eklendi!";
+"add_word_success" = "Kelime başarıyla eklendi! 🎉";
 "add_word_error" = "Kelime eklenirken hata oluştu";
 "add_word_info" = "Kendi kelimelerinizi ekleyerek çalışma listenizi özelleştirin";
-
-// MARK: - AI Assistant
-"ai_title" = "AI Asistan";
-"ai_subtitle" = "Öğrendiğiniz kelimelerle hikayeler";
-"ai_premium_required" = "Bu özellik Premium üyelik gerektirir";
-"ai_generate_story" = "Hikaye Oluştur";
-"ai_coming_soon" = "Yakında...";
-
-// MARK: - Empty States
-"empty_words_title" = "Henüz kelime yok";
-"empty_words_subtitle" = "Kelime paketi seçin veya kendi kelimelerinizi ekleyin";
-"empty_study_title" = "Çalışılacak kelime yok";
-"empty_study_subtitle" = "Yeni kelimeler seçin";
-"empty_package_title" = "Bu paketteki tüm kelimeleri tamamladınız!";
-"empty_package_subtitle" = "Başka bir paket seçebilirsiniz";
-
-// MARK: - Error Messages
-"error_network" = "İnternet bağlantınızı kontrol edin";
-"error_unknown" = "Beklenmeyen bir hata oluştu";
-"error_no_words" = "Çalışılacak kelime yok";
-
-// MARK: - Success Messages
-"success_word_added" = "Kelime başarıyla eklendi!";
-"success_study_completed" = "Harika! Bugünkü hedefini tamamladın!";
-"success_changes_saved" = "Değişiklikler kaydedildi";
-
-// MARK: - Profile Screen - YENİ EKLENTİLER Profile Yenilemesi için
-
-// Yıllık İstatistikler
-"annual_stats_title" = "Bu Yıl";
-"annual_stats_days_label" = "Aktif Gün";
-"annual_stats_hours_label" = "Çalışma Saati";
-"annual_stats_skipped_label" = "Geçilen Kelime";
-
-// Dil Seçimi
-"language_selection_title" = "Arayüz Dili";
-"language_turkish" = "Türkçe";
-"language_english" = "English";
-"language_change_restart" = "Dil değişikliği için uygulama yeniden başlatılmalı";
-
-// Bildirim Ayarları
-"notification_time_picker_title" = "Günlük Hatırlatma Saati";
-"notification_time_picker_message" = "Günlük çalışma hatırlatmanızı almak istediğiniz saati seçin";
-"notification_scheduled" = "%@ için günlük hatırlatma ayarlandı";
-"notification_permission_denied" = "Bildirim izni reddedildi. Ayarlar'dan etkinleştirin.";
-
-// Çalışma Yönü Kartı
-"study_direction_card_title" = "Çalışma Yönü";
-"study_direction_card_subtitle" = "Nasıl öğrenmek istediğinizi seçin";
-"study_direction_changed" = "Çalışma yönü güncellendi";
-
-// Tema Ayarları
-"theme_changed" = "Tema güncellendi";
-"theme_restart_info" = "Bazı arayüz öğeleri için uygulama yeniden başlatılması gerekebilir";
+"add_word_required" = "Bu alan zorunludur";

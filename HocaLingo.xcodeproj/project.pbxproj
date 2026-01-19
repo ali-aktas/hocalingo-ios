@@ -70,6 +70,7 @@
 				"Core/Storage/UserDefaultsManager+Home.swift",
 				"Core/Storage/UserDefaultsManager+Language.swift",
 				"Core/Storage/UserDefaultsManager+Stats.swift",
+				"Core/Storage/UserDefaultsManager+UserWords.swift",
 				"Core/Utils/Color+Theme.swift",
 				Core/Utils/ColorExtension.swift,
 				Core/Utils/SoundManager.swift,
@@ -77,6 +78,7 @@
 				Core/Utils/ThemeViewModel.swift,
 				Core/Utils/TTSManager.swift,
 				en_tr_a1_001.json,
+				Features/Home/AddWordDialogView.swift,
 				Features/Home/HomeUiState.swift,
 				Features/Home/HomeView.swift,
 				Features/Home/HomeViewModel.swift,
@@ -127,7 +129,9 @@
 				"Core/Storage/UserDefaultsManager+Home.swift",
 				"Core/Storage/UserDefaultsManager+Language.swift",
 				"Core/Storage/UserDefaultsManager+Stats.swift",
+				"Core/Storage/UserDefaultsManager+UserWords.swift",
 				en_tr_a1_001.json,
+				Features/Home/AddWordDialogView.swift,
 				Features/Home/HomeUiState.swift,
 				Features/Home/HomeView.swift,
 				Features/Home/HomeViewModel.swift,
@@ -561,7 +565,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -594,7 +598,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

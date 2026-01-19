@@ -2,24 +2,29 @@
 //  HomeView.swift
 //  HocaLingo
 //
-//  ✅ COMPLETE REDESIGN - 100% Android parity with all features
+//  ✅ COMPLETE REDESIGN v2.0:
+//  - Hero card with motivation rotation (1 img - 3 text - 1 img - 3 text - 1 img - 4 text)
+//  - 2x2 Stats grid with mini charts (like the reference image)
+//  - Theme-aware buttons with PNG icons
+//  - Full localization support
+//
 //  Location: HocaLingo/Features/Home/HomeView.swift
 //
 
 import SwiftUI
-import Combine  // ✅ FIXED: Added for Timer.autoconnect()
+import Combine
+import Charts  // ✅ iOS 17+ Charts framework
 
 // MARK: - Home View
-/// Premium Home Dashboard - Production-grade matching Android exactly
+/// Premium Home Dashboard - Production-grade with motivation rotation
 struct HomeView: View {
     
     @StateObject private var viewModel = HomeViewModel()
-    @State private var showAddWordDialog = false
-    @State private var animateHero = false
-    @State private var currentMascotIndex = 0
+    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.themeViewModel) private var themeViewModel
     
-    // ✅ NEW: For mascot rotation timer
-    private let mascotTimer = Timer.publish(every: 40, on: .main, in: .common).autoconnect()
+    // ✅ Timer for 40-second rotation
+    private let rotationTimer = Timer.publish(every: 40, on: .main, in: .common).autoconnect()
     
     var body: some View {
         NavigationStack {
@@ -29,7 +34,7 @@ struct HomeView: View {
                     .ignoresSafeArea()
                 
                 if viewModel.uiState.isLoading {
-                    ProgressView("Loading...")
+                    ProgressView(NSLocalizedString("loading", comment: ""))
                 } else {
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: 24) {
@@ -37,27 +42,27 @@ struct HomeView: View {
                             // 1. HocaLingo Title (CENTER + BLACK)
                             titleSection
                             
-                            // 2. Hero card (Play + Maskot + Motivasyon)
+                            // 2. Hero card (Play + Image/Motivation rotation)
                             heroCard
                             
                             // 3. Monthly Stats Title
                             statsTitle
                             
-                            // 4. Stats cards (ANDROID PARITY)
-                            androidStatsGrid
+                            // 4. 2x2 Stats Grid (Premium cards with mini charts)
+                            statsGrid2x2
                             
-                            // 5. Action buttons
+                            // 5. Action buttons (with PNGs)
                             actionButtonsSection
                             
                         }
                         .padding(.horizontal, 20)
-                        .padding(.top, 12)  // For safe area
+                        .padding(.top, 12)
                         .padding(.bottom, 52) // Space for bottom nav
                     }
                 }
             }
             .navigationBarHidden(true)
-            // ✅ NEW: Navigation destinations
+            // Navigation destinations
             .navigationDestination(isPresented: $viewModel.shouldNavigateToStudy) {
                 StudyView()
             }
@@ -69,248 +74,359 @@ struct HomeView: View {
                     .font(.title)
                     .padding()
             }
-        }
-        // ✅ NEW: ADD WORD Dialog
-        .sheet(isPresented: $viewModel.shouldShowAddWordDialog) {
-            AddWordDialogView()
-        }
-        .onReceive(mascotTimer) { _ in
-            rotateMascot()
-        }
-        .onAppear {
-            withAnimation(.spring(response: 0.6, dampingFraction: 0.7).delay(0.2)) {
-                animateHero = true
+            // Add Word Dialog
+            .sheet(isPresented: $viewModel.shouldShowAddWordDialog) {
+                AddWordDialogView()
+            }
+            // 40-second rotation
+            .onReceive(rotationTimer) { _ in
+                viewModel.rotateHeroContent()
             }
         }
     }
-    
-    // MARK: - Mascot Rotation
-    private func rotateMascot() {
-        withAnimation(.easeInOut(duration: 0.5)) {
-            currentMascotIndex = (currentMascotIndex + 1) % mascotImages.count
-        }
-    }
-    
-    /// ✅ REAL MASCOT IMAGES
-    private let mascotImages = ["lingohoca1", "lingohoca2", "lingohoca3"]
 }
 
-// MARK: - Title Section (CENTER + BLACK)
+// MARK: - Title Section
 private extension HomeView {
     var titleSection: some View {
-        Text("HocaLingo")
-            .font(.system(size: 32, weight: .black))  // ✅ BLACK weight like Android
+        Text(NSLocalizedString("home_title", comment: ""))
+            .font(.system(size: 32, weight: .black))
             .foregroundColor(.primary)
-            .frame(maxWidth: .infinity, alignment: .center)  // ✅ CENTER aligned
+            .frame(maxWidth: .infinity, alignment: .center)
     }
 }
 
-// MARK: - Hero Card (Play + Maskot + Motivasyon)
+// MARK: - Hero Card (Play Button + Image/Motivation Rotation)
 private extension HomeView {
     var heroCard: some View {
         HStack(alignment: .center, spacing: 16) {
             
-            // ✅ LEFT: Play Button
-            Button {
-                viewModel.onEvent(.startStudy)
-            } label: {
-                ZStack {
-                    // Outer circle glow
-                    Circle()
-                        .fill(
-                            LinearGradient(
-                                colors: [
-                                    Color(hex: "FB9322").opacity(0.3),
-                                    Color(hex: "FB9322").opacity(0.1)
-                                ],
-                                startPoint: .top,
-                                endPoint: .bottom
-                            )
-                        )
-                        .frame(width: 100, height: 100)
-                        .blur(radius: 10)
-                    
-                    // Main circle
-                    Circle()
-                        .fill(
-                            LinearGradient(
-                                colors: [
-                                    Color(hex: "FB9322"),  // Android orange
-                                    Color(hex: "FF6B00")
-                                ],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                        .frame(width: 80, height: 80)
-                        .shadow(color: Color(hex: "FB9322").opacity(0.4), radius: 12, y: 6)
-                    
-                    // Play icon
-                    Image(systemName: "play.fill")
-                        .font(.system(size: 32, weight: .bold))
-                        .foregroundColor(.white)
-                        .offset(x: 3)  // Slight offset for visual balance
-                }
-            }
-            .scaleEffect(animateHero ? 1.0 : 0.8)
-            .animation(.spring(response: 0.6, dampingFraction: 0.7), value: animateHero)
+            // ✅ LEFT: Play Button (100x100, theme-aware)
+            playButton
             
             Spacer()
             
-            // ✅ RIGHT: REAL MASCOT (Android parity)
-                        Image(mascotImages[currentMascotIndex])
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 120, height: 120)
-                            .opacity(animateHero ? 1.0 : 0)
-                            .transition(.scale.combined(with: .opacity))
-                            .animation(.easeInOut(duration: 0.4), value: currentMascotIndex)
+            // ✅ RIGHT: Rotating Content (Image or Motivation Text)
+            rotatingContent
+            
         }
-        .padding(16)
+        .padding(20)
         .background(
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color(.secondarySystemBackground))
                 .shadow(color: .black.opacity(0.08), radius: 12, y: 4)
         )
     }
+    
+    var playButton: some View {
+        Button {
+            viewModel.onEvent(.startStudy)
+        } label: {
+            ZStack {
+                // Glow effect
+                Circle()
+                    .fill(playButtonGlowGradient)
+                    .frame(width: 120, height: 120)
+                    .blur(radius: 10)
+                
+                // Main circle (theme-aware)
+                Circle()
+                    .fill(playButtonGradient)
+                    .frame(width: 100, height: 100)
+                    .shadow(color: playButtonShadowColor, radius: 12, y: 6)
+                
+                // Play icon
+                Image(systemName: "play.fill")
+                    .font(.system(size: 36, weight: .bold))
+                    .foregroundColor(.white)
+                    .offset(x: 3)
+            }
+        }
+    }
+    
+    var rotatingContent: some View {
+        Group {
+            switch viewModel.currentContentType {
+            case .image(let index):
+                mascotImage(index: index)
+                
+            case .text(let index):
+                motivationTextView(index: index)
+            }
+        }
+        .frame(width: 140, height: 140)
+        .transition(.asymmetric(
+            insertion: .scale.combined(with: .opacity),
+            removal: .scale.combined(with: .opacity)
+        ))
+        .animation(.easeInOut(duration: 0.5), value: viewModel.currentContentType)
+    }
+    
+    func mascotImage(index: Int) -> some View {
+        let mascots = ["lingohoca1", "lingohoca2", "lingohoca3"]
+        return Image(mascots[index % mascots.count])
+            .resizable()
+            .scaledToFit()
+    }
+    
+    func motivationTextView(index: Int) -> some View {
+        Text(viewModel.getMotivationText(for: index))
+            .font(.system(size: 14, weight: .semibold))
+            .foregroundColor(.primary)
+            .multilineTextAlignment(.center)
+            .lineLimit(4)
+            .fixedSize(horizontal: false, vertical: true)
+    }
+    
+    // ✅ THEME-AWARE COLORS
+    var playButtonGradient: LinearGradient {
+        let isDark = themeViewModel.isDarkMode(in: colorScheme)
+        if isDark {
+            // Dark mode: Purple
+            return LinearGradient(
+                colors: [Color(hex: "9333EA"), Color(hex: "7C3AED")],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        } else {
+            // Light mode: Orange
+            return LinearGradient(
+                colors: [Color(hex: "FB9322"), Color(hex: "FF6B00")],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+        }
+    }
+    
+    var playButtonGlowGradient: LinearGradient {
+        let isDark = themeViewModel.isDarkMode(in: colorScheme)
+        if isDark {
+            return LinearGradient(
+                colors: [Color(hex: "9333EA").opacity(0.3), Color(hex: "9333EA").opacity(0.1)],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+        } else {
+            return LinearGradient(
+                colors: [Color(hex: "FB9322").opacity(0.3), Color(hex: "FB9322").opacity(0.1)],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+        }
+    }
+    
+    var playButtonShadowColor: Color {
+        let isDark = themeViewModel.isDarkMode(in: colorScheme)
+        return isDark ? Color(hex: "9333EA").opacity(0.4) : Color(hex: "FB9322").opacity(0.4)
+    }
 }
 
 // MARK: - Stats Title
 private extension HomeView {
     var statsTitle: some View {
-        Text("Bu ayın istatistikleri")  // ✅ Android text
+        Text(NSLocalizedString("stat_monthly_stats", comment: ""))
             .font(.system(size: 16, weight: .bold))
             .foregroundColor(.secondary)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
-// MARK: - Android Stats Grid (EXACT MATCH)
+// MARK: - 2x2 Stats Grid (Reference Image Style)
 private extension HomeView {
-    var androidStatsGrid: some View {
-        HStack(spacing: 12) {
+    var statsGrid2x2: some View {
+        VStack(spacing: 12) {
+            // Row 1
+            HStack(spacing: 12) {
+                // Streak Card (Purple gradient)
+                StatCardWithChart(
+                    title: NSLocalizedString("stat_streak_days", comment: ""),
+                    value: "\(viewModel.uiState.streakDays)",
+                    icon: "flame.fill",
+                    gradient: [Color(hex: "A78BFA"), Color(hex: "8B5CF6")],
+                    chartData: generateStreakChartData(),
+                    chartColor: Color.white.opacity(0.3)
+                )
+                
+                // Active Days Card (Pink gradient)
+                StatCardWithChart(
+                    title: NSLocalizedString("stat_active_days", comment: ""),
+                    value: "\(viewModel.uiState.monthlyStats.activeDaysThisMonth)",
+                    icon: "calendar.badge.checkmark",
+                    gradient: [Color(hex: "F9A8D4"), Color(hex: "F472B6")],
+                    chartData: generateActiveDaysChartData(),
+                    chartColor: Color.white.opacity(0.3)
+                )
+            }
             
-            // 1. Streak (Circular - Android style)
-            CircularStatCard(
-                icon: "flame.fill",
-                value: "\(viewModel.uiState.streakDays)",
-                label: "Günlük seri",
-                color: Color(hex: "FF6B6B")
-            )
-            
-            // 2. This Month Active Days
-            CircularStatCard(
-                icon: "calendar.badge.checkmark",
-                value: "\(viewModel.uiState.monthlyStats.activeDaysThisMonth)",
-                label: "Aktif gün",
-                color: Color(hex: "4ECDC4")
-            )
-            
-            // 3. This Month Study Time
-            CircularStatCard(
-                icon: "clock.fill",
-                value: viewModel.uiState.monthlyStats.formattedStudyTime,
-                label: "Çalışma",
-                color: Color(hex: "FFD93D")
-            )
-            
-            // 4. Discipline Score
-            CircularStatCard(
-                icon: "chart.line.uptrend.xyaxis",
-                value: "\(viewModel.uiState.monthlyStats.disciplineScore)",
-                label: "Disiplin",
-                color: Color(hex: "A03BDF")
-            )
+            // Row 2
+            HStack(spacing: 12) {
+                // Study Time Card (Cyan gradient)
+                StatCardWithChart(
+                    title: NSLocalizedString("stat_this_month_time", comment: ""),
+                    value: "\(viewModel.uiState.monthlyStats.studyTimeThisMonth)",
+                    subtitle: NSLocalizedString("stat_study_time_min", comment: ""),
+                    icon: "clock.fill",
+                    gradient: [Color(hex: "67E8F9"), Color(hex: "22D3EE")],
+                    chartData: generateStudyTimeChartData(),
+                    chartColor: Color.white.opacity(0.3)
+                )
+                
+                // Discipline Score Card (Orange gradient)
+                StatCardWithChart(
+                    title: NSLocalizedString("stat_discipline_score", comment: ""),
+                    value: "\(viewModel.uiState.monthlyStats.disciplineScore)%",
+                    icon: "star.fill",
+                    gradient: [Color(hex: "FDBA74"), Color(hex: "FB923C")],
+                    chartData: generateDisciplineChartData(),
+                    chartColor: Color.white.opacity(0.3)
+                )
+            }
         }
+    }
+    
+    // Chart data generators (simple trend lines)
+    func generateStreakChartData() -> [Double] {
+        // Simple upward trend
+        return [3, 4, 5, 6, 7, Double(viewModel.uiState.streakDays)]
+    }
+    
+    func generateActiveDaysChartData() -> [Double] {
+        // Monthly progress
+        let days = Double(viewModel.uiState.monthlyStats.activeDaysThisMonth)
+        return [days * 0.3, days * 0.5, days * 0.7, days * 0.85, days * 0.95, days]
+    }
+    
+    func generateStudyTimeChartData() -> [Double] {
+        // Study time trend
+        let time = Double(viewModel.uiState.monthlyStats.studyTimeThisMonth)
+        return [time * 0.2, time * 0.4, time * 0.6, time * 0.8, time * 0.9, time]
+    }
+    
+    func generateDisciplineChartData() -> [Double] {
+        // Discipline trend
+        let score = Double(viewModel.uiState.monthlyStats.disciplineScore)
+        return [score * 0.4, score * 0.6, score * 0.75, score * 0.85, score * 0.92, score]
     }
 }
 
-// MARK: - Action Buttons Section
+// MARK: - Action Buttons (With PNGs)
 private extension HomeView {
     var actionButtonsSection: some View {
-        VStack(spacing: 14) {
+        VStack(spacing: 12) {
             
-            // Package Selection
-            WideActionButton(
-                icon: "square.grid.2x2.fill",
-                title: "Kelime Paketi Seç",
-                subtitle: "Çalışma destene yeni kelimeler ekle",
-                baseColor: Color(hex: "4ECDC4"),
-                action: {
-                    viewModel.onEvent(.navigateToPackageSelection)
-                }
+            // 1. Package Selection Button
+            ActionButtonWithIcon(
+                iconName: "card_icon",
+                title: NSLocalizedString("action_select_package", comment: ""),
+                subtitle: NSLocalizedString("action_select_package_desc", comment: ""),
+                baseColor: themeAccentColor,
+                action: { viewModel.onEvent(.navigateToPackageSelection) }
             )
             
-            // ✅ NEW: ADD WORD Button
-            WideActionButton(
-                icon: "plus.circle.fill",
-                title: "Kelime Ekle",
-                subtitle: "Kendi kelimelerini ekle",
-                baseColor: Color(hex: "FF9500"),
-                action: {
-                    viewModel.onEvent(.showAddWordDialog)
-                }
+            // 2. Add Word Button
+            ActionButtonWithIcon(
+                iconName: "add_img",
+                title: NSLocalizedString("action_add_word", comment: ""),
+                subtitle: NSLocalizedString("action_add_word_desc", comment: ""),
+                baseColor: themeAccentColor,
+                action: { viewModel.onEvent(.showAddWordDialog) }
             )
             
-            // AI Assistant
-            WideActionButton(
-                icon: "sparkles",
-                title: "Yapay Zeka Asistanı",
-                subtitle: "Çalışma destene özel hikaye yazarı",
-                baseColor: Color(hex: "A03BDF"),
-                action: {
-                    viewModel.onEvent(.navigateToAIAssistant)
-                }
+            // 3. AI Assistant Button
+            ActionButtonWithIcon(
+                iconName: "ai_icon",
+                title: NSLocalizedString("action_ai_assistant", comment: ""),
+                subtitle: NSLocalizedString("action_ai_assistant_desc", comment: ""),
+                baseColor: themeAccentColor,
+                action: { viewModel.onEvent(.navigateToAIAssistant) }
             )
         }
     }
+    
+    var themeAccentColor: Color {
+        let isDark = themeViewModel.isDarkMode(in: colorScheme)
+        return isDark ? Color(hex: "9333EA") : Color(hex: "FB9322")
+    }
 }
 
-// MARK: - Circular Stat Card (Android Style)
-struct CircularStatCard: View {
-    let icon: String
+// MARK: - Stat Card With Mini Chart (2x2 Grid Style)
+struct StatCardWithChart: View {
+    let title: String
     let value: String
-    let label: String
-    let color: Color
+    var subtitle: String = ""
+    let icon: String
+    let gradient: [Color]
+    let chartData: [Double]
+    let chartColor: Color
     
     var body: some View {
-        VStack(spacing: 8) {
-            // Icon circle
-            ZStack {
-                Circle()
-                    .fill(color.opacity(0.15))
-                    .frame(width: 56, height: 56)
-                
+        VStack(alignment: .leading, spacing: 8) {
+            
+            // Top: Icon + Badge
+            HStack {
                 Image(systemName: icon)
-                    .font(.system(size: 22, weight: .semibold))
-                    .foregroundColor(color)
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundColor(.white.opacity(0.9))
+                    .frame(width: 32, height: 32)
+                    .background(Color.white.opacity(0.2))
+                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                
+                Spacer()
             }
             
             // Value
-            Text(value)
-                .font(.system(size: 20, weight: .bold))
-                .foregroundColor(.primary)
+            HStack(alignment: .firstTextBaseline, spacing: 4) {
+                Text(value)
+                    .font(.system(size: 28, weight: .bold))
+                    .foregroundColor(.white)
+                
+                if !subtitle.isEmpty {
+                    Text(subtitle)
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(.white.opacity(0.8))
+                }
+            }
             
-            // Label
-            Text(label)
+            // Title
+            Text(title)
                 .font(.system(size: 11, weight: .medium))
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
+                .foregroundColor(.white.opacity(0.8))
                 .lineLimit(2)
-                .fixedSize(horizontal: false, vertical: true)
+            
+            Spacer()
+            
+            // Mini Chart
+            Chart {
+                ForEach(Array(chartData.enumerated()), id: \.offset) { index, point in
+                    LineMark(
+                        x: .value("Index", index),
+                        y: .value("Value", point)
+                    )
+                    .foregroundStyle(chartColor)
+                    .lineStyle(StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+                }
+            }
+            .chartXAxis(.hidden)
+            .chartYAxis(.hidden)
+            .frame(height: 30)
         }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 12)
+        .padding(16)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color(.secondarySystemBackground))
+            LinearGradient(
+                colors: gradient,
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
         )
+        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .frame(height: 160)
     }
 }
 
-// MARK: - Wide Action Button (Android Style)
-struct WideActionButton: View {
-    let icon: String
+// MARK: - Action Button With Icon (PNG from Assets)
+struct ActionButtonWithIcon: View {
+    let iconName: String
     let title: String
     let subtitle: String
     let baseColor: Color
@@ -331,13 +447,14 @@ struct WideActionButton: View {
             }
         }) {
             HStack(spacing: 16) {
-                // Icon
-                Image(systemName: icon)
-                    .font(.system(size: 24, weight: .semibold))
-                    .foregroundColor(.white)
-                    .frame(width: 48, height: 48)
-                    .background(baseColor.opacity(0.3))
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                // ✅ PNG Icon (left side)
+                Image(iconName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 32, height: 32)
+                    .padding(8)
+                    .background(Color.white.opacity(0.2))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
                 
                 // Text
                 VStack(alignment: .leading, spacing: 4) {
@@ -368,116 +485,8 @@ struct WideActionButton: View {
     }
 }
 
-// MARK: - ADD WORD Dialog View (PLACEHOLDER)
-struct AddWordDialogView: View {
-    @Environment(\.dismiss) private var dismiss
-    @State private var englishWord = ""
-    @State private var turkishWord = ""
-    @State private var exampleEn = ""
-    @State private var exampleTr = ""
-    
-    var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack(spacing: 20) {
-                    
-                    // Info banner
-                    HStack(spacing: 12) {
-                        Image(systemName: "info.circle.fill")
-                            .font(.title2)
-                            .foregroundColor(Color(hex: "4ECDC4"))
-                        
-                        Text("Kendi kelimelerinizi ekleyerek çalışma listenizi özelleştirin")
-                            .font(.system(size: 14))
-                            .foregroundColor(.secondary)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                    .padding(16)
-                    .background(
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(Color(hex: "4ECDC4").opacity(0.1))
-                    )
-                    
-                    // English word
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("English")
-                            .font(.system(size: 14, weight: .semibold))
-                            .foregroundColor(.secondary)
-                        
-                        TextField("Enter English word", text: $englishWord)
-                            .textFieldStyle(.roundedBorder)
-                            .textInputAutocapitalization(.never)
-                    }
-                    
-                    // Turkish word
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Türkçe")
-                            .font(.system(size: 14, weight: .semibold))
-                            .foregroundColor(.secondary)
-                        
-                        TextField("Türkçe karşılığını girin", text: $turkishWord)
-                            .textFieldStyle(.roundedBorder)
-                    }
-                    
-                    // English example
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("English Example (Optional)")
-                            .font(.system(size: 14, weight: .semibold))
-                            .foregroundColor(.secondary)
-                        
-                        TextField("Example sentence", text: $exampleEn)
-                            .textFieldStyle(.roundedBorder)
-                            .textInputAutocapitalization(.sentences)
-                    }
-                    
-                    // Turkish example
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Türkçe Örnek (Opsiyonel)")
-                            .font(.system(size: 14, weight: .semibold))
-                            .foregroundColor(.secondary)
-                        
-                        TextField("Örnek cümle", text: $exampleTr)
-                            .textFieldStyle(.roundedBorder)
-                    }
-                    
-                    // Save button
-                    Button {
-                        // TODO: Save word logic
-                        dismiss()
-                    } label: {
-                        Text("Kaydet")
-                            .font(.system(size: 16, weight: .semibold))
-                            .foregroundColor(.white)
-                            .frame(maxWidth: .infinity)
-                            .padding(16)
-                            .background(
-                                LinearGradient(
-                                    colors: [Color(hex: "4ECDC4"), Color(hex: "45B7D1")],
-                                    startPoint: .leading,
-                                    endPoint: .trailing
-                                )
-                            )
-                            .cornerRadius(12)
-                    }
-                    .disabled(englishWord.isEmpty || turkishWord.isEmpty)
-                    .opacity(englishWord.isEmpty || turkishWord.isEmpty ? 0.6 : 1.0)
-                }
-                .padding(20)
-            }
-            .navigationTitle("Kelime Ekle")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button("İptal") {
-                        dismiss()
-                    }
-                }
-            }
-        }
-    }
-}
-
 // MARK: - Preview
 #Preview {
     HomeView()
+        .environment(\.themeViewModel, ThemeViewModel.shared)
 }
