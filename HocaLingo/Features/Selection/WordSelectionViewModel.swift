@@ -2,7 +2,7 @@
 //  WordSelectionViewModel.swift
 //  HocaLingo
 //
-//  ✅ FINAL: Learn is limited, Skip is free
+//  ✅ CRITICAL FIX: Global selected words sync added to swipeRight
 //  Location: HocaLingo/Features/Selection/WordSelectionViewModel.swift
 //
 
@@ -89,6 +89,7 @@ class WordSelectionViewModel: ObservableObject {
             isLoading = false
             
             print("📚 Loaded \(allWords.count) words")
+            print("📊 Selected: \(selectedCount), Hidden: \(hiddenCount), Unseen: \(unseenWords.count)")
             
         } catch {
             errorMessage = "Failed to load words: \(error.localizedDescription)"
@@ -165,7 +166,9 @@ class WordSelectionViewModel: ObservableObject {
         selectedCount += 1
         processedWords += 1
         
+        // ✅ CRITICAL FIX: Save and sync
         saveSelections()
+        
         currentWordIndex += 1
         updateCurrentWord()
         
@@ -173,6 +176,9 @@ class WordSelectionViewModel: ObservableObject {
         if let remaining = remaining {
             print("   Remaining: \(remaining)/15")
         }
+        
+        // ✅ Post notification so StudyViewModel reloads
+        NotificationCenter.default.post(name: NSNotification.Name("WordsChanged"), object: nil)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
             self.isProcessingSwipe = false
@@ -235,11 +241,17 @@ class WordSelectionViewModel: ObservableObject {
     }
     
     private func saveSelections() {
+        // 1. Save package-specific selections
         userDefaults.saveWordSelections(
             packageId: packageId,
             selected: Array(selectedWordIds),
             hidden: Array(hiddenWordIds)
         )
+        
+        // 2. ✅ CRITICAL FIX: Sync with global selected words
+        userDefaults.syncGlobalSelectedWords()
+        
+        print("💾 Selections saved and synced to global list")
     }
 }
 

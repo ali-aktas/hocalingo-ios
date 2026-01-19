@@ -2,14 +2,13 @@
 //  StudyCompletionView.swift
 //  HocaLingo
 //
-//  ✅ COMPLETE REDESIGN: Rich completion screen - Android parity
+//  ✅ COMPLETE REDESIGN: Fixed layout issues - buttons properly aligned
 //  Location: HocaLingo/Features/Study/StudyCompletionView.swift
 //
 
 import SwiftUI
 
 // MARK: - Study Completion View
-/// Rich completion screen shown when user finishes all cards
 struct StudyCompletionView: View {
     let onContinue: () -> Void
     let onRestart: () -> Void
@@ -29,223 +28,99 @@ struct StudyCompletionView: View {
     
     var body: some View {
         ZStack {
+            // Background
             Color(.systemBackground)
                 .ignoresSafeArea()
             
-            VStack(spacing: 32) {
+            VStack(spacing: 0) {
+                
                 Spacer()
                 
-                // Success icon with animation
-                successIcon
-                
-                // Title & Subtitle
-                VStack(spacing: 12) {
-                    Text(currentMessage.0)
-                        .font(.system(size: 32, weight: .bold))
-                        .foregroundColor(.primary)
+                // Success animation
+                VStack(spacing: 24) {
+                    // Trophy icon with animation
+                    Image(systemName: "trophy.fill")
+                        .font(.system(size: 80))
+                        .foregroundColor(Color(hex: "FFD700"))
+                        .scaleEffect(animateSuccess ? 1.0 : 0.5)
+                        .opacity(animateSuccess ? 1.0 : 0.0)
+                        .animation(.spring(response: 0.6, dampingFraction: 0.7), value: animateSuccess)
                     
-                    Text(currentMessage.1)
-                        .font(.system(size: 18, weight: .medium))
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 32)
+                    // Random motivational message
+                    VStack(spacing: 12) {
+                        Text(messages[currentMessageIndex].0)
+                            .font(.system(size: 32, weight: .black))
+                            .foregroundColor(.primary)
+                        
+                        Text(messages[currentMessageIndex].1)
+                            .font(.system(size: 18, weight: .medium))
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                    }
+                    .opacity(animateSuccess ? 1.0 : 0.0)
+                    .animation(.easeIn(duration: 0.4).delay(0.2), value: animateSuccess)
                 }
-                
-                // Stats cards (Android parity)
-                statsSection
+                .padding(.horizontal, 32)
                 
                 Spacer()
                 
-                // Action buttons
-                actionButtons
-                    .padding(.horizontal, 24)
-                    .padding(.bottom, 40)
+                // ✅ FIXED: Action buttons with proper spacing and alignment
+                VStack(spacing: 16) {
+                    
+                    // Continue button (primary)
+                    Button(action: onContinue) {
+                        HStack(spacing: 10) {
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.system(size: 20))
+                            Text("Ana Sayfa")
+                                .font(.system(size: 17, weight: .bold))
+                        }
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 56)
+                        .background(Color(hex: "4ECDC4"))
+                        .cornerRadius(16)
+                        .shadow(color: Color(hex: "4ECDC4").opacity(0.3), radius: 12, x: 0, y: 6)
+                    }
+                    
+                    // Package selection button (secondary)
+                    Button(action: {
+                        showPackageSelection = true
+                    }) {
+                        HStack(spacing: 10) {
+                            Image(systemName: "square.grid.2x2.fill")
+                                .font(.system(size: 18))
+                            Text("Paket Seç")
+                                .font(.system(size: 16, weight: .semibold))
+                        }
+                        .foregroundColor(Color(hex: "4ECDC4"))
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 52)
+                        .background(Color(hex: "4ECDC4").opacity(0.12))
+                        .cornerRadius(14)
+                    }
+                    
+                }
+                .padding(.horizontal, 24)
+                .padding(.bottom, 40)
+                .opacity(animateSuccess ? 1.0 : 0.0)
+                .animation(.easeIn(duration: 0.4).delay(0.4), value: animateSuccess)
+                
             }
         }
-        .sheet(isPresented: $showPackageSelection) {
+        .navigationBarHidden(true)
+        .navigationDestination(isPresented: $showPackageSelection) {
             PackageSelectionView()
         }
         .onAppear {
-            withAnimation(.spring(response: 0.6, dampingFraction: 0.7)) {
+            // Random message selection
+            currentMessageIndex = Int.random(in: 0..<messages.count)
+            
+            // Trigger animations
+            withAnimation {
                 animateSuccess = true
             }
-            // Random message
-            currentMessageIndex = Int.random(in: 0..<messages.count)
         }
-    }
-    
-    // MARK: - Success Icon
-    private var successIcon: some View {
-        ZStack {
-            // Outer glow circle
-            Circle()
-                .fill(
-                    RadialGradient(
-                        colors: [
-                            Color(hex: "4ECDC4").opacity(0.3),
-                            Color(hex: "4ECDC4").opacity(0)
-                        ],
-                        center: .center,
-                        startRadius: 50,
-                        endRadius: 100
-                    )
-                )
-                .frame(width: 200, height: 200)
-                .opacity(animateSuccess ? 1 : 0)
-                .scaleEffect(animateSuccess ? 1 : 0.5)
-            
-            // Main circle
-            Circle()
-                .fill(
-                    LinearGradient(
-                        colors: [Color(hex: "4ECDC4"), Color(hex: "45B7D1")],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
-                .frame(width: 120, height: 120)
-                .shadow(color: Color(hex: "4ECDC4").opacity(0.4), radius: 20, x: 0, y: 10)
-                .scaleEffect(animateSuccess ? 1 : 0.3)
-            
-            // Checkmark
-            Image(systemName: "checkmark")
-                .font(.system(size: 60, weight: .bold))
-                .foregroundColor(.white)
-                .scaleEffect(animateSuccess ? 1 : 0)
-        }
-    }
-    
-    // MARK: - Stats Section
-    private var statsSection: some View {
-        VStack(spacing: 12) {
-            HStack(spacing: 12) {
-                StatCard(
-                    icon: "flame.fill",
-                    value: "\(UserDefaultsManager.shared.loadUserStats().currentStreak)",
-                    label: "Günlük Seri",
-                    color: Color(hex: "EF4444")
-                )
-                
-                StatCard(
-                    icon: "clock.fill",
-                    value: timeStudiedToday,
-                    label: "Bugün",
-                    color: Color(hex: "F97316")
-                )
-            }
-            
-            HStack(spacing: 12) {
-                StatCard(
-                    icon: "star.fill",
-                    value: "0",
-                    label: "Disiplin",
-                    color: Color(hex: "10B981")
-                )
-                
-                StatCard(
-                    icon: "checkmark.circle.fill",
-                    value: "\(UserDefaultsManager.shared.getTodayDailyStats().wordsGraduated)",
-                    label: "Öğrenilen",
-                    color: Color(hex: "8B5CF6")
-                )
-            }
-        }
-        .padding(.horizontal, 24)
-    }
-    
-    // MARK: - Action Buttons
-    private var actionButtons: some View {
-        VStack(spacing: 16) {
-            // Add words button
-            Button(action: {
-                showPackageSelection = true
-            }) {
-                HStack(spacing: 12) {
-                    Image(systemName: "plus.circle.fill")
-                        .font(.system(size: 20))
-                    
-                    Text("Yeni Kelimeler Ekle")
-                        .font(.system(size: 18, weight: .semibold))
-                }
-                .foregroundColor(.white)
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 16)
-                .background(
-                    LinearGradient(
-                        colors: [Color(hex: "4ECDC4"), Color(hex: "45B7D1")],
-                        startPoint: .leading,
-                        endPoint: .trailing
-                    )
-                )
-                .cornerRadius(16)
-                .shadow(color: Color(hex: "4ECDC4").opacity(0.3), radius: 10, x: 0, y: 5)
-            }
-            
-            // Home button
-            Button(action: onContinue) {
-                Text("Ana Sayfaya Dön")
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(Color(hex: "4ECDC4"))
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 14)
-                    .background(Color(hex: "4ECDC4").opacity(0.1))
-                    .cornerRadius(16)
-            }
-        }
-    }
-    
-    // MARK: - Computed Properties
-    private var currentMessage: (String, String) {
-        messages[currentMessageIndex]
-    }
-    
-    private var timeStudiedToday: String {
-        let minutes = UserDefaultsManager.shared.getTodayDailyStats().wordsStudied * 2  // Rough estimate
-        let hours = minutes / 60
-        let remainingMinutes = minutes % 60
-        
-        if hours > 0 {
-            return "\(hours)h \(remainingMinutes)m"
-        } else {
-            return "\(minutes)m"
-        }
-    }
-}
-
-// MARK: - Stat Card Component
-struct StatCard: View {
-    let icon: String
-    let value: String
-    let label: String
-    let color: Color
-    
-    var body: some View {
-        VStack(spacing: 8) {
-            // Icon
-            ZStack {
-                Circle()
-                    .fill(color.opacity(0.15))
-                    .frame(width: 48, height: 48)
-                
-                Image(systemName: icon)
-                    .font(.system(size: 20))
-                    .foregroundColor(color)
-            }
-            
-            // Value
-            Text(value)
-                .font(.system(size: 24, weight: .bold))
-                .foregroundColor(.primary)
-            
-            // Label
-            Text(label)
-                .font(.system(size: 12, weight: .medium))
-                .foregroundColor(.secondary)
-        }
-        .frame(maxWidth: .infinity)
-        .padding(.vertical, 20)
-        .background(Color(.secondarySystemGroupedBackground))
-        .cornerRadius(16)
     }
 }
 

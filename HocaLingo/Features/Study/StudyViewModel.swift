@@ -2,7 +2,13 @@
 //  StudyViewModel.swift
 //  HocaLingo
 //
-//  ✅ UPDATED: Removed mixed study direction (only EN→TR and TR→EN)
+//  ✅ COMPLETE REFACTOR v3.0:
+//  - Default progress creation for new words
+//  - Session-based queue management
+//  - Persistent progress across ViewModels
+//  - WordsChanged notification listener (auto-reload when words added)
+//  - Android parity (matches StudyViewModel.kt logic)
+//
 //  Location: HocaLingo/Features/Study/StudyViewModel.swift
 //
 
@@ -33,7 +39,6 @@ struct StudyCard: Identifiable {
 }
 
 // MARK: - Card Colors (Android Parity - 20 vibrant colors)
-/// ✅ ANDROID PARITY: Exactly 20 vibrant colors matching StudyViewModel.kt
 private let studyCardColors: [Color] = [
     Color(hex: "6366F1"), Color(hex: "8B5CF6"), Color(hex: "EC4899"), Color(hex: "EF4444"),
     Color(hex: "F97316"), Color(hex: "10B981"), Color(hex: "06B6D4"), Color(hex: "3B82F6"),
@@ -62,7 +67,7 @@ class StudyViewModel: ObservableObject {
     @Published var shouldDismiss: Bool = false
     @Published var isSessionComplete: Bool = false
     @Published var cardsCompletedCount: Int = 0
-    @Published var showNativeAd: Bool = false  // ✅ For ad support
+    @Published var showNativeAd: Bool = false
     
     // MARK: - Dependencies
     private let userDefaults = UserDefaultsManager.shared
@@ -79,7 +84,9 @@ class StudyViewModel: ObservableObject {
     
     // MARK: - Initialization
     init() {
+        print("🎯 StudyViewModel init() called")
         observeDirectionChanges()
+        observeWordsChanged()  // ✅ NEW: Listen for word additions
         loadStudyQueue()
     }
     
@@ -90,6 +97,17 @@ class StudyViewModel: ObservableObject {
                 let newDirection = UserDefaultsManager.shared.loadStudyDirection()
                 print("📡 Direction changed to: \(newDirection.displayName)")
                 self.studyDirection = newDirection
+                self.loadStudyQueue()
+            }
+            .store(in: &cancellables)
+    }
+    
+    /// ✅ NEW: Listen for word additions (from AddWord or WordSelection)
+    private func observeWordsChanged() {
+        NotificationCenter.default.publisher(for: NSNotification.Name("WordsChanged"))
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                print("📡 WordsChanged notification received - reloading queue")
                 self.loadStudyQueue()
             }
             .store(in: &cancellables)
@@ -112,7 +130,8 @@ class StudyViewModel: ObservableObject {
                 return
             }
             
-            loadProgressForWords()
+            // ✅ CRITICAL FIX: Create default progress for words that don't have any
+            loadOrCreateProgressForWords()
             currentSessionMaxPosition = calculateMaxSessionPosition()
             
             let sortedWords = prioritizeWordsForStudy(allWords)
@@ -139,19 +158,42 @@ class StudyViewModel: ObservableObject {
         }
     }
     
-    private func loadProgressForWords() {
+    /// ✅ NEW: Create default progress for words without existing progress
+    private func loadOrCreateProgressForWords() {
         currentProgress.removeAll()
         
         for word in allWords {
-            if let progress = userDefaults.loadProgress(for: word.id, direction: studyDirection) {
-                currentProgress[word.id] = progress
+            if let existingProgress = userDefaults.loadProgress(for: word.id, direction: studyDirection) {
+                // Word has existing progress
+                currentProgress[word.id] = existingProgress
+                // print("📊 Loaded existing progress for word \(word.id)")
+            } else {
+                // ✅ NEW WORD: Create default progress (Android parity)
+                let defaultProgress = Progress(
+                    wordId: word.id,
+                    direction: studyDirection,
+                    repetitions: 0,
+                    intervalDays: 0,
+                    easeFactor: 2.5,
+                    nextReviewAt: Date(),
+                    lastReviewAt: nil,
+                    learningPhase: true,
+                    sessionPosition: 1,
+                    successfulReviews: 0,
+                    hardPresses: 0,
+                    isSelected: true,
+                    createdAt: Date(),
+                    updatedAt: Date()
+                )
+                currentProgress[word.id] = defaultProgress
+                userDefaults.saveProgress(defaultProgress, for: word.id, direction: studyDirection)
+                print("✨ Created default progress for new word \(word.id): \(word.english)")
             }
         }
         
-        print("📊 Loaded progress for \(currentProgress.count) words")
+        print("📊 Total progress loaded/created: \(currentProgress.count) words")
     }
     
-    // ✅ UPDATED: Removed .mixed case
     private func getFrontText(for word: Word) -> String {
         switch studyDirection {
         case .enToTr: return word.english
@@ -159,7 +201,6 @@ class StudyViewModel: ObservableObject {
         }
     }
     
-    // ✅ UPDATED: Removed .mixed case
     private func getBackText(for word: Word) -> String {
         switch studyDirection {
         case .enToTr: return word.turkish
@@ -176,9 +217,13 @@ class StudyViewModel: ObservableObject {
     }
     
     private func loadAllSelectedWords() throws -> [Word] {
+        // ✅ Load from global selected list
         let selectedIds = userDefaults.loadSelectedWords()
+        print("📋 Global selected IDs: \(selectedIds.count) words")
+        
         var loadedWords: [Word] = []
         
+        // Load from JSON packages
         let packageFiles = ["en_tr_a1_001", "en_tr_a2_001", "en_tr_b1_001"]
         
         for packageId in packageFiles {
@@ -190,6 +235,14 @@ class StudyViewModel: ObservableObject {
                 continue
             }
         }
+        
+        // ✅ CRITICAL FIX: Also load user-added words
+        let userWords = userDefaults.loadUserAddedWords()
+        let selectedUserWords = userWords.filter { selectedIds.contains($0.id) }
+        loadedWords.append(contentsOf: selectedUserWords)
+        
+        print("📦 Loaded from packages: \(loadedWords.count - selectedUserWords.count)")
+        print("✍️ Loaded user words: \(selectedUserWords.count)")
         
         return loadedWords
     }
@@ -229,7 +282,6 @@ class StudyViewModel: ObservableObject {
         return studyCardColors[colorIndex]
     }
     
-    // ✅ UPDATED: Removed .mixed case
     var currentExampleSentence: String {
         guard let word = allWords.first(where: { $0.id == currentCard.wordId }) else { return "" }
         
@@ -276,8 +328,6 @@ class StudyViewModel: ObservableObject {
     
     func replayAudio() {
         guard let word = allWords.first(where: { $0.id == currentCard.wordId }) else { return }
-        
-        // ✅ CRITICAL: ALWAYS speak English word (regardless of direction)
         ttsManager.speak(text: word.english, languageCode: "en")
     }
     
@@ -302,19 +352,23 @@ class StudyViewModel: ObservableObject {
             currentSessionMaxPosition: currentSessionMaxPosition
         )
         
+        // ✅ CRITICAL: Update in-memory progress FIRST
         currentProgress[card.wordId] = newProgress
-        userDefaults.saveProgress(newProgress, for: card.wordId, direction: studyDirection)  // ✅ FIXED: Add missing parameters
         
-        if newProgress.learningPhase && newProgress.sessionPosition ?? 0 > currentSessionMaxPosition {
+        // ✅ THEN save to UserDefaults
+        userDefaults.saveProgress(newProgress, for: card.wordId, direction: studyDirection)
+        
+        // ✅ Update session max position if needed
+        if newProgress.learningPhase && (newProgress.sessionPosition ?? 0) > currentSessionMaxPosition {
             currentSessionMaxPosition = newProgress.sessionPosition ?? 0
         }
         
-        // Move to next card with animation
+        // ✅ Move to next card
         moveToNextCard()
     }
     
     private func moveToNextCard() {
-        soundManager.playClickSound()  // ✅ FIXED: Use correct method name
+        soundManager.playClickSound()
         
         cardsCompletedCount += 1
         
@@ -331,13 +385,44 @@ class StudyViewModel: ObservableObject {
                 print("📢 Showing native ad (12 cards completed)")
             }
         } else {
-            isSessionComplete = true
+            // ✅ Check if there are still learning cards
+            let stillLearningCards = allWords.filter { word in
+                if let progress = currentProgress[word.id] {
+                    return progress.learningPhase
+                }
+                return false
+            }
+            
+            if stillLearningCards.isEmpty {
+                // ✅ All cards graduated - session complete
+                isSessionComplete = true
+                print("✅ Session complete - all cards graduated!")
+            } else {
+                // ✅ Re-filter queue for learning cards only
+                let learningWords = allWords.filter { word in
+                    currentProgress[word.id]?.learningPhase == true
+                }
+                
+                studyQueue = learningWords.map { word in
+                    StudyCard(
+                        id: UUID(),
+                        wordId: word.id,
+                        frontText: getFrontText(for: word),
+                        backText: getBackText(for: word)
+                    )
+                }
+                
+                currentCardIndex = 0
+                isCardFlipped = false
+                ttsPlayedForCurrentCard = false
+                
+                print("🔄 Queue filtered: \(studyQueue.count) learning cards remain")
+            }
         }
         
         updateUserStats()
     }
     
-    /// ✅ Close native ad and continue studying
     func closeNativeAd() {
         withAnimation {
             showNativeAd = false
@@ -347,7 +432,8 @@ class StudyViewModel: ObservableObject {
     
     private func updateUserStats() {
         var stats = userDefaults.loadUserStats()
-        stats.wordsLearned += 1  // ✅ FIXED: Use correct property name
+        stats.totalWordsStudied += 1
+        stats.wordsStudiedToday += 1
         stats.totalStudyTime += 1
         userDefaults.saveUserStats(stats)
     }

@@ -2,7 +2,7 @@
 //  MainTabView.swift
 //  HocaLingo
 //
-//  ✅ UPDATED: Theme-aware bottom navigation with proper localization
+//  ✅ CRITICAL FIX: Tab tags corrected (0-1-2 instead of 0-0-1)
 //  Location: HocaLingo/App/MainTabView.swift
 //
 
@@ -24,21 +24,21 @@ struct MainTabView: View {
                 .tabItem {
                     Label("home_tab", systemImage: "house.fill")
                 }
-                .tag(0)
+                .tag(0)  // ✅ Home = 0
             
             // Study Tab
             StudyView()
                 .tabItem {
                     Label("study_tab", systemImage: "play.fill")
                 }
-                .tag(0)
+                .tag(1)  // ✅ FIXED: Study = 1 (was 0, causing conflict!)
             
             // Profile Tab
             ProfileView()
                 .tabItem {
                     Label("profile_tab", systemImage: "person.fill")
                 }
-                .tag(1)
+                .tag(2)  // ✅ FIXED: Profile = 2 (was 1)
         }
         // ✅ Theme-aware accent color
         .accentColor(themeAccentColor)
