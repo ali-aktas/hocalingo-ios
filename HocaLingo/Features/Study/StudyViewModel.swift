@@ -314,7 +314,7 @@ class StudyViewModel: ObservableObject {
     }
     
     private func moveToNextCard() {
-        soundManager.playSwipeRight()  // ✅ FIXED: Use correct method name
+        soundManager.playClickSound()  // ✅ FIXED: Use correct method name
         
         cardsCompletedCount += 1
         

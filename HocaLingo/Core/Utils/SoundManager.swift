@@ -55,7 +55,7 @@ class SoundManager: ObservableObject {
             do {
                 clickPlayer = try AVAudioPlayer(contentsOf: clickURL)
                 clickPlayer?.prepareToPlay()
-                clickPlayer?.volume = 0.6
+                clickPlayer?.volume = 0.4
                 loadedCount += 1
                 print("✅ Click sound loaded")
             } catch {
@@ -70,7 +70,7 @@ class SoundManager: ObservableObject {
             do {
                 cardFlipPlayer = try AVAudioPlayer(contentsOf: flipURL)
                 cardFlipPlayer?.prepareToPlay()
-                cardFlipPlayer?.volume = 0.9
+                cardFlipPlayer?.volume = 0.7
                 loadedCount += 1
                 print("✅ Card flip sound loaded")
             } catch {
@@ -85,7 +85,7 @@ class SoundManager: ObservableObject {
             do {
                 swipeRightPlayer = try AVAudioPlayer(contentsOf: swipeRightURL)
                 swipeRightPlayer?.prepareToPlay()
-                swipeRightPlayer?.volume = 0.6
+                swipeRightPlayer?.volume = 0.4
                 loadedCount += 1
                 print("✅ Swipe right sound loaded")
             } catch {
@@ -100,7 +100,7 @@ class SoundManager: ObservableObject {
             do {
                 swipeLeftPlayer = try AVAudioPlayer(contentsOf: swipeLeftURL)
                 swipeLeftPlayer?.prepareToPlay()
-                swipeLeftPlayer?.volume = 0.6
+                swipeLeftPlayer?.volume = 0.4
                 loadedCount += 1
                 print("✅ Swipe left sound loaded")
             } catch {
