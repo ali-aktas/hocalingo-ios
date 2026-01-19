@@ -146,3 +146,10 @@
 "add_word_error" = "Error adding word";
 "add_word_info" = "Customize your study list by adding your own words";
 "add_word_required" = "This field is required";
+"action_add_word_desc" = "Add your own word";
+"stat_active_days" = "Active Days";
+"stat_study_time_min" = "minutes";
+"stat_monthly_stats" = "This month's statistics";
+"add_word_error" = "Error adding word";
+"add_word_info" = "Customize your study list by adding your own words";
+"add_word_required" = "This field is required";

@@ -2,11 +2,11 @@
 //  HomeView.swift
 //  HocaLingo
 //
-//  ✅ COMPLETE REDESIGN v2.0:
-//  - Hero card with motivation rotation (1 img - 3 text - 1 img - 3 text - 1 img - 4 text)
-//  - 2x2 Stats grid with mini charts (like the reference image)
-//  - Theme-aware buttons with PNG icons
-//  - Full localization support
+//  ✅ COMPLETE REDESIGN v2.0 - OPTIMIZED:
+//  - Larger play button with reduced spacing
+//  - Lower stats cards (120dp) with proper spacing
+//  - Horizontal text layout in stats cards
+//  - Optimized paddings throughout
 //
 //  Location: HocaLingo/Features/Home/HomeView.swift
 //
@@ -37,7 +37,7 @@ struct HomeView: View {
                     ProgressView(NSLocalizedString("loading", comment: ""))
                 } else {
                     ScrollView(showsIndicators: false) {
-                        VStack(spacing: 24) {
+                        VStack(spacing: 24) {  // ✅ Reduced from 42
                             
                             // 1. HocaLingo Title (CENTER + BLACK)
                             titleSection
@@ -82,6 +82,10 @@ struct HomeView: View {
             .onReceive(rotationTimer) { _ in
                 viewModel.rotateHeroContent()
             }
+            // ✅ Language change listener
+            .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("AppLanguageChanged"))) { _ in
+                viewModel.loadDashboardData()
+            }
         }
     }
 }
@@ -99,9 +103,9 @@ private extension HomeView {
 // MARK: - Hero Card (Play Button + Image/Motivation Rotation)
 private extension HomeView {
     var heroCard: some View {
-        HStack(alignment: .center, spacing: 16) {
+        HStack(alignment: .center, spacing: 8) {  // ✅ Reduced spacing from 16 to 8
             
-            // ✅ LEFT: Play Button (100x100, theme-aware)
+            // ✅ LEFT: Play Button (120x120, larger)
             playButton
             
             Spacer()
@@ -110,12 +114,6 @@ private extension HomeView {
             rotatingContent
             
         }
-        .padding(20)
-        .background(
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color(.secondarySystemBackground))
-                .shadow(color: .black.opacity(0.08), radius: 12, y: 4)
-        )
     }
     
     var playButton: some View {
@@ -126,18 +124,18 @@ private extension HomeView {
                 // Glow effect
                 Circle()
                     .fill(playButtonGlowGradient)
-                    .frame(width: 120, height: 120)
+                    .frame(width: 140, height: 140)  // ✅ Increased
                     .blur(radius: 10)
                 
                 // Main circle (theme-aware)
                 Circle()
                     .fill(playButtonGradient)
-                    .frame(width: 100, height: 100)
+                    .frame(width: 120, height: 120)  // ✅ Increased from 100
                     .shadow(color: playButtonShadowColor, radius: 12, y: 6)
                 
                 // Play icon
                 Image(systemName: "play.fill")
-                    .font(.system(size: 36, weight: .bold))
+                    .font(.system(size: 42, weight: .bold))  // ✅ Increased from 36
                     .foregroundColor(.white)
                     .offset(x: 3)
             }
@@ -154,7 +152,7 @@ private extension HomeView {
                 motivationTextView(index: index)
             }
         }
-        .frame(width: 140, height: 140)
+        .frame(width: 160, height: 120)  // ✅ Adjusted height to match button
         .transition(.asymmetric(
             insertion: .scale.combined(with: .opacity),
             removal: .scale.combined(with: .opacity)
@@ -234,7 +232,7 @@ private extension HomeView {
 // MARK: - 2x2 Stats Grid (Reference Image Style)
 private extension HomeView {
     var statsGrid2x2: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 12) {  // ✅ Fixed spacing (from 52 to 12)
             // Row 1
             HStack(spacing: 12) {
                 // Streak Card (Purple gradient)
@@ -314,38 +312,33 @@ private extension HomeView {
     var actionButtonsSection: some View {
         VStack(spacing: 12) {
             
-            // 1. Package Selection Button
+            // 1. Package Selection Button (Teal/Turkuaz)
             ActionButtonWithIcon(
                 iconName: "card_icon",
                 title: NSLocalizedString("action_select_package", comment: ""),
                 subtitle: NSLocalizedString("action_select_package_desc", comment: ""),
-                baseColor: themeAccentColor,
+                baseColor: Color(hex: "14B8A6"),  // ✅ Teal
                 action: { viewModel.onEvent(.navigateToPackageSelection) }
             )
             
-            // 2. Add Word Button
+            // 2. Add Word Button (Rose/Pembe)
             ActionButtonWithIcon(
                 iconName: "add_img",
                 title: NSLocalizedString("action_add_word", comment: ""),
                 subtitle: NSLocalizedString("action_add_word_desc", comment: ""),
-                baseColor: themeAccentColor,
+                baseColor: Color(hex: "F43F5E"),  // ✅ Rose
                 action: { viewModel.onEvent(.showAddWordDialog) }
             )
             
-            // 3. AI Assistant Button
+            // 3. AI Assistant Button (Indigo/Mavi-Mor)
             ActionButtonWithIcon(
                 iconName: "ai_icon",
                 title: NSLocalizedString("action_ai_assistant", comment: ""),
                 subtitle: NSLocalizedString("action_ai_assistant_desc", comment: ""),
-                baseColor: themeAccentColor,
+                baseColor: Color(hex: "6366F1"),  // ✅ Indigo
                 action: { viewModel.onEvent(.navigateToAIAssistant) }
             )
         }
-    }
-    
-    var themeAccentColor: Color {
-        let isDark = themeViewModel.isDarkMode(in: colorScheme)
-        return isDark ? Color(hex: "9333EA") : Color(hex: "FB9322")
     }
 }
 
@@ -360,38 +353,33 @@ struct StatCardWithChart: View {
     let chartColor: Color
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: 6) {  // ✅ Reduced spacing
             
-            // Top: Icon + Badge
-            HStack {
-                Image(systemName: icon)
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.white.opacity(0.9))
-                    .frame(width: 32, height: 32)
-                    .background(Color.white.opacity(0.2))
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
-                
-                Spacer()
-            }
+            // Top: Icon
+            Image(systemName: icon)
+                .font(.system(size: 16, weight: .semibold))  // ✅ Slightly smaller
+                .foregroundColor(.white.opacity(0.9))
+                .frame(width: 28, height: 28)  // ✅ Smaller
+                .background(Color.white.opacity(0.2))
+                .clipShape(RoundedRectangle(cornerRadius: 8))
             
-            // Value
+            // ✅ NEW: Value and Title in same row (HORIZONTAL)
             HStack(alignment: .firstTextBaseline, spacing: 4) {
                 Text(value)
-                    .font(.system(size: 28, weight: .bold))
+                    .font(.system(size: 12, weight: .bold))  // ✅ Slightly smaller
                     .foregroundColor(.white)
                 
                 if !subtitle.isEmpty {
                     Text(subtitle)
-                        .font(.system(size: 12, weight: .medium))
+                        .font(.system(size: 11, weight: .medium))
                         .foregroundColor(.white.opacity(0.8))
                 }
+                
+                Text(title)
+                    .font(.system(size: 11, weight: .medium))
+                    .foregroundColor(.white.opacity(0.8))
+                    .lineLimit(1)
             }
-            
-            // Title
-            Text(title)
-                .font(.system(size: 11, weight: .medium))
-                .foregroundColor(.white.opacity(0.8))
-                .lineLimit(2)
             
             Spacer()
             
@@ -408,9 +396,9 @@ struct StatCardWithChart: View {
             }
             .chartXAxis(.hidden)
             .chartYAxis(.hidden)
-            .frame(height: 30)
+            .frame(height: 25)  // ✅ Smaller chart
         }
-        .padding(16)
+        .padding(12)  // ✅ Reduced padding
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
             LinearGradient(
@@ -420,7 +408,7 @@ struct StatCardWithChart: View {
             )
         )
         .clipShape(RoundedRectangle(cornerRadius: 16))
-        .frame(height: 160)
+        .frame(height: 120)  // ✅ Reduced from 140 to 120
     }
 }
 

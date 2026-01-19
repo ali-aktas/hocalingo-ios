@@ -146,3 +146,10 @@
 "add_word_error" = "Kelime eklenirken hata oluştu";
 "add_word_info" = "Kendi kelimelerinizi ekleyerek çalışma listenizi özelleştirin";
 "add_word_required" = "Bu alan zorunludur";
+"action_add_word_desc" = "Kendi kelimeni ekle";
+"stat_active_days" = "Aktif Gün";
+"stat_study_time_min" = "dakika";
+"stat_monthly_stats" = "Bu ayın istatistikleri";
+"add_word_error" = "Kelime eklenirken hata oluştu";
+"add_word_info" = "Kendi kelimelerinizi ekleyerek çalışma listenizi özelleştirin";
+"add_word_required" = "Bu alan zorunludur";
