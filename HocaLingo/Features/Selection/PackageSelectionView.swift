@@ -2,7 +2,12 @@
 //  PackageSelectionView.swift
 //  HocaLingo
 //
-//  ✅ UPDATED: Theme-aware colors, cleaner design (Android parity)
+//  ✅ CRITICAL FIXES:
+//  - Empty package detection (all words seen → show message + back button)
+//  - Language change support (AppLanguageChanged notification)
+//  - Full localization (EN/TR)
+//  - navigationDestination instead of fullScreenCover (MainTabView visible!)
+//
 //  Location: HocaLingo/Features/Selection/PackageSelectionView.swift
 //
 
@@ -15,6 +20,9 @@ struct PackageSelectionView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.themeViewModel) private var themeViewModel
+    
+    // ✅ NEW: Track language changes
+    @State private var refreshTrigger = UUID()
     
     let columns = [
         GridItem(.flexible(), spacing: 16),
@@ -45,8 +53,15 @@ struct PackageSelectionView: View {
                                         isSelected: viewModel.selectedPackageId == package.id,
                                         unseenCount: viewModel.getUnseenWordCount(for: package.id)
                                     ) {
-                                        viewModel.selectPackage(package.id)
-                                        selectedPackageForNavigation = package.id
+                                        // ✅ CRITICAL: Check if package is empty
+                                        let unseenCount = viewModel.getUnseenWordCount(for: package.id)
+                                        if unseenCount == 0 {
+                                            // Show empty message
+                                            viewModel.showEmptyPackageAlert = true
+                                        } else {
+                                            viewModel.selectPackage(package.id)
+                                            selectedPackageForNavigation = package.id
+                                        }
                                     }
                                 }
                             }
@@ -56,31 +71,104 @@ struct PackageSelectionView: View {
                         .padding(.bottom, 50) // Space for bottom nav
                     }
                 }
+                
+                // ✅ NEW: Empty package alert overlay
+                if viewModel.showEmptyPackageAlert {
+                    emptyPackageOverlay
+                }
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarBackButtonHidden(false)
-        }
-        .fullScreenCover(item: Binding(
-            get: { selectedPackageForNavigation.map { PackageNavigationItem(id: $0) } },
-            set: { selectedPackageForNavigation = $0?.id }
-        )) { item in
-            WordSelectionView(packageId: item.id)
+            // ✅ CRITICAL FIX: Use navigationDestination instead of fullScreenCover!
+            .navigationDestination(item: $selectedPackageForNavigation) { packageId in
+                WordSelectionView(packageId: packageId)
+            }
+            // ✅ NEW: Listen for language changes
+            .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("AppLanguageChanged"))) { _ in
+                refreshTrigger = UUID()
+            }
+            .id(refreshTrigger) // Force view refresh on language change
         }
     }
     
     // MARK: - Header Section
     private var headerSection: some View {
         VStack(spacing: 12) {
-            Text("Choose Your Level")
+            Text(NSLocalizedString("package_selection_title", comment: ""))
                 .font(.system(size: 28, weight: .bold))
                 .foregroundColor(.primary)
             
-            Text("Select a package to start learning words")
+            Text(NSLocalizedString("package_selection_subtitle", comment: ""))
                 .font(.system(size: 16))
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
         }
         .padding(.horizontal, 20)
+    }
+    
+    // ✅ NEW: Empty package alert overlay
+    private var emptyPackageOverlay: some View {
+        ZStack {
+            Color.black.opacity(0.5)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    viewModel.showEmptyPackageAlert = false
+                }
+            
+            VStack(spacing: 24) {
+                // Icon
+                ZStack {
+                    Circle()
+                        .fill(
+                            LinearGradient(
+                                colors: [Color(hex: "10B981"), Color(hex: "06B6D4")],
+                                startPoint: .topLeading,
+                                endPoint: .bottomTrailing
+                            )
+                        )
+                        .frame(width: 100, height: 100)
+                        .shadow(color: Color(hex: "10B981").opacity(0.4), radius: 20, x: 0, y: 10)
+                    
+                    Image(systemName: "checkmark.circle.fill")
+                        .font(.system(size: 50, weight: .bold))
+                        .foregroundColor(.white)
+                }
+                
+                // Message
+                VStack(spacing: 12) {
+                    Text(NSLocalizedString("package_empty_title", comment: ""))
+                        .font(.system(size: 24, weight: .bold))
+                        .foregroundColor(.primary)
+                        .multilineTextAlignment(.center)
+                    
+                    Text(NSLocalizedString("package_empty_message", comment: ""))
+                        .font(.system(size: 16))
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .lineSpacing(4)
+                }
+                
+                // Close button
+                Button(action: {
+                    viewModel.showEmptyPackageAlert = false
+                }) {
+                    Text(NSLocalizedString("package_empty_button", comment: ""))
+                        .font(.system(size: 17, weight: .semibold))
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 16)
+                        .background(Color(hex: "4ECDC4"))
+                        .cornerRadius(14)
+                }
+            }
+            .padding(32)
+            .background(
+                RoundedRectangle(cornerRadius: 24)
+                    .fill(backgroundColor)
+                    .shadow(color: .black.opacity(0.3), radius: 30, x: 0, y: 15)
+            )
+            .padding(.horizontal, 40)
+        }
     }
     
     // MARK: - Theme Colors
@@ -92,71 +180,65 @@ struct PackageSelectionView: View {
     }
 }
 
-// MARK: - Package Card Component
+// MARK: - Package Card
 struct PackageCard: View {
     let package: PackageModel
     let isSelected: Bool
     let unseenCount: Int
-    let action: () -> Void
+    let onTap: () -> Void
     
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.themeViewModel) private var themeViewModel
     
     var body: some View {
-        Button(action: action) {
-            VStack(alignment: .leading, spacing: 12) {
-                // Level Badge
-                HStack {
+        Button(action: onTap) {
+            VStack(alignment: .leading, spacing: 0) {
+                
+                // Top section
+                VStack(alignment: .leading, spacing: 8) {
+                    // Level badge
                     Text(package.level)
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(.primary)
-                        .padding(.horizontal, 14)
-                        .padding(.vertical, 8)
+                        .font(.system(size: 16, weight: .black))
+                        .foregroundColor(isDarkMode ? Color.black : Color(hex: package.colorHex))
+                        .padding(.horizontal, 12)
+                        .padding(.vertical, 6)
                         .background(levelBadgeBackground)
-                        .cornerRadius(10)
+                        .cornerRadius(8)
                     
                     Spacer()
                     
-                    // New words badge (if any)
-                    if unseenCount > 0 {
-                        HStack(spacing: 4) {
-                            Image(systemName: "star.fill")
-                                .font(.system(size: 10))
-                            Text("\(unseenCount)")
-                                .font(.system(size: 12, weight: .bold))
-                        }
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(Color.orange)
-                        .cornerRadius(8)
-                    }
-                }
-                
-                Spacer()
-                
-                // Title & Description
-                VStack(alignment: .leading, spacing: 6) {
+                    // Package name
                     Text(package.name)
                         .font(.system(size: 20, weight: .bold))
                         .foregroundColor(.white)
-                        .lineLimit(1)
                     
+                    // Description
                     Text(package.description)
-                        .font(.system(size: 14))
-                        .foregroundColor(.white.opacity(0.9))
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundColor(.white.opacity(0.85))
                         .lineLimit(2)
                         .fixedSize(horizontal: false, vertical: true)
                     
-                    // Word count
-                    HStack(spacing: 6) {
-                        Image(systemName: "doc.text.fill")
-                            .font(.system(size: 12))
-                        Text("\(package.wordCount) words")
-                            .font(.system(size: 13, weight: .medium))
+                    // ✅ NEW: Unseen count or completion badge
+                    if unseenCount == 0 {
+                        HStack(spacing: 6) {
+                            Image(systemName: "checkmark.circle.fill")
+                                .font(.system(size: 14))
+                            Text(NSLocalizedString("package_completed", comment: ""))
+                                .font(.system(size: 13, weight: .semibold))
+                        }
+                        .foregroundColor(.white.opacity(0.95))
+                        .padding(.top, 4)
+                    } else {
+                        HStack(spacing: 6) {
+                            Image(systemName: "doc.text.fill")
+                                .font(.system(size: 12))
+                            Text("\(unseenCount) \(NSLocalizedString("package_words_left", comment: ""))")
+                                .font(.system(size: 13, weight: .medium))
+                        }
+                        .foregroundColor(.white.opacity(0.95))
+                        .padding(.top, 4)
                     }
-                    .foregroundColor(.white.opacity(0.95))
-                    .padding(.top, 4)
                 }
             }
             .padding(18)
@@ -183,6 +265,8 @@ struct PackageCard: View {
             )
             .scaleEffect(isSelected ? 1.02 : 1.0)
             .animation(.spring(response: 0.3), value: isSelected)
+            // ✅ Dim completed packages
+            .opacity(unseenCount == 0 ? 0.7 : 1.0)
         }
         .buttonStyle(PlainButtonStyle())
     }
@@ -222,9 +306,9 @@ struct PackageCard: View {
     }
 }
 
-// MARK: - Navigation Item
-struct PackageNavigationItem: Identifiable {
-    let id: String
+// MARK: - Navigation Item (for navigationDestination)
+extension String: Identifiable {
+    public var id: String { self }
 }
 
 // MARK: - Preview

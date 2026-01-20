@@ -2,7 +2,7 @@
 //  PackageSelectionViewModel.swift
 //  HocaLingo
 //
-//  ✅ UPDATED: Real word counts from JSON files (Android parity)
+//  ✅ UPDATED: Added showEmptyPackageAlert for empty package detection
 //  Location: HocaLingo/Features/Selection/PackageSelectionViewModel.swift
 //
 
@@ -15,7 +15,7 @@ struct PackageModel: Identifiable, Codable {
     let level: String
     let name: String
     let description: String
-    let wordCount: Int // ✅ Now dynamically loaded from JSON
+    let wordCount: Int // ✅ Dynamically loaded from JSON
     let colorHex: String
     
     var color: Color {
@@ -30,6 +30,7 @@ class PackageSelectionViewModel: ObservableObject {
     @Published var packages: [PackageModel] = []
     @Published var selectedPackageId: String? = nil
     @Published var isLoading: Bool = false
+    @Published var showEmptyPackageAlert: Bool = false // ✅ NEW: For empty package alert
     
     // MARK: - Private Properties
     private let jsonLoader = JSONLoader()

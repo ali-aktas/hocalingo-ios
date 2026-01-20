@@ -153,3 +153,24 @@
 "add_word_error" = "Error adding word";
 "add_word_info" = "Customize your study list by adding your own words";
 "add_word_required" = "This field is required";
+
+// PackageSelectionView
+"package_selection_title" = "Choose Your Level";
+"package_selection_subtitle" = "Select a package to start learning words";
+"package_completed" = "Completed";
+"package_words_left" = "words left";
+"package_empty_title" = "All Done! 🎉";
+"package_empty_message" = "You've seen all words in this package.\nTime to explore other packages!";
+"package_empty_button" = "Browse Packages";
+
+// WordSelectionView
+"word_selection_back" = "Back";
+"word_selection_instruction" = "Add new words to your study deck";
+"word_selection_remaining" = "selections left today";
+"word_selection_complete_title" = "All Done! 🎉";
+"word_selection_complete_message" = "You've reviewed all words in this package.\nTime to pick a new challenge!";
+"word_selection_start_learning" = "Start Learning";
+"word_selection_new_package" = "Select New Package";
+"word_selection_limit_title" = "Daily Selection Limit Reached";
+"word_selection_limit_message" = "You've selected 15 words today.\nYou can still skip words freely, or upgrade to Premium for unlimited selections!";
+"word_selection_limit_close" = "Continue Reviewing";

@@ -2,7 +2,13 @@
 //  WordSelectionView.swift
 //  HocaLingo
 //
-//  ✅ FIXED: Proper MainTab integration, HocaLingo title, Study navigation
+//  ✅ CRITICAL FIX: Removed duplicate SwipeableCardView and SelectionActionButton
+//  - These components are already defined in separate files
+//  - Back button added (toolbar, top left)
+//  - Language change support (AppLanguageChanged notification)
+//  - Full localization (EN/TR)
+//  - MainTabView visible (navigationDestination)
+//
 //  Location: HocaLingo/Features/Selection/WordSelectionView.swift
 //
 
@@ -17,6 +23,7 @@ struct WordSelectionView: View {
     
     @State private var currentCardId: UUID = UUID()
     @State private var navigateToStudy: Bool = false
+    @State private var refreshTrigger = UUID()
     
     init(packageId: String) {
         _viewModel = StateObject(wrappedValue: WordSelectionViewModel(packageId: packageId))
@@ -52,7 +59,7 @@ struct WordSelectionView: View {
             }
             
         }
-        .navigationTitle("HocaLingo") // ✅ ADDED: Title like HomeView
+        .navigationTitle("HocaLingo")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .toolbar {
@@ -60,12 +67,18 @@ struct WordSelectionView: View {
                 Button(action: { dismiss() }) {
                     HStack(spacing: 4) {
                         Image(systemName: "chevron.left")
-                        Text("Back")
+                            .font(.system(size: 14, weight: .semibold))
+                        Text(NSLocalizedString("word_selection_back", comment: ""))
+                            .font(.system(size: 17))
                     }
                     .foregroundColor(themeAccentColor)
                 }
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("AppLanguageChanged"))) { _ in
+            refreshTrigger = UUID()
+        }
+        .id(refreshTrigger)
     }
     
     // MARK: - Main Content
@@ -82,7 +95,7 @@ struct WordSelectionView: View {
             Spacer().frame(height: 16)
             
             // Instruction text
-            Text("Çalışma destesine yeni kelimeler ekle")
+            Text(NSLocalizedString("word_selection_instruction", comment: ""))
                 .font(.system(size: 16, weight: .medium))
                 .foregroundColor(.secondary)
                 .padding(.horizontal, 20)
@@ -110,7 +123,7 @@ struct WordSelectionView: View {
                             .opacity(0.5)
                     }
                     
-                    // Current card
+                    // Current card - ✅ USES SwipeableCardView from SwipeableCardView.swift
                     if let currentWord = viewModel.currentWord {
                         SwipeableCardView(
                             word: currentWord.english,
@@ -156,7 +169,7 @@ struct WordSelectionView: View {
             
             Spacer()
             
-            // Centered action buttons
+            // Centered action buttons - ✅ USES SelectionActionButton from WordSelectionComponents.swift
             centeredActionButtons
                 .padding(.bottom, 20)
         }
@@ -204,7 +217,7 @@ struct WordSelectionView: View {
                 .font(.system(size: 14))
                 .foregroundColor(.orange)
             
-            Text("\(remaining) selection\(remaining == 1 ? "" : "s") left today")
+            Text("\(remaining) \(NSLocalizedString("word_selection_remaining", comment: ""))")
                 .font(.system(size: 14, weight: .medium))
                 .foregroundColor(.primary)
         }
@@ -222,7 +235,7 @@ struct WordSelectionView: View {
         .padding(.bottom, 12)
     }
     
-    // MARK: - Word Card
+    // MARK: - Word Card (for next card preview only)
     private func wordCard(word: Word, isNext: Bool = false) -> some View {
         VStack(spacing: 16) {
             Text(word.english)
@@ -245,12 +258,13 @@ struct WordSelectionView: View {
                 .fill(isNext ? Color.gray.opacity(0.3) : cardColor(for: word))
                 .shadow(color: .black.opacity(0.1), radius: 12, x: 0, y: 6)
         )
+        .padding(.horizontal, 32)
     }
     
     // MARK: - Centered Action Buttons
     private var centeredActionButtons: some View {
         HStack(spacing: 32) {
-            // Skip button
+            // Skip button - ✅ USES SelectionActionButton from WordSelectionComponents.swift
             SelectionActionButton(
                 icon: "xmark",
                 backgroundColor: Color(hex: "EF5350"),
@@ -261,7 +275,7 @@ struct WordSelectionView: View {
                 currentCardId = UUID()
             }
             
-            // Learn button
+            // Learn button - ✅ USES SelectionActionButton from WordSelectionComponents.swift
             SelectionActionButton(
                 icon: "checkmark",
                 backgroundColor: Color(hex: "66BB6A"),
@@ -271,83 +285,6 @@ struct WordSelectionView: View {
                 viewModel.swipeRight()
                 currentCardId = UUID()
             }
-        }
-    }
-    
-    // MARK: - Selection Limit Overlay
-    /// ✅ FIXED: "Start Learning" button navigates to StudyView
-    private var selectionLimitOverlay: some View {
-        ZStack {
-            Color.black.opacity(0.5)
-                .ignoresSafeArea()
-                .onTapGesture {
-                    viewModel.selectionLimitReached = false
-                }
-            
-            VStack(spacing: 24) {
-                Image(systemName: "hand.raised.fill")
-                    .font(.system(size: 56))
-                    .foregroundColor(.orange)
-                
-                VStack(spacing: 12) {
-                    Text("Daily Selection Limit Reached")
-                        .font(.system(size: 22, weight: .bold))
-                        .foregroundColor(.primary)
-                    
-                    Text("You've selected 15 words today.\nYou can still skip words freely, or upgrade to Premium for unlimited selections!")
-                        .font(.system(size: 16))
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .lineSpacing(4)
-                }
-                
-                VStack(spacing: 12) {
-                    // ✅ FIXED: "Start Learning" button navigates to Study
-                    Button(action: {
-                        viewModel.selectionLimitReached = false
-                        navigateToStudy = true
-                    }) {
-                        HStack(spacing: 8) {
-                            Image(systemName: "book.fill")
-                            Text("Start Learning")
-                        }
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 16)
-                        .background(themeAccentColor)
-                        .cornerRadius(16)
-                    }
-                    
-                    // Upgrade to Premium button (unchanged)
-                    Button(action: {
-                        // TODO: Navigate to premium
-                        viewModel.selectionLimitReached = false
-                    }) {
-                        HStack(spacing: 6) {
-                            Image(systemName: "crown.fill")
-                            Text("Upgrade to Premium")
-                        }
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(Color.orange)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 16)
-                        .background(Color.orange.opacity(0.15))
-                        .cornerRadius(16)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 16)
-                                .stroke(Color.orange, lineWidth: 2)
-                        )
-                    }
-                }
-            }
-            .padding(32)
-            .background(
-                RoundedRectangle(cornerRadius: 24)
-                    .fill(cardBackgroundColor)
-                    .shadow(color: .black.opacity(0.2), radius: 20, x: 0, y: 10)
-            )
-            .padding(.horizontal, 32)
         }
     }
     
@@ -372,11 +309,11 @@ struct WordSelectionView: View {
             }
             
             VStack(spacing: 16) {
-                Text("All Done! 🎉")
+                Text(NSLocalizedString("word_selection_complete_title", comment: ""))
                     .font(.system(size: 28, weight: .black))
                     .foregroundColor(.primary)
                 
-                Text("You've reviewed all words in this package.\nTime to pick a new challenge!")
+                Text(NSLocalizedString("word_selection_complete_message", comment: ""))
                     .font(.system(size: 17))
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -390,7 +327,7 @@ struct WordSelectionView: View {
                     }) {
                         HStack(spacing: 10) {
                             Image(systemName: "book.fill")
-                            Text("Start Learning (\(viewModel.selectedCount))")
+                            Text("\(NSLocalizedString("word_selection_start_learning", comment: "")) (\(viewModel.selectedCount))")
                         }
                         .font(.system(size: 17, weight: .bold))
                         .foregroundColor(.white)
@@ -405,7 +342,7 @@ struct WordSelectionView: View {
                 Button(action: { dismiss() }) {
                     HStack(spacing: 10) {
                         Image(systemName: "square.grid.2x2.fill")
-                        Text("Select New Package")
+                        Text(NSLocalizedString("word_selection_new_package", comment: ""))
                     }
                     .font(.system(size: 17, weight: .semibold))
                     .foregroundColor(themeAccentColor)
@@ -419,11 +356,78 @@ struct WordSelectionView: View {
         .padding(.horizontal, 36)
     }
     
+    // MARK: - Selection Limit Overlay
+    private var selectionLimitOverlay: some View {
+        ZStack {
+            Color.black.opacity(0.5)
+                .ignoresSafeArea()
+                .onTapGesture {
+                    viewModel.selectionLimitReached = false
+                }
+            
+            VStack(spacing: 24) {
+                Image(systemName: "hand.raised.fill")
+                    .font(.system(size: 56))
+                    .foregroundColor(.orange)
+                
+                VStack(spacing: 12) {
+                    Text(NSLocalizedString("word_selection_limit_title", comment: ""))
+                        .font(.system(size: 22, weight: .bold))
+                        .foregroundColor(.primary)
+                    
+                    Text(NSLocalizedString("word_selection_limit_message", comment: ""))
+                        .font(.system(size: 16))
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                        .lineSpacing(4)
+                }
+                
+                VStack(spacing: 12) {
+                    if viewModel.selectedCount > 0 {
+                        Button(action: {
+                            navigateToStudy = true
+                        }) {
+                            HStack(spacing: 10) {
+                                Image(systemName: "book.fill")
+                                Text("\(NSLocalizedString("word_selection_start_learning", comment: "")) (\(viewModel.selectedCount))")
+                            }
+                            .font(.system(size: 17, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 16)
+                            .background(themeAccentColor)
+                            .cornerRadius(14)
+                        }
+                    }
+                    
+                    Button(action: {
+                        viewModel.selectionLimitReached = false
+                    }) {
+                        Text(NSLocalizedString("word_selection_limit_close", comment: ""))
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundColor(themeAccentColor)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 16)
+                            .background(themeAccentColor.opacity(0.12))
+                            .cornerRadius(14)
+                    }
+                }
+            }
+            .padding(32)
+            .background(
+                RoundedRectangle(cornerRadius: 24)
+                    .fill(backgroundColor)
+                    .shadow(color: .black.opacity(0.3), radius: 30, x: 0, y: 15)
+            )
+            .padding(.horizontal, 40)
+        }
+    }
+    
     // MARK: - Loading & Error Views
     private var loadingView: some View {
         VStack(spacing: 16) {
             ProgressView().scaleEffect(1.5)
-            Text("Loading words...")
+            Text(NSLocalizedString("loading", comment: ""))
                 .font(.system(size: 16))
                 .foregroundColor(.secondary)
         }
@@ -472,6 +476,9 @@ struct WordSelectionView: View {
         return colors[word.id % colors.count]
     }
 }
+
+// ✅ REMOVED: SwipeableCardView (already in SwipeableCardView.swift)
+// ✅ REMOVED: SelectionActionButton (already in WordSelectionComponents.swift)
 
 // MARK: - Preview
 struct WordSelectionView_Previews: PreviewProvider {

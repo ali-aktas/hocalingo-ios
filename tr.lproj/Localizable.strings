@@ -153,3 +153,25 @@
 "add_word_error" = "Kelime eklenirken hata oluştu";
 "add_word_info" = "Kendi kelimelerinizi ekleyerek çalışma listenizi özelleştirin";
 "add_word_required" = "Bu alan zorunludur";
+
+// PackageSelectionView
+"package_selection_title" = "Seviyeni Seç";
+"package_selection_subtitle" = "Kelimeleri öğrenmeye başlamak için bir paket seç";
+"package_completed" = "Tamamlandı";
+"package_words_left" = "kelime kaldı";
+"package_empty_title" = "Tebrikler! 🎉";
+"package_empty_message" = "Bu paketteki tüm kelimeleri gördün.\nDiğer paketlere göz atmaya ne dersin!";
+"package_empty_button" = "Paketlere Gözat";
+
+// WordSelectionView
+"word_selection_back" = "Geri";
+"word_selection_instruction" = "Çalışma destesine yeni kelimeler ekle";
+"word_selection_remaining" = "seçim hakkı kaldı";
+"word_selection_complete_title" = "Tebrikler! 🎉";
+"word_selection_complete_message" = "Bu paketteki tüm kelimeleri gördün.\nYeni bir paket seçmeye hazır mısın!";
+"word_selection_start_learning" = "Çalışmaya Başla";
+"word_selection_new_package" = "Yeni Paket Seç";
+"word_selection_limit_title" = "Günlük Seçim Limitine Ulaşıldı";
+"word_selection_limit_message" = "Bugün 15 kelime seçtin.\nKelimeleri atlayabilirsin veya Premium'a geçerek sınırsız seçim yapabilirsin!";
+"word_selection_limit_close" = "İncelemeye Devam Et";
+
