@@ -115,12 +115,12 @@ private extension HomeView {
         HStack(alignment: .center, spacing: 8) {  // ✅ Reduced spacing from 16 to 8
             
             // ✅ LEFT: Play Button (120x120, larger)
-            playButton
+            playButton.padding(.leading, 10)
             
             Spacer()
             
             // ✅ RIGHT: Rotating Content (Image or Motivation Text)
-            rotatingContent
+            rotatingContent.padding(.trailing, 10)
             
         }
     }
@@ -175,6 +175,7 @@ private extension HomeView {
         return Image(mascots[index % mascots.count])
             .resizable()
             .scaledToFit()
+            .scaleEffect(2)
     }
     
     func motivationTextView(index: Int) -> some View {
@@ -182,7 +183,7 @@ private extension HomeView {
             .font(.system(size: 14, weight: .semibold))
             .foregroundColor(.primary)
             .multilineTextAlignment(.center)
-            .lineLimit(4)
+            .lineLimit(5)
             .fixedSize(horizontal: false, vertical: true)
     }
     
