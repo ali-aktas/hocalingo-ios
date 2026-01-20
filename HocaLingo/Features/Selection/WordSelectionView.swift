@@ -68,7 +68,6 @@ struct WordSelectionView: View {
                     HStack(spacing: 4) {
                         Image(systemName: "chevron.left")
                             .font(.system(size: 14, weight: .semibold))
-                        Text(NSLocalizedString("word_selection_back", comment: ""))
                             .font(.system(size: 17))
                     }
                     .foregroundColor(themeAccentColor)
@@ -85,21 +84,14 @@ struct WordSelectionView: View {
     private var mainContent: some View {
         VStack(spacing: 0) {
             
-            // Title text
-            Text("HocaLingo")
-                .font(.system(size: 32, weight: .black))
-                .foregroundColor(.primary)
-                .padding(.horizontal, 20)
-                .padding(.bottom, 12)
-            
             Spacer().frame(height: 16)
             
             // Instruction text
             Text(NSLocalizedString("word_selection_instruction", comment: ""))
-                .font(.system(size: 16, weight: .medium))
+                .font(.system(size: 18, weight: .medium))
                 .foregroundColor(.secondary)
                 .padding(.horizontal, 20)
-                .padding(.bottom, 12)
+                .padding(.bottom, 16)
             
             // Progress bar
             progressBar

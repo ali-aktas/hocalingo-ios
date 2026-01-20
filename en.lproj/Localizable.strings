@@ -154,7 +154,7 @@
 "add_word_info" = "Customize your study list by adding your own words";
 "add_word_required" = "This field is required";
 
-// PackageSelectionView
+// MARK: - Package Selection
 "package_selection_title" = "Choose Your Level";
 "package_selection_subtitle" = "Select a package to start learning words";
 "package_completed" = "Completed";
