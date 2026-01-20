@@ -50,8 +50,8 @@
 "stat_streak_days" = "Günlük Seri";
 "stat_today_words" = "Bugünkü Kelimeler";
 "stat_total_learned" = "Toplam Öğrenilen";
-"stat_this_month_days" = "Bu Ay Aktif Günler";
-"stat_this_month_time" = "Bu Ay Çalışma Süresi";
+"stat_this_month_days" = "Aktif Günler";
+"stat_this_month_time" = "Çalışma Süresi";
 "stat_discipline_score" = "Disiplin Puanı";
 "stat_active_days" = "Aktif Gün";
 "stat_study_time_min" = "dakika";

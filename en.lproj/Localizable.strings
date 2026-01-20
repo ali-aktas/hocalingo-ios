@@ -50,8 +50,8 @@
 "stat_streak_days" = "Day Streak";
 "stat_today_words" = "Today's Words";
 "stat_total_learned" = "Total Learned";
-"stat_this_month_days" = "Days Active This Month";
-"stat_this_month_time" = "Study Time This Month";
+"stat_this_month_days" = "Days Active";
+"stat_this_month_time" = "Study Time";
 "stat_discipline_score" = "Discipline Score";
 "stat_active_days" = "Active Days";
 "stat_study_time_min" = "minutes";

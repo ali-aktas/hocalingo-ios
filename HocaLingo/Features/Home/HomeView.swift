@@ -25,6 +25,8 @@ struct HomeView: View {
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.themeViewModel) private var themeViewModel
     
+    @State private var pulseScale: CGFloat = 1.0
+    
     // ✅ Timer for 40-second rotation
     private let rotationTimer = Timer.publish(every: 40, on: .main, in: .common).autoconnect()
     
@@ -109,47 +111,43 @@ private extension HomeView {
     }
 }
 
-// MARK: - Hero Card (Play Button + Image/Motivation Rotation)
+// MARK: - Seçenek 3: Yaylanma Hissi (Spring)
 private extension HomeView {
     var heroCard: some View {
-        HStack(alignment: .center, spacing: 8) {  // ✅ Reduced spacing from 16 to 8
-            
-            // ✅ LEFT: Play Button (120x120, larger)
+        HStack(alignment: .center, spacing: 8) {
             playButton.padding(.leading, 10)
-            
             Spacer()
-            
-            // ✅ RIGHT: Rotating Content (Image or Motivation Text)
             rotatingContent.padding(.trailing, 10)
-            
         }
     }
-    
+
     var playButton: some View {
         Button {
-            // ✅ CRITICAL FIX: This will trigger tab switch via .onChange
             viewModel.onEvent(.startStudy)
         } label: {
             ZStack {
-                // Glow effect
+                // Parlama efekti
                 Circle()
                     .fill(playButtonGlowGradient)
-                    .frame(width: 140, height: 140)  // ✅ Increased
+                    .frame(width: 140, height: 140)
                     .blur(radius: 10)
                 
-                // Main circle (theme-aware)
+                // Ana Buton
                 Circle()
                     .fill(playButtonGradient)
-                    .frame(width: 120, height: 120)  // ✅ Increased from 100
-                    .shadow(color: playButtonShadowColor, radius: 12, y: 6)
+                    .frame(width: 120, height: 120)
+                    .overlay(
+                        Circle().stroke(Color.white.opacity(0.3), lineWidth: 2) // Şık kenarlık
+                    )
+                    .shadow(color: playButtonShadowColor, radius: 15, y: 10)
                 
-                // Play icon
                 Image(systemName: "play.fill")
-                    .font(.system(size: 42, weight: .bold))  // ✅ Increased from 36
+                    .font(.system(size: 44, weight: .bold))
                     .foregroundColor(.white)
-                    .offset(x: 3)
+                    .offset(x: 4)
             }
         }
+        .buttonStyle(SpringButtonStyle()) // Özel basma efekti
     }
     
     var rotatingContent: some View {
@@ -175,7 +173,7 @@ private extension HomeView {
         return Image(mascots[index % mascots.count])
             .resizable()
             .scaledToFit()
-            .scaleEffect(2)
+            .scaleEffect(1.90)
     }
     
     func motivationTextView(index: Int) -> some View {
@@ -183,7 +181,7 @@ private extension HomeView {
             .font(.system(size: 14, weight: .semibold))
             .foregroundColor(.primary)
             .multilineTextAlignment(.center)
-            .lineLimit(5)
+            .lineLimit(4)
             .fixedSize(horizontal: false, vertical: true)
     }
     
@@ -353,7 +351,7 @@ private extension HomeView {
     }
 }
 
-// MARK: - Stat Card With Mini Chart (2x2 Grid Style)
+// MARK: - Stat Card With Mini Chart (2x2 Grid Style - Curved Area Design)
 struct StatCardWithChart: View {
     let title: String
     let value: String
@@ -364,65 +362,81 @@ struct StatCardWithChart: View {
     let chartColor: Color
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {  // ✅ Reduced spacing
-            
-            // Top: Icon
-            Image(systemName: icon)
-                .font(.system(size: 16, weight: .semibold))  // ✅ Slightly smaller
-                .foregroundColor(.white.opacity(0.9))
-                .frame(width: 28, height: 28)  // ✅ Smaller
-                .background(Color.white.opacity(0.2))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-            
-            // ✅ NEW: Value and Title in same row (HORIZONTAL)
-            HStack(alignment: .firstTextBaseline, spacing: 4) {
-                Text(value)
-                    .font(.system(size: 12, weight: .bold))  // ✅ Slightly smaller
-                    .foregroundColor(.white)
-                
-                if !subtitle.isEmpty {
-                    Text(subtitle)
-                        .font(.system(size: 11, weight: .medium))
-                        .foregroundColor(.white.opacity(0.8))
-                }
+        VStack(alignment: .leading, spacing: 6) {
+            // Top: Icon and Title
+            HStack(spacing: 6) {
+                Image(systemName: icon)
+                    .font(.system(size: 13, weight: .bold))
+                    .foregroundColor(gradient.first ?? .blue)
+                    .frame(width: 24, height: 24)
+                    .background((gradient.first ?? .blue).opacity(0.1))
+                    .clipShape(Circle())
                 
                 Text(title)
-                    .font(.system(size: 11, weight: .medium))
-                    .foregroundColor(.white.opacity(0.8))
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundColor(.primary)
                     .lineLimit(1)
             }
             
-            Spacer()
+            // Middle: Value
+            HStack(alignment: .firstTextBaseline, spacing: 4) {
+                Text(value)
+                    .font(.system(size: 20, weight: .heavy))
+                    .foregroundColor(.primary)
+                
+                if !subtitle.isEmpty {
+                    Text(subtitle)
+                        .font(.system(size: 12, weight: .bold))
+                        .foregroundColor(.secondary)
+                }
+            }
             
-            // Mini Chart
+            Spacer(minLength: 0)
+            
+            // Bottom: Curved Area Chart
             Chart {
                 ForEach(Array(chartData.enumerated()), id: \.offset) { index, point in
+                    // 1. Alt dolgu alanı (Area)
+                    AreaMark(
+                        x: .value("Index", index),
+                        y: .value("Value", point)
+                    )
+                    .interpolationMethod(.catmullRom) // ✅ Kavisli yapma
+                    .foregroundStyle(
+                        LinearGradient(
+                            colors: [(gradient.first ?? .blue).opacity(0.4), (gradient.first ?? .blue).opacity(0.01)],
+                            startPoint: .top,
+                            endPoint: .bottom
+                        )
+                    )
+                    
+                    // 2. Üst belirgin çizgi (Line)
                     LineMark(
                         x: .value("Index", index),
                         y: .value("Value", point)
                     )
-                    .foregroundStyle(chartColor)
-                    .lineStyle(StrokeStyle(lineWidth: 2, lineCap: .round, lineJoin: .round))
+                    .interpolationMethod(.catmullRom) // ✅ Kavisli yapma
+                    .foregroundStyle(gradient.first ?? .blue)
+                    .lineStyle(StrokeStyle(lineWidth: 2.5, lineCap: .round, lineJoin: .round))
                 }
             }
             .chartXAxis(.hidden)
             .chartYAxis(.hidden)
-            .frame(height: 25)  // ✅ Smaller chart
+            .frame(height: 30) // Area göründüğü için yüksekliği çok az (5 birim) artırdım
         }
-        .padding(12)  // ✅ Reduced padding
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(12)
+        .frame(maxWidth: .infinity)
         .background(
-            LinearGradient(
-                colors: gradient,
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
+            (gradient.first ?? .blue).opacity(0.04)
         )
         .clipShape(RoundedRectangle(cornerRadius: 16))
-        .frame(height: 120)  // ✅ Reduced from 140 to 120
+        .overlay(
+            RoundedRectangle(cornerRadius: 16)
+                .stroke((gradient.first ?? .blue).opacity(0.2), lineWidth: 1.2)
+        )
+        .frame(height: 120)
     }
 }
-
 // MARK: - Action Button With Icon (PNG from Assets)
 struct ActionButtonWithIcon: View {
     let iconName: String
@@ -481,6 +495,15 @@ struct ActionButtonWithIcon: View {
             .scaleEffect(isPressed ? 0.98 : 1.0)
         }
         .buttonStyle(.plain)
+    }
+}
+
+// Bu yardımcı kod parçasını dosyanın en altına (en dışa) ekleyebilirsin
+struct SpringButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.88 : 1.0)
+            .animation(.spring(response: 0.3, dampingFraction: 0.5, blendDuration: 0), value: configuration.isPressed)
     }
 }
 
