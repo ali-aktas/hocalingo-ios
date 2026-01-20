@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// MARK: - Annual Stats Section (COMPACT LAYOUT)
+// MARK: - Annual Stats Section (MAIN CONTAINER)
 struct AnnualStatsSection: View {
     let annualStats: AnnualStats
     
@@ -52,10 +52,10 @@ struct AnnualStatsSection: View {
     }
 }
 
-// MARK: - Compact Stat Card (Small Card Design)
+// MARK: - Compact Stat Card (Internal Component)
 struct CompactStatCard: View {
     let icon: String
-    let title: String
+    let title: LocalizedStringKey // ✅ String yerine LocalizedStringKey: Çevirinin çalışmasını sağlar
     let value: String
     let color: Color
     
@@ -79,7 +79,7 @@ struct CompactStatCard: View {
                 .lineLimit(1)
             
             // Label
-            Text(title)
+            Text(title) // ✅ Artık Localizable.strings dosyasındaki karşılığını gösterecek
                 .font(.system(size: 11, weight: .medium))
                 .foregroundColor(.themeSecondary)
                 .multilineTextAlignment(.center)
