@@ -175,3 +175,37 @@
 "word_selection_limit_message" = "Bugün 15 kelime seçtin.\nKelimeleri atlayabilirsin veya Premium'a geçerek sınırsız seçim yapabilirsin!";
 "word_selection_limit_close" = "İncelemeye Devam Et";
 
+// MARK: - Profile Cards
+"annual_stats_title" = "Yıllık İstatistikler";
+"annual_stats_days_label" = "Aktif Günler";
+"annual_stats_hours_label" = "Çalışma Saati";
+"annual_stats_skipped_label" = "Geçilen Kelimeler";
+
+"study_direction_card_title" = "Çalışma Yönü";
+"study_direction_card_subtitle" = "Öğrenme modunu seç";
+
+"language_card_title" = "Arayüz Dili";
+"language_card_subtitle" = "Dil seçimi";
+
+"theme_card_title" = "Tema";
+"theme_card_subtitle" = "Görünüm";
+
+"notification_card_title" = "Günlük Hatırlatıcılar";
+"notification_card_subtitle" = "Bildirimlerle düzenli kal";
+
+"premium_card_title" = "Premium";
+"premium_card_subtitle" = "Tüm özelliklerin kilidini aç";
+"premium_card_upgrade_button" = "Hemen Yükselt";
+
+// MARK: - Theme Display Names
+"theme_light_display" = "Açık Mod";
+"theme_dark_display" = "Koyu Mod";
+"theme_system_display" = "Sistem";
+
+// MARK: - Language Display Names
+"language_english" = "English";
+"language_turkish" = "Türkçe";
+
+// MARK: - Study Direction Display Names
+"direction_en_tr_display" = "İngilizce → Türkçe";
+"direction_tr_en_display" = "Türkçe → İngilizce";

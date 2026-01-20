@@ -174,3 +174,38 @@
 "word_selection_limit_title" = "Daily Selection Limit Reached";
 "word_selection_limit_message" = "You've selected 15 words today.\nYou can still skip words freely, or upgrade to Premium for unlimited selections!";
 "word_selection_limit_close" = "Continue Reviewing";
+
+// MARK: - Profile Cards
+"annual_stats_title" = "Annual Statistics";
+"annual_stats_days_label" = "Active Days";
+"annual_stats_hours_label" = "Study Hours";
+"annual_stats_skipped_label" = "Words Skipped";
+
+"study_direction_card_title" = "Study Direction";
+"study_direction_card_subtitle" = "Choose your learning mode";
+
+"language_card_title" = "App Language";
+"language_card_subtitle" = "Interface language";
+
+"theme_card_title" = "Theme";
+"theme_card_subtitle" = "Appearance";
+
+"notification_card_title" = "Daily Reminders";
+"notification_card_subtitle" = "Stay on track with notifications";
+
+"premium_card_title" = "Premium";
+"premium_card_subtitle" = "Unlock all features";
+"premium_card_upgrade_button" = "Upgrade Now";
+
+// MARK: - Theme Display Names (Already exist but confirming)
+"theme_light_display" = "Light Mode";
+"theme_dark_display" = "Dark Mode";
+"theme_system_display" = "System";
+
+// MARK: - Language Display Names
+"language_english" = "English";
+"language_turkish" = "Türkçe";
+
+// MARK: - Study Direction Display Names
+"direction_en_tr_display" = "English → Turkish";
+"direction_tr_en_display" = "Turkish → English";
