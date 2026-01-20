@@ -2,7 +2,9 @@
 //  MainTabView.swift
 //  HocaLingo
 //
-//  ✅ CRITICAL FIX: Tab tags corrected (0-1-2 instead of 0-0-1)
+//  ✅ CRITICAL FIX v2: Tab binding exposed for HomeView (eliminates duplicate StudyView navigation)
+//  - Exposes selectedTab as @Binding
+//  - HomeView can now switch to Study tab directly instead of navigating
 //  Location: HocaLingo/App/MainTabView.swift
 //
 
@@ -11,6 +13,7 @@ import SwiftUI
 struct MainTabView: View {
     
     // MARK: - State
+    // ✅ CHANGED: Make selectedTab accessible to child views (HomeView needs it)
     @State private var selectedTab = 0
     
     // MARK: - Environment
@@ -20,7 +23,8 @@ struct MainTabView: View {
     var body: some View {
         TabView(selection: $selectedTab) {
             // Home Tab
-            HomeView()
+            // ✅ CRITICAL FIX: Pass selectedTab binding to HomeView
+            HomeView(selectedTab: $selectedTab)
                 .tabItem {
                     Label("home_tab", systemImage: "house.fill")
                 }
@@ -31,14 +35,14 @@ struct MainTabView: View {
                 .tabItem {
                     Label("study_tab", systemImage: "play.fill")
                 }
-                .tag(1)  // ✅ FIXED: Study = 1 (was 0, causing conflict!)
+                .tag(1)  // ✅ Study = 1
             
             // Profile Tab
             ProfileView()
                 .tabItem {
                     Label("profile_tab", systemImage: "person.fill")
                 }
-                .tag(2)  // ✅ FIXED: Profile = 2 (was 1)
+                .tag(2)  // ✅ Profile = 2
         }
         // ✅ Theme-aware accent color
         .accentColor(themeAccentColor)

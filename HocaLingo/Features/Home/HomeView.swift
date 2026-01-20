@@ -2,11 +2,10 @@
 //  HomeView.swift
 //  HocaLingo
 //
-//  ✅ COMPLETE REDESIGN v2.0 - OPTIMIZED:
-//  - Larger play button with reduced spacing
-//  - Lower stats cards (120dp) with proper spacing
-//  - Horizontal text layout in stats cards
-//  - Optimized paddings throughout
+//  ✅ CRITICAL FIX: Tab switching instead of navigation (DESIGN UNCHANGED)
+//  - Added @Binding selectedTab from MainTabView
+//  - Play button switches to Study tab (1) instead of navigating
+//  - All original design preserved
 //
 //  Location: HocaLingo/Features/Home/HomeView.swift
 //
@@ -18,6 +17,9 @@ import Charts  // ✅ iOS 17+ Charts framework
 // MARK: - Home View
 /// Premium Home Dashboard - Production-grade with motivation rotation
 struct HomeView: View {
+    
+    // ✅ CRITICAL FIX: Accept tab selection binding from MainTabView
+    @Binding var selectedTab: Int
     
     @StateObject private var viewModel = HomeViewModel()
     @Environment(\.colorScheme) private var colorScheme
@@ -62,10 +64,8 @@ struct HomeView: View {
                 }
             }
             .navigationBarHidden(true)
-            // Navigation destinations
-            .navigationDestination(isPresented: $viewModel.shouldNavigateToStudy) {
-                StudyView()
-            }
+            // ✅ REMOVED: .navigationDestination for StudyView (we switch tabs instead!)
+            // Navigation destinations (keep only non-Study ones)
             .navigationDestination(isPresented: $viewModel.shouldNavigateToPackageSelection) {
                 PackageSelectionView()
             }
@@ -85,6 +85,15 @@ struct HomeView: View {
             // ✅ Language change listener
             .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("AppLanguageChanged"))) { _ in
                 viewModel.loadDashboardData()
+            }
+            // ✅ CRITICAL FIX: Listen for shouldNavigateToStudy and switch tab instead
+            .onChange(of: viewModel.shouldNavigateToStudy) { oldValue, newValue in
+                if newValue {
+                    // Switch to Study tab (tab 1)
+                    selectedTab = 1
+                    // Reset flag
+                    viewModel.shouldNavigateToStudy = false
+                }
             }
         }
     }
@@ -118,6 +127,7 @@ private extension HomeView {
     
     var playButton: some View {
         Button {
+            // ✅ CRITICAL FIX: This will trigger tab switch via .onChange
             viewModel.onEvent(.startStudy)
         } label: {
             ZStack {
@@ -475,6 +485,6 @@ struct ActionButtonWithIcon: View {
 
 // MARK: - Preview
 #Preview {
-    HomeView()
+    HomeView(selectedTab: .constant(0))
         .environment(\.themeViewModel, ThemeViewModel.shared)
 }
