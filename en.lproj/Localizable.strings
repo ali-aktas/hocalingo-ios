@@ -52,17 +52,17 @@
 "stat_total_learned" = "Total Learned";
 "stat_this_month_days" = "Days Active";
 "stat_this_month_time" = "Study Time";
-"stat_discipline_score" = "Discipline Score";
+"stat_discipline_score" = "Discipline";
 "stat_active_days" = "Active Days";
 "stat_study_time_min" = "minutes";
 "stat_monthly_stats" = "This month's statistics";
 
 // Actions
 "action_start_study" = "Start Studying";
-"action_select_package" = "Select Package";
+"action_select_package" = "Select New Words";
 "action_select_package_desc" = "Choose words to learn";
 "action_ai_assistant" = "AI Assistant";
-"action_ai_assistant_desc" = "Get help from AI";
+"action_ai_assistant_desc" = "Reading passages just for you";
 "action_add_word" = "Add Word";
 "action_add_word_desc" = "Add your own word";
 
@@ -124,6 +124,22 @@
 "package_downloaded" = "Downloaded";
 "package_download" = "Download";
 "package_all_completed" = "You've completed all words in this package!";
+
+// Levels
+"level_a1" = "A1";
+"level_a2" = "A2";
+"level_b1" = "B1";
+"level_b2" = "B2";
+"level_c1" = "C1";
+"level_c2" = "C2";
+
+// Package Names
+"package_name_beginner" = "Beginner";
+"package_name_elementary" = "Elementary";
+"package_name_intermediate" = "Intermediate";
+"package_name_upper_intermediate" = "Upper Intermediate";
+"package_name_advanced" = "Advanced";
+"package_name_mastery" = "Mastery";
 
 // MARK: - Word Selection
 "word_selection_title" = "Word Selection";

@@ -45,59 +45,54 @@ class PackageSelectionViewModel: ObservableObject {
     private func loadPackages() {
         isLoading = true
         
-        // Package metadata with JSON filenames
+        // Değerleri Localization Key formatına getirdik (örn: name_beginner)
         let packageMetadata: [(id: String, level: String, name: String, description: String, colorHex: String)] = [
             (
                 id: "en_tr_a1_001",
-                level: "A1",
-                name: "Beginner",
+                level: "level_a1",
+                name: "package_name_beginner",
                 description: "Basic everyday words",
                 colorHex: "FFB3BA"
             ),
             (
                 id: "en_tr_a2_001",
-                level: "A2",
-                name: "Elementary",
+                level: "level_a2",
+                name: "package_name_elementary",
                 description: "Common phrases",
                 colorHex: "FFDFBA"
             ),
             (
                 id: "en_tr_b1_001",
-                level: "B1",
-                name: "Intermediate",
+                level: "level_b1",
+                name: "package_name_intermediate",
                 description: "Work and travel",
                 colorHex: "FFFFBA"
             ),
             (
                 id: "en_tr_b2_001",
-                level: "B2",
-                name: "Upper Intermediate",
+                level: "level_b2",
+                name: "package_name_upper_intermediate",
                 description: "Complex topics",
                 colorHex: "BAFFC9"
             ),
             (
                 id: "en_tr_c1_001",
-                level: "C1",
-                name: "Advanced",
+                level: "level_c1",
+                name: "package_name_advanced",
                 description: "Academic language",
                 colorHex: "BAE1FF"
             ),
             (
                 id: "en_tr_c2_001",
-                level: "C2",
-                name: "Mastery",
+                level: "level_c2",
+                name: "package_name_mastery",
                 description: "Native-like fluency",
                 colorHex: "D4BAFF"
             )
         ]
         
-        // Load real word counts from JSON files
         packages = packageMetadata.map { metadata in
-            // Try to load word count from JSON
             let wordCount = loadWordCount(for: metadata.id)
-            
-            print("📦 Package \(metadata.level): \(wordCount) words")
-            
             return PackageModel(
                 id: metadata.id,
                 level: metadata.level,
@@ -109,7 +104,6 @@ class PackageSelectionViewModel: ObservableObject {
         }
         
         isLoading = false
-        print("✅ Loaded \(packages.count) packages with real word counts")
     }
     
     // MARK: - Load Word Count

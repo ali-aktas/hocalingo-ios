@@ -319,36 +319,33 @@ private extension HomeView {
 // MARK: - Action Buttons (With PNGs)
 private extension HomeView {
     var actionButtonsSection: some View {
-        VStack(spacing: 12) {
-            
-            // 1. Package Selection Button (Teal/Turkuaz)
-            ActionButtonWithIcon(
-                iconName: "card_icon",
-                title: NSLocalizedString("action_select_package", comment: ""),
-                subtitle: NSLocalizedString("action_select_package_desc", comment: ""),
-                baseColor: Color(hex: "14B8A6"),  // ✅ Teal
-                action: { viewModel.onEvent(.navigateToPackageSelection) }
-            )
-            
-            // 2. Add Word Button (Rose/Pembe)
-            ActionButtonWithIcon(
-                iconName: "add_img",
-                title: NSLocalizedString("action_add_word", comment: ""),
-                subtitle: NSLocalizedString("action_add_word_desc", comment: ""),
-                baseColor: Color(hex: "F43F5E"),  // ✅ Rose
-                action: { viewModel.onEvent(.showAddWordDialog) }
-            )
-            
-            // 3. AI Assistant Button (Indigo/Mavi-Mor)
-            ActionButtonWithIcon(
-                iconName: "ai_icon",
-                title: NSLocalizedString("action_ai_assistant", comment: ""),
-                subtitle: NSLocalizedString("action_ai_assistant_desc", comment: ""),
-                baseColor: Color(hex: "6366F1"),  // ✅ Indigo
-                action: { viewModel.onEvent(.navigateToAIAssistant) }
-            )
+            VStack(spacing: 12) {
+                // İkonları ve başlıkları senin renk sisteminden besler
+                ActionButtonWithIcon(
+                    iconName: "card_icon",
+                    title: NSLocalizedString("action_select_package", comment: ""),
+                    subtitle: NSLocalizedString("action_select_package_desc", comment: ""),
+                    accentColor: .accentTeal,
+                    action: { viewModel.onEvent(.navigateToPackageSelection) }
+                )
+                
+                ActionButtonWithIcon(
+                    iconName: "add_img",
+                    title: NSLocalizedString("action_add_word", comment: ""),
+                    subtitle: NSLocalizedString("action_add_word_desc", comment: ""),
+                    accentColor: .accentOrange,
+                    action: { viewModel.onEvent(.showAddWordDialog) }
+                )
+                
+                ActionButtonWithIcon(
+                    iconName: "ai_icon",
+                    title: NSLocalizedString("action_ai_assistant", comment: ""),
+                    subtitle: NSLocalizedString("action_ai_assistant_desc", comment: ""),
+                    accentColor: .accentPurple,
+                    action: { viewModel.onEvent(.navigateToAIAssistant) }
+                )
+            }
         }
-    }
 }
 
 // MARK: - Stat Card With Mini Chart (2x2 Grid Style - Curved Area Design)
@@ -442,59 +439,48 @@ struct ActionButtonWithIcon: View {
     let iconName: String
     let title: String
     let subtitle: String
-    let baseColor: Color
+    let accentColor: Color
     let action: () -> Void
     
-    @State private var isPressed = false
-    
     var body: some View {
-        Button(action: {
-            withAnimation(.easeInOut(duration: 0.1)) {
-                isPressed = true
-            }
-            action()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                withAnimation(.easeInOut(duration: 0.1)) {
-                    isPressed = false
-                }
-            }
-        }) {
-            HStack(spacing: 16) {
-                // ✅ PNG Icon (left side)
+        Button(action: action) {
+            HStack(spacing: 18) {
                 Image(iconName)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 32, height: 32)
-                    .padding(8)
-                    .background(Color.white.opacity(0.2))
-                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .frame(width: 40, height: 40)
+                    .padding(10)
+                    .background(
+                        Circle()
+                            .fill(accentColor.opacity(0.1))
+                    )
                 
-                // Text
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
-                        .font(.system(size: 16, weight: .bold))
-                        .foregroundColor(.white)
+                        .font(.system(size: 18, weight: .heavy))
+                        .foregroundColor(.themePrimary)
                     
                     Text(subtitle)
-                        .font(.system(size: 13, weight: .medium))
-                        .foregroundColor(.white.opacity(0.8))
+                        .font(.system(size: 14))
+                        .foregroundColor(.themeSecondary)
+                        .lineLimit(1)
                 }
                 
                 Spacer()
             }
-            .padding(16)
+            .padding(.vertical, 14)
+            .padding(.horizontal, 16)
             .background(
-                LinearGradient(
-                    colors: [baseColor, baseColor.opacity(0.8)],
-                    startPoint: .leading,
-                    endPoint: .trailing
-                )
+                RoundedRectangle(cornerRadius: 22)
+                    .fill(Color.themeCard)
             )
-            .cornerRadius(16)
-            .shadow(color: baseColor.opacity(0.3), radius: isPressed ? 6 : 12, y: isPressed ? 2 : 6)
-            .scaleEffect(isPressed ? 0.98 : 1.0)
+            .overlay(
+                // Sadece seçilen aksan renginde çok hafif bir parlama
+                RoundedRectangle(cornerRadius: 22)
+                    .stroke(accentColor.opacity(0.2), lineWidth: 0.5)
+            )
         }
-        .buttonStyle(.plain)
+        .buttonStyle(ScaleButtonStyle())
     }
 }
 
@@ -504,6 +490,15 @@ struct SpringButtonStyle: ButtonStyle {
         configuration.label
             .scaleEffect(configuration.isPressed ? 0.88 : 1.0)
             .animation(.spring(response: 0.3, dampingFraction: 0.5, blendDuration: 0), value: configuration.isPressed)
+    }
+}
+
+// Tıklama efekti (Her yerde kullanılabilir)
+struct ScaleButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 0.97 : 1.0)
+            .animation(.spring(response: 0.3, dampingFraction: 0.6), value: configuration.isPressed)
     }
 }
 

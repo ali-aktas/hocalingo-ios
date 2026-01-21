@@ -59,10 +59,10 @@
 
 // Actions
 "action_start_study" = "Çalışmaya Başla";
-"action_select_package" = "Paket Seç";
-"action_select_package_desc" = "Öğrenmek için kelime seç";
-"action_ai_assistant" = "AI Asistan";
-"action_ai_assistant_desc" = "AI'dan yardım al";
+"action_select_package" = "Yeni Kelimeler Seç";
+"action_select_package_desc" = "Çalışma destene kelime ekle";
+"action_ai_assistant" = "Yapay Zeka Asistanı";
+"action_ai_assistant_desc" = "Sana özel okuma parçaları";
 "action_add_word" = "Kelime Ekle";
 "action_add_word_desc" = "Kendi kelimeni ekle";
 
@@ -162,6 +162,22 @@
 "package_empty_title" = "Hepsi Bitti! 🎉";
 "package_empty_message" = "Bu paketteki tüm kelimeleri gördün.\nDiğer paketleri keşfetme vakti!";
 "package_empty_button" = "Paketlere Göz At";
+
+// Levels
+"level_a1" = "A1 Seviyesi";
+"level_a2" = "A2 Seviyesi";
+"level_b1" = "B1 Seviyesi";
+"level_b2" = "B2 Seviyesi";
+"level_c1" = "C1 Seviyesi";
+"level_c2" = "C2 Seviyesi";
+
+// Package Names
+"package_name_beginner" = "Başlangıç";
+"package_name_elementary" = "Temel Seviye";
+"package_name_intermediate" = "Orta Seviye";
+"package_name_upper_intermediate" = "Orta Üst Seviye";
+"package_name_advanced" = "İleri Seviye";
+"package_name_mastery" = "Anadil Seviyesi";
 
 // WordSelectionView
 "word_selection_back" = "Geri";

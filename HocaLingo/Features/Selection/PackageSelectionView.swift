@@ -11,8 +11,8 @@ struct PackageSelectionView: View {
     @State private var refreshTrigger = UUID()
     
     let columns = [
-        GridItem(.flexible(), spacing: 20),
-        GridItem(.flexible(), spacing: 20)
+        GridItem(.flexible(), spacing: 16),
+        GridItem(.flexible(), spacing: 16)
     ]
     
     var body: some View {
@@ -20,29 +20,28 @@ struct PackageSelectionView: View {
             ZStack {
                 Color.themeBackground.ignoresSafeArea()
                 
-                // Arka plan dekorasyonu
-                VStack {
+                // MARK: Background Decor (Adaptive Opacity)
+                Group {
                     Circle()
-                        .fill(Color.themePrimaryButton.opacity(0.08))
-                        .frame(width: 400, height: 400)
-                        .blur(radius: 70)
-                        .offset(x: 150, y: -200)
-                    Spacer()
+                        .fill(Color.themePrimaryButton.opacity(isDarkMode ? 0.12 : 0.05))
+                        .frame(width: 350, height: 350)
+                        .blur(radius: 60)
+                        .offset(x: 120, y: -250)
                 }
                 
                 if viewModel.isLoading {
-                    VStack(spacing: 16) {
-                        ProgressView().scaleEffect(1.2).tint(.themePrimaryButton)
+                    VStack(spacing: 20) {
+                        ProgressView().tint(.themePrimaryButton)
                         Text(NSLocalizedString("loading", comment: ""))
-                            .font(.system(size: 14, weight: .medium))
+                            .font(.system(size: 16, weight: .medium))
                             .foregroundColor(.themeSecondary)
                     }
                 } else {
                     ScrollView(showsIndicators: false) {
-                        VStack(spacing: 32) {
+                        VStack(spacing: 24) { // Spacing slightly reduced
                             headerSection
                             
-                            LazyVGrid(columns: columns, spacing: 20) {
+                            LazyVGrid(columns: columns, spacing: 16) {
                                 ForEach(viewModel.packages) { package in
                                     PackageCard(
                                         package: package,
@@ -55,8 +54,8 @@ struct PackageSelectionView: View {
                             }
                             .padding(.horizontal, 20)
                         }
-                        .padding(.top, 10)
-                        .padding(.bottom, 100)
+                        .padding(.top, 0) // Reduced top padding for better spacing with Back button
+                        .padding(.bottom, 120)
                     }
                 }
                 
@@ -75,10 +74,12 @@ struct PackageSelectionView: View {
         }
     }
     
+    private var isDarkMode: Bool { themeViewModel.isDarkMode(in: colorScheme) }
+
     private func handlePackageSelection(_ package: PackageModel) {
         let unseenCount = viewModel.getUnseenWordCount(for: package.id)
         if unseenCount == 0 {
-            viewModel.showEmptyPackageAlert = true
+            withAnimation(.spring()) { viewModel.showEmptyPackageAlert = true }
         } else {
             viewModel.selectPackage(package.id)
             selectedPackageForNavigation = package.id
@@ -88,39 +89,30 @@ struct PackageSelectionView: View {
     private var headerSection: some View {
         VStack(spacing: 8) {
             Text(NSLocalizedString("package_selection_title", comment: ""))
-                .font(.system(size: 34, weight: .black))
-                .tracking(-1)
-                .foregroundColor(.themePrimary)
+                .font(.system(size: 32, weight: .black, design: .rounded))
+                .foregroundColor(.themePrimary) // Adaptive color (Black in light, White in dark)
             
             Text(NSLocalizedString("package_selection_subtitle", comment: ""))
-                .font(.system(size: 16, weight: .medium))
+                .font(.system(size: 16, weight: .medium, design: .rounded))
                 .foregroundColor(.themeSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 40)
         }
-        .padding(.top, 10)
+        .padding(.top, 5) // Minimal padding to reduce gap from navigation area
     }
-    
+
     private var emptyPackageOverlay: some View {
         ZStack {
-            Color.black.opacity(0.4)
+            Color.black.opacity(isDarkMode ? 0.7 : 0.4)
                 .ignoresSafeArea()
                 .background(.ultraThinMaterial)
-                .onTapGesture { viewModel.showEmptyPackageAlert = false }
+                .onTapGesture { withAnimation { viewModel.showEmptyPackageAlert = false } }
             
             VStack(spacing: 25) {
-                ZStack {
-                    Circle()
-                        .fill(LinearGradient(
-                            colors: [.themePrimaryButtonGradientStart, .themePrimaryButtonGradientEnd],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing))
-                        .frame(width: 80, height: 80)
-                    Image(systemName: "star.fill")
-                        .font(.system(size: 35, weight: .bold))
-                        .foregroundColor(.white)
-                }
-                .shadow(color: .themePrimaryButtonShadow, radius: 15, x: 0, y: 8)
+                Circle()
+                    .fill(LinearGradient(colors: [.themePrimaryButtonGradientStart, .themePrimaryButtonGradientEnd], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .frame(width: 80, height: 80)
+                    .overlay(Image(systemName: "checkmark.seal.fill").foregroundColor(.white).font(.title))
                 
                 VStack(spacing: 12) {
                     Text(NSLocalizedString("package_empty_title", comment: ""))
@@ -131,10 +123,9 @@ struct PackageSelectionView: View {
                         .font(.system(size: 16))
                         .foregroundColor(.themeSecondary)
                         .multilineTextAlignment(.center)
-                        .lineSpacing(4)
                 }
                 
-                Button(action: { viewModel.showEmptyPackageAlert = false }) {
+                Button(action: { withAnimation { viewModel.showEmptyPackageAlert = false } }) {
                     Text(NSLocalizedString("package_empty_button", comment: ""))
                         .font(.system(size: 17, weight: .bold))
                         .foregroundColor(.white)
@@ -162,40 +153,49 @@ struct PackageCard: View {
     
     var body: some View {
         Button(action: onTap) {
-            VStack(alignment: .leading, spacing: 12) {
+            VStack(alignment: .leading, spacing: 0) {
                 HStack {
-                    Text(package.level)
-                        .font(.system(size: 12, weight: .black))
+                    // ✅ Level Localization Fix
+                    Text(NSLocalizedString(package.level, comment: ""))
+                        .font(.system(size: 14, weight: .heavy))
                         .padding(.horizontal, 8).padding(.vertical, 4)
-                        .background(.white.opacity(isDarkMode ? 0.2 : 0.9))
-                        .foregroundColor(isDarkMode ? .white : Color(hex: package.colorHex))
+                        .background(isDarkMode ? Color.white.opacity(0.2) : Color.black.opacity(0.1))
+                        .foregroundColor(isDarkMode ? .white : .primary)
                         .clipShape(Capsule())
                     Spacer()
-                    Image(systemName: unseenCount == 0 ? "checkmark.seal.fill" : "chevron.right.circle.fill")
-                        .font(.system(size: 18)).foregroundColor(.white.opacity(0.8))
+                    Image(systemName: unseenCount == 0 ? "checkmark.circle.fill" : "chevron.right.circle.fill")
+                        .foregroundColor(isDarkMode ? .white.opacity(0.8) : .primary.opacity(0.7))
                 }
+                
                 Spacer()
+                
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(package.name).font(.system(size: 18, weight: .bold)).foregroundColor(.white).lineLimit(1)
+                    // ✅ Title (Name) Localization Fix
+                    Text(NSLocalizedString(package.name, comment: ""))
+                        .font(.system(size: 18, weight: .bold))
+                        .foregroundColor(isDarkMode ? .white : .primary)
+                    
                     Text(unseenCount == 0
                          ? NSLocalizedString("package_completed", comment: "")
                          : "\(unseenCount) " + NSLocalizedString("package_words_left", comment: ""))
                         .font(.system(size: 12, weight: .semibold))
-                        .foregroundColor(.white.opacity(0.8))
+                        .foregroundColor(isDarkMode ? .white.opacity(0.7) : .primary.opacity(0.6))
                 }
             }
-            .padding(16).frame(height: 150).frame(maxWidth: .infinity)
+            .padding(16)
+            .frame(height: 150)
+            .frame(maxWidth: .infinity)
             .background(
                 ZStack(alignment: .bottomTrailing) {
-                    RoundedRectangle(cornerRadius: 24).fill(LinearGradient(colors: [Color(hex: package.colorHex), Color(hex: package.colorHex).opacity(0.8)], startPoint: .topLeading, endPoint: .bottomTrailing))
-                    Image(systemName: "square.stack.3d.up.fill").font(.system(size: 60)).offset(x: 10, y: 10).opacity(0.12).foregroundColor(.white)
+                    RoundedRectangle(cornerRadius: 24)
+                        .fill(isDarkMode
+                              ? LinearGradient(colors: [Color(hex: package.colorHex), Color(hex: package.colorHex).opacity(0.7)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                              : LinearGradient(colors: [Color(hex: package.colorHex).opacity(0.2), Color(hex: package.colorHex).opacity(0.1)], startPoint: .topLeading, endPoint: .bottomTrailing)
+                        )
                 }
             )
             .overlay(RoundedRectangle(cornerRadius: 24).stroke(isSelected ? Color.themePrimaryButton : Color.clear, lineWidth: 3))
-            .shadow(color: Color(hex: package.colorHex).opacity(0.3), radius: 8, x: 0, y: 6)
             .scaleEffect(isSelected ? 0.96 : 1.0)
-            .opacity(unseenCount == 0 ? 0.75 : 1.0)
-            .animation(.spring(response: 0.3, dampingFraction: 0.7), value: isSelected)
         }
         .buttonStyle(PlainButtonStyle())
     }

@@ -2,18 +2,11 @@
 //  AddWordDialogView.swift
 //  HocaLingo
 //
-//  ✅ FIXED: All compilation errors resolved
-//  - Added import Combine
-//  - Fixed Word model (uses Example struct)
-//  - Fixed Progress model (intervalDays, nextReviewAt)
-//  - Theme-aware UI
-//  - Full localization
-//
-//  Location: HocaLingo/Features/Home/AddWordDialogView.swift
+//  Premium, theme-aware manual word entry dialog.
 //
 
 import SwiftUI
-import Combine  // ✅ FIXED: Added Combine import
+import Combine
 
 // MARK: - Add Word Dialog View
 struct AddWordDialogView: View {
@@ -28,32 +21,52 @@ struct AddWordDialogView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Background
-                Color(.systemBackground)
+                // 1. Dinamik Arka Plan
+                Color.themeBackground
                     .ignoresSafeArea()
                 
-                ScrollView {
-                    VStack(spacing: 20) {
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 24) {
                         
-                        // Info Banner
+                        // Bilgi Paneli
                         infoBanner
                         
-                        // Form Fields
-                        formFields
+                        // İngilizce Giriş Bölümü
+                        wordSection(
+                            title: NSLocalizedString("add_word_english", comment: ""),
+                            wordText: $viewModel.englishWord,
+                            exampleText: $viewModel.exampleEn,
+                            examplePlaceholder: NSLocalizedString("add_word_example_en", comment: ""),
+                            icon: "textformat.abc",
+                            accentColor: .themePrimaryButton,
+                            placeholder: "e.g. Serendipity"
+                        )
                         
-                        // Save Button
-                        saveButton
+                        // Türkçe Giriş Bölümü
+                        wordSection(
+                            title: NSLocalizedString("add_word_turkish", comment: ""),
+                            wordText: $viewModel.turkishWord,
+                            exampleText: $viewModel.exampleTr,
+                            examplePlaceholder: NSLocalizedString("add_word_example_tr", comment: ""),
+                            icon: "character.book.closed.fill",
+                            accentColor: .accentTeal,
+                            placeholder: "Örn: Mutlu tesadüf"
+                        )
                         
-                        // Error Display
+                        Spacer(minLength: 20)
+                        
+                        // Kaydet Butonu
+                        saveButtonSection
+                        
+                        // Hata Mesajı (Varsa)
                         if let error = viewModel.errorMessage {
                             errorBanner(message: error)
                         }
-                        
                     }
                     .padding(20)
                 }
                 
-                // Success Animation Overlay
+                // Başarı Overlay (Premium Bulanıklık Efekti)
                 if showSuccessAnimation {
                     successOverlay
                 }
@@ -65,13 +78,17 @@ struct AddWordDialogView: View {
                     Button(NSLocalizedString("cancel", comment: "")) {
                         dismiss()
                     }
+                    .foregroundColor(.themePrimary)
+                    .fontWeight(.medium)
                 }
             }
             .onChange(of: viewModel.showSuccessAnimation) { _, newValue in
                 if newValue {
-                    showSuccessAnimation = true
-                    // Auto-dismiss after 1.5 seconds
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    withAnimation(.spring()) {
+                        showSuccessAnimation = true
+                    }
+                    // Animasyon sonrası otomatik kapanış
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
                         dismiss()
                     }
                 }
@@ -80,253 +97,211 @@ struct AddWordDialogView: View {
     }
 }
 
-// MARK: - Info Banner
+// MARK: - UI Components
 private extension AddWordDialogView {
+    
+    func wordSection(
+        title: String,
+        wordText: Binding<String>,
+        exampleText: Binding<String>,
+        examplePlaceholder: String,
+        icon: String,
+        accentColor: Color,
+        placeholder: String
+    ) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Label(title, systemImage: icon)
+                .font(.system(size: 14, weight: .bold))
+                .foregroundColor(accentColor)
+                .padding(.leading, 4)
+            
+            VStack(spacing: 0) {
+                // Kelime TextField
+                TextField(placeholder, text: wordText)
+                    .font(.system(size: 18, weight: .semibold))
+                    .foregroundColor(.themePrimary)
+                    .padding()
+                    .background(Color.themeCard)
+                    .cornerRadius(14, corners: [.topLeft, .topRight])
+                    .textInputAutocapitalization(.never)
+                
+                Divider()
+                    .background(Color.themeDivider)
+                    .padding(.horizontal)
+                
+                // Örnek Cümle TextField
+                HStack(spacing: 10) {
+                    Image(systemName: "quote.bubble.fill")
+                        .font(.system(size: 12))
+                        .foregroundColor(accentColor.opacity(0.6))
+                    
+                    TextField(examplePlaceholder, text: exampleText)
+                        .font(.system(size: 14))
+                        .foregroundColor(.themeSecondary)
+                        .textInputAutocapitalization(.sentences)
+                }
+                .padding()
+                .background(Color.themeCard)
+                .cornerRadius(14, corners: [.bottomLeft, .bottomRight])
+            }
+            .overlay(
+                RoundedRectangle(cornerRadius: 14)
+                    .stroke(Color.themeBorder, lineWidth: 1)
+            )
+            .shadow(color: Color.themeShadow, radius: 10, y: 4)
+        }
+    }
+    
     var infoBanner: some View {
         HStack(spacing: 12) {
-            Image(systemName: "info.circle.fill")
-                .font(.title2)
-                .foregroundColor(Color(hex: "4ECDC4"))
+            Image(systemName: "sparkles")
+                .font(.title3)
+                .foregroundColor(.accentOrange)
             
             Text(NSLocalizedString("add_word_info", comment: ""))
-                .font(.system(size: 14))
-                .foregroundColor(.secondary)
-                .fixedSize(horizontal: false, vertical: true)
+                .font(.system(size: 13, weight: .medium))
+                .foregroundColor(.themeSecondary)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .padding(16)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(hex: "4ECDC4").opacity(0.1))
-        )
+        .background(Color.accentOrange.opacity(0.1))
+        .cornerRadius(16)
     }
-}
-
-// MARK: - Form Fields
-private extension AddWordDialogView {
-    var formFields: some View {
-        VStack(spacing: 20) {
-            
-            // English Word (Required)
-            VStack(alignment: .leading, spacing: 8) {
-                HStack {
-                    Text(NSLocalizedString("add_word_english", comment: ""))
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(.secondary)
-                    
-                    Text("*")
-                        .foregroundColor(.red)
-                }
-                
-                TextField(NSLocalizedString("add_word_english", comment: ""), text: $viewModel.englishWord)
-                    .textFieldStyle(.roundedBorder)
-                    .textInputAutocapitalization(.never)
-                    .autocorrectionDisabled()
-            }
-            
-            // Turkish Word (Required)
-            VStack(alignment: .leading, spacing: 8) {
-                HStack {
-                    Text(NSLocalizedString("add_word_turkish", comment: ""))
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(.secondary)
-                    
-                    Text("*")
-                        .foregroundColor(.red)
-                }
-                
-                TextField(NSLocalizedString("add_word_turkish", comment: ""), text: $viewModel.turkishWord)
-                    .textFieldStyle(.roundedBorder)
-            }
-            
-            // English Example (Optional)
-            VStack(alignment: .leading, spacing: 8) {
-                Text(NSLocalizedString("add_word_example_en", comment: ""))
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(.secondary)
-                
-                TextField("Example: I love learning new words", text: $viewModel.exampleEn)
-                    .textFieldStyle(.roundedBorder)
-                    .textInputAutocapitalization(.sentences)
-            }
-            
-            // Turkish Example (Optional)
-            VStack(alignment: .leading, spacing: 8) {
-                Text(NSLocalizedString("add_word_example_tr", comment: ""))
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundColor(.secondary)
-                
-                TextField("Örnek: Yeni kelimeler öğrenmeyi seviyorum", text: $viewModel.exampleTr)
-                    .textFieldStyle(.roundedBorder)
-                    .textInputAutocapitalization(.sentences)
-            }
-        }
-    }
-}
-
-// MARK: - Save Button
-private extension AddWordDialogView {
-    var saveButton: some View {
+    
+    var saveButtonSection: some View {
         Button {
             viewModel.saveWord()
         } label: {
-            HStack {
+            ZStack {
                 if viewModel.isLoading {
-                    ProgressView()
-                        .tint(.white)
+                    ProgressView().tint(.white)
                 } else {
-                    Text(NSLocalizedString("add_word_save", comment: ""))
-                        .font(.system(size: 16, weight: .semibold))
+                    HStack(spacing: 8) {
+                        Image(systemName: "checkmark.circle.fill")
+                        Text(NSLocalizedString("add_word_save", comment: ""))
+                    }
+                    .font(.system(size: 17, weight: .bold))
                 }
             }
             .foregroundColor(.white)
             .frame(maxWidth: .infinity)
-            .padding(16)
+            .frame(height: 58)
             .background(
-                saveButtonGradient
+                viewModel.canSave ?
+                LinearGradient(colors: [.themePrimaryButtonGradientStart, .themePrimaryButtonGradientEnd], startPoint: .leading, endPoint: .trailing) :
+                LinearGradient(colors: [Color.gray.opacity(0.3)], startPoint: .leading, endPoint: .trailing)
             )
-            .cornerRadius(12)
-            .opacity(viewModel.canSave ? 1.0 : 0.6)
+            .cornerRadius(18)
+            .shadow(color: viewModel.canSave ? Color.themePrimaryButtonShadow : Color.clear, radius: 12, y: 6)
         }
         .disabled(!viewModel.canSave || viewModel.isLoading)
+        .padding(.top, 8)
+    }
+
+    func errorBanner(message: String) -> some View {
+        Label(message, systemImage: "exclamationmark.triangle.fill")
+            .font(.system(size: 13, weight: .bold))
+            .foregroundColor(.red)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(Color.red.opacity(0.1))
+            .cornerRadius(12)
     }
     
-    var saveButtonGradient: LinearGradient {
-        let isDark = themeViewModel.isDarkMode(in: colorScheme)
-        if isDark {
-            // Dark mode: Purple
-            return LinearGradient(
-                colors: [Color(hex: "9333EA"), Color(hex: "7C3AED")],
-                startPoint: .leading,
-                endPoint: .trailing
-            )
-        } else {
-            // Light mode: Orange
-            return LinearGradient(
-                colors: [Color(hex: "FB9322"), Color(hex: "FF6B00")],
-                startPoint: .leading,
-                endPoint: .trailing
-            )
-        }
-    }
-}
-
-// MARK: - Error Banner
-private extension AddWordDialogView {
-    func errorBanner(message: String) -> some View {
-        HStack(spacing: 12) {
-            Image(systemName: "exclamationmark.triangle.fill")
-                .foregroundColor(.red)
-            
-            Text(message)
-                .font(.system(size: 14))
-                .foregroundColor(.red)
-        }
-        .padding(16)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color.red.opacity(0.1))
-        )
-    }
-}
-
-// MARK: - Success Overlay
-private extension AddWordDialogView {
     var successOverlay: some View {
         ZStack {
-            Color.black.opacity(0.3)
+            Rectangle()
+                .fill(.ultraThinMaterial)
                 .ignoresSafeArea()
             
-            VStack(spacing: 16) {
-                Image(systemName: "checkmark.circle.fill")
-                    .font(.system(size: 64))
-                    .foregroundColor(.green)
+            VStack(spacing: 20) {
+                Image(systemName: "checkmark.seal.fill")
+                    .font(.system(size: 70))
+                    .foregroundColor(.accentGreen)
+                    .symbolEffect(.bounce, value: showSuccessAnimation)
                 
                 Text(NSLocalizedString("add_word_success", comment: ""))
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundColor(.white)
-                    .multilineTextAlignment(.center)
+                    .font(.system(size: 22, weight: .heavy))
+                    .foregroundColor(.themePrimary)
             }
             .padding(40)
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(Color(.systemBackground))
-            )
-            .shadow(radius: 20)
+            .background(Color.themeCard)
+            .cornerRadius(30)
+            .shadow(color: Color.black.opacity(0.2), radius: 40)
         }
-        .transition(.scale.combined(with: .opacity))
-        .animation(.spring(response: 0.5, dampingFraction: 0.7), value: showSuccessAnimation)
     }
 }
 
-// MARK: - Add Word View Model
+// MARK: - Helper for Selective Rounded Corners
+struct RoundedCorner: Shape {
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
+    }
+}
+
+extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape(RoundedCorner(radius: radius, corners: corners))
+    }
+}
+
+// MARK: - ViewModel (Logic & IDs Preserved)
 class AddWordViewModel: ObservableObject {
-    
     @Published var englishWord: String = ""
     @Published var turkishWord: String = ""
     @Published var exampleEn: String = ""
     @Published var exampleTr: String = ""
-    
     @Published var isLoading: Bool = false
     @Published var errorMessage: String? = nil
     @Published var showSuccessAnimation: Bool = false
     
     private let userDefaults = UserDefaultsManager.shared
     
-    // MARK: - Computed Properties
-    
     var canSave: Bool {
         !englishWord.trimmingCharacters(in: .whitespaces).isEmpty &&
         !turkishWord.trimmingCharacters(in: .whitespaces).isEmpty
     }
     
-    // MARK: - Save Word
-    
     func saveWord() {
         guard canSave else { return }
-        
         isLoading = true
         errorMessage = nil
         
-        // Generate unique ID (starting from 100000 to avoid conflicts with package words)
         let newWordId = generateUniqueWordId()
-        
-        // ✅ FIXED: Create Word with correct Example struct
         let example = Example(
-            en: exampleEn.isEmpty ? "" : exampleEn.trimmingCharacters(in: .whitespaces),
-            tr: exampleTr.isEmpty ? "" : exampleTr.trimmingCharacters(in: .whitespaces)
+            en: exampleEn.trimmingCharacters(in: .whitespaces),
+            tr: exampleTr.trimmingCharacters(in: .whitespaces)
         )
         
         let newWord = Word(
             id: newWordId,
             english: englishWord.trimmingCharacters(in: .whitespaces),
             turkish: turkishWord.trimmingCharacters(in: .whitespaces),
-            example: example,  // ✅ FIXED: Use Example struct
-            pronunciation: "",  // ✅ FIXED: Empty string, not nil
+            example: example,
+            pronunciation: "",
             level: "CUSTOM",
             category: "user_added",
             reversible: true,
             userAdded: true
         )
         
-        // Save word
         var userWords = userDefaults.loadUserAddedWords()
         userWords.append(newWord)
         userDefaults.saveUserAddedWords(userWords)
         
-        // Auto-select for study (create progress for both directions)
         createInitialProgress(for: newWord)
         
-        // Success
         isLoading = false
         showSuccessAnimation = true
         
-        // Clear form after short delay
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.clearForm()
         }
     }
-    
-    // MARK: - Helper Methods
     
     private func generateUniqueWordId() -> Int {
         let existingWords = userDefaults.loadUserAddedWords()
@@ -335,57 +310,20 @@ class AddWordViewModel: ObservableObject {
     }
     
     private func createInitialProgress(for word: Word) {
-        // ✅ FIXED: Use correct Progress initializer
-        // EN → TR progress
-        let progressEnToTr = Progress(
-            wordId: word.id,
-            direction: .enToTr,
-            repetitions: 0,
-            intervalDays: 0,  // ✅ FIXED: intervalDays not interval
-            easeFactor: 2.5,
-            nextReviewAt: Date(),  // ✅ FIXED: nextReviewAt not nextReviewDate
-            lastReviewAt: nil,
-            learningPhase: true,
-            sessionPosition: nil,
-            successfulReviews: 0,
-            hardPresses: 0,
-            isSelected: true,
-            createdAt: Date(),
-            updatedAt: Date()
-        )
-        userDefaults.saveProgress(progressEnToTr, for: word.id, direction: .enToTr)
-        
-        // TR → EN progress
-        let progressTrToEn = Progress(
-            wordId: word.id,
-            direction: .trToEn,
-            repetitions: 0,
-            intervalDays: 0,  // ✅ FIXED: intervalDays not interval
-            easeFactor: 2.5,
-            nextReviewAt: Date(),  // ✅ FIXED: nextReviewAt not nextReviewDate
-            lastReviewAt: nil,
-            learningPhase: true,
-            sessionPosition: nil,
-            successfulReviews: 0,
-            hardPresses: 0,
-            isSelected: true,
-            createdAt: Date(),
-            updatedAt: Date()
-        )
-        userDefaults.saveProgress(progressTrToEn, for: word.id, direction: .trToEn)
+        let directions: [StudyDirection] = [.enToTr, .trToEn]
+        for dir in directions {
+            let prog = Progress(
+                wordId: word.id, direction: dir, repetitions: 0,
+                intervalDays: 0, easeFactor: 2.5, nextReviewAt: Date(),
+                lastReviewAt: nil, learningPhase: true, sessionPosition: nil,
+                successfulReviews: 0, hardPresses: 0, isSelected: true,
+                createdAt: Date(), updatedAt: Date()
+            )
+            userDefaults.saveProgress(prog, for: word.id, direction: dir)
+        }
     }
     
     private func clearForm() {
-        englishWord = ""
-        turkishWord = ""
-        exampleEn = ""
-        exampleTr = ""
-        errorMessage = nil
+        englishWord = ""; turkishWord = ""; exampleEn = ""; exampleTr = ""; errorMessage = nil
     }
-}
-
-// MARK: - Preview
-#Preview {
-    AddWordDialogView()
-        .environment(\.themeViewModel, ThemeViewModel.shared)
 }
