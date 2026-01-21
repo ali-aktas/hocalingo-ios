@@ -27,7 +27,12 @@ struct StudyView: View {
                 studyInterface
             }
         }
-        .animation(.easeInOut(duration: 0.3), value: viewModel.isSessionComplete)
+        .onAppear {
+                    // ✅ Sesi sadece ekran açıldığında aktifleştir
+                    viewModel.onViewAppear()
+                }
+                .navigationBarHidden(true)
+                .animation(.easeInOut(duration: 0.3), value: viewModel.isSessionComplete)
     }
     
     private var studyInterface: some View {
@@ -67,7 +72,7 @@ struct StudyView: View {
                         isFlipped: viewModel.isCardFlipped,
                         cardColor: viewModel.currentCardColor,
                         exampleSentence: viewModel.currentExampleSentence,
-                        shouldShowSpeakerOnFront: viewModel.shouldShowSpeakerOnFront,
+                        shouldShowSpeakerOnFront: viewModel.shouldShowSpeakerOnFront == true,
                         isCardFlipped: viewModel.isCardFlipped,
                         onTap: { viewModel.flipCard() },
                         onSpeakerTap: { viewModel.replayAudio() }
@@ -121,7 +126,7 @@ struct StudyTopBar: View {
             
             Spacer()
             
-            Text("Çalışma")
+            Text("study_navbar_title")
                 .font(.system(size: 17, weight: .semibold))
                 .foregroundColor(.primary)
             
@@ -217,16 +222,17 @@ struct StudyButtons: View {
         } else {
             // Flip card prompt
             Button(action: {}) {
-                Text("Kartı çevir")
+                Text("study_flip_card_hint")
                     .font(.system(size: 16, weight: .medium))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
-                    .background(Color(hex: "4ECDC4"))
-                    .cornerRadius(16)
+                    .background(Color(hex: "D1C4E9"))
+                    .cornerRadius(18)
             }
             .disabled(true)
-            .opacity(0.6)
+            .opacity(0.5)
+            .padding(.horizontal, 8)
         }
     }
 }

@@ -76,6 +76,8 @@
 "study_completed_title" = "Great!";
 "study_completed_message" = "You've completed today's goal!";
 "study_progress" = "Progress: %d/%d";
+"study_navbar_title" = "Spaced Repetition";
+"study_flip_card_hint" = "Tap the card";
 
 // MARK: - Profile Screen
 "profile_welcome" = "Profile";

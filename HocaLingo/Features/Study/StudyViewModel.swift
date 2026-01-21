@@ -2,15 +2,10 @@
 //  StudyViewModel.swift
 //  HocaLingo
 //
-//  ✅ CRITICAL FIX v3.1: Proper card requeuing based on difficulty
-//  - HARD: Card goes to front (position + 1)
-//  - MEDIUM: Card goes to middle (position + 5)
-//  - EASY: Card goes to back (position + 10) or graduates
-//  - Queue is RE-SORTED after each answer
-//  - Graduated cards removed from queue
-//  - Session continues smoothly until all cards graduate
-//
-//  Location: HocaLingo/Features/Study/StudyViewModel.swift
+//  ✅ CRITICAL FIX v3.3:
+//  - Fixed TTS: Sadece ekran aktifken (onViewAppear) ve doğru yönde tetiklenir.
+//  - Fixed Transitions: Renk geçişi anlık başlar, metin değişimi kart 90 derecedeyken yapılır.
+//  - Improved Queue: displayCard mantığı ile "Index 0" takılmaları giderildi.
 //
 
 import SwiftUI
@@ -39,7 +34,7 @@ struct StudyCard: Identifiable {
     let backText: String
 }
 
-// MARK: - Card Colors (Android Parity - 20 vibrant colors)
+// MARK: - Card Colors
 private let studyCardColors: [Color] = [
     Color(hex: "6366F1"), Color(hex: "8B5CF6"), Color(hex: "EC4899"), Color(hex: "EF4444"),
     Color(hex: "F97316"), Color(hex: "10B981"), Color(hex: "06B6D4"), Color(hex: "3B82F6"),
@@ -48,27 +43,20 @@ private let studyCardColors: [Color] = [
     Color(hex: "7E22CE"), Color(hex: "0F766E"), Color(hex: "A21CAF"), Color(hex: "9A3412")
 ]
 
-// MARK: - StudyViewModel
 class StudyViewModel: ObservableObject {
     // MARK: - Published Properties
-    @Published var currentCardIndex: Int = 0 {
-        didSet {
-            if currentCardIndex != oldValue && currentCardIndex < studyQueue.count {
-                if studyDirection == .enToTr {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-                        self?.playCurrentWordAudio()
-                    }
-                }
-            }
-        }
-    }
+    @Published var currentCardIndex: Int = 0
     @Published var isCardFlipped: Bool = false
     @Published var studyQueue: [StudyCard] = []
     @Published var studyDirection: StudyDirection = .enToTr
-    @Published var shouldDismiss: Bool = false
     @Published var isSessionComplete: Bool = false
     @Published var cardsCompletedCount: Int = 0
     @Published var showNativeAd: Bool = false
+    
+    // ✅ Görünürdeki kartın içeriğini yöneten ana değişken
+    @Published var displayCard: StudyCard?
+    // ✅ Uygulama açılışında TTS'in tetiklenmesini engelleyen bayrak
+    @Published var isSessionActive: Bool = false
     
     // MARK: - Dependencies
     private let userDefaults = UserDefaultsManager.shared
@@ -83,131 +71,62 @@ class StudyViewModel: ObservableObject {
     private var ttsPlayedForCurrentCard: Bool = false
     private var cancellables = Set<AnyCancellable>()
     
-    // MARK: - Initialization
     init() {
-        print("🎯 StudyViewModel init() called")
         observeDirectionChanges()
         observeWordsChanged()
         loadStudyQueue()
     }
     
-    private func observeDirectionChanges() {
-        NotificationCenter.default.publisher(for: NSNotification.Name("StudyDirectionChanged"))
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                let newDirection = UserDefaultsManager.shared.loadStudyDirection()
-                print("📡 Direction changed to: \(newDirection.displayName)")
-                self.studyDirection = newDirection
-                self.loadStudyQueue()
-            }
-            .store(in: &cancellables)
-    }
+    // MARK: - View Lifecycle Interaction
     
-    private func observeWordsChanged() {
-        NotificationCenter.default.publisher(for: NSNotification.Name("WordsChanged"))
-            .sink { [weak self] _ in
-                guard let self = self else { return }
-                print("📡 WordsChanged notification received - reloading queue")
-                self.loadStudyQueue()
-            }
-            .store(in: &cancellables)
-    }
-    
-    // MARK: - Load Study Queue
-    func loadStudyQueue() {
-        print("🔄 Loading study queue...")
-        
-        studyDirection = userDefaults.loadStudyDirection()
-        
-        do {
-            allWords = try loadAllSelectedWords()
-            print("✅ Loaded \(allWords.count) selected words")
-            
-            guard !allWords.isEmpty else {
-                print("⚠️ No selected words found")
-                studyQueue = []
-                isSessionComplete = true
-                return
-            }
-            
-            loadOrCreateProgressForWords()
-            currentSessionMaxPosition = calculateMaxSessionPosition()
-            
-            let sortedWords = prioritizeWordsForStudy(allWords)
-            
-            studyQueue = sortedWords.map { word in
-                StudyCard(
-                    id: UUID(),
-                    wordId: word.id,
-                    frontText: getFrontText(for: word),
-                    backText: getBackText(for: word)
-                )
-            }
-            
-            print("✅ Study queue ready: \(studyQueue.count) cards")
-            
-            currentCardIndex = 0
-            isSessionComplete = studyQueue.isEmpty
-            cardsCompletedCount = 0
-            
-        } catch {
-            print("❌ Load queue error: \(error)")
-            studyQueue = []
-            isSessionComplete = true
+    func onViewAppear() {
+        // Ekran gerçekten açıldığında aktif et
+        isSessionActive = true
+        if studyDirection == .enToTr {
+            playCurrentWordAudio()
         }
     }
     
-    private func loadOrCreateProgressForWords() {
-        currentProgress.removeAll()
-        
-        for word in allWords {
-            if let existingProgress = userDefaults.loadProgress(for: word.id, direction: studyDirection) {
-                currentProgress[word.id] = existingProgress
-            } else {
-                let newProgress = Progress(wordId: word.id, direction: studyDirection)
-                userDefaults.saveProgress(newProgress, for: word.id, direction: studyDirection)
-                currentProgress[word.id] = newProgress
-                print("✅ Created default progress for word ID: \(word.id)")
-            }
-        }
-    }
-    
-    // MARK: - Study Actions
+    // MARK: - Logic & Actions
     
     func flipCard() {
         soundManager.playCardFlip()
-        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+        withAnimation(.spring(response: 0.5, dampingFraction: 0.7)) {
             isCardFlipped.toggle()
+        }
+        
+        // Tr -> En yönünde kart çevrildiğinde (arka yüz İngilizce) otomatik oku
+        if isCardFlipped && studyDirection == .trToEn {
+            playCurrentWordAudio()
         }
     }
     
     func replayAudio() {
-        playCurrentWordAudio()
+        guard let card = displayCard else { return }
+        if let word = allWords.first(where: { $0.id == card.wordId }) {
+            ttsManager.speakEnglishWord(word.english)
+        }
     }
     
     private func playCurrentWordAudio() {
-        guard currentCardIndex < studyQueue.count else { return }
-        let card = studyQueue[currentCardIndex]
-        
+        // Sadece oturum aktifse ve henüz okunmadıysa oku
+        guard isSessionActive, let card = displayCard else { return }
         guard let word = allWords.first(where: { $0.id == card.wordId }) else { return }
         
-        if studyDirection == .enToTr && !ttsPlayedForCurrentCard {
+        if !ttsPlayedForCurrentCard {
             ttsManager.speakEnglishWord(word.english)
             ttsPlayedForCurrentCard = true
         }
     }
     
     func answerCard(difficulty: CardDifficulty) {
-        guard currentCardIndex < studyQueue.count else { return }
-        
+        guard displayCard != nil else { return }
         soundManager.playClickSound()
         handleStudyResponse(difficulty: difficulty)
     }
     
-    // MARK: - ✅ CRITICAL FIX: Proper Card Requeuing
-    
     private func handleStudyResponse(difficulty: CardDifficulty) {
-        let currentCard = studyQueue[currentCardIndex]
+        guard let currentCard = displayCard else { return }
         guard var progress = currentProgress[currentCard.wordId] else { return }
         
         let newProgress = SpacedRepetition.calculateNextReview(
@@ -216,46 +135,40 @@ class StudyViewModel: ObservableObject {
             currentSessionMaxPosition: currentSessionMaxPosition
         )
         
-        // Save updated progress
         userDefaults.saveProgress(newProgress, for: currentCard.wordId, direction: studyDirection)
         currentProgress[currentCard.wordId] = newProgress
         
-        // Update max session position if needed
         if let position = newProgress.sessionPosition, position > currentSessionMaxPosition {
             currentSessionMaxPosition = position
         }
         
-        print("📝 Progress updated: word=\(currentCard.wordId), quality=\(difficulty.quality), learningPhase=\(newProgress.learningPhase), position=\(newProgress.sessionPosition ?? -1)")
-        
-        // ✅ CRITICAL: Requeue based on updated progress
         requeueAndContinue()
     }
-    
-    /// ✅ CRITICAL FIX: Re-sort queue after each card, remove graduated cards
+
     private func requeueAndContinue() {
-        cardsCompletedCount += 1
-        
-        // Filter out graduated cards (not in learning phase anymore)
-        let learningWords = allWords.filter { word in
-            if let progress = currentProgress[word.id] {
-                return progress.learningPhase
-            }
-            return false
+        // 1. Kartı kapatmaya başla (Kapanma animasyonu)
+        withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
+            isCardFlipped = false
         }
         
-        // Check if all cards graduated
+        self.cardsCompletedCount += 1
+        
+        // 2. Mezun olmayan kelimeleri filtrele ve sırala
+        let learningWords = allWords.filter { word in
+            currentProgress[word.id]?.learningPhase ?? false
+        }
+        
         if learningWords.isEmpty {
-            print("✅ Session complete - all cards graduated!")
             isSessionComplete = true
             updateUserStats()
             return
         }
         
-        // ✅ CRITICAL: Re-sort learning words by sessionPosition (priority)
         let sortedWords = prioritizeWordsForStudy(learningWords)
         
-        // Rebuild queue
-        studyQueue = sortedWords.map { word in
+        // 3. ✅ RENK GEÇİŞİ: studyQueue'yu hemen güncelle
+        // Bu sayede UI'daki renk ve gölge animasyonu pürüzsüzce yeni kartın rengine dönmeye başlar.
+        self.studyQueue = sortedWords.map { word in
             StudyCard(
                 id: UUID(),
                 wordId: word.id,
@@ -263,28 +176,120 @@ class StudyViewModel: ObservableObject {
                 backText: getBackText(for: word)
             )
         }
+        self.currentCardIndex = 0
+        self.ttsPlayedForCurrentCard = false
         
-        print("🔄 Queue reordered: \(studyQueue.count) learning cards remain")
-        
-        // ✅ Reset to first card (queue is now sorted by priority)
-        currentCardIndex = 0
-        isCardFlipped = false
-        ttsPlayedForCurrentCard = false
-        
-        // Show ad every 12 cards
-        if cardsCompletedCount % 12 == 0 && cardsCompletedCount > 0 {
-            showNativeAd = true
-            print("📢 Showing native ad (12 cards completed)")
+        // 4. ✅ METİN SIZMASI (Leak) ÇÖZÜMÜ: displayCard'ı geciktirerek güncelle
+        // Kart tam 90 derecedeyken (görünmezken) metni değiştiriyoruz.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.08) { [weak self] in
+            guard let self = self else { return }
+            self.displayCard = self.studyQueue.first
+            
+            // Eğer EN -> TR ise yeni kartın metni değiştiği an oku
+            if self.studyDirection == .enToTr {
+                self.playCurrentWordAudio()
+            }
         }
         
+        if cardsCompletedCount % 12 == 0 { showNativeAd = true }
         updateUserStats()
     }
     
-    func closeNativeAd() {
-        withAnimation {
-            showNativeAd = false
+    // MARK: - Helpers & Data Loading
+    
+    func loadStudyQueue() {
+        studyDirection = userDefaults.loadStudyDirection()
+        do {
+            allWords = try loadAllSelectedWords()
+            guard !allWords.isEmpty else {
+                studyQueue = []
+                displayCard = nil
+                isSessionComplete = true
+                return
+            }
+            loadOrCreateProgressForWords()
+            currentSessionMaxPosition = calculateMaxSessionPosition()
+            let sortedWords = prioritizeWordsForStudy(allWords)
+            studyQueue = sortedWords.map { word in
+                StudyCard(
+                    id: UUID(),
+                    wordId: word.id,
+                    frontText: getFrontText(for: word),
+                    backText: getBackText(for: word)
+                )
+            }
+            currentCardIndex = 0
+            displayCard = studyQueue.first
+            isSessionComplete = studyQueue.isEmpty
+            cardsCompletedCount = 0
+            
+        } catch {
+            studyQueue = []
+            isSessionComplete = true
         }
-        print("❌ Native ad closed")
+    }
+    
+    private func observeDirectionChanges() {
+        NotificationCenter.default.publisher(for: NSNotification.Name("StudyDirectionChanged"))
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.studyDirection = UserDefaultsManager.shared.loadStudyDirection()
+                self.loadStudyQueue()
+            }
+            .store(in: &cancellables)
+    }
+    
+    private func observeWordsChanged() {
+        NotificationCenter.default.publisher(for: NSNotification.Name("WordsChanged"))
+            .sink { [weak self] _ in
+                self?.loadStudyQueue()
+            }
+            .store(in: &cancellables)
+    }
+
+    private func loadOrCreateProgressForWords() {
+        currentProgress.removeAll()
+        for word in allWords {
+            if let existingProgress = userDefaults.loadProgress(for: word.id, direction: studyDirection) {
+                currentProgress[word.id] = existingProgress
+            } else {
+                let newProgress = Progress(wordId: word.id, direction: studyDirection)
+                userDefaults.saveProgress(newProgress, for: word.id, direction: studyDirection)
+                currentProgress[word.id] = newProgress
+            }
+        }
+    }
+
+    private func prioritizeWordsForStudy(_ words: [Word]) -> [Word] {
+        return words.sorted { word1, word2 in
+            let progress1 = currentProgress[word1.id] ?? Progress(wordId: word1.id, direction: studyDirection)
+            let progress2 = currentProgress[word2.id] ?? Progress(wordId: word2.id, direction: studyDirection)
+            return progress1.studyPriority > progress2.studyPriority
+        }
+    }
+
+    private func loadAllSelectedWords() throws -> [Word] {
+        let selectedIds = userDefaults.loadSelectedWords()
+        var loadedWords: [Word] = []
+        let packageFiles = ["en_tr_a1_001", "en_tr_a2_001", "en_tr_b1_001"]
+        
+        for packageId in packageFiles {
+            if let package = try? jsonLoader.loadVocabularyPackage(filename: packageId) {
+                let selectedFromPackage = package.words.filter { selectedIds.contains($0.id) }
+                loadedWords.append(contentsOf: selectedFromPackage)
+            }
+        }
+        
+        let userWords = userDefaults.loadUserAddedWords()
+        let selectedUserWords = userWords.filter { selectedIds.contains($0.id) }
+        loadedWords.append(contentsOf: selectedUserWords)
+        
+        return loadedWords
+    }
+
+    private func calculateMaxSessionPosition() -> Int {
+        let learningProgress = currentProgress.values.filter { $0.learningPhase }
+        return learningProgress.map { $0.sessionPosition ?? 0 }.max() ?? 0
     }
     
     private func updateUserStats() {
@@ -295,87 +300,36 @@ class StudyViewModel: ObservableObject {
         userDefaults.saveUserStats(stats)
     }
     
-    // MARK: - Helper Methods
-    
-    private func prioritizeWordsForStudy(_ words: [Word]) -> [Word] {
-        return words.sorted { word1, word2 in
-            let progress1 = currentProgress[word1.id] ?? Progress(wordId: word1.id, direction: studyDirection)
-            let progress2 = currentProgress[word2.id] ?? Progress(wordId: word2.id, direction: studyDirection)
-            return progress1.studyPriority > progress2.studyPriority
-        }
+    func closeNativeAd() {
+        withAnimation { showNativeAd = false }
     }
-    
-    private func loadAllSelectedWords() throws -> [Word] {
-        let selectedIds = userDefaults.loadSelectedWords()
-        print("📋 Global selected IDs: \(selectedIds.count) words")
-        
-        var loadedWords: [Word] = []
-        
-        let packageFiles = ["en_tr_a1_001", "en_tr_a2_001", "en_tr_b1_001"]
-        
-        for packageId in packageFiles {
-            do {
-                let package = try jsonLoader.loadVocabularyPackage(filename: packageId)
-                let selectedFromPackage = package.words.filter { selectedIds.contains($0.id) }
-                loadedWords.append(contentsOf: selectedFromPackage)
-            } catch {
-                continue
-            }
-        }
-        
-        let userWords = userDefaults.loadUserAddedWords()
-        let selectedUserWords = userWords.filter { selectedIds.contains($0.id) }
-        loadedWords.append(contentsOf: selectedUserWords)
-        
-        print("📦 Loaded from packages: \(loadedWords.count - selectedUserWords.count)")
-        print("✍️ Loaded user words: \(selectedUserWords.count)")
-        
-        return loadedWords
-    }
-    
-    private func calculateMaxSessionPosition() -> Int {
-        let learningProgress = currentProgress.values.filter { $0.learningPhase }
-        return learningProgress.map { $0.sessionPosition ?? 0 }.max() ?? 0
-    }
-    
+
     // MARK: - Computed Properties
     
     var currentCard: StudyCard {
-        guard currentCardIndex < studyQueue.count else {
-            return StudyCard(id: UUID(), wordId: 0, frontText: "", backText: "")
-        }
-        return studyQueue[currentCardIndex]
+        displayCard ?? studyQueue.first ?? StudyCard(id: UUID(), wordId: 0, frontText: "", backText: "")
     }
-    
+
     var shouldShowSpeakerOnFront: Bool {
         return studyDirection == .enToTr
     }
     
-    var hardTimeText: String {
-        getCurrentTimeText(for: .hard)
-    }
-    
-    var mediumTimeText: String {
-        getCurrentTimeText(for: .medium)
-    }
-    
-    var easyTimeText: String {
-        getCurrentTimeText(for: .easy)
-    }
+    var hardTimeText: String { getCurrentTimeText(for: .hard) }
+    var mediumTimeText: String { getCurrentTimeText(for: .medium) }
+    var easyTimeText: String { getCurrentTimeText(for: .easy) }
     
     var currentCardColor: Color {
-        let colorIndex = abs(currentCard.wordId) % studyCardColors.count
+        // UI'daki renk animasyonunun pürüzsüz olması için studyQueue'dan renk alırız
+        let cardForColor = studyQueue.first ?? currentCard
+        let colorIndex = abs(cardForColor.wordId) % studyCardColors.count
         return studyCardColors[colorIndex]
     }
     
     var currentExampleSentence: String {
         guard let word = allWords.first(where: { $0.id == currentCard.wordId }) else { return "" }
-        
         switch studyDirection {
-        case .enToTr:
-            return isCardFlipped ? word.example.tr : word.example.en
-        case .trToEn:
-            return isCardFlipped ? word.example.en : word.example.tr
+        case .enToTr: return isCardFlipped ? word.example.tr : word.example.en
+        case .trToEn: return isCardFlipped ? word.example.en : word.example.tr
         }
     }
     
@@ -385,20 +339,10 @@ class StudyViewModel: ObservableObject {
     }
     
     private func getFrontText(for word: Word) -> String {
-        switch studyDirection {
-        case .enToTr:
-            return word.english
-        case .trToEn:
-            return word.turkish
-        }
+        studyDirection == .enToTr ? word.english : word.turkish
     }
     
     private func getBackText(for word: Word) -> String {
-        switch studyDirection {
-        case .enToTr:
-            return word.turkish
-        case .trToEn:
-            return word.english
-        }
+        studyDirection == .enToTr ? word.turkish : word.english
     }
 }

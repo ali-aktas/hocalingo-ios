@@ -76,6 +76,8 @@
 "study_completed_title" = "Harika!";
 "study_completed_message" = "Bugünkü hedefini tamamladın!";
 "study_progress" = "İlerleme: %d/%d";
+"study_navbar_title" = "Aralıklı Tekrar Çalışması";
+"study_flip_card_hint" = "Kartı çevir";
 
 // MARK: - Profile Screen
 "profile_welcome" = "Profil";

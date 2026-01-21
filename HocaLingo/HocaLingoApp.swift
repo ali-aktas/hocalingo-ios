@@ -25,7 +25,7 @@ struct HocaLingoApp: App {
     
     /// Current app locale based on selected language
     private var currentLocale: Locale {
-        Locale(identifier: appLanguageCode == "tr" ? "tr_TR" : "en_US")
+        Locale(identifier: appLanguageCode)
     }
     
     var body: some Scene {
