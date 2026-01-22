@@ -10,8 +10,6 @@ struct PackageSelectionView: View {
     // ✅ Language change trigger
     @AppStorage("app_language") private var appLanguageCode: String = "en"
     
-    @State private var refreshTrigger = UUID()
-    
     let columns = [
         GridItem(.flexible(), spacing: 16),
         GridItem(.flexible(), spacing: 16)
@@ -34,7 +32,7 @@ struct PackageSelectionView: View {
                 if viewModel.isLoading {
                     VStack(spacing: 20) {
                         ProgressView().tint(.themePrimaryButton)
-                        Text(NSLocalizedString("loading", comment: ""))
+                        Text("package_selection_title")
                             .font(.system(size: 16, weight: .medium))
                             .foregroundColor(.themeSecondary)
                     }
@@ -69,10 +67,6 @@ struct PackageSelectionView: View {
             .navigationDestination(item: $selectedPackageForNavigation) { packageId in
                 WordSelectionView(packageId: packageId)
             }
-            .onReceive(NotificationCenter.default.publisher(for: Notification.Name("AppLanguageChanged"))) { _ in
-                refreshTrigger = UUID()
-            }
-            .id(refreshTrigger)
         }
     }
     
@@ -90,11 +84,11 @@ struct PackageSelectionView: View {
     
     private var headerSection: some View {
         VStack(spacing: 8) {
-            Text(NSLocalizedString("package_selection_title", comment: ""))
+            Text("package_selection_title")
                 .font(.system(size: 32, weight: .black, design: .rounded))
                 .foregroundColor(.themePrimary) // Adaptive color (Black in light, White in dark)
             
-            Text(NSLocalizedString("package_selection_subtitle", comment: ""))
+            Text("package_selection_subtitle")
                 .font(.system(size: 16, weight: .medium, design: .rounded))
                 .foregroundColor(.themeSecondary)
                 .multilineTextAlignment(.center)
@@ -117,18 +111,18 @@ struct PackageSelectionView: View {
                     .overlay(Image(systemName: "checkmark.seal.fill").foregroundColor(.white).font(.title))
                 
                 VStack(spacing: 12) {
-                    Text(NSLocalizedString("package_empty_title", comment: ""))
+                    Text("package_empty_title")
                         .font(.system(size: 24, weight: .bold))
                         .foregroundColor(.themePrimary)
                     
-                    Text(NSLocalizedString("package_empty_message", comment: ""))
+                    Text("package_empty_message")
                         .font(.system(size: 16))
                         .foregroundColor(.themeSecondary)
                         .multilineTextAlignment(.center)
                 }
                 
                 Button(action: { withAnimation { viewModel.showEmptyPackageAlert = false } }) {
-                    Text(NSLocalizedString("package_empty_button", comment: ""))
+                    Text("package_empty_button")
                         .font(.system(size: 17, weight: .bold))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
@@ -158,7 +152,7 @@ struct PackageCard: View {
             VStack(alignment: .leading, spacing: 0) {
                 HStack {
                     // ✅ Level Localization Fix
-                    Text(NSLocalizedString(package.level, comment: ""))
+                    Text(LocalizedStringKey(package.level))
                         .font(.system(size: 14, weight: .heavy))
                         .padding(.horizontal, 8).padding(.vertical, 4)
                         .background(isDarkMode ? Color.white.opacity(0.2) : Color.black.opacity(0.1))
@@ -173,15 +167,15 @@ struct PackageCard: View {
                 
                 VStack(alignment: .leading, spacing: 4) {
                     // ✅ Title (Name) Localization Fix
-                    Text(NSLocalizedString(package.name, comment: ""))
+                    Text(LocalizedStringKey(package.name))
                         .font(.system(size: 18, weight: .bold))
                         .foregroundColor(isDarkMode ? .white : .primary)
                     
-                    Text(unseenCount == 0
-                         ? NSLocalizedString("package_completed", comment: "")
-                         : "\(unseenCount) " + NSLocalizedString("package_words_left", comment: ""))
-                        .font(.system(size: 12, weight: .semibold))
-                        .foregroundColor(isDarkMode ? .white.opacity(0.7) : .primary.opacity(0.6))
+                    if unseenCount == 0 {
+                        Text("package_completed")
+                    } else {
+                        Text("\(unseenCount) ") + Text("package_words_left")
+                    }
                 }
             }
             .padding(16)

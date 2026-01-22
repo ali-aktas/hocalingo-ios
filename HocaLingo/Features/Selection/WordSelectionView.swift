@@ -25,7 +25,6 @@ struct WordSelectionView: View {
     
     @State private var currentCardId: UUID = UUID()
     @State private var navigateToStudy: Bool = false
-    @State private var refreshTrigger = UUID()
     
     init(packageId: String) {
         _viewModel = StateObject(wrappedValue: WordSelectionViewModel(packageId: packageId))
@@ -76,10 +75,6 @@ struct WordSelectionView: View {
                 }
             }
         }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("AppLanguageChanged"))) { _ in
-            refreshTrigger = UUID()
-        }
-        .id(refreshTrigger)
     }
     
     // MARK: - Main Content
@@ -89,7 +84,7 @@ struct WordSelectionView: View {
             Spacer().frame(height: 16)
             
             // Instruction text
-            Text(NSLocalizedString("word_selection_instruction", comment: ""))
+            Text("word_selection_instruction")
                 .font(.system(size: 18, weight: .medium))
                 .foregroundColor(.secondary)
                 .padding(.horizontal, 20)
@@ -211,7 +206,7 @@ struct WordSelectionView: View {
                 .font(.system(size: 14))
                 .foregroundColor(.orange)
             
-            Text("\(remaining) \(NSLocalizedString("word_selection_remaining", comment: ""))")
+            Text("\(remaining) ") + Text("word_selection_remaining")
                 .font(.system(size: 14, weight: .medium))
                 .foregroundColor(.primary)
         }
@@ -303,11 +298,11 @@ struct WordSelectionView: View {
             }
             
             VStack(spacing: 16) {
-                Text(NSLocalizedString("word_selection_complete_title", comment: ""))
+                Text("word_selection_complete_title")
                     .font(.system(size: 28, weight: .black))
                     .foregroundColor(.primary)
                 
-                Text(NSLocalizedString("word_selection_complete_message", comment: ""))
+                Text("word_selection_complete_message")
                     .font(.system(size: 17))
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
@@ -321,7 +316,7 @@ struct WordSelectionView: View {
                     }) {
                         HStack(spacing: 10) {
                             Image(systemName: "book.fill")
-                            Text("\(NSLocalizedString("word_selection_start_learning", comment: "")) (\(viewModel.selectedCount))")
+                            Text("word_selection_start_learning") + Text(" (\(viewModel.selectedCount))")
                         }
                         .font(.system(size: 17, weight: .bold))
                         .foregroundColor(.white)
@@ -336,7 +331,7 @@ struct WordSelectionView: View {
                 Button(action: { dismiss() }) {
                     HStack(spacing: 10) {
                         Image(systemName: "square.grid.2x2.fill")
-                        Text(NSLocalizedString("word_selection_new_package", comment: ""))
+                        Text("word_selection_new_package")
                     }
                     .font(.system(size: 17, weight: .semibold))
                     .foregroundColor(themeAccentColor)
@@ -365,11 +360,11 @@ struct WordSelectionView: View {
                     .foregroundColor(.orange)
                 
                 VStack(spacing: 12) {
-                    Text(NSLocalizedString("word_selection_limit_title", comment: ""))
+                    Text("word_selection_limit_title")
                         .font(.system(size: 22, weight: .bold))
                         .foregroundColor(.primary)
                     
-                    Text(NSLocalizedString("word_selection_limit_message", comment: ""))
+                    Text("word_selection_limit_message")
                         .font(.system(size: 16))
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
@@ -383,7 +378,7 @@ struct WordSelectionView: View {
                         }) {
                             HStack(spacing: 10) {
                                 Image(systemName: "book.fill")
-                                Text("\(NSLocalizedString("word_selection_start_learning", comment: "")) (\(viewModel.selectedCount))")
+                                Text("word_selection_start_learning") + Text(" (\(viewModel.selectedCount))")
                             }
                             .font(.system(size: 17, weight: .bold))
                             .foregroundColor(.white)
@@ -397,7 +392,7 @@ struct WordSelectionView: View {
                     Button(action: {
                         viewModel.selectionLimitReached = false
                     }) {
-                        Text(NSLocalizedString("word_selection_limit_close", comment: ""))
+                        Text("word_selection_limit_close")
                             .font(.system(size: 16, weight: .semibold))
                             .foregroundColor(themeAccentColor)
                             .frame(maxWidth: .infinity)
@@ -421,7 +416,7 @@ struct WordSelectionView: View {
     private var loadingView: some View {
         VStack(spacing: 16) {
             ProgressView().scaleEffect(1.5)
-            Text(NSLocalizedString("loading", comment: ""))
+            Text("loading")
                 .font(.system(size: 16))
                 .foregroundColor(.secondary)
         }
