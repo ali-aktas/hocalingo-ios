@@ -56,9 +56,9 @@
 "stat_active_days" = "Aktif Gün";
 "stat_study_time_min" = "dakika";
 "stat_monthly_stats" = "Bu ayın istatistikleri";
-"stat_learned_words" = "Öğrenilen Kelime";
+"stat_learned_words" = "Öğrenildi";
 
-// Actions 
+// Actions
 "action_start_study" = "Çalışmaya Başla";
 "action_select_package" = "Yeni Kelimeler Seç";
 "action_select_package_desc" = "Çalışma destene kelime ekle";

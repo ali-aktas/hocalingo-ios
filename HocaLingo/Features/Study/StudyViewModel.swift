@@ -163,9 +163,10 @@ class StudyViewModel: ObservableObject {
         
         self.cardsCompletedCount += 1
         
-        // 2. Mezun olmayan kelimeleri filtrele ve sırala
+        // 2. ✅ CRITICAL FIX: Filter by time AND learning phase
         let learningWords = allWords.filter { word in
-            currentProgress[word.id]?.learningPhase ?? false
+            guard let progress = currentProgress[word.id] else { return false }
+            return progress.learningPhase && shouldShowCard(for: word.id)
         }
         
         if learningWords.isEmpty {
@@ -206,6 +207,12 @@ class StudyViewModel: ObservableObject {
     
     // MARK: - Helpers & Data Loading
     
+    /// Check if a card should be shown now (based on nextReviewAt)
+    private func shouldShowCard(for wordId: Int) -> Bool {
+        guard let progress = currentProgress[wordId] else { return true }
+        return progress.nextReviewAt <= Date()
+    }
+    
     func loadStudyQueue() {
         studyDirection = userDefaults.loadStudyDirection()
         do {
@@ -218,7 +225,13 @@ class StudyViewModel: ObservableObject {
             }
             loadOrCreateProgressForWords()
             currentSessionMaxPosition = calculateMaxSessionPosition()
-            let sortedWords = prioritizeWordsForStudy(allWords)
+            loadOrCreateProgressForWords()
+            currentSessionMaxPosition = calculateMaxSessionPosition()
+
+            // ✅ CRITICAL FIX: Filter cards by time (only show cards with nextReviewAt <= now)
+            let availableWords = allWords.filter { shouldShowCard(for: $0.id) }
+            let sortedWords = prioritizeWordsForStudy(availableWords)
+            
             studyQueue = sortedWords.map { word in
                 StudyCard(
                     id: UUID(),
