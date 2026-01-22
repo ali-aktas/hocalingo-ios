@@ -20,6 +20,8 @@ struct WordSelectionView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.themeViewModel) private var themeViewModel
+    // ✅ Language change trigger
+    @AppStorage("app_language") private var appLanguageCode: String = "en"
     
     @State private var currentCardId: UUID = UUID()
     @State private var navigateToStudy: Bool = false

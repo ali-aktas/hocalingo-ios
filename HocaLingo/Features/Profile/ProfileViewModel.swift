@@ -116,13 +116,18 @@ class ProfileViewModel: ObservableObject {
         appLanguage = language
         
         // Save to UserDefaults
-        // ✅ @AppStorage in HocaLingoApp monitors this key and auto-updates
         UserDefaultsManager.shared.saveAppLanguage(language)
         
-        print("🌍 Language changed INSTANTLY:")
+        // ✅ CRITICAL: Post notification for all views to refresh
+        NotificationCenter.default.post(
+            name: NSNotification.Name("AppLanguageChanged"),
+            object: nil
+        )
+        
+        print("🌍 Language changed:")
         print("   - From: \(oldLanguage.displayName)")
         print("   - To: \(language.displayName)")
-        print("   - @AppStorage will auto-detect and rebuild UI")
+        print("   - Notification posted to all views")
     }
     
     /// Toggle notifications

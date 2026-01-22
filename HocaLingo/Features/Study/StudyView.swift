@@ -44,7 +44,9 @@ struct StudyView: View {
             
             VStack(spacing: 0) {
                 // Top bar
-                StudyTopBar(onClose: { dismiss() })
+                StudyTopBar(onClose: {
+                    selectedTab = 0  // ✅ Switch to Home tab
+                })
                     .padding(.horizontal, 16)
                     .padding(.top, 8)
                 

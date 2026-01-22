@@ -135,8 +135,8 @@ struct SettingsCard: View {
                     }
                     .pickerStyle(.wheel)
                     .frame(height: 120)
-                    .onChange(of: selectedHour.wrappedValue) { newHour in
-                        onTimeChange(newHour)
+                    .onChange(of: selectedHour.wrappedValue) { oldValue, newValue in
+                        onTimeChange(newValue)  // ✅ Call callback when time changes
                     }
                 }
                 .padding(.horizontal, 16)
