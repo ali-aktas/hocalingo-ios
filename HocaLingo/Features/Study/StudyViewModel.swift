@@ -207,9 +207,18 @@ class StudyViewModel: ObservableObject {
     
     // MARK: - Helpers & Data Loading
     
-    /// Check if a card should be shown now (based on nextReviewAt)
+    /// Check if a card should be shown now
+    /// ✅ Learning phase: Always show (same-day reviews)
+    /// ✅ Review phase: Check nextReviewAt time
     private func shouldShowCard(for wordId: Int) -> Bool {
         guard let progress = currentProgress[wordId] else { return true }
+        
+        // Learning phase cards ALWAYS show (same-day reviews)
+        if progress.learningPhase {
+            return true
+        }
+        
+        // Review phase cards: Check time
         return progress.nextReviewAt <= Date()
     }
     
