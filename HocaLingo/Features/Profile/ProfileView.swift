@@ -130,7 +130,7 @@ struct ProfileView: View {
         .buttonStyle(PlainButtonStyle())
     }
     
-    // MARK: - Settings Section
+    // MARK: - Settings Section (GÜNCELLENDİ: Sıralama Değişti)
     private var settingsSection: some View {
         VStack(spacing: 16) {
             // Section Header
@@ -141,27 +141,7 @@ struct ProfileView: View {
                 Spacer()
             }
             
-            // Language Selection
-            SettingsCard(
-                type: .languageSelection(
-                    selectedLanguage: $viewModel.appLanguage,
-                    onLanguageChange: { language in
-                        viewModel.changeLanguage(to: language)
-                    }
-                )
-            )
-            
-            // Study Direction Selection
-            SettingsCard(
-                type: .studyDirectionSelection(
-                    selectedDirection: $viewModel.studyDirection,
-                    onDirectionChange: { direction in
-                        viewModel.changeStudyDirection(to: direction)
-                    }
-                )
-            )
-            
-            // Notifications Toggle
+            // 1. Notifications Toggle (Premium'dan hemen sonra)
             SettingsCard(
                 type: .notificationToggle(
                     isOn: $viewModel.notificationsEnabled,
@@ -175,13 +155,33 @@ struct ProfileView: View {
                 )
             )
             
-            // Theme Selection
+            // 2. Study Direction Selection
+            SettingsCard(
+                type: .studyDirectionSelection(
+                    selectedDirection: $viewModel.studyDirection,
+                    onDirectionChange: { direction in
+                        viewModel.changeStudyDirection(to: direction)
+                    }
+                )
+            )
+            
+            // 3. Theme Selection
             SettingsCard(
                 type: .themeSelection(
                     selectedTheme: $viewModel.themeMode,
                     onThemeChange: { theme in
                         viewModel.changeThemeMode(to: theme)
                         themeViewModel.updateTheme(to: theme)
+                    }
+                )
+            )
+            
+            // 4. Language Selection
+            SettingsCard(
+                type: .languageSelection(
+                    selectedLanguage: $viewModel.appLanguage,
+                    onLanguageChange: { language in
+                        viewModel.changeLanguage(to: language)
                     }
                 )
             )
@@ -212,8 +212,10 @@ struct ProfileView: View {
                         subtitle: nil,
                         showChevron: true,
                         action: {
-                            // TODO: Open privacy policy
-                            print("Privacy Policy clicked")
+                            // GÜNCELLENDİ: Gizlilik Politikasını Aç
+                            if let url = URL(string: "https://www.seninsiten.com/privacy") {
+                                UIApplication.shared.open(url)
+                            }
                         }
                     )
                 )
@@ -230,8 +232,10 @@ struct ProfileView: View {
                         subtitle: nil,
                         showChevron: true,
                         action: {
-                            // TODO: Open terms
-                            print("Terms clicked")
+                            // GÜNCELLENDİ: Kullanım Şartlarını Aç
+                            if let url = URL(string: "https://www.seninsiten.com/terms") {
+                                UIApplication.shared.open(url)
+                            }
                         }
                     )
                 )
@@ -248,8 +252,11 @@ struct ProfileView: View {
                         subtitle: "legal_support_subtitle",
                         showChevron: true,
                         action: {
-                            // TODO: Open support email
-                            print("Support clicked")
+                            // GÜNCELLENDİ: Mail Uygulamasını Aç
+                            let email = "support@hocalingo.com"
+                            if let url = URL(string: "mailto:\(email)") {
+                                UIApplication.shared.open(url)
+                            }
                         }
                     )
                 )
@@ -259,99 +266,99 @@ struct ProfileView: View {
             .shadow(color: Color.themeShadow, radius: 8, x: 0, y: 2)
         }
     }
-}
-
-// MARK: - Premium Sheet Placeholder
-struct PremiumSheetPlaceholder: View {
-    @Environment(\.dismiss) private var dismiss
     
-    var body: some View {
-        ZStack {
-            // Background gradient
-            LinearGradient(
-                colors: [
-                    Color(hex: "FFD700").opacity(0.2),
-                    Color(hex: "FFA500").opacity(0.1)
-                ],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-            
-            VStack(spacing: 24) {
-                Spacer()
+    // MARK: - Premium Sheet Placeholder
+    struct PremiumSheetPlaceholder: View {
+        @Environment(\.dismiss) private var dismiss
+        
+        var body: some View {
+            ZStack {
+                // Background gradient
+                LinearGradient(
+                    colors: [
+                        Color(hex: "FFD700").opacity(0.2),
+                        Color(hex: "FFA500").opacity(0.1)
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
                 
-                // Crown Icon
-                ZStack {
-                    Circle()
-                        .fill(
-                            LinearGradient(
-                                colors: [
-                                    Color(hex: "FFD700"),
-                                    Color(hex: "FFA500")
-                                ],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                        .frame(width: 100, height: 100)
+                VStack(spacing: 24) {
+                    Spacer()
                     
-                    Image(systemName: "crown.fill")
-                        .font(.system(size: 50))
-                        .foregroundColor(.white)
-                }
-                
-                Text("Premium")
-                    .font(.system(size: 32, weight: .bold))
-                    .foregroundColor(.themePrimary)
-                
-                Text("Coming soon...")
-                    .font(.system(size: 18))
-                    .foregroundColor(.themeSecondary)
-                
-                Spacer()
-                
-                // Close Button
-                Button(action: {
-                    dismiss()
-                }) {
-                    Text("Close")
-                        .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 16)
-                        .background(
-                            LinearGradient(
-                                colors: [
-                                    Color(hex: "FFD700"),
-                                    Color(hex: "FFA500")
-                                ],
-                                startPoint: .leading,
-                                endPoint: .trailing
+                    // Crown Icon
+                    ZStack {
+                        Circle()
+                            .fill(
+                                LinearGradient(
+                                    colors: [
+                                        Color(hex: "FFD700"),
+                                        Color(hex: "FFA500")
+                                    ],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
                             )
-                        )
-                        .cornerRadius(12)
+                            .frame(width: 100, height: 100)
+                        
+                        Image(systemName: "crown.fill")
+                            .font(.system(size: 50))
+                            .foregroundColor(.white)
+                    }
+                    
+                    Text("Premium")
+                        .font(.system(size: 32, weight: .bold))
+                        .foregroundColor(.themePrimary)
+                    
+                    Text("Coming soon...")
+                        .font(.system(size: 18))
+                        .foregroundColor(.themeSecondary)
+                    
+                    Spacer()
+                    
+                    // Close Button
+                    Button(action: {
+                        dismiss()
+                    }) {
+                        Text("Close")
+                            .font(.system(size: 16, weight: .semibold))
+                            .foregroundColor(.white)
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 16)
+                            .background(
+                                LinearGradient(
+                                    colors: [
+                                        Color(hex: "FFD700"),
+                                        Color(hex: "FFA500")
+                                    ],
+                                    startPoint: .leading,
+                                    endPoint: .trailing
+                                )
+                            )
+                            .cornerRadius(12)
+                    }
+                    .padding(.horizontal, 40)
+                    .padding(.bottom, 40)
                 }
-                .padding(.horizontal, 40)
-                .padding(.bottom, 40)
             }
         }
     }
-}
-
-// MARK: - Preview
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ProfileView()
-                .environment(\.themeViewModel, ThemeViewModel.shared)
-                .preferredColorScheme(.light)
-                .previewDisplayName("Light Theme")
-            
-            ProfileView()
-                .environment(\.themeViewModel, ThemeViewModel.shared)
-                .preferredColorScheme(.dark)
-                .previewDisplayName("Dark Theme")
+    
+    // MARK: - Preview
+    struct ProfileView_Previews: PreviewProvider {
+        static var previews: some View {
+            Group {
+                ProfileView()
+                    .environment(\.themeViewModel, ThemeViewModel.shared)
+                    .preferredColorScheme(.light)
+                    .previewDisplayName("Light Theme")
+                
+                ProfileView()
+                    .environment(\.themeViewModel, ThemeViewModel.shared)
+                    .preferredColorScheme(.dark)
+                    .previewDisplayName("Dark Theme")
+            }
         }
     }
 }

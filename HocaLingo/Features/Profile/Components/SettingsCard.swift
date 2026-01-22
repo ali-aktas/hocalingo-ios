@@ -71,81 +71,102 @@ struct SettingsCard: View {
         .shadow(color: Color.themeShadow, radius: 8, x: 0, y: 2)
     }
     
-    // MARK: - Toggle Card
-    private func toggleCard(
-        icon: String,
-        iconColor: Color,
-        title: String,
-        subtitle: String?,
-        isOn: Binding<Bool>,
-        showTimePicker: Bool,
-        selectedHour: Binding<Int>?,
-        onToggle: @escaping () -> Void,
-        onTimeChange: ((Int) -> Void)?
-    ) -> some View {
-        VStack(spacing: 0) {
-            // Header with Toggle
-            HStack(spacing: 12) {
-                // Icon
-                Image(systemName: icon)
-                    .font(.system(size: 20))
-                    .foregroundColor(iconColor)
-                    .frame(width: 32)
-                
-                // Title & Subtitle
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(LocalizedStringKey(title))
-                        .font(.system(size: 16, weight: .medium))
-                        .foregroundColor(.themePrimary)
+    // MARK: - Toggle Card (GÜNCELLENDİ: Daha kompakt tasarım)
+        private func toggleCard(
+            icon: String,
+            iconColor: Color,
+            title: String,
+            subtitle: String?,
+            isOn: Binding<Bool>,
+            showTimePicker: Bool,
+            selectedHour: Binding<Int>?,
+            onToggle: @escaping () -> Void,
+            onTimeChange: ((Int) -> Void)?
+        ) -> some View {
+            VStack(spacing: 0) {
+                // Header with Toggle
+                HStack(spacing: 12) {
+                    // Icon
+                    Image(systemName: icon)
+                        .font(.system(size: 20))
+                        .foregroundColor(iconColor)
+                        .frame(width: 32)
                     
-                    if let subtitle = subtitle {
-                        Text(subtitle)
-                            .font(.system(size: 13))
-                            .foregroundColor(.themeSecondary)
-                    }
-                }
-                
-                Spacer()
-                
-                // Toggle
-                Toggle("", isOn: isOn)
-                    .labelsHidden()
-                    .onChange(of: isOn.wrappedValue) { _ in
-                        onToggle()
-                    }
-            }
-            .padding(16)
-            
-            // Time Picker (shown when enabled)
-            if showTimePicker, let selectedHour = selectedHour, let onTimeChange = onTimeChange {
-                Divider()
-                    .background(Color.themeDivider)
-                
-                VStack(spacing: 12) {
-                    Text("Select notification time")
-                        .font(.system(size: 13, weight: .medium))
-                        .foregroundColor(.themeSecondary)
-                    
-                    // Hour Picker
-                    Picker("Hour", selection: selectedHour) {
-                        ForEach(0..<24, id: \.self) { hour in
-                            Text(String(format: "%02d:00", hour))
-                                .tag(hour)
+                    // Title & Subtitle
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(LocalizedStringKey(title))
+                            .font(.system(size: 16, weight: .medium))
+                            .foregroundColor(.themePrimary)
+                        
+                        if let subtitle = subtitle {
+                            Text(subtitle)
+                                .font(.system(size: 13))
+                                .foregroundColor(.themeSecondary)
                         }
                     }
-                    .pickerStyle(.wheel)
-                    .frame(height: 120)
-                    .onChange(of: selectedHour.wrappedValue) { oldValue, newValue in
-                        onTimeChange(newValue)  // ✅ Call callback when time changes
-                    }
+                    
+                    Spacer()
+                    
+                    // Toggle
+                    Toggle("", isOn: isOn)
+                        .labelsHidden()
+                        .onChange(of: isOn.wrappedValue) { _ in
+                            onToggle()
+                        }
                 }
-                .padding(.horizontal, 16)
-                .padding(.bottom, 16)
-                .transition(.move(edge: .top).combined(with: .opacity))
+                .padding(16)
+                
+                // Time Picker (GÜNCELLENDİ: Kompakt Menü Stili)
+                if showTimePicker, let selectedHour = selectedHour, let onTimeChange = onTimeChange {
+                    Divider()
+                        .background(Color.themeDivider)
+                        .padding(.leading, 60) // İkon hizasından başlasın
+                    
+                    HStack {
+                        Text("notification_time_label") // Localizable.strings'e eklemelisin: "Bildirim Saati"
+                            .font(.system(size: 14))
+                            .foregroundColor(.themeSecondary)
+                        
+                        Spacer()
+                        
+                        // Kompakt Saat Seçici
+                        Menu {
+                            ForEach(0..<24, id: \.self) { hour in
+                                Button(action: {
+                                    selectedHour.wrappedValue = hour
+                                    onTimeChange(hour)
+                                }) {
+                                    HStack {
+                                        Text(String(format: "%02d:00", hour))
+                                        if selectedHour.wrappedValue == hour {
+                                            Image(systemName: "checkmark")
+                                        }
+                                    }
+                                }
+                            }
+                        } label: {
+                            HStack(spacing: 4) {
+                                Text(String(format: "%02d:00", selectedHour.wrappedValue))
+                                    .font(.system(size: 16, weight: .medium))
+                                    .foregroundColor(.accentPurple)
+                                
+                                Image(systemName: "chevron.up.chevron.down")
+                                    .font(.system(size: 12))
+                                    .foregroundColor(.accentPurple)
+                            }
+                            .padding(.vertical, 6)
+                            .padding(.horizontal, 12)
+                            .background(Color.accentPurple.opacity(0.1))
+                            .cornerRadius(8)
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 12)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                }
             }
+            .animation(.spring(response: 0.35, dampingFraction: 0.8), value: showTimePicker)
         }
-        .animation(.spring(response: 0.35, dampingFraction: 0.8), value: showTimePicker)
-    }
     
     // MARK: - Navigation Card
     private func navigationCard(
