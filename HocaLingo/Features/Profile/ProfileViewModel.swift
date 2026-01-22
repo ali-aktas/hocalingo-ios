@@ -38,7 +38,7 @@ class ProfileViewModel: ObservableObject {
     init() {
         // Load all settings from UserDefaults
         self.userStats = UserDefaultsManager.shared.loadUserStats()
-        self.annualStats = UserDefaultsManager.shared.loadAnnualStats()
+        self.annualStats = UserDefaultsManager.shared.calculateAnnualStats()  // ✅ Force calculation
         self.studyDirection = UserDefaultsManager.shared.loadStudyDirection()
         self.themeMode = UserDefaultsManager.shared.loadThemeMode()
         self.appLanguage = UserDefaultsManager.shared.loadAppLanguage()
@@ -54,6 +54,13 @@ class ProfileViewModel: ObservableObject {
         print("   - Language: \(appLanguage.displayName)")
         print("   - Notification time: \(notificationTime):00")
         print("   - Annual stats: \(annualStats.activeDaysThisYear) days, \(annualStats.studyHoursThisYear) hours")
+    }
+
+    // ✅ ALSO UPDATE refreshAnnualStats() method:
+
+    func refreshAnnualStats() {
+        annualStats = UserDefaultsManager.shared.calculateAnnualStats()  // ✅ Force recalculation
+        print("📊 Annual stats refreshed: \(annualStats.activeDaysThisYear) days")
     }
     
     // MARK: - Computed Properties
@@ -152,12 +159,6 @@ class ProfileViewModel: ObservableObject {
         if notificationsEnabled {
             // TODO: Reschedule notification with new time
         }
-    }
-    
-    /// Refresh annual statistics
-    func refreshAnnualStats() {
-        annualStats = UserDefaultsManager.shared.loadAnnualStats()
-        print("📊 Annual stats refreshed: \(annualStats.activeDaysThisYear) days")
     }
     
     // MARK: - Notification Permission

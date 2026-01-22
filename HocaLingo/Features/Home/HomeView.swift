@@ -179,8 +179,8 @@ private extension HomeView {
             HStack(spacing: 12) {
                 StatCardWithChart(
                     title: "stat_this_month_time",
-                    value: "\(viewModel.uiState.monthlyStats.studyTimeThisMonth)",
-                    subtitle: "stat_study_time_min",
+                    value: viewModel.uiState.monthlyStats.formattedStudyTime,  // ✅ Shows "2h 0m"
+                    // Remove subtitle: "stat_study_time_min" - no longer needed
                     icon: "clock.fill",
                     gradient: [Color(hex: "67E8F9"), Color(hex: "22D3EE")],
                     chartData: generateStudyTimeChartData()
@@ -307,7 +307,7 @@ struct StatCardWithChart: View {
     }
 }
 
-// MARK: - Action Button
+// MARK: - Action Button (FIXED FOR LIGHT THEME)
 struct ActionButtonWithIcon: View {
     let iconName: String
     let title: LocalizedStringKey
@@ -315,27 +315,54 @@ struct ActionButtonWithIcon: View {
     let accentColor: Color
     let action: () -> Void
     
+    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.themeViewModel) private var themeViewModel
+    
     var body: some View {
         Button(action: action) {
             HStack(spacing: 18) {
+                // Icon with better contrast
                 Image(iconName)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 40, height: 40)
                     .padding(10)
-                    .background(Circle().fill(accentColor.opacity(0.1)))
+                    .background(
+                        Circle()
+                            .fill(accentColor.opacity(isDark ? 0.2 : 0.15)) // ✅ Adjusted for light theme
+                    )
                 
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(title).font(.system(size: 18, weight: .heavy)).foregroundColor(.themePrimary)
-                    Text(subtitle).font(.system(size: 14)).foregroundColor(.themeSecondary).lineLimit(1)
+                    Text(title)
+                        .font(.system(size: 18, weight: .heavy))
+                        .foregroundColor(.themePrimary)
+                    Text(subtitle)
+                        .font(.system(size: 14))
+                        .foregroundColor(.themeSecondary)
+                        .lineLimit(1)
                 }
                 Spacer()
             }
-            .padding(.vertical, 14).padding(.horizontal, 16)
-            .background(RoundedRectangle(cornerRadius: 22).fill(Color.themeCard))
-            .overlay(RoundedRectangle(cornerRadius: 22).stroke(accentColor.opacity(0.2), lineWidth: 0.5))
+            .padding(.vertical, 14)
+            .padding(.horizontal, 16)
+            .background(
+                RoundedRectangle(cornerRadius: 22)
+                    .fill(Color.themeCard)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 22)
+                    .stroke(
+                        accentColor.opacity(isDark ? 0.3 : 0.4), // ✅ Increased from 0.2 to 0.4 for light theme
+                        lineWidth: isDark ? 0.5 : 1.0  // ✅ Thicker border in light theme
+                    )
+            )
         }
         .buttonStyle(ScaleButtonStyle())
+    }
+    
+    // Helper computed property
+    private var isDark: Bool {
+        themeViewModel.isDarkMode(in: colorScheme)
     }
 }
 

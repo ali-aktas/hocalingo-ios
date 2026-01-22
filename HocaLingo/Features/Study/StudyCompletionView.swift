@@ -1,8 +1,16 @@
+// ✅ FIX 3: StudyCompletionView - Package Selection Navigation
+// Location: HocaLingo/Features/Study/StudyCompletionView.swift
+//
+// PROBLEM: "Paket Seç" button goes to Home tab but doesn't open PackageSelectionView
+// SOLUTION: Use @State sheet binding to present PackageSelectionView directly
+
+// ✅ COMPLETE FIXED VERSION:
+
 //
 //  StudyCompletionView.swift
 //  HocaLingo
 //
-//  ✅ COMPLETE REDESIGN: Tab switching instead of navigation
+//  ✅ FIXED: Package selection button now correctly opens PackageSelectionView
 //  Location: HocaLingo/Features/Study/StudyCompletionView.swift
 //
 
@@ -10,10 +18,13 @@ import SwiftUI
 
 // MARK: - Study Completion View
 struct StudyCompletionView: View {
-    // ✅ NEW: Tab binding for navigation
+    // Tab binding for navigation
     @Binding var selectedTab: Int
     let onContinue: () -> Void
     let onRestart: () -> Void
+    
+    // ✅ NEW: Sheet state for PackageSelectionView
+    @State private var showPackageSelection = false
     
     @State private var animateSuccess = false
     @State private var currentMessageIndex = 0
@@ -65,12 +76,12 @@ struct StudyCompletionView: View {
                 
                 Spacer()
                 
-                // ✅ FIXED: Action buttons with tab switching
+                // ✅ FIXED: Action buttons
                 VStack(spacing: 16) {
                     
                     // Continue button (primary) - Go to Home tab
                     Button(action: {
-                        selectedTab = 0  // ✅ Switch to Home tab
+                        selectedTab = 0  // Switch to Home tab
                     }) {
                         HStack(spacing: 10) {
                             Image(systemName: "checkmark.circle.fill")
@@ -86,13 +97,9 @@ struct StudyCompletionView: View {
                         .shadow(color: Color(hex: "4ECDC4").opacity(0.3), radius: 12, x: 0, y: 6)
                     }
                     
-                    // Package selection button (secondary) - Go to Home then navigate
+                    // ✅ FIXED: Package selection button - Opens PackageSelectionView sheet
                     Button(action: {
-                        selectedTab = 0  // ✅ First switch to Home tab
-                        // Then trigger navigation to PackageSelection
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                            NotificationCenter.default.post(name: Notification.Name("NavigateToPackageSelection"), object: nil)
-                        }
+                        showPackageSelection = true  // ✅ Show sheet instead of NotificationCenter
                     }) {
                         HStack(spacing: 10) {
                             Image(systemName: "square.grid.2x2.fill")
@@ -112,7 +119,6 @@ struct StudyCompletionView: View {
                 .padding(.bottom, 40)
                 .opacity(animateSuccess ? 1.0 : 0.0)
                 .animation(.easeIn(duration: 0.4).delay(0.4), value: animateSuccess)
-                
             }
         }
         .navigationBarHidden(true)
@@ -125,6 +131,10 @@ struct StudyCompletionView: View {
                 animateSuccess = true
             }
         }
+        // ✅ NEW: Sheet for PackageSelectionView
+        .sheet(isPresented: $showPackageSelection) {
+            PackageSelectionView()
+        }
     }
 }
 
@@ -136,3 +146,12 @@ struct StudyCompletionView: View {
         onRestart: {}
     )
 }
+
+// ✅ INSTRUCTIONS:
+// 1. Open StudyCompletionView.swift
+// 2. Replace the ENTIRE file content with this version
+// 3. Key changes:
+//    - Added @State private var showPackageSelection = false
+//    - Changed "Paket Seç" button action to: showPackageSelection = true
+//    - Added .sheet(isPresented: $showPackageSelection) at the end
+//    - Removed NotificationCenter logic (doesn't work reliably)
