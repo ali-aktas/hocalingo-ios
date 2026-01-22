@@ -246,9 +246,9 @@ private extension HomeView {
             HStack(spacing: 12) {
                 // Streak Card (Purple gradient)
                 StatCardWithChart(
-                    title: NSLocalizedString("stat_streak_days", comment: ""),
+                    title: NSLocalizedString("stat_learned_words", comment: ""),
                     value: "\(viewModel.uiState.streakDays)",
-                    icon: "flame.fill",
+                    icon: "checkmark.seal.fill",
                     gradient: [Color(hex: "A78BFA"), Color(hex: "8B5CF6")],
                     chartData: generateStreakChartData(),
                     chartColor: Color.white.opacity(0.3)

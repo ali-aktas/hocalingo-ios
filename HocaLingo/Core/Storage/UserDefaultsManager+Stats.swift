@@ -84,10 +84,17 @@ extension UserDefaultsManager {
         // Update UserStats
         var userStats = loadUserStats()
         userStats.wordsStudiedToday = todayStats.wordsGraduated
+        
+        // ✅ NEW: Update streak
+        updateStreak()
+        
         saveUserStats(userStats)
         
-        // Mark today as studied
+        // Mark today as studied (for monthly active days)
         markTodayAsStudied()
+        
+        // Save last study date
+        saveLastStudyDate(Date())
         
         print("📈 Daily graduation incremented:")
         print("   - Date: \(todayStats.date)")
@@ -188,6 +195,27 @@ extension UserDefaultsManager {
         return masteredWords.count
     }
     
+    /// ✅ NEW: Calculate learned words count (30+ day interval in review phase)
+    func calculateTotalLearnedWords() -> Int {
+        let selectedWords = Set(loadSelectedWords())
+        var learnedWords = Set<Int>()
+        
+        for wordId in selectedWords {
+            // Check both directions
+            if let progressEnToTr = loadProgress(for: wordId, direction: .enToTr),
+               !progressEnToTr.learningPhase && progressEnToTr.intervalDays >= 30.0 {
+                learnedWords.insert(wordId)
+            }
+            
+            if let progressTrToEn = loadProgress(for: wordId, direction: .trToEn),
+               !progressTrToEn.learningPhase && progressTrToEn.intervalDays >= 30.0 {
+                learnedWords.insert(wordId)
+            }
+        }
+        
+        return learnedWords.count
+    }
+    
     /// Update mastered words count in UserStats
     func updateMasteredWordsCount() {
         var stats = loadUserStats()
@@ -221,4 +249,44 @@ extension UserDefaultsManager {
             }
         }
     }
+    
+    // MARK: - Streak Calculation
+    /// NEW: Update streak based on last study date
+    private func updateStreak() {
+        var stats = loadUserStats()
+        let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        
+        guard let lastStudy = loadLastStudyDate() else {
+            // First time studying
+            stats.currentStreak = 1
+            stats.longestStreak = max(stats.longestStreak, 1)
+            saveUserStats(stats)
+            print("🔥 Streak started: 1 day")
+            return
+        }
+        
+        let lastStudyDay = calendar.startOfDay(for: lastStudy)
+        let daysDiff = calendar.dateComponents([.day], from: lastStudyDay, to: today).day ?? 0
+        
+        switch daysDiff {
+        case 0:
+            // Already studied today, no change
+            print("🔥 Streak maintained: \(stats.currentStreak) days (already studied today)")
+            
+        case 1:
+            // Studied yesterday, increment streak
+            stats.currentStreak += 1
+            stats.longestStreak = max(stats.longestStreak, stats.currentStreak)
+            saveUserStats(stats)
+            print("🔥 Streak increased: \(stats.currentStreak) days")
+            
+        default:
+            // Missed a day, reset streak
+            stats.currentStreak = 1
+            saveUserStats(stats)
+            print("💔 Streak broken! Restarting: 1 day")
+        }
+    }
+    
 }

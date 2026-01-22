@@ -10,6 +10,7 @@ import SwiftUI
 
 // MARK: - Study View
 struct StudyView: View {
+    @Binding var selectedTab: Int
     @StateObject private var viewModel = StudyViewModel()
     @Environment(\.dismiss) private var dismiss
     
@@ -18,6 +19,7 @@ struct StudyView: View {
             if viewModel.isSessionComplete {
                 // Completion screen
                 StudyCompletionView(
+                    selectedTab: $selectedTab,  // ✅ Pass binding
                     onContinue: { dismiss() },
                     onRestart: { dismiss() }
                 )
@@ -304,9 +306,4 @@ struct NativeAdPlaceholder: View {
             .padding(32)
         }
     }
-}
-
-// MARK: - Preview
-#Preview {
-    StudyView()
 }

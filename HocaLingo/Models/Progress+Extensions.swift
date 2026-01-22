@@ -19,6 +19,12 @@ extension Progress {
         return !learningPhase && intervalDays >= 21.0
     }
     
+    /// ✅ NEW: Check if word is learned (30+ days interval)
+    /// This is for "Learned Words" stat on Home screen
+    var isLearned: Bool {
+        return !learningPhase && intervalDays >= 30.0
+    }
+    
     /// Get mastered status text for UI
     var masteredStatusText: String {
         if isMastered {

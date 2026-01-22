@@ -2,7 +2,7 @@
 //  StudyCompletionView.swift
 //  HocaLingo
 //
-//  ✅ COMPLETE REDESIGN: Fixed layout issues - buttons properly aligned
+//  ✅ COMPLETE REDESIGN: Tab switching instead of navigation
 //  Location: HocaLingo/Features/Study/StudyCompletionView.swift
 //
 
@@ -10,10 +10,11 @@ import SwiftUI
 
 // MARK: - Study Completion View
 struct StudyCompletionView: View {
+    // ✅ NEW: Tab binding for navigation
+    @Binding var selectedTab: Int
     let onContinue: () -> Void
     let onRestart: () -> Void
     
-    @State private var showPackageSelection = false
     @State private var animateSuccess = false
     @State private var currentMessageIndex = 0
     
@@ -64,11 +65,13 @@ struct StudyCompletionView: View {
                 
                 Spacer()
                 
-                // ✅ FIXED: Action buttons with proper spacing and alignment
+                // ✅ FIXED: Action buttons with tab switching
                 VStack(spacing: 16) {
                     
-                    // Continue button (primary)
-                    Button(action: onContinue) {
+                    // Continue button (primary) - Go to Home tab
+                    Button(action: {
+                        selectedTab = 0  // ✅ Switch to Home tab
+                    }) {
                         HStack(spacing: 10) {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.system(size: 20))
@@ -83,9 +86,13 @@ struct StudyCompletionView: View {
                         .shadow(color: Color(hex: "4ECDC4").opacity(0.3), radius: 12, x: 0, y: 6)
                     }
                     
-                    // Package selection button (secondary)
+                    // Package selection button (secondary) - Go to Home then navigate
                     Button(action: {
-                        showPackageSelection = true
+                        selectedTab = 0  // ✅ First switch to Home tab
+                        // Then trigger navigation to PackageSelection
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            NotificationCenter.default.post(name: Notification.Name("NavigateToPackageSelection"), object: nil)
+                        }
                     }) {
                         HStack(spacing: 10) {
                             Image(systemName: "square.grid.2x2.fill")
@@ -109,9 +116,6 @@ struct StudyCompletionView: View {
             }
         }
         .navigationBarHidden(true)
-        .navigationDestination(isPresented: $showPackageSelection) {
-            PackageSelectionView()
-        }
         .onAppear {
             // Random message selection
             currentMessageIndex = Int.random(in: 0..<messages.count)
@@ -127,6 +131,7 @@ struct StudyCompletionView: View {
 // MARK: - Preview
 #Preview {
     StudyCompletionView(
+        selectedTab: .constant(1),
         onContinue: {},
         onRestart: {}
     )

@@ -63,6 +63,7 @@ class StudyViewModel: ObservableObject {
     private let jsonLoader = JSONLoader()
     private let soundManager = SoundManager.shared
     private let ttsManager = TTSManager.shared
+    private var accumulatedSeconds: Int = 0
     
     // MARK: - Private Properties
     private var allWords: [Word] = []
@@ -138,8 +139,17 @@ class StudyViewModel: ObservableObject {
         userDefaults.saveProgress(newProgress, for: currentCard.wordId, direction: studyDirection)
         currentProgress[currentCard.wordId] = newProgress
         
+        // ✅ NEW: Track each card studied (5 seconds per card)
+        userDefaults.incrementCardsStudied()
+        trackStudyTime()  // ✅ NEW method
+        
         if let position = newProgress.sessionPosition, position > currentSessionMaxPosition {
             currentSessionMaxPosition = position
+        }
+        
+        if progress.learningPhase && !newProgress.learningPhase {
+                userDefaults.incrementDailyGraduations()
+                print("🎓 Word graduated! Daily stats updated.")
         }
         
         requeueAndContinue()
@@ -160,7 +170,6 @@ class StudyViewModel: ObservableObject {
         
         if learningWords.isEmpty {
             isSessionComplete = true
-            updateUserStats()
             return
         }
         
@@ -192,7 +201,7 @@ class StudyViewModel: ObservableObject {
         }
         
         if cardsCompletedCount % 12 == 0 { showNativeAd = true }
-        updateUserStats()
+        
     }
     
     // MARK: - Helpers & Data Loading
@@ -292,16 +301,24 @@ class StudyViewModel: ObservableObject {
         return learningProgress.map { $0.sessionPosition ?? 0 }.max() ?? 0
     }
     
-    private func updateUserStats() {
-        var stats = userDefaults.loadUserStats()
-        stats.totalWordsStudied += 1
-        stats.wordsStudiedToday += 1
-        stats.totalStudyTime += 1
-        userDefaults.saveUserStats(stats)
-    }
-    
+        
     func closeNativeAd() {
         withAnimation { showNativeAd = false }
+    }
+    
+    // MARK: - Study Time Tracking
+
+    private func trackStudyTime() {
+        accumulatedSeconds += 5  // Each card = 5 seconds
+        
+        // Convert to minutes when we reach 60 seconds
+        if accumulatedSeconds >= 60 {
+            let minutes = accumulatedSeconds / 60
+            userDefaults.addStudyTime(minutes: minutes)
+            accumulatedSeconds = accumulatedSeconds % 60  // Keep remainder
+            
+            print("⏱️ Study time tracked: +\(minutes) min")
+        }
     }
 
     // MARK: - Computed Properties

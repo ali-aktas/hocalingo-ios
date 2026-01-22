@@ -119,8 +119,7 @@ class HomeViewModel: ObservableObject {
         // Load user stats
         let stats = userDefaults.loadUserStats()
         
-        // Update streak
-        uiState.streakDays = stats.currentStreak
+        
         
         // Load today's graduation count
         let todayStats = userDefaults.getTodayDailyStats()
@@ -135,13 +134,17 @@ class HomeViewModel: ObservableObject {
         // ✅ NEW: Load monthly stats (simplified version)
         loadMonthlyStats()
         
+        // ✅ NEW: Calculate learned words (30+ day interval)
+        let learnedWordsCount = userDefaults.calculateTotalLearnedWords()
+        uiState.streakDays = learnedWordsCount
+        
         // Get user name (if available)
         uiState.userName = userDefaults.loadUserName() ?? "Student"
         
         uiState.isLoading = false
     }
     
-    /// ✅ FIXED: Simplified monthly stats calculation using available methods
+    /// ✅ FIXED: Real monthly stats calculation using UserDefaultsManager methods
     private func loadMonthlyStats() {
         let calendar = Calendar.current
         let now = Date()
@@ -152,27 +155,41 @@ class HomeViewModel: ObservableObject {
             return
         }
         
-        // ✅ SIMPLIFIED: Calculate stats using available data
-        // For now, use simple estimates. Can be improved with real daily tracking
-        let stats = userDefaults.loadUserStats()
+        // 1. Active days this month (from UserDefaultsManager)
+        let activeDays = userDefaults.getMonthlyStudiedDaysCount()
         
-        // Estimate active days based on total studied words and average words per day
-        let dailyGoal = userDefaults.loadDailyGoal()
-        let estimatedActiveDays = min(Int(stats.wordsLearned) / max(dailyGoal, 1), 30)
+        // 2. Calculate total study time for this month from daily stats
+        var totalMinutes = 0
+        var currentDate = monthStart
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = [.withFullDate]
         
-        // Estimate study time (assume 30 seconds per word)
-        let estimatedMinutes = (stats.wordsLearned * 30) / 60
+        while currentDate <= now {
+            let dateString = dateFormatter.string(from: currentDate)
+            if let dayStats = userDefaults.loadDailyStats(for: dateString) {
+                totalMinutes += dayStats.studyTimeMinutes
+            }
+            
+            // Move to next day
+            guard let nextDate = calendar.date(byAdding: .day, value: 1, to: currentDate) else { break }
+            currentDate = nextDate
+        }
         
-        // Calculate discipline score based on streak
+        // 3. Calculate discipline score (active days / total days in month * 100)
         let daysInMonth = calendar.range(of: .day, in: .month, for: now)?.count ?? 30
-        let disciplineScore = min(100, Int((Double(stats.currentStreak) / Double(daysInMonth)) * 100))
+        let disciplineScore = min(100, Int((Double(activeDays) / Double(daysInMonth)) * 100))
         
-        // Update UI state
+        // Update UI state with real data
         uiState.monthlyStats = MonthlyStats(
-            activeDaysThisMonth: estimatedActiveDays,
-            studyTimeThisMonth: estimatedMinutes,
+            activeDaysThisMonth: activeDays,
+            studyTimeThisMonth: totalMinutes,
             disciplineScore: disciplineScore
         )
+        
+        print("📊 Monthly stats loaded:")
+        print("   - Active days: \(activeDays)")
+        print("   - Study time: \(totalMinutes) min")
+        print("   - Discipline: \(disciplineScore)%")
     }
     
     /// Check premium status

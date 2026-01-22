@@ -56,6 +56,7 @@
 "stat_active_days" = "Active Days";
 "stat_study_time_min" = "minutes";
 "stat_monthly_stats" = "This month's statistics";
+"stat_learned_words" = "Learned Words";
 
 // Actions
 "action_start_study" = "Start Studying";
