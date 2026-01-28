@@ -2,9 +2,9 @@
 //  Color+Theme.swift
 //  HocaLingo
 //
-//  ✅ UPDATED: Added dynamic button colors for light/dark mode
-//  Light mode: Orange (FB9322)
-//  Dark mode: Purple (9333EA)
+//  ✅ UPDATED: Modern background colors for better aesthetics
+//  Dark mode: #0A0A0B (Modern dark grey-black)
+//  Light mode: #F8F8F7 (Warm off-white/cream)
 //
 //  Location: HocaLingo/Core/Utils/Color+Theme.swift
 //
@@ -20,8 +20,8 @@ extension Color {
     static var themeBackground: Color {
         Color(UIColor { traitCollection in
             traitCollection.userInterfaceStyle == .dark
-                ? UIColor(Color(hex: "0F0F0F"))  // Dark theme
-                : UIColor(Color(hex: "F8F9FA"))  // Light theme
+                ? UIColor(Color(hex: "0A0A0B"))  // Dark theme - Modern dark grey-black
+                : UIColor(Color(hex: "F8F8F7"))  // Light theme - Warm off-white (cream)
         })
     }
     

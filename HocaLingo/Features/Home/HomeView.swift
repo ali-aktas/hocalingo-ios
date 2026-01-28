@@ -28,8 +28,15 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color(.systemBackground)
+                Color.themeBackground                    // ✅ 1. Değişiklik
                     .ignoresSafeArea()
+                
+                // ✅ 2. Flow efekti ekle (PackageSelection'daki gibi)
+                Circle()
+                    .fill(Color.themePrimaryButton.opacity(themeViewModel.isDarkMode(in: colorScheme) ? 0.12 : 0.05))
+                    .frame(width: 350, height: 350)
+                    .blur(radius: 60)
+                    .offset(x: 120, y: -250)
                 
                 if viewModel.uiState.isLoading {
                     ProgressView("loading")
