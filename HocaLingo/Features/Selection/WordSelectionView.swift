@@ -2,13 +2,7 @@
 //  WordSelectionView.swift
 //  HocaLingo
 //
-//  ✅ CRITICAL FIX: Removed duplicate SwipeableCardView and SelectionActionButton
-//  - These components are already defined in separate files
-//  - Back button added (toolbar, top left)
-//  - Language change support (AppLanguageChanged notification)
-//  - Full localization (EN/TR)
-//  - MainTabView visible (navigationDestination)
-//
+//  Word selection screen with swipe cards and free user limits
 //  Location: HocaLingo/Features/Selection/WordSelectionView.swift
 //
 
@@ -16,26 +10,28 @@ import SwiftUI
 
 // MARK: - Word Selection View
 struct WordSelectionView: View {
+    let packageId: String
+    @Binding var selectedTab: Int
+    
     @StateObject private var viewModel: WordSelectionViewModel
+    @State private var showPremiumSheet = false
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.themeViewModel) private var themeViewModel
-    // ✅ Language change trigger
     @AppStorage("app_language") private var appLanguageCode: String = "en"
     
     @State private var currentCardId: UUID = UUID()
-    @State private var navigateToStudy: Bool = false
     
-    init(packageId: String) {
+    init(packageId: String, selectedTab: Binding<Int>) {
+        self.packageId = packageId
+        self._selectedTab = selectedTab
         _viewModel = StateObject(wrappedValue: WordSelectionViewModel(packageId: packageId))
     }
     
     var body: some View {
         ZStack {
-            // Background
             backgroundColor.ignoresSafeArea()
             
-            // Content
             VStack(spacing: 0) {
                 if viewModel.isLoading {
                     Spacer()
@@ -54,11 +50,9 @@ struct WordSelectionView: View {
                 }
             }
             
-            // Selection limit dialog
             if viewModel.selectionLimitReached {
                 selectionLimitOverlay
             }
-            
         }
         .navigationTitle("HocaLingo")
         .navigationBarTitleDisplayMode(.inline)
@@ -75,36 +69,32 @@ struct WordSelectionView: View {
                 }
             }
         }
+        .sheet(isPresented: $showPremiumSheet) {
+            ProfileView.PremiumSheetPlaceholder()
+        }
     }
     
     // MARK: - Main Content
     private var mainContent: some View {
         VStack(spacing: 0) {
-            
             Spacer().frame(height: 16)
             
-            // Instruction text
             Text("word_selection_instruction")
                 .font(.system(size: 18, weight: .medium))
                 .foregroundColor(.secondary)
                 .padding(.horizontal, 20)
                 .padding(.bottom, 16)
             
-            // Progress bar
             progressBar
                 .padding(.horizontal, 20)
                 .padding(.bottom, 16)
             
-            // Selection warning
             if viewModel.showSelectionWarning, let remaining = viewModel.remainingSelections {
                 selectionWarningBanner(remaining: remaining)
             }
             
-            // Card stack with undo button
             ZStack(alignment: .bottomTrailing) {
-                // Cards
                 ZStack {
-                    // Next card
                     if let nextWord = viewModel.nextWord {
                         wordCard(word: nextWord, isNext: true)
                             .offset(y: 8)
@@ -112,7 +102,6 @@ struct WordSelectionView: View {
                             .opacity(0.5)
                     }
                     
-                    // Current card - ✅ USES SwipeableCardView from SwipeableCardView.swift
                     if let currentWord = viewModel.currentWord {
                         SwipeableCardView(
                             word: currentWord.english,
@@ -135,7 +124,6 @@ struct WordSelectionView: View {
                     }
                 }
                 
-                // Undo button
                 if viewModel.canUndo {
                     Button(action: {
                         viewModel.undoLastAction()
@@ -158,7 +146,6 @@ struct WordSelectionView: View {
             
             Spacer()
             
-            // Centered action buttons - ✅ USES SelectionActionButton from WordSelectionComponents.swift
             centeredActionButtons
                 .padding(.bottom, 20)
         }
@@ -167,7 +154,6 @@ struct WordSelectionView: View {
     // MARK: - Progress Bar
     private var progressBar: some View {
         VStack(spacing: 8) {
-            // Counter
             HStack {
                 Text("\(viewModel.processedWords)/\(viewModel.totalWordsCount)")
                     .font(.system(size: 14, weight: .semibold))
@@ -175,7 +161,6 @@ struct WordSelectionView: View {
                 Spacer()
             }
             
-            // Bar
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
                     RoundedRectangle(cornerRadius: 4)
@@ -224,7 +209,7 @@ struct WordSelectionView: View {
         .padding(.bottom, 12)
     }
     
-    // MARK: - Word Card (for next card preview only)
+    // MARK: - Word Card
     private func wordCard(word: Word, isNext: Bool = false) -> some View {
         VStack(spacing: 16) {
             Text(word.english)
@@ -253,7 +238,6 @@ struct WordSelectionView: View {
     // MARK: - Centered Action Buttons
     private var centeredActionButtons: some View {
         HStack(spacing: 32) {
-            // Skip button - ✅ USES SelectionActionButton from WordSelectionComponents.swift
             SelectionActionButton(
                 icon: "xmark",
                 backgroundColor: Color(hex: "EF5350"),
@@ -264,7 +248,6 @@ struct WordSelectionView: View {
                 currentCardId = UUID()
             }
             
-            // Learn button - ✅ USES SelectionActionButton from WordSelectionComponents.swift
             SelectionActionButton(
                 icon: "checkmark",
                 backgroundColor: Color(hex: "66BB6A"),
@@ -312,7 +295,7 @@ struct WordSelectionView: View {
             VStack(spacing: 14) {
                 if viewModel.selectedCount > 0 {
                     Button(action: {
-                        navigateToStudy = true
+                        selectedTab = 1
                     }) {
                         HStack(spacing: 10) {
                             Image(systemName: "book.fill")
@@ -374,7 +357,8 @@ struct WordSelectionView: View {
                 VStack(spacing: 12) {
                     if viewModel.selectedCount > 0 {
                         Button(action: {
-                            navigateToStudy = true
+                            viewModel.selectionLimitReached = false
+                            selectedTab = 1
                         }) {
                             HStack(spacing: 10) {
                                 Image(systemName: "book.fill")
@@ -391,8 +375,9 @@ struct WordSelectionView: View {
                     
                     Button(action: {
                         viewModel.selectionLimitReached = false
+                        showPremiumSheet = true
                     }) {
-                        Text("word_selection_limit_close")
+                        Text("Premium'a Geç")
                             .font(.system(size: 16, weight: .semibold))
                             .foregroundColor(themeAccentColor)
                             .frame(maxWidth: .infinity)
@@ -466,14 +451,11 @@ struct WordSelectionView: View {
     }
 }
 
-// ✅ REMOVED: SwipeableCardView (already in SwipeableCardView.swift)
-// ✅ REMOVED: SelectionActionButton (already in WordSelectionComponents.swift)
-
 // MARK: - Preview
 struct WordSelectionView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationStack {
-            WordSelectionView(packageId: "en_tr_a1_001")
+            WordSelectionView(packageId: "en_tr_a1_001", selectedTab: .constant(0))
         }
         .environment(\.themeViewModel, ThemeViewModel.shared)
     }

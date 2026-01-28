@@ -50,7 +50,7 @@ struct HomeView: View {
             }
             .navigationBarHidden(true)
             .navigationDestination(isPresented: $viewModel.shouldNavigateToPackageSelection) {
-                PackageSelectionView()
+                PackageSelectionView(selectedTab: $selectedTab)
             }
             .navigationDestination(isPresented: $viewModel.shouldNavigateToAIAssistant) {
                 Text("AI Assistant - Coming Soon!")

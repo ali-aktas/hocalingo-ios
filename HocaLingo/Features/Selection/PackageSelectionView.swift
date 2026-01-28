@@ -2,6 +2,7 @@ import SwiftUI
 
 // MARK: - Package Selection View
 struct PackageSelectionView: View {
+    @Binding var selectedTab: Int
     @StateObject private var viewModel = PackageSelectionViewModel()
     @State private var selectedPackageForNavigation: String? = nil
     @Environment(\.dismiss) var dismiss
@@ -65,7 +66,7 @@ struct PackageSelectionView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .navigationDestination(item: $selectedPackageForNavigation) { packageId in
-                WordSelectionView(packageId: packageId)
+                WordSelectionView(packageId: packageId, selectedTab: $selectedTab)
             }
         }
     }

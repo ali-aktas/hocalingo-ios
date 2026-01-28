@@ -88,7 +88,7 @@ struct StudyView: View {
                     ))
                 } else {
                     // Empty state
-                    StudyEmptyStateView()
+                    StudyEmptyStateView(selectedTab: $selectedTab)
                 }
                 
                 Spacer(minLength: 20)

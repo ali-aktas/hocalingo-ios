@@ -1,25 +1,24 @@
-
 //
 //  StudyEmptyStateView.swift
 //  HocaLingo
 //
-//  ✅ NEW: Empty state view when no words available - Android parity
+//  Empty state view when no words available for study
 //  Location: HocaLingo/Features/Study/StudyEmptyStateView.swift
 //
 
 import SwiftUI
 
 // MARK: - Study Empty State View
-/// Shown when user has no words selected for study
 struct StudyEmptyStateView: View {
+    @Binding var selectedTab: Int
     @Environment(\.dismiss) private var dismiss
     @State private var showPackageSelection = false
+    @State private var selectedTabForSheet: Int = 0
     
     var body: some View {
         VStack(spacing: 32) {
             Spacer()
             
-            // Empty icon
             ZStack {
                 Circle()
                     .fill(Color.gray.opacity(0.1))
@@ -30,7 +29,6 @@ struct StudyEmptyStateView: View {
                     .foregroundColor(.gray.opacity(0.5))
             }
             
-            // Title & message
             VStack(spacing: 12) {
                 Text("Henüz Kelime Yok")
                     .font(.system(size: 24, weight: .bold))
@@ -45,9 +43,7 @@ struct StudyEmptyStateView: View {
             
             Spacer()
             
-            // Action buttons
             VStack(spacing: 16) {
-                // Select words button
                 Button(action: {
                     showPackageSelection = true
                 }) {
@@ -72,8 +68,9 @@ struct StudyEmptyStateView: View {
                     .shadow(color: Color(hex: "4ECDC4").opacity(0.3), radius: 10, x: 0, y: 5)
                 }
                 
-                // Home button
-                Button(action: { dismiss() }) {
+                Button(action: {
+                    selectedTab = 0
+                }) {
                     Text("Ana Sayfaya Dön")
                         .font(.system(size: 16, weight: .medium))
                         .foregroundColor(Color(hex: "4ECDC4"))
@@ -87,12 +84,17 @@ struct StudyEmptyStateView: View {
             .padding(.bottom, 40)
         }
         .sheet(isPresented: $showPackageSelection) {
-            PackageSelectionView()
+            PackageSelectionView(selectedTab: $selectedTabForSheet)
+                .onDisappear {
+                    if selectedTabForSheet == 1 {
+                        selectedTab = 1
+                    }
+                }
         }
     }
 }
 
 // MARK: - Preview
 #Preview {
-    StudyEmptyStateView()
+    StudyEmptyStateView(selectedTab: .constant(1))
 }
