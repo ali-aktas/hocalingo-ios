@@ -38,13 +38,6 @@ extension UserDefaultsManager {
     
     // MARK: - Daily Stats
     
-    /// Get today's date string (ISO format)
-    private func getTodayDateString() -> String {
-        let formatter = ISO8601DateFormatter()
-        formatter.formatOptions = [.withFullDate]
-        return formatter.string(from: Date())
-    }
-    
     /// Load daily stats for a specific date
     func loadDailyStats(for date: String) -> DailyStats? {
         let key = StatsKeys.dailyStatsPrefix + date
@@ -53,6 +46,19 @@ extension UserDefaultsManager {
             return nil
         }
         return stats
+    }
+    
+    // MARK: - Tarih Yardımcısı (Hata payını sıfırlar)
+    private func getLocalDateString(from date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        formatter.timeZone = .current // Kullanıcının yerel saatini baz al
+        return formatter.string(from: date)
+    }
+
+    // getTodayDateString metodunu bununla değiştir:
+    private func getTodayDateString() -> String {
+        return getLocalDateString(from: Date())
     }
     
     /// Save daily stats for a specific date
@@ -203,12 +209,12 @@ extension UserDefaultsManager {
         for wordId in selectedWords {
             // Check both directions
             if let progressEnToTr = loadProgress(for: wordId, direction: .enToTr),
-               !progressEnToTr.learningPhase && progressEnToTr.intervalDays >= 30.0 {
+               !progressEnToTr.learningPhase && progressEnToTr.intervalDays >= 21.0 {
                 learnedWords.insert(wordId)
             }
             
             if let progressTrToEn = loadProgress(for: wordId, direction: .trToEn),
-               !progressTrToEn.learningPhase && progressTrToEn.intervalDays >= 30.0 {
+               !progressTrToEn.learningPhase && progressTrToEn.intervalDays >= 21.0 {
                 learnedWords.insert(wordId)
             }
         }

@@ -2,7 +2,7 @@
 //  HomeUiState.swift
 //  HocaLingo
 //
-//  ✅ UPDATED: Monthly stats added - matches Android HomeUiState v2.0
+//  ✅ FIXED: Localized formattedStudyTime (8m → 8dk in Turkish)
 //  Location: HocaLingo/Features/Home/HomeUiState.swift
 //
 
@@ -15,7 +15,7 @@ struct HomeUiState {
     var userName: String = ""
     var streakDays: Int = 0
     var dailyGoalProgress: DailyGoalProgress = DailyGoalProgress()
-    var monthlyStats: MonthlyStats = MonthlyStats() // ✅ UPDATED: Changed from monthlyStats
+    var monthlyStats: MonthlyStats = MonthlyStats()
     var error: String? = nil
     var showPremiumPush: Bool = false
     var isPremium: Bool = false
@@ -45,22 +45,27 @@ struct DailyGoalProgress {
 }
 
 // MARK: - Monthly Stats (ANDROID PARITY)
-/// ✅ NEW: Monthly study statistics matching Android exactly
 struct MonthlyStats {
+    var studyTimeToday: Int = 0      // Bugünün dakikası
+    var studyTimeThisMonth: Int = 0  // Ayın toplam dakikası
     var activeDaysThisMonth: Int = 0
-    var studyTimeThisMonth: Int = 0  // Total minutes
-    var disciplineScore: Int = 0      // 0-100
+    var disciplineScore: Int = 0
     
-    /// Format study time as "Xh Ym" or "Xm"
+    /// ✅ "8 min / 2h 56m" veya "8dk / 1s 27dk" formatı
     var formattedStudyTime: String {
-        let hours = studyTimeThisMonth / 60
-        let minutes = studyTimeThisMonth % 60
+        let minUnit = NSLocalizedString("unit_minute_short", comment: "")
+        let hourUnit = NSLocalizedString("unit_hour_short", comment: "")
         
-        if hours > 0 {
-            return "\(hours)h \(minutes)m"
-        } else {
-            return "\(minutes)m"
+        func formatTime(_ totalMin: Int) -> String {
+            let h = totalMin / 60
+            let m = totalMin % 60
+            if h > 0 {
+                return "\(h)\(hourUnit) \(m)\(minUnit)"
+            }
+            return "\(m)\(minUnit)"
         }
+        
+        return "\(formatTime(studyTimeThisMonth))"
     }
 }
 
@@ -72,7 +77,7 @@ enum HomeEvent {
     case startStudy
     case navigateToPackageSelection
     case navigateToAIAssistant
-    case showAddWordDialog           // ✅ NEW
+    case showAddWordDialog
     case dismissPremiumPush
     case premiumPurchaseSuccess
 }

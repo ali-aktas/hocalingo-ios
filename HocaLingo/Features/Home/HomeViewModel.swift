@@ -111,92 +111,88 @@ class HomeViewModel: ObservableObject {
     }
     
     // MARK: - Data Loading
-    
-    /// Load all dashboard data
-    func loadDashboardData() {
-        uiState.isLoading = true
         
-        // Load user stats
-        let stats = userDefaults.loadUserStats()
-        
-        
-        
-        // Load today's graduation count
-        let todayStats = userDefaults.getTodayDailyStats()
-        
-        // Update daily goal progress
-        let dailyGoal = userDefaults.loadDailyGoal()
-        uiState.dailyGoalProgress = DailyGoalProgress(
-            currentWords: todayStats.wordsGraduated,
-            targetWords: dailyGoal
-        )
-        
-        // ✅ NEW: Load monthly stats (simplified version)
-        loadMonthlyStats()
-        
-        // ✅ NEW: Calculate learned words (30+ day interval)
-        let learnedWordsCount = userDefaults.calculateTotalLearnedWords()
-        uiState.streakDays = learnedWordsCount
-        
-        // Get user name (if available)
-        uiState.userName = userDefaults.loadUserName() ?? "Student"
-        
-        uiState.isLoading = false
-    }
-    
-    /// ✅ FIXED: Real monthly stats calculation using UserDefaultsManager methods
-    private func loadMonthlyStats() {
-        let calendar = Calendar.current
-        let now = Date()
-        
-        // Get current month's date range
-        guard let monthStart = calendar.date(from: calendar.dateComponents([.year, .month], from: now)),
-              let monthEnd = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: monthStart) else {
-            return
+        /// Dashboard verilerini yükleyen ana fonksiyon
+        func loadDashboardData() {
+            uiState.isLoading = true
+            
+            // 1. Temel Kullanıcı Verileri
+            uiState.userName = userDefaults.loadUserName() ?? "Student"
+            
+            // 2. Günlük Hedef İlerlemesi (Bugünkü Mezun Olan Kelimeler)
+            let todayStats = userDefaults.getTodayDailyStats()
+            let dailyGoal = userDefaults.loadDailyGoal()
+            uiState.dailyGoalProgress = DailyGoalProgress(
+                currentWords: todayStats.wordsGraduated,
+                targetWords: dailyGoal
+            )
+            
+            // 3. İstatistikleri ve Süreleri Hesapla
+            loadMonthlyStats()
+            
+            // 4. Öğrenilen Kelime Sayısı (21+ gün barajı)
+            // streakDays alanı isimlendirme olarak kalsa da değerini Learned Words'den alıyor
+            uiState.streakDays = userDefaults.calculateTotalLearnedWords()
+            
+            uiState.isLoading = false
         }
         
-        // 1. Active days this month (from UserDefaultsManager)
-        let activeDays = userDefaults.getMonthlyStudiedDaysCount()
-        
-        // 2. Calculate total study time for this month from daily stats
-        var totalMinutes = 0
-        var currentDate = monthStart
-        let dateFormatter = ISO8601DateFormatter()
-        dateFormatter.formatOptions = [.withFullDate]
-        
-        while currentDate <= now {
-            let dateString = dateFormatter.string(from: currentDate)
-            if let dayStats = userDefaults.loadDailyStats(for: dateString) {
-                totalMinutes += dayStats.studyTimeMinutes
+        /// Çalışma sürelerini ve aylık verileri hesaplayan fonksiyon
+        private func loadMonthlyStats() {
+            let calendar = Calendar.current
+            let now = Date()
+            let todayString = getLocalDateString(from: now)
+            
+            // 1. Bugünün süresini direkt UserDefaults'tan çek
+            let todayStats = userDefaults.loadDailyStats(for: todayString)
+            let minutesToday = todayStats?.studyTimeMinutes ?? 0
+            
+            // 2. Ayın toplamını hesapla (Döngü ile günleri tara)
+            guard let monthStart = calendar.date(from: calendar.dateComponents([.year, .month], from: now)) else { return }
+            var totalMinutesMonth = 0
+            var currentDate = monthStart
+            
+            while currentDate <= now {
+                let dateString = getLocalDateString(from: currentDate)
+                if let dayStats = userDefaults.loadDailyStats(for: dateString) {
+                    totalMinutesMonth += dayStats.studyTimeMinutes
+                }
+                guard let nextDate = calendar.date(byAdding: .day, value: 1, to: currentDate) else { break }
+                currentDate = nextDate
             }
             
-            // Move to next day
-            guard let nextDate = calendar.date(byAdding: .day, value: 1, to: currentDate) else { break }
-            currentDate = nextDate
+            // 3. Aktif gün sayısını al (Herhangi bir aktivite olan günler)
+            let activeDays = userDefaults.getMonthlyStudiedDaysCount()
+            
+            // 4. Disiplin skorunu hesapla (Aktif Günler / Ayın Toplam Günü)
+            let daysInMonth = calendar.range(of: .day, in: .month, for: now)?.count ?? 30
+            let disciplineScore = min(100, Int((Double(activeDays) / Double(daysInMonth)) * 100))
+            
+            // UI State Güncelleme
+            DispatchQueue.main.async {
+                self.uiState.monthlyStats = MonthlyStats(
+                    studyTimeToday: minutesToday,
+                    studyTimeThisMonth: totalMinutesMonth,
+                    activeDaysThisMonth: activeDays,
+                    disciplineScore: disciplineScore
+                )
+            }
         }
         
-        // 3. Calculate discipline score (active days / total days in month * 100)
-        let daysInMonth = calendar.range(of: .day, in: .month, for: now)?.count ?? 30
-        let disciplineScore = min(100, Int((Double(activeDays) / Double(daysInMonth)) * 100))
+        // MARK: - Helpers (Scope hatalarını çözen kısımlar)
         
-        // Update UI state with real data
-        uiState.monthlyStats = MonthlyStats(
-            activeDaysThisMonth: activeDays,
-            studyTimeThisMonth: totalMinutes,
-            disciplineScore: disciplineScore
-        )
-        
-        print("📊 Monthly stats loaded:")
-        print("   - Active days: \(activeDays)")
-        print("   - Study time: \(totalMinutes) min")
-        print("   - Discipline: \(disciplineScore)%")
-    }
-    
-    /// Check premium status
-    private func checkPremiumStatus() {
-        // TODO: Implement premium check
-        uiState.isPremium = false
-    }
+        /// Cihazın yerel saat dilimine göre tarih stringi üretir (Timezone hatasını çözer)
+        private func getLocalDateString(from date: Date) -> String {
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            formatter.timeZone = .current
+            return formatter.string(from: date)
+        }
+
+        /// Premium durum kontrolü (Gelecekte eklenecek)
+        private func checkPremiumStatus() {
+            uiState.isPremium = false
+        }
     
     // MARK: - Event Handling
     

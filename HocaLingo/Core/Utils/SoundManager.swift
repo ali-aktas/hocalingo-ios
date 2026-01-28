@@ -187,8 +187,8 @@ class SoundManager: ObservableObject {
     /// Set volume for all sounds
     func setVolume(_ volume: Float) {
         let clampedVolume = min(max(volume, 0.0), 1.0)
-        clickPlayer?.volume = clampedVolume * 0.5
-        cardFlipPlayer?.volume = clampedVolume * 0.7
+        clickPlayer?.volume = clampedVolume * 0.3
+        cardFlipPlayer?.volume = clampedVolume * 0.5
         swipeRightPlayer?.volume = clampedVolume * 0.6
         swipeLeftPlayer?.volume = clampedVolume * 0.6
         print("Sound volume set to \(clampedVolume)")

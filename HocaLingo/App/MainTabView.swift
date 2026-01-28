@@ -30,7 +30,7 @@ struct MainTabView: View {
             // Study Tab - ✅ FIXED: Added binding
             StudyView(selectedTab: $selectedTab)
                 .tabItem {
-                    Label("study_tab", systemImage: "play.fill")
+                    Label("study_tab", systemImage: "rectangle.portrait.on.rectangle.portrait.angled.fill")
                 }
                 .tag(1)
             

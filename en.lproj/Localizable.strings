@@ -57,6 +57,9 @@
 "stat_study_time_min" = "minutes";
 "stat_monthly_stats" = "This month's statistics";
 "stat_learned_words" = "Learned Words";
+"unit_minute_short" = "m";
+"unit_hour_short" = "h";
+"stat_this_month_time" = "Study Time";
 
 // Actions
 "action_start_study" = "Start Studying";

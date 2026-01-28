@@ -49,9 +49,20 @@ class StudyViewModel: ObservableObject {
     @Published var isCardFlipped: Bool = false
     @Published var studyQueue: [StudyCard] = []
     @Published var studyDirection: StudyDirection = .enToTr
-    @Published var isSessionComplete: Bool = false
     @Published var cardsCompletedCount: Int = 0
     @Published var showNativeAd: Bool = false
+    
+    @Published var isSessionComplete: Bool = false {
+        didSet {
+            if isSessionComplete && !oldValue {
+                NotificationCenter.default.post(
+                    name: NSNotification.Name("StudySessionCompleted"),
+                    object: nil
+                )
+                print("📢 Study session completed notification sent")
+            }
+        }
+    }
     
     // ✅ Görünürdeki kartın içeriğini yöneten ana değişken
     @Published var displayCard: StudyCard?
@@ -329,9 +340,9 @@ class StudyViewModel: ObservableObject {
     }
     
     // MARK: - Study Time Tracking
-
     private func trackStudyTime() {
         accumulatedSeconds += 5  // Each card = 5 seconds
+        print("⏱️ Accumulated seconds: \(accumulatedSeconds)")  // ✅ HER KART SONRASI LOG
         
         // Convert to minutes when we reach 60 seconds
         if accumulatedSeconds >= 60 {

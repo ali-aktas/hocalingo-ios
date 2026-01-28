@@ -60,10 +60,17 @@ struct HomeView: View {
             .sheet(isPresented: $viewModel.shouldShowAddWordDialog) {
                 AddWordDialogView()
             }
+            .onAppear {
+                viewModel.loadDashboardData()
+            }
             .onReceive(rotationTimer) { _ in
                 viewModel.rotateHeroContent()
             }
             .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("AppLanguageChanged"))) { _ in
+                viewModel.loadDashboardData()
+            }
+            .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("StudySessionCompleted"))) { _ in
+                print("📚 Study session completed - refreshing dashboard")
                 viewModel.loadDashboardData()
             }
             .onChange(of: viewModel.shouldNavigateToStudy) { oldValue, newValue in
@@ -109,10 +116,9 @@ private extension HomeView {
                     .overlay(Circle().stroke(Color.white.opacity(0.3), lineWidth: 2))
                     .shadow(color: playButtonShadowColor, radius: 15, y: 10)
                 
-                Image(systemName: "play.fill")
+                Image(systemName: "rectangle.portrait.on.rectangle.portrait.angled.fill")
                     .font(.system(size: 44, weight: .bold))
                     .foregroundColor(.white)
-                    .offset(x: 4)
             }
         }
         .buttonStyle(SpringButtonStyle())

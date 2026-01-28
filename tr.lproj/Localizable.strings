@@ -57,6 +57,9 @@
 "stat_study_time_min" = "dakika";
 "stat_monthly_stats" = "Bu ayın istatistikleri";
 "stat_learned_words" = "Öğrenildi";
+"unit_minute_short" = "dk";
+"unit_hour_short" = "s";
+"stat_this_month_time" = "Çalışma Süresi";
 
 // Actions
 "action_start_study" = "Çalışmaya Başla";
