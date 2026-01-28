@@ -120,10 +120,10 @@ struct SettingsCard: View {
                 if showTimePicker, let selectedHour = selectedHour, let onTimeChange = onTimeChange {
                     Divider()
                         .background(Color.themeDivider)
-                        .padding(.leading, 60) // İkon hizasından başlasın
+                        .padding(.leading, 60)
                     
                     HStack {
-                        Text("notification_time_label") // Localizable.strings'e eklemelisin: "Bildirim Saati"
+                        Text("notification_time_label")
                             .font(.system(size: 14))
                             .foregroundColor(.themeSecondary)
                         

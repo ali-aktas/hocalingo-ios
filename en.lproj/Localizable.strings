@@ -110,6 +110,7 @@
 "privacy_policy" = "Privacy Policy";
 "terms_of_service" = "Terms of Service";
 "contact_support" = "Support";
+"notification_time_label" = "Notification Time";
 
 // MARK: - Theme Modes
 "theme_light" = "Light Theme";

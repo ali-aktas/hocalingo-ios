@@ -2,11 +2,12 @@
 //  HocaLingoApp.swift
 //  HocaLingo
 //
-//  ✅ MAJOR UPDATE: Instant language change with @AppStorage auto-sync
+//  ✅ UPDATED: Added Notification Delegate for foreground support
 //  Created by Auralian on 15.01.2026.
 //
 
 import SwiftUI
+import UserNotifications
 
 @main
 struct HocaLingoApp: App {
@@ -17,9 +18,14 @@ struct HocaLingoApp: App {
     
     // MARK: - Language Management
     /// App language stored in AppStorage for instant updates
-    /// ✅ CRITICAL: @AppStorage automatically syncs with UserDefaults
-    /// When ProfileViewModel updates UserDefaults, @AppStorage detects it and triggers UI refresh
+    /// @AppStorage automatically syncs with UserDefaults
     @AppStorage("app_language") private var appLanguageCode: String = UserDefaultsManager.shared.loadAppLanguage().rawValue
+    
+    // MARK: - Initialization
+    init() {
+        // Set notification delegate to handle foreground notifications
+        UNUserNotificationCenter.current().delegate = NotificationDelegate.shared
+    }
     
     // MARK: - Computed Properties
     
@@ -31,12 +37,11 @@ struct HocaLingoApp: App {
     var body: some Scene {
         WindowGroup {
             MainTabView()
-                // ✅ Apply theme globally to entire app
+                // Apply theme globally to entire app
                 .preferredColorScheme(themeViewModel.effectiveColorScheme)
-                // ✅ Inject theme view model into environment
+                // Inject theme view model into environment
                 .environment(\.themeViewModel, themeViewModel)
-                // ✅ CRITICAL: Apply locale for instant language change
-                // @AppStorage monitors UserDefaults - when it changes, this rebuilds
+                // Apply locale for instant language change
                 .environment(\.locale, currentLocale)
         }
     }

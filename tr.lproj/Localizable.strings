@@ -110,6 +110,7 @@
 "privacy_policy" = "Gizlilik Politikası";
 "terms_of_service" = "Kullanım Şartları";
 "contact_support" = "Destek";
+"notification_time_label" = "Bildirim Saati";
 
 // MARK: - Theme Modes
 "theme_light" = "Açık Tema";

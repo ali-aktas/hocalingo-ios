@@ -74,6 +74,8 @@
 				"Core/Storage/UserDefaultsManager+UserWords.swift",
 				"Core/Utils/Color+Theme.swift",
 				Core/Utils/ColorExtension.swift,
+				Core/Utils/NotificationDelegate.swift,
+				Core/Utils/NotificationManager.swift,
 				Core/Utils/SoundManager.swift,
 				Core/Utils/SpacedRepetition.swift,
 				Core/Utils/ThemeViewModel.swift,

@@ -2,8 +2,8 @@
 //  ProfileViewModel.swift
 //  HocaLingo
 //
-//  ✅ MAJOR UPDATE: Instant language change, proper theme handling, annual stats
-//  Location: HocaLingo/Features/Profile/ProfileViewModel.swift
+//  ✅ UPDATED: Notification system integration and cleanup
+//  Location: Features/Profile/ProfileViewModel.swift
 //
 
 import SwiftUI
@@ -12,7 +12,6 @@ import UserNotifications
 
 // MARK: - Profile View Model
 /// Business logic for profile screen with comprehensive settings management
-/// Location: HocaLingo/Features/Profile/ProfileViewModel.swift
 class ProfileViewModel: ObservableObject {
     
     // MARK: - Published Properties
@@ -38,7 +37,7 @@ class ProfileViewModel: ObservableObject {
     init() {
         // Load all settings from UserDefaults
         self.userStats = UserDefaultsManager.shared.loadUserStats()
-        self.annualStats = UserDefaultsManager.shared.calculateAnnualStats()  // ✅ Force calculation
+        self.annualStats = UserDefaultsManager.shared.calculateAnnualStats()
         self.studyDirection = UserDefaultsManager.shared.loadStudyDirection()
         self.themeMode = UserDefaultsManager.shared.loadThemeMode()
         self.appLanguage = UserDefaultsManager.shared.loadAppLanguage()
@@ -49,17 +48,11 @@ class ProfileViewModel: ObservableObject {
         UserDefaultsManager.shared.checkAndResetAnnualStatsIfNeeded()
         
         print("✅ ProfileViewModel initialized")
-        print("   - Direction: \(studyDirection.displayName)")
-        print("   - Theme: \(themeMode.displayName)")
-        print("   - Language: \(appLanguage.displayName)")
-        print("   - Notification time: \(notificationTime):00")
-        print("   - Annual stats: \(annualStats.activeDaysThisYear) days, \(annualStats.studyHoursThisYear) hours")
     }
 
-    // ✅ ALSO UPDATE refreshAnnualStats() method:
-
+    /// Forces a recalculation of annual statistics
     func refreshAnnualStats() {
-        annualStats = UserDefaultsManager.shared.calculateAnnualStats()  // ✅ Force recalculation
+        annualStats = UserDefaultsManager.shared.calculateAnnualStats()
         print("📊 Annual stats refreshed: \(annualStats.activeDaysThisYear) days")
     }
     
@@ -77,101 +70,75 @@ class ProfileViewModel: ObservableObject {
     
     // MARK: - Settings Actions
     
-    /// ✅ UPDATED: Change study direction with NotificationCenter
+    /// Changes study direction and notifies other view models
     func changeStudyDirection(to direction: StudyDirection) {
-        let oldDirection = studyDirection
-        
-        // Update local state
         studyDirection = direction
-        
-        // Save to UserDefaults
         UserDefaultsManager.shared.saveStudyDirection(direction)
         
-        // Post notification to StudyViewModel for real-time update
+        // Notify StudyViewModel for real-time updates
         NotificationCenter.default.post(
             name: NSNotification.Name("StudyDirectionChanged"),
             object: nil
         )
-        
-        print("🔄 Direction changed:")
-        print("   - From: \(oldDirection.displayName)")
-        print("   - To: \(direction.displayName)")
-        print("   - Notification posted to StudyViewModel")
     }
     
-    /// ✅ UPDATED: Change theme mode with proper system-wide update
+    /// Updates app theme mode system-wide
     func changeThemeMode(to mode: ThemeMode) {
         themeMode = mode
         UserDefaultsManager.shared.saveThemeMode(mode)
         
-        // Post notification for app-wide theme change
         NotificationCenter.default.post(
             name: NSNotification.Name("ThemeModeChanged"),
             object: nil,
             userInfo: ["themeMode": mode]
         )
-        
-        print("🎨 Theme changed to: \(mode.displayName)")
     }
     
-    /// ✅ INSTANT language change - @AppStorage handles everything automatically
-    /// When we update UserDefaults, @AppStorage in HocaLingoApp detects it and rebuilds UI
+    /// Updates app language and triggers UI refresh
     func changeLanguage(to language: AppLanguage) {
-        let oldLanguage = appLanguage
-        
-        // Update local state FIRST (for immediate UI feedback in ProfileView)
         appLanguage = language
-        
-        // Save to UserDefaults
         UserDefaultsManager.shared.saveAppLanguage(language)
         
-        // ✅ CRITICAL: Post notification for all views to refresh
+        // Post notification for all views to refresh locale-dependent content
         NotificationCenter.default.post(
             name: NSNotification.Name("AppLanguageChanged"),
             object: nil
         )
-        
-        print("🌍 Language changed:")
-        print("   - From: \(oldLanguage.displayName)")
-        print("   - To: \(language.displayName)")
-        print("   - Notification posted to all views")
     }
     
-    /// Toggle notifications
+    /// Toggles push notifications and manages permissions/scheduling
     func toggleNotifications() {
         notificationsEnabled.toggle()
         UserDefaultsManager.shared.saveNotificationsEnabled(notificationsEnabled)
         
-        print("🔔 Notifications \(notificationsEnabled ? "enabled" : "disabled")")
-        
         if notificationsEnabled {
-            requestNotificationPermission()
+            // Request permission and schedule if granted
+            NotificationManager.shared.requestPermission { [weak self] granted in
+                guard let self = self else { return }
+                if granted {
+                    NotificationManager.shared.scheduleDailyReminder(at: self.notificationTime)
+                } else {
+                    // Revert state if permission is denied
+                    DispatchQueue.main.async {
+                        self.notificationsEnabled = false
+                        UserDefaultsManager.shared.saveNotificationsEnabled(false)
+                    }
+                }
+            }
+        } else {
+            // Remove all scheduled reminders
+            NotificationManager.shared.cancelAllReminders()
         }
     }
     
-    /// Change notification time
+    /// Updates notification time and reschedules the reminder
     func changeNotificationTime(to hour: Int) {
         notificationTime = hour
         UserDefaultsManager.shared.saveNotificationTime(hour)
         
-        print("⏰ Notification time changed to: \(String(format: "%02d:00", hour))")
-        
+        // Update scheduled notification if enabled
         if notificationsEnabled {
-            // TODO: Reschedule notification with new time
-        }
-    }
-    
-    // MARK: - Notification Permission
-    
-    private func requestNotificationPermission() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
-            if granted {
-                print("✅ Notification permission granted")
-            } else if let error = error {
-                print("❌ Notification permission error: \(error.localizedDescription)")
-            } else {
-                print("⚠️ Notification permission denied")
-            }
+            NotificationManager.shared.scheduleDailyReminder(at: hour)
         }
     }
 }
