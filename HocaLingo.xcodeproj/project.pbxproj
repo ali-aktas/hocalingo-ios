@@ -80,16 +80,17 @@
 				Core/Utils/SpacedRepetition.swift,
 				Core/Utils/ThemeViewModel.swift,
 				Core/Utils/TTSManager.swift,
-				en_tr_a1_001.json,
 				Features/Home/AddWordDialogView.swift,
 				Features/Home/HomeUiState.swift,
 				Features/Home/HomeView.swift,
 				Features/Home/HomeViewModel.swift,
+				Features/Premium/PremiumSheetPlaceholder.swift,
 				Features/Profile/Components/AnnualStatsSection.swift,
 				Features/Profile/Components/SettingsCard.swift,
 				Features/Profile/Components/SettingsRowType.swift,
 				Features/Profile/ProfileView.swift,
 				Features/Profile/ProfileViewModel.swift,
+				Features/Selection/PackageCardComponents.swift,
 				Features/Selection/PackageSelectionView.swift,
 				Features/Selection/PackageSelectionViewModel.swift,
 				Features/Selection/SwipeableCardView.swift,
@@ -107,6 +108,7 @@
 				Models/DailySelectionLimitManager.swift,
 				Models/Package.swift,
 				Models/PackageInfo.swift,
+				Models/PremiumManager.swift,
 				Models/Progress.swift,
 				"Models/Progress+Extensions.swift",
 				Models/StudyDirection.swift,
@@ -114,6 +116,7 @@
 				Models/UserStats.swift,
 				Models/VocabularyPackage.swift,
 				Models/Word.swift,
+				standard_a1_001.json,
 			);
 			target = 0EC909CD2F18743E00FEBC67 /* HocaLingo */;
 		};
@@ -132,11 +135,11 @@
 				"Core/Storage/UserDefaultsManager+Stats.swift",
 				"Core/Storage/UserDefaultsManager+Sync.swift",
 				"Core/Storage/UserDefaultsManager+UserWords.swift",
-				en_tr_a1_001.json,
 				Features/Home/AddWordDialogView.swift,
 				Features/Home/HomeUiState.swift,
 				Features/Home/HomeView.swift,
 				Features/Home/HomeViewModel.swift,
+				Features/Selection/PackageCardComponents.swift,
 				Features/Selection/PackageSelectionView.swift,
 				Features/Selection/PackageSelectionViewModel.swift,
 				Features/Selection/SwipeableCardView.swift,
@@ -149,6 +152,7 @@
 				Models/DailySelectionLimitManager.swift,
 				Models/Package.swift,
 				Models/PackageInfo.swift,
+				Models/PremiumManager.swift,
 				Models/Progress.swift,
 				"Models/Progress+Extensions.swift",
 				Models/StudyDirection.swift,
@@ -156,6 +160,7 @@
 				Models/UserStats.swift,
 				Models/VocabularyPackage.swift,
 				Models/Word.swift,
+				standard_a1_001.json,
 			);
 			target = 0EC909DA2F18743F00FEBC67 /* HocaLingoTests */;
 		};

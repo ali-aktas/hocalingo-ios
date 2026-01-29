@@ -2,7 +2,7 @@
   Localizable.strings (English)
   HocaLingo
 
-  ✅ UPDATED: Added 10 motivation texts for hero card
+  ✅ UPDATED: Premium packages and tab system added
   Created by Auralian on 19.01.2026.
   
 */
@@ -34,7 +34,7 @@
 "home_greeting_evening" = "Good Evening! 🌙";
 "home_greeting_night" = "Good Night! ✨";
 
-// ✅ NEW: Motivation Texts (10 total)
+// Motivation Texts
 "motivation_1" = "Just 10 minutes a day and you can learn a thousand words in a year";
 "motivation_2" = "You'll see how easy English is when you start understanding words";
 "motivation_3" = "Small steps create big goals";
@@ -59,7 +59,6 @@
 "stat_learned_words" = "Learned Words";
 "unit_minute_short" = "m";
 "unit_hour_short" = "h";
-"stat_this_month_time" = "Study Time";
 
 // Actions
 "action_start_study" = "Start Studying";
@@ -116,15 +115,33 @@
 "theme_light" = "Light Theme";
 "theme_dark" = "Dark Theme";
 "theme_system" = "System";
+"theme_light_display" = "Light Mode";
+"theme_dark_display" = "Dark Mode";
+"theme_system_display" = "System";
 
 // MARK: - Study Directions
 "direction_en_to_tr" = "English → Turkish";
 "direction_tr_to_en" = "Turkish → English";
 "direction_mixed" = "Mixed";
+"direction_en_tr_display" = "English → Turkish";
+"direction_tr_en_display" = "Turkish → English";
+
+// MARK: - Language Display Names
+"language_english" = "English";
+"language_turkish" = "Türkçe";
+
+// MARK: - Package Selection Tabs
+"tab_standard" = "Standard";
+"tab_premium" = "Premium";
 
 // MARK: - Package Selection
-"package_selection_title" = "Select Package";
-"package_selection_subtitle" = "Choose your level and start learning";
+"package_selection_title" = "Choose Your Level";
+"package_selection_subtitle" = "Select a package to start learning words";
+"package_completed" = "Completed";
+"package_words_left" = "words left";
+"package_empty_title" = "All Done! 🎉";
+"package_empty_message" = "You've seen all words in this package.\nTime to explore other packages!";
+"package_empty_button" = "Browse Packages";
 "package_words_count" = "%d words";
 "package_selected" = "Selected";
 "package_select" = "Select";
@@ -132,7 +149,7 @@
 "package_download" = "Download";
 "package_all_completed" = "You've completed all words in this package!";
 
-// Levels
+// MARK: - Standard Package Levels
 "level_a1" = "A1";
 "level_a2" = "A2";
 "level_b1" = "B1";
@@ -140,7 +157,7 @@
 "level_c1" = "C1";
 "level_c2" = "C2";
 
-// Package Names
+// MARK: - Standard Package Names
 "package_name_beginner" = "Beginner";
 "package_name_elementary" = "Elementary";
 "package_name_intermediate" = "Intermediate";
@@ -148,15 +165,40 @@
 "package_name_advanced" = "Advanced";
 "package_name_mastery" = "Mastery";
 
+// MARK: - Premium Section
+"premium_level" = "Premium";
+"premium_header_title" = "Premium Content";
+"premium_header_subtitle" = "Exclusive advanced word packages";
+"premium_upgrade_button" = "Upgrade to Premium";
+"premium_unlock_required" = "Premium Required";
+
+// MARK: - Premium Package Names
+"premium_package_business" = "Business English";
+"premium_package_travel" = "Travel & Tourism";
+"premium_package_tech" = "Tech & Programming";
+"premium_package_medical" = "Medical Terms";
+"premium_package_academic" = "Academic English";
+"premium_package_idioms" = "Idioms & Phrases";
+
 // MARK: - Word Selection
 "word_selection_title" = "Word Selection";
+"word_selection_back" = "Back";
+"word_selection_instruction" = "Add new words to your study deck";
 "word_selection_selected" = "Selected";
 "word_selection_daily_limit" = "Daily Limit";
 "word_selection_swipe_hint" = "← Skip   |   Learn →";
 "word_selection_undo" = "Undo";
 "word_selection_start_study" = "Study (%d)";
+"word_selection_remaining" = "selections left today";
+"word_selection_complete_title" = "All Done! 🎉";
+"word_selection_complete_message" = "You've reviewed all words in this package.\nTime to pick a new challenge!";
+"word_selection_start_learning" = "Start Learning";
+"word_selection_new_package" = "Select New Package";
 "word_selection_limit_reached_title" = "Daily Limit Reached";
 "word_selection_limit_reached_message" = "You've reached your daily word selection limit. Upgrade to Premium or try again tomorrow.";
+"word_selection_limit_title" = "Daily Selection Limit Reached";
+"word_selection_limit_message" = "You've selected 15 words today.\nYou can still skip words freely, or upgrade to Premium for unlimited selections!";
+"word_selection_limit_close" = "Continue Reviewing";
 
 // MARK: - Add Word
 "add_word_title" = "Add Word";
@@ -169,34 +211,6 @@
 "add_word_error" = "Error adding word";
 "add_word_info" = "Customize your study list by adding your own words";
 "add_word_required" = "This field is required";
-"action_add_word_desc" = "Add your own word";
-"stat_active_days" = "Active Days";
-"stat_study_time_min" = "minutes";
-"stat_monthly_stats" = "This month's statistics";
-"add_word_error" = "Error adding word";
-"add_word_info" = "Customize your study list by adding your own words";
-"add_word_required" = "This field is required";
-
-// MARK: - Package Selection
-"package_selection_title" = "Choose Your Level";
-"package_selection_subtitle" = "Select a package to start learning words";
-"package_completed" = "Completed";
-"package_words_left" = "words left";
-"package_empty_title" = "All Done! 🎉";
-"package_empty_message" = "You've seen all words in this package.\nTime to explore other packages!";
-"package_empty_button" = "Browse Packages";
-
-// WordSelectionView
-"word_selection_back" = "Back";
-"word_selection_instruction" = "Add new words to your study deck";
-"word_selection_remaining" = "selections left today";
-"word_selection_complete_title" = "All Done! 🎉";
-"word_selection_complete_message" = "You've reviewed all words in this package.\nTime to pick a new challenge!";
-"word_selection_start_learning" = "Start Learning";
-"word_selection_new_package" = "Select New Package";
-"word_selection_limit_title" = "Daily Selection Limit Reached";
-"word_selection_limit_message" = "You've selected 15 words today.\nYou can still skip words freely, or upgrade to Premium for unlimited selections!";
-"word_selection_limit_close" = "Continue Reviewing";
 
 // MARK: - Profile Cards
 "annual_stats_title" = "Annual Statistics";
@@ -219,16 +233,3 @@
 "premium_card_title" = "Premium";
 "premium_card_subtitle" = "Unlock all features";
 "premium_card_upgrade_button" = "Upgrade Now";
-
-// MARK: - Theme Display Names (Already exist but confirming)
-"theme_light_display" = "Light Mode";
-"theme_dark_display" = "Dark Mode";
-"theme_system_display" = "System";
-
-// MARK: - Language Display Names
-"language_english" = "English";
-"language_turkish" = "Türkçe";
-
-// MARK: - Study Direction Display Names
-"direction_en_tr_display" = "English → Turkish";
-"direction_tr_en_display" = "Turkish → English";

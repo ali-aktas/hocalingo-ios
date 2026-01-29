@@ -69,9 +69,6 @@ struct WordSelectionView: View {
                 }
             }
         }
-        .sheet(isPresented: $showPremiumSheet) {
-            ProfileView.PremiumSheetPlaceholder()
-        }
     }
     
     // MARK: - Main Content

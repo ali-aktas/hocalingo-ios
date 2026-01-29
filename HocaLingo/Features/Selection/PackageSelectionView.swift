@@ -1,3 +1,11 @@
+//
+//  PackageSelectionView.swift
+//  HocaLingo
+//
+//  ✅ CLEAN: Main layout only, components separated
+//  Location: HocaLingo/Features/Selection/PackageSelectionView.swift
+//
+
 import SwiftUI
 
 // MARK: - Package Selection View
@@ -5,10 +13,10 @@ struct PackageSelectionView: View {
     @Binding var selectedTab: Int
     @StateObject private var viewModel = PackageSelectionViewModel()
     @State private var selectedPackageForNavigation: String? = nil
+    @State private var currentTab: Int = 0 // 0 = Standard, 1 = Premium
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.themeViewModel) private var themeViewModel
-    // ✅ Language change trigger
     @AppStorage("app_language") private var appLanguageCode: String = "en"
     
     let columns = [
@@ -21,43 +29,21 @@ struct PackageSelectionView: View {
             ZStack {
                 Color.themeBackground.ignoresSafeArea()
                 
-                // MARK: Background Decor (Adaptive Opacity)
-                Group {
-                    Circle()
-                        .fill(Color.themePrimaryButton.opacity(isDarkMode ? 0.12 : 0.05))
-                        .frame(width: 350, height: 350)
-                        .blur(radius: 60)
-                        .offset(x: 120, y: -250)
-                }
-                
-                if viewModel.isLoading {
-                    VStack(spacing: 20) {
-                        ProgressView().tint(.themePrimaryButton)
-                        Text("package_selection_title")
-                            .font(.system(size: 16, weight: .medium))
-                            .foregroundColor(.themeSecondary)
+                VStack(spacing: 0) {
+                    // Custom Tab Selector
+                    tabSelector
+                        .padding(.horizontal, 20)
+                        .padding(.top, 16)
+                    
+                    // Tab Content
+                    TabView(selection: $currentTab) {
+                        standardPackagesView
+                            .tag(0)
+                        
+                        premiumPackagesView
+                            .tag(1)
                     }
-                } else {
-                    ScrollView(showsIndicators: false) {
-                        VStack(spacing: 24) { // Spacing slightly reduced
-                            headerSection
-                            
-                            LazyVGrid(columns: columns, spacing: 16) {
-                                ForEach(viewModel.packages) { package in
-                                    PackageCard(
-                                        package: package,
-                                        isSelected: viewModel.selectedPackageId == package.id,
-                                        unseenCount: viewModel.getUnseenWordCount(for: package.id)
-                                    ) {
-                                        handlePackageSelection(package)
-                                    }
-                                }
-                            }
-                            .padding(.horizontal, 20)
-                        }
-                        .padding(.top, 0) // Reduced top padding for better spacing with Back button
-                        .padding(.bottom, 120)
-                    }
+                    .tabViewStyle(.page(indexDisplayMode: .never))
                 }
                 
                 if viewModel.showEmptyPackageAlert {
@@ -68,36 +54,195 @@ struct PackageSelectionView: View {
             .navigationDestination(item: $selectedPackageForNavigation) { packageId in
                 WordSelectionView(packageId: packageId, selectedTab: $selectedTab)
             }
+            .sheet(isPresented: $viewModel.showPremiumSheet) {
+                PremiumSheetPlaceholder()
+            }
         }
     }
     
-    private var isDarkMode: Bool { themeViewModel.isDarkMode(in: colorScheme) }
-
-    private func handlePackageSelection(_ package: PackageModel) {
-        let unseenCount = viewModel.getUnseenWordCount(for: package.id)
-        if unseenCount == 0 {
-            withAnimation(.spring()) { viewModel.showEmptyPackageAlert = true }
-        } else {
-            viewModel.selectPackage(package.id)
-            selectedPackageForNavigation = package.id
-        }
-    }
-    
-    private var headerSection: some View {
-        VStack(spacing: 8) {
-            Text("package_selection_title")
-                .font(.system(size: 32, weight: .black, design: .rounded))
-                .foregroundColor(.themePrimary) // Adaptive color (Black in light, White in dark)
+    // MARK: - Tab Selector
+    private var tabSelector: some View {
+        HStack(spacing: 0) {
+            // Standard Tab
+            PackageTabButton(
+                title: "tab_standard",
+                icon: "book.fill",
+                isSelected: currentTab == 0,
+                accentColor: .themePrimaryButton,
+                action: {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                        currentTab = 0
+                    }
+                }
+            )
             
-            Text("package_selection_subtitle")
+            // Premium Tab
+            PackageTabButton(
+                title: "tab_premium",
+                icon: "crown.fill",
+                isSelected: currentTab == 1,
+                accentColor: Color(hex: "FFD700"),
+                action: {
+                    withAnimation(.spring(response: 0.3, dampingFraction: 0.8)) {
+                        currentTab = 1
+                    }
+                }
+            )
+        }
+        .padding(4)
+        .background(
+            RoundedRectangle(cornerRadius: 14)
+                .fill(isDarkMode ? Color.white.opacity(0.1) : Color.gray.opacity(0.15))
+        )
+    }
+    
+    // MARK: - Standard Packages View
+    private var standardPackagesView: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 24) {
+                headerSection(
+                    title: "package_selection_title",
+                    subtitle: "package_selection_subtitle"
+                )
+                
+                LazyVGrid(columns: columns, spacing: 16) {
+                    ForEach(viewModel.standardPackages) { package in
+                        StandardPackageCard(
+                            package: package,
+                            isSelected: viewModel.selectedPackageId == package.id,
+                            unseenCount: viewModel.getUnseenWordCount(for: package.id)
+                        ) {
+                            handlePackageSelection(package)
+                        }
+                    }
+                }
+                .padding(.horizontal, 20)
+            }
+            .padding(.top, 8)
+            .padding(.bottom, 120)
+        }
+    }
+    
+    // MARK: - Premium Packages View
+    private var premiumPackagesView: some View {
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 24) {
+                premiumHeaderSection
+                
+                LazyVGrid(columns: columns, spacing: 16) {
+                    ForEach(viewModel.premiumPackages) { package in
+                        PremiumPackageCard(
+                            package: package,
+                            isSelected: viewModel.selectedPackageId == package.id,
+                            unseenCount: viewModel.getUnseenWordCount(for: package.id),
+                            isPremiumUser: viewModel.isPremium
+                        ) {
+                            handlePackageSelection(package)
+                        }
+                    }
+                }
+                .padding(.horizontal, 20)
+            }
+            .padding(.top, 8)
+            .padding(.bottom, 120)
+        }
+    }
+    
+    // MARK: - Premium Header
+    private var premiumHeaderSection: some View {
+        VStack(spacing: 16) {
+            // Crown Icon with Glow
+            ZStack {
+                Circle()
+                    .fill(
+                        LinearGradient(
+                            colors: [
+                                Color(hex: "FFD700"),
+                                Color(hex: "FFA500")
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .frame(width: 80, height: 80)
+                    .blur(radius: 20)
+                    .opacity(0.6)
+                
+                Circle()
+                    .fill(
+                        LinearGradient(
+                            colors: [
+                                Color(hex: "FFD700"),
+                                Color(hex: "FFA500")
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+                    .frame(width: 70, height: 70)
+                
+                Image(systemName: "crown.fill")
+                    .font(.system(size: 36, weight: .bold))
+                    .foregroundColor(.white)
+            }
+            
+            VStack(spacing: 8) {
+                Text("premium_header_title")
+                    .font(.system(size: 28, weight: .black))
+                    .foregroundColor(.themePrimary)
+                
+                Text("premium_header_subtitle")
+                    .font(.system(size: 15))
+                    .foregroundColor(.themeSecondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 40)
+            }
+            
+            if !viewModel.isPremium {
+                Button(action: { viewModel.showPremiumSheet = true }) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "sparkles")
+                        Text("premium_upgrade_button")
+                    }
+                    .font(.system(size: 16, weight: .bold))
+                    .foregroundColor(.white)
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 12)
+                    .background(
+                        LinearGradient(
+                            colors: [
+                                Color(hex: "FFD700"),
+                                Color(hex: "FFA500")
+                            ],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                    .cornerRadius(20)
+                    .shadow(color: Color(hex: "FFD700").opacity(0.5), radius: 12, y: 6)
+                }
+            }
+        }
+        .padding(.vertical, 16)
+    }
+    
+    // MARK: - Header Section
+    private func headerSection(title: LocalizedStringKey, subtitle: LocalizedStringKey) -> some View {
+        VStack(spacing: 8) {
+            Text(title)
+                .font(.system(size: 32, weight: .black, design: .rounded))
+                .foregroundColor(.themePrimary)
+            
+            Text(subtitle)
                 .font(.system(size: 16, weight: .medium, design: .rounded))
                 .foregroundColor(.themeSecondary)
                 .multilineTextAlignment(.center)
                 .padding(.horizontal, 40)
         }
-        .padding(.top, 5) // Minimal padding to reduce gap from navigation area
+        .padding(.top, 5)
     }
-
+    
+    // MARK: - Empty Package Overlay
     private var emptyPackageOverlay: some View {
         ZStack {
             Color.black.opacity(isDarkMode ? 0.7 : 0.4)
@@ -138,63 +283,26 @@ struct PackageSelectionView: View {
             .padding(.horizontal, 40)
         }
     }
+    
+    // MARK: - Helpers
+    private var isDarkMode: Bool { themeViewModel.isDarkMode(in: colorScheme) }
+    
+    private func handlePackageSelection(_ package: PackageModel) {
+        let unseenCount = viewModel.getUnseenWordCount(for: package.id)
+        if unseenCount == 0 {
+            withAnimation(.spring()) { viewModel.showEmptyPackageAlert = true }
+        } else {
+            viewModel.selectPackage(package)
+            if !package.isPremium || viewModel.isPremium {
+                selectedPackageForNavigation = package.id
+            }
+        }
+    }
 }
 
-struct PackageCard: View {
-    let package: PackageModel
-    let isSelected: Bool
-    let unseenCount: Int
-    let onTap: () -> Void
-    @Environment(\.colorScheme) var colorScheme
-    @Environment(\.themeViewModel) private var themeViewModel
-    
-    var body: some View {
-        Button(action: onTap) {
-            VStack(alignment: .leading, spacing: 0) {
-                HStack {
-                    // ✅ Level Localization Fix
-                    Text(LocalizedStringKey(package.level))
-                        .font(.system(size: 14, weight: .heavy))
-                        .padding(.horizontal, 8).padding(.vertical, 4)
-                        .background(isDarkMode ? Color.white.opacity(0.2) : Color.black.opacity(0.1))
-                        .foregroundColor(isDarkMode ? .white : .primary)
-                        .clipShape(Capsule())
-                    Spacer()
-                    Image(systemName: unseenCount == 0 ? "checkmark.circle.fill" : "chevron.right.circle.fill")
-                        .foregroundColor(isDarkMode ? .white.opacity(0.8) : .primary.opacity(0.7))
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .leading, spacing: 4) {
-                    // ✅ Title (Name) Localization Fix
-                    Text(LocalizedStringKey(package.name))
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(isDarkMode ? .white : .primary)
-                    
-                    if unseenCount == 0 {
-                        Text("package_completed")
-                    } else {
-                        Text("\(unseenCount) ") + Text("package_words_left")
-                    }
-                }
-            }
-            .padding(16)
-            .frame(height: 150)
-            .frame(maxWidth: .infinity)
-            .background(
-                ZStack(alignment: .bottomTrailing) {
-                    RoundedRectangle(cornerRadius: 24)
-                        .fill(isDarkMode
-                              ? LinearGradient(colors: [Color(hex: package.colorHex), Color(hex: package.colorHex).opacity(0.7)], startPoint: .topLeading, endPoint: .bottomTrailing)
-                              : LinearGradient(colors: [Color(hex: package.colorHex).opacity(0.2), Color(hex: package.colorHex).opacity(0.1)], startPoint: .topLeading, endPoint: .bottomTrailing)
-                        )
-                }
-            )
-            .overlay(RoundedRectangle(cornerRadius: 24).stroke(isSelected ? Color.themePrimaryButton : Color.clear, lineWidth: 3))
-            .scaleEffect(isSelected ? 0.96 : 1.0)
-        }
-        .buttonStyle(PlainButtonStyle())
+// MARK: - Preview
+struct PackageSelectionView_Previews: PreviewProvider {
+    static var previews: some View {
+        PackageSelectionView(selectedTab: .constant(0))
     }
-    private var isDarkMode: Bool { themeViewModel.isDarkMode(in: colorScheme) }
 }
