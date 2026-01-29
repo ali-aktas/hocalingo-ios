@@ -233,3 +233,30 @@
 "premium_card_title" = "Premium";
 "premium_card_subtitle" = "Tüm özelliklerin kilidini aç";
 "premium_card_upgrade_button" = "Hemen Yükselt";
+
+// MARK: - Premium Paywall
+"paywall_title" = "Premium'a Geç";
+"paywall_subtitle" = "Tüm özelliklerin kilidini aç, sınırsız öğren";
+"paywall_feature_1" = "Sınırsız kelime seçimi";
+"paywall_feature_2" = "Reklamsız deneyim";
+"paywall_feature_3" = "Premium kelime paketleri";
+"paywall_feature_4" = "Yapay zeka asistanı";
+"paywall_plan_monthly" = "Aylık Plan";
+"paywall_plan_yearly" = "Yıllık Plan";
+"paywall_price_monthly" = "₺99,99/ay";
+"paywall_price_yearly" = "₺799,99/yıl";
+"paywall_best_value" = "EN AVANTAJLI";
+"paywall_purchase_button" = "Devam Et";
+"paywall_restore" = "Satın Alımları Geri Yükle";
+"paywall_terms" = "Kullanım Şartları";
+"paywall_privacy" = "Gizlilik Politikası";
+
+// MARK: - Premium Yükseltme İstemleri
+"premium_upgrade_prompt_title" = "Premium Kilidi Aç";
+"premium_upgrade_prompt_message" = "Tüm özelliklere sınırsız erişim";
+"premium_upgrade_prompt_button" = "Şimdi Yükselt";
+
+// MARK: - Onboarding Premium Push (Gelecek)
+"onboarding_premium_title" = "Premium Yolculuğuna Başla";
+"onboarding_premium_subtitle" = "Premium özellikleri 7 gün ücretsiz dene";
+"onboarding_premium_skip" = "Belki Daha Sonra";

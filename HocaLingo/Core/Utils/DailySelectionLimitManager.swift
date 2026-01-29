@@ -2,7 +2,7 @@
 //  DailySelectionLimitManager.swift
 //  HocaLingo
 //
-//  ✅ Manages daily selection limits (15/day for free users)
+//  ✅ UPDATED: Connected to PremiumManager for dynamic premium checks
 //  Location: HocaLingo/Core/Utils/DailySelectionLimitManager.swift
 //
 
@@ -21,9 +21,9 @@ class DailySelectionLimitManager {
         checkAndResetIfNeeded()
     }
     
+    // ✅ UPDATED: Now connects to PremiumManager instead of hardcoded false
     var isPremium: Bool {
-        // TODO: Connect to actual premium manager
-        return false
+        return PremiumManager.shared.isPremium
     }
     
     private func checkAndResetIfNeeded() {

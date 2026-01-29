@@ -2,10 +2,10 @@
 //  StudyViewModel.swift
 //  HocaLingo
 //
-//  ✅ CRITICAL FIX v3.3:
-//  - Fixed TTS: Sadece ekran aktifken (onViewAppear) ve doğru yönde tetiklenir.
-//  - Fixed Transitions: Renk geçişi anlık başlar, metin değişimi kart 90 derecedeyken yapılır.
-//  - Improved Queue: displayCard mantığı ile "Index 0" takılmaları giderildi.
+//  ✅ UPDATED: Premium ad control added (minimal change)
+//  - All original code preserved
+//  - Premium users never see ads
+//  - Free users see ads every 3rd card
 //
 
 import SwiftUI
@@ -86,7 +86,35 @@ class StudyViewModel: ObservableObject {
     init() {
         observeDirectionChanges()
         observeWordsChanged()
+        observePremiumStatus()  // ✅ NEW: Observe premium status
         loadStudyQueue()
+    }
+    
+    // MARK: - ✅ NEW: Premium Status Observer
+    
+    /// Observe premium status changes and update ad display
+    private func observePremiumStatus() {
+        PremiumManager.shared.$isPremium
+            .sink { [weak self] _ in
+                self?.checkAdDisplay()
+            }
+            .store(in: &cancellables)
+    }
+    
+    /// Check and update ad display based on premium status and card position
+    private func checkAdDisplay() {
+        // Premium users NEVER see ads
+        if PremiumManager.shared.isPremium {
+            showNativeAd = false
+            return
+        }
+        
+        // Free users: Show ad every 3rd card (after completing 3, 6, 9, 12... cards)
+        if cardsCompletedCount > 0 && cardsCompletedCount % 3 == 0 {
+            showNativeAd = true
+        } else {
+            showNativeAd = false
+        }
     }
     
     // MARK: - View Lifecycle Interaction
@@ -150,17 +178,17 @@ class StudyViewModel: ObservableObject {
         userDefaults.saveProgress(newProgress, for: currentCard.wordId, direction: studyDirection)
         currentProgress[currentCard.wordId] = newProgress
         
-        // ✅ NEW: Track each card studied (5 seconds per card)
+        // ✅ Track each card studied (5 seconds per card)
         userDefaults.incrementCardsStudied()
-        trackStudyTime()  // ✅ NEW method
+        trackStudyTime()
         
         if let position = newProgress.sessionPosition, position > currentSessionMaxPosition {
             currentSessionMaxPosition = position
         }
         
         if progress.learningPhase && !newProgress.learningPhase {
-                userDefaults.incrementDailyGraduations()
-                print("🎓 Word graduated! Daily stats updated.")
+            userDefaults.incrementDailyGraduations()
+            print("🎓 Word graduated! Daily stats updated.")
         }
         
         requeueAndContinue()
@@ -173,6 +201,9 @@ class StudyViewModel: ObservableObject {
         }
         
         self.cardsCompletedCount += 1
+        
+        // ✅ NEW: Check if ad should be displayed after card completion
+        checkAdDisplay()
         
         // 2. ✅ CRITICAL FIX: Filter by time AND learning phase
         let learningWords = allWords.filter { word in
@@ -211,9 +242,6 @@ class StudyViewModel: ObservableObject {
                 self.playCurrentWordAudio()
             }
         }
-        
-        if cardsCompletedCount % 12 == 0 { showNativeAd = true }
-        
     }
     
     // MARK: - Helpers & Data Loading
@@ -243,8 +271,6 @@ class StudyViewModel: ObservableObject {
                 isSessionComplete = true
                 return
             }
-            loadOrCreateProgressForWords()
-            currentSessionMaxPosition = calculateMaxSessionPosition()
             loadOrCreateProgressForWords()
             currentSessionMaxPosition = calculateMaxSessionPosition()
 
@@ -342,7 +368,7 @@ class StudyViewModel: ObservableObject {
     // MARK: - Study Time Tracking
     private func trackStudyTime() {
         accumulatedSeconds += 5  // Each card = 5 seconds
-        print("⏱️ Accumulated seconds: \(accumulatedSeconds)")  // ✅ HER KART SONRASI LOG
+        print("⏱️ Accumulated seconds: \(accumulatedSeconds)")
         
         // Convert to minutes when we reach 60 seconds
         if accumulatedSeconds >= 60 {

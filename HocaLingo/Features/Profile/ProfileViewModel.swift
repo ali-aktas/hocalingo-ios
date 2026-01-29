@@ -2,7 +2,7 @@
 //  ProfileViewModel.swift
 //  HocaLingo
 //
-//  ✅ UPDATED: Notification system integration and cleanup
+//  ✅ UPDATED: Premium status observation added (minimal change)
 //  Location: Features/Profile/ProfileViewModel.swift
 //
 
@@ -27,8 +27,8 @@ class ProfileViewModel: ObservableObject {
     @Published var notificationsEnabled: Bool
     @Published var notificationTime: Int  // Hour: 0-23
     
-    // Premium status
-    @Published var isPremium: Bool = false // TODO: Connect to RevenueCat
+    // ✅ UPDATED: Now synced with PremiumManager
+    @Published var isPremium: Bool = false
     
     // MARK: - Private Properties
     private var cancellables = Set<AnyCancellable>()
@@ -44,10 +44,27 @@ class ProfileViewModel: ObservableObject {
         self.notificationsEnabled = UserDefaultsManager.shared.loadNotificationsEnabled()
         self.notificationTime = UserDefaultsManager.shared.loadNotificationTime()
         
+        // ✅ NEW: Load premium status
+        self.isPremium = PremiumManager.shared.isPremium
+        
         // Check and reset annual stats if new year
         UserDefaultsManager.shared.checkAndResetAnnualStatsIfNeeded()
         
+        // ✅ NEW: Observe premium status changes
+        observePremiumStatus()
+        
         print("✅ ProfileViewModel initialized")
+    }
+    
+    // MARK: - ✅ NEW: Premium Status Observer
+    
+    /// Observe premium status changes from PremiumManager
+    private func observePremiumStatus() {
+        PremiumManager.shared.$isPremium
+            .sink { [weak self] newStatus in
+                self?.isPremium = newStatus
+            }
+            .store(in: &cancellables)
     }
 
     /// Forces a recalculation of annual statistics

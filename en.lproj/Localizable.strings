@@ -233,3 +233,30 @@
 "premium_card_title" = "Premium";
 "premium_card_subtitle" = "Unlock all features";
 "premium_card_upgrade_button" = "Upgrade Now";
+
+// MARK: - Premium Paywall
+"paywall_title" = "Upgrade to Premium";
+"paywall_subtitle" = "Unlock all features and learn without limits";
+"paywall_feature_1" = "Unlimited word selections";
+"paywall_feature_2" = "Ad-free experience";
+"paywall_feature_3" = "Premium word packages";
+"paywall_feature_4" = "AI assistant access";
+"paywall_plan_monthly" = "Monthly Plan";
+"paywall_plan_yearly" = "Yearly Plan";
+"paywall_price_monthly" = "$4.99/month";
+"paywall_price_yearly" = "$39.99/year";
+"paywall_best_value" = "BEST VALUE";
+"paywall_purchase_button" = "Continue";
+"paywall_restore" = "Restore Purchases";
+"paywall_terms" = "Terms of Service";
+"paywall_privacy" = "Privacy Policy";
+
+// MARK: - Premium Upgrade Prompts
+"premium_upgrade_prompt_title" = "Unlock Premium";
+"premium_upgrade_prompt_message" = "Get unlimited access to all features";
+"premium_upgrade_prompt_button" = "Upgrade Now";
+
+// MARK: - Onboarding Premium Push (Future)
+"onboarding_premium_title" = "Start Your Premium Journey";
+"onboarding_premium_subtitle" = "Try premium features free for 7 days";
+"onboarding_premium_skip" = "Maybe Later";

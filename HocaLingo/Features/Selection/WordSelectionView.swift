@@ -57,6 +57,9 @@ struct WordSelectionView: View {
         .navigationTitle("HocaLingo")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
+        .sheet(isPresented: $showPremiumSheet) {
+                    PremiumSheetPlaceholder()
+                }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: { dismiss() }) {
