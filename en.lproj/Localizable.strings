@@ -260,3 +260,35 @@
 "onboarding_premium_title" = "Start Your Premium Journey";
 "onboarding_premium_subtitle" = "Try premium features free for 7 days";
 "onboarding_premium_skip" = "Maybe Later";
+
+// MARK: - Onboarding
+"onboarding_screen1_message" = "The best way to learn English is to learn words, the best way to learn words is HocaLingo!";
+"onboarding_button_next" = "Continue";
+"onboarding_button_skip" = "Skip";
+
+// Screen 2 - User Profile
+"onboarding_question1_title" = "What is your primary learning goal?";
+"onboarding_goal_exam" = "Exam-focused";
+"onboarding_goal_conversation" = "Conversation-focused";
+
+"onboarding_question2_title" = "What is your current English level?";
+"onboarding_level_beginner" = "Beginner";
+"onboarding_level_intermediate" = "Intermediate";
+"onboarding_level_advanced" = "Advanced";
+
+// Screen 3 - Swipe Demo
+"onboarding_swipe_hint_initial" = "Watch how it works";
+"onboarding_swipe_hint_action" = "Now swipe right to add this word";
+"onboarding_feedback_added" = "Added to your deck!";
+
+// Screen 4 - Study Demo
+"onboarding_study_hint1" = "First, try to remember";
+"onboarding_study_hint2" = "Tap the card to see the meaning";
+"onboarding_study_hint3" = "How difficult was it?";
+"onboarding_study_warning" = "Think carefully, did you really learn it?";
+"onboarding_success" = "Great! You learned a word";
+
+// Difficulty Buttons (Demo)
+"onboarding_difficulty_hard" = "Hard";
+"onboarding_difficulty_medium" = "Medium";
+"onboarding_difficulty_easy" = "Easy";

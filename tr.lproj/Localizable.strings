@@ -260,3 +260,35 @@
 "onboarding_premium_title" = "Premium Yolculuğuna Başla";
 "onboarding_premium_subtitle" = "Premium özellikleri 7 gün ücretsiz dene";
 "onboarding_premium_skip" = "Belki Daha Sonra";
+
+// MARK: - Onboarding
+"onboarding_screen1_message" = "İngilizce öğrenmenin en iyi yolu kelime öğrenmek, kelime öğrenmenin en iyi yolu HocaLingo!";
+"onboarding_button_next" = "İlerle";
+"onboarding_button_skip" = "Atla";
+
+// Ekran 2 - Kullanıcı Tanıma
+"onboarding_question1_title" = "Öncelikli öğrenme amacın nedir?";
+"onboarding_goal_exam" = "Sınav odaklı";
+"onboarding_goal_conversation" = "Konuşma odaklı";
+
+"onboarding_question2_title" = "Mevcut İngilizce seviyen nedir?";
+"onboarding_level_beginner" = "Başlangıç";
+"onboarding_level_intermediate" = "Orta";
+"onboarding_level_advanced" = "İleri";
+
+// Ekran 3 - Kaydırma Demosu
+"onboarding_swipe_hint_initial" = "Nasıl çalıştığını izle";
+"onboarding_swipe_hint_action" = "Şimdi sağa kaydırarak ekle";
+"onboarding_feedback_added" = "Çalışma destene eklendi!";
+
+// Ekran 4 - Çalışma Demosu
+"onboarding_study_hint1" = "Önce hatırlamaya çalış";
+"onboarding_study_hint2" = "Anlamını görmek için karta dokun";
+"onboarding_study_hint3" = "Ne kadar zorlandığını seç";
+"onboarding_study_warning" = "Biraz düşün, gerçekten öğrendin mi?";
+"onboarding_success" = "Harika! Bu kelimeyi öğreneceksin.";
+
+// Zorluk Butonları (Demo)
+"onboarding_difficulty_hard" = "Zor";
+"onboarding_difficulty_medium" = "Orta";
+"onboarding_difficulty_easy" = "Kolay";

@@ -2,7 +2,7 @@
 //  HocaLingoApp.swift
 //  HocaLingo
 //
-//  ✅ UPDATED: Added Notification Delegate for foreground support
+//  ✅ UPDATED: Added onboarding flow for first-time users
 //  Created by Auralian on 15.01.2026.
 //
 
@@ -18,8 +18,11 @@ struct HocaLingoApp: App {
     
     // MARK: - Language Management
     /// App language stored in AppStorage for instant updates
-    /// @AppStorage automatically syncs with UserDefaults
     @AppStorage("app_language") private var appLanguageCode: String = UserDefaultsManager.shared.loadAppLanguage().rawValue
+    
+    // MARK: - Onboarding State
+    /// Check if user has completed onboarding
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
     
     // MARK: - Initialization
     init() {
@@ -36,13 +39,21 @@ struct HocaLingoApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainTabView()
-                // Apply theme globally to entire app
-                .preferredColorScheme(themeViewModel.effectiveColorScheme)
-                // Inject theme view model into environment
-                .environment(\.themeViewModel, themeViewModel)
-                // Apply locale for instant language change
-                .environment(\.locale, currentLocale)
+            Group {
+                if hasCompletedOnboarding {
+                    // Main app
+                    MainTabView()
+                } else {
+                    // Onboarding flow (first-time users)
+                    OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
+                }
+            }
+            // Apply theme globally to entire app
+            .preferredColorScheme(themeViewModel.effectiveColorScheme)
+            // Inject theme view model into environment
+            .environment(\.themeViewModel, themeViewModel)
+            // Apply locale for instant language change
+            .environment(\.locale, currentLocale)
         }
     }
 }
