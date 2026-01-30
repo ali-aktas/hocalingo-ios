@@ -1,19 +1,18 @@
 import SwiftUI
 
 struct MainTabView: View {
-    // MARK: - State
     @State private var selectedTab = 0
-    @Namespace private var animation // Akıcı geçişler için
+    @Namespace private var animation
     
     @Environment(\.themeViewModel) private var themeViewModel
     @Environment(\.colorScheme) private var colorScheme
-    
-    // UI Sabitleri
     private let accentColor = Color(hex: "4ECDC4")
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            // Ana İçerik
+            // 1. İÇERİK KATMANI
+            // ignoresSafeArea(.all) sayesinde içerik en alta,
+            // home indicator'ın altına kadar uzanır.
             TabView(selection: $selectedTab) {
                 HomeView(selectedTab: $selectedTab)
                     .tag(0)
@@ -24,31 +23,38 @@ struct MainTabView: View {
                 ProfileView()
                     .tag(2)
             }
-            // Standart tab bar'ı gizle
             .toolbar(.hidden, for: .tabBar)
+            .ignoresSafeArea(.all)
             
-            // Modern Floating Tab Bar
-            customFloatingTabBar
+            // 2. TAB BAR KATMANI
+            // Barın altında hiçbir sistem bloğu kalmaması için VStack kullanıyoruz
+            VStack {
+                Spacer() // Barı en alta iter
+                
+                HStack(spacing: 0) {
+                    tabButton(icon: "house", index: 0)
+                    tabButton(icon: "rectangle.portrait.on.rectangle.portrait.angled", index: 1)
+                    tabButton(icon: "person", index: 2)
+                }
+                .padding(.horizontal, 15)
+                .padding(.vertical, 10)
+                .background {
+                    // Tamamen bağımsız bir kapsül
+                    Capsule()
+                        .fill(.ultraThinMaterial)
+                        .shadow(color: .black.opacity(0.3), radius: 15, x: 0, y: 10)
+                        .overlay {
+                            Capsule()
+                                .stroke(Color.white.opacity(0.1), lineWidth: 0.5)
+                        }
+                }
+                // Ekranın en altından ne kadar yukarıda duracağını belirler
+                .padding(.bottom, 20)
+                .padding(.horizontal, 30)
+            }
+            // Bu kısım çok kritik: Barın altındaki alanı sistemin doldurmasını engeller
+            .ignoresSafeArea(.container, edges: .bottom)
         }
-        .ignoresSafeArea(.keyboard, edges: .bottom)
-    }
-    
-    // MARK: - Custom Tab Bar View
-    private var customFloatingTabBar: some View {
-        HStack(spacing: 0) {
-            tabButton(icon: "house.fill", index: 0)
-            tabButton(icon: "rectangle.portrait.on.rectangle.portrait.angled.fill", index: 1)
-            tabButton(icon: "person.fill", index: 2)
-        }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 12)
-        .background {
-            Capsule()
-                .fill(.ultraThinMaterial) // Glassmorphism efekti
-                .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 5)
-        }
-        .padding(.horizontal, 40) // Kenarlardan boşluk
-        .padding(.bottom, 10)     // Safe area üzerinde yüzmesi için
     }
     
     @ViewBuilder
@@ -56,33 +62,29 @@ struct MainTabView: View {
         let isSelected = selectedTab == index
         
         Button {
-            withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+            withAnimation(.spring(response: 0.35, dampingFraction: 0.75)) {
                 selectedTab = index
             }
-            // Haptic Feedback (Dokunsal Titreşim)
-            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         } label: {
-            VStack(spacing: 4) {
-                Image(systemName: icon)
-                    .font(.title3)
-                    .symbolVariant(isSelected ? .fill : .none)
-                    .contentTransition(.symbolEffect(.replace)) // iOS 17+ Akıcı ikon değişimi
-                    .foregroundStyle(isSelected ? accentColor : .secondary)
-                    .frame(maxWidth: .infinity)
+            VStack(spacing: 0) {
+                Image(systemName: isSelected ? icon + ".fill" : icon)
+                    .font(.system(size: 22, weight: .bold))
+                    .foregroundStyle(isSelected ? accentColor : .gray.opacity(0.8))
                     .scaleEffect(isSelected ? 1.2 : 1.0)
-                
-                // Seçili olanın altına küçük bir nokta (Indicator)
-                if isSelected {
-                    Circle()
-                        .fill(accentColor)
-                        .frame(width: 4, height: 4)
-                        .matchedGeometryEffect(id: "indicator", in: animation)
-                } else {
-                    Circle()
-                        .fill(Color.clear)
-                        .frame(width: 4, height: 4)
-                }
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 40)
+                    .background {
+                        if isSelected {
+                            Circle()
+                                .fill(accentColor.opacity(0.15))
+                                // MatchedGeometry ile ikonlar arası akıcı geçiş
+                                .matchedGeometryEffect(id: "TAB_INDICATOR", in: animation)
+                                .frame(width: 48, height: 48)
+                        }
+                    }
             }
         }
+        .buttonStyle(.plain)
     }
 }

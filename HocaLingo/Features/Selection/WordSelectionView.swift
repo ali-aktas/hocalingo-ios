@@ -237,26 +237,74 @@ struct WordSelectionView: View {
     
     // MARK: - Centered Action Buttons
     private var centeredActionButtons: some View {
-        HStack(spacing: 32) {
-            SelectionActionButton(
-                icon: "xmark",
-                backgroundColor: Color(hex: "EF5350"),
-                size: 72,
-                isEnabled: !viewModel.isProcessingSwipe
-            ) {
+        HStack(spacing: 24) {
+            // Skip Button (Red X)
+            Button(action: {
                 viewModel.swipeLeft()
                 currentCardId = UUID()
+            }) {
+                VStack(spacing: 8) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 18)
+                            .fill(
+                                LinearGradient(
+                                    colors: [
+                                        Color(hex: "EF5350"),
+                                        Color(hex: "E53935")
+                                    ],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                            .frame(width: 85, height: 85)
+                            .shadow(color: Color(hex: "EF5350").opacity(0.35), radius: 10, x: 0, y: 5)
+                        
+                        Image(systemName: "xmark")
+                            .font(.system(size: 38, weight: .bold))
+                            .foregroundColor(.white)
+                    }
+                    
+                    Text("word_selection_skip")
+                        .font(.system(size: 15, weight: .bold))
+                        .foregroundColor(.themePrimary)
+                }
             }
+            .disabled(viewModel.isProcessingSwipe)
+            .opacity(viewModel.isProcessingSwipe ? 0.5 : 1.0)
             
-            SelectionActionButton(
-                icon: "checkmark",
-                backgroundColor: Color(hex: "66BB6A"),
-                size: 72,
-                isEnabled: !viewModel.isProcessingSwipe && !viewModel.selectionLimitReached
-            ) {
+            // Learn Button (Green ✓)
+            Button(action: {
                 viewModel.swipeRight()
                 currentCardId = UUID()
+            }) {
+                VStack(spacing: 8) {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 18)
+                            .fill(
+                                LinearGradient(
+                                    colors: [
+                                        Color(hex: "66BB6A"),
+                                        Color(hex: "43A047")
+                                    ],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
+                            .frame(width: 85, height: 85)
+                            .shadow(color: Color(hex: "66BB6A").opacity(0.35), radius: 10, x: 0, y: 5)
+                        
+                        Image(systemName: "checkmark")
+                            .font(.system(size: 38, weight: .bold))
+                            .foregroundColor(.white)
+                    }
+                    
+                    Text("word_selection_learn")
+                        .font(.system(size: 15, weight: .bold))
+                        .foregroundColor(.themePrimary)
+                }
             }
+            .disabled(viewModel.isProcessingSwipe || viewModel.selectionLimitReached)
+            .opacity((viewModel.isProcessingSwipe || viewModel.selectionLimitReached) ? 0.5 : 1.0)
         }
     }
     

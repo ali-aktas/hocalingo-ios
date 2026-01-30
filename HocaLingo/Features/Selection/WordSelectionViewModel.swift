@@ -74,7 +74,7 @@ class WordSelectionViewModel: ObservableObject {
             }
             
             self.words = allWords
-            self.remainingWords = unseenWords
+            self.remainingWords = unseenWords.shuffled()
             self.selectedCount = selectedWordIds.count
             self.hiddenCount = hiddenWordIds.count
             

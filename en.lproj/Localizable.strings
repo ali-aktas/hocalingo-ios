@@ -199,6 +199,8 @@
 "word_selection_limit_title" = "Daily Selection Limit Reached";
 "word_selection_limit_message" = "You've selected 15 words today.\nYou can still skip words freely, or upgrade to Premium for unlimited selections!";
 "word_selection_limit_close" = "Continue Reviewing";
+"word_selection_skip" = "Skip";
+"word_selection_learn" = "Learn";
 
 // MARK: - Add Word
 "add_word_title" = "Add Word";

@@ -199,6 +199,8 @@
 "word_selection_limit_title" = "Günlük Seçim Limitine Ulaşıldı";
 "word_selection_limit_message" = "Bugün 15 kelime seçtin.\nKelimeleri atlayabilirsin veya Premium'a geçerek sınırsız seçim yapabilirsin!";
 "word_selection_limit_close" = "İncelemeye Devam Et";
+"word_selection_skip" = "Geç";
+"word_selection_learn" = "Öğren";
 
 // MARK: - Kelime Ekle
 "add_word_title" = "Kelime Ekle";
