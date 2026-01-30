@@ -82,6 +82,20 @@
 "study_navbar_title" = "Aralıklı Tekrar Çalışması";
 "study_flip_card_hint" = "Kartı çevir";
 
+// Card Style Settings
+"card_style_settings_title" = "Kart Tasarımı";
+"card_style_settings_subtitle" = "Tercih ettiğiniz kart stilini seçin";
+"apply" = "Uygula";
+
+// Card Styles
+"card_style_colorful" = "Renkli";
+"card_style_colorful_description" = "Her kart için canlı rastgele renkler";
+"card_style_minimal" = "Minimal";
+"card_style_minimal_description" = "Temiz tek renkli tasarım";
+"card_style_premium" = "Premium Gradyan";
+"card_style_premium_description" = "Muhteşem gradyan tasarımlar (Sadece Premium)";
+
+
 // MARK: - Profil Ekranı
 "profile_welcome" = "Profil";
 "premium_active" = "Premium Aktif";

@@ -2,6 +2,7 @@
 //  PremiumManager.swift
 //  HocaLingo
 //
+//  ✅ TEST MODE: Default premium = true for testing
 //  Premium status management - Ready for RevenueCat integration
 //  Location: HocaLingo/Models/PremiumManager.swift
 //
@@ -28,6 +29,12 @@ class PremiumManager: ObservableObject {
     // MARK: - Initialization
     private init() {
         loadPremiumStatus()
+        
+        // ✅ TEST MODE: Auto-set premium for testing
+        #if DEBUG
+        setPremium(true)  // ← Bu satırı ekle!
+        print("🧪 TEST MODE: Premium activated for testing")
+        #endif
     }
     
     // MARK: - Public Methods

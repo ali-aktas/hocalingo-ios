@@ -82,6 +82,20 @@
 "study_navbar_title" = "Spaced Repetition";
 "study_flip_card_hint" = "Tap the card";
 
+// Card Style Settings
+"card_style_settings_title" = "Card Design";
+"card_style_settings_subtitle" = "Choose your preferred card style";
+"apply" = "Apply";
+
+// Card Styles
+"card_style_colorful" = "Colorful";
+"card_style_colorful_description" = "Vibrant random colors for each card";
+"card_style_minimal" = "Minimal";
+"card_style_minimal_description" = "Clean single-color design";
+"card_style_premium" = "Premium Gradient";
+"card_style_premium_description" = "Beautiful gradient designs (Premium only)";
+
+
 // MARK: - Profile Screen
 "profile_welcome" = "Profile";
 "premium_active" = "Premium Active";

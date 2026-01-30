@@ -2,7 +2,7 @@
 //  StudyView.swift
 //  HocaLingo
 //
-//  ✅ COMPLETE REDESIGN: Full-screen, perfect FlipCard, Ad support - Android parity
+//  ✅ UPDATED: Ad system removed + Settings button active + Card style support
 //  Location: HocaLingo/Features/Study/StudyView.swift
 //
 
@@ -19,7 +19,7 @@ struct StudyView: View {
             if viewModel.isSessionComplete {
                 // Completion screen
                 StudyCompletionView(
-                    selectedTab: $selectedTab,  // ✅ Pass binding
+                    selectedTab: $selectedTab,
                     onContinue: { dismiss() },
                     onRestart: { dismiss() }
                 )
@@ -30,11 +30,14 @@ struct StudyView: View {
             }
         }
         .onAppear {
-                    // ✅ Sesi sadece ekran açıldığında aktifleştir
-                    viewModel.onViewAppear()
-                }
-                .navigationBarHidden(true)
-                .animation(.easeInOut(duration: 0.3), value: viewModel.isSessionComplete)
+            viewModel.onViewAppear()
+        }
+        .navigationBarHidden(true)
+        .animation(.easeInOut(duration: 0.3), value: viewModel.isSessionComplete)
+        .sheet(isPresented: $viewModel.showStyleSettings) {
+            // ✅ NEW: Card style settings sheet
+            CardStyleSettingsView(viewModel: viewModel)
+        }
     }
     
     private var studyInterface: some View {
@@ -44,11 +47,16 @@ struct StudyView: View {
             
             VStack(spacing: 0) {
                 // Top bar
-                StudyTopBar(onClose: {
-                    selectedTab = 0  // ✅ Switch to Home tab
-                })
-                    .padding(.horizontal, 16)
-                    .padding(.top, 8)
+                StudyTopBar(
+                    onClose: {
+                        selectedTab = 0
+                    },
+                    onSettings: {
+                        viewModel.showStyleSettings = true  // ✅ NEW: Open settings
+                    }
+                )
+                .padding(.horizontal, 16)
+                .padding(.top, 8)
                 
                 // Progress indicator
                 if viewModel.studyQueue.count > 0 {
@@ -62,19 +70,14 @@ struct StudyView: View {
                 
                 Spacer(minLength: 20)
                 
-                // ✅ Main content: Either ad overlay or flashcard
-                if viewModel.showNativeAd {
-                    // Native Ad Placeholder (Premium users won't see this)
-                    NativeAdPlaceholder(onClose: {
-                        viewModel.closeNativeAd()
-                    })
-                    .padding(.horizontal, 16)
-                } else if viewModel.studyQueue.count > 0 {
-                    // ✅ NEW: Perfect FlipCard component
+                // ✅ UPDATED: FlipCard with new props (no ads)
+                if viewModel.studyQueue.count > 0 {
                     StudyFlipCard(
                         card: viewModel.currentCard,
                         isFlipped: viewModel.isCardFlipped,
                         cardColor: viewModel.currentCardColor,
+                        cardGradient: viewModel.currentCardGradient,  // ✅ NEW
+                        cardStyle: viewModel.cardStyle,               // ✅ NEW
                         exampleSentence: viewModel.currentExampleSentence,
                         shouldShowSpeakerOnFront: viewModel.shouldShowSpeakerOnFront == true,
                         isCardFlipped: viewModel.isCardFlipped,
@@ -94,7 +97,7 @@ struct StudyView: View {
                 Spacer(minLength: 20)
                 
                 // Action buttons
-                if !viewModel.showNativeAd && viewModel.studyQueue.count > 0 {
+                if viewModel.studyQueue.count > 0 {
                     StudyButtons(
                         isCardFlipped: viewModel.isCardFlipped,
                         hardTime: viewModel.hardTimeText,
@@ -109,13 +112,14 @@ struct StudyView: View {
                 }
             }
         }
-        .navigationBarHidden(true)  // ✅ Full-screen (hide default nav)
+        .navigationBarHidden(true)
     }
 }
 
 // MARK: - Top Bar
 struct StudyTopBar: View {
     let onClose: () -> Void
+    let onSettings: () -> Void  // ✅ NEW: Settings action
     
     var body: some View {
         HStack {
@@ -136,8 +140,8 @@ struct StudyTopBar: View {
             
             Spacer()
             
-            // Settings button (placeholder)
-            Button(action: {}) {
+            // ✅ UPDATED: Settings button (now active)
+            Button(action: onSettings) {
                 Image(systemName: "gearshape")
                     .font(.system(size: 16, weight: .semibold))
                     .foregroundColor(.primary)
@@ -266,46 +270,5 @@ struct StudyActionButton: View {
             .cornerRadius(12)
         }
         .disabled(!isEnabled)
-    }
-}
-
-// MARK: - Native Ad Placeholder
-struct NativeAdPlaceholder: View {
-    let onClose: () -> Void
-    
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 20)
-                .fill(Color.gray.opacity(0.1))
-                .frame(maxWidth: .infinity)
-                .aspectRatio(0.7, contentMode: .fit)
-            
-            VStack(spacing: 16) {
-                Image(systemName: "rectangle.stack.fill")
-                    .font(.system(size: 48))
-                    .foregroundColor(.gray.opacity(0.4))
-                
-                Text("Reklam Alanı")
-                    .font(.system(size: 16, weight: .medium))
-                    .foregroundColor(.gray)
-                
-                Text("Premium'a geç, reklamsız çalış!")
-                    .font(.system(size: 14))
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                
-                Button(action: onClose) {
-                    Text("Kapat")
-                        .font(.system(size: 14, weight: .medium))
-                        .foregroundColor(.white)
-                        .padding(.horizontal, 24)
-                        .padding(.vertical, 10)
-                        .background(Color(hex: "4ECDC4"))
-                        .cornerRadius(8)
-                }
-                .padding(.top, 8)
-            }
-            .padding(32)
-        }
     }
 }
