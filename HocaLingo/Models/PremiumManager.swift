@@ -2,18 +2,18 @@
 //  PremiumManager.swift
 //  HocaLingo
 //
-//  ✅ TEST MODE: Default premium = true for testing
-//  Premium status management - Ready for RevenueCat integration
+//  ✅ UPDATED: Full RevenueCat integration complete
+//  Premium status management with RevenueCat SDK
 //  Location: HocaLingo/Models/PremiumManager.swift
 //
 
 import Foundation
 import Combine
+import RevenueCat
 
 // MARK: - Premium Manager
 /// Singleton manager for premium status and features
-/// ✅ Phase 1: Simple UserDefaults flag (for testing)
-/// ✅ Phase 2: RevenueCat integration (future)
+/// ✅ Now fully integrated with RevenueCat
 class PremiumManager: ObservableObject {
     
     // MARK: - Singleton
@@ -30,22 +30,25 @@ class PremiumManager: ObservableObject {
     private init() {
         loadPremiumStatus()
         
+        // ✅ Check RevenueCat status on app launch
+        checkPremiumStatusWithRevenueCat()
+        
         // ✅ TEST MODE: Auto-set premium for testing
         #if DEBUG
-        setPremium(true)  // ← Bu satırı ekle!
+        setPremium(true)
         print("🧪 TEST MODE: Premium activated for testing")
         #endif
     }
     
     // MARK: - Public Methods
     
-    /// Load premium status from UserDefaults
+    /// Load premium status from UserDefaults (backup)
     func loadPremiumStatus() {
         isPremium = userDefaults.bool(forKey: premiumKey)
         print("📱 Premium status loaded: \(isPremium ? "Premium" : "Free")")
     }
     
-    /// Set premium status (for testing)
+    /// Set premium status (for testing and local storage)
     /// - Parameter value: Premium status
     func setPremium(_ value: Bool) {
         isPremium = value
@@ -71,27 +74,95 @@ class PremiumManager: ObservableObject {
         return !isPremiumPackage || isPremium
     }
     
-    // MARK: - RevenueCat Integration (Future)
+    // MARK: - RevenueCat Integration
     
     /// Check premium status with RevenueCat
-    /// ✅ TODO: Implement RevenueCat integration
+    /// ✅ IMPLEMENTED: Real RevenueCat integration
     func checkPremiumStatusWithRevenueCat() {
-        // Future implementation:
-        // Purchases.shared.getCustomerInfo { (customerInfo, error) in
-        //     self.isPremium = customerInfo?.entitlements["premium"]?.isActive == true
-        // }
-        print("⚠️ RevenueCat integration not yet implemented")
+        Purchases.shared.getCustomerInfo { [weak self] (customerInfo, error) in
+            guard let self = self else { return }
+            
+            if let error = error {
+                print("❌ RevenueCat error: \(error.localizedDescription)")
+                return
+            }
+            
+            // Check if "premium" entitlement is active
+            let isActive = customerInfo?.entitlements["premium"]?.isActive == true
+            
+            DispatchQueue.main.async {
+                self.isPremium = isActive
+                self.userDefaults.set(isActive, forKey: self.premiumKey)
+                print("✅ RevenueCat premium status: \(isActive ? "Active" : "Inactive")")
+            }
+        }
     }
     
     /// Restore purchases
-    /// ✅ TODO: Implement RevenueCat restore
+    /// ✅ IMPLEMENTED: Real RevenueCat restore
     func restorePurchases(completion: @escaping (Bool) -> Void) {
-        // Future implementation:
-        // Purchases.shared.restorePurchases { (customerInfo, error) in
-        //     self.isPremium = customerInfo?.entitlements["premium"]?.isActive == true
-        //     completion(self.isPremium)
-        // }
-        print("⚠️ RevenueCat restore not yet implemented")
-        completion(false)
+        Purchases.shared.restorePurchases { [weak self] (customerInfo, error) in
+            guard let self = self else {
+                completion(false)
+                return
+            }
+            
+            if let error = error {
+                print("❌ Restore error: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+                return
+            }
+            
+            let isActive = customerInfo?.entitlements["premium"]?.isActive == true
+            
+            DispatchQueue.main.async {
+                self.isPremium = isActive
+                self.userDefaults.set(isActive, forKey: self.premiumKey)
+                print("✅ Purchases restored. Premium: \(isActive)")
+                completion(isActive)
+            }
+        }
+    }
+    
+    /// Purchase a package
+    /// ✅ NEW: Purchase implementation with RevenueCat
+    /// - Parameters:
+    ///   - package: RevenueCat package to purchase
+    ///   - completion: Callback with success status and optional error message
+    func purchasePackage(_ package: RevenueCat.Package, completion: @escaping (Bool, String?) -> Void) {
+        Purchases.shared.purchase(package: package) { [weak self] (transaction, customerInfo, error, userCancelled) in
+            guard let self = self else {
+                completion(false, "Unknown error")
+                return
+            }
+            
+            if userCancelled {
+                print("🚫 User cancelled purchase")
+                DispatchQueue.main.async {
+                    completion(false, nil)  // nil = user cancelled (no error message)
+                }
+                return
+            }
+            
+            if let error = error {
+                print("❌ Purchase error: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(false, error.localizedDescription)
+                }
+                return
+            }
+            
+            // Check if premium entitlement is now active
+            let isActive = customerInfo?.entitlements["premium"]?.isActive == true
+            
+            DispatchQueue.main.async {
+                self.isPremium = isActive
+                self.userDefaults.set(isActive, forKey: self.premiumKey)
+                print("✅ Purchase successful! Premium: \(isActive)")
+                completion(isActive, nil)
+            }
+        }
     }
 }

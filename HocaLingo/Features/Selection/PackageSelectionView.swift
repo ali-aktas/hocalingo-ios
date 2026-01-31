@@ -55,7 +55,7 @@ struct PackageSelectionView: View {
                 WordSelectionView(packageId: packageId, selectedTab: $selectedTab)
             }
             .sheet(isPresented: $viewModel.showPremiumSheet) {
-                PremiumSheetPlaceholder()
+                PremiumPaywallView()
             }
         }
     }

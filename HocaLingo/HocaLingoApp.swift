@@ -2,12 +2,13 @@
 //  HocaLingoApp.swift
 //  HocaLingo
 //
-//  ✅ UPDATED: Added onboarding flow for first-time users
+//  ✅ UPDATED: Added RevenueCat integration for premium subscriptions
 //  Created by Auralian on 15.01.2026.
 //
 
 import SwiftUI
 import UserNotifications
+import RevenueCat  // ✅ YENİ: RevenueCat import
 
 @main
 struct HocaLingoApp: App {
@@ -28,6 +29,12 @@ struct HocaLingoApp: App {
     init() {
         // Set notification delegate to handle foreground notifications
         UNUserNotificationCenter.current().delegate = NotificationDelegate.shared
+        
+        // ✅ YENİ: RevenueCat Configuration
+        Purchases.logLevel = .debug  // Debug mode for testing
+        Purchases.configure(withAPIKey: "appl_sfCiEYrSXxYYRRjbMFZOjwBfagG")
+        
+        print("✅ RevenueCat initialized")
     }
     
     // MARK: - Computed Properties

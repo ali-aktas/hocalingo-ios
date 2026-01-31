@@ -58,7 +58,7 @@ struct WordSelectionView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
         .sheet(isPresented: $showPremiumSheet) {
-                    PremiumSheetPlaceholder()
+                    PremiumPaywallView()
                 }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {

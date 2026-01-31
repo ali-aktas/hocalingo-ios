@@ -308,3 +308,18 @@
 "onboarding_difficulty_hard" = "Zor";
 "onboarding_difficulty_medium" = "Orta";
 "onboarding_difficulty_easy" = "Kolay";
+
+// Premium Paywall
+"paywall_title" = "Premium Üyesi Ol";
+"paywall_subtitle" = "Tüm özelliklerin kilidini aç ve premium kalitede öğren!";
+"paywall_feature_1" = "Sınırsız Kelime Seçimi";
+"paywall_feature_2" = "Reklamsız Deneyim";
+"paywall_feature_3" = "Premium Kelime Paketleri";
+"paywall_feature_4" = "Yapay Zeka Asistanı";
+"paywall_plan_weekly" = "Haftalık";
+"paywall_plan_yearly" = "Yıllık";
+"paywall_best_value" = "En İyi Fiyat";
+"paywall_purchase_button" = "Devam Et";
+"paywall_restore" = "Satın Alımları Geri Yükle";
+"paywall_terms" = "Kullanım Koşulları";
+"paywall_privacy" = "Gizlilik Politikası";

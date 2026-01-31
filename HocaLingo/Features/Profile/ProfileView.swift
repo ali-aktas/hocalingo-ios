@@ -37,7 +37,7 @@ struct ProfileView: View {
             .navigationBarTitleDisplayMode(.large)
         }
         .sheet(isPresented: $showPremiumSheet) {
-            PremiumSheetPlaceholder()
+            PremiumPaywallView()
         }
     }
     

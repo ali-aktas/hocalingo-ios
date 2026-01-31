@@ -308,3 +308,18 @@
 "onboarding_difficulty_hard" = "Hard";
 "onboarding_difficulty_medium" = "Medium";
 "onboarding_difficulty_easy" = "Easy";
+
+// Premium Paywall
+"paywall_title" = "Upgrade to Premium";
+"paywall_subtitle" = "Unlock all features and learn without limits";
+"paywall_feature_1" = "Unlimited Word Selections";
+"paywall_feature_2" = "Ad-Free Experience";
+"paywall_feature_3" = "Premium Packages";
+"paywall_feature_4" = "AI Reading Passages";
+"paywall_plan_weekly" = "Weekly";
+"paywall_plan_yearly" = "Yearly";
+"paywall_best_value" = "Best Value";
+"paywall_purchase_button" = "Continue";
+"paywall_restore" = "Restore Purchases";
+"paywall_terms" = "Terms of Service";
+"paywall_privacy" = "Privacy Policy";

@@ -2,11 +2,12 @@
 //  PremiumPaywallView.swift
 //  HocaLingo
 //
-//  ✅ Complete premium paywall with features, pricing, and RevenueCat integration ready
+//  ✅ FIXED: Proper namespace for RevenueCat.Package to avoid conflicts
 //  Location: HocaLingo/Features/Premium/PremiumPaywallView.swift
 //
 
 import SwiftUI
+import RevenueCat
 
 // MARK: - Premium Paywall View
 struct PremiumPaywallView: View {
@@ -14,8 +15,11 @@ struct PremiumPaywallView: View {
     @Environment(\.colorScheme) private var colorScheme
     @StateObject private var premiumManager = PremiumManager.shared
     
-    @State private var selectedPlan: PricingPlan = .yearly
+    @State private var selectedPlan: PricingPlan = .annual
     @State private var isProcessing: Bool = false
+    @State private var currentOffering: Offering?
+    @State private var errorMessage: String?
+    @State private var showError: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -32,7 +36,13 @@ struct PremiumPaywallView: View {
                         featuresSection
                         
                         // Pricing Plans
-                        pricingSection
+                        if currentOffering != nil {
+                            pricingSection
+                        } else {
+                            // Loading indicator while fetching offerings
+                            ProgressView()
+                                .padding()
+                        }
                         
                         // Purchase Button
                         purchaseButton
@@ -53,6 +63,33 @@ struct PremiumPaywallView: View {
                             .foregroundColor(.secondary)
                     }
                 }
+            }
+            .alert(isPresented: $showError) {
+                Alert(
+                    title: Text("Error"),
+                    message: Text(errorMessage ?? "Unknown error occurred"),
+                    dismissButton: .default(Text("OK"))
+                )
+            }
+        }
+        .onAppear {
+            loadOfferings()
+        }
+    }
+    
+    // MARK: - Load Offerings
+    private func loadOfferings() {
+        Purchases.shared.getOfferings { offerings, error in
+            if let error = error {
+                print("❌ Error loading offerings: \(error.localizedDescription)")
+                return
+            }
+            
+            if let offering = offerings?.current {
+                currentOffering = offering
+                print("✅ Offerings loaded: \(offering.availablePackages.count) packages")
+            } else {
+                print("⚠️ No current offering found")
             }
         }
     }
@@ -221,28 +258,44 @@ struct PremiumPaywallView: View {
     // MARK: - Pricing Section
     private var pricingSection: some View {
         VStack(spacing: 12) {
-            // Monthly Plan
-            pricingPlan(
-                plan: .monthly,
-                title: "paywall_plan_monthly",
-                price: "paywall_price_monthly",
-                badge: nil,
-                isSelected: selectedPlan == .monthly
-            )
+            // Weekly Plan
+            if let weeklyPackage = getRevenueCatPackage(for: .weekly) {
+                pricingPlanCard(
+                    plan: .weekly,
+                    package: weeklyPackage,
+                    title: "paywall_plan_weekly",
+                    badge: nil,
+                    isSelected: selectedPlan == .weekly
+                )
+            }
             
-            // Yearly Plan (Best Value)
-            pricingPlan(
-                plan: .yearly,
-                title: "paywall_plan_yearly",
-                price: "paywall_price_yearly",
-                badge: "paywall_best_value",
-                isSelected: selectedPlan == .yearly
-            )
+            // Annual Plan (Best Value)
+            if let annualPackage = getRevenueCatPackage(for: .annual) {
+                pricingPlanCard(
+                    plan: .annual,
+                    package: annualPackage,
+                    title: "paywall_plan_yearly",
+                    badge: "paywall_best_value",
+                    isSelected: selectedPlan == .annual
+                )
+            }
+        }
+    }
+    
+    // MARK: - Get RevenueCat Package Helper
+    // ✅ FIXED: Return type explicitly set to RevenueCat.Package
+    private func getRevenueCatPackage(for plan: PricingPlan) -> RevenueCat.Package? {
+        guard let offering = currentOffering else { return nil }
+        
+        // Find package by identifier
+        return offering.availablePackages.first { package in
+            package.identifier == plan.packageIdentifier
         }
     }
     
     // MARK: - Pricing Plan Card
-    private func pricingPlan(plan: PricingPlan, title: String, price: String, badge: String?, isSelected: Bool) -> some View {
+    // ✅ FIXED: Parameter type explicitly set to RevenueCat.Package
+    private func pricingPlanCard(plan: PricingPlan, package: RevenueCat.Package, title: String, badge: String?, isSelected: Bool) -> some View {
         Button(action: {
             withAnimation(.spring(response: 0.3)) {
                 selectedPlan = plan
@@ -282,15 +335,18 @@ struct PremiumPaywallView: View {
                         }
                     }
                     
-                    Text(LocalizedStringKey(price))
-                        .font(.system(size: 15))
-                        .foregroundColor(.themeSecondary)
+                    // Free trial info if available
+                    if let introPrice = package.storeProduct.introductoryDiscount {
+                        Text("\(introPrice.subscriptionPeriod.periodTitle) free trial")
+                            .font(.system(size: 13))
+                            .foregroundColor(Color(hex: "10B981"))
+                    }
                 }
                 
                 Spacer()
                 
-                // Price Badge
-                Text(LocalizedStringKey(price))
+                // Price
+                Text(package.storeProduct.localizedPriceString)
                     .font(.system(size: 16, weight: .bold))
                     .foregroundColor(isSelected ? Color(hex: "FFD700") : .themeSecondary)
             }
@@ -353,7 +409,7 @@ struct PremiumPaywallView: View {
             .cornerRadius(16)
             .shadow(color: Color(hex: "FFD700").opacity(0.5), radius: 15, y: 8)
         }
-        .disabled(isProcessing)
+        .disabled(isProcessing || currentOffering == nil)
     }
     
     // MARK: - Footer Links
@@ -365,6 +421,7 @@ struct PremiumPaywallView: View {
                     .font(.system(size: 15, weight: .semibold))
                     .foregroundColor(.themeSecondary)
             }
+            .disabled(isProcessing)
             
             // Legal Links
             HStack(spacing: 20) {
@@ -390,30 +447,31 @@ struct PremiumPaywallView: View {
     // MARK: - Actions
     
     private func handlePurchase() {
-        isProcessing = true
-        
-        // ✅ TODO: RevenueCat integration
-        // Purchases.shared.purchase(product: selectedPlan.product) { transaction, customerInfo, error, userCancelled in
-        //     if let error = error {
-        //         // Handle error
-        //     } else if userCancelled {
-        //         // User cancelled
-        //     } else {
-        //         // Success - update premium status
-        //         premiumManager.setPremium(true)
-        //         dismiss()
-        //     }
-        //     isProcessing = false
-        // }
-        
-        // ✅ FOR TESTING: Simulate purchase (remove when RevenueCat is integrated)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            premiumManager.setPremium(true)
-            isProcessing = false
-            dismiss()
+        // ✅ FIXED: Explicitly get RevenueCat.Package
+        guard let package = getRevenueCatPackage(for: selectedPlan) else {
+            print("❌ Package not found for selected plan")
+            return
         }
         
-        print("💳 Purchase initiated: \(selectedPlan.rawValue)")
+        isProcessing = true
+        
+        // ✅ Real RevenueCat purchase
+        premiumManager.purchasePackage(package) { success, errorMsg in
+            isProcessing = false
+            
+            if success {
+                print("✅ Purchase successful!")
+                dismiss()
+            } else if let errorMsg = errorMsg {
+                // Show error (not user cancelled)
+                errorMessage = errorMsg
+                showError = true
+                print("❌ Purchase failed: \(errorMsg)")
+            } else {
+                // User cancelled, do nothing
+                print("🚫 User cancelled purchase")
+            }
+        }
     }
     
     private func handleRestore() {
@@ -421,12 +479,16 @@ struct PremiumPaywallView: View {
         
         premiumManager.restorePurchases { success in
             isProcessing = false
+            
             if success {
+                print("✅ Purchases restored successfully!")
                 dismiss()
+            } else {
+                errorMessage = "No purchases found to restore"
+                showError = true
+                print("⚠️ No purchases to restore")
             }
         }
-        
-        print("🔄 Restore purchases initiated")
     }
     
     private func openTerms() {
@@ -444,15 +506,34 @@ struct PremiumPaywallView: View {
 
 // MARK: - Pricing Plan Enum
 enum PricingPlan: String {
-    case monthly = "monthly"
-    case yearly = "yearly"
+    case weekly = "weekly"
+    case annual = "annual"
     
-    // ✅ TODO: Add RevenueCat product IDs when ready
-    var productId: String {
+    // ✅ FIX: RevenueCat identifier'larını eşleştir
+    var packageIdentifier: String {
         switch self {
-        case .monthly: return "hocalingo_premium_monthly"
-        case .yearly: return "hocalingo_premium_yearly"
+        case .weekly: return "$rc_weekly"
+        case .annual: return "$rc_annual"
         }
+    }
+}
+// MARK: - SubscriptionPeriod Extension
+extension SubscriptionPeriod {
+    var periodTitle: String {
+        let unitString: String
+        switch self.unit {
+        case .day:
+            unitString = value == 1 ? "day" : "days"
+        case .week:
+            unitString = value == 1 ? "week" : "weeks"
+        case .month:
+            unitString = value == 1 ? "month" : "months"
+        case .year:
+            unitString = value == 1 ? "year" : "years"
+        @unknown default:
+            unitString = "period"
+        }
+        return "\(value) \(unitString)"
     }
 }
 
