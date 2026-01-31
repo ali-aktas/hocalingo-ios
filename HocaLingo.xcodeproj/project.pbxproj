@@ -98,6 +98,7 @@
 				Features/AIStory/Components/InteractiveWordView.swift,
 				Features/AIStory/Components/QuotaIndicator.swift,
 				Features/AIStory/Components/WordMeaningPopover.swift,
+				Features/AIStory/ViewModels/AIStoryUIState.swift,
 				Features/AIStory/ViewModels/AIStoryViewModel.swift,
 				Features/AIStory/Views/GeneratingView.swift,
 				Features/AIStory/Views/StoryCreatorSheet.swift,

@@ -43,9 +43,15 @@ enum StoryType: String, Codable, CaseIterable, Identifiable {
         }
     }
     
-    /// All types are premium features
+    /// Premium status for each type
+    /// Only Fantasy requires premium
     var isPremium: Bool {
-        return true
+        switch self {
+        case .fantasy:
+            return true
+        case .motivation, .dialogue:
+            return false
+        }
     }
     
     /// Instruction for AI prompt

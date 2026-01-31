@@ -93,4 +93,14 @@ enum StoryLength: String, Codable, CaseIterable, Identifiable {
             return "5-7 dk"
         }
     }
+    
+    /// Premium status - only Long is premium
+    var isPremium: Bool {
+        switch self {
+        case .long:
+            return true
+        case .short:
+            return false
+        }
+    }
 }

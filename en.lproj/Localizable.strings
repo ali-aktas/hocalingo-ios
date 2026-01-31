@@ -373,3 +373,20 @@
 "story_created_success" = "🎉 Story created!";
 "story_deleted" = "Story deleted";
 "story_favorited" = "Added to favorites";
+
+// AI Story
+"quota_remaining" = "Remaining";
+"stories_this_month" = "This Month";
+"create_story" = "Create Story";
+"story_creator_title" = "Create Story";
+"story_topic_placeholder" = "Topic (optional)";
+"story_topic_hint" = "E.g: Space adventure, coffee break";
+"select_type" = "Story Type";
+"select_length" = "Length";
+"generate_button" = "Generate Story";
+"collecting_words" = "Collecting your words...";
+"writing_story" = "Writing your story...";
+"final_touches" = "Final touches...";
+"your_words" = "Your Words";
+"tap_word_hint" = "Tap words to see meanings";
+"story_history" = "Story History";

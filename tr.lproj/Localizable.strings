@@ -373,3 +373,20 @@
 "story_created_success" = "🎉 Hikaye oluşturuldu!";
 "story_deleted" = "Hikaye silindi";
 "story_favorited" = "Favorilere eklendi";
+
+// AI Story
+"quota_remaining" = "Kalan Hak";
+"stories_this_month" = "Bu Ay";
+"create_story" = "Hikaye Oluştur";
+"story_creator_title" = "Hikaye Oluştur";
+"story_topic_placeholder" = "Konu (isteğe bağlı)";
+"story_topic_hint" = "Örn: Uzay macerası, kahve molası";
+"select_type" = "Hikaye Türü";
+"select_length" = "Uzunluk";
+"generate_button" = "Hikaye Oluştur";
+"collecting_words" = "Kelimelerini topluyorum...";
+"writing_story" = "Hikayeni yazıyorum...";
+"final_touches" = "Son rötuşlar...";
+"your_words" = "Senin Kelimelerin";
+"tap_word_hint" = "Kelimelere dokun anlamlarını gör";
+"story_history" = "Geçmiş Hikayeler";
