@@ -15,7 +15,7 @@ struct AIStoryMainView: View {
     
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var colorScheme
-    @EnvironmentObject var themeViewModel: ThemeViewModel
+    @Environment(\.themeViewModel) private var themeViewModel
     
     // Test data
     @State private var quotaUsed = 0
@@ -197,6 +197,5 @@ struct AIStoryMainView: View {
 #Preview {
     NavigationStack {
         AIStoryMainView()
-            .environmentObject(ThemeViewModel())
     }
 }

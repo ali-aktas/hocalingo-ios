@@ -323,3 +323,53 @@
 "paywall_restore" = "Restore Purchases";
 "paywall_terms" = "Terms of Service";
 "paywall_privacy" = "Privacy Policy";
+
+// MARK: - AI Story Generation
+// ==========================================
+
+// Story Types
+"story_type_motivation" = "Motivation";
+"story_type_fantasy" = "Fantasy Story";
+"story_type_dialogue" = "Dialogue";
+
+// Story Lengths
+"story_length_short" = "Short";
+"story_length_long" = "Long";
+
+// Main Screen
+"ai_story_title" = "AI Story Assistant";
+"ai_story_subtitle" = "Create stories from your learned words with AI";
+"create_story" = "Create Story";
+"story_history" = "Story History";
+"quota_remaining" = "Remaining";
+"stories_this_month" = "This Month";
+
+// Creator Dialog
+"story_creator_title" = "Create Story";
+"story_topic_placeholder" = "Topic (optional)";
+"story_topic_hint" = "E.g: Space adventure, coffee break";
+"select_type" = "Story Type";
+"select_length" = "Length";
+"generate_button" = "Generate Story";
+
+// Generating Animation
+"collecting_words" = "Collecting your words...";
+"writing_story" = "Writing your story...";
+"final_touches" = "Final touches...";
+
+// Story Detail
+"your_words" = "Your Words";
+"story_created" = "Created";
+"tap_word_hint" = "Tap words to see meanings";
+
+// Errors
+"quota_exceeded_free" = "Monthly limit of 3 stories reached. Upgrade to Premium for 30 stories!";
+"quota_exceeded_premium" = "Monthly limit of 30 stories reached. Continue next month.";
+"insufficient_words_error" = "Not enough words. At least %d words required.";
+"api_error" = "An error occurred. Please try again.";
+"network_error" = "Check your internet connection.";
+
+// Success Messages
+"story_created_success" = "🎉 Story created!";
+"story_deleted" = "Story deleted";
+"story_favorited" = "Added to favorites";

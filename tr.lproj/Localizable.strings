@@ -323,3 +323,53 @@
 "paywall_restore" = "Satın Alımları Geri Yükle";
 "paywall_terms" = "Kullanım Koşulları";
 "paywall_privacy" = "Gizlilik Politikası";
+
+// MARK: - AI Story Generation
+// ==========================================
+
+// Story Types
+"story_type_motivation" = "Motivasyon";
+"story_type_fantasy" = "Fantastik Hikaye";
+"story_type_dialogue" = "Diyalog";
+
+// Story Lengths
+"story_length_short" = "Kısa";
+"story_length_long" = "Uzun";
+
+// Main Screen
+"ai_story_title" = "AI Hikaye Asistanı";
+"ai_story_subtitle" = "Yapay zeka ile öğrendiğin kelimelerden hikayeler oluştur";
+"create_story" = "Hikaye Oluştur";
+"story_history" = "Geçmiş Hikayeler";
+"quota_remaining" = "Kalan Hak";
+"stories_this_month" = "Bu Ay";
+
+// Creator Dialog
+"story_creator_title" = "Hikaye Oluştur";
+"story_topic_placeholder" = "Konu (isteğe bağlı)";
+"story_topic_hint" = "Örn: Uzay macerası, kahve molası";
+"select_type" = "Hikaye Türü";
+"select_length" = "Uzunluk";
+"generate_button" = "Hikaye Oluştur";
+
+// Generating Animation
+"collecting_words" = "Kelimelerini topluyorum...";
+"writing_story" = "Hikayeni yazıyorum...";
+"final_touches" = "Son rötuşlar...";
+
+// Story Detail
+"your_words" = "Senin Kelimelerin";
+"story_created" = "Oluşturulma";
+"tap_word_hint" = "Kelimelere dokun anlamlarını gör";
+
+// Errors
+"quota_exceeded_free" = "Aylık 3 hikaye limitine ulaştınız. Premium ile 30 hikaye yazın!";
+"quota_exceeded_premium" = "Aylık 30 hikaye limitine ulaştınız. Yeni ay başında devam edebilirsiniz.";
+"insufficient_words_error" = "Yeterli kelime yok. En az %d kelime gerekli.";
+"api_error" = "Bir hata oluştu. Lütfen tekrar deneyin.";
+"network_error" = "İnternet bağlantınızı kontrol edin.";
+
+// Success Messages
+"story_created_success" = "🎉 Hikaye oluşturuldu!";
+"story_deleted" = "Hikaye silindi";
+"story_favorited" = "Favorilere eklendi";

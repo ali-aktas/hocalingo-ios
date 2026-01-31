@@ -60,9 +60,7 @@ struct HomeView: View {
                 PackageSelectionView(selectedTab: $selectedTab)
             }
             .navigationDestination(isPresented: $viewModel.shouldNavigateToAIAssistant) {
-                Text("AI Assistant - Coming Soon!")
-                    .font(.title)
-                    .padding()
+                AIStoryMainView()
             }
             .sheet(isPresented: $viewModel.shouldShowAddWordDialog) {
                 AddWordDialogView()
