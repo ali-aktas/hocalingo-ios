@@ -4,7 +4,7 @@
 //
 //  Core/Utils/PromptBuilder.swift
 //  AI prompt construction for story generation
-//  Optimized for Gemini 2.5 Flash with cost-efficient token usage
+//  ✅ FIXED: Strong topic focus, original fantasy characters, content safety
 //
 
 import Foundation
@@ -36,13 +36,23 @@ class PromptBuilder {
         // Length instruction
         let lengthInstruction = "Yaklaşık \(length.targetWordCount) kelime kullan."
         
-        // Optional topic
-        let topicPart = topic.map { "Konu: \($0)\n\n" } ?? ""
+        // ✅ STRONG topic integration
+        let topicSection: String
+        if let topic = topic, !topic.isEmpty {
+            topicSection = """
+            
+            🎯 HİKAYE KONUSU (ZORUNLU):
+            Hikaye MUTLAKA bu konu hakkında olmalı: "\(topic)"
+            Konuyu hikayenin merkezine koy. Tüm hikaye bu konuya odaklanmalı.
+            
+            """
+        } else {
+            topicSection = "\n\n"
+        }
         
         return """
         SEN BİR HİKAYE YAZARISIN. Türkçe olarak \(typeInstruction). \(lengthInstruction)
-        
-        ⚠️ ÇOK ÖNEMLİ FORMAT KURALI:
+        \(topicSection)⚠️ ÇOK ÖNEMLİ FORMAT KURALI:
         İLK SATIR: Hikayeye uygun 3 kelimelik bir başlık yaz (sadece başlık, başka bir şey yazma)
         İKİNCİ SATIR: Boş bırak
         ÜÇÜNCÜ SATIRDAN İTİBAREN: Hikayeyi yaz
@@ -52,7 +62,7 @@ class PromptBuilder {
         
         Bir zamanlar uzak bir diyarda...
         
-        \(topicPart)Aşağıdaki İngilizce kelimeleri kullan:
+        Aşağıdaki İngilizce kelimeleri kullan:
         \(wordList)
         
         ⚠️ KELİME KULLANIM KURALLARI:
@@ -80,100 +90,7 @@ class PromptBuilder {
         6. NOKTALAMA DİKKAT
            Cümleleri nokta, ünlem veya soru işaretiyle bitir.
            Tamamlanmamış cümle bırakma.
-        
-        ŞIMDI BAŞLA:
-        """
-    }
-    
-    /// Build prompt for specific story types with custom rules
-    func buildCustomPrompt(
-        words: [WordWithMeaning],
-        topic: String?,
-        type: StoryType,
-        length: StoryLength
-    ) -> String {
-        
-        switch type {
-        case .fantasy:
-            return buildFantasyPrompt(words: words, topic: topic, length: length)
-        case .dialogue:
-            return buildDialoguePrompt(words: words, topic: topic, length: length)
-        case .motivation:
-            return buildPrompt(words: words, topic: topic, type: type, length: length)
-        }
-    }
-    
-    // MARK: - Type-Specific Prompts
-    
-    /// Fantasy story prompt with kid-friendly rules
-    private func buildFantasyPrompt(
-        words: [WordWithMeaning],
-        topic: String?,
-        length: StoryLength
-    ) -> String {
-        
-        let wordList = words.map { $0.english }.joined(separator: ", ")
-        let topicPart = topic.map { "Konu: \($0)\n\n" } ?? ""
-        
-        return """
-        SEN BİR ÇOCUK HİKAYESİ YAZARISIN. Türkçe olarak çocuklara uygun fantastik bir hikaye yaz.
-        
-        KARAKTER: Telifsiz, orijinal bir karakter kullan (örnek: süper kahraman, Keloğlan tarzı bir karakter)
-        UZUNLUK: Yaklaşık \(length.targetWordCount) kelime
-        
-        ⚠️ FORMAT:
-        İLK SATIR: 3 kelimelik başlık
-        İKİNCİ SATIR: Boş
-        ÜÇÜNCÜ SATIRDAN İTİBAREN: Hikaye
-        
-        \(topicPart)Şu İngilizce kelimeleri kullan:
-        \(wordList)
-        
-        ⚠️ KURALLAR:
-        - Kelimeler İngilizce olmalı (parantez yok, bold yok)
-        - Her kelimeyi en az 1 kez kullan
-        - Çocuklara uygun içerik (şiddet yok, korku yok)
-        - İlham verici ve eğlenceli olmalı
-        
-        ŞIMDI BAŞLA:
-        """
-    }
-    
-    /// Dialogue prompt with conversation formatting
-    private func buildDialoguePrompt(
-        words: [WordWithMeaning],
-        topic: String?,
-        length: StoryLength
-    ) -> String {
-        
-        let wordList = words.map { $0.english }.joined(separator: ", ")
-        let topicPart = topic.map { "Konu: \($0)\n\n" } ?? ""
-        
-        return """
-        SEN BİR DİYALOG YAZARISIN. Türkçe olarak 2 kişi arasında günlük hayattan bir konuşma yaz.
-        
-        UZUNLUK: Yaklaşık \(length.targetWordCount) kelime
-        FORMAT: İki kişinin karşılıklı konuşması (Ali: ... / Ayşe: ...)
-        
-        ⚠️ FORMAT:
-        İLK SATIR: 3 kelimelik başlık
-        İKİNCİ SATIR: Boş
-        ÜÇÜNCÜ SATIRDAN İTİBAREN: Diyalog
-        
-        \(topicPart)Şu İngilizce kelimeleri kullan:
-        \(wordList)
-        
-        ⚠️ KURALLAR:
-        - Kelimeler İngilizce olmalı (parantez yok, bold yok)
-        - Her kelimeyi en az 1 kez kullan
-        - Doğal konuşma dili kullan
-        - Gerçekçi bir senaryo oluştur
-        
-        ÖRNEK:
-        Kahve Molası
-        
-        Ali: Bugün çok busy bir gün geçirdim.
-        Ayşe: Anladım, ben de aynı şekilde...
+        \(ContentValidator.aiSafetyRules)
         
         ŞIMDI BAŞLA:
         """

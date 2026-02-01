@@ -3,7 +3,7 @@
 //  HocaLingo
 //
 //  AI Story Generation - Story Type Enum
-//  3 types: Motivation, Fantasy (kid-friendly), Dialogue
+//  ✅ FIXED: Fantasy now creates ORIGINAL characters, not Keloğlan
 //
 
 import Foundation
@@ -13,7 +13,7 @@ import SwiftUI
 /// Defines the style and format of generated stories
 enum StoryType: String, Codable, CaseIterable, Identifiable {
     case motivation  // Motivational/inspirational content
-    case fantasy     // Fantasy story (kid-friendly, superhero/Keloğlan style)
+    case fantasy     // Fantasy story with original characters
     case dialogue    // Conversational dialogue
     
     var id: String { rawValue }
@@ -55,12 +55,27 @@ enum StoryType: String, Codable, CaseIterable, Identifiable {
     }
     
     /// Instruction for AI prompt
+    /// ✅ FIXED: Fantasy creates ORIGINAL characters now
     var promptInstruction: String {
         switch self {
         case .motivation:
             return "motivasyon ve ilham verici bir yazı yaz"
         case .fantasy:
-            return "fantastik bir hikaye yaz (çocuklara uygun, süper kahraman veya Keloğlan tarzında telifsiz bir karakter kullan)"
+            return """
+            tamamen ORİJİNAL bir fantastik hikaye yaz.
+            
+            🎭 KARAKTER KURALLARI:
+            - TAMAMEN YENİ bir karakter yarat (isim, kişilik, güçler)
+            - Mevcut hiçbir karakteri kullanma (Keloğlan, Nasrettin Hoca vs. YASAK)
+            - Yaratıcı ol: süper güçleri olan, konuşan hayvanlar, büyülü varlıklar olabilir
+            - Çocuklara uygun, ilham verici bir kahraman olmalı
+            
+            🌟 HİKAYE ELEMANLARI:
+            - Büyülü bir dünya veya olağanüstü olaylar
+            - Macera ve keşif
+            - İyi vs kötü temelli değil, öğretici olmalı
+            - Çocukların hayal gücünü geliştirmeli
+            """
         case .dialogue:
             return "günlük hayattan 2 kişinin karşılıklı konuştuğu bir diyalog yaz"
         }

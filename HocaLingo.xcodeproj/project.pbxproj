@@ -85,6 +85,7 @@
 				Core/Utils/ColorExtension.swift,
 				Core/Utils/Config.swift,
 				Core/Utils/ContentCleaner.swift,
+				Core/Utils/ContentValidator.swift,
 				Core/Utils/DailySelectionLimitManager.swift,
 				Core/Utils/NotificationDelegate.swift,
 				Core/Utils/NotificationManager.swift,
