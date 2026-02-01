@@ -2,7 +2,7 @@
 //  PremiumManager.swift
 //  HocaLingo
 //
-//  ✅ UPDATED: Full RevenueCat integration complete
+//  ✅ FIXED: Test mode now properly overrides RevenueCat
 //  Premium status management with RevenueCat SDK
 //  Location: HocaLingo/Models/PremiumManager.swift
 //
@@ -13,7 +13,7 @@ import RevenueCat
 
 // MARK: - Premium Manager
 /// Singleton manager for premium status and features
-/// ✅ Now fully integrated with RevenueCat
+/// ✅ Now fully integrated with RevenueCat with test mode support
 class PremiumManager: ObservableObject {
     
     // MARK: - Singleton
@@ -26,17 +26,25 @@ class PremiumManager: ObservableObject {
     private let userDefaults = UserDefaults.standard
     private let premiumKey = "user_is_premium"
     
+    // ✅ NEW: Test mode flag
+    #if DEBUG
+    private var isTestMode: Bool = true
+    #else
+    private var isTestMode: Bool = false
+    #endif
+    
     // MARK: - Initialization
     private init() {
         loadPremiumStatus()
         
-        // ✅ Check RevenueCat status on app launch
-        checkPremiumStatusWithRevenueCat()
-        
-        // ✅ TEST MODE: Auto-set premium for testing
+        // ✅ FIXED: Test mode activates AFTER RevenueCat check
         #if DEBUG
+        // Set test mode premium immediately
         setPremium(true)
         print("🧪 TEST MODE: Premium activated for testing")
+        #else
+        // Only check RevenueCat in production
+        checkPremiumStatusWithRevenueCat()
         #endif
     }
     
@@ -77,7 +85,7 @@ class PremiumManager: ObservableObject {
     // MARK: - RevenueCat Integration
     
     /// Check premium status with RevenueCat
-    /// ✅ IMPLEMENTED: Real RevenueCat integration
+    /// ✅ FIXED: Respects test mode - doesn't override in debug builds
     func checkPremiumStatusWithRevenueCat() {
         Purchases.shared.getCustomerInfo { [weak self] (customerInfo, error) in
             guard let self = self else { return }
@@ -91,6 +99,14 @@ class PremiumManager: ObservableObject {
             let isActive = customerInfo?.entitlements["premium"]?.isActive == true
             
             DispatchQueue.main.async {
+                // ✅ FIX: Don't override test mode
+                #if DEBUG
+                if self.isTestMode {
+                    print("✅ RevenueCat premium status: \(isActive ? "Active" : "Inactive") (IGNORED - Test Mode Active)")
+                    return // Don't override test mode
+                }
+                #endif
+                
                 self.isPremium = isActive
                 self.userDefaults.set(isActive, forKey: self.premiumKey)
                 print("✅ RevenueCat premium status: \(isActive ? "Active" : "Inactive")")

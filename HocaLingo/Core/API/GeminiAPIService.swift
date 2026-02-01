@@ -2,9 +2,8 @@
 //  GeminiAPIService.swift
 //  HocaLingo
 //
-//  Core/API/GeminiAPIService.swift
-//  Google Gemini API integration with URLSession
-//  Model: gemini-2.5-flash
+//  Location: Core/API/GeminiAPIService.swift
+//  ✅ FIXED: Corrected URL construction to match Android implementation
 //
 
 import Foundation
@@ -15,25 +14,26 @@ class GeminiAPIService {
     
     // MARK: - Configuration
     
-    private let baseURL = "https://generativelanguage.googleapis.com/v1beta/"
-    private let model = "gemini-2.0-flash-exp"
-    private let timeout: TimeInterval = 30  // 30 seconds (AI generation can take time)
+    private let baseURL = "https://generativelanguage.googleapis.com/v1beta"
+    // Sadece model ismini tutuyoruz, aksiyonu URL içinde belirleyeceğiz
+    private let modelName = "gemini-2.5-flash"
+    private let timeout: TimeInterval = 30
     
     // MARK: - Public Methods
     
     /// Generate story content using Gemini API
-    /// - Parameters:
-    ///   - apiKey: Gemini API key from Firebase Remote Config
-    ///   - request: Configured request with prompt and settings
-    /// - Returns: Generated content response
-    /// - Throws: AIStoryError for various failure scenarios
     func generateStory(
         apiKey: String,
         request: GeminiRequest
     ) async throws -> GeminiResponse {
         
-        // Build URL
-        guard let url = URL(string: "\(baseURL)models/\(model):generateContent?key=\(apiKey)") else {
+        // ✅ CORRECTED URL: Android ile aynı yapıyı kuruyoruz
+        // Base: .../v1beta
+        // Path: /models/{modelName}:generateContent
+        // Query: ?key={apiKey}
+        let urlString = "\(baseURL)/models/\(modelName):generateContent?key=\(apiKey)"
+        
+        guard let url = URL(string: urlString) else {
             throw AIStoryError.apiRequestFailed(message: "Invalid URL")
         }
         
@@ -62,8 +62,9 @@ class GeminiAPIService {
         // Handle HTTP errors
         guard (200...299).contains(httpResponse.statusCode) else {
             let errorMessage = try? parseErrorResponse(from: data)
+            // Eğer parse edemezsek en azından HTTP kodunu görelim
             throw AIStoryError.apiRequestFailed(
-                message: errorMessage ?? "HTTP \(httpResponse.statusCode)"
+                message: errorMessage ?? "HTTP Error: \(httpResponse.statusCode)"
             )
         }
         
@@ -72,15 +73,12 @@ class GeminiAPIService {
         do {
             let geminiResponse = try decoder.decode(GeminiResponse.self, from: data)
             
-            // Validate content
             guard geminiResponse.isValid() else {
                 throw AIStoryError.emptyResponse
             }
             
             return geminiResponse
             
-        } catch DecodingError.dataCorrupted {
-            throw AIStoryError.invalidResponse
         } catch {
             throw AIStoryError.apiRequestFailed(message: "Decoding failed: \(error.localizedDescription)")
         }
@@ -88,12 +86,10 @@ class GeminiAPIService {
     
     // MARK: - Private Helpers
     
-    /// Perform URL request with error mapping
     private func performRequest(_ request: URLRequest) async throws -> (Data, URLResponse) {
         do {
             return try await URLSession.shared.data(for: request)
         } catch let error as URLError {
-            // Map URLError to AIStoryError
             switch error.code {
             case .timedOut:
                 throw AIStoryError.timeout
@@ -107,46 +103,18 @@ class GeminiAPIService {
         }
     }
     
-    /// Parse error response from Gemini API
     private func parseErrorResponse(from data: Data) throws -> String {
         let decoder = JSONDecoder()
+        // Gemini hata döndürdüğünde genellikle bu formatta döner
         if let errorResponse = try? decoder.decode(GeminiErrorResponse.self, from: data) {
             return errorResponse.error.message
         }
+        
+        // Eğer JSON değilse, gelen ham veriyi string olarak okumaya çalışalım (hata ayıklamak için)
+        if let rawError = String(data: data, encoding: .utf8) {
+            return "API Error Detail: \(rawError)"
+        }
+        
         return "Unknown API error"
     }
 }
-
-// MARK: - Mock Service (for testing)
-
-#if DEBUG
-class MockGeminiAPIService: GeminiAPIService {
-    var shouldFail = false
-    var mockResponse: String = "Mock hikaye içeriği"
-    
-    override func generateStory(
-        apiKey: String,
-        request: GeminiRequest
-    ) async throws -> GeminiResponse {
-        
-        // Simulate network delay
-        try await Task.sleep(nanoseconds: 1_000_000_000) // 1 second
-        
-        if shouldFail {
-            throw AIStoryError.apiRequestFailed(message: "Mock error")
-        }
-        
-        return GeminiResponse(
-            candidates: [
-                GeminiResponse.Candidate(
-                    content: GeminiResponse.Candidate.Content(
-                        parts: [
-                            GeminiResponse.Candidate.Content.Part(text: mockResponse)
-                        ]
-                    )
-                )
-            ]
-        )
-    }
-}
-#endif
