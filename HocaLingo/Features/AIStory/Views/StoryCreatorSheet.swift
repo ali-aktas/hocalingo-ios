@@ -3,7 +3,7 @@
 //  HocaLingo
 //
 //  Features/AIStory/Views/StoryCreatorSheet.swift
-//  Premium design story creation form
+//  ✅ UPDATED: Integrated InsufficientWordsDialog
 //
 
 import SwiftUI
@@ -25,57 +25,71 @@ struct StoryCreatorSheet: View {
                 // Background
                 Color.themeBackground.ignoresSafeArea()
                 
-                ScrollView {
-                    VStack(spacing: 24) {
-                        // Header
-                        headerSection
-                        
-                        // Topic Input
-                        topicSection
-                        
-                        // Type Selection
-                        typeSection
-                        
-                        // Length Selection
-                        lengthSection
-                        
-                        // Quota Warning (if low)
-                        if viewModel.uiState.quota.remaining <= 1 {
-                            quotaWarning
+                VStack(spacing: 0) {
+                    // Scrollable content
+                    ScrollView {
+                        VStack(spacing: 24) {
+                            // Header
+                            headerSection
+                            
+                            // Topic Input
+                            topicSection
+                            
+                            // Type Selection
+                            typeSection
+                            
+                            // Length Selection
+                            lengthSection
+                            
+                            // Quota Warning (if low)
+                            if viewModel.uiState.quota.remaining <= 1 {
+                                quotaWarning
+                            }
+                            
+                            // Extra padding for button
+                            Spacer(minLength: 100)
                         }
-                        
-                        Spacer(minLength: 120)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 20)
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.top, 20)
+                    
+                    // ✅ Generate button at bottom (outside ScrollView)
+                    VStack(spacing: 0) {
+                        Divider()
+                            .background(Color.themeSecondary.opacity(0.2))
+                        
+                        generateButton
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 16)
+                    }
+                    .background(Color.themeBackground)
                 }
                 
-                // Generate Button (Fixed at bottom, keyboard-aware)
-                VStack {
-                    Spacer()
-                    generateButton
-                        .padding(.bottom, 40)
-                        .padding(.horizontal, 20)
+                // ✅ NEW: Insufficient words dialog overlay
+                if viewModel.uiState.showInsufficientWords {
+                    InsufficientWordsDialog(
+                        required: viewModel.uiState.insufficientWordsRequired,
+                        available: viewModel.uiState.insufficientWordsAvailable,
+                        onDismiss: {
+                            viewModel.uiState.showInsufficientWords = false
+                        },
+                        onAddWords: {
+                            // Close dialog and creator sheet
+                            viewModel.uiState.showInsufficientWords = false
+                            dismiss()
+                            // User will be navigated to package selection automatically
+                        }
+                    )
+                    .transition(.opacity)
+                    .zIndex(100)
                 }
-                .ignoresSafeArea(.keyboard)
             }
             .navigationTitle("story_creator_title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button("cancel") {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("close") {
                         dismiss()
-                    }
-                    .foregroundColor(.themeSecondary)
-                }
-                
-                ToolbarItem(placement: .keyboard) {
-                    HStack {
-                        Spacer()
-                        Button("Bitti") {
-                            isTopicFocused = false
-                        }
-                        .foregroundColor(.themePrimaryButton)
                     }
                 }
             }
@@ -85,19 +99,22 @@ struct StoryCreatorSheet: View {
         }
     }
     
-    // MARK: - Sections
+    // MARK: - Header
     
     private var headerSection: some View {
-        VStack(spacing: 8) {
-            Text("🤖")
+        VStack(spacing: 12) {
+            Image(systemName: "sparkles")
                 .font(.system(size: 48))
+                .foregroundColor(.accentPurple)
             
-            Text("Yapay zeka ile öğrendiğin kelimelerden hikaye oluştur")
-                .font(.system(size: 14))
-                .foregroundColor(.themeSecondary)
+            Text("story_creator_title")
+                .font(.system(size: 24, weight: .bold))
+                .foregroundColor(.themePrimary)
                 .multilineTextAlignment(.center)
         }
     }
+    
+    // MARK: - Topic Section
     
     private var topicSection: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -123,6 +140,8 @@ struct StoryCreatorSheet: View {
         }
     }
     
+    // MARK: - Type Section
+    
     private var typeSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("select_type")
@@ -136,8 +155,10 @@ struct StoryCreatorSheet: View {
                         isSelected: viewModel.uiState.creatorType == type,
                         isPremium: viewModel.uiState.isPremium
                     ) {
-                        // Check if requires premium
-                        if type == .fantasy && !viewModel.uiState.isPremium {
+                        // ✅ Premium check
+                        let isLocked = (type == .fantasy) && !viewModel.uiState.isPremium
+                        
+                        if isLocked {
                             showPaywall = true
                         } else {
                             viewModel.handle(.selectType(type))
@@ -147,6 +168,8 @@ struct StoryCreatorSheet: View {
             }
         }
     }
+    
+    // MARK: - Length Section
     
     private var lengthSection: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -161,8 +184,10 @@ struct StoryCreatorSheet: View {
                         isSelected: viewModel.uiState.creatorLength == length,
                         isPremium: viewModel.uiState.isPremium
                     ) {
-                        // Check if requires premium
-                        if length == .long && !viewModel.uiState.isPremium {
+                        // ✅ Premium check
+                        let isLocked = (length == .long) && !viewModel.uiState.isPremium
+                        
+                        if isLocked {
                             showPaywall = true
                         } else {
                             viewModel.handle(.selectLength(length))
@@ -172,6 +197,8 @@ struct StoryCreatorSheet: View {
             }
         }
     }
+    
+    // MARK: - Quota Warning
     
     private var quotaWarning: some View {
         HStack(spacing: 12) {
@@ -193,23 +220,25 @@ struct StoryCreatorSheet: View {
         )
     }
     
+    // MARK: - Generate Button
+    
     private var generateButton: some View {
         Button {
             // Dismiss keyboard first
             isTopicFocused = false
             
-            // Check if selected options require premium
-            let requiresPremium = viewModel.uiState.creatorType == .fantasy ||
-                                  viewModel.uiState.creatorLength == .long
+            // ✅ Premium check
+            let selectedType = viewModel.uiState.creatorType
+            let selectedLength = viewModel.uiState.creatorLength
+            let requiresPremium = (selectedType == .fantasy) || (selectedLength == .long)
             
             if requiresPremium && !viewModel.uiState.isPremium {
-                // Show paywall
                 showPaywall = true
             } else if !viewModel.uiState.hasQuota {
-                // No quota - will be handled by alert in main view
+                // No quota - error will be shown
                 viewModel.handle(.generateStory)
             } else {
-                // Generate story
+                // Generate story (insufficient words check happens in ViewModel)
                 viewModel.handle(.generateStory)
             }
         } label: {
@@ -247,13 +276,8 @@ struct TypePillButton: View {
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.themeViewModel) private var themeViewModel
     
-    // Premium check for this specific type
-    private var requiresPremium: Bool {
-        type == .fantasy
-    }
-    
     private var isLocked: Bool {
-        requiresPremium && !isPremium
+        (type == .fantasy) && !isPremium
     }
     
     var body: some View {
@@ -266,20 +290,14 @@ struct TypePillButton: View {
                     Text(type.displayName)
                         .font(.system(size: 16, weight: .semibold))
                         .foregroundColor(isSelected ? .white : .themePrimary)
-                    
-                    if requiresPremium && !isPremium {
-                        Text("Premium")
-                            .font(.system(size: 11, weight: .medium))
-                            .foregroundColor(isSelected ? .white.opacity(0.8) : .themeSecondary)
-                    }
                 }
                 
                 Spacer()
                 
                 if isLocked {
-                    Image(systemName: "lock.fill")
-                        .font(.system(size: 14))
-                        .foregroundColor(isSelected ? .white.opacity(0.6) : .themeSecondary)
+                    Image(systemName: "crown.fill")
+                        .font(.system(size: 16))
+                        .foregroundColor(.orange)
                 }
             }
             .padding(16)
@@ -300,15 +318,7 @@ struct TypePillButton: View {
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(
-                        isSelected ? Color.clear : Color.accentPurple.opacity(0.3),
-                        lineWidth: 1
-                    )
-            )
-            .shadow(
-                color: isSelected ? Color(hex: "6366F1").opacity(0.3) : Color.clear,
-                radius: 8,
-                y: 4
+                    .stroke(isSelected ? Color.clear : Color.accentPurple.opacity(0.2), lineWidth: 1)
             )
         }
         .buttonStyle(PlainButtonStyle())
@@ -323,82 +333,60 @@ struct LengthPillButton: View {
     let isPremium: Bool
     let action: () -> Void
     
-    // Premium check for this specific length
-    private var requiresPremium: Bool {
-        length == .long
-    }
+    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.themeViewModel) private var themeViewModel
     
     private var isLocked: Bool {
-        requiresPremium && !isPremium
+        (length == .long) && !isPremium
     }
     
     var body: some View {
         Button(action: action) {
             VStack(spacing: 8) {
-                // Lock icon (if locked)
-                if isLocked {
-                    Image(systemName: "lock.fill")
-                        .font(.system(size: 16))
-                        .foregroundColor(isSelected ? .white.opacity(0.6) : .themeSecondary)
+                HStack(spacing: 4) {
+                    Text(length.displayName)
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(isSelected ? .white : .themePrimary)
+                    
+                    if isLocked {
+                        Image(systemName: "crown.fill")
+                            .font(.system(size: 12))
+                            .foregroundColor(.orange)
+                    }
                 }
                 
-                Text(length.icon)
-                    .font(.system(size: 32))
-                
-                Text(length.displayName)
-                    .font(.system(size: 16, weight: .semibold))
-                    .foregroundColor(isSelected ? .white : .themePrimary)
-                
-                Text("\(length.targetWordCount) kelime")
+                Text("\(length.minDeckWords)-\(length.maxDeckWords) words")
                     .font(.system(size: 12))
                     .foregroundColor(isSelected ? .white.opacity(0.8) : .themeSecondary)
-                
-                if requiresPremium && !isPremium {
-                    Text("Premium")
-                        .font(.system(size: 10, weight: .bold))
-                        .foregroundColor(isSelected ? .white.opacity(0.8) : Color(hex: "FFD700"))
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 3)
-                        .background(
-                            Capsule()
-                                .fill(isSelected ? Color.white.opacity(0.2) : Color(hex: "FFD700").opacity(0.2))
-                        )
-                } else {
-                    Text(length.estimatedReadTime)
-                        .font(.system(size: 11))
-                        .foregroundColor(isSelected ? .white.opacity(0.6) : .themeSecondary)
-                }
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 20)
+            .padding(.vertical, 16)
             .background(
                 RoundedRectangle(cornerRadius: 16)
                     .fill(isSelected
                           ? LinearGradient(
                               colors: [Color(hex: "6366F1"), Color(hex: "8B5CF6")],
-                              startPoint: .topLeading,
-                              endPoint: .bottomTrailing
+                              startPoint: .leading,
+                              endPoint: .trailing
                           )
                           : LinearGradient(
                               colors: [Color.themeCard, Color.themeCard],
-                              startPoint: .topLeading,
-                              endPoint: .bottomTrailing
+                              startPoint: .leading,
+                              endPoint: .trailing
                           )
                     )
             )
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(
-                        isSelected ? Color.clear : Color.accentPurple.opacity(0.3),
-                        lineWidth: 1
-                    )
-            )
-            .shadow(
-                color: isSelected ? Color(hex: "6366F1").opacity(0.3) : Color.clear,
-                radius: 8,
-                y: 4
+                    .stroke(isSelected ? Color.clear : Color.accentPurple.opacity(0.2), lineWidth: 1)
             )
         }
         .buttonStyle(PlainButtonStyle())
     }
+}
+
+// MARK: - Preview
+
+#Preview {
+    StoryCreatorSheet(viewModel: AIStoryViewModel())
 }

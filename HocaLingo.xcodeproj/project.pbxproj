@@ -101,6 +101,7 @@
 				Features/AIStory/ViewModels/AIStoryUIState.swift,
 				Features/AIStory/ViewModels/AIStoryViewModel.swift,
 				Features/AIStory/Views/GeneratingView.swift,
+				Features/AIStory/Views/InsufficientWordsDialog.swift,
 				Features/AIStory/Views/StoryCreatorSheet.swift,
 				Features/AIStory/Views/StoryDetailView.swift,
 				Features/AIStory/Views/StoryHistoryView.swift,

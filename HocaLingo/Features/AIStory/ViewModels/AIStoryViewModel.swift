@@ -3,7 +3,7 @@
 //  HocaLingo
 //
 //  Features/AIStory/ViewModels/AIStoryViewModel.swift
-//  MVI Pattern - ViewModel with business logic
+//  ✅ FULLY FIXED: Kelime yükleme basitleştirildi, error handling düzeltildi
 //
 
 import Foundation
@@ -31,6 +31,20 @@ class AIStoryViewModel: ObservableObject {
     ) {
         self.repository = repository
         self.userDefaults = userDefaults
+        
+        // ✅ Observe premium status
+        observePremiumStatus()
+    }
+    
+    // MARK: - ✅ Premium Status Observer
+    
+    private func observePremiumStatus() {
+        PremiumManager.shared.$isPremium
+            .sink { [weak self] isPremium in
+                self?.uiState.isPremium = isPremium
+                self?.refreshQuota()
+            }
+            .store(in: &cancellables)
     }
     
     // MARK: - Event Handler
@@ -117,9 +131,14 @@ class AIStoryViewModel: ObservableObject {
     // MARK: - Story Generation
     
     private func handleGenerateStory() async {
+        // Close creator sheet FIRST
+        uiState.showCreator = false
+        
+        // Wait for sheet to dismiss
+        try? await Task.sleep(nanoseconds: 300_000_000) // 0.3s
+        
         // Start generation
         uiState.isGenerating = true
-        uiState.showCreator = false
         uiState.error = nil
         
         // Animate phases
@@ -131,8 +150,10 @@ class AIStoryViewModel: ObservableObject {
             // Get API key
             let apiKey = try Config.getGeminiAPIKey()
             
-            // Get study direction
-            let direction = userDefaults.loadStudyDirection()
+            print("🚀 Starting story generation...")
+            print("   - Words: \(uiState.allWords.count)")
+            print("   - Type: \(uiState.creatorType)")
+            print("   - Length: \(uiState.creatorLength)")
             
             // Generate story
             let story = try await repository.generateStory(
@@ -144,11 +165,14 @@ class AIStoryViewModel: ObservableObject {
                 apiKey: apiKey
             )
             
+            print("✅ Story generated successfully!")
+            
             // Success
             handle(.generationCompleted(story))
             
         } catch {
             // Error
+            print("❌ Story generation failed: \(error)")
             if let storyError = error as? AIStoryError {
                 handle(.generationFailed(storyError))
             } else {
@@ -218,8 +242,7 @@ class AIStoryViewModel: ObservableObject {
         uiState.isLoading = true
         
         // Load premium status
-        // TODO: Integrate with RevenueCat
-        uiState.isPremium = false
+        uiState.isPremium = PremiumManager.shared.isPremium
         
         // Load quota
         refreshQuota()
@@ -234,49 +257,54 @@ class AIStoryViewModel: ObservableObject {
     }
     
     private func refreshQuota() {
-        uiState.quota = repository.getQuotaInfo(isPremium: uiState.isPremium).0 == 0
-            ? StoryQuota.current(isPremium: uiState.isPremium)
-            : StoryQuota(
-                month: Calendar.current.dateComponents([.year, .month], from: Date()).month.map { String(format: "%04d-%02d", Calendar.current.component(.year, from: Date()), $0) } ?? "",
-                usedCount: repository.getQuotaInfo(isPremium: uiState.isPremium).0,
-                resetDate: Date(),
-                isPremium: uiState.isPremium
-            )
+        let quotaManager = QuotaManager()
+        uiState.quota = quotaManager.getCurrentQuota(isPremium: uiState.isPremium)
     }
     
+    /// ✅ COMPLETELY REWRITTEN: Sadece seçili kelimeleri UserDefaults'tan yükle
     private func loadWords() {
-        // Load selected words
-        let selectedWordIds = userDefaults.loadSelectedWords()
+        print("🔍 Loading words for AI Story...")
         
-        // Load word details from packages
-        var words: [Word] = []
+        // 1. Seçili kelime ID'lerini al
+        let selectedWordIds = Set(userDefaults.loadSelectedWords())
+        print("📝 Found \(selectedWordIds.count) selected word IDs")
         
-        // Load standard packages
-        for level in ["a1", "a2", "b1", "b2", "c1", "c2"] {
-            let resourceName = "standard_\(level)_001"
-            
-            // Try to find JSON file
-            guard let url = Bundle.main.url(forResource: resourceName, withExtension: "json") else {
-                print("⚠️ Package file not found: \(resourceName).json")
-                continue
-            }
-            
-            // Try to load and decode
-            guard let data = try? Data(contentsOf: url),
-                  let packageWords = try? JSONDecoder().decode([Word].self, from: data) else {
-                print("⚠️ Failed to decode package: \(resourceName).json")
-                continue
-            }
-            
-            // Add selected words from this package
-            words.append(contentsOf: packageWords.filter { selectedWordIds.contains($0.id) })
+        guard !selectedWordIds.isEmpty else {
+            print("⚠️ No selected words found")
+            uiState.allWords = []
+            return
         }
         
-        // Load user-added words
-        words.append(contentsOf: userDefaults.loadUserAddedWords())
+        // 2. Kelimeleri yükle (UserDefaults'ta Word objesi olarak saklanıyor)
+        // NOT: Kelimeler global olarak saklanıyor, paket bazlı değil!
+        var allWords: [Word] = []
         
-        print("✅ Loaded \(words.count) words for AI Story")
-        uiState.allWords = words
+        // User-added words
+        let userWords = userDefaults.loadUserAddedWords()
+        allWords.append(contentsOf: userWords.filter { selectedWordIds.contains($0.id) })
+        print("👤 Loaded \(userWords.filter { selectedWordIds.contains($0.id) }.count) user-added words")
+        
+        // Package words - sadece A1 paketi var şu an
+        if let url = Bundle.main.url(forResource: "standard_a1_001", withExtension: "json"),
+           let data = try? Data(contentsOf: url),
+           let package = try? JSONDecoder().decode(VocabularyPackage.self, from: data) {
+            let packageWords = package.words.filter { selectedWordIds.contains($0.id) }
+            allWords.append(contentsOf: packageWords)
+            print("📦 Loaded \(packageWords.count) words from standard_a1_001")
+        }
+        
+        uiState.allWords = allWords
+        print("✅ Total loaded \(allWords.count) words for AI Story")
+        
+        // DEBUG: Print progress info
+        let direction = userDefaults.loadStudyDirection()
+        let eligibleCount = allWords.filter { word in
+            guard let progress = userDefaults.loadProgress(for: word.id, direction: direction) else {
+                return false
+            }
+            return !progress.learningPhase && progress.intervalDays < 21.0
+        }.count
+        print("📊 Eligible words (progress < 21 days): \(eligibleCount)/\(allWords.count)")
     }
     
     private func loadStories() {

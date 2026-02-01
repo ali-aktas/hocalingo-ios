@@ -3,7 +3,7 @@
 //  HocaLingo
 //
 //  Features/AIStory/ViewModels/AIStoryUIState.swift
-//  MVI Pattern - UI State & Events
+//  ✅ UPDATED: Added insufficient words dialog states
 //
 
 import Foundation
@@ -31,6 +31,11 @@ struct AIStoryUIState {
     var showHistory: Bool = false
     var showDetail: Bool = false
     var error: AIStoryError? = nil
+    
+    // ✅ NEW: Insufficient words dialog
+    var showInsufficientWords: Bool = false
+    var insufficientWordsRequired: Int = 0
+    var insufficientWordsAvailable: Int = 0
     
     // Creator Form
     var creatorTopic: String = ""
