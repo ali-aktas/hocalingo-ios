@@ -1,6 +1,8 @@
 # Xcode
 #
-# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+#git push
+
+ gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
 
 ## User settings
 xcuserdata/
@@ -68,4 +70,4 @@ HocaLingo/Core/Utils/Config.swift
 *.local
 
 # macOS
-.DS_Store
+.DS_Storex
