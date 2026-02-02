@@ -116,7 +116,7 @@ struct SwipeableCardView: View {
             
             // English word
             Text(word)
-                .font(.system(size: 32, weight: .bold))
+                .font(.system(size: 32, weight: .bold, design: .rounded))
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
                 .lineLimit(3)
@@ -130,7 +130,7 @@ struct SwipeableCardView: View {
             
             // Turkish translation
             Text(translation)
-                .font(.system(size: 24, weight: .medium))
+                .font(.system(size: 24, weight: .medium, design: .rounded))
                 .foregroundColor(.white.opacity(0.95))
                 .multilineTextAlignment(.center)
                 .lineLimit(3)
@@ -151,11 +151,11 @@ struct SwipeableCardView: View {
                 
                 VStack(spacing: 8) {
                     Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 56, weight: .bold))
+                        .font(.system(size: 56, weight: .bold, design: .rounded))
                         .foregroundColor(skipColor) // ✅ Red
                     
                     Text("SKIP")
-                        .font(.system(size: 20, weight: .black))
+                        .font(.system(size: 20, weight: .black, design: .rounded))
                         .foregroundColor(skipColor) // ✅ Red
                 }
                 .padding(.trailing, 32)
@@ -178,11 +178,11 @@ struct SwipeableCardView: View {
                 
                 VStack(spacing: 8) {
                     Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 56, weight: .bold))
+                        .font(.system(size: 56, weight: .bold, design: .rounded))
                         .foregroundColor(learnColor) // ✅ Green
                     
                     Text("LEARN")
-                        .font(.system(size: 20, weight: .black))
+                        .font(.system(size: 20, weight: .black, design: .rounded))
                         .foregroundColor(learnColor) // ✅ Green
                 }
                 .padding(.leading, 32)

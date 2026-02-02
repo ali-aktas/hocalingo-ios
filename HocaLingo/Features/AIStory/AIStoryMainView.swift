@@ -136,7 +136,7 @@ struct AIStoryMainView: View {
                 .frame(width: 120, height: 120)
             
             Text("AI Hikaye Asistanı")
-                .font(.system(size: 28, weight: .bold))
+                .font(.system(size: 28, weight: .bold, design: .rounded))
                 .foregroundColor(.themePrimary)
             
             Text("Yapay zeka ile öğrendiğin kelimelerden hikayeler oluştur")
@@ -158,18 +158,18 @@ struct AIStoryMainView: View {
                     Image(systemName: "bolt.fill")
                         .foregroundColor(.accentPurple)
                     Text("quota_remaining")
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
                         .foregroundColor(.themePrimary)
                     Spacer()
                 }
                 
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
                     Text("\(viewModel.uiState.quota.remaining)")
-                        .font(.system(size: 42, weight: .bold))
+                        .font(.system(size: 42, weight: .bold, design: .rounded))
                         .foregroundColor(.accentPurple)
                     
                     Text("/ \(viewModel.uiState.quota.limit)")
-                        .font(.system(size: 20, weight: .medium))
+                        .font(.system(size: 20, weight: .medium, design: .rounded))
                         .foregroundColor(.themeSecondary)
                 }
                 
@@ -197,18 +197,18 @@ struct AIStoryMainView: View {
                     Image(systemName: "book.fill")
                         .foregroundColor(.orange)
                     Text("Hikayeler")
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
                         .foregroundColor(.themePrimary)
                     Spacer()
                 }
                 
                 HStack(alignment: .firstTextBaseline, spacing: 4) {
                     Text("\(viewModel.uiState.stories.count)")
-                        .font(.system(size: 42, weight: .bold))
+                        .font(.system(size: 42, weight: .bold, design: .rounded))
                         .foregroundColor(.orange)
                     
                     Text("hikaye")
-                        .font(.system(size: 16, weight: .medium))
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundColor(.themeSecondary)
                 }
                 
@@ -230,7 +230,7 @@ struct AIStoryMainView: View {
     private var recentStoriesSection: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("Son Hikayeler")
-                .font(.system(size: 20, weight: .bold))
+                .font(.system(size: 20, weight: .bold, design: .rounded))
                 .foregroundColor(.themePrimary)
             
             ForEach(Array(viewModel.uiState.stories.prefix(3))) { story in
@@ -247,10 +247,10 @@ struct AIStoryMainView: View {
         } label: {
             HStack(spacing: 12) {
                 Image(systemName: "sparkles")
-                    .font(.system(size: 20, weight: .semibold))
+                    .font(.system(size: 20, weight: .semibold, design: .rounded))
                 
                 Text("create_story")
-                    .font(.system(size: 18, weight: .bold))
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
             }
             .foregroundColor(.white)
             .frame(maxWidth: .infinity)
@@ -311,7 +311,7 @@ struct StoryRowCard: View {
                 // Content
                 VStack(alignment: .leading, spacing: 6) {
                     Text(story.title)
-                        .font(.system(size: 16, weight: .bold))
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
                         .foregroundColor(.themePrimary)
                         .lineLimit(1)
                     

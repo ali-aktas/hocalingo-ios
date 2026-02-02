@@ -66,7 +66,7 @@ struct InsufficientWordsDialog: View {
             
             // Title
             Text("Not Enough Active Words")
-                .font(.system(size: 22, weight: .bold))
+                .font(.system(size: 22, weight: .bold, design: .rounded))
                 .foregroundColor(.themePrimary)
                 .multilineTextAlignment(.center)
         }
@@ -90,7 +90,7 @@ struct InsufficientWordsDialog: View {
                 // Available
                 VStack(spacing: 6) {
                     Text("\(available)")
-                        .font(.system(size: 28, weight: .bold))
+                        .font(.system(size: 28, weight: .bold, design: .rounded))
                         .foregroundColor(.orange)
                     
                     Text("Available")
@@ -107,7 +107,7 @@ struct InsufficientWordsDialog: View {
                 // Required
                 VStack(spacing: 6) {
                     Text("\(required)")
-                        .font(.system(size: 28, weight: .bold))
+                        .font(.system(size: 28, weight: .bold, design: .rounded))
                         .foregroundColor(.accentPurple)
                     
                     Text("Required")
@@ -155,10 +155,10 @@ struct InsufficientWordsDialog: View {
             } label: {
                 HStack(spacing: 10) {
                     Image(systemName: "plus.circle.fill")
-                        .font(.system(size: 18, weight: .semibold))
+                        .font(.system(size: 18, weight: .semibold, design: .rounded))
                     
                     Text("Add More Words")
-                        .font(.system(size: 17, weight: .semibold))
+                        .font(.system(size: 17, weight: .semibold, design: .rounded))
                 }
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
@@ -178,7 +178,7 @@ struct InsufficientWordsDialog: View {
                 onDismiss()
             } label: {
                 Text("Maybe Later")
-                    .font(.system(size: 16, weight: .medium))
+                    .font(.system(size: 16, weight: .medium, design: .rounded))
                     .foregroundColor(.themeSecondary)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)

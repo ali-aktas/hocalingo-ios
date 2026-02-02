@@ -92,7 +92,7 @@ struct HomeView: View {
 private extension HomeView {
     var titleSection: some View {
         Text("home_title")
-            .font(.system(size: 32, weight: .black))
+            .font(.system(size: 32, weight: .black, design: .rounded))
             .foregroundColor(.primary)
             .frame(maxWidth: .infinity, alignment: .center)
     }
@@ -122,7 +122,7 @@ private extension HomeView {
                     .shadow(color: playButtonShadowColor, radius: 15, y: 10)
                 
                 Image(systemName: "rectangle.portrait.on.rectangle.portrait.angled.fill")
-                    .font(.system(size: 44, weight: .bold))
+                    .font(.system(size: 44, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
             }
         }
@@ -153,7 +153,7 @@ private extension HomeView {
     
     func motivationTextView(index: Int) -> some View {
         Text(viewModel.getMotivationText(for: index))
-            .font(.system(size: 14, weight: .semibold))
+            .font(.system(size: 14, weight: .semibold, design: .rounded))
             .foregroundColor(.primary)
             .multilineTextAlignment(.center)
             .lineLimit(4)
@@ -162,7 +162,7 @@ private extension HomeView {
     
     var statsTitle: some View {
         Text("stat_monthly_stats")
-            .font(.system(size: 16, weight: .bold))
+            .font(.system(size: 16, weight: .bold, design: .rounded))
             .foregroundColor(.secondary)
             .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -264,14 +264,14 @@ struct StatCardWithChart: View {
     private var headerSection: some View {
         HStack(spacing: 6) {
             Image(systemName: icon)
-                .font(.system(size: 13, weight: .bold))
+                .font(.system(size: 13, weight: .bold, design: .rounded))
                 .foregroundColor(gradient.first ?? .blue)
                 .frame(width: 24, height: 24)
                 .background((gradient.first ?? .blue).opacity(0.1))
                 .clipShape(Circle())
             
             Text(LocalizedStringKey(title))
-                .font(.system(size: 15, weight: .bold))
+                .font(.system(size: 15, weight: .bold, design: .rounded))
                 .foregroundColor(.primary)
                 .lineLimit(1)
         }
@@ -280,12 +280,12 @@ struct StatCardWithChart: View {
     private var valueSection: some View {
         HStack(alignment: .firstTextBaseline, spacing: 4) {
             Text(value)
-                .font(.system(size: 20, weight: .heavy))
+                .font(.system(size: 20, weight: .heavy, design: .rounded))
                 .foregroundColor(.primary)
             
             if !subtitle.isEmpty {
                 Text(LocalizedStringKey(subtitle))
-                    .font(.system(size: 12, weight: .bold))
+                    .font(.system(size: 12, weight: .bold, design: .rounded))
                     .foregroundColor(.secondary)
             }
         }
@@ -345,7 +345,7 @@ struct ActionButtonWithIcon: View {
                 
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
-                        .font(.system(size: 18, weight: .heavy))
+                        .font(.system(size: 18, weight: .heavy, design: .rounded))
                         .foregroundColor(.themePrimary)
                     Text(subtitle)
                         .font(.system(size: 14))

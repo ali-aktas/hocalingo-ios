@@ -24,7 +24,7 @@ struct ProfileView: View {
                     premiumCard
                     
                     // Annual Statistics Section
-                    AnnualStatsSection(annualStats: viewModel.annualStats)
+                    //AnnualStatsSection(annualStats: viewModel.annualStats)
                     
                     // Settings Section
                     settingsSection
@@ -70,7 +70,7 @@ struct ProfileView: View {
                 // Premium Info
                 VStack(alignment: .leading, spacing: 4) {
                     Text(viewModel.isPremium ? "premium_active" : "premium_card_title")
-                        .font(.system(size: 18, weight: .bold))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundColor(.themePrimary)
                     
                     Text(viewModel.isPremium ? "Unlimited access" : "premium_card_subtitle")
@@ -87,7 +87,7 @@ struct ProfileView: View {
                         .foregroundColor(.accentGreen)
                 } else {
                     Image(systemName: "chevron.right")
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(.system(size: 16, weight: .semibold, design: .rounded))
                         .foregroundColor(.themeTertiary)
                 }
             }
@@ -136,7 +136,7 @@ struct ProfileView: View {
             // Section Header
             HStack {
                 Text("settings_title")
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.system(size: 18, weight: .semibold, design: .rounded))
                     .foregroundColor(.themePrimary)
                 Spacer()
             }
@@ -197,7 +197,7 @@ struct ProfileView: View {
             // Section Header
             HStack {
                 Text("legal_title")
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.system(size: 18, weight: .semibold, design: .rounded))
                     .foregroundColor(.themePrimary)
                 Spacer()
             }

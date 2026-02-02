@@ -99,7 +99,7 @@ struct StoryDetailView: View {
             
             // Title
             Text(story.title)
-                .font(.system(size: 28, weight: .bold))
+                .font(.system(size: 28, weight: .bold, design: .rounded))
                 .foregroundColor(.themePrimary)
                 .multilineTextAlignment(.center)
             
@@ -158,7 +158,7 @@ struct StoryDetailView: View {
     private var yourWordsSection: some View {
         VStack(alignment: .leading, spacing: 16) {
             Text("your_words")
-                .font(.system(size: 20, weight: .bold))
+                .font(.system(size: 20, weight: .bold, design: .rounded))
                 .foregroundColor(.themePrimary)
             
             LazyVGrid(columns: [
@@ -229,7 +229,7 @@ struct WordCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             Text(word.english)
-                .font(.system(size: 16, weight: .bold))
+                .font(.system(size: 16, weight: .bold, design: .rounded))
                 .foregroundColor(Color(hex: "6366F1"))
             
             Text(word.turkish)
@@ -266,11 +266,11 @@ struct WordMeaningSheet: View {
             // Content
             VStack(spacing: 12) {
                 Text(word.english)
-                    .font(.system(size: 28, weight: .bold))
+                    .font(.system(size: 28, weight: .bold, design: .rounded))
                     .foregroundColor(Color(hex: "6366F1"))
                 
                 Text(word.turkish)
-                    .font(.system(size: 22, weight: .medium))
+                    .font(.system(size: 22, weight: .medium, design: .rounded))
                     .foregroundColor(.themePrimary)
             }
             

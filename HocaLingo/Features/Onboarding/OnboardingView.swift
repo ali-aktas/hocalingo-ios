@@ -61,7 +61,7 @@ struct OnboardingView: View {
                             viewModel.skipOnboarding()
                         }) {
                             Text("onboarding_button_skip")
-                                .font(.system(size: 15, weight: .semibold))
+                                .font(.system(size: 15, weight: .semibold, design: .rounded))
                                 .foregroundColor(.secondary)
                         }
                         .padding(.trailing, 24)
@@ -104,12 +104,12 @@ struct OnboardingView: View {
                         .shadow(color: Color(hex: "10B981").opacity(0.4), radius: 20)
                     
                     Image(systemName: "checkmark")
-                        .font(.system(size: 50, weight: .bold))
+                        .font(.system(size: 50, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
                 }
                 
                 Text("onboarding_success")
-                    .font(.system(size: 24, weight: .bold))
+                    .font(.system(size: 24, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
             }
         }

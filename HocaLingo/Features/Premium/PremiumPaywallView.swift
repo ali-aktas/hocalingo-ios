@@ -167,7 +167,7 @@ struct PremiumPaywallView: View {
                     .frame(width: 90, height: 90)
                 
                 Image(systemName: "crown.fill")
-                    .font(.system(size: 45, weight: .bold))
+                    .font(.system(size: 45, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
             }
             .padding(.top, 20)
@@ -175,7 +175,7 @@ struct PremiumPaywallView: View {
             // Title & Subtitle
             VStack(spacing: 12) {
                 Text("paywall_title")
-                    .font(.system(size: 30, weight: .black))
+                    .font(.system(size: 30, weight: .black, design: .rounded))
                     .foregroundColor(.themePrimary)
                     .multilineTextAlignment(.center)
                 
@@ -235,14 +235,14 @@ struct PremiumPaywallView: View {
                     .frame(width: 50, height: 50)
                 
                 Image(systemName: icon)
-                    .font(.system(size: 22, weight: .semibold))
+                    .font(.system(size: 22, weight: .semibold, design: .rounded))
                     .foregroundColor(iconColor)
             }
             
             // Text
             VStack(alignment: .leading, spacing: 4) {
                 Text(LocalizedStringKey(title))
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
                     .foregroundColor(.themePrimary)
                 
                 Text(description)
@@ -319,12 +319,12 @@ struct PremiumPaywallView: View {
                 VStack(alignment: .leading, spacing: 4) {
                     HStack(spacing: 8) {
                         Text(LocalizedStringKey(title))
-                            .font(.system(size: 17, weight: .bold))
+                            .font(.system(size: 17, weight: .bold, design: .rounded))
                             .foregroundColor(.themePrimary)
                         
                         if let badge = badge {
                             Text(LocalizedStringKey(badge))
-                                .font(.system(size: 11, weight: .bold))
+                                .font(.system(size: 11, weight: .bold, design: .rounded))
                                 .foregroundColor(.white)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 3)
@@ -390,7 +390,7 @@ struct PremiumPaywallView: View {
                 } else {
                     Image(systemName: "crown.fill")
                     Text("paywall_purchase_button")
-                        .font(.system(size: 18, weight: .bold))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
                 }
             }
             .foregroundColor(.white)
@@ -418,7 +418,7 @@ struct PremiumPaywallView: View {
             // Restore Purchases
             Button(action: handleRestore) {
                 Text("paywall_restore")
-                    .font(.system(size: 15, weight: .semibold))
+                    .font(.system(size: 15, weight: .semibold, design: .rounded))
                     .foregroundColor(.themeSecondary)
             }
             .disabled(isProcessing)

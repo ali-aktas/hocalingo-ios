@@ -125,7 +125,7 @@ struct StudyTopBar: View {
         HStack {
             Button(action: onClose) {
                 Image(systemName: "xmark")
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.system(size: 16, weight: .semibold, design: .rounded))
                     .foregroundColor(.primary)
                     .frame(width: 36, height: 36)
                     .background(Color.gray.opacity(0.1))
@@ -135,7 +135,7 @@ struct StudyTopBar: View {
             Spacer()
             
             Text("study_navbar_title")
-                .font(.system(size: 17, weight: .semibold))
+                .font(.system(size: 17, weight: .semibold, design: .rounded))
                 .foregroundColor(.primary)
             
             Spacer()
@@ -143,7 +143,7 @@ struct StudyTopBar: View {
             // ✅ UPDATED: Settings button (now active)
             Button(action: onSettings) {
                 Image(systemName: "gearshape")
-                    .font(.system(size: 16, weight: .semibold))
+                    .font(.system(size: 16, weight: .semibold, design: .rounded))
                     .foregroundColor(.primary)
                     .frame(width: 36, height: 36)
                     .background(Color.gray.opacity(0.1))
@@ -166,7 +166,7 @@ struct StudyProgressBar: View {
     var body: some View {
         HStack(spacing: 16) {
             Text("\(currentIndex + 1)/\(totalCards)")
-                .font(.system(size: 14, weight: .medium))
+                .font(.system(size: 14, weight: .medium, design: .rounded))
                 .foregroundColor(.secondary)
                 .frame(width: 50, alignment: .leading)
             
@@ -231,7 +231,7 @@ struct StudyButtons: View {
             // Flip card prompt
             Button(action: {}) {
                 Text("study_flip_card_hint")
-                    .font(.system(size: 16, weight: .medium))
+                    .font(.system(size: 16, weight: .medium, design: .rounded))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
@@ -257,11 +257,11 @@ struct StudyActionButton: View {
         Button(action: onTap) {
             VStack(spacing: 4) {
                 Text(title)
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.system(size: 14, weight: .semibold, design: .rounded))
                     .foregroundColor(.white)
                 
                 Text(timeText)
-                    .font(.system(size: 11, weight: .medium))
+                    .font(.system(size: 11, weight: .medium, design: .rounded))
                     .foregroundColor(.white.opacity(0.8))
             }
             .frame(maxWidth: .infinity)

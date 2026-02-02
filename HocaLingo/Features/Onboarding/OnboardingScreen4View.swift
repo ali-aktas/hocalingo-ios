@@ -82,13 +82,13 @@ struct OnboardingScreen4View: View {
     private var instructionBanner: some View {
         VStack(spacing: 8) {
             Text(instructionText)
-                .font(.system(size: 17, weight: .medium))
+                .font(.system(size: 17, weight: .medium, design: .rounded))
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
             
             if showWarning {
                 Text("onboarding_study_warning")
-                    .font(.system(size: 14, weight: .medium))
+                    .font(.system(size: 14, weight: .medium, design: .rounded))
                     .foregroundColor(Color(hex: "F97316"))
                     .multilineTextAlignment(.center)
                     .padding(.top, 4)
@@ -157,12 +157,12 @@ struct OnboardingScreen4View: View {
                 Spacer()
                 
                 Text(mainText)
-                    .font(.system(size: 32, weight: .bold))
+                    .font(.system(size: 32, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                 
                 if !exampleText.isEmpty {
                     Text(exampleText)
-                        .font(.system(size: 14, weight: .regular))
+                        .font(.system(size: 14, weight: .regular, design: .rounded))
                         .foregroundColor(.white.opacity(0.9))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 32)

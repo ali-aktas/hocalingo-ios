@@ -17,7 +17,7 @@ struct AnnualStatsSection: View {
             // Section Header
             HStack {
                 Text("annual_stats_title")
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.system(size: 18, weight: .semibold, design: .rounded))
                     .foregroundColor(.themePrimary)
                 Spacer()
             }
@@ -74,13 +74,13 @@ struct CompactStatCard: View {
             
             // Value
             Text(value)
-                .font(.system(size: 22, weight: .bold))
+                .font(.system(size: 22, weight: .bold, design: .rounded))
                 .foregroundColor(.themePrimary)
                 .lineLimit(1)
             
             // Label
             Text(title) // ✅ Artık Localizable.strings dosyasındaki karşılığını gösterecek
-                .font(.system(size: 11, weight: .medium))
+                .font(.system(size: 11, weight: .medium, design: .rounded))
                 .foregroundColor(.themeSecondary)
                 .multilineTextAlignment(.center)
                 .lineLimit(2)

@@ -53,7 +53,7 @@ struct CardStyleSettingsView: View {
                 // Apply button
                 Button(action: applyStyle) {
                     Text("apply")
-                        .font(.system(size: 17, weight: .semibold))
+                        .font(.system(size: 17, weight: .semibold, design: .rounded))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)
@@ -128,13 +128,13 @@ struct CardStyleOptionRow: View {
                 VStack(alignment: .leading, spacing: 4) {
                     HStack(spacing: 8) {
                         Text(LocalizedStringKey(style.displayName))
-                            .font(.system(size: 17, weight: .semibold))
+                            .font(.system(size: 17, weight: .semibold, design: .rounded))
                             .foregroundColor(.primary)
                         
                         // Premium badge
                         if style.requiresPremium {
                             Text("Premium")
-                                .font(.system(size: 11, weight: .bold))
+                                .font(.system(size: 11, weight: .bold, design: .rounded))
                                 .foregroundColor(.white)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 4)
@@ -208,7 +208,7 @@ struct PaywallPlaceholderView: View {
                 .foregroundColor(Color(hex: "FFD700"))
             
             Text("Premium Feature")
-                .font(.system(size: 28, weight: .bold))
+                .font(.system(size: 28, weight: .bold, design: .rounded))
                 .foregroundColor(.primary)
             
             Text("Upgrade to Premium to unlock beautiful gradient card designs")
@@ -226,7 +226,7 @@ struct PaywallPlaceholderView: View {
                     dismiss()
                 }) {
                     Text("Upgrade to Premium")
-                        .font(.system(size: 17, weight: .semibold))
+                        .font(.system(size: 17, weight: .semibold, design: .rounded))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)
@@ -242,7 +242,7 @@ struct PaywallPlaceholderView: View {
                 
                 Button(action: { dismiss() }) {
                     Text("Maybe Later")
-                        .font(.system(size: 15, weight: .medium))
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
                         .foregroundColor(.secondary)
                 }
             }

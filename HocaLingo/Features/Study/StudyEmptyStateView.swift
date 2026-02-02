@@ -31,11 +31,11 @@ struct StudyEmptyStateView: View {
             
             VStack(spacing: 12) {
                 Text("Henüz Kelime Yok")
-                    .font(.system(size: 24, weight: .bold))
+                    .font(.system(size: 24, weight: .bold, design: .rounded))
                     .foregroundColor(.primary)
                 
                 Text("Çalışmaya başlamak için kelime paketlerinden kelime seçmelisin.")
-                    .font(.system(size: 16, weight: .regular))
+                    .font(.system(size: 16, weight: .regular, design: .rounded))
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 40)
@@ -52,7 +52,7 @@ struct StudyEmptyStateView: View {
                             .font(.system(size: 20))
                         
                         Text("Kelime Seç")
-                            .font(.system(size: 18, weight: .semibold))
+                            .font(.system(size: 18, weight: .semibold, design: .rounded))
                     }
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
@@ -72,7 +72,7 @@ struct StudyEmptyStateView: View {
                     selectedTab = 0
                 }) {
                     Text("Ana Sayfaya Dön")
-                        .font(.system(size: 16, weight: .medium))
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundColor(Color(hex: "4ECDC4"))
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 14)

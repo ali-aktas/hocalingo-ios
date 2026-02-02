@@ -83,7 +83,7 @@ struct GeneratingView: View {
             
             // Phase icon
             Image(systemName: currentPhase.icon)
-                .font(.system(size: 48, weight: .semibold))
+                .font(.system(size: 48, weight: .semibold, design: .rounded))
                 .foregroundColor(.white)
         }
     }
@@ -91,7 +91,7 @@ struct GeneratingView: View {
     private var phaseContent: some View {
         VStack(spacing: 12) {
             Text(LocalizedStringKey(currentPhase.title))
-                .font(.system(size: 22, weight: .bold))
+                .font(.system(size: 22, weight: .bold, design: .rounded))
                 .foregroundColor(.white)
             
             Text("Lütfen bekleyin")

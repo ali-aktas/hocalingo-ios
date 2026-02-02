@@ -469,6 +469,10 @@ class StudyViewModel: ObservableObject {
     
     // ✅ NEW: Premium gradient support
     var currentCardGradient: [Color]? {
+        if cardStyle == .minimal {
+            return [Color(hex: "141E30"), Color(hex: "243B55")]
+        }
+        
         guard cardStyle == .premium else { return nil }
         
         let cardForColor = studyQueue.first ?? currentCard

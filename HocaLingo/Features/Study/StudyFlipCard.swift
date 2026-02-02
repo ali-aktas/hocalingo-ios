@@ -169,7 +169,7 @@ private struct CardFace: View {
                 
                 // Main text (word)
                 Text(mainText)
-                    .font(.system(size: 32, weight: .bold))
+                    .font(.system(size: 32, weight: .bold, design: .rounded))
                     .foregroundColor(textColor)
                     .multilineTextAlignment(.center)
                     .padding(.horizontal, 24)
@@ -178,7 +178,7 @@ private struct CardFace: View {
                 // Example sentence
                 if !exampleText.isEmpty {
                     Text(exampleText)
-                        .font(.system(size: 14, weight: .regular))
+                        .font(.system(size: 14, weight: .regular, design: .rounded))
                         .foregroundColor(textColor.opacity(0.9))
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 32)
@@ -215,15 +215,24 @@ private struct CardFace: View {
                 endPoint: .bottom
             )
         case .minimal:
-            // Single color, subtle gradient
-            return LinearGradient(
-                colors: [
-                    backgroundColor,
-                    backgroundColor.opacity(0.85)
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
+            // ✅ FIX: Minimal now uses backgroundGradient if available!
+            if let gradient = backgroundGradient, gradient.count >= 2 {
+                return LinearGradient(
+                    colors: gradient,
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+            } else {
+                // Fallback
+                return LinearGradient(
+                    colors: [
+                        backgroundColor,
+                        backgroundColor.opacity(0.85)
+                    ],
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+            }
         case .premium:
             // Premium gradient
             if let gradient = backgroundGradient, gradient.count >= 2 {
@@ -245,14 +254,11 @@ private struct CardFace: View {
             }
         }
     }
-    
     // MARK: - Text Color Based on Style
     private var textColor: Color {
         switch cardStyle {
-        case .colorful, .premium:
+        case .colorful, .premium, .minimal:
             return .white
-        case .minimal:
-            return Color(hex: "374151")  // Dark grey text for minimal style
         }
     }
 }

@@ -45,11 +45,11 @@ struct StudyCompletionView: View {
                     
                     VStack(spacing: 12) {
                         Text(messages[currentMessageIndex].0)
-                            .font(.system(size: 32, weight: .black))
+                            .font(.system(size: 32, weight: .black, design: .rounded))
                             .foregroundColor(.primary)
                         
                         Text(messages[currentMessageIndex].1)
-                            .font(.system(size: 18, weight: .medium))
+                            .font(.system(size: 18, weight: .medium, design: .rounded))
                             .foregroundColor(.secondary)
                             .multilineTextAlignment(.center)
                     }
@@ -68,7 +68,7 @@ struct StudyCompletionView: View {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.system(size: 20))
                             Text("Ana Sayfa")
-                                .font(.system(size: 17, weight: .bold))
+                                .font(.system(size: 17, weight: .bold, design: .rounded))
                         }
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
@@ -85,7 +85,7 @@ struct StudyCompletionView: View {
                             Image(systemName: "square.grid.2x2.fill")
                                 .font(.system(size: 18))
                             Text("Paket Seç")
-                                .font(.system(size: 16, weight: .semibold))
+                                .font(.system(size: 16, weight: .semibold, design: .rounded))
                         }
                         .foregroundColor(Color(hex: "4ECDC4"))
                         .frame(maxWidth: .infinity)

@@ -95,7 +95,7 @@ struct SettingsCard: View {
                     // Title & Subtitle
                     VStack(alignment: .leading, spacing: 2) {
                         Text(LocalizedStringKey(title))
-                            .font(.system(size: 16, weight: .medium))
+                            .font(.system(size: 16, weight: .medium, design: .rounded))
                             .foregroundColor(.themePrimary)
                         
                         if let subtitle = subtitle {
@@ -147,7 +147,7 @@ struct SettingsCard: View {
                         } label: {
                             HStack(spacing: 4) {
                                 Text(String(format: "%02d:00", selectedHour.wrappedValue))
-                                    .font(.system(size: 16, weight: .medium))
+                                    .font(.system(size: 16, weight: .medium, design: .rounded))
                                     .foregroundColor(.accentPurple)
                                 
                                 Image(systemName: "chevron.up.chevron.down")
@@ -188,7 +188,7 @@ struct SettingsCard: View {
                 // Title & Subtitle
                 VStack(alignment: .leading, spacing: 2) {
                     Text(LocalizedStringKey(title))
-                        .font(.system(size: 16, weight: .medium))
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundColor(.themePrimary)
                     
                     if let subtitle = subtitle {
@@ -207,7 +207,7 @@ struct SettingsCard: View {
                         .foregroundColor(.themeSecondary)
                     
                     Image(systemName: "chevron.right")
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
                         .foregroundColor(.themeTertiary)
                 }
             }
@@ -249,7 +249,7 @@ struct SettingsCard: View {
                     // Title & Subtitle
                     VStack(alignment: .leading, spacing: 4) {
                         Text(LocalizedStringKey(title))
-                            .font(.system(size: 18, weight: .bold))
+                            .font(.system(size: 18, weight: .bold, design: .rounded))
                             .foregroundColor(.themePrimary)
                         
                         Text(LocalizedStringKey(subtitle))
@@ -261,7 +261,7 @@ struct SettingsCard: View {
                     
                     // Expand/Collapse Icon
                     Image(systemName: isExpanded ? "chevron.up" : "chevron.down")
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(.system(size: 16, weight: .semibold, design: .rounded))
                         .foregroundColor(.themeTertiary)
                 }
                 .padding(16)
@@ -351,7 +351,7 @@ struct SettingsCard: View {
                 // Title & Subtitle
                 VStack(alignment: .leading, spacing: 2) {
                     Text(LocalizedStringKey(title))
-                        .font(.system(size: 16, weight: .medium))
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundColor(.themePrimary)
                     
                     if let subtitle = subtitle {
@@ -366,7 +366,7 @@ struct SettingsCard: View {
                 // Chevron
                 if showChevron {
                     Image(systemName: "chevron.right")
-                        .font(.system(size: 14, weight: .semibold))
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
                         .foregroundColor(.themeTertiary)
                 }
             }

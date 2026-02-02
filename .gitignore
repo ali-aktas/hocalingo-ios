@@ -70,4 +70,4 @@ HocaLingo/Core/Utils/Config.swift
 *.local
 
 # macOS
-.DS_Storex
+.DS_Store

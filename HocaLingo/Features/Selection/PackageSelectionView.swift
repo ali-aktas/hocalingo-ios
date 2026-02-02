@@ -182,13 +182,13 @@ struct PackageSelectionView: View {
                     .frame(width: 70, height: 70)
                 
                 Image(systemName: "crown.fill")
-                    .font(.system(size: 36, weight: .bold))
+                    .font(.system(size: 36, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
             }
             
             VStack(spacing: 8) {
                 Text("premium_header_title")
-                    .font(.system(size: 28, weight: .black))
+                    .font(.system(size: 28, weight: .black, design: .rounded))
                     .foregroundColor(.themePrimary)
                 
                 Text("premium_header_subtitle")
@@ -204,7 +204,7 @@ struct PackageSelectionView: View {
                         Image(systemName: "sparkles")
                         Text("premium_upgrade_button")
                     }
-                    .font(.system(size: 16, weight: .bold))
+                    .font(.system(size: 16, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
                     .padding(.horizontal, 24)
                     .padding(.vertical, 12)
@@ -258,7 +258,7 @@ struct PackageSelectionView: View {
                 
                 VStack(spacing: 12) {
                     Text("package_empty_title")
-                        .font(.system(size: 24, weight: .bold))
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
                         .foregroundColor(.themePrimary)
                     
                     Text("package_empty_message")
@@ -269,7 +269,7 @@ struct PackageSelectionView: View {
                 
                 Button(action: { withAnimation { viewModel.showEmptyPackageAlert = false } }) {
                     Text("package_empty_button")
-                        .font(.system(size: 17, weight: .bold))
+                        .font(.system(size: 17, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 16)

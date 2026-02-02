@@ -36,7 +36,7 @@ struct ProgressIndicator: View {
             HStack {
                 Spacer()
                 Text("\(currentStep) / \(totalSteps)")
-                    .font(.system(size: 13, weight: .medium))
+                    .font(.system(size: 13, weight: .medium, design: .rounded))
                     .foregroundColor(.secondary)
             }
         }

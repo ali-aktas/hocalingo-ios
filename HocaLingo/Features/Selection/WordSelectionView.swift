@@ -156,7 +156,7 @@ struct WordSelectionView: View {
         VStack(spacing: 8) {
             HStack {
                 Text("\(viewModel.processedWords)/\(viewModel.totalWordsCount)")
-                    .font(.system(size: 14, weight: .semibold))
+                    .font(.system(size: 14, weight: .semibold, design: .rounded))
                     .foregroundColor(.secondary)
                 Spacer()
             }
@@ -192,7 +192,7 @@ struct WordSelectionView: View {
                 .foregroundColor(.orange)
             
             Text("\(remaining) ") + Text("word_selection_remaining")
-                .font(.system(size: 14, weight: .medium))
+                .font(.system(size: 14, weight: .medium, design: .rounded))
                 .foregroundColor(.primary)
         }
         .padding(.horizontal, 16)
@@ -213,7 +213,7 @@ struct WordSelectionView: View {
     private func wordCard(word: Word, isNext: Bool = false) -> some View {
         VStack(spacing: 16) {
             Text(word.english)
-                .font(.system(size: 28, weight: .bold))
+                .font(.system(size: 28, weight: .bold, design: .rounded))
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
             
@@ -260,12 +260,12 @@ struct WordSelectionView: View {
                             .shadow(color: Color(hex: "EF5350").opacity(0.35), radius: 10, x: 0, y: 5)
                         
                         Image(systemName: "xmark")
-                            .font(.system(size: 38, weight: .bold))
+                            .font(.system(size: 38, weight: .bold, design: .rounded))
                             .foregroundColor(.white)
                     }
                     
                     Text("word_selection_skip")
-                        .font(.system(size: 15, weight: .bold))
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
                         .foregroundColor(.themePrimary)
                 }
             }
@@ -324,13 +324,13 @@ struct WordSelectionView: View {
                     .shadow(color: Color(hex: "10B981").opacity(0.4), radius: 20, x: 0, y: 10)
                 
                 Image(systemName: "star.fill")
-                    .font(.system(size: 60, weight: .bold))
+                    .font(.system(size: 60, weight: .bold, design: .rounded))
                     .foregroundColor(.white)
             }
             
             VStack(spacing: 16) {
                 Text("word_selection_complete_title")
-                    .font(.system(size: 28, weight: .black))
+                    .font(.system(size: 28, weight: .black, design: .rounded))
                     .foregroundColor(.primary)
                 
                 Text("word_selection_complete_message")
@@ -349,7 +349,7 @@ struct WordSelectionView: View {
                             Image(systemName: "book.fill")
                             Text("word_selection_start_learning") + Text(" (\(viewModel.selectedCount))")
                         }
-                        .font(.system(size: 17, weight: .bold))
+                        .font(.system(size: 17, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
                         .padding(.vertical, 18)
@@ -364,7 +364,7 @@ struct WordSelectionView: View {
                         Image(systemName: "square.grid.2x2.fill")
                         Text("word_selection_new_package")
                     }
-                    .font(.system(size: 17, weight: .semibold))
+                    .font(.system(size: 17, weight: .semibold, design: .rounded))
                     .foregroundColor(themeAccentColor)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 18)
@@ -392,7 +392,7 @@ struct WordSelectionView: View {
                 
                 VStack(spacing: 12) {
                     Text("word_selection_limit_title")
-                        .font(.system(size: 22, weight: .bold))
+                        .font(.system(size: 22, weight: .bold, design: .rounded))
                         .foregroundColor(.primary)
                     
                     Text("word_selection_limit_message")
@@ -412,7 +412,7 @@ struct WordSelectionView: View {
                                 Image(systemName: "book.fill")
                                 Text("word_selection_start_learning") + Text(" (\(viewModel.selectedCount))")
                             }
-                            .font(.system(size: 17, weight: .bold))
+                            .font(.system(size: 17, weight: .bold, design: .rounded))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 16)
@@ -426,7 +426,7 @@ struct WordSelectionView: View {
                         showPremiumSheet = true
                     }) {
                         Text("Premium'a Geç")
-                            .font(.system(size: 16, weight: .semibold))
+                            .font(.system(size: 16, weight: .semibold, design: .rounded))
                             .foregroundColor(themeAccentColor)
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 16)

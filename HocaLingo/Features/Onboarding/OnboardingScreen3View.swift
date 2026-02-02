@@ -32,7 +32,7 @@ struct OnboardingScreen3View: View {
                 // Instruction text
                 if demoPhase != .completed {
                     Text(instructionText)
-                        .font(.system(size: 17, weight: .medium))
+                        .font(.system(size: 17, weight: .medium, design: .rounded))
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 32)

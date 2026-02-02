@@ -108,7 +108,7 @@ struct StoryCreatorSheet: View {
                 .foregroundColor(.accentPurple)
             
             Text("story_creator_title")
-                .font(.system(size: 24, weight: .bold))
+                .font(.system(size: 24, weight: .bold, design: .rounded))
                 .foregroundColor(.themePrimary)
                 .multilineTextAlignment(.center)
         }
@@ -145,7 +145,7 @@ struct StoryCreatorSheet: View {
     private var typeSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("select_type")
-                .font(.system(size: 16, weight: .semibold))
+                .font(.system(size: 16, weight: .semibold, design: .rounded))
                 .foregroundColor(.themePrimary)
             
             VStack(spacing: 12) {
@@ -244,10 +244,10 @@ struct StoryCreatorSheet: View {
         } label: {
             HStack(spacing: 12) {
                 Image(systemName: "sparkles")
-                    .font(.system(size: 20, weight: .semibold))
+                    .font(.system(size: 20, weight: .semibold, design: .rounded))
                 
                 Text("generate_button")
-                    .font(.system(size: 18, weight: .bold))
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
             }
             .foregroundColor(.white)
             .frame(maxWidth: .infinity)
@@ -288,7 +288,7 @@ struct TypePillButton: View {
                 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(type.displayName)
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(.system(size: 16, weight: .semibold, design: .rounded))
                         .foregroundColor(isSelected ? .white : .themePrimary)
                 }
                 
@@ -345,7 +345,7 @@ struct LengthPillButton: View {
             VStack(spacing: 8) {
                 HStack(spacing: 4) {
                     Text(length.displayName)
-                        .font(.system(size: 16, weight: .semibold))
+                        .font(.system(size: 16, weight: .semibold, design: .rounded))
                         .foregroundColor(isSelected ? .white : .themePrimary)
                     
                     if isLocked {

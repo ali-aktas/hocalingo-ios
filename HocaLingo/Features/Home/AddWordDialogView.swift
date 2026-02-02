@@ -111,14 +111,14 @@ private extension AddWordDialogView {
     ) -> some View {
         VStack(alignment: .leading, spacing: 12) {
             Label(title, systemImage: icon)
-                .font(.system(size: 14, weight: .bold))
+                .font(.system(size: 14, weight: .bold, design: .rounded))
                 .foregroundColor(accentColor)
                 .padding(.leading, 4)
             
             VStack(spacing: 0) {
                 // Kelime TextField
                 TextField(placeholder, text: wordText)
-                    .font(.system(size: 18, weight: .semibold))
+                    .font(.system(size: 18, weight: .semibold, design: .rounded))
                     .foregroundColor(.themePrimary)
                     .padding()
                     .background(Color.themeCard)
@@ -159,7 +159,7 @@ private extension AddWordDialogView {
                 .foregroundColor(.accentOrange)
             
             Text(NSLocalizedString("add_word_info", comment: ""))
-                .font(.system(size: 13, weight: .medium))
+                .font(.system(size: 13, weight: .medium, design: .rounded))
                 .foregroundColor(.themeSecondary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
@@ -180,7 +180,7 @@ private extension AddWordDialogView {
                         Image(systemName: "checkmark.circle.fill")
                         Text(NSLocalizedString("add_word_save", comment: ""))
                     }
-                    .font(.system(size: 17, weight: .bold))
+                    .font(.system(size: 17, weight: .bold, design: .rounded))
                 }
             }
             .foregroundColor(.white)
@@ -200,7 +200,7 @@ private extension AddWordDialogView {
 
     func errorBanner(message: String) -> some View {
         Label(message, systemImage: "exclamationmark.triangle.fill")
-            .font(.system(size: 13, weight: .bold))
+            .font(.system(size: 13, weight: .bold, design: .rounded))
             .foregroundColor(.red)
             .padding()
             .frame(maxWidth: .infinity)
@@ -221,7 +221,7 @@ private extension AddWordDialogView {
                     .symbolEffect(.bounce, value: showSuccessAnimation)
                 
                 Text(NSLocalizedString("add_word_success", comment: ""))
-                    .font(.system(size: 22, weight: .heavy))
+                    .font(.system(size: 22, weight: .heavy, design: .rounded))
                     .foregroundColor(.themePrimary)
             }
             .padding(40)

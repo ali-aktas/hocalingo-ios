@@ -29,7 +29,7 @@ struct OnboardingButton: View {
             }
         }) {
             Text(title)
-                .font(.system(size: 17, weight: .semibold))
+                .font(.system(size: 17, weight: .semibold, design: .rounded))
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
                 .frame(height: 56)
