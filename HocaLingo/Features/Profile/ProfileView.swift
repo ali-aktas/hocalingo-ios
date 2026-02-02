@@ -2,12 +2,12 @@
 //  ProfileView.swift
 //  HocaLingo
 //
-//  ✅ REDESIGNED: Modern, clean UI with generic SettingsCard component
-//  All settings use the same reusable card - easy to maintain & extend
+//  ✅ UPDATED: GitHub Pages URLs + In-App Safari + Real Support Email
 //  Location: Features/Profile/ProfileView.swift
 //
 
 import SwiftUI
+import SafariServices
 
 // MARK: - Profile View
 struct ProfileView: View {
@@ -15,6 +15,10 @@ struct ProfileView: View {
     @Environment(\.themeViewModel) private var themeViewModel
     @Environment(\.colorScheme) private var colorScheme
     @State private var showPremiumSheet = false
+    
+    // ✅ NEW: Safari sheet states for in-app browser
+    @State private var showPrivacyPolicy = false
+    @State private var showTermsOfService = false
     
     var body: some View {
         NavigationView {
@@ -38,6 +42,13 @@ struct ProfileView: View {
         }
         .sheet(isPresented: $showPremiumSheet) {
             PremiumPaywallView()
+        }
+        // ✅ NEW: In-App Safari sheets
+        .sheet(isPresented: $showPrivacyPolicy) {
+            SafariView(url: URL(string: "https://ali-aktas.github.io/hocalingo-legal/privacy-policy.html")!)
+        }
+        .sheet(isPresented: $showTermsOfService) {
+            SafariView(url: URL(string: "https://ali-aktas.github.io/hocalingo-legal/terms-of-service.html")!)
         }
     }
     
@@ -73,66 +84,48 @@ struct ProfileView: View {
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundColor(.themePrimary)
                     
-                    Text(viewModel.isPremium ? "Unlimited access" : "premium_card_subtitle")
-                        .font(.system(size: 13))
+                    Text(viewModel.isPremium ? "premium_card_subtitle" : "premium_upgrade_subtitle")
+                        .font(.system(size: 14))
                         .foregroundColor(.themeSecondary)
                 }
                 
                 Spacer()
                 
-                // Upgrade Button or Checkmark
-                if viewModel.isPremium {
-                    Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 24))
-                        .foregroundColor(.accentGreen)
-                } else {
+                // Chevron or Crown
+                if !viewModel.isPremium {
                     Image(systemName: "chevron.right")
-                        .font(.system(size: 16, weight: .semibold, design: .rounded))
+                        .font(.system(size: 16, weight: .semibold))
                         .foregroundColor(.themeTertiary)
                 }
             }
-            .padding(16)
+            .padding(20)
             .background(
-                ZStack {
-                    Color.themeCard
-                    
-                    // Gradient overlay for non-premium
-                    if !viewModel.isPremium {
-                        LinearGradient(
-                            colors: [
-                                Color(hex: "FFD700").opacity(0.1),
-                                Color(hex: "FFA500").opacity(0.05)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    }
-                }
+                LinearGradient(
+                    colors: viewModel.isPremium
+                        ? [Color(hex: "FFD700").opacity(0.2), Color(hex: "FFA500").opacity(0.1)]
+                        : [Color.themeCard, Color.themeCard],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
             )
             .cornerRadius(16)
             .overlay(
                 RoundedRectangle(cornerRadius: 16)
                     .stroke(
-                        LinearGradient(
-                            colors: [
-                                Color(hex: "FFD700").opacity(0.5),
-                                Color(hex: "FFA500").opacity(0.3)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        ),
-                        lineWidth: 2
+                        viewModel.isPremium
+                            ? LinearGradient(colors: [Color(hex: "FFD700"), Color(hex: "FFA500")], startPoint: .topLeading, endPoint: .bottomTrailing)
+                            : LinearGradient(colors: [Color.clear], startPoint: .topLeading, endPoint: .bottomTrailing),
+                        lineWidth: viewModel.isPremium ? 2 : 0
                     )
             )
-            .shadow(color: Color(hex: "FFD700").opacity(0.2), radius: 8, x: 0, y: 4)
-            .contentShape(Rectangle())
+            .shadow(color: viewModel.isPremium ? Color(hex: "FFD700").opacity(0.3) : Color.themeShadow, radius: 8, x: 0, y: 4)
         }
         .buttonStyle(PlainButtonStyle())
     }
     
-    // MARK: - Settings Section (GÜNCELLENDİ: Sıralama Değişti)
+    // MARK: - Settings Section
     private var settingsSection: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 20) {
             // Section Header
             HStack {
                 Text("settings_title")
@@ -212,10 +205,8 @@ struct ProfileView: View {
                         subtitle: nil,
                         showChevron: true,
                         action: {
-                            // GÜNCELLENDİ: Gizlilik Politikasını Aç
-                            if let url = URL(string: "https://www.seninsiten.com/privacy") {
-                                UIApplication.shared.open(url)
-                            }
+                            // ✅ UPDATED: Open in-app Safari
+                            showPrivacyPolicy = true
                         }
                     )
                 )
@@ -232,10 +223,8 @@ struct ProfileView: View {
                         subtitle: nil,
                         showChevron: true,
                         action: {
-                            // GÜNCELLENDİ: Kullanım Şartlarını Aç
-                            if let url = URL(string: "https://www.seninsiten.com/terms") {
-                                UIApplication.shared.open(url)
-                            }
+                            // ✅ UPDATED: Open in-app Safari
+                            showTermsOfService = true
                         }
                     )
                 )
@@ -252,9 +241,14 @@ struct ProfileView: View {
                         subtitle: "legal_support_subtitle",
                         showChevron: true,
                         action: {
-                            // GÜNCELLENDİ: Mail Uygulamasını Aç
-                            let email = "support@hocalingo.com"
-                            if let url = URL(string: "mailto:\(email)") {
+                            // ✅ UPDATED: Real support email
+                            let email = "auraliastudios@gmail.com"
+                            let subject = "HocaLingo iOS - Support Request"
+                            let body = "Hello HocaLingo team,\n\n"
+                            
+                            let mailtoString = "mailto:\(email)?subject=\(subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")&body=\(body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
+                            
+                            if let url = URL(string: mailtoString) {
                                 UIApplication.shared.open(url)
                             }
                         }
@@ -266,21 +260,42 @@ struct ProfileView: View {
             .shadow(color: Color.themeShadow, radius: 8, x: 0, y: 2)
         }
     }
+}
+
+// MARK: - Safari View Wrapper
+/// SwiftUI wrapper for SFSafariViewController (in-app browser)
+struct SafariView: UIViewControllerRepresentable {
+    let url: URL
     
-    // MARK: - Preview
-    struct ProfileView_Previews: PreviewProvider {
-        static var previews: some View {
-            Group {
-                ProfileView()
-                    .environment(\.themeViewModel, ThemeViewModel.shared)
-                    .preferredColorScheme(.light)
-                    .previewDisplayName("Light Theme")
-                
-                ProfileView()
-                    .environment(\.themeViewModel, ThemeViewModel.shared)
-                    .preferredColorScheme(.dark)
-                    .previewDisplayName("Dark Theme")
-            }
+    func makeUIViewController(context: Context) -> SFSafariViewController {
+        let config = SFSafariViewController.Configuration()
+        config.entersReaderIfAvailable = false // Don't auto-enter reader mode
+        
+        let safari = SFSafariViewController(url: url, configuration: config)
+        safari.preferredBarTintColor = UIColor.systemBackground
+        safari.preferredControlTintColor = UIColor(Color.themePrimary)
+        
+        return safari
+    }
+    
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {
+        // No updates needed
+    }
+}
+
+// MARK: - Preview
+struct ProfileView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            ProfileView()
+                .environment(\.themeViewModel, ThemeViewModel.shared)
+                .preferredColorScheme(.light)
+                .previewDisplayName("Light Theme")
+            
+            ProfileView()
+                .environment(\.themeViewModel, ThemeViewModel.shared)
+                .preferredColorScheme(.dark)
+                .previewDisplayName("Dark Theme")
         }
     }
 }

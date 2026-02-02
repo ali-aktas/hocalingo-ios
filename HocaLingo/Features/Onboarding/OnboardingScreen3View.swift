@@ -2,7 +2,7 @@
 //  OnboardingScreen3View.swift
 //  HocaLingo
 //
-//  ✅ FIXED: Background, overlay positioning, bottom text, success message
+//  ✅ ENHANCED: Animated arrow, hand gesture, pulse effects, haptic feedback, swipe lock
 //  Location: HocaLingo/Features/Onboarding/OnboardingScreen3View.swift
 //
 
@@ -17,6 +17,12 @@ struct OnboardingScreen3View: View {
     @State private var demoPhase: DemoPhase = .initial
     @State private var cardOffset: CGSize = .zero
     @State private var hasShownAutoAnimation = false
+    
+    // ✅ NEW: Animation states for indicators
+    @State private var arrowScale: CGFloat = 1.0
+    @State private var arrowOpacity: Double = 0.6
+    @State private var handOffset: CGFloat = 0
+    @State private var showWrongDirectionFeedback = false
     
     // Demo word
     private let demoWord = ("Hello", "Merhaba")
@@ -43,7 +49,6 @@ struct OnboardingScreen3View: View {
                 // Card area
                 ZStack {
                     if demoPhase == .completed {
-                        // ✅ FIXED: Big success message in center
                         successMessage
                             .transition(.scale.combined(with: .opacity))
                     } else {
@@ -53,58 +58,69 @@ struct OnboardingScreen3View: View {
                 .frame(height: 460)
                 .padding(.horizontal, 24)
                 
-                // ✅ FIXED: Bottom explanation text
+                // Bottom explanation text
                 if demoPhase != .completed {
-                    Text("Bildiğin kelimeleri sola kaydır,\nöğrenmek istediklerini sağa!")
-                        .font(.system(size: 18, weight: .medium, design: .rounded))
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.top, 16)
-                        .padding(.horizontal, 32)
+                    VStack(spacing: 12) {
+                        Text("Bildiğin kelimeleri sola kaydır,\nöğrenmek istediklerini sağa!")
+                            .font(.system(size: 14))
+                            .foregroundColor(.themeSecondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 32)
+                        
+                        // ✅ NEW: Animated hand gesture (only during user interaction)
+                        if demoPhase == .userInteraction {
+                            handGestureIndicator
+                                .transition(.opacity.combined(with: .scale))
+                        }
+                    }
+                    .padding(.top, 20)
                 }
                 
                 Spacer()
-                
-                // Bottom area
-                VStack(spacing: 16) {
-                    ProgressIndicator(
-                        currentStep: viewModel.currentStep.progressValue,
-                        totalSteps: viewModel.currentStep.totalSteps
-                    )
-                }
-                .padding(.horizontal, 24)
-                .padding(.bottom, 32)
             }
         }
         .onAppear {
             startAutoAnimation()
+            startArrowPulseAnimation()
         }
     }
     
     // MARK: - Background Layer
     private var backgroundLayer: some View {
         ZStack {
-            Color.themeBackground
-                .ignoresSafeArea()
+            Color.themeBackground.ignoresSafeArea()
+            
+            // Decorative circles
+            Circle()
+                .fill(Color.themePrimary.opacity(0.05))
+                .frame(width: 300, height: 300)
+                .offset(x: -150, y: -200)
             
             Circle()
-                .fill(Color.themePrimaryButton.opacity(themeViewModel.isDarkMode(in: colorScheme) ? 0.12 : 0.05))
-                .frame(width: 350, height: 350)
-                .blur(radius: 60)
-                .offset(x: 120, y: -250)
+                .fill(Color.accentGreen.opacity(0.05))
+                .frame(width: 250, height: 250)
+                .offset(x: 150, y: 300)
         }
     }
     
-    // MARK: - Success Message (Big and centered)
+    // MARK: - Success Message
     private var successMessage: some View {
-        VStack(spacing: 24) {
-            Image(systemName: "checkmark.circle.fill")
-                .font(.system(size: 80, weight: .bold, design: .rounded))
-                .foregroundColor(Color(hex: "66BB6A"))
+        VStack(spacing: 20) {
+            // Big checkmark
+            ZStack {
+                Circle()
+                    .fill(Color.accentGreen)
+                    .frame(width: 100, height: 100)
+                    .shadow(color: Color.accentGreen.opacity(0.4), radius: 20)
+                
+                Image(systemName: "checkmark")
+                    .font(.system(size: 50, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
+            }
             
             Text("onboarding_feedback_added")
-                .font(.system(size: 28, weight: .bold, design: .rounded))
-                .foregroundColor(.primary)
+                .font(.system(size: 24, weight: .bold, design: .rounded))
+                .foregroundColor(.themePrimary)
                 .multilineTextAlignment(.center)
         }
     }
@@ -113,78 +129,75 @@ struct OnboardingScreen3View: View {
     private var demoCard: some View {
         GeometryReader { geometry in
             ZStack {
-                // Card background
-                RoundedRectangle(cornerRadius: 24)
-                    .fill(
-                        LinearGradient(
-                            colors: [Color(hex: "6366F1"), Color(hex: "8B5CF6")],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .shadow(color: .black.opacity(0.15), radius: 12, x: 0, y: 6)
-                
-                // Card content
+                // Card
                 VStack(spacing: 24) {
-                    Spacer()
-                    
+                    // English word
                     Text(demoWord.0)
-                        .font(.system(size: 32, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
+                        .font(.system(size: 48, weight: .bold, design: .rounded))
+                        .foregroundColor(.themePrimary)
                     
-                    Rectangle()
-                        .fill(Color.white.opacity(0.3))
-                        .frame(height: 1)
-                        .frame(maxWidth: 200)
-                    
+                    // Turkish meaning
                     Text(demoWord.1)
-                        .font(.system(size: 24, weight: .medium, design: .rounded))
-                        .foregroundColor(.white.opacity(0.95))
+                        .font(.system(size: 20, weight: .medium, design: .rounded))
+                        .foregroundColor(.themeSecondary)
+                }
+                .frame(maxWidth: .infinity)
+                .frame(height: 300)
+                .background(Color.themeCard)
+                .cornerRadius(24)
+                .shadow(color: Color.themeShadow, radius: 20, x: 0, y: 10)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 24)
+                        .stroke(Color.themeBorder, lineWidth: 1)
+                )
+                
+                // ✅ NEW: Animated arrow indicator (only during user interaction)
+                if demoPhase == .userInteraction {
+                    animatedArrowIndicator
+                        .offset(x: 120, y: 0)
+                }
+                
+                // ✅ ENHANCED: Swipe direction indicators with better styling
+                HStack(spacing: 0) {
+                    // Skip (Left)
+                    VStack(spacing: 8) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 40))
+                            .foregroundColor(.red)
+                        
+                        Text("GEÇ")
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundColor(.red)
+                    }
+                    .frame(width: 120)
+                    .opacity(skipAlpha)
+                    .offset(x: -20)
                     
                     Spacer()
-                }
-                .padding(.horizontal, 32)
-                
-                // ✅ FIXED: Skip overlay (red - left) - positioned lower
-                if skipAlpha > 0 {
-                    VStack {
-                        Spacer()
-                        HStack {
-                            Spacer()
-                            VStack(spacing: 8) {
-                                Image(systemName: "xmark.circle.fill")
-                                    .font(.system(size: 56, weight: .bold))
-                                    .foregroundColor(Color(hex: "EF5350"))
-                                Text("GEÇ")
-                                    .font(.system(size: 20, weight: .black, design: .rounded))
-                                    .foregroundColor(Color(hex: "EF5350"))
-                            }
-                            Spacer()
-                        }
-                        .padding(.bottom, 60)  // ✅ Push down
+                    
+                    // Learn (Right)
+                    VStack(spacing: 8) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.system(size: 40))
+                            .foregroundColor(.accentGreen)
+                        
+                        Text("ÖĞREN")
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundColor(.accentGreen)
                     }
-                    .opacity(skipAlpha)
-                }
-                
-                // ✅ FIXED: Learn overlay (green - right) - positioned lower
-                if learnAlpha > 0 {
-                    VStack {
-                        Spacer()
-                        HStack {
-                            Spacer()
-                            VStack(spacing: 8) {
-                                Image(systemName: "checkmark.circle.fill")
-                                    .font(.system(size: 56, weight: .bold))
-                                    .foregroundColor(Color(hex: "66BB6A"))
-                                Text("ÖĞREN")
-                                    .font(.system(size: 20, weight: .black, design: .rounded))
-                                    .foregroundColor(Color(hex: "66BB6A"))
-                            }
-                            Spacer()
-                        }
-                        .padding(.bottom, 60)  // ✅ Push down
-                    }
+                    .frame(width: 120)
                     .opacity(learnAlpha)
+                    .offset(x: 20)
+                }
+                .padding(.horizontal, 40)
+                .padding(.bottom, 60)
+                
+                // ✅ NEW: Wrong direction feedback (red flash)
+                if showWrongDirectionFeedback {
+                    RoundedRectangle(cornerRadius: 24)
+                        .fill(Color.red.opacity(0.3))
+                        .frame(height: 300)
+                        .transition(.opacity)
                 }
             }
             .frame(height: 400)
@@ -194,8 +207,12 @@ struct OnboardingScreen3View: View {
                 DragGesture()
                     .onChanged { gesture in
                         if demoPhase == .userInteraction {
+                            // ✅ NEW: Only allow right swipe
                             if gesture.translation.width > 0 {
                                 cardOffset = gesture.translation
+                            } else {
+                                // ✅ NEW: Show wrong direction feedback
+                                showWrongDirectionFeedback(for: gesture.translation.width)
                             }
                         }
                     }
@@ -205,6 +222,44 @@ struct OnboardingScreen3View: View {
                         }
                     }
             )
+        }
+    }
+    
+    // MARK: - ✅ NEW: Animated Arrow Indicator
+    private var animatedArrowIndicator: some View {
+        HStack(spacing: 4) {
+            Image(systemName: "arrow.right")
+                .font(.system(size: 32, weight: .bold))
+                .foregroundColor(.accentGreen)
+            
+            Image(systemName: "arrow.right.circle.fill")
+                .font(.system(size: 40, weight: .bold))
+                .foregroundColor(.accentGreen)
+        }
+        .scaleEffect(arrowScale)
+        .opacity(arrowOpacity)
+        .shadow(color: Color.accentGreen.opacity(0.6), radius: 10)
+    }
+    
+    // MARK: - ✅ NEW: Hand Gesture Indicator
+    private var handGestureIndicator: some View {
+        HStack(spacing: 8) {
+            Text("👉")
+                .font(.system(size: 32))
+                .offset(x: handOffset)
+            
+            Text("👉")
+                .font(.system(size: 32))
+                .offset(x: handOffset)
+                .opacity(0.7)
+            
+            Text("👉")
+                .font(.system(size: 32))
+                .offset(x: handOffset)
+                .opacity(0.4)
+        }
+        .onAppear {
+            startHandGestureAnimation()
         }
     }
     
@@ -232,6 +287,41 @@ struct OnboardingScreen3View: View {
     
     private var rotation: Double {
         return Double(cardOffset.width) / 25
+    }
+    
+    // MARK: - ✅ NEW: Arrow Pulse Animation
+    private func startArrowPulseAnimation() {
+        withAnimation(.easeInOut(duration: 1.0).repeatForever(autoreverses: true)) {
+            arrowScale = 1.2
+            arrowOpacity = 1.0
+        }
+    }
+    
+    // MARK: - ✅ NEW: Hand Gesture Animation
+    private func startHandGestureAnimation() {
+        withAnimation(.easeInOut(duration: 1.5).repeatForever(autoreverses: false)) {
+            handOffset = 20
+        }
+    }
+    
+    // MARK: - ✅ NEW: Wrong Direction Feedback
+    private func showWrongDirectionFeedback(for width: CGFloat) {
+        // Only trigger if significant left swipe attempt
+        guard width < -30 else { return }
+        
+        // ✅ Haptic feedback for wrong direction
+        UINotificationFeedbackGenerator().notificationOccurred(.error)
+        
+        // Visual feedback
+        withAnimation(.easeInOut(duration: 0.2)) {
+            showWrongDirectionFeedback = true
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            withAnimation(.easeInOut(duration: 0.2)) {
+                showWrongDirectionFeedback = false
+            }
+        }
     }
     
     // MARK: - Auto Animation
@@ -278,6 +368,7 @@ struct OnboardingScreen3View: View {
     private func handleSwipeEnd(translation: CGSize, viewWidth: CGFloat) {
         let threshold: CGFloat = 100
         
+        // ✅ UPDATED: Only handle right swipe
         if translation.width > threshold {
             completeSwipe(viewWidth: viewWidth)
         } else {
@@ -288,7 +379,8 @@ struct OnboardingScreen3View: View {
     }
     
     private func completeSwipe(viewWidth: CGFloat) {
-        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+        // ✅ NEW: Success haptic feedback
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
         
         withAnimation(.easeOut(duration: 0.3)) {
             cardOffset = CGSize(width: viewWidth * 1.5, height: 0)

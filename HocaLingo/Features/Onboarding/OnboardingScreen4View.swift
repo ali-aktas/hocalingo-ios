@@ -2,7 +2,7 @@
 //  OnboardingScreen4View.swift
 //  HocaLingo
 //
-//  ✅ FINAL VERSION: Shadow removed from flip card
+//  ✅ ENHANCED: Animated tap indicator, pulse effects, haptic feedback
 //  Location: HocaLingo/Features/Onboarding/OnboardingScreen4View.swift
 //
 
@@ -19,8 +19,13 @@ struct OnboardingScreen4View: View {
     @State private var showWarning = false
     @State private var cardRotation: Double = 0
     
+    // ✅ NEW: Tap indicator animation states
+    @State private var tapIndicatorScale: CGFloat = 1.0
+    @State private var tapIndicatorOpacity: Double = 0.8
+    @State private var cardPulseScale: CGFloat = 1.0
+    
     // Demo word
-    private let demoWord = ("Apple", "Elma", "I eat an apple every day")
+    private let demoWord = ("Apple", "Elma", "Her gün elma yerim")
     
     var body: some View {
         ZStack {
@@ -38,6 +43,12 @@ struct OnboardingScreen4View: View {
                 // Card area
                 ZStack {
                     demoFlipCard
+                    
+                    // ✅ NEW: Animated tap indicator (only before flip)
+                    if studyPhase == .waitingForFlip {
+                        tapIndicator
+                            .transition(.scale.combined(with: .opacity))
+                    }
                 }
                 .frame(height: 460)
                 .padding(.horizontal, 24)
@@ -99,12 +110,47 @@ struct OnboardingScreen4View: View {
         .animation(.spring(response: 0.3), value: showWarning)
     }
     
+    // MARK: - ✅ NEW: Tap Indicator
+    private var tapIndicator: some View {
+        VStack(spacing: 12) {
+            // Finger icon with pulse
+            Text("☝️")
+                .font(.system(size: 64))
+                .scaleEffect(tapIndicatorScale)
+                .opacity(tapIndicatorOpacity)
+                .shadow(color: Color.themePrimaryButton.opacity(0.4), radius: 20)
+            
+            // "Tap" text
+            Text("Dokun")
+                .font(.system(size: 16, weight: .bold, design: .rounded))
+                .foregroundColor(.themePrimaryButton)
+                .opacity(tapIndicatorOpacity)
+        }
+        .offset(y: -50)
+        .onAppear {
+            startTapIndicatorAnimation()
+        }
+    }
+    
     // MARK: - Demo Flip Card
     private var demoFlipCard: some View {
         ZStack {
-            // ✅ NO depth shadow - clean minimal look!
+            // ✅ 3D depth shadow
+            depthShadow
             
-            // Main card (NO extra shadow - clean look!)
+            // ✅ NEW: Pulse ring effect (only when waiting for tap)
+            if studyPhase == .waitingForFlip {
+                RoundedRectangle(cornerRadius: 28)
+                    .stroke(Color.themePrimaryButton.opacity(0.4), lineWidth: 3)
+                    .frame(height: 400)
+                    .scaleEffect(cardPulseScale)
+                    .opacity(2 - cardPulseScale)
+                    .onAppear {
+                        startCardPulseAnimation()
+                    }
+            }
+            
+            // Main card
             ZStack {
                 // Back side (Turkish)
                 cardFace(
@@ -132,13 +178,25 @@ struct OnboardingScreen4View: View {
                     perspective: 0.3
                 )
             }
-            // ✅ NO .shadow() here - depth shadow is enough!
         }
         .onTapGesture {
             if studyPhase == .waitingForFlip {
                 performFlip()
             }
         }
+    }
+    
+    // MARK: - Depth Shadow
+    private var depthShadow: some View {
+        RoundedRectangle(cornerRadius: 28)
+            .fill(Color.black.opacity(0.18))
+            .frame(maxWidth: .infinity, maxHeight: 400)
+            .offset(y: 8)
+            .rotation3DEffect(
+                .degrees(cardRotation),
+                axis: (x: 0, y: 1, z: 0),
+                perspective: 0.3
+            )
     }
     
     // MARK: - Card Face
@@ -221,6 +279,21 @@ struct OnboardingScreen4View: View {
         }
     }
     
+    // MARK: - ✅ NEW: Tap Indicator Animation
+    private func startTapIndicatorAnimation() {
+        withAnimation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true)) {
+            tapIndicatorScale = 1.2
+            tapIndicatorOpacity = 1.0
+        }
+    }
+    
+    // MARK: - ✅ NEW: Card Pulse Animation
+    private func startCardPulseAnimation() {
+        withAnimation(.easeOut(duration: 1.5).repeatForever(autoreverses: false)) {
+            cardPulseScale = 1.15
+        }
+    }
+    
     // MARK: - Demo Flow Control
     private func startDemoFlow() {
         // Wait a moment, then enable flip
@@ -232,7 +305,8 @@ struct OnboardingScreen4View: View {
     }
     
     private func performFlip() {
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+        // ✅ NEW: Haptic feedback on tap
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
         
         withAnimation(.spring(response: 0.45, dampingFraction: 0.85)) {
             cardRotation = 180
@@ -244,31 +318,33 @@ struct OnboardingScreen4View: View {
             withAnimation {
                 studyPhase = .difficultySelection
             }
-        }
-    }
-    
-    private func selectDifficulty(_ difficulty: Difficulty) {
-        // Show soft warning for easy/medium
-        if difficulty != .hard && !showWarning {
-            withAnimation(.spring(response: 0.3)) {
-                showWarning = true
-            }
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-                withAnimation(.spring(response: 0.3)) {
-                    showWarning = false
+            // Show warning after a moment
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                withAnimation {
+                    showWarning = true
                 }
             }
         }
+    }
+    
+    private func selectDifficulty(_ difficulty: DifficultyLevel) {
+        // ✅ NEW: Different haptic feedback based on difficulty
+        switch difficulty {
+        case .easy:
+            UINotificationFeedbackGenerator().notificationOccurred(.success)
+        case .medium:
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+        case .hard:
+            UIImpactFeedbackGenerator(style: .heavy).impactOccurred()
+        }
         
-        // Complete demo
-        studyPhase = .completed
-        
-        // Haptic feedback
-        UINotificationFeedbackGenerator().notificationOccurred(.success)
+        withAnimation {
+            studyPhase = .completed
+        }
         
         // Complete onboarding
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             viewModel.nextStep()
         }
     }
@@ -282,9 +358,9 @@ private enum StudyPhase {
     case completed
 }
 
-// MARK: - Difficulty Enum
-private enum Difficulty {
-    case hard, medium, easy
+// MARK: - Difficulty Level
+private enum DifficultyLevel {
+    case easy, medium, hard
 }
 
 // MARK: - Difficulty Button
@@ -296,35 +372,21 @@ private struct DifficultyButton: View {
     let action: () -> Void
     
     var body: some View {
-        Button(action: {
-            if isEnabled {
-                action()
-            }
-        }) {
-            VStack(spacing: 8) {
+        Button(action: action) {
+            VStack(spacing: 4) {
                 Text(title)
-                    .font(.system(size: 15, weight: .bold))
-                    .foregroundColor(isEnabled ? .white : .white.opacity(0.5))
+                    .font(.system(size: 14, weight: .semibold, design: .rounded))
                 
                 Text(timeText)
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(isEnabled ? .white.opacity(0.8) : .white.opacity(0.3))
+                    .font(.system(size: 11, weight: .medium, design: .rounded))
+                    .opacity(0.8)
             }
+            .foregroundColor(.white)
             .frame(maxWidth: .infinity)
-            .frame(height: 72)
+            .padding(.vertical, 14)
             .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(isEnabled ? color : color.opacity(0.3))
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(isEnabled ? .white.opacity(0.2) : .clear, lineWidth: 1)
-            )
-            .shadow(
-                color: isEnabled ? color.opacity(0.3) : .clear,
-                radius: 8,
-                x: 0,
-                y: 4
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(color.opacity(isEnabled ? 1.0 : 0.4))
             )
         }
         .disabled(!isEnabled)
