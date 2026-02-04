@@ -1,3 +1,11 @@
+//
+//  MainTabView.swift
+//  HocaLingo
+//
+//  ✅ NEW: 3-launch paywall system for free users
+//  Location: HocaLingo/App/MainTabView.swift
+//
+
 import SwiftUI
 
 struct MainTabView: View {
@@ -7,6 +15,10 @@ struct MainTabView: View {
     @Environment(\.themeViewModel) private var themeViewModel
     @Environment(\.colorScheme) private var colorScheme
     private let accentColor = Color(hex: "4ECDC4")
+    
+    // ✅ NEW: Paywall state
+    @State private var showPaywallOnLaunch = false
+    @StateObject private var premiumManager = PremiumManager.shared
     
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -55,9 +67,29 @@ struct MainTabView: View {
             // CRITICAL: Prevents system from filling the space below the bar
             .ignoresSafeArea(.container, edges: .bottom)
         }
-        // ✅ NEW: Rating trigger on app launch
         .onAppear {
+            // ✅ Rating trigger on app launch
             RatingManager.shared.checkAndShowRating()
+            
+            // ✅ NEW: 3-launch paywall trigger (only for free users, after onboarding)
+            checkAndShowPaywall()
+        }
+        .sheet(isPresented: $showPaywallOnLaunch) {
+            PremiumPaywallView()
+        }
+    }
+    
+    // MARK: - 3-Launch Paywall Check
+    private func checkAndShowPaywall() {
+        // Check if user has completed onboarding
+        let hasCompletedOnboarding = UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
+        
+        // Only show paywall if user completed onboarding and should see it
+        if hasCompletedOnboarding && premiumManager.shouldShowPaywallOnLaunch() {
+            // Add small delay for better UX (let UI settle)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                showPaywallOnLaunch = true
+            }
         }
     }
     
@@ -74,14 +106,11 @@ struct MainTabView: View {
             VStack(spacing: 0) {
                 Image(systemName: isSelected ? icon + ".fill" : icon)
                     .font(.system(size: 22, weight: .bold))
-                    .foregroundStyle(isSelected ? accentColor : .gray.opacity(0.8))
-                    .scaleEffect(isSelected ? 1.1 : 1.0)
-                    .symbolEffect(.bounce, value: isSelected)
+                    .foregroundStyle(isSelected ? accentColor : Color.secondary)
+                    .frame(maxWidth: .infinity, minHeight: 44)
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 50)
-            .contentShape(Rectangle())
         }
+        .buttonStyle(PlainButtonStyle())
     }
 }
 

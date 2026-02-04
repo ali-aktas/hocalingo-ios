@@ -323,6 +323,7 @@
 "paywall_restore" = "Restore Purchases";
 "paywall_terms" = "Terms of Service";
 "paywall_privacy" = "Privacy Policy";
+"premium_active_description" = "You have full access to all features";
 
 // MARK: - AI Story Generation
 // ==========================================

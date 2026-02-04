@@ -2,7 +2,7 @@
 //  CardStyleSettingsView.swift
 //  HocaLingo
 //
-//  Card style settings sheet
+//  ✅ FIXED: Uses real PremiumPaywallView, correct property names
 //  Location: HocaLingo/Features/Study/CardStyleSettingsView.swift
 //
 
@@ -76,13 +76,13 @@ struct CardStyleSettingsView: View {
             }
         }
         .sheet(isPresented: $showPaywall) {
-            // ✅ TODO: Replace with actual PaywallView
-            PaywallPlaceholderView()
+            // ✅ FIX: Use real PremiumPaywallView
+            PremiumPaywallView()
         }
     }
     
     private func handleStyleSelection(_ style: CardStyle) {
-        // Check if premium required
+        // ✅ FIX: Check premium status correctly
         if style.requiresPremium && !PremiumManager.shared.isPremium {
             showPaywall = true
             return
@@ -95,7 +95,7 @@ struct CardStyleSettingsView: View {
         // Save to UserDefaults
         UserDefaultsManager.shared.saveCardStyle(selectedStyle)
         
-        // Update ViewModel
+        // ✅ FIX: Update ViewModel directly (no setCardStyle method)
         viewModel.cardStyle = selectedStyle
         
         // Close sheet
@@ -137,26 +137,22 @@ struct CardStyleOptionRow: View {
                                 .font(.system(size: 11, weight: .bold, design: .rounded))
                                 .foregroundColor(.white)
                                 .padding(.horizontal, 8)
-                                .padding(.vertical, 4)
+                                .padding(.vertical, 3)
                                 .background(
-                                    LinearGradient(
-                                        colors: [Color(hex: "FFD700"), Color(hex: "FFA500")],
-                                        startPoint: .leading,
-                                        endPoint: .trailing
-                                    )
+                                    Capsule()
+                                        .fill(Color(hex: "FFD700"))
                                 )
-                                .cornerRadius(8)
                         }
                     }
                     
-                    Text(LocalizedStringKey(style.displayName + "_description"))
-                        .font(.system(size: 14))
+                    Text(LocalizedStringKey(style.displayName))
+                        .font(.system(size: 13))
                         .foregroundColor(.secondary)
                 }
                 
                 Spacer()
                 
-                // Selection indicator
+                // Checkmark
                 if isSelected {
                     Image(systemName: "checkmark.circle.fill")
                         .font(.system(size: 24))
@@ -164,13 +160,10 @@ struct CardStyleOptionRow: View {
                 }
             }
             .padding(16)
-            .background(
-                RoundedRectangle(cornerRadius: 14)
-                    .fill(Color(.systemBackground))
-                    .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
-            )
+            .background(Color.themeCard)
+            .cornerRadius(16)
             .overlay(
-                RoundedRectangle(cornerRadius: 14)
+                RoundedRectangle(cornerRadius: 16)
                     .stroke(isSelected ? Color(hex: "4ECDC4") : Color.clear, lineWidth: 2)
             )
         }
@@ -190,64 +183,6 @@ struct CardStyleOptionRow: View {
             return Color(hex: "4ECDC4")
         } else {
             return .secondary
-        }
-    }
-}
-
-// MARK: - Paywall Placeholder
-/// Temporary paywall view (replace with actual implementation)
-struct PaywallPlaceholderView: View {
-    @Environment(\.dismiss) private var dismiss
-    
-    var body: some View {
-        VStack(spacing: 24) {
-            Spacer()
-            
-            Image(systemName: "crown.fill")
-                .font(.system(size: 64))
-                .foregroundColor(Color(hex: "FFD700"))
-            
-            Text("Premium Feature")
-                .font(.system(size: 28, weight: .bold, design: .rounded))
-                .foregroundColor(.primary)
-            
-            Text("Upgrade to Premium to unlock beautiful gradient card designs")
-                .font(.system(size: 17))
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 32)
-            
-            Spacer()
-            
-            VStack(spacing: 12) {
-                Button(action: {
-                    // TODO: Implement premium purchase
-                    print("🛒 Premium purchase initiated")
-                    dismiss()
-                }) {
-                    Text("Upgrade to Premium")
-                        .font(.system(size: 17, weight: .semibold, design: .rounded))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 16)
-                        .background(
-                            LinearGradient(
-                                colors: [Color(hex: "FFD700"), Color(hex: "FFA500")],
-                                startPoint: .leading,
-                                endPoint: .trailing
-                            )
-                        )
-                        .cornerRadius(14)
-                }
-                
-                Button(action: { dismiss() }) {
-                    Text("Maybe Later")
-                        .font(.system(size: 15, weight: .medium, design: .rounded))
-                        .foregroundColor(.secondary)
-                }
-            }
-            .padding(.horizontal, 32)
-            .padding(.bottom, 32)
         }
     }
 }

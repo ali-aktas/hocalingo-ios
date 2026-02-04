@@ -2,7 +2,8 @@
 //  ProfileView.swift
 //  HocaLingo
 //
-//  ✅ UPDATED: GitHub Pages URLs + In-App Safari + Real Support Email
+//  ✅ FIXED: Premium badge only shows paywall for free users
+//  ✅ FIXED: Removed duplicate SettingsCard, using existing component correctly
 //  Location: Features/Profile/ProfileView.swift
 //
 
@@ -55,7 +56,10 @@ struct ProfileView: View {
     // MARK: - Premium Card
     private var premiumCard: some View {
         Button(action: {
-            showPremiumSheet = true
+            // ✅ FIX: Only show paywall if user is NOT premium
+            if !viewModel.isPremium {
+                showPremiumSheet = true
+            }
         }) {
             HStack(spacing: 16) {
                 // Premium Icon
@@ -80,46 +84,33 @@ struct ProfileView: View {
                 
                 // Premium Info
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(viewModel.isPremium ? "premium_active" : "premium_card_title")
+                    Text(viewModel.isPremium ? "premium_card_title" : "premium_card_upgrade_button")
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundColor(.themePrimary)
                     
-                    Text(viewModel.isPremium ? "premium_card_subtitle" : "premium_upgrade_subtitle")
+                    Text(viewModel.isPremium ? "premium_active_description" : "premium_card_subtitle")
                         .font(.system(size: 14))
                         .foregroundColor(.themeSecondary)
                 }
                 
                 Spacer()
                 
-                // Chevron or Crown
+                // Arrow icon (only for free users)
                 if !viewModel.isPremium {
                     Image(systemName: "chevron.right")
                         .font(.system(size: 16, weight: .semibold))
-                        .foregroundColor(.themeTertiary)
+                        .foregroundColor(.themeSecondary)
                 }
             }
-            .padding(20)
+            .padding(16)
             .background(
-                LinearGradient(
-                    colors: viewModel.isPremium
-                        ? [Color(hex: "FFD700").opacity(0.2), Color(hex: "FFA500").opacity(0.1)]
-                        : [Color.themeCard, Color.themeCard],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-            )
-            .cornerRadius(16)
-            .overlay(
                 RoundedRectangle(cornerRadius: 16)
-                    .stroke(
-                        viewModel.isPremium
-                            ? LinearGradient(colors: [Color(hex: "FFD700"), Color(hex: "FFA500")], startPoint: .topLeading, endPoint: .bottomTrailing)
-                            : LinearGradient(colors: [Color.clear], startPoint: .topLeading, endPoint: .bottomTrailing),
-                        lineWidth: viewModel.isPremium ? 2 : 0
-                    )
+                    .fill(Color.themeCard)
+                    .shadow(color: Color.themeShadow, radius: 8, x: 0, y: 4)
             )
-            .shadow(color: viewModel.isPremium ? Color(hex: "FFD700").opacity(0.3) : Color.themeShadow, radius: 8, x: 0, y: 4)
         }
+        // ✅ FIX: Disable button for premium users
+        .disabled(viewModel.isPremium)
         .buttonStyle(PlainButtonStyle())
     }
     
@@ -134,7 +125,7 @@ struct ProfileView: View {
                 Spacer()
             }
             
-            // 1. Notifications Toggle (Premium'dan hemen sonra)
+            // 1. Notifications Toggle
             SettingsCard(
                 type: .notificationToggle(
                     isOn: $viewModel.notificationsEnabled,
@@ -205,7 +196,6 @@ struct ProfileView: View {
                         subtitle: nil,
                         showChevron: true,
                         action: {
-                            // ✅ UPDATED: Open in-app Safari
                             showPrivacyPolicy = true
                         }
                     )
@@ -223,7 +213,6 @@ struct ProfileView: View {
                         subtitle: nil,
                         showChevron: true,
                         action: {
-                            // ✅ UPDATED: Open in-app Safari
                             showTermsOfService = true
                         }
                     )
@@ -241,7 +230,6 @@ struct ProfileView: View {
                         subtitle: "legal_support_subtitle",
                         showChevron: true,
                         action: {
-                            // ✅ UPDATED: Real support email
                             let email = "auraliastudios@gmail.com"
                             let subject = "HocaLingo iOS - Support Request"
                             let body = "Hello HocaLingo team,\n\n"
@@ -255,47 +243,23 @@ struct ProfileView: View {
                     )
                 )
             }
-            .background(Color.themeCard)
-            .cornerRadius(16)
-            .shadow(color: Color.themeShadow, radius: 8, x: 0, y: 2)
         }
     }
 }
 
-// MARK: - Safari View Wrapper
-/// SwiftUI wrapper for SFSafariViewController (in-app browser)
+// MARK: - Safari View (In-App Browser)
 struct SafariView: UIViewControllerRepresentable {
     let url: URL
     
     func makeUIViewController(context: Context) -> SFSafariViewController {
-        let config = SFSafariViewController.Configuration()
-        config.entersReaderIfAvailable = false // Don't auto-enter reader mode
-        
-        let safari = SFSafariViewController(url: url, configuration: config)
-        safari.preferredBarTintColor = UIColor.systemBackground
-        safari.preferredControlTintColor = UIColor(Color.themePrimary)
-        
-        return safari
+        return SFSafariViewController(url: url)
     }
     
-    func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {
-        // No updates needed
-    }
+    func updateUIViewController(_ uiViewController: SFSafariViewController, context: Context) {}
 }
 
 // MARK: - Preview
-struct ProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        Group {
-            ProfileView()
-                .environment(\.themeViewModel, ThemeViewModel.shared)
-                .preferredColorScheme(.light)
-                .previewDisplayName("Light Theme")
-            
-            ProfileView()
-                .environment(\.themeViewModel, ThemeViewModel.shared)
-                .preferredColorScheme(.dark)
-                .previewDisplayName("Dark Theme")
-        }
-    }
+#Preview {
+    ProfileView()
+        .environment(\.themeViewModel, ThemeViewModel.shared)
 }

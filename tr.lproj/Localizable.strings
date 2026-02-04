@@ -323,6 +323,7 @@
 "paywall_restore" = "Satın Alımları Geri Yükle";
 "paywall_terms" = "Kullanım Koşulları";
 "paywall_privacy" = "Gizlilik Politikası";
+"premium_active_description" = "Tüm özelliklere tam erişiminiz var";
 
 // MARK: - AI Story Generation
 // ==========================================

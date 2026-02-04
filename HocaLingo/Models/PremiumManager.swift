@@ -2,8 +2,8 @@
 //  PremiumManager.swift
 //  HocaLingo
 //
-//  ✅ FIXED: Test mode now properly overrides RevenueCat
-//  Premium status management with RevenueCat SDK
+//  ✅ PRODUCTION READY: Test mode removed, RevenueCat fully integrated
+//  ✅ NEW: 3-launch paywall tracking for free users
 //  Location: HocaLingo/Models/PremiumManager.swift
 //
 
@@ -13,7 +13,7 @@ import RevenueCat
 
 // MARK: - Premium Manager
 /// Singleton manager for premium status and features
-/// ✅ Now fully integrated with RevenueCat with test mode support
+/// ✅ Production ready with RevenueCat integration
 class PremiumManager: ObservableObject {
     
     // MARK: - Singleton
@@ -26,26 +26,14 @@ class PremiumManager: ObservableObject {
     private let userDefaults = UserDefaults.standard
     private let premiumKey = "user_is_premium"
     
-    // ✅ NEW: Test mode flag
-    #if DEBUG
-    private var isTestMode: Bool = true
-    #else
-    private var isTestMode: Bool = false
-    #endif
+    // MARK: - 3-Launch Paywall Tracking
+    private let launchCountKey = "premium_paywall_launch_count"
+    private let lastPaywallShownKey = "premium_paywall_last_shown"
     
     // MARK: - Initialization
     private init() {
         loadPremiumStatus()
-        
-        // ✅ FIXED: Test mode activates AFTER RevenueCat check
-        #if DEBUG
-        // Set test mode premium immediately
-        setPremium(true)
-        print("🧪 TEST MODE: Premium activated for testing")
-        #else
-        // Only check RevenueCat in production
         checkPremiumStatusWithRevenueCat()
-        #endif
     }
     
     // MARK: - Public Methods
@@ -56,7 +44,7 @@ class PremiumManager: ObservableObject {
         print("📱 Premium status loaded: \(isPremium ? "Premium" : "Free")")
     }
     
-    /// Set premium status (for testing and local storage)
+    /// Set premium status (for RevenueCat callbacks)
     /// - Parameter value: Premium status
     func setPremium(_ value: Bool) {
         isPremium = value
@@ -64,13 +52,8 @@ class PremiumManager: ObservableObject {
         print("✅ Premium status updated: \(value ? "Premium" : "Free")")
     }
     
-    /// Toggle premium status (for testing)
-    func togglePremium() {
-        setPremium(!isPremium)
-    }
-    
     /// Check if user can access premium feature
-    /// - Returns: True if premium or feature is free
+    /// - Returns: True if premium
     func canAccessPremiumFeature() -> Bool {
         return isPremium
     }
@@ -85,7 +68,6 @@ class PremiumManager: ObservableObject {
     // MARK: - RevenueCat Integration
     
     /// Check premium status with RevenueCat
-    /// ✅ FIXED: Respects test mode - doesn't override in debug builds
     func checkPremiumStatusWithRevenueCat() {
         Purchases.shared.getCustomerInfo { [weak self] (customerInfo, error) in
             guard let self = self else { return }
@@ -99,14 +81,6 @@ class PremiumManager: ObservableObject {
             let isActive = customerInfo?.entitlements["premium"]?.isActive == true
             
             DispatchQueue.main.async {
-                // ✅ FIX: Don't override test mode
-                #if DEBUG
-                if self.isTestMode {
-                    print("✅ RevenueCat premium status: \(isActive ? "Active" : "Inactive") (IGNORED - Test Mode Active)")
-                    return // Don't override test mode
-                }
-                #endif
-                
                 self.isPremium = isActive
                 self.userDefaults.set(isActive, forKey: self.premiumKey)
                 print("✅ RevenueCat premium status: \(isActive ? "Active" : "Inactive")")
@@ -115,7 +89,6 @@ class PremiumManager: ObservableObject {
     }
     
     /// Restore purchases
-    /// ✅ IMPLEMENTED: Real RevenueCat restore
     func restorePurchases(completion: @escaping (Bool) -> Void) {
         Purchases.shared.restorePurchases { [weak self] (customerInfo, error) in
             guard let self = self else {
@@ -143,7 +116,6 @@ class PremiumManager: ObservableObject {
     }
     
     /// Purchase a package
-    /// ✅ NEW: Purchase implementation with RevenueCat
     /// - Parameters:
     ///   - package: RevenueCat package to purchase
     ///   - completion: Callback with success status and optional error message
@@ -180,5 +152,48 @@ class PremiumManager: ObservableObject {
                 completion(isActive, nil)
             }
         }
+    }
+    
+    // MARK: - 3-Launch Paywall System
+    
+    /// Increment launch count and check if paywall should be shown
+    /// Call this on app launch
+    /// - Returns: True if paywall should be shown
+    func shouldShowPaywallOnLaunch() -> Bool {
+        // Premium users never see paywall
+        if isPremium {
+            return false
+        }
+        
+        // Get current launch count
+        let currentCount = userDefaults.integer(forKey: launchCountKey)
+        let newCount = currentCount + 1
+        userDefaults.set(newCount, forKey: launchCountKey)
+        
+        print("📱 App launch count (paywall): \(newCount)")
+        
+        // Show paywall every 3rd launch
+        if newCount % 3 == 0 {
+            // Update last shown timestamp
+            userDefaults.set(Date(), forKey: lastPaywallShownKey)
+            print("🎯 Paywall should be shown (3rd launch)")
+            return true
+        }
+        
+        return false
+    }
+    
+    /// Reset paywall launch counter (for testing)
+    func resetPaywallLaunchCounter() {
+        userDefaults.set(0, forKey: launchCountKey)
+        userDefaults.removeObject(forKey: lastPaywallShownKey)
+        print("🔄 Paywall launch counter reset")
+    }
+    
+    /// Get paywall launch statistics (for debugging)
+    func getPaywallStats() -> (launchCount: Int, lastShown: Date?) {
+        let count = userDefaults.integer(forKey: launchCountKey)
+        let lastShown = userDefaults.object(forKey: lastPaywallShownKey) as? Date
+        return (count, lastShown)
     }
 }
