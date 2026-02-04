@@ -67,6 +67,7 @@ struct HomeView: View {
             }
             .onAppear {
                 viewModel.loadDashboardData()
+                checkAINotificationNavigation()
             }
             .onReceive(rotationTimer) { _ in
                 viewModel.rotateHeroContent()
@@ -86,6 +87,15 @@ struct HomeView: View {
             }
         }
     }
+    private func checkAINotificationNavigation() {
+            if UserDefaults.standard.bool(forKey: "should_navigate_to_ai") {
+                UserDefaults.standard.set(false, forKey: "should_navigate_to_ai")
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                    viewModel.shouldNavigateToAIAssistant = true
+                }
+            }
+        }
 }
 
 // MARK: - Sub-Sections

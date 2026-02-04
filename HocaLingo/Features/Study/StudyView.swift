@@ -31,6 +31,7 @@ struct StudyView: View {
         }
         .onAppear {
             viewModel.onViewAppear()
+            checkNotificationNavigation()
         }
         .navigationBarHidden(true)
         .animation(.easeInOut(duration: 0.3), value: viewModel.isSessionComplete)
@@ -39,6 +40,20 @@ struct StudyView: View {
             CardStyleSettingsView(viewModel: viewModel)
         }
     }
+    
+    private func checkNotificationNavigation() {
+            if UserDefaults.standard.bool(forKey: "should_navigate_to_study") {
+                UserDefaults.standard.set(false, forKey: "should_navigate_to_study")
+                
+                if viewModel.studyQueue.count < 15 {
+                    selectedTab = 0
+                    NotificationCenter.default.post(
+                        name: NSNotification.Name("OpenPackageSelection"),
+                        object: nil
+                    )
+                }
+            }
+        }
     
     private var studyInterface: some View {
         ZStack {

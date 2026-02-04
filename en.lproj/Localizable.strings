@@ -391,3 +391,28 @@
 "your_words" = "Your Words";
 "tap_word_hint" = "Tap words to see meanings";
 "story_history" = "Story History";
+
+// MARK: - Daily Reminder Notifications
+"notification_title" = "HocaLingo";
+
+// Diverse motivational messages (10 variations)
+"notification_msg_1" = "Just 2 minutes of practice can make a difference! 🚀";
+"notification_msg_2" = "Waiting for the bus? Perfect time for a quick word review! 🚌";
+"notification_msg_3" = "Coffee break? How about a quick English break too? ☕";
+"notification_msg_4" = "Your future self will thank you for these 5 minutes! 💪";
+"notification_msg_5" = "Small steps lead to big progress. Start now! 🎯";
+"notification_msg_6" = "Quick study session = Big improvement! Let's go! 🌟";
+"notification_msg_7" = "Between meetings? Perfect time to learn! 📚";
+"notification_msg_8" = "Your English is waiting for you! Just a few words today 🔥";
+"notification_msg_9" = "Lunch break? Add some learning to the menu! 🍽️";
+"notification_msg_10" = "Late night? Wind down with a quick study session 🌙";
+
+// MARK: - Weekly AI Story Notifications
+"notification_ai_title" = "✨ AI Story Time!";
+
+// AI-focused messages (5 variations)
+"notification_ai_msg_1" = "Your personalized AI story is waiting! Create something amazing today 🎨";
+"notification_ai_msg_2" = "Let AI craft a unique story just for you! Try it now 🤖";
+"notification_ai_msg_3" = "Unlock creativity with AI! Generate your weekly story ✨";
+"notification_ai_msg_4" = "Your AI storyteller is ready! What will you create today? 📖";
+"notification_ai_msg_5" = "Transform learning with AI stories! Start your adventure 🚀";
