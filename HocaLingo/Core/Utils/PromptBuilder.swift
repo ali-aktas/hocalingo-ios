@@ -3,8 +3,8 @@
 //  HocaLingo
 //
 //  Core/Utils/PromptBuilder.swift
-//  AI prompt construction for story generation
-//  ✅ FIXED: Strong topic focus, original fantasy characters, content safety
+//  ✅ UPDATED: Stronger word rules, exact count, max 2 repetitions
+//  Location: HocaLingo/Core/Utils/PromptBuilder.swift
 //
 
 import Foundation
@@ -14,6 +14,7 @@ import Foundation
 class PromptBuilder {
     
     /// Build AI prompt for story generation
+    /// ✅ UPDATED: Exact word count + max 2 repetitions per word
     /// - Parameters:
     ///   - words: Selected vocabulary words to include
     ///   - topic: Optional user-specified topic
@@ -29,6 +30,7 @@ class PromptBuilder {
         
         // Word list for AI
         let wordList = words.map { $0.english }.joined(separator: ", ")
+        let wordCount = words.count  // ✅ Exact count (20 or 40)
         
         // Type-specific instruction
         let typeInstruction = type.promptInstruction
@@ -36,14 +38,14 @@ class PromptBuilder {
         // Length instruction
         let lengthInstruction = "Yaklaşık \(length.targetWordCount) kelime kullan."
         
-        // ✅ STRONG topic integration
+        // ✅ Topic section (balanced - not too strong)
         let topicSection: String
         if let topic = topic, !topic.isEmpty {
             topicSection = """
             
-            🎯 HİKAYE KONUSU (ZORUNLU):
-            Hikaye MUTLAKA bu konu hakkında olmalı: "\(topic)"
-            Konuyu hikayenin merkezine koy. Tüm hikaye bu konuya odaklanmalı.
+            📝 HİKAYE KONUSU:
+            Hikaye bu konu hakkında olsun: "\(topic)"
+            Ancak ÖNCE aşağıdaki İngilizce kelimeleri kullanmaya odaklan.
             
             """
         } else {
@@ -62,10 +64,13 @@ class PromptBuilder {
         
         Bir zamanlar uzak bir diyarda...
         
-        Aşağıdaki İngilizce kelimeleri kullan:
+        
+        🎯 KELİME KULLANIM KURALLARI (ÇOK KRİTİK - BU KURALLARA UYMAZSAN BAŞARISIZ SAYILIRSIN):
+        
+        Aşağıdaki \(wordCount) İngilizce kelimeyi kullan:
         \(wordList)
         
-        ⚠️ KELİME KULLANIM KURALLARI:
+        ⚠️ ZORUNLU KURALLAR:
         
         1. KELİMELER MUTLAKA İNGİLİZCE OLACAK
            ❌ YANLIŞ: "bu genç (young) adam"
@@ -81,18 +86,32 @@ class PromptBuilder {
            ❌ "Bu happy bir gündü"
            ✅ "Bu sabah çok happy hissediyordu"
         
-        4. HER KELİMEYİ EN AZ 1 KEZ KULLAN
-           Tüm kelimeleri hikaye içinde kullanmalısın.
+        4. 🔥 HER KELİMEYİ MUTLAKA KULLAN - BU ZORUNLU! 🔥
+           Tam \(wordCount) kelimeyi hikayeye yerleştirmelisin.
+           Eksik kelime = BAŞARISIZ
         
-        5. BAŞLIKTAN SONRA BOŞ SATIR BIRAK
+        5. 🔥 HER KELİMEYİ EN AZ 1, EN FAZLA 2 KEZ KULLAN 🔥
+           ❌ Aynı kelimeyi 3+ kez kullanma
+           ✅ Her kelime: 1 veya 2 kez
+           ✅ Varyasyon için farklı kelimeler kullan
+        
+        6. KELİMELER HİKAYENİN HER YERİNE DAĞILMALI
+           İlk paragrafta 10, son paragrafta 10 kelime gibi dağıt.
+           Hepsini tek paragrafta kullanma.
+        
+        7. BAŞLIKTAN SONRA BOŞ SATIR BIRAK
            Başlık ile hikaye arasında mutlaka boş bir satır olmalı.
         
-        6. NOKTALAMA DİKKAT
-           Cümleleri nokta, ünlem veya soru işaretiyle bitir.
-           Tamamlanmamış cümle bırakma.
-        \(ContentValidator.aiSafetyRules)
         
-        ŞIMDI BAŞLA:
+        ✅ BAŞARI KRİTERLERİN:
+        - \(wordCount) kelimeyi MUTLAKA kullan
+        - Her kelime EN FAZLA 2 kez
+        - Kelimeler doğal ve dağınık
+        - Markdown YOK, parantez YOK
+        - İlk satır başlık, sonra boş satır, sonra hikaye
+        
+        
+        🚀 ŞİMDİ BAŞLA! Önce kelimeleri yerleştir, sonra konuya odaklan.
         """
     }
 }

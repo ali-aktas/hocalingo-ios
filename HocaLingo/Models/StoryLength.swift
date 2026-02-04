@@ -3,7 +3,8 @@
 //  HocaLingo
 //
 //  AI Story Generation - Story Length Classification
-//  2 lengths: Short (180 words), Long (600 words)
+//  ✅ UPDATED: Exact word counts (20 and 40) - NO ranges
+//  Location: HocaLingo/Models/StoryLength.swift
 //
 
 import Foundation
@@ -12,8 +13,8 @@ import SwiftUI
 /// Story length classification
 /// Determines word count and vocabulary complexity
 enum StoryLength: String, Codable, CaseIterable, Identifiable {
-    case short  // ~180 words, 15-20 deck words
-    case long   // ~600 words, 20-40 deck words
+    case short  // ~180 words, exactly 20 deck words
+    case long   // ~600 words, exactly 40 deck words
     
     var id: String { rawValue }
     
@@ -49,22 +50,11 @@ enum StoryLength: String, Codable, CaseIterable, Identifiable {
         }
     }
     
-    /// Minimum deck words to include
-    /// SHORT: 15 words minimum
-    /// LONG: 20 words minimum
-    var minDeckWords: Int {
-        switch self {
-        case .short:
-            return 15
-        case .long:
-            return 20
-        }
-    }
-    
-    /// Maximum deck words to include
-    /// SHORT: 20 words maximum
-    /// LONG: 40 words maximum
-    var maxDeckWords: Int {
+    /// Exact deck words to include
+    /// SHORT: Exactly 20 words
+    /// LONG: Exactly 40 words
+    /// ✅ NO ranges - AI must use this EXACT count
+    var exactDeckWords: Int {
         switch self {
         case .short:
             return 20

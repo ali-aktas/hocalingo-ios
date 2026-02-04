@@ -3,7 +3,8 @@
 //  HocaLingo
 //
 //  AI Story Generation - Domain Models
-//  Main story model and word highlighting support
+//  ✅ UPDATED: Whole-word matching to fix substring issues
+//  Location: HocaLingo/Models/GeneratedStory.swift
 //
 
 import Foundation
@@ -69,32 +70,55 @@ struct WordWithMeaning: Identifiable, Codable, Equatable {
     let english: String
     let turkish: String
     
-    /// Find all ranges of this word in text (case-insensitive)
-    /// Returns ranges for highlighting in AttributedString
+    /// ⚠️ DEPRECATED: Old substring matching (caused "sand" in "sandalye" issue)
+    /// Use wholeWordRanges() instead
     func ranges(in text: String) -> [Range<String.Index>] {
+        // This is kept for backward compatibility but should not be used
+        return wholeWordRanges(in: text)
+    }
+    
+    /// ✅ NEW: Whole-word matching with regex
+    /// Fixes issues:
+    /// - "sand" won't match "sandalye" ✅
+    /// - "I" won't match "ı" in Turkish words ✅
+    /// - Only matches complete words with word boundaries
+    func wholeWordRanges(in text: String) -> [Range<String.Index>] {
         var ranges: [Range<String.Index>] = []
-        var searchRange = text.startIndex..<text.endIndex
         
-        while let range = text.range(
-            of: english,
-            options: [.caseInsensitive, .diacriticInsensitive],
-            range: searchRange
-        ) {
-            ranges.append(range)
-            searchRange = range.upperBound..<text.endIndex
+        // Escape special regex characters in word
+        let escapedWord = NSRegularExpression.escapedPattern(for: english)
+        
+        // ✅ Word boundary pattern: \b word \b
+        // This ensures we only match complete words
+        let pattern = "\\b\(escapedWord)\\b"
+        
+        guard let regex = try? NSRegularExpression(
+            pattern: pattern,
+            options: [.caseInsensitive]
+        ) else {
+            return ranges
+        }
+        
+        let nsRange = NSRange(text.startIndex..., in: text)
+        let matches = regex.matches(in: text, options: [], range: nsRange)
+        
+        for match in matches {
+            if let range = Range(match.range, in: text) {
+                ranges.append(range)
+            }
         }
         
         return ranges
     }
     
-    /// Check if word exists in text
-    var exists: (String) -> Bool {
-        return { text in
-            return text.range(
-                of: self.english,
-                options: [.caseInsensitive, .diacriticInsensitive]
-            ) != nil
-        }
+    /// ✅ UPDATED: Check if word exists using whole-word matching
+    func exists(in text: String) -> Bool {
+        return !wholeWordRanges(in: text).isEmpty
+    }
+    
+    /// ✅ NEW: Count occurrences in text (for validation)
+    func countOccurrences(in text: String) -> Int {
+        return wholeWordRanges(in: text).count
     }
 }
 
@@ -114,5 +138,22 @@ extension GeneratedStory {
     /// Filter by type
     static func byType(_ type: StoryType, from stories: [GeneratedStory]) -> [GeneratedStory] {
         return stories.filter { $0.type == type }
+    }
+}
+
+// MARK: - Word Extraction Utility
+
+extension GeneratedStory {
+    /// ✅ NEW: Extract actually used words from content
+    /// This replaces the old logic that showed all candidate words
+    /// - Parameter candidateWords: Words that were sent to AI
+    /// - Returns: Words actually used in the story (whole-word match)
+    static func extractUsedWords(
+        from content: String,
+        candidateWords: [WordWithMeaning]
+    ) -> [WordWithMeaning] {
+        return candidateWords.filter { word in
+            word.exists(in: content)
+        }
     }
 }

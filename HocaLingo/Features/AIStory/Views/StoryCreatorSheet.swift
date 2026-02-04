@@ -355,7 +355,7 @@ struct LengthPillButton: View {
                     }
                 }
                 
-                Text("\(length.minDeckWords)-\(length.maxDeckWords) words")
+                Text("\(length.exactDeckWords) words")
                     .font(.system(size: 12))
                     .foregroundColor(isSelected ? .white.opacity(0.8) : .themeSecondary)
             }

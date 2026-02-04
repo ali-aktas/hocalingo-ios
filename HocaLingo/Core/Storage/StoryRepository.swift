@@ -3,8 +3,8 @@
 //  HocaLingo
 //
 //  Core/Storage/StoryRepository.swift
-//  Main business logic for AI story generation
-//  Orchestrates: API, quota, word selection, storage
+//  ✅ UPDATED: Extract actually used words from content
+//  Location: HocaLingo/Core/Storage/StoryRepository.swift
 //
 
 import Foundation
@@ -48,6 +48,7 @@ class StoryRepository {
     
     /// Generate new story with AI
     /// Main workflow: quota → select words → build prompt → API call → clean → save
+    /// ✅ UPDATED: Extract actually used words (whole-word matching)
     /// - Parameters:
     ///   - topic: Optional topic/theme
     ///   - type: Story type (motivation, fantasy, dialogue)
@@ -76,10 +77,13 @@ class StoryRepository {
         }
         
         // STEP 2: Select words from vocabulary
+        // ✅ Now returns EXACT 20 or 40 words
         let selectedWords = try wordSelector.selectWords(
             from: allWords,
             for: length
         )
+        
+        print("📝 Selected \(selectedWords.count) words for story generation")
         
         // STEP 3: Build AI prompt
         let prompt = promptBuilder.buildPrompt(
@@ -110,12 +114,29 @@ class StoryRepository {
         // STEP 7: Clean content and extract title
         let (title, content) = contentCleaner.clean(rawText)
         
-        // STEP 8: Create story object
+        // ✅ STEP 8: Extract actually used words (NEW!)
+        // This fixes the "Senin Kelimelerin" bug where all candidate words were shown
+        let actuallyUsedWords = GeneratedStory.extractUsedWords(
+            from: content,
+            candidateWords: selectedWords
+        )
+        
+        print("✅ AI used \(actuallyUsedWords.count)/\(selectedWords.count) words")
+        
+        // Debug: Show which words were NOT used
+        let unusedWords = selectedWords.filter { candidate in
+            !actuallyUsedWords.contains(where: { $0.id == candidate.id })
+        }
+        if !unusedWords.isEmpty {
+            print("⚠️ Unused words: \(unusedWords.map { $0.english }.joined(separator: ", "))")
+        }
+        
+        // STEP 9: Create story object
         let story = GeneratedStory(
             title: title,
             content: content,
-            usedWordIds: selectedWords.map { $0.id },
-            usedWords: selectedWords,
+            usedWordIds: actuallyUsedWords.map { $0.id },  // ✅ Only actually used IDs
+            usedWords: actuallyUsedWords,                  // ✅ Only actually used words
             topic: topic,
             type: type,
             length: length,
@@ -123,10 +144,10 @@ class StoryRepository {
             isFavorite: false
         )
         
-        // STEP 9: Save story
+        // STEP 10: Save story
         try saveStory(story)
         
-        // STEP 10: Increment quota
+        // STEP 11: Increment quota
         try quotaManager.incrementQuota(isPremium: isPremium)
         
         return story
@@ -177,48 +198,6 @@ class StoryRepository {
         defaults.set(data, forKey: storageKey)
     }
     
-    /// Delete story
-    /// - Parameter id: Story ID
-    /// - Throws: AIStoryError.deleteFailed if not found
-    func deleteStory(id: String) throws {
-        var stories = getAllStories()
-        
-        guard let index = stories.firstIndex(where: { $0.id == id }) else {
-            throw AIStoryError.deleteFailed
-        }
-        
-        stories.remove(at: index)
-        
-        // Save updated list
-        let encoder = JSONEncoder()
-        if let data = try? encoder.encode(stories) {
-            defaults.set(data, forKey: storageKey)
-        } else {
-            throw AIStoryError.deleteFailed
-        }
-    }
-    
-    /// Toggle favorite status
-    /// - Parameter id: Story ID
-    /// - Throws: AIStoryError.saveFailed if not found
-    func toggleFavorite(id: String) throws {
-        var stories = getAllStories()
-        
-        guard let index = stories.firstIndex(where: { $0.id == id }) else {
-            throw AIStoryError.saveFailed
-        }
-        
-        stories[index].isFavorite.toggle()
-        
-        // Save updated list
-        let encoder = JSONEncoder()
-        guard let data = try? encoder.encode(stories) else {
-            throw AIStoryError.saveFailed
-        }
-        
-        defaults.set(data, forKey: storageKey)
-    }
-    
     // MARK: - Quota Operations
     
     /// Get current quota info
@@ -257,6 +236,48 @@ class StoryRepository {
     /// Get stories by type
     func getStories(by type: StoryType) -> [GeneratedStory] {
         return getAllStories().filter { $0.type == type }
+    }
+    
+    /// Toggle favorite status
+    /// - Parameter id: Story ID
+    /// - Throws: AIStoryError.saveFailed if not found
+    func toggleFavorite(id: String) throws {
+        var stories = getAllStories()
+        
+        guard let index = stories.firstIndex(where: { $0.id == id }) else {
+            throw AIStoryError.saveFailed
+        }
+        
+        stories[index].isFavorite.toggle()
+        
+        // Save updated list
+        let encoder = JSONEncoder()
+        guard let data = try? encoder.encode(stories) else {
+            throw AIStoryError.saveFailed
+        }
+        
+        defaults.set(data, forKey: storageKey)
+    }
+    
+    /// Delete story
+    /// - Parameter id: Story ID
+    /// - Throws: AIStoryError.deleteFailed if not found
+    func deleteStory(id: String) throws {
+        var stories = getAllStories()
+        
+        guard let index = stories.firstIndex(where: { $0.id == id }) else {
+            throw AIStoryError.deleteFailed
+        }
+        
+        stories.remove(at: index)
+        
+        // Save updated list
+        let encoder = JSONEncoder()
+        guard let data = try? encoder.encode(stories) else {
+            throw AIStoryError.deleteFailed
+        }
+        
+        defaults.set(data, forKey: storageKey)
     }
     
     /// Clear all stories (for testing/reset)

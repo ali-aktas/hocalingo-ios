@@ -3,7 +3,8 @@
 //  HocaLingo
 //
 //  Features/AIStory/ViewModels/AIStoryUIState.swift
-//  ✅ UPDATED: Added insufficient words dialog states
+//  ✅ UPDATED: Use exactDeckWords for validation
+//  Location: HocaLingo/Features/AIStory/ViewModels/AIStoryUIState.swift
 //
 
 import Foundation
@@ -47,8 +48,9 @@ struct AIStoryUIState {
         quota.hasQuota
     }
     
+    /// ✅ UPDATED: Use exactDeckWords instead of minDeckWords
     var canGenerate: Bool {
-        !isGenerating && hasQuota && allWords.count >= creatorLength.minDeckWords
+        !isGenerating && hasQuota && allWords.count >= creatorLength.exactDeckWords
     }
     
     var quotaDisplayText: String {

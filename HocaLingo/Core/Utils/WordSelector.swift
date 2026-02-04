@@ -3,8 +3,8 @@
 //  HocaLingo
 //
 //  Core/Utils/WordSelector.swift
-//  Word selection logic for AI story generation
-//  Filters words with progress < 21 days
+//  ✅ UPDATED: Learning phase included, exact count (20 or 40)
+//  Location: HocaLingo/Core/Utils/WordSelector.swift
 //
 
 import Foundation
@@ -15,17 +15,19 @@ class WordSelector {
     
     /// Maximum progress interval for word selection (21 days)
     /// Only words reviewed within last 21 days are eligible
+    /// ✅ Learning phase is NOW included (review not required)
     private let maxProgressDays: Float = 21.0
     
     /// UserDefaults manager for loading progress
     private let userDefaults = UserDefaultsManager.shared
     
     /// Select words for story generation
+    /// ✅ UPDATED: Exact count (20 or 40), no random range
     /// - Parameters:
     ///   - allWords: All words from user's deck
-    ///   - length: Desired story length (determines word count)
+    ///   - length: Desired story length (determines EXACT word count)
     ///   - direction: Study direction to filter progress
-    /// - Returns: Selected words with meanings
+    /// - Returns: Selected words with meanings (EXACTLY 20 or 40 words)
     /// - Throws: AIStoryError.insufficientWords if not enough eligible words
     func selectWords(
         from allWords: [Word],
@@ -33,26 +35,24 @@ class WordSelector {
         direction: StudyDirection = .enToTr
     ) throws -> [WordWithMeaning] {
         
-        // Step 1: Filter eligible words (progress < 21 days)
+        // Step 1: Filter eligible words
+        // ✅ NEW: Learning phase is NOW included
         let eligibleWords = filterEligibleWords(from: allWords, direction: direction)
         
         // Step 2: Validate minimum requirement
-        let minRequired = length.minDeckWords
-        guard eligibleWords.count >= minRequired else {
+        let exactCount = length.exactDeckWords
+        guard eligibleWords.count >= exactCount else {
             throw AIStoryError.insufficientWords(
-                required: minRequired,
+                required: exactCount,
                 available: eligibleWords.count
             )
         }
         
-        // Step 3: Determine target count (random between min and max)
-        let maxCount = min(eligibleWords.count, length.maxDeckWords)
-        let targetCount = Int.random(in: minRequired...maxCount)
+        // Step 3: Select EXACTLY the required count
+        // ✅ NO random range - always 20 or 40
+        let selectedWords = eligibleWords.shuffled().prefix(exactCount)
         
-        // Step 4: Randomly select words
-        let selectedWords = eligibleWords.shuffled().prefix(targetCount)
-        
-        // Step 5: Convert to WordWithMeaning
+        // Step 4: Convert to WordWithMeaning
         return selectedWords.map { word in
             WordWithMeaning(
                 id: word.id,
@@ -64,8 +64,13 @@ class WordSelector {
     
     // MARK: - Private Helpers
     
-    /// Filter words with progress < 21 days
-    /// Only recently reviewed words are eligible for story generation
+    /// Filter eligible words
+    /// ✅ UPDATED: Learning phase NOW included!
+    /// Rules:
+    /// 1. Word must be selected (isSelected = true)
+    /// 2. Word must have progress (exists in UserDefaults)
+    /// 3. Interval must be < 21 days
+    /// 4. ✅ Learning phase is OK (removed learningPhase check)
     private func filterEligibleWords(
         from words: [Word],
         direction: StudyDirection
@@ -76,9 +81,9 @@ class WordSelector {
                 return false
             }
             
-            // Only include if in review phase (not learning) and interval < 21 days
-            // Learning phase words are excluded as they're too new
-            return !progress.learningPhase && progress.intervalDays < maxProgressDays
+            // ✅ UPDATED: Only check isSelected and intervalDays
+            // Learning phase is NOW acceptable!
+            return progress.isSelected && progress.intervalDays < maxProgressDays
         }
     }
     
