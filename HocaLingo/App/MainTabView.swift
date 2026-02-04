@@ -10,9 +10,9 @@ struct MainTabView: View {
     
     var body: some View {
         ZStack(alignment: .bottom) {
-            // 1. İÇERİK KATMANI
-            // ignoresSafeArea(.all) sayesinde içerik en alta,
-            // home indicator'ın altına kadar uzanır.
+            // 1. CONTENT LAYER
+            // ignoresSafeArea(.all) allows content to extend to bottom,
+            // below home indicator
             TabView(selection: $selectedTab) {
                 HomeView(selectedTab: $selectedTab)
                     .tag(0)
@@ -26,10 +26,10 @@ struct MainTabView: View {
             .toolbar(.hidden, for: .tabBar)
             .ignoresSafeArea(.all)
             
-            // 2. TAB BAR KATMANI
-            // Barın altında hiçbir sistem bloğu kalmaması için VStack kullanıyoruz
+            // 2. TAB BAR LAYER
+            // Using VStack to ensure no system blocks remain below the bar
             VStack {
-                Spacer() // Barı en alta iter
+                Spacer() // Push bar to bottom
                 
                 HStack(spacing: 0) {
                     tabButton(icon: "house", index: 0)
@@ -39,7 +39,7 @@ struct MainTabView: View {
                 .padding(.horizontal, 15)
                 .padding(.vertical, 10)
                 .background {
-                    // Tamamen bağımsız bir kapsül
+                    // Completely independent capsule
                     Capsule()
                         .fill(.ultraThinMaterial)
                         .shadow(color: .black.opacity(0.3), radius: 15, x: 0, y: 10)
@@ -48,12 +48,16 @@ struct MainTabView: View {
                                 .stroke(Color.white.opacity(0.1), lineWidth: 0.5)
                         }
                 }
-                // Ekranın en altından ne kadar yukarıda duracağını belirler
+                // Determines how far up from the bottom of the screen it sits
                 .padding(.bottom, 20)
                 .padding(.horizontal, 30)
             }
-            // Bu kısım çok kritik: Barın altındaki alanı sistemin doldurmasını engeller
+            // CRITICAL: Prevents system from filling the space below the bar
             .ignoresSafeArea(.container, edges: .bottom)
+        }
+        // ✅ NEW: Rating trigger on app launch
+        .onAppear {
+            RatingManager.shared.checkAndShowRating()
         }
     }
     
@@ -71,20 +75,18 @@ struct MainTabView: View {
                 Image(systemName: isSelected ? icon + ".fill" : icon)
                     .font(.system(size: 22, weight: .bold))
                     .foregroundStyle(isSelected ? accentColor : .gray.opacity(0.8))
-                    .scaleEffect(isSelected ? 1.2 : 1.0)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 40)
-                    .background {
-                        if isSelected {
-                            Circle()
-                                .fill(accentColor.opacity(0.15))
-                                // MatchedGeometry ile ikonlar arası akıcı geçiş
-                                .matchedGeometryEffect(id: "TAB_INDICATOR", in: animation)
-                                .frame(width: 48, height: 48)
-                        }
-                    }
+                    .scaleEffect(isSelected ? 1.1 : 1.0)
+                    .symbolEffect(.bounce, value: isSelected)
             }
+            .frame(maxWidth: .infinity)
+            .frame(height: 50)
+            .contentShape(Rectangle())
         }
-        .buttonStyle(.plain)
     }
+}
+
+// MARK: - Preview
+#Preview {
+    MainTabView()
+        .environment(\.themeViewModel, ThemeViewModel.shared)
 }
