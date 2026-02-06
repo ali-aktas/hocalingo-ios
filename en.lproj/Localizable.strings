@@ -267,6 +267,29 @@
 "paywall_terms" = "Terms of Service";
 "paywall_privacy" = "Privacy Policy";
 
+// Header
+"paywall_title" = "Go Premium";
+"paywall_subtitle" = "Unlock Unlimited Learning";
+
+// Features (now hardcoded in Turkish in the view, but here's English version)
+"paywall_feature_1" = "14 Premium Packages";
+"paywall_feature_2" = "1200+ Premium Words";
+"paywall_feature_3" = "30 AI Stories/Month";
+"paywall_feature_4" = "Premium Card Designs";
+
+// Pricing Plans
+"paywall_plan_weekly" = "Weekly";
+"paywall_plan_yearly" = "Yearly";
+"paywall_best_value" = "BEST VALUE";
+
+// Purchase Button
+"paywall_purchase_button" = "Start Premium";
+
+// Footer
+"paywall_restore" = "Restore Purchases";
+"paywall_terms" = "Terms of Service";
+"paywall_privacy" = "Privacy Policy";
+
 // MARK: - Premium Upgrade Prompts
 "premium_upgrade_prompt_title" = "Unlock Premium";
 "premium_upgrade_prompt_message" = "Get unlimited access to all features";

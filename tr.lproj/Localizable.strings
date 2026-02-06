@@ -267,6 +267,30 @@
 "paywall_terms" = "Kullanım Şartları";
 "paywall_privacy" = "Gizlilik Politikası";
 
+// Header
+"paywall_title" = "Premium'a Geç";
+"paywall_subtitle" = "Öğrenmeyi Sınırsız Hale Getir";
+
+// Features (now hardcoded in Turkish in the view for simplicity)
+// But you can keep these for reference
+"paywall_feature_1" = "Binlerce Yeni Kelime ve Kalıp Öğren";
+"paywall_feature_2" = "Günlük Sınırsız Kelime Seçme Hakkı";
+"paywall_feature_3" = "Aylık 30 Yapay Zeka Kullanma Hakkı";
+"paywall_feature_4" = "Premium Kart Tasarımları";
+
+// Pricing Plans
+"paywall_plan_weekly" = "Haftalık";
+"paywall_plan_yearly" = "Yıllık";
+"paywall_best_value" = "EN AVANTAJLI";
+
+// Purchase Button
+"paywall_purchase_button" = "Premium'a Başla";
+
+// Footer
+"paywall_restore" = "Satın Alımları Geri Yükle";
+"paywall_terms" = "Kullanım Koşulları";
+"paywall_privacy" = "Gizlilik Politikası";
+
 // MARK: - Premium Yükseltme İstemleri
 "premium_upgrade_prompt_title" = "Premium Kilidi Aç";
 "premium_upgrade_prompt_message" = "Tüm özelliklere sınırsız erişim";
@@ -396,23 +420,23 @@
 "notification_title" = "HocaLingo";
 
 // Çeşitli motivasyonel mesajlar (10 varyasyon)
-"notification_msg_1" = "Sadece 2 dakikalık pratik bile fark yaratır! 🚀";
+"notification_msg_1" = "Sadece 5 dakikalık pratik bile fark yaratır! 🚀";
 "notification_msg_2" = "Otobüs mü bekliyorsun? Kelime çalışmaya ne dersin? 🚌";
-"notification_msg_3" = "Kahve molası? İngilizce molasına da ne dersin? ☕";
+"notification_msg_3" = "Kahve molasında mısın? İngilizce kart çevirmeye ne dersin? ☕";
 "notification_msg_4" = "Gelecekteki sen bu 5 dakikaya teşekkür edecek! 💪";
 "notification_msg_5" = "Küçük adımlar büyük ilerlemelere yol açar. Hadi başla! 🎯";
 "notification_msg_6" = "Hızlı çalışma = Büyük ilerleme! Hadi başlayalım! 🌟";
-"notification_msg_7" = "Toplantı arası mı? Öğrenmek için mükemmel zaman! 📚";
+"notification_msg_7" = "Ders arası mı? Öğrenmek için mükemmel zaman! 📚";
 "notification_msg_8" = "İngilizcen seni bekliyor! Bugün sadece birkaç kelime 🔥";
-"notification_msg_9" = "Öğle arası mı? Menüye biraz öğrenme ekle! 🍽️";
-"notification_msg_10" = "Gece geç mi? Hızlı bir çalışma ile rahatla 🌙";
+"notification_msg_9" = "Öğle arası mı? Menüye biraz kelime ekle! 🍽️";
+"notification_msg_10" = "Uykun mu kaçtı? Hızlı bir çalışma ile günü verimli kapat! 🌙";
 
 // MARK: - Haftalık AI Hikaye Bildirimleri
 "notification_ai_title" = "✨ AI Hikaye Zamanı!";
 
 // AI odaklı mesajlar (5 varyasyon)
-"notification_ai_msg_1" = "Senin için hazırlanmış AI hikaye seni bekliyor! Bugün harika bir şey yarat 🎨";
-"notification_ai_msg_2" = "AI'nın senin için özel bir hikaye yazmasına izin ver! Hemen dene 🤖";
-"notification_ai_msg_3" = "AI ile yaratıcılığını ortaya çıkar! Haftalık hikayeni oluştur ✨";
+"notification_ai_msg_1" = "Yapay zeka ile çalışma destene özel hikayeler yarat 🎨";
+"notification_ai_msg_2" = "Yapay zekaya kendine özel bir hikaye yazdırabilirsin! Hemen dene 🤖";
+"notification_ai_msg_3" = "AI ile yaratıcılığını ortaya çıkar! Reading hikayeni oluştur ✨";
 "notification_ai_msg_4" = "AI hikaye anlatıcın hazır! Bugün ne yaratacaksın? 📖";
 "notification_ai_msg_5" = "AI hikayeleri ile öğrenmeyi dönüştür! Maceraya başla 🚀";
