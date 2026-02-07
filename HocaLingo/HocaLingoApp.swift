@@ -28,7 +28,12 @@ struct HocaLingoApp: App {
         UNUserNotificationCenter.current().delegate = NotificationDelegate.shared
         
         // RevenueCat Configuration
+        #if DEBUG
         Purchases.logLevel = .debug
+        #else
+        Purchases.logLevel = .error
+        #endif
+        
         Purchases.configure(withAPIKey: "appl_sfCiEYrSXxYYRRjbMFZOjwBfagG")
         
         print("✅ RevenueCat initialized")
