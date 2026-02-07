@@ -64,6 +64,13 @@ struct MainTabViewWrapper: View {
     var body: some View {
         MainTabView()
             .onAppear {
+                // ✅ CLEAR BADGE: Reset badge when app opens (iOS 17+)
+                UNUserNotificationCenter.current().setBadgeCount(0) { error in
+                    if let error = error {
+                        print("❌ Badge clear error: \(error)")
+                    }
+                }
+                
                 // ✅ NEW: Request notification permission on first launch (after onboarding)
                 requestNotificationPermissionIfNeeded()
             }

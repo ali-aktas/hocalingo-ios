@@ -8,6 +8,7 @@
 
 import SwiftUI
 import RevenueCat
+import SafariServices
 
 // MARK: - Premium Paywall View
 struct PremiumPaywallView: View {
@@ -20,6 +21,9 @@ struct PremiumPaywallView: View {
     @State private var currentOffering: Offering?
     @State private var errorMessage: String?
     @State private var showError: Bool = false
+    // ✅ NEW: Safari sheet states for in-app browser
+    @State private var showPrivacyPolicy = false
+    @State private var showTermsOfService = false
     
     var body: some View {
         NavigationStack {
@@ -31,7 +35,7 @@ struct PremiumPaywallView: View {
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 0) {
                         Color.clear.frame(height: 320)
-                        VStack(spacing: 24) {
+                        VStack(spacing: 18) {
                             titleSection
                             featuresSection
                             
@@ -75,6 +79,13 @@ struct PremiumPaywallView: View {
             // ✨ EKSİK OLAN KRİTİK KISIM BURASI:
             .onAppear {
                 fetchOfferings()
+            }
+            // ✅ NEW: In-App Safari sheets
+            .sheet(isPresented: $showPrivacyPolicy) {
+                SafariView(url: URL(string: "https://ali-aktas.github.io/hocalingo-legal/privacy-policy.html")!)
+            }
+            .sheet(isPresented: $showTermsOfService) {
+                SafariView(url: URL(string: "https://ali-aktas.github.io/hocalingo-legal/terms-of-service.html")!)
             }
         }
     }
@@ -153,12 +164,18 @@ struct PremiumPaywallView: View {
         VStack(spacing: 8) {
             Text("Premium Üyesi Ol")
                 .font(.system(size: 32, weight: .black, design: .rounded))
-                .foregroundColor(.themePrimary)
+                .foregroundStyle(
+                        LinearGradient(
+                            colors: [Color(hex: "FFD700"), Color(hex: "FFA500")],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
                 .multilineTextAlignment(.center)
                 .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
             
             Text("Tüm özelliklerin kilidini aç ve premium kalitede öğren!")
-                .font(.system(size: 16))
+                .font(.system(size: 14))
                 .foregroundColor(.themeSecondary)
                 .multilineTextAlignment(.center)
         }
@@ -167,16 +184,16 @@ struct PremiumPaywallView: View {
     // MARK: - Features Section (4 simple lines)
     private var featuresSection: some View {
         VStack(spacing: 10) { // 12 → 10
-            featureLine(text: "Binlerce Yeni Kelime ve Kalıp Öğren")
-            featureLine(text: "Günlük Sınırsız Kelime Seçme Hakkı")
-            featureLine(text: "Aylık 30 Yapay Zeka Kullanma Hakkı")
-            featureLine(text: "Premium Kart Tasarımları")
+            featureLine(icon: "book.fill", text: "Binlerce Yeni Kelime ve Kalıp Öğren")
+            featureLine(icon: "infinity", text: "Günlük Sınırsız Kelime Seçme Hakkı")
+            featureLine(icon: "sparkles", text: "Aylık 30 Yapay Zeka Kullanma Hakkı")
+            featureLine(icon: "paintpalette.fill", text: "Premium Kart Tasarımları")
         }
-        .padding(.vertical, 8) // 12 → 8
+        .padding(.vertical, 6) // 12 → 8
     }
     
     // MARK: - Feature Line
-    private func featureLine(text: String) -> some View {
+    private func featureLine(icon: String, text: String) -> some View {
         HStack(spacing: 12) {
             // Gold crown icon with glow
             ZStack {
@@ -206,11 +223,11 @@ struct PremiumPaywallView: View {
                             endPoint: .bottomTrailing
                         )
                     )
-                    .frame(width: 28, height: 28)
+                    .frame(width: 24, height: 24)
                 
-                Image(systemName: "crown.fill")
-                    .font(.system(size: 14, weight: .bold))
+                Image(systemName: icon)  // crown.fill → icon parametresi
                     .foregroundColor(.white)
+                    .font(.system(size: 13, weight: .bold))
             }
             
             // Feature text
@@ -519,17 +536,13 @@ struct PremiumPaywallView: View {
             }
         }
     }
-    
+    // ✅ FIXED: Use in-app Safari browser (same as ProfileView)
     private func openTerms() {
-        if let url = URL(string: "https://www.hocalingo.com/terms") {
-            UIApplication.shared.open(url)
-        }
+        showTermsOfService = true
     }
-    
+
     private func openPrivacy() {
-        if let url = URL(string: "https://www.hocalingo.com/privacy") {
-            UIApplication.shared.open(url)
-        }
+        showPrivacyPolicy = true
     }
 }
 
@@ -564,6 +577,7 @@ extension SubscriptionPeriod {
         }
         return "\(value) \(unitString)"
     }
+    
 }
 
 // MARK: - Preview

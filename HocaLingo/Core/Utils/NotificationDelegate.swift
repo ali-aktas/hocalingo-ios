@@ -7,6 +7,7 @@
 //
 
 import UserNotifications
+import UIKit
 
 class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
     static let shared = NotificationDelegate()
@@ -53,6 +54,13 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
                 name: NSNotification.Name("SwitchToTab"),
                 object: destination
             )
+        }
+        
+        
+        UNUserNotificationCenter.current().setBadgeCount(0) { error in
+            if let error = error {
+                print("❌ Badge clear error: \(error)")
+            }
         }
         
         completionHandler()
