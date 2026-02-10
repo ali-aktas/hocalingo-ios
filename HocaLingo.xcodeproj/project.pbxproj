@@ -195,6 +195,7 @@
 				Features/Selection/WordSelectionView.swift,
 				Features/Selection/WordSelectionViewModel.swift,
 				HocaLingoApp.swift,
+				Info.plist,
 				Models/AIStoryError.swift,
 				Models/AnnualStats.swift,
 				Models/AppLanguage.swift,
@@ -637,7 +638,9 @@
 				DEVELOPMENT_TEAM = KS76374DNS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HocaLingo/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "We use this to improve your learning experience.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -671,7 +674,9 @@
 				DEVELOPMENT_TEAM = KS76374DNS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HocaLingo/Info.plist;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.education";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "We use this to improve your learning experience.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
