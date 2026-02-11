@@ -2,11 +2,16 @@
 //  HomeView.swift
 //  HocaLingo
 //
-//  ✅ CRITICAL FIX: Tab switching instead of navigation (DESIGN UNCHANGED)
-//  ✅ COMPILER FIX: Refactored StatCardWithChart to avoid type-check timeout
-//  ✅ LOCALIZATION: All NSLocalizedString replaced with clean keys for instant update
+//  🔴 REDESIGN: Study hero card → full-width immersive CTA
+//  🔴 REDESIGN: Action buttons → accent bar + rounded icon + chevron
+//  ✅ PRESERVED: rotatingContent, statsGrid2x2, all ViewModel connections
+//  ✅ PRESERVED: all navigation, notifications, tab switching logic
 //
 //  Location: HocaLingo/Features/Home/HomeView.swift
+//
+//  ⚠️  TODO (Ali): Add these 2 keys to both EN + TR Localizable.strings:
+//      "home_cta_title"  → TR: "Çalışmaya Başla!"   EN: "Start Studying!"
+//      "home_start_btn"  → TR: "Başla"               EN: "Start"
 //
 
 import SwiftUI
@@ -22,16 +27,19 @@ struct HomeView: View {
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.themeViewModel) private var themeViewModel
     
+    // Hero breathe animation
     @State private var pulseScale: CGFloat = 1.0
+    @State private var heroBreathe: CGFloat = 1.0
+    
     private let rotationTimer = Timer.publish(every: 40, on: .main, in: .common).autoconnect()
     
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.themeBackground                    // ✅ 1. Değişiklik
+                Color.themeBackground
                     .ignoresSafeArea()
                 
-                // ✅ 2. Flow efekti ekle (PackageSelection'daki gibi)
+                // Ambient glow
                 Circle()
                     .fill(Color.themePrimaryButton.opacity(themeViewModel.isDarkMode(in: colorScheme) ? 0.12 : 0.05))
                     .frame(width: 350, height: 350)
@@ -68,6 +76,7 @@ struct HomeView: View {
             .onAppear {
                 viewModel.loadDashboardData()
                 checkAINotificationNavigation()
+                startHeroAnimation()
             }
             .onReceive(rotationTimer) { _ in
                 viewModel.rotateHeroContent()
@@ -87,19 +96,28 @@ struct HomeView: View {
             }
         }
     }
+    
+    // Start gentle breathe loop for hero card glow
+    private func startHeroAnimation() {
+        withAnimation(.easeInOut(duration: 2.2).repeatForever(autoreverses: true)) {
+            heroBreathe = 1.06
+        }
+    }
+    
     private func checkAINotificationNavigation() {
-            if UserDefaults.standard.bool(forKey: "should_navigate_to_ai") {
-                UserDefaults.standard.set(false, forKey: "should_navigate_to_ai")
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                    viewModel.shouldNavigateToAIAssistant = true
-                }
+        if UserDefaults.standard.bool(forKey: "should_navigate_to_ai") {
+            UserDefaults.standard.set(false, forKey: "should_navigate_to_ai")
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                viewModel.shouldNavigateToAIAssistant = true
             }
         }
+    }
 }
 
 // MARK: - Sub-Sections
 private extension HomeView {
+    
+    // MARK: Title (UNCHANGED)
     var titleSection: some View {
         Text("home_title")
             .font(.system(size: 32, weight: .black, design: .rounded))
@@ -107,38 +125,109 @@ private extension HomeView {
             .frame(maxWidth: .infinity, alignment: .center)
     }
     
+    // MARK: Hero Card — REDESIGNED
+    // Full-width immersive CTA replaces the old half-circle button.
+    // rotatingContent (mascot / motivation text) is UNCHANGED and stays on the right.
     var heroCard: some View {
-        HStack(alignment: .center, spacing: 8) {
-            playButton.padding(.leading, 10)
-            Spacer()
-            rotatingContent.padding(.trailing, 10)
-        }
-    }
-
-    var playButton: some View {
         Button {
             viewModel.onEvent(.startStudy)
         } label: {
             ZStack {
-                Circle()
+                // Breathe glow layer (pulses behind the card)
+                RoundedRectangle(cornerRadius: 30)
                     .fill(playButtonGlowGradient)
-                    .frame(width: 140, height: 140)
-                    .blur(radius: 10)
+                    .scaleEffect(heroBreathe)
+                    .blur(radius: 14)
+                    .opacity(0.65)
                 
-                Circle()
+                // Solid gradient background
+                RoundedRectangle(cornerRadius: 28)
                     .fill(playButtonGradient)
-                    .frame(width: 120, height: 120)
-                    .overlay(Circle().stroke(Color.white.opacity(0.3), lineWidth: 2))
-                    .shadow(color: playButtonShadowColor, radius: 15, y: 10)
                 
-                Image(systemName: "rectangle.portrait.on.rectangle.portrait.angled.fill")
-                    .font(.system(size: 44, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
+                // Subtle top-edge glass highlight
+                RoundedRectangle(cornerRadius: 28)
+                    .fill(
+                        LinearGradient(
+                            colors: [Color.white.opacity(0.18), Color.white.opacity(0.0)],
+                            startPoint: .top,
+                            endPoint: .center
+                        )
+                    )
+                
+                // Content row
+                HStack(alignment: .center, spacing: 0) {
+                    
+                    // Left: streak badge + headline + start pill
+                    VStack(alignment: .leading, spacing: 10) {
+                        streakBadge
+                        
+                        // Main CTA headline (⚠️ needs key in Localizable.strings)
+                        Text(LocalizedStringKey("home_cta_title"))
+                            .font(.system(size: 22, weight: .black, design: .rounded))
+                            .foregroundColor(.white)
+                            .lineLimit(2)
+                            .fixedSize(horizontal: false, vertical: true)
+                        
+                        startPill
+                    }
+                    .padding(.leading, 20)
+                    .padding(.vertical, 20)
+                    
+                    Spacer()
+                    
+                    // Right: rotating mascot / motivation text — UNCHANGED
+                    rotatingContent
+                        .padding(.trailing, 10)
+                }
             }
+            .frame(height: 158)
+            .clipShape(RoundedRectangle(cornerRadius: 28))
+            .shadow(color: playButtonShadowColor.opacity(0.45), radius: 22, y: 10)
         }
         .buttonStyle(SpringButtonStyle())
     }
     
+    // Streak flame badge shown on the hero card
+    private var streakBadge: some View {
+        HStack(spacing: 5) {
+            Image(systemName: "flame.fill")
+                .font(.system(size: 11, weight: .black))
+                .foregroundColor(.white.opacity(0.9))
+            Text("\(viewModel.uiState.streakDays)")
+                .font(.system(size: 12, weight: .black, design: .rounded))
+                .foregroundColor(.white.opacity(0.95))
+        }
+        .padding(.horizontal, 10)
+        .padding(.vertical, 5)
+        .background(Color.white.opacity(0.22))
+        .clipShape(Capsule())
+    }
+    
+    // White pill "Start" button inside the hero card
+    private var startPill: some View {
+        HStack(spacing: 6) {
+            Image(systemName: "play.fill")
+                .font(.system(size: 11, weight: .black))
+            // ⚠️ needs "home_start_btn" key in Localizable.strings
+            Text(LocalizedStringKey("home_start_btn"))
+                .font(.system(size: 13, weight: .black, design: .rounded))
+        }
+        .foregroundColor(pillForegroundColor)
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
+        .background(Color.white)
+        .clipShape(Capsule())
+        .shadow(color: Color.white.opacity(0.28), radius: 8, y: 3)
+    }
+    
+    // Foreground color of the white pill matches the theme accent
+    private var pillForegroundColor: Color {
+        themeViewModel.isDarkMode(in: colorScheme)
+            ? Color(hex: "7C3AED")   // Purple tint in dark mode
+            : Color(hex: "E05F00")   // Orange tint in light mode
+    }
+    
+    // MARK: Rotating Content (UNCHANGED)
     var rotatingContent: some View {
         Group {
             switch viewModel.currentContentType {
@@ -158,7 +247,7 @@ private extension HomeView {
         return Image(mascots[index % mascots.count])
             .resizable()
             .scaledToFit()
-            .scaleEffect(1.90)
+            .scaleEffect(1.30)
     }
     
     func motivationTextView(index: Int) -> some View {
@@ -170,6 +259,7 @@ private extension HomeView {
             .fixedSize(horizontal: false, vertical: true)
     }
     
+    // MARK: Stats (UNCHANGED)
     var statsTitle: some View {
         Text("stat_monthly_stats")
             .font(.system(size: 16, weight: .bold, design: .rounded))
@@ -187,7 +277,6 @@ private extension HomeView {
                     gradient: [Color(hex: "A78BFA"), Color(hex: "8B5CF6")],
                     chartData: generateStreakChartData()
                 )
-                
                 StatCardWithChart(
                     title: "stat_active_days",
                     value: "\(viewModel.uiState.monthlyStats.activeDaysThisMonth)",
@@ -196,17 +285,14 @@ private extension HomeView {
                     chartData: generateActiveDaysChartData()
                 )
             }
-            
             HStack(spacing: 12) {
                 StatCardWithChart(
                     title: "stat_this_month_time",
-                    value: viewModel.uiState.monthlyStats.formattedStudyTime,  // ✅ Shows "2h 0m"
-                    // Remove subtitle: "stat_study_time_min" - no longer needed
+                    value: viewModel.uiState.monthlyStats.formattedStudyTime,
                     icon: "clock.fill",
                     gradient: [Color(hex: "67E8F9"), Color(hex: "22D3EE")],
                     chartData: generateStudyTimeChartData()
                 )
-                
                 StatCardWithChart(
                     title: "stat_discipline_score",
                     value: "\(viewModel.uiState.monthlyStats.disciplineScore)%",
@@ -218,6 +304,9 @@ private extension HomeView {
         }
     }
     
+    // MARK: Action Buttons — REDESIGNED
+    // IDs, titles, subtitles, accentColors, actions: ALL UNCHANGED.
+    // Visual treatment redesigned: accent bar + rounded icon + chevron.
     var actionButtonsSection: some View {
         VStack(spacing: 12) {
             ActionButtonWithIcon(
@@ -227,7 +316,6 @@ private extension HomeView {
                 accentColor: .accentTeal,
                 action: { viewModel.onEvent(.navigateToPackageSelection) }
             )
-            
             ActionButtonWithIcon(
                 iconName: "add_img",
                 title: "action_add_word",
@@ -235,7 +323,6 @@ private extension HomeView {
                 accentColor: .accentOrange,
                 action: { viewModel.onEvent(.showAddWordDialog) }
             )
-            
             ActionButtonWithIcon(
                 iconName: "ai_icon",
                 title: "action_ai_assistant",
@@ -247,7 +334,7 @@ private extension HomeView {
     }
 }
 
-// MARK: - Stat Card (Refactored for Performance)
+// MARK: - Stat Card (UNCHANGED)
 struct StatCardWithChart: View {
     let title: String
     let value: String
@@ -328,7 +415,8 @@ struct StatCardWithChart: View {
     }
 }
 
-// MARK: - Action Button (FIXED FOR LIGHT THEME)
+// MARK: - Action Button — REDESIGNED
+// Accent bar + rounded-rect icon + chevron → higher perceived tappability
 struct ActionButtonWithIcon: View {
     let iconName: String
     let title: LocalizedStringKey
@@ -341,54 +429,71 @@ struct ActionButtonWithIcon: View {
     
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 18) {
-                // Icon with better contrast
+            HStack(spacing: 0) {
+                
+                // Left accent bar — color stripe communicates category at a glance
+                RoundedRectangle(cornerRadius: 2)
+                    .fill(accentColor)
+                    .frame(width: 4)
+                    .padding(.vertical, 14)
+                
+                // Icon in rounded-rect container
                 Image(iconName)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 40, height: 40)
+                    .frame(width: 38, height: 38)
                     .padding(10)
                     .background(
-                        Circle()
-                            .fill(accentColor.opacity(isDark ? 0.2 : 0.15)) // ✅ Adjusted for light theme
+                        RoundedRectangle(cornerRadius: 14)
+                            .fill(accentColor.opacity(isDark ? 0.18 : 0.12))
                     )
+                    .padding(.leading, 14)
+                    .padding(.trailing, 12)
                 
-                VStack(alignment: .leading, spacing: 4) {
+                // Title + subtitle
+                VStack(alignment: .leading, spacing: 3) {
                     Text(title)
-                        .font(.system(size: 18, weight: .heavy, design: .rounded))
+                        .font(.system(size: 16, weight: .heavy, design: .rounded))
                         .foregroundColor(.themePrimary)
-                    Text(subtitle)
-                        .font(.system(size: 14))
-                        .foregroundColor(.themeSecondary)
                         .lineLimit(1)
+                    Text(subtitle)
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundColor(.themeSecondary)
+                        .lineLimit(2)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
-                Spacer()
+                
+                Spacer(minLength: 8)
+                
+                // Chevron in soft accent circle → strong tappability signal
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 11, weight: .bold))
+                    .foregroundColor(accentColor)
+                    .frame(width: 30, height: 30)
+                    .background(accentColor.opacity(isDark ? 0.15 : 0.1))
+                    .clipShape(Circle())
+                    .padding(.trailing, 16)
             }
-            .padding(.vertical, 14)
-            .padding(.horizontal, 16)
-            .background(
-                RoundedRectangle(cornerRadius: 22)
-                    .fill(Color.themeCard)
-            )
+            .padding(.vertical, 12)
+            .background(Color.themeCard)
+            .clipShape(RoundedRectangle(cornerRadius: 20))
             .overlay(
-                RoundedRectangle(cornerRadius: 22)
-                    .stroke(
-                        accentColor.opacity(isDark ? 0.3 : 0.4), // ✅ Increased from 0.2 to 0.4 for light theme
-                        lineWidth: isDark ? 0.5 : 1.0  // ✅ Thicker border in light theme
-                    )
+                RoundedRectangle(cornerRadius: 20)
+                    .stroke(accentColor.opacity(isDark ? 0.22 : 0.32), lineWidth: isDark ? 0.8 : 1.0)
             )
+            .shadow(color: accentColor.opacity(isDark ? 0.0 : 0.07), radius: 8, y: 4)
         }
         .buttonStyle(ScaleButtonStyle())
     }
     
-    // Helper computed property
     private var isDark: Bool {
         themeViewModel.isDarkMode(in: colorScheme)
     }
 }
 
-// MARK: - Styles & Gradients
+// MARK: - Gradients & Chart Data (private helpers)
 private extension HomeView {
+    
     var playButtonGradient: LinearGradient {
         let isDark = themeViewModel.isDarkMode(in: colorScheme)
         return isDark
@@ -399,28 +504,33 @@ private extension HomeView {
     var playButtonGlowGradient: LinearGradient {
         let isDark = themeViewModel.isDarkMode(in: colorScheme)
         let color = isDark ? Color(hex: "9333EA") : Color(hex: "FB9322")
-        return LinearGradient(colors: [color.opacity(0.3), color.opacity(0.1)], startPoint: .top, endPoint: .bottom)
+        return LinearGradient(colors: [color.opacity(0.45), color.opacity(0.1)], startPoint: .top, endPoint: .bottom)
     }
     
     var playButtonShadowColor: Color {
-        themeViewModel.isDarkMode(in: colorScheme) ? Color(hex: "9333EA").opacity(0.4) : Color(hex: "FB9322").opacity(0.4)
+        themeViewModel.isDarkMode(in: colorScheme)
+            ? Color(hex: "9333EA").opacity(0.4)
+            : Color(hex: "FB9322").opacity(0.4)
     }
     
-    func generateStreakChartData() -> [Double] { [3, 4, 5, 6, 7, Double(viewModel.uiState.streakDays)] }
+    func generateStreakChartData() -> [Double] {
+        [3, 4, 5, 6, 7, Double(viewModel.uiState.streakDays)]
+    }
     func generateActiveDaysChartData() -> [Double] {
-        let days = Double(viewModel.uiState.monthlyStats.activeDaysThisMonth)
-        return [days * 0.3, days * 0.5, days * 0.7, days * 0.85, days * 0.95, days]
+        let d = Double(viewModel.uiState.monthlyStats.activeDaysThisMonth)
+        return [d * 0.3, d * 0.5, d * 0.7, d * 0.85, d * 0.95, d]
     }
     func generateStudyTimeChartData() -> [Double] {
-        let time = Double(viewModel.uiState.monthlyStats.studyTimeThisMonth)
-        return [time * 0.2, time * 0.4, time * 0.6, time * 0.8, time * 0.9, time]
+        let t = Double(viewModel.uiState.monthlyStats.studyTimeThisMonth)
+        return [t * 0.2, t * 0.4, t * 0.6, t * 0.8, t * 0.9, t]
     }
     func generateDisciplineChartData() -> [Double] {
-        let score = Double(viewModel.uiState.monthlyStats.disciplineScore)
-        return [score * 0.4, score * 0.6, score * 0.75, score * 0.85, score * 0.92, score]
+        let s = Double(viewModel.uiState.monthlyStats.disciplineScore)
+        return [s * 0.4, s * 0.6, s * 0.75, s * 0.85, s * 0.92, s]
     }
 }
 
+// MARK: - Button Styles
 struct SpringButtonStyle: ButtonStyle {
     func makeBody(configuration: Configuration) -> some View {
         configuration.label

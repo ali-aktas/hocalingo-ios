@@ -33,6 +33,8 @@
 "home_greeting_afternoon" = "Good Afternoon! 🌤️";
 "home_greeting_evening" = "Good Evening! 🌙";
 "home_greeting_night" = "Good Night! ✨";
+"home_cta_title" = "Start Studying!";
+"home_start_btn" = "Start";
 
 // Motivation Texts
 "motivation_1" = "Just 10 minutes a day and you can learn a thousand words in a year";

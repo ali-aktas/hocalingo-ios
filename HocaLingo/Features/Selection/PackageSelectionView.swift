@@ -2,7 +2,10 @@
 //  PackageSelectionView.swift
 //  HocaLingo
 //
-//  ✅ CLEAN: Main layout only, components separated
+//  🔴 REDESIGN: Tab selector moved to navigation bar (toolbar principal)
+//              Smaller font, more rounded corners — back button stays auto-generated
+//  ✅ PRESERVED: All navigation, premium logic, overlays, helper functions
+//
 //  Location: HocaLingo/Features/Selection/PackageSelectionView.swift
 //
 
@@ -29,25 +32,24 @@ struct PackageSelectionView: View {
             ZStack {
                 Color.themeBackground.ignoresSafeArea()
                 
-                VStack(spacing: 0) {
-                    // Custom Tab Selector
-                    tabSelector
-                        .padding(.horizontal, 20)
-                        .padding(.top, 16)
+                // Tab Content — no top padding for tab selector anymore
+                TabView(selection: $currentTab) {
+                    standardPackagesView
+                        .tag(0)
                     
-                    // Tab Content
-                    TabView(selection: $currentTab) {
-                        standardPackagesView
-                            .tag(0)
-                        
-                        premiumPackagesView
-                            .tag(1)
-                    }
-                    .tabViewStyle(.page(indexDisplayMode: .never))
+                    premiumPackagesView
+                        .tag(1)
                 }
+                .tabViewStyle(.page(indexDisplayMode: .never))
                 
                 if viewModel.showEmptyPackageAlert {
                     emptyPackageOverlay
+                }
+            }
+            // Tab selector lives in the navigation bar as a centered principal item
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    navBarTabSelector
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
@@ -60,8 +62,9 @@ struct PackageSelectionView: View {
         }
     }
     
-    // MARK: - Tab Selector
-    private var tabSelector: some View {
+    // MARK: - Nav Bar Tab Selector (REDESIGNED — smaller, more rounded)
+    // Lives in toolbar .principal → sits centered next to the auto back button
+    private var navBarTabSelector: some View {
         HStack(spacing: 0) {
             // Standard Tab
             PackageTabButton(
@@ -89,11 +92,12 @@ struct PackageSelectionView: View {
                 }
             )
         }
-        .padding(4)
+        .padding(3)
         .background(
-            RoundedRectangle(cornerRadius: 14)
-                .fill(isDarkMode ? Color.white.opacity(0.1) : Color.gray.opacity(0.15))
+            RoundedRectangle(cornerRadius: 16) // More rounded than original 14
+                .fill(isDarkMode ? Color.white.opacity(0.1) : Color.gray.opacity(0.13))
         )
+        .frame(width: 240) // Fixed width so it stays compact in nav bar
     }
     
     // MARK: - Standard Packages View
@@ -148,55 +152,18 @@ struct PackageSelectionView: View {
         }
     }
     
-    // MARK: - Premium Header
+    // MARK: - Premium Header Section
     private var premiumHeaderSection: some View {
         VStack(spacing: 16) {
-            // Crown Icon with Glow
-            ZStack {
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                Color(hex: "FFD700"),
-                                Color(hex: "FFA500")
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: 80, height: 80)
-                    .blur(radius: 20)
-                    .opacity(0.6)
-                
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                Color(hex: "FFD700"),
-                                Color(hex: "FFA500")
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: 70, height: 70)
-                
-                Image(systemName: "crown.fill")
-                    .font(.system(size: 36, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
-            }
+            Text("premium_packages_title")
+                .font(.system(size: 32, weight: .black, design: .rounded))
+                .foregroundColor(.themePrimary)
             
-            VStack(spacing: 8) {
-                Text("premium_header_title")
-                    .font(.system(size: 28, weight: .black, design: .rounded))
-                    .foregroundColor(.themePrimary)
-                
-                Text("premium_header_subtitle")
-                    .font(.system(size: 15))
-                    .foregroundColor(.themeSecondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 40)
-            }
+            Text("premium_packages_subtitle")
+                .font(.system(size: 16, weight: .medium, design: .rounded))
+                .foregroundColor(.themeSecondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 40)
             
             if !viewModel.isPremium {
                 Button(action: { viewModel.showPremiumSheet = true }) {
@@ -210,10 +177,7 @@ struct PackageSelectionView: View {
                     .padding(.vertical, 12)
                     .background(
                         LinearGradient(
-                            colors: [
-                                Color(hex: "FFD700"),
-                                Color(hex: "FFA500")
-                            ],
+                            colors: [Color(hex: "FFD700"), Color(hex: "FFA500")],
                             startPoint: .leading,
                             endPoint: .trailing
                         )
@@ -252,7 +216,11 @@ struct PackageSelectionView: View {
             
             VStack(spacing: 25) {
                 Circle()
-                    .fill(LinearGradient(colors: [.themePrimaryButtonGradientStart, .themePrimaryButtonGradientEnd], startPoint: .topLeading, endPoint: .bottomTrailing))
+                    .fill(LinearGradient(
+                        colors: [.themePrimaryButtonGradientStart, .themePrimaryButtonGradientEnd],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ))
                     .frame(width: 80, height: 80)
                     .overlay(Image(systemName: "checkmark.seal.fill").foregroundColor(.white).font(.title))
                 

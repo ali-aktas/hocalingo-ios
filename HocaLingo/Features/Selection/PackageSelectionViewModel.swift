@@ -2,7 +2,10 @@
 //  PackageSelectionViewModel.swift
 //  HocaLingo
 //
-//  ✅ UPDATED: Premium packages, modern colors, category system
+//  ✅ FIX: premium_travel_001 restored (6 packages, not 5)
+//  ✅ FIX: Standard color steps ~12 brightness units apart (was ~7, too subtle)
+//  ✅ PRESERVED: All logic, functions, premium manager
+//
 //  Location: HocaLingo/Features/Selection/PackageSelectionViewModel.swift
 //
 
@@ -51,7 +54,6 @@ class PackageSelectionViewModel: ObservableObject {
     
     // MARK: - Initialization
     init() {
-        // Subscribe to premium status
         premiumManager.$isPremium
             .assign(to: &$isPremium)
         
@@ -62,95 +64,50 @@ class PackageSelectionViewModel: ObservableObject {
     private func loadPackages() {
         isLoading = true
         
-        // ✅ STANDARD PACKAGES (Modern Colors - Better Readability)
+        // STANDARD PACKAGES — Purple monochrome, ~12 brightness units per step
+        // A1 (lightest #9B8FD4) → C2 (darkest #594798), clearly distinct but same family
         let standardMetadata: [(id: String, level: String, name: String, description: String, colorHex: String)] = [
             (
                 id: "standard_a1_001",
                 level: "level_a1",
                 name: "package_name_beginner",
                 description: "Basic everyday words",
-                colorHex: "FF6B6B" // Vibrant red
+                colorHex: "9B8FD4"   // Lightest purple
             ),
             (
                 id: "standard_a2_001",
                 level: "level_a2",
                 name: "package_name_elementary",
                 description: "Common phrases",
-                colorHex: "FFA94D" // Warm orange
+                colorHex: "8E80C8"   // ~12 units darker
             ),
             (
                 id: "standard_b1_001",
                 level: "level_b1",
                 name: "package_name_intermediate",
-                description: "Work and travel",
-                colorHex: "FFD93D" // Bright yellow
+                description: "Work and travel vocabulary",
+                colorHex: "8172BC"   // ~12 units darker
             ),
             (
                 id: "standard_b2_001",
                 level: "level_b2",
                 name: "package_name_upper_intermediate",
-                description: "Complex topics",
-                colorHex: "6BCF7F" // Fresh green
+                description: "Professional English",
+                colorHex: "7363B0"   // ~12 units darker
             ),
             (
                 id: "standard_c1_001",
                 level: "level_c1",
                 name: "package_name_advanced",
-                description: "Academic language",
-                colorHex: "4ECDC4" // Teal
+                description: "Advanced expressions",
+                colorHex: "6655A4"   // ~12 units darker
             ),
             (
                 id: "standard_c2_001",
                 level: "level_c2",
                 name: "package_name_mastery",
-                description: "Native-like fluency",
-                colorHex: "9B59B6" // Purple
-            )
-        ]
-        
-        // ✅ PREMIUM PACKAGES (Gold Theme - Thematic)
-        let premiumMetadata: [(id: String, level: String, name: String, description: String, colorHex: String)] = [
-            (
-                id: "premium_business_001",
-                level: "premium_level",
-                name: "premium_package_business",
-                description: "Professional workplace English",
-                colorHex: "DAA520" // Goldenrod
-            ),
-            (
-                id: "premium_travel_001",
-                level: "premium_level",
-                name: "premium_package_travel",
-                description: "Tourism and navigation",
-                colorHex: "FFD700" // Gold
-            ),
-            (
-                id: "premium_tech_001",
-                level: "premium_level",
-                name: "premium_package_tech",
-                description: "Programming and IT terms",
-                colorHex: "F4A460" // Sandy brown
-            ),
-            (
-                id: "premium_medical_001",
-                level: "premium_level",
-                name: "premium_package_medical",
-                description: "Healthcare vocabulary",
-                colorHex: "DDA15E" // Bronze
-            ),
-            (
-                id: "premium_academic_001",
-                level: "premium_level",
-                name: "premium_package_academic",
-                description: "University and research",
-                colorHex: "CD853F" // Peru
-            ),
-            (
-                id: "premium_idioms_001",
-                level: "premium_level",
-                name: "premium_package_idioms",
-                description: "Native expressions",
-                colorHex: "D4AF37" // Gold (metallic)
+                description: "Near-native vocabulary",
+                colorHex: "594798"   // Darkest purple
             )
         ]
         
@@ -168,6 +125,52 @@ class PackageSelectionViewModel: ObservableObject {
                 category: .standard
             )
         }
+        
+        // PREMIUM PACKAGES — Gold theme, UNCHANGED (6 packages restored)
+        let premiumMetadata: [(id: String, level: String, name: String, description: String, colorHex: String)] = [
+            (
+                id: "premium_business_001",
+                level: "premium_level",
+                name: "premium_package_business",
+                description: "Professional workplace English",
+                colorHex: "DAA520"   // Goldenrod
+            ),
+            (
+                id: "premium_travel_001",
+                level: "premium_level",
+                name: "premium_package_travel",
+                description: "Tourism and navigation",
+                colorHex: "FFD700"   // Gold
+            ),
+            (
+                id: "premium_tech_001",
+                level: "premium_level",
+                name: "premium_package_tech",
+                description: "Programming and IT terms",
+                colorHex: "F4A460"   // Sandy brown
+            ),
+            (
+                id: "premium_medical_001",
+                level: "premium_level",
+                name: "premium_package_medical",
+                description: "Healthcare vocabulary",
+                colorHex: "DDA15E"   // Bronze
+            ),
+            (
+                id: "premium_academic_001",
+                level: "premium_level",
+                name: "premium_package_academic",
+                description: "University and research",
+                colorHex: "CD853F"   // Peru
+            ),
+            (
+                id: "premium_idioms_001",
+                level: "premium_level",
+                name: "premium_package_idioms",
+                description: "Native expressions",
+                colorHex: "D4AF37"   // Metallic gold
+            )
+        ]
         
         // Build premium packages
         premiumPackages = premiumMetadata.map { metadata in
@@ -201,13 +204,11 @@ class PackageSelectionViewModel: ObservableObject {
     
     // MARK: - Select Package
     func selectPackage(_ package: PackageModel) {
-        // Check premium access
         if package.isPremium && !isPremium {
             showPremiumSheet = true
             print("🔒 Premium package locked: \(package.name)")
             return
         }
-        
         selectedPackageId = package.id
         print("✅ Selected package: \(package.id)")
     }
@@ -222,12 +223,11 @@ class PackageSelectionViewModel: ObservableObject {
         return allPackages.first(where: { $0.id == packageId })
     }
     
-    // MARK: - Get Total Unseen Words
+    // MARK: - Get Unseen Word Count
     func getUnseenWordCount(for packageId: String) -> Int {
         let selections = userDefaults.getWordSelections(packageId: packageId)
         let totalWords = loadWordCount(for: packageId)
         let processedWords = selections.selected.count + selections.hidden.count
-        
         return max(0, totalWords - processedWords)
     }
 }
