@@ -88,19 +88,30 @@ struct OnboardingScreen3View: View {
     // MARK: - Background Layer
     private var backgroundLayer: some View {
         ZStack {
-            Color.themeBackground.ignoresSafeArea()
-            
-            // Decorative circles
+            LinearGradient(
+                colors: isDarkMode ? [
+                    Color(hex: "1A1625"),
+                    Color(hex: "211A2E")
+                ] : [
+                    Color(hex: "FBF2FF"),
+                    Color(hex: "FAF1FF")
+                ],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+
             Circle()
-                .fill(Color.themePrimary.opacity(0.05))
-                .frame(width: 300, height: 300)
-                .offset(x: -150, y: -200)
-            
-            Circle()
-                .fill(Color.accentGreen.opacity(0.05))
-                .frame(width: 250, height: 250)
-                .offset(x: 150, y: 300)
+                .fill(Color.accentPurple.opacity(isDarkMode ? 0.15 : 0.08))
+                .frame(width: 350, height: 350)
+                .blur(radius: 60)
+                .offset(x: 120, y: -250)
         }
+        
+    }
+    
+    private var isDarkMode: Bool {
+        themeViewModel.isDarkMode(in: colorScheme)
     }
     
     // MARK: - Success Message

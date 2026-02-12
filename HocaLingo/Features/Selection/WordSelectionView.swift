@@ -30,7 +30,24 @@ struct WordSelectionView: View {
     
     var body: some View {
         ZStack {
-            backgroundColor.ignoresSafeArea()
+            LinearGradient(
+                colors: isDarkMode ? [
+                    Color(hex: "1A1625"),
+                    Color(hex: "211A2E")
+                ] : [
+                    Color(hex: "FBF2FF"),
+                    Color(hex: "FAF1FF")
+                ],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+
+            Circle()
+                .fill(Color.accentPurple.opacity(isDarkMode ? 0.15 : 0.08))
+                .frame(width: 350, height: 350)
+                .blur(radius: 60)
+                .offset(x: 120, y: -250)
             
             VStack(spacing: 0) {
                 if viewModel.isLoading {
@@ -470,10 +487,14 @@ struct WordSelectionView: View {
     }
     
     // MARK: - Theme Colors
+    private var isDarkMode: Bool {
+        themeViewModel.isDarkMode(in: colorScheme)
+    }
+
     private var backgroundColor: Color {
         themeViewModel.isDarkMode(in: colorScheme)
-            ? Color(hex: "121212")
-            : Color(hex: "F5F5F5")
+            ? Color(hex: "1A1625")
+            : Color(hex: "FBF2FF")
     }
     
     private var cardBackgroundColor: Color {

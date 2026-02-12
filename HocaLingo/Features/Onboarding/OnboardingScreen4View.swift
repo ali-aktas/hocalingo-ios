@@ -78,15 +78,29 @@ struct OnboardingScreen4View: View {
     // MARK: - Background Layer
     private var backgroundLayer: some View {
         ZStack {
-            Color.themeBackground
-                .ignoresSafeArea()
-            
+            LinearGradient(
+                colors: isDarkMode ? [
+                    Color(hex: "1A1625"),
+                    Color(hex: "211A2E")
+                ] : [
+                    Color(hex: "FBF2FF"),
+                    Color(hex: "FAF1FF")
+                ],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+
             Circle()
-                .fill(Color.themePrimaryButton.opacity(themeViewModel.isDarkMode(in: colorScheme) ? 0.12 : 0.05))
+                .fill(Color.accentPurple.opacity(isDarkMode ? 0.15 : 0.08))
                 .frame(width: 350, height: 350)
                 .blur(radius: 60)
                 .offset(x: 120, y: -250)
         }
+    }
+    
+    private var isDarkMode: Bool {
+        themeViewModel.isDarkMode(in: colorScheme)
     }
     
     // MARK: - Instruction Banner
@@ -126,7 +140,7 @@ struct OnboardingScreen4View: View {
                 .foregroundColor(.themePrimaryButton)
                 .opacity(tapIndicatorOpacity)
         }
-        .offset(y: -50)
+        .offset(y: -100)
         .onAppear {
             startTapIndicatorAnimation()
         }

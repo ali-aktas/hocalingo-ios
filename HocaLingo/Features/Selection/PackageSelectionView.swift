@@ -30,7 +30,24 @@ struct PackageSelectionView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.themeBackground.ignoresSafeArea()
+                LinearGradient(
+                    colors: isDarkMode ? [
+                        Color(hex: "1A1625"),
+                        Color(hex: "211A2E")
+                    ] : [
+                        Color(hex: "FBF2FF"),
+                        Color(hex: "FAF1FF")
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
+
+                Circle()
+                    .fill(Color.accentPurple.opacity(isDarkMode ? 0.15 : 0.08))
+                    .frame(width: 350, height: 350)
+                    .blur(radius: 60)
+                    .offset(x: 120, y: -250)
                 
                 // Tab Content — no top padding for tab selector anymore
                 TabView(selection: $currentTab) {

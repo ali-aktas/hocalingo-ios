@@ -9,10 +9,6 @@
 //
 //  Location: HocaLingo/Features/Home/HomeView.swift
 //
-//  ⚠️  TODO (Ali): Add these 2 keys to both EN + TR Localizable.strings:
-//      "home_cta_title"  → TR: "Çalışmaya Başla!"   EN: "Start Studying!"
-//      "home_start_btn"  → TR: "Başla"               EN: "Start"
-//
 
 import SwiftUI
 import Combine
@@ -36,12 +32,21 @@ struct HomeView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.themeBackground
-                    .ignoresSafeArea()
-                
-                // Ambient glow
+                LinearGradient(
+                    colors: isDarkMode ? [
+                        Color(hex: "1A1625"),
+                        Color(hex: "211A2E")
+                    ] : [
+                        Color(hex: "FBF2FF"),
+                        Color(hex: "FAF1FF")
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
+
                 Circle()
-                    .fill(Color.themePrimaryButton.opacity(themeViewModel.isDarkMode(in: colorScheme) ? 0.12 : 0.05))
+                    .fill(Color.accentPurple.opacity(isDarkMode ? 0.15 : 0.08))
                     .frame(width: 350, height: 350)
                     .blur(radius: 60)
                     .offset(x: 120, y: -250)
@@ -527,6 +532,9 @@ private extension HomeView {
     func generateDisciplineChartData() -> [Double] {
         let s = Double(viewModel.uiState.monthlyStats.disciplineScore)
         return [s * 0.4, s * 0.6, s * 0.75, s * 0.85, s * 0.92, s]
+    }
+    private var isDarkMode: Bool {
+        themeViewModel.isDarkMode(in: colorScheme)
     }
 }
 

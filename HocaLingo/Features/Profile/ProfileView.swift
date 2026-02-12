@@ -23,33 +23,55 @@ struct ProfileView: View {
     
     var body: some View {
         NavigationView {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 20) {
-                    // Premium Card
-                    premiumCard
-                    
-                    // Annual Statistics Section
-                    //AnnualStatsSection(annualStats: viewModel.annualStats)
-                    
-                    // Settings Section
-                    settingsSection
+            
+            ZStack {
+                LinearGradient(
+                    colors: isDarkMode ? [
+                        Color(hex: "1A1625"),
+                        Color(hex: "211A2E")
+                    ] : [
+                        Color(hex: "FBF2FF"),
+                        Color(hex: "FAF1FF")
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
+                
+                Circle()
+                    .fill(Color.accentPurple.opacity(isDarkMode ? 0.15 : 0.08))
+                    .frame(width: 350, height: 350)
+                    .blur(radius: 60)
+                    .offset(x: 120, y: -250)
+                
+                ScrollView(showsIndicators: false) {
+                    VStack(spacing: 20) {
+                        // Premium Card
+                        premiumCard
+                        
+                        // Annual Statistics Section
+                        //AnnualStatsSection(annualStats: viewModel.annualStats)
+                        
+                        // Settings Section
+                        settingsSection
+                    }
+                    .padding(.horizontal, 20)
+                    .padding(.vertical, 16)
                 }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 16)
+                .navigationTitle("profile_welcome")
+                .navigationBarTitleDisplayMode(.large)
             }
-            .background(Color.themeBackground)
-            .navigationTitle("profile_welcome")
-            .navigationBarTitleDisplayMode(.large)
-        }
-        .sheet(isPresented: $showPremiumSheet) {
-            PremiumPaywallView()
-        }
-        // ✅ NEW: In-App Safari sheets
-        .sheet(isPresented: $showPrivacyPolicy) {
-            SafariView(url: URL(string: "https://ali-aktas.github.io/hocalingo-legal/privacy-policy.html")!)
-        }
-        .sheet(isPresented: $showTermsOfService) {
-            SafariView(url: URL(string: "https://ali-aktas.github.io/hocalingo-legal/terms-of-service.html")!)
+            .sheet(isPresented: $showPremiumSheet) {
+                PremiumPaywallView()
+            }
+            // ✅ NEW: In-App Safari sheets
+            .sheet(isPresented: $showPrivacyPolicy) {
+                SafariView(url: URL(string: "https://ali-aktas.github.io/hocalingo-legal/privacy-policy.html")!)
+            }
+            .sheet(isPresented: $showTermsOfService) {
+                SafariView(url: URL(string: "https://ali-aktas.github.io/hocalingo-legal/terms-of-service.html")!)
+            }
+            
         }
     }
     
@@ -244,6 +266,10 @@ struct ProfileView: View {
                 )
             }
         }
+    }
+    
+    var isDarkMode: Bool {
+            themeViewModel.isDarkMode(in: colorScheme)
     }
 }
 

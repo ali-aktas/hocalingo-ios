@@ -13,6 +13,8 @@ struct StudyView: View {
     @Binding var selectedTab: Int
     @StateObject private var viewModel = StudyViewModel()
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.themeViewModel) private var themeViewModel
+    @Environment(\.colorScheme) private var colorScheme
     
     var body: some View {
         ZStack {
@@ -41,6 +43,7 @@ struct StudyView: View {
         }
     }
     
+    
     private func checkNotificationNavigation() {
             if UserDefaults.standard.bool(forKey: "should_navigate_to_study") {
                 UserDefaults.standard.set(false, forKey: "should_navigate_to_study")
@@ -57,8 +60,24 @@ struct StudyView: View {
     
     private var studyInterface: some View {
         ZStack {
-            Color(.systemBackground)
-                .ignoresSafeArea()
+            LinearGradient(
+                colors: isDarkMode ? [
+                    Color(hex: "1A1625"),
+                    Color(hex: "211A2E")
+                ] : [
+                    Color(hex: "FBF2FF"),
+                    Color(hex: "FAF1FF")
+                ],
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
+            )
+            .ignoresSafeArea()
+
+            Circle()
+                .fill(Color.accentPurple.opacity(isDarkMode ? 0.15 : 0.08))
+                .frame(width: 350, height: 350)
+                .blur(radius: 60)
+                .offset(x: 120, y: -250)
             
             VStack(spacing: 0) {
                 // Top bar
@@ -129,7 +148,12 @@ struct StudyView: View {
         }
         .navigationBarHidden(true)
     }
+    
+    var isDarkMode: Bool {
+            themeViewModel.isDarkMode(in: colorScheme)
+    }
 }
+
 
 // MARK: - Top Bar
 struct StudyTopBar: View {
@@ -286,4 +310,5 @@ struct StudyActionButton: View {
         }
         .disabled(!isEnabled)
     }
+    
 }
