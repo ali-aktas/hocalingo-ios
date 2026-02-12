@@ -31,13 +31,8 @@ struct OnboardingScreen1View: View {
                 
                 // Main message (better font + line break after comma)
                 VStack(spacing: 16) {
-                    Text("İngilizce öğrenmenin en iyi yolu hızlı tekrarlı kelime öğrenmektir..")
-                        .font(.system(size: 18, weight: .semibold, design: .rounded))
-                        .foregroundColor(.primary)
-                        .multilineTextAlignment(.center)
-                    
-                    Text("Kelime öğrenmenin en iyi yolu ise HocaLingo kullanmaktır!")
-                        .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    Text("Dünyanın en basit İngilizce öğrenme metoduna hazır mısın?")
+                        .font(.system(size: 20, weight: .semibold, design: .rounded))
                         .foregroundColor(.primary)
                         .multilineTextAlignment(.center)
                 }

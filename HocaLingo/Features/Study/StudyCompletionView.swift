@@ -36,12 +36,12 @@ struct StudyCompletionView: View {
                 Spacer()
                 
                 VStack(spacing: 24) {
-                    Image(systemName: "trophy.fill")
-                        .font(.system(size: 80))
-                        .foregroundColor(Color(hex: "FFD700"))
+                    Image("lingohoca2")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 180, height: 180)
                         .scaleEffect(animateSuccess ? 1.0 : 0.5)
                         .opacity(animateSuccess ? 1.0 : 0.0)
-                        .animation(.spring(response: 0.6, dampingFraction: 0.7), value: animateSuccess)
                     
                     VStack(spacing: 12) {
                         Text(messages[currentMessageIndex].0)

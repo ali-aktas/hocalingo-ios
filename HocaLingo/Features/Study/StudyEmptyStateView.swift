@@ -14,31 +14,30 @@ struct StudyEmptyStateView: View {
     @Environment(\.dismiss) private var dismiss
     @State private var showPackageSelection = false
     @State private var selectedTabForSheet: Int = 0
+    let isFirstTime: Bool
     
     var body: some View {
         VStack(spacing: 32) {
             Spacer()
             
-            ZStack {
-                Circle()
-                    .fill(Color.gray.opacity(0.1))
-                    .frame(width: 120, height: 120)
-                
-                Image(systemName: "book.closed.fill")
-                    .font(.system(size: 60))
-                    .foregroundColor(.gray.opacity(0.5))
-            }
+            Image(isFirstTime ? "lingohoca3" : "lingohoca2")
+                .resizable()
+                .scaledToFit()
+                .frame(width: isFirstTime ? 200 : 180, height: isFirstTime ? 200 : 180)
             
             VStack(spacing: 12) {
-                Text("Henüz Kelime Yok")
+                Text(isFirstTime ? "Hoş Geldin!" : "Tebrikler!")
                     .font(.system(size: 24, weight: .bold, design: .rounded))
                     .foregroundColor(.primary)
                 
-                Text("Çalışmaya başlamak için kelime paketlerinden kelime seçmelisin.")
-                    .font(.system(size: 16, weight: .regular, design: .rounded))
-                    .foregroundColor(.secondary)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 40)
+                Text(isFirstTime
+                     ? "Öğrenmeye başlamak için kelime paketlerinden kelime seç."
+                     : "Çalışacak kelimen kalmadı! Daha fazla kelime ekleyebilir veya mevcut kelimelerin tekrarını bekleyebilirsin."
+                )
+                .font(.system(size: 16, weight: .regular, design: .rounded))
+                .foregroundColor(.secondary)
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 40)
             }
             
             Spacer()
@@ -48,10 +47,10 @@ struct StudyEmptyStateView: View {
                     showPackageSelection = true
                 }) {
                     HStack(spacing: 12) {
-                        Image(systemName: "plus.circle.fill")
+                        Image(systemName: isFirstTime ? "plus.circle.fill" : "square.grid.2x2.fill")
                             .font(.system(size: 20))
                         
-                        Text("Kelime Seç")
+                        Text(isFirstTime ? "Kelime Seç" : "Paketlere Gözat")
                             .font(.system(size: 18, weight: .semibold, design: .rounded))
                     }
                     .foregroundColor(.white)
@@ -94,7 +93,3 @@ struct StudyEmptyStateView: View {
     }
 }
 
-// MARK: - Preview
-#Preview {
-    StudyEmptyStateView(selectedTab: .constant(1))
-}

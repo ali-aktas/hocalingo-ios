@@ -125,7 +125,10 @@ struct StudyView: View {
                     ))
                 } else {
                     // Empty state
-                    StudyEmptyStateView(selectedTab: $selectedTab)
+                    StudyEmptyStateView(
+                        selectedTab: $selectedTab,
+                        isFirstTime: UserDefaultsManager.shared.loadUserStats().totalWordsStudied == 0
+                    )
                 }
                 
                 Spacer(minLength: 20)

@@ -37,16 +37,16 @@
 "home_start_btn" = "Başla";
 
 // Motivasyon Metinleri
-"motivation_1" = "Günde sadece 10 dakika ile bir yılda bin kelime öğrenebilirsin";
-"motivation_2" = "Kelimeleri anlamaya başladığında İngilizcenin ne kadar kolay olduğunu göreceksin";
-"motivation_3" = "Küçük adımlar büyük hedefler yaratır";
+"motivation_1" = "Günde sadece 10 dakika ile her ay 200+ kelime öğren!";
+"motivation_2" = "Kelime bilmeden kural çalışmanın ne anlamı var?";
+"motivation_3" = "Toz bile birikerek dağ olur. Hadi Başla!";
 "motivation_4" = "Her kelime seni hedefe bir adım daha yaklaştırıyor";
 "motivation_5" = "Pratik mükemmelleştirir, hadi başlayalım!";
 "motivation_6" = "İngilizce yolculuğun devam ediyor, bugün harikasın!";
-"motivation_7" = "Bugün öğrenmek için harika bir gün";
+"motivation_7" = "Öğrenmek için şahane bir vakit!";
 "motivation_8" = "Başarı sabırla gelir, devam et!";
-"motivation_9" = "İngilizce dünyasına hoş geldin";
-"motivation_10" = "Tempoyu devam ettir!";
+"motivation_9" = "İngilizce'nin gerçek dünyasına hoş geldin";
+"motivation_10" = "Bazen sadece 1 dakika çalış, ama erteleme!";
 
 // İstatistikler
 "stat_streak_days" = "Günlük Seri";
@@ -54,22 +54,22 @@
 "stat_total_learned" = "Toplam Öğrenilen";
 "stat_this_month_days" = "Aktif Günler";
 "stat_this_month_time" = "Çalışma Süresi";
-"stat_discipline_score" = "Disiplin";
+"stat_discipline_score" = "İstikrar";
 "stat_active_days" = "Aktif Günler";
 "stat_study_time_min" = "dakika";
 "stat_monthly_stats" = "Bu ayın istatistikleri";
-"stat_learned_words" = "Öğrenilen Kelimeler";
+"stat_learned_words" = "Öğrendiğin";
 "unit_minute_short" = "dk";
 "unit_hour_short" = "s";
 
 // Aksiyonlar
 "action_start_study" = "Çalışmaya Başla";
-"action_select_package" = "Yeni Kelimeler Seç";
-"action_select_package_desc" = "Öğrenilecek kelimeleri seç";
-"action_ai_assistant" = "AI Asistan";
-"action_ai_assistant_desc" = "Sadece senin için okuma parçaları";
-"action_add_word" = "Kelime Ekle";
-"action_add_word_desc" = "Kendi kelimeni ekle";
+"action_select_package" = "Hazır Kelimelerden Seç";
+"action_select_package_desc" = "Seviyene göre kelime çalış";
+"action_ai_assistant" = "Yapay Zeka Yazarı";
+"action_ai_assistant_desc" = "Sana özel okuma parçaları";
+"action_add_word" = "Yeni Kelime Ekle";
+"action_add_word_desc" = "Dışarıdan yeni kelime ekle";
 
 // MARK: - Çalışma Ekranı
 "study_title" = "Çalış";
@@ -310,8 +310,8 @@
 
 // Ekran 2 - Kullanıcı Tanıma
 "onboarding_question1_title" = "Öncelikli öğrenme amacın nedir?";
-"onboarding_goal_exam" = "Sınav odaklı";
-"onboarding_goal_conversation" = "Konuşma odaklı";
+"onboarding_goal_exam" = "Sınava hazırlık";
+"onboarding_goal_conversation" = "Konuşmak";
 
 "onboarding_question2_title" = "Mevcut İngilizce seviyen nedir?";
 "onboarding_level_beginner" = "Başlangıç";
