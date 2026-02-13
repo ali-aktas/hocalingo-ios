@@ -132,8 +132,8 @@ struct AIStoryMainView: View {
         VStack(spacing: 12) {
             Image("lingo_ai_header")
                 .resizable()
-                .scaledToFit()
-                .frame(width: 120, height: 120)
+                .scaledToFill()
+                .frame(width: 180, height: 140)
             
             Text("AI Hikaye Asistanı")
                 .font(.system(size: 28, weight: .bold, design: .rounded))
