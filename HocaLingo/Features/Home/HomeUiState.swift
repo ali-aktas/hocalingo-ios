@@ -14,6 +14,7 @@ struct HomeUiState {
     var isLoading: Bool = false
     var userName: String = ""
     var streakDays: Int = 0
+    var currentStreak: Int = 0
     var dailyGoalProgress: DailyGoalProgress = DailyGoalProgress()
     var monthlyStats: MonthlyStats = MonthlyStats()
     var error: String? = nil

@@ -66,7 +66,6 @@
 			membershipExceptions = (
 				App/MainTabView.swift,
 				Assets.xcassets,
-				ContentView.swift,
 				Core/API/GeminiAPIService.swift,
 				Core/API/GeminiModels.swift,
 				Core/Storage/JSONLoader.swift,
@@ -168,7 +167,6 @@
 			membershipExceptions = (
 				App/MainTabView.swift,
 				Assets.xcassets,
-				ContentView.swift,
 				Core/Storage/JSONLoader.swift,
 				Core/Storage/QuotaManager.swift,
 				Core/Storage/StoryRepository.swift,

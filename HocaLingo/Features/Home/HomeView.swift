@@ -189,20 +189,46 @@ private extension HomeView {
         .buttonStyle(SpringButtonStyle())
     }
     
-    // Streak flame badge shown on the hero card
     private var streakBadge: some View {
-        HStack(spacing: 5) {
+        let streak = viewModel.uiState.currentStreak
+        return HStack(spacing: 5) {
             Image(systemName: "flame.fill")
                 .font(.system(size: 11, weight: .black))
-                .foregroundColor(.white.opacity(0.9))
-            Text("\(viewModel.uiState.streakDays)")
+                .foregroundColor(streakFlameColor(for: streak))
+            Text("\(streak)")
                 .font(.system(size: 12, weight: .black, design: .rounded))
                 .foregroundColor(.white.opacity(0.95))
         }
         .padding(.horizontal, 10)
         .padding(.vertical, 5)
-        .background(Color.white.opacity(0.22))
+        .background(streakBadgeBackground(for: streak))
         .clipShape(Capsule())
+    }
+
+    // Flame color: warms up every 5 days
+    private func streakFlameColor(for streak: Int) -> Color {
+        switch streak {
+        case 0:       return .white.opacity(0.6)        // Inactive
+        case 1...4:   return Color(hex: "FCD34D")       // Light yellow
+        case 5...9:   return Color(hex: "FBBF24")       // Yellow
+        case 10...14: return Color(hex: "F59E0B")       // Amber
+        case 15...19: return Color(hex: "F97316")       // Orange
+        case 20...29: return Color(hex: "EF4444")       // Red
+        default:      return Color(hex: "DC2626")       // Deep red (30+)
+        }
+    }
+
+    // Badge background: intensifies every 5 days
+    private func streakBadgeBackground(for streak: Int) -> Color {
+        switch streak {
+        case 0:       return Color.white.opacity(0.15)
+        case 1...4:   return Color.white.opacity(0.22)
+        case 5...9:   return Color(hex: "FBBF24").opacity(0.25)
+        case 10...14: return Color(hex: "F59E0B").opacity(0.30)
+        case 15...19: return Color(hex: "F97316").opacity(0.35)
+        case 20...29: return Color(hex: "EF4444").opacity(0.35)
+        default:      return Color(hex: "DC2626").opacity(0.40)
+        }
     }
     
     // White pill "Start" button inside the hero card

@@ -114,7 +114,11 @@ class HomeViewModel: ObservableObject {
         
         /// Dashboard verilerini yükleyen ana fonksiyon
         func loadDashboardData() {
+            userDefaults.clearMonthlyStatsIfNeeded()
             uiState.isLoading = true
+            
+            // Auto-reset monthly stats if new month
+            userDefaults.clearMonthlyStatsIfNeeded()
             
             // 1. Temel Kullanıcı Verileri
             uiState.userName = userDefaults.loadUserName() ?? "Student"
@@ -131,8 +135,11 @@ class HomeViewModel: ObservableObject {
             loadMonthlyStats()
             
             // 4. Öğrenilen Kelime Sayısı (21+ gün barajı)
-            // streakDays alanı isimlendirme olarak kalsa da değerini Learned Words'den alıyor
             uiState.streakDays = userDefaults.calculateTotalLearnedWords()
+
+            // 5. Daily streak (consecutive study days)
+            let userStats = userDefaults.loadUserStats()
+            uiState.currentStreak = userStats.currentStreak
             
             uiState.isLoading = false
         }

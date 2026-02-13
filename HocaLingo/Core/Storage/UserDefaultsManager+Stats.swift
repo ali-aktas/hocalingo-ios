@@ -87,13 +87,12 @@ extension UserDefaultsManager {
         
         saveDailyStats(todayStats)
         
-        // Update UserStats
-        var userStats = loadUserStats()
-        userStats.wordsStudiedToday = todayStats.wordsGraduated
-        
-        // ✅ NEW: Update streak
+        // ✅ NEW: Update streak FIRST (before loading userStats)
         updateStreak()
         
+        // Update UserStats (load AFTER streak update)
+        var userStats = loadUserStats()
+        userStats.wordsStudiedToday = todayStats.wordsGraduated
         saveUserStats(userStats)
         
         // Mark today as studied (for monthly active days)

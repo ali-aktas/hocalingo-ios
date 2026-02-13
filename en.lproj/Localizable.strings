@@ -85,6 +85,9 @@
 "study_progress" = "Progress: %d/%d";
 "study_navbar_title" = "Spaced Repetition";
 "study_flip_card_hint" = "Tap the card";
+"study_hard" = "Hard";
+"study_medium" = "Medium";
+"study_easy" = "Easy";
 
 // Card Style Settings
 "card_style_settings_title" = "Card Design";

@@ -187,31 +187,6 @@ class UserDefaultsManager {
         return allProgress
     }
     
-    /// ✅ UPDATED: Load all progress for all directions
-    /// Returns dictionary with wordId as key and progress as value
-    /// Note: This returns ALL progress records (both directions mixed)
-    func loadAllProgress() -> [Int: Progress] {
-        var allProgress: [Int: Progress] = [:]
-        let selectedWords = loadSelectedWords()
-        
-        // Try both directions for each word
-        for wordId in selectedWords {
-            // Try EN→TR
-            if let progressEnToTr = loadProgress(for: wordId, direction: .enToTr) {
-                allProgress[wordId] = progressEnToTr
-            }
-            
-            // Try TR→EN (will overwrite if exists)
-            if let progressTrToEn = loadProgress(for: wordId, direction: .trToEn) {
-                // Note: This overwrites the previous progress
-                // If you need both, use a different data structure
-                allProgress[wordId] = progressTrToEn
-            }
-        }
-        
-        return allProgress
-    }
-    
     /// ✅ NEW: Delete progress for specific word and direction
     func deleteProgress(for wordId: Int, direction: StudyDirection) {
         let key = Keys.progressData + "\(wordId)_\(direction.rawValue)"

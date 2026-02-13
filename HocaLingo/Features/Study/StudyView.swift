@@ -244,7 +244,7 @@ struct StudyButtons: View {
             HStack(spacing: 12) {
                 // Hard button
                 StudyActionButton(
-                    title: "Zor",
+                    title: NSLocalizedString("study_hard", comment: ""),
                     timeText: hardTime,
                     color: Color(hex: "EF4444"),
                     isEnabled: true,
@@ -253,7 +253,7 @@ struct StudyButtons: View {
                 
                 // Medium button
                 StudyActionButton(
-                    title: "Orta",
+                    title: NSLocalizedString("study_medium", comment: ""),
                     timeText: mediumTime,
                     color: Color(hex: "F97316"),
                     isEnabled: true,
@@ -262,7 +262,7 @@ struct StudyButtons: View {
                 
                 // Easy button
                 StudyActionButton(
-                    title: "Kolay",
+                    title: NSLocalizedString("study_easy", comment: ""),
                     timeText: easyTime,
                     color: Color(hex: "10B981"),
                     isEnabled: true,

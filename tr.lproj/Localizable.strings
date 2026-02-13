@@ -10,7 +10,7 @@
 // MARK: - Tab Başlıkları
 "tab_home" = "Ana Sayfa";
 "tab_study" = "Çalış";
-"tab_ai" = "AI";
+"tab_ai" = "Yapay Zeka";
 "tab_profile" = "Profil";
 "ai_assistant_title" = "AI Asistan";
 
@@ -85,6 +85,9 @@
 "study_progress" = "İlerleme: %d/%d";
 "study_navbar_title" = "Aralıklı Tekrar Çalışması";
 "study_flip_card_hint" = "Kartı çevir";
+"study_hard" = "Zor";
+"study_medium" = "Orta";
+"study_easy" = "Kolay";
 
 // Card Style Settings
 "card_style_settings_title" = "Kart Tasarımı";
