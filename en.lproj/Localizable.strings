@@ -8,9 +8,11 @@
 */
 
 // MARK: - Tab Titles
-"home_tab" = "Home";
-"study_tab" = "Study";
-"profile_tab" = "Profile";
+"tab_home" = "Home";
+"tab_study" = "Study";
+"tab_ai" = "AI";
+"tab_profile" = "Profile";
+"ai_assistant_title" = "AI Assistant";
 
 // MARK: - Common
 "loading" = "Loading…";

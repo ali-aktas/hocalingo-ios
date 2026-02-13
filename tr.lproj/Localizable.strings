@@ -8,9 +8,11 @@
 */
 
 // MARK: - Tab Başlıkları
-"home_tab" = "Ana Sayfa";
-"study_tab" = "Çalış";
-"profile_tab" = "Profil";
+"tab_home" = "Ana Sayfa";
+"tab_study" = "Çalış";
+"tab_ai" = "AI";
+"tab_profile" = "Profil";
+"ai_assistant_title" = "AI Asistan";
 
 // MARK: - Genel
 "loading" = "Yükleniyor…";
