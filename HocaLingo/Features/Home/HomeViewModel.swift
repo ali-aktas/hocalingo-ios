@@ -112,37 +112,46 @@ class HomeViewModel: ObservableObject {
     
     // MARK: - Data Loading
         
-        /// Dashboard verilerini yükleyen ana fonksiyon
-        func loadDashboardData() {
-            userDefaults.clearMonthlyStatsIfNeeded()
-            uiState.isLoading = true
+    
+    func loadDashboardData() {
+        DispatchQueue.main.async {
+            self.uiState.isLoading = true
             
-            // Auto-reset monthly stats if new month
-            userDefaults.clearMonthlyStatsIfNeeded()
+            let userDefaults = UserDefaultsManager.shared
             
-            // 1. Temel Kullanıcı Verileri
-            uiState.userName = userDefaults.loadUserName() ?? "Student"
+            // 1. Basic User Data
+            self.uiState.userName = userDefaults.loadUserName() ?? "Student"
             
-            // 2. Günlük Hedef İlerlemesi (Bugünkü Mezun Olan Kelimeler)
+            // 2. Daily Goal Progress (Today's Graduated Words)
             let todayStats = userDefaults.getTodayDailyStats()
             let dailyGoal = userDefaults.loadDailyGoal()
-            uiState.dailyGoalProgress = DailyGoalProgress(
+            self.uiState.dailyGoalProgress = DailyGoalProgress(
                 currentWords: todayStats.wordsGraduated,
                 targetWords: dailyGoal
             )
             
-            // 3. İstatistikleri ve Süreleri Hesapla
-            loadMonthlyStats()
+            // 3. Monthly Stats and Study Times
+            self.loadMonthlyStats()
             
-            // 4. Öğrenilen Kelime Sayısı (21+ gün barajı)
-            uiState.streakDays = userDefaults.calculateTotalLearnedWords()
+            // 4. Learned Words Count (21+ day interval = learned)
+            // This is for "Learned Words" stat card, NOT streak
+            self.uiState.streakDays = userDefaults.calculateTotalLearnedWords()
 
-            // 5. Daily streak (consecutive study days)
+            // 5. ✅ CRITICAL: Load UserStats to get current streak
+            // NOTE: If user studied today, streak was already updated in incrementDailyGraduations()
+            // This ensures we show the updated streak value
             let userStats = userDefaults.loadUserStats()
-            uiState.currentStreak = userStats.currentStreak
+            self.uiState.currentStreak = userStats.currentStreak
             
-            uiState.isLoading = false
+            self.uiState.isLoading = false
+            
+            print("📊 Dashboard loaded:")
+            print("   - Learned words (21+ days): \(self.uiState.streakDays)")
+            print("   - Current streak: \(self.uiState.currentStreak) days")
+            print("   - Today's graduations: \(todayStats.wordsGraduated)/\(dailyGoal)")
         }
+    }
+                
         
         /// Çalışma sürelerini ve aylık verileri hesaplayan fonksiyon
         private func loadMonthlyStats() {

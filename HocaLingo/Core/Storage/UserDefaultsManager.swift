@@ -135,11 +135,12 @@ class UserDefaultsManager {
     func saveNotificationTime(_ hour: Int) {
         UserDefaults.standard.set(hour, forKey: Keys.notificationTime)
     }
-    
+
     /// Load notification time
+    /// ✅ FIXED: Default changed from 9 AM to 1 PM (13:00)
     func loadNotificationTime() -> Int {
         let hour = UserDefaults.standard.integer(forKey: Keys.notificationTime)
-        return hour >= 0 && hour < 24 ? hour : 9  // Default: 9 AM
+        return hour >= 0 && hour < 24 ? hour : 13  // ✅ Default: 1 PM (13:00) - was 9 AM
     }
     
     // MARK: - Progress Management (Direction-Aware)

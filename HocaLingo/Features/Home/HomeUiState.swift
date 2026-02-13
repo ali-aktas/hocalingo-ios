@@ -2,7 +2,7 @@
 //  HomeUiState.swift
 //  HocaLingo
 //
-//  ✅ FIXED: Localized formattedStudyTime (8m → 8dk in Turkish)
+//  ✅ UPDATED: Added clarifying comments for streakDays vs currentStreak
 //  Location: HocaLingo/Features/Home/HomeUiState.swift
 //
 
@@ -13,8 +13,19 @@ import Foundation
 struct HomeUiState {
     var isLoading: Bool = false
     var userName: String = ""
+    
+    // ✅ CRITICAL DISTINCTION:
+    
+    /// Number of learned words (words with 21+ day intervals)
+    /// This is for "Learned Words" stat card
+    /// MISNOMER: Should be "learnedWordsCount" but kept for Android parity
     var streakDays: Int = 0
+    
+    /// Current study streak (consecutive days studied)
+    /// This is for the flame badge at top of Home screen
+    /// Resets if user skips a day
     var currentStreak: Int = 0
+    
     var dailyGoalProgress: DailyGoalProgress = DailyGoalProgress()
     var monthlyStats: MonthlyStats = MonthlyStats()
     var error: String? = nil
@@ -47,12 +58,12 @@ struct DailyGoalProgress {
 
 // MARK: - Monthly Stats (ANDROID PARITY)
 struct MonthlyStats {
-    var studyTimeToday: Int = 0      // Bugünün dakikası
-    var studyTimeThisMonth: Int = 0  // Ayın toplam dakikası
+    var studyTimeToday: Int = 0      // Today's minutes
+    var studyTimeThisMonth: Int = 0  // Month's total minutes
     var activeDaysThisMonth: Int = 0
     var disciplineScore: Int = 0
     
-    /// ✅ "8 min / 2h 56m" veya "8dk / 1s 27dk" formatı
+    /// ✅ Localized format: "8 min / 2h 56m" or "8dk / 1s 27dk"
     var formattedStudyTime: String {
         let minUnit = NSLocalizedString("unit_minute_short", comment: "")
         let hourUnit = NSLocalizedString("unit_hour_short", comment: "")

@@ -42,8 +42,8 @@ class NotificationManager {
                     print("✅ Notification permission granted on first launch")
                     // Auto-enable notifications
                     UserDefaultsManager.shared.saveNotificationsEnabled(true)
-                    // Schedule with default time (9 AM)
-                    self.scheduleDailyReminder(at: 9)
+                    // ✅ Schedule with default time (1 PM / 13:00) - was 9 AM
+                    self.scheduleDailyReminder(at: 13)
                     // Schedule weekly AI reminder
                     self.scheduleWeeklyAIReminder()
                 } else {
