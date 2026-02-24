@@ -27,9 +27,33 @@ struct PremiumPaywallView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .top) {
+                // Base background
                 Color.themeBackground.ignoresSafeArea()
                 
                 imageHeaderBackground
+                
+                // Accent circles (AFTER image, so they're visible)
+                Circle()
+                    .fill(
+                        Color(hex: "FFD700").opacity(
+                            colorScheme == .dark ? 0.15 : 0.08
+                        )
+                    )
+                    .frame(width: 400, height: 400)
+                    .blur(radius: 100)
+                    .offset(x: -100, y: 300)
+                    .allowsHitTesting(false)
+                
+                Circle()
+                    .fill(
+                        Color(hex: "FFA500").opacity(
+                            colorScheme == .dark ? 0.12 : 0.06
+                        )
+                    )
+                    .frame(width: 350, height: 350)
+                    .blur(radius: 100)
+                    .offset(x: 150, y: 600)
+                    .allowsHitTesting(false)
                 
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 0) {
@@ -51,6 +75,7 @@ struct PremiumPaywallView: View {
                             }
                         }
                         .padding(.horizontal, 24)
+                        .padding(.bottom, 40)
                         .padding(.bottom, 40)
                         .background(
                             LinearGradient(
