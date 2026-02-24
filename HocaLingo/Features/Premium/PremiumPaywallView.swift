@@ -2,7 +2,9 @@
 //  PremiumPaywallView.swift
 //  HocaLingo
 //
-//  ✅ V3: Haftalık karşılaştırma, badge sağ üstte, iptal metni eklendi
+//  ✅ V4: Background gradient matches ProfileView exactly
+//  ✅ V4: Light mode uses purple accents instead of gold
+//  ✅ V4: Image header fade matches gradient background seamlessly
 //  Features/Premium/PremiumPaywallView.swift
 //
 
@@ -14,6 +16,7 @@ import SafariServices
 struct PremiumPaywallView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.themeViewModel) private var themeViewModel
     @StateObject private var premiumManager = PremiumManager.shared
     
     @State private var selectedPlan: PricingPlan = .annual
@@ -27,33 +30,28 @@ struct PremiumPaywallView: View {
     var body: some View {
         NavigationStack {
             ZStack(alignment: .top) {
-                // Base background
-                Color.themeBackground.ignoresSafeArea()
+                // Background gradient - identical to ProfileView
+                LinearGradient(
+                    colors: isDarkMode ? [
+                        Color(hex: "1A1625"),
+                        Color(hex: "211A2E")
+                    ] : [
+                        Color(hex: "FBF2FF"),
+                        Color(hex: "FAF1FF")
+                    ],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
+                
+                // Accent circle - identical to ProfileView
+                Circle()
+                    .fill(Color.accentPurple.opacity(isDarkMode ? 0.15 : 0.08))
+                    .frame(width: 350, height: 350)
+                    .blur(radius: 60)
+                    .offset(x: 120, y: -250)
                 
                 imageHeaderBackground
-                
-                // Accent circles (AFTER image, so they're visible)
-                Circle()
-                    .fill(
-                        Color(hex: "FFD700").opacity(
-                            colorScheme == .dark ? 0.15 : 0.08
-                        )
-                    )
-                    .frame(width: 400, height: 400)
-                    .blur(radius: 100)
-                    .offset(x: -100, y: 300)
-                    .allowsHitTesting(false)
-                
-                Circle()
-                    .fill(
-                        Color(hex: "FFA500").opacity(
-                            colorScheme == .dark ? 0.12 : 0.06
-                        )
-                    )
-                    .frame(width: 350, height: 350)
-                    .blur(radius: 100)
-                    .offset(x: 150, y: 600)
-                    .allowsHitTesting(false)
                 
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 0) {
@@ -79,7 +77,7 @@ struct PremiumPaywallView: View {
                         .padding(.bottom, 40)
                         .background(
                             LinearGradient(
-                                colors: [Color.themeBackground.opacity(0), Color.themeBackground],
+                                colors: [bgBaseColor.opacity(0), bgBaseColor],
                                 startPoint: .top,
                                 endPoint: .bottom
                             )
@@ -112,6 +110,45 @@ struct PremiumPaywallView: View {
         }
     }
     
+    // MARK: - Theme Helpers
+    
+    private var isDarkMode: Bool {
+        themeViewModel.isDarkMode(in: colorScheme)
+    }
+    
+    /// Background base color for fade transitions (matches gradient start)
+    private var bgBaseColor: Color {
+        isDarkMode ? Color(hex: "1A1625") : Color(hex: "FBF2FF")
+    }
+    
+    /// Accent gradient start: Gold in dark, Purple in light
+    private var accentStart: Color {
+        isDarkMode ? Color(hex: "FFD700") : Color(hex: "7C3AED")
+    }
+    
+    /// Accent gradient end: Orange in dark, Indigo in light
+    private var accentEnd: Color {
+        isDarkMode ? Color(hex: "FFA500") : Color(hex: "6366F1")
+    }
+    
+    /// Reusable accent gradient
+    private var accentGradient: LinearGradient {
+        LinearGradient(
+            colors: [accentStart, accentEnd],
+            startPoint: .leading,
+            endPoint: .trailing
+        )
+    }
+    
+    /// Accent gradient for circular icons (diagonal)
+    private var accentGradientDiagonal: LinearGradient {
+        LinearGradient(
+            colors: [accentStart, accentEnd],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
+    }
+    
     // MARK: - Image Header
     private var imageHeaderBackground: some View {
         GeometryReader { geo in
@@ -122,13 +159,14 @@ struct PremiumPaywallView: View {
                     .frame(width: geo.size.width, height: geo.size.height * 0.65, alignment: .top)
                     .clipped()
                 
+                // Fade to background gradient color (not themeBackground)
                 Rectangle()
                     .fill(
                         LinearGradient(
                             gradient: Gradient(colors: [
-                                Color.themeBackground.opacity(0),
-                                Color.themeBackground.opacity(0.3),
-                                Color.themeBackground
+                                bgBaseColor.opacity(0),
+                                bgBaseColor.opacity(0.3),
+                                bgBaseColor
                             ]),
                             startPoint: .top,
                             endPoint: .bottom
@@ -146,13 +184,7 @@ struct PremiumPaywallView: View {
         VStack(spacing: 8) {
             Text("Premium ile Hızlan")
                 .font(.system(size: 32, weight: .black, design: .rounded))
-                .foregroundStyle(
-                    LinearGradient(
-                        colors: [Color(hex: "FFD700"), Color(hex: "FFA500")],
-                        startPoint: .leading,
-                        endPoint: .trailing
-                    )
-                )
+                .foregroundStyle(accentGradient)
                 .multilineTextAlignment(.center)
                 .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
             
@@ -178,31 +210,13 @@ struct PremiumPaywallView: View {
         HStack(spacing: 12) {
             ZStack {
                 Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                Color(hex: "FFD700"),
-                                Color(hex: "FFA500")
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                    .fill(accentGradientDiagonal)
                     .frame(width: 24, height: 24)
                     .blur(radius: 6)
                     .opacity(0.6)
                 
                 Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                Color(hex: "FFD700"),
-                                Color(hex: "FFA500")
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
+                    .fill(accentGradientDiagonal)
                     .frame(width: 24, height: 24)
                 
                 Image(systemName: icon)
@@ -265,18 +279,20 @@ struct PremiumPaywallView: View {
             }
         }) {
             HStack(spacing: 12) {
+                // Radio button
                 ZStack {
                     Circle()
-                        .stroke(isSelected ? Color(hex: "FFD700") : .themeSecondary, lineWidth: 2)
+                        .stroke(isSelected ? accentStart : .themeSecondary, lineWidth: 2)
                         .frame(width: 22, height: 22)
                     
                     if isSelected {
                         Circle()
-                            .fill(Color(hex: "FFD700"))
+                            .fill(accentStart)
                             .frame(width: 12, height: 12)
                     }
                 }
                 
+                // Plan info
                 VStack(alignment: .leading, spacing: 4) {
                     Text(title)
                         .font(.system(size: 16, weight: .bold, design: .rounded))
@@ -291,6 +307,7 @@ struct PremiumPaywallView: View {
                 
                 Spacer()
                 
+                // Price
                 VStack(alignment: .trailing, spacing: 2) {
                     Text(getWeeklyPriceString(package: package, plan: plan))
                         .font(.system(size: 18, weight: .heavy, design: .rounded))
@@ -308,11 +325,11 @@ struct PremiumPaywallView: View {
                     .fill(
                         LinearGradient(
                             colors: isSelected ? [
-                                Color(hex: colorScheme == .dark ? "2A2A2A" : "F5F5F5"),
-                                Color(hex: colorScheme == .dark ? "1F1F1F" : "ECECEC")
+                                Color(hex: isDarkMode ? "2A2A2A" : "F5F5F5"),
+                                Color(hex: isDarkMode ? "1F1F1F" : "ECECEC")
                             ] : [
-                                Color(hex: colorScheme == .dark ? "1F1F1F" : "F8F8F8"),
-                                Color(hex: colorScheme == .dark ? "1A1A1A" : "F0F0F0")
+                                Color(hex: isDarkMode ? "1F1F1F" : "F8F8F8"),
+                                Color(hex: isDarkMode ? "1A1A1A" : "F0F0F0")
                             ],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
@@ -321,15 +338,7 @@ struct PremiumPaywallView: View {
                     .overlay(
                         RoundedRectangle(cornerRadius: 14)
                             .stroke(
-                                isSelected ?
-                                    LinearGradient(
-                                        colors: [
-                                            Color(hex: "FFD700"),
-                                            Color(hex: "FFA500")
-                                        ],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    ) :
+                                isSelected ? accentGradientDiagonal :
                                     LinearGradient(
                                         colors: [Color.clear],
                                         startPoint: .topLeading,
@@ -348,21 +357,19 @@ struct PremiumPaywallView: View {
                             .padding(.horizontal, 8)
                             .padding(.vertical, 4)
                             .background(
-                                Capsule()
-                                    .fill(
-                                        LinearGradient(
-                                            colors: [Color(hex: "FFD700"), Color(hex: "FFA500")],
-                                            startPoint: .leading,
-                                            endPoint: .trailing
-                                        )
-                                    )
+                                Capsule().fill(accentGradient)
                             )
                     }
                 }
                 .offset(x: -8, y: -8),
                 alignment: .topTrailing
             )
-            .shadow(color: isSelected ? Color(hex: "FFD700").opacity(0.3) : Color.themeShadow.opacity(0.2), radius: isSelected ? 10 : 6, x: 0, y: 3)
+            .shadow(
+                color: isSelected ? accentStart.opacity(0.3) : Color.themeShadow.opacity(0.2),
+                radius: isSelected ? 10 : 6,
+                x: 0,
+                y: 3
+            )
         }
         .buttonStyle(PlainButtonStyle())
     }
@@ -419,18 +426,9 @@ struct PremiumPaywallView: View {
             .foregroundColor(.white)
             .frame(maxWidth: .infinity)
             .padding(.vertical, 16)
-            .background(
-                LinearGradient(
-                    colors: [
-                        Color(hex: "FFD700"),
-                        Color(hex: "FFA500")
-                    ],
-                    startPoint: .leading,
-                    endPoint: .trailing
-                )
-            )
+            .background(accentGradient)
             .cornerRadius(16)
-            .shadow(color: Color(hex: "FFD700").opacity(0.5), radius: 15, y: 8)
+            .shadow(color: accentStart.opacity(0.5), radius: 15, y: 8)
         }
         .disabled(isProcessing || currentOffering == nil)
         .padding(.top, 6)
@@ -575,5 +573,6 @@ extension SubscriptionPeriod {
 // MARK: - Preview
 #Preview {
     PremiumPaywallView()
+        .environment(\.themeViewModel, ThemeViewModel.shared)
         .preferredColorScheme(.dark)
 }
