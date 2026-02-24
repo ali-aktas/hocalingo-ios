@@ -2,7 +2,7 @@
 //  PremiumPaywallView.swift
 //  HocaLingo
 //
-//  ✅ V2: Full-width image, gradient pricing, side-by-side prices
+//  ✅ V3: Haftalık karşılaştırma, badge sağ üstte, iptal metni eklendi
 //  Features/Premium/PremiumPaywallView.swift
 //
 
@@ -21,7 +21,6 @@ struct PremiumPaywallView: View {
     @State private var currentOffering: Offering?
     @State private var errorMessage: String?
     @State private var showError: Bool = false
-    // ✅ NEW: Safari sheet states for in-app browser
     @State private var showPrivacyPolicy = false
     @State private var showTermsOfService = false
     
@@ -39,7 +38,6 @@ struct PremiumPaywallView: View {
                             titleSection
                             featuresSection
                             
-                            // Fiyatların yüklendiği kontrol noktası
                             if currentOffering != nil {
                                 pricingSection
                             } else {
@@ -48,6 +46,7 @@ struct PremiumPaywallView: View {
                             
                             VStack(spacing: 16) {
                                 purchaseButton
+                                cancelAnytimeText
                                 footerLinks
                             }
                         }
@@ -76,11 +75,9 @@ struct PremiumPaywallView: View {
                     }
                 }
             }
-            // ✨ EKSİK OLAN KRİTİK KISIM BURASI:
             .onAppear {
                 fetchOfferings()
             }
-            // ✅ NEW: In-App Safari sheets
             .sheet(isPresented: $showPrivacyPolicy) {
                 SafariView(url: URL(string: "https://ali-aktas.github.io/hocalingo-legal/privacy-policy.html")!)
             }
@@ -90,47 +87,7 @@ struct PremiumPaywallView: View {
         }
     }
     
-    // MARK: - Background Gradient
-    private var backgroundGradient: some View {
-        ZStack {
-            // Base background
-            Color.themeBackground
-                .ignoresSafeArea()
-            
-            // Subtle gradient accents
-            Circle()
-                .fill(
-                    LinearGradient(
-                        colors: [
-                            Color(hex: "FFD700").opacity(0.1),
-                            Color.clear
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
-                .frame(width: 250, height: 250)
-                .blur(radius: 50)
-                .offset(x: -100, y: -200)
-            
-            Circle()
-                .fill(
-                    LinearGradient(
-                        colors: [
-                            Color(hex: "FFA500").opacity(0.08),
-                            Color.clear
-                        ],
-                        startPoint: .bottomTrailing,
-                        endPoint: .topLeading
-                    )
-                )
-                .frame(width: 250, height: 250)
-                .blur(radius: 50)
-                .offset(x: 150, y: 300)
-        }
-    }
-    
-    // MARK: - Image
+    // MARK: - Image Header
     private var imageHeaderBackground: some View {
         GeometryReader { geo in
             ZStack(alignment: .bottom) {
@@ -159,18 +116,18 @@ struct PremiumPaywallView: View {
         .frame(height: UIScreen.main.bounds.height * 0.65)
     }
 
-    // MARK: - Başlık Bölümü
+    // MARK: - Title Section
     private var titleSection: some View {
         VStack(spacing: 8) {
-            Text("Premium Üyesi Ol")
+            Text("Premium ile Hızlan")
                 .font(.system(size: 32, weight: .black, design: .rounded))
                 .foregroundStyle(
-                        LinearGradient(
-                            colors: [Color(hex: "FFD700"), Color(hex: "FFA500")],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
+                    LinearGradient(
+                        colors: [Color(hex: "FFD700"), Color(hex: "FFA500")],
+                        startPoint: .leading,
+                        endPoint: .trailing
                     )
+                )
                 .multilineTextAlignment(.center)
                 .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
             
@@ -181,21 +138,19 @@ struct PremiumPaywallView: View {
         }
     }
     
-    // MARK: - Features Section (4 simple lines)
+    // MARK: - Features Section
     private var featuresSection: some View {
-        VStack(spacing: 10) { // 12 → 10
-            featureLine(icon: "book.fill", text: "Binlerce Yeni Kelime ve Kalıp Öğren")
-            featureLine(icon: "infinity", text: "Günlük Sınırsız Kelime Seçme Hakkı")
-            featureLine(icon: "sparkles", text: "Aylık 30 Yapay Zeka Kullanma Hakkı")
-            featureLine(icon: "paintpalette.fill", text: "Premium Kart Tasarımları")
+        VStack(spacing: 10) {
+            featureLine(icon: "book.fill", text: "Binlerce Yeni Kelime")
+            featureLine(icon: "infinity", text: "Sınırsız ve Premium Deneyim")
+            featureLine(icon: "sparkles", text: "Sana Özel Okuma Parçaları")
         }
-        .padding(.vertical, 6) // 12 → 8
+        .padding(.vertical, 6)
     }
     
     // MARK: - Feature Line
     private func featureLine(icon: String, text: String) -> some View {
         HStack(spacing: 12) {
-            // Gold crown icon with glow
             ZStack {
                 Circle()
                     .fill(
@@ -225,12 +180,11 @@ struct PremiumPaywallView: View {
                     )
                     .frame(width: 24, height: 24)
                 
-                Image(systemName: icon)  // crown.fill → icon parametresi
+                Image(systemName: icon)
                     .foregroundColor(.white)
                     .font(.system(size: 13, weight: .bold))
             }
             
-            // Feature text
             Text(text)
                 .font(.system(size: 15, weight: .medium, design: .rounded))
                 .foregroundColor(.themePrimary)
@@ -243,8 +197,19 @@ struct PremiumPaywallView: View {
     
     // MARK: - Pricing Section
     private var pricingSection: some View {
-        VStack(spacing: 10) { // 12 → 10
-            // Weekly Plan
+        VStack(spacing: 10) {
+            // Annual Plan FIRST (Best Value)
+            if let annualPackage = getRevenueCatPackage(for: .annual) {
+                pricingPlanCard(
+                    plan: .annual,
+                    package: annualPackage,
+                    title: "Yıllık",
+                    badge: "%90 İNDİRİM",
+                    isSelected: selectedPlan == .annual
+                )
+            }
+            
+            // Weekly Plan SECOND
             if let weeklyPackage = getRevenueCatPackage(for: .weekly) {
                 pricingPlanCard(
                     plan: .weekly,
@@ -254,22 +219,11 @@ struct PremiumPaywallView: View {
                     isSelected: selectedPlan == .weekly
                 )
             }
-            
-            // Annual Plan (Best Value)
-            if let annualPackage = getRevenueCatPackage(for: .annual) {
-                pricingPlanCard(
-                    plan: .annual,
-                    package: annualPackage,
-                    title: "Yıllık",
-                    badge: "En İyi Fiyat",
-                    isSelected: selectedPlan == .annual
-                )
-            }
         }
         .padding(.top, 4)
     }
     
-    // MARK: - Get RevenueCat Package Helper
+    // MARK: - Get RevenueCat Package
     private func getRevenueCatPackage(for plan: PricingPlan) -> RevenueCat.Package? {
         guard let offering = currentOffering else { return nil }
         
@@ -278,7 +232,7 @@ struct PremiumPaywallView: View {
         }
     }
     
-    // MARK: - Pricing Plan Card (YENİ TASARIM)
+    // MARK: - Pricing Plan Card
     private func pricingPlanCard(plan: PricingPlan, package: RevenueCat.Package, title: String, badge: String?, isSelected: Bool) -> some View {
         Button(action: {
             withAnimation(.spring(response: 0.3)) {
@@ -286,7 +240,6 @@ struct PremiumPaywallView: View {
             }
         }) {
             HStack(spacing: 12) {
-                // Selection Circle
                 ZStack {
                     Circle()
                         .stroke(isSelected ? Color(hex: "FFD700") : .themeSecondary, lineWidth: 2)
@@ -299,54 +252,35 @@ struct PremiumPaywallView: View {
                     }
                 }
                 
-                // Plan Details
-                VStack(alignment: .leading, spacing: 2) {
-                    // Title + Price (YAN YANA)
-                    HStack(spacing: 8) {
-                        Text(title)
-                            .font(.system(size: 16, weight: .bold, design: .rounded))
-                            .foregroundColor(.themePrimary)
-                        
-                        Text(package.storeProduct.localizedPriceString)
-                            .font(.system(size: 18, weight: .heavy, design: .rounded))
-                            .foregroundColor(.themePrimary)
-                        
-                        Spacer()
-                        
-                        // Badge
-                        if let badge = badge {
-                            Text(badge)
-                                .font(.system(size: 10, weight: .bold, design: .rounded))
-                                .foregroundColor(.white)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 4)
-                                .background(
-                                    Capsule()
-                                        .fill(
-                                            LinearGradient(
-                                                colors: [Color(hex: "FFD700"), Color(hex: "FFA500")],
-                                                startPoint: .leading,
-                                                endPoint: .trailing
-                                            )
-                                        )
-                                )
-                        }
-                    }
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(title)
+                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .foregroundColor(.themePrimary)
                     
-                    // Monthly equivalent (ALTTA)
-                    if let period = package.storeProduct.subscriptionPeriod {
-                        Text(calculateMonthlyEquivalent(package: package, period: period))
-                            .font(.system(size: 13, weight: .medium))
+                    if plan == .annual {
+                        Text("Sadece yıllık \(package.storeProduct.localizedPriceString)")
+                            .font(.system(size: 14, weight: .medium))
                             .foregroundColor(.themeSecondary)
                     }
                 }
+                
+                Spacer()
+                
+                VStack(alignment: .trailing, spacing: 2) {
+                    Text(getWeeklyPriceString(package: package, plan: plan))
+                        .font(.system(size: 18, weight: .heavy, design: .rounded))
+                        .foregroundColor(.themePrimary)
+                    
+                    Text("/ hafta")
+                        .font(.system(size: 13, weight: .medium))
+                        .foregroundColor(.themeSecondary)
+                }
             }
             .padding(.horizontal, 16)
-            .padding(.vertical, 12) // 16 → 12 (daha ince)
+            .padding(.vertical, 14)
             .background(
                 RoundedRectangle(cornerRadius: 14)
                     .fill(
-                        // ✨ GRADIENT ARKAPLAN
                         LinearGradient(
                             colors: isSelected ? [
                                 Color(hex: colorScheme == .dark ? "2A2A2A" : "F5F5F5"),
@@ -380,41 +314,69 @@ struct PremiumPaywallView: View {
                             )
                     )
             )
+            .overlay(
+                Group {
+                    if let badge = badge {
+                        Text(badge)
+                            .font(.system(size: 10, weight: .bold, design: .rounded))
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 8)
+                            .padding(.vertical, 4)
+                            .background(
+                                Capsule()
+                                    .fill(
+                                        LinearGradient(
+                                            colors: [Color(hex: "FFD700"), Color(hex: "FFA500")],
+                                            startPoint: .leading,
+                                            endPoint: .trailing
+                                        )
+                                    )
+                            )
+                    }
+                }
+                .offset(x: -8, y: -8),
+                alignment: .topTrailing
+            )
             .shadow(color: isSelected ? Color(hex: "FFD700").opacity(0.3) : Color.themeShadow.opacity(0.2), radius: isSelected ? 10 : 6, x: 0, y: 3)
         }
         .buttonStyle(PlainButtonStyle())
     }
+
+    // MARK: - Helper: Get Weekly Price String
+    private func getWeeklyPriceString(package: RevenueCat.Package, plan: PricingPlan) -> String {
+        if plan == .annual, let period = package.storeProduct.subscriptionPeriod {
+            let price = package.storeProduct.price as Decimal
+            let weeklyPrice = price / (Decimal(period.value) * 52)
+            
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            formatter.currencyCode = package.storeProduct.priceFormatter?.currencyCode ?? "TRY"
+            formatter.maximumFractionDigits = 2
+            
+            return formatter.string(from: weeklyPrice as NSNumber) ?? "\(weeklyPrice)"
+        }
+        
+        return package.storeProduct.localizedPriceString
+    }
     
-    // MARK: - Calculate Monthly Equivalent
-    private func calculateMonthlyEquivalent(package: RevenueCat.Package, period: SubscriptionPeriod) -> String {
+    // MARK: - Calculate Weekly Equivalent (for display text only)
+    private func calculateWeeklyEquivalent(package: RevenueCat.Package, period: SubscriptionPeriod) -> String {
         let price = package.storeProduct.price as Decimal
         let currencyCode = package.storeProduct.priceFormatter?.currencyCode ?? "TRY"
         
-        // Calculate monthly equivalent based on period
-        let monthlyPrice: Decimal
-        switch period.unit {
-        case .day:
-            monthlyPrice = (price * 30) / Decimal(period.value)
-        case .week:
-            monthlyPrice = (price * 52) / (Decimal(period.value) * 12)
-        case .month:
-            monthlyPrice = price / Decimal(period.value)
-        case .year:
-            monthlyPrice = price / (Decimal(period.value) * 12)
-        @unknown default:
-            monthlyPrice = price
+        if period.unit == .year {
+            let weeklyPrice = price / (Decimal(period.value) * 52)
+            
+            let formatter = NumberFormatter()
+            formatter.numberStyle = .currency
+            formatter.currencyCode = currencyCode
+            formatter.maximumFractionDigits = 2
+            
+            let weeklyString = formatter.string(from: weeklyPrice as NSNumber) ?? "\(weeklyPrice)"
+            return "\(weeklyString) / hafta"
         }
         
-        // Format as currency
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .currency
-        formatter.currencyCode = currencyCode
-        formatter.maximumFractionDigits = 2
-        
-        let monthlyString = formatter.string(from: monthlyPrice as NSNumber) ?? "\(monthlyPrice)"
-        
-        // Return formatted string
-        return "≈ \(monthlyString) / ay"
+        return ""
     }
     
     // MARK: - Purchase Button
@@ -425,14 +387,13 @@ struct PremiumPaywallView: View {
                     ProgressView()
                         .tint(.white)
                 } else {
-                    Image(systemName: "crown.fill")
-                    Text("paywall_purchase_button")
+                    Text("Devam Et")
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                 }
             }
             .foregroundColor(.white)
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 16) // 18 → 16
+            .padding(.vertical, 16)
             .background(
                 LinearGradient(
                     colors: [
@@ -450,10 +411,18 @@ struct PremiumPaywallView: View {
         .padding(.top, 6)
     }
     
+    // MARK: - Cancel Anytime Text
+    private var cancelAnytimeText: some View {
+        Text("Dilediğin zaman iptal edebilirsin")
+            .font(.system(size: 13, weight: .medium))
+            .foregroundColor(.themeSecondary)
+            .multilineTextAlignment(.center)
+            .padding(.top, 8)
+    }
+    
     // MARK: - Footer Links
     private var footerLinks: some View {
-        VStack(spacing: 10) { // 12 → 10
-            // Restore Purchases
+        VStack(spacing: 10) {
             Button(action: handleRestore) {
                 Text("paywall_restore")
                     .font(.system(size: 15, weight: .semibold, design: .rounded))
@@ -461,7 +430,6 @@ struct PremiumPaywallView: View {
             }
             .disabled(isProcessing)
             
-            // Legal Links
             HStack(spacing: 16) {
                 Button(action: openTerms) {
                     Text("paywall_terms")
@@ -536,7 +504,7 @@ struct PremiumPaywallView: View {
             }
         }
     }
-    // ✅ FIXED: Use in-app Safari browser (same as ProfileView)
+    
     private func openTerms() {
         showTermsOfService = true
     }
@@ -577,7 +545,6 @@ extension SubscriptionPeriod {
         }
         return "\(value) \(unitString)"
     }
-    
 }
 
 // MARK: - Preview
