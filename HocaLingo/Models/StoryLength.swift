@@ -44,7 +44,7 @@ enum StoryLength: String, Codable, CaseIterable, Identifiable {
     var targetWordCount: Int {
         switch self {
         case .short:
-            return 180  // 150 + 20%
+            return 220  // 150 + 20%
         case .long:
             return 600  // 500 + 20%
         }
@@ -57,9 +57,9 @@ enum StoryLength: String, Codable, CaseIterable, Identifiable {
     var exactDeckWords: Int {
         switch self {
         case .short:
-            return 20
+            return 15
         case .long:
-            return 40
+            return 30
         }
     }
     
@@ -68,9 +68,9 @@ enum StoryLength: String, Codable, CaseIterable, Identifiable {
     var maxTokens: Int {
         switch self {
         case .short:
-            return 300   // ~180 words
+            return 400   // ~220 words
         case .long:
-            return 900   // ~600 words
+            return 1000   // ~700 words
         }
     }
     

@@ -58,7 +58,7 @@ struct MainTabView: View {
                     
                     // AI Story Tab
                     tabBarButton(
-                        icon: "wand.and.stars",
+                        icon: "sparkle",
                         label: "tab_ai",
                         index: 2
                     )

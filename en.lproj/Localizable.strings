@@ -89,6 +89,21 @@
 "study_medium" = "Medium";
 "study_easy" = "Easy";
 
+// Study difficulty buttons
+"study_hard" = "Hard";
+"study_medium" = "Medium";
+"study_easy" = "Easy";
+
+// Study time labels
+"time_5_min" = "5 min";
+"time_later" = "Later";
+"time_today" = "Today";
+"time_soon" = "Soon";
+"time_1_day" = "1 day";
+"time_n_days" = "%d days";
+"time_n_wk" = "%d wk";
+"time_n_mo" = "%d mo";
+
 // Card Style Settings
 "card_style_settings_title" = "Card Design";
 "card_style_settings_subtitle" = "Choose your preferred card style";

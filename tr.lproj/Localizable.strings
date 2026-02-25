@@ -66,12 +66,12 @@
 
 // Aksiyonlar
 "action_start_study" = "Çalışmaya Başla";
-"action_select_package" = "Hazır Kelimelerden Seç";
-"action_select_package_desc" = "Seviyene göre kelime çalış";
-"action_ai_assistant" = "Yapay Zeka Yazarı";
+"action_select_package" = "Destene Kelime Ekle";
+"action_select_package_desc" = "Öğrenmek için kelime seç";
+"action_ai_assistant" = "Okuma Pratiği Yap";
 "action_ai_assistant_desc" = "Sana özel okuma parçaları";
-"action_add_word" = "Yeni Kelime Ekle";
-"action_add_word_desc" = "Dışarıdan yeni kelime ekle";
+"action_add_word" = "Kelime Kaydet";
+"action_add_word_desc" = "Kendi kelimelerini ekle";
 
 // MARK: - Çalışma Ekranı
 "study_title" = "Çalış";
@@ -88,6 +88,21 @@
 "study_hard" = "Zor";
 "study_medium" = "Orta";
 "study_easy" = "Kolay";
+
+// Study difficulty buttons
+"study_hard" = "Zor";
+"study_medium" = "Orta";
+"study_easy" = "Kolay";
+
+// Study time labels
+"time_5_min" = "5 dk";
+"time_later" = "Sonra";
+"time_today" = "Bugün";
+"time_soon" = "Yakında";
+"time_1_day" = "1 gün";
+"time_n_days" = "%d gün";
+"time_n_wk" = "%d hf";
+"time_n_mo" = "%d ay";
 
 // Card Style Settings
 "card_style_settings_title" = "Kart Tasarımı";
@@ -369,8 +384,8 @@
 "story_length_long" = "Uzun";
 
 // Main Screen
-"ai_story_title" = "AI Hikaye Asistanı";
-"ai_story_subtitle" = "Yapay zeka ile öğrendiğin kelimelerden hikayeler oluştur";
+"ai_story_title" = "Yapay Zeka Hikaye Asistanı";
+"ai_story_subtitle" = "Yapay zeka ile destendeki kelimelerden hikayeler oluştur, öğrendiklerini pekiştir.";
 "create_story" = "Hikaye Oluştur";
 "story_history" = "Geçmiş Hikayeler";
 "quota_remaining" = "Kalan Hak";

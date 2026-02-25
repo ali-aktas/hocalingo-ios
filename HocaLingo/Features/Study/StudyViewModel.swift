@@ -489,7 +489,9 @@ class StudyViewModel: ObservableObject {
     }
     
     private func getCurrentTimeText(for difficulty: CardDifficulty) -> String {
-        guard let progress = currentProgress[currentCard.wordId] else { return "Soon" }
+        guard let progress = currentProgress[currentCard.wordId] else {
+            return NSLocalizedString("time_soon", comment: "")
+        }
         return progress.getButtonTimeText(quality: difficulty.quality)
     }
     
