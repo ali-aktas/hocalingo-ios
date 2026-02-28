@@ -2,8 +2,7 @@
 //  WordSelectionView.swift
 //  HocaLingo
 //
-//  Word selection screen with swipe cards and free user limits
-//  Location: HocaLingo/Features/Selection/WordSelectionView.swift
+//  Location: Features/Selection/WordSelectionView.swift
 //
 
 import SwiftUI
@@ -12,32 +11,27 @@ import SwiftUI
 struct WordSelectionView: View {
     let packageId: String
     @Binding var selectedTab: Int
-    
+
     @StateObject private var viewModel: WordSelectionViewModel
     @State private var showPremiumSheet = false
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.themeViewModel) private var themeViewModel
-    @AppStorage("app_language") private var appLanguageCode: String = "en"
-    
-    @State private var currentCardId: UUID = UUID()
-    
+
     init(packageId: String, selectedTab: Binding<Int>) {
         self.packageId = packageId
         self._selectedTab = selectedTab
         _viewModel = StateObject(wrappedValue: WordSelectionViewModel(packageId: packageId))
     }
-    
+
+    // MARK: - Body
     var body: some View {
         ZStack {
+            // Background
             LinearGradient(
-                colors: isDarkMode ? [
-                    Color(hex: "1A1625"),
-                    Color(hex: "211A2E")
-                ] : [
-                    Color(hex: "FBF2FF"),
-                    Color(hex: "FAF1FF")
-                ],
+                colors: isDarkMode
+                    ? [Color(hex: "1A1625"), Color(hex: "211A2E")]
+                    : [Color(hex: "FBF2FF"), Color(hex: "FAF1FF")],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
@@ -48,25 +42,21 @@ struct WordSelectionView: View {
                 .frame(width: 350, height: 350)
                 .blur(radius: 60)
                 .offset(x: 120, y: -250)
-            
+
+            // Content
             VStack(spacing: 0) {
                 if viewModel.isLoading {
-                    Spacer()
-                    loadingView
-                    Spacer()
+                    Spacer(); loadingView; Spacer()
                 } else if let error = viewModel.errorMessage {
-                    Spacer()
-                    errorView(error)
-                    Spacer()
+                    Spacer(); errorView(error); Spacer()
                 } else if viewModel.isCompleted {
-                    Spacer()
-                    completionView
-                    Spacer()
+                    Spacer(); completionView; Spacer()
                 } else {
                     mainContent
                 }
             }
-            
+
+            // Limit overlay
             if viewModel.selectionLimitReached {
                 selectionLimitOverlay
             }
@@ -74,297 +64,245 @@ struct WordSelectionView: View {
         .navigationTitle("HocaLingo")
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(true)
-        .sheet(isPresented: $showPremiumSheet) {
-                    PremiumPaywallView()
-                }
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: { dismiss() }) {
-                    HStack(spacing: 4) {
-                        Image(systemName: "chevron.left")
-                            .font(.system(size: 14, weight: .semibold))
-                            .font(.system(size: 17))
-                    }
-                    .foregroundColor(themeAccentColor)
+                    Image(systemName: "chevron.left")
+                        .font(.system(size: 16, weight: .semibold))
+                        .foregroundColor(themeAccentColor)
                 }
             }
         }
+        .sheet(isPresented: $showPremiumSheet) {
+            PremiumPaywallView()
+        }
     }
-    
+
     // MARK: - Main Content
     private var mainContent: some View {
         VStack(spacing: 0) {
             Spacer().frame(height: 16)
-            
-            Text("word_selection_instruction")
-                .font(.system(size: 18, weight: .medium))
+
+            Text(LocalizedStringKey("word_selection_instruction"))
+                .font(.system(size: 16, weight: .medium))
                 .foregroundColor(.secondary)
                 .padding(.horizontal, 20)
-                .padding(.bottom, 16)
-            
-            progressBar
+                .padding(.bottom, 12)
+
+            // Progress bar + remaining count — single row, no overflow
+            progressRow
                 .padding(.horizontal, 20)
-                .padding(.bottom, 16)
-            
+                .padding(.bottom, 12)
+
+            // Daily selection warning banner
             if viewModel.showSelectionWarning, let remaining = viewModel.remainingSelections {
                 selectionWarningBanner(remaining: remaining)
             }
-            
+
+            // Card stack
             ZStack(alignment: .bottomTrailing) {
                 ZStack {
+                    // ── NEXT CARD PREVIEW ────────────────────────────────────
+                    // Using the identical SwipeableCardView (non-interactive) so
+                    // the visual appearance is pixel-perfect to the current card.
+                    // When the current card flies away there is no format jump.
                     if let nextWord = viewModel.nextWord {
-                        wordCard(word: nextWord, isNext: true)
-                            .offset(y: 8)
-                            .scaleEffect(0.95)
-                            .opacity(0.5)
+                        SwipeableCardView(
+                            word: nextWord.english,
+                            translation: nextWord.turkish,
+                            cardColor: cardColor(for: nextWord),
+                            onSwipeLeft: {},
+                            onSwipeRight: {}
+                        )
+                        .allowsHitTesting(false)   // non-interactive
+                        .scaleEffect(0.95)
+                        .offset(y: 10)
+                        .opacity(0.55)
                     }
-                    
+
+                    // ── CURRENT CARD ─────────────────────────────────────────
+                    // .transition(.identity) — no scale/opacity insertion animation.
+                    // The card was already visually present as the preview above,
+                    // so an insertion animation would create a double-render flash.
+                    // The outgoing card handles its own exit via internal offset.
                     if let currentWord = viewModel.currentWord {
                         SwipeableCardView(
                             word: currentWord.english,
                             translation: currentWord.turkish,
                             cardColor: cardColor(for: currentWord),
-                            onSwipeLeft: {
-                                viewModel.swipeLeft()
-                                currentCardId = UUID()
-                            },
-                            onSwipeRight: {
-                                viewModel.swipeRight()
-                                currentCardId = UUID()
-                            }
+                            onSwipeLeft: { viewModel.swipeLeft() },
+                            onSwipeRight: { viewModel.swipeRight() }
                         )
-                        .id(currentCardId)
-                        .transition(.asymmetric(
-                            insertion: .scale.combined(with: .opacity),
-                            removal: .scale.combined(with: .opacity)
-                        ))
+                        .id(viewModel.cardTransitionId)
+                        .transition(.identity)
                     }
                 }
-                
+
+                // Undo button — icon only, no background circle
                 if viewModel.canUndo {
-                    Button(action: {
-                        viewModel.undoLastAction()
-                        currentCardId = UUID()
-                    }) {
+                    Button(action: { viewModel.undoLastAction() }) {
                         Image(systemName: "arrow.uturn.backward")
-                            .font(.system(size: 20, weight: .semibold))
-                            .foregroundColor(.white)
-                            .frame(width: 56, height: 56)
-                            .background(Color(hex: "9E9E9E"))
-                            .clipShape(Circle())
-                            .shadow(color: .black.opacity(0.25), radius: 8, x: 0, y: 4)
+                            .font(.system(size: 22, weight: .semibold))
+                            .foregroundColor(.white.opacity(0.75))
                     }
-                    .padding(.trailing, 24)
-                    .padding(.bottom, 24)
+                    .padding(.trailing, 28)
+                    .padding(.bottom, 28)
                 }
             }
             .frame(maxHeight: 460)
             .padding(.horizontal, 20)
-            
+
             Spacer()
-            
-            centeredActionButtons
-                .padding(.bottom, 20)
+
+            actionButtons
+                .padding(.bottom, 24)
         }
     }
-    
-    // MARK: - Progress Bar
-    private var progressBar: some View {
-        VStack(spacing: 8) {
-            HStack {
-                Text("\(viewModel.processedWords)/\(viewModel.totalWordsCount)")
-                    .font(.system(size: 14, weight: .semibold, design: .rounded))
-                    .foregroundColor(.secondary)
-                Spacer()
-            }
-            
-            GeometryReader { geometry in
+
+    // MARK: - Progress Row (bar + remaining count, same line)
+    private var progressRow: some View {
+        HStack(spacing: 12) {
+            // Bar — shrinks right-to-left as cards are processed
+            GeometryReader { geo in
                 ZStack(alignment: .leading) {
                     RoundedRectangle(cornerRadius: 4)
-                        .fill(Color.gray.opacity(0.2))
-                        .frame(height: 8)
-                    
+                        .fill(Color.primary.opacity(0.1))
+                        .frame(height: 6)
+
                     RoundedRectangle(cornerRadius: 4)
                         .fill(themeAccentColor)
-                        .frame(
-                            width: geometry.size.width * progress,
-                            height: 8
-                        )
+                        .frame(width: geo.size.width * viewModel.sessionProgress, height: 6)
+                        .animation(.easeInOut(duration: 0.25), value: viewModel.sessionProcessed)
                 }
             }
-            .frame(height: 8)
+            .frame(height: 6)
+
+            // Remaining count — fixed width so bar never overflows
+            Text("\(viewModel.cardsRemaining)")
+                .font(.system(size: 13, weight: .bold, design: .rounded))
+                .foregroundColor(themeAccentColor)
+                .monospacedDigit()
+                .frame(minWidth: 28, alignment: .trailing)
         }
     }
-    
-    private var progress: Double {
-        guard viewModel.totalWordsCount > 0 else { return 0 }
-        return Double(viewModel.processedWords) / Double(viewModel.totalWordsCount)
-    }
-    
-    // MARK: - Selection Warning Banner
+
+    // MARK: - Daily Limit Warning Banner
     private func selectionWarningBanner(remaining: Int) -> some View {
         HStack(spacing: 8) {
             Image(systemName: "exclamationmark.triangle.fill")
-                .font(.system(size: 14))
+                .font(.system(size: 13))
                 .foregroundColor(.orange)
-            
-            Text("\(remaining) ") + Text("word_selection_remaining")
-                .font(.system(size: 14, weight: .medium, design: .rounded))
+
+            (Text("\(remaining) ").bold() + Text(LocalizedStringKey("word_selection_remaining")))
+                .font(.system(size: 13, weight: .medium, design: .rounded))
                 .foregroundColor(.primary)
         }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 10)
+        .padding(.horizontal, 14)
+        .padding(.vertical, 9)
         .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color.orange.opacity(0.15))
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.orange.opacity(0.12))
                 .overlay(
-                    RoundedRectangle(cornerRadius: 12)
-                        .stroke(Color.orange.opacity(0.3), lineWidth: 1)
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color.orange.opacity(0.25), lineWidth: 1)
                 )
         )
         .padding(.horizontal, 20)
-        .padding(.bottom, 12)
+        .padding(.bottom, 10)
     }
-    
-    // MARK: - Word Card
-    private func wordCard(word: Word, isNext: Bool = false) -> some View {
-        VStack(spacing: 16) {
-            Text(word.english)
-                .font(.system(size: 28, weight: .bold, design: .rounded))
-                .foregroundColor(.white)
-                .multilineTextAlignment(.center)
-            
-            if !isNext {
-                Text(word.turkish)
-                    .font(.system(size: 20))
-                    .foregroundColor(.white.opacity(0.9))
-                    .multilineTextAlignment(.center)
-            }
-        }
-        .frame(maxWidth: .infinity)
-        .frame(height: 380)
-        .padding(.horizontal, 24)
-        .background(
-            RoundedRectangle(cornerRadius: 24)
-                .fill(isNext ? Color.gray.opacity(0.3) : cardColor(for: word))
-                .shadow(color: .black.opacity(0.1), radius: 12, x: 0, y: 6)
-        )
-        .padding(.horizontal, 32)
-    }
-    
-    // MARK: - Centered Action Buttons
-    private var centeredActionButtons: some View {
+
+    // MARK: - Action Buttons
+    // Opacity is NOT tied to isProcessingSwipe — the ViewModel guard already
+    // blocks double-fires. Removing opacity change eliminates the dim/bright
+    // flash users were seeing on every card transition.
+    private var actionButtons: some View {
         HStack(spacing: 24) {
-            // Skip Button (Red X)
-            Button(action: {
-                viewModel.swipeLeft()
-                currentCardId = UUID()
-            }) {
+            // Skip (left)
+            Button(action: { viewModel.swipeLeft() }) {
                 VStack(spacing: 8) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 18)
                             .fill(
                                 LinearGradient(
-                                    colors: [
-                                        Color(hex: "EF5350"),
-                                        Color(hex: "E53935")
-                                    ],
+                                    colors: [Color(hex: "EF5350"), Color(hex: "E53935")],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
                             )
                             .frame(width: 85, height: 85)
                             .shadow(color: Color(hex: "EF5350").opacity(0.35), radius: 10, x: 0, y: 5)
-                        
+
                         Image(systemName: "xmark")
                             .font(.system(size: 38, weight: .bold, design: .rounded))
                             .foregroundColor(.white)
                     }
-                    
-                    Text("word_selection_skip")
+
+                    Text(LocalizedStringKey("word_selection_skip"))
                         .font(.system(size: 15, weight: .bold, design: .rounded))
                         .foregroundColor(.themePrimary)
                 }
             }
-            .disabled(viewModel.isProcessingSwipe)
-            .opacity(viewModel.isProcessingSwipe ? 0.5 : 1.0)
-            
-            // Learn Button (Green ✓)
-            Button(action: {
-                viewModel.swipeRight()
-                currentCardId = UUID()
-            }) {
+            .allowsHitTesting(!viewModel.isProcessingSwipe)
+
+            // Learn (right)
+            Button(action: { viewModel.swipeRight() }) {
                 VStack(spacing: 8) {
                     ZStack {
                         RoundedRectangle(cornerRadius: 18)
                             .fill(
                                 LinearGradient(
-                                    colors: [
-                                        Color(hex: "66BB6A"),
-                                        Color(hex: "43A047")
-                                    ],
+                                    colors: [Color(hex: "66BB6A"), Color(hex: "43A047")],
                                     startPoint: .topLeading,
                                     endPoint: .bottomTrailing
                                 )
                             )
                             .frame(width: 85, height: 85)
                             .shadow(color: Color(hex: "66BB6A").opacity(0.35), radius: 10, x: 0, y: 5)
-                        
+
                         Image(systemName: "checkmark")
                             .font(.system(size: 38, weight: .bold))
                             .foregroundColor(.white)
                     }
-                    
-                    Text("word_selection_learn")
+
+                    Text(LocalizedStringKey("word_selection_learn"))
                         .font(.system(size: 15, weight: .bold))
                         .foregroundColor(.themePrimary)
                 }
             }
-            .disabled(viewModel.isProcessingSwipe || viewModel.selectionLimitReached)
-            .opacity((viewModel.isProcessingSwipe || viewModel.selectionLimitReached) ? 0.5 : 1.0)
+            .allowsHitTesting(!viewModel.isProcessingSwipe && !viewModel.selectionLimitReached)
         }
     }
-    
+
     // MARK: - Completion View
     private var completionView: some View {
-        VStack(spacing: 28) {
-            ZStack {
-                Circle()
-                    .fill(
-                        LinearGradient(
-                            colors: [Color(hex: "10B981"), Color(hex: "06B6D4")],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
-                    )
-                    .frame(width: 120, height: 120)
-                    .shadow(color: Color(hex: "10B981").opacity(0.4), radius: 20, x: 0, y: 10)
-                
-                Image(systemName: "star.fill")
-                    .font(.system(size: 60, weight: .bold, design: .rounded))
-                    .foregroundColor(.white)
-            }
-            
-            VStack(spacing: 16) {
-                Text("word_selection_complete_title")
-                    .font(.system(size: 28, weight: .black, design: .rounded))
-                    .foregroundColor(.primary)
-                
-                Text("word_selection_complete_message")
-                    .font(.system(size: 17))
+        VStack(spacing: 32) {
+            Image(systemName: "checkmark.circle.fill")
+                .font(.system(size: 80))
+                .foregroundColor(themeAccentColor)
+
+            VStack(spacing: 12) {
+                Text(LocalizedStringKey("word_selection_complete_title"))
+                    .font(.system(size: 28, weight: .bold, design: .rounded))
+                    .foregroundColor(.themePrimary)
+                    .multilineTextAlignment(.center)
+
+                Text(LocalizedStringKey("word_selection_complete_subtitle"))
+                    .font(.system(size: 16))
                     .foregroundColor(.secondary)
                     .multilineTextAlignment(.center)
-                    .lineSpacing(4)
             }
-            
-            VStack(spacing: 14) {
+            .padding(.horizontal, 32)
+
+            VStack(spacing: 12) {
                 if viewModel.selectedCount > 0 {
                     Button(action: {
+                        viewModel.navigateToStudy()
                         selectedTab = 1
                     }) {
                         HStack(spacing: 10) {
                             Image(systemName: "book.fill")
-                            Text("word_selection_start_learning") + Text(" (\(viewModel.selectedCount))")
+                            Text(LocalizedStringKey("word_selection_start_learning"))
+                            Text("(\(viewModel.selectedCount))")
                         }
                         .font(.system(size: 17, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
@@ -375,11 +313,11 @@ struct WordSelectionView: View {
                         .shadow(color: themeAccentColor.opacity(0.4), radius: 12, x: 0, y: 6)
                     }
                 }
-                
+
                 Button(action: { dismiss() }) {
                     HStack(spacing: 10) {
                         Image(systemName: "square.grid.2x2.fill")
-                        Text("word_selection_new_package")
+                        Text(LocalizedStringKey("word_selection_new_package"))
                     }
                     .font(.system(size: 17, weight: .semibold, design: .rounded))
                     .foregroundColor(themeAccentColor)
@@ -390,94 +328,99 @@ struct WordSelectionView: View {
                 }
             }
         }
-        .padding(.horizontal, 36)
+        .padding(32)
+        .background(
+            RoundedRectangle(cornerRadius: 24)
+                .fill(backgroundColor)
+                .shadow(color: .black.opacity(0.3), radius: 30, x: 0, y: 15)
+        )
+        .padding(.horizontal, 40)
     }
-    
+
     // MARK: - Selection Limit Overlay
     private var selectionLimitOverlay: some View {
         ZStack {
             Color.black.opacity(0.5)
                 .ignoresSafeArea()
-                .onTapGesture {
-                    viewModel.selectionLimitReached = false
-                }
-            
+                .onTapGesture { viewModel.selectionLimitReached = false }
+
             VStack(spacing: 24) {
                 Image(systemName: "hand.raised.fill")
-                    .font(.system(size: 56))
+                    .font(.system(size: 48))
                     .foregroundColor(.orange)
-                
-                VStack(spacing: 12) {
-                    Text("word_selection_limit_title")
-                        .font(.system(size: 22, weight: .bold, design: .rounded))
+
+                VStack(spacing: 8) {
+                    Text(LocalizedStringKey("word_selection_limit_title"))
+                        .font(.system(size: 20, weight: .bold, design: .rounded))
                         .foregroundColor(.primary)
-                    
-                    Text("word_selection_limit_message")
-                        .font(.system(size: 16))
+                        .multilineTextAlignment(.center)
+
+                    // Shortened — was a long paragraph, now one concise line
+                    Text(LocalizedStringKey("word_selection_limit_short"))
+                        .font(.system(size: 14))
                         .foregroundColor(.secondary)
                         .multilineTextAlignment(.center)
-                        .lineSpacing(4)
                 }
-                
-                VStack(spacing: 12) {
+
+                VStack(spacing: 10) {
                     if viewModel.selectedCount > 0 {
                         Button(action: {
                             viewModel.selectionLimitReached = false
                             selectedTab = 1
                         }) {
-                            HStack(spacing: 10) {
+                            HStack(spacing: 8) {
                                 Image(systemName: "book.fill")
-                                Text("word_selection_start_learning") + Text(" (\(viewModel.selectedCount))")
+                                Text(LocalizedStringKey("word_selection_start_learning"))
+                                Text("(\(viewModel.selectedCount))")
                             }
-                            .font(.system(size: 17, weight: .bold, design: .rounded))
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
                             .foregroundColor(.white)
                             .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
+                            .padding(.vertical, 14)
                             .background(themeAccentColor)
                             .cornerRadius(14)
                         }
                     }
-                    
+
                     Button(action: {
                         viewModel.selectionLimitReached = false
                         showPremiumSheet = true
                     }) {
-                        Text("Premium'a Geç")
-                            .font(.system(size: 16, weight: .semibold, design: .rounded))
+                        Text(LocalizedStringKey("premium_badge_upgrade"))
+                            .font(.system(size: 15, weight: .semibold, design: .rounded))
                             .foregroundColor(themeAccentColor)
                             .frame(maxWidth: .infinity)
-                            .padding(.vertical, 16)
+                            .padding(.vertical, 14)
                             .background(themeAccentColor.opacity(0.12))
                             .cornerRadius(14)
                     }
                 }
             }
-            .padding(32)
+            .padding(28)
             .background(
                 RoundedRectangle(cornerRadius: 24)
                     .fill(backgroundColor)
-                    .shadow(color: .black.opacity(0.3), radius: 30, x: 0, y: 15)
+                    .shadow(color: .black.opacity(0.25), radius: 24, x: 0, y: 12)
             )
-            .padding(.horizontal, 40)
+            .padding(.horizontal, 36)
         }
     }
-    
-    // MARK: - Loading & Error Views
+
+    // MARK: - Loading / Error Views
     private var loadingView: some View {
         VStack(spacing: 16) {
             ProgressView().scaleEffect(1.5)
-            Text("loading")
+            Text(LocalizedStringKey("loading"))
                 .font(.system(size: 16))
                 .foregroundColor(.secondary)
         }
     }
-    
+
     private func errorView(_ message: String) -> some View {
         VStack(spacing: 16) {
             Image(systemName: "exclamationmark.triangle.fill")
                 .font(.system(size: 48))
                 .foregroundColor(.red)
-            
             Text(message)
                 .font(.system(size: 16))
                 .foregroundColor(.secondary)
@@ -485,36 +428,19 @@ struct WordSelectionView: View {
                 .padding(.horizontal, 40)
         }
     }
-    
-    // MARK: - Theme Colors
-    private var isDarkMode: Bool {
-        themeViewModel.isDarkMode(in: colorScheme)
-    }
 
+    // MARK: - Theme
+    private var isDarkMode: Bool { themeViewModel.isDarkMode(in: colorScheme) }
     private var backgroundColor: Color {
-        themeViewModel.isDarkMode(in: colorScheme)
-            ? Color(hex: "1A1625")
-            : Color(hex: "FBF2FF")
+        isDarkMode ? Color(hex: "1A1625") : Color(hex: "FBF2FF")
     }
-    
-    private var cardBackgroundColor: Color {
-        themeViewModel.isDarkMode(in: colorScheme)
-            ? Color(hex: "1E1E1E")
-            : Color.white
-    }
-    
-    private var themeAccentColor: Color {
-        Color(hex: "4ECDC4")
-    }
-    
+    private var themeAccentColor: Color { Color(hex: "4ECDC4") }
+
     private func cardColor(for word: Word) -> Color {
         let colors = [
-            Color(hex: "5C6BC0"),
-            Color(hex: "42A5F5"),
-            Color(hex: "26C6DA"),
-            Color(hex: "66BB6A"),
-            Color(hex: "FFA726"),
-            Color(hex: "EF5350")
+            Color(hex: "5C6BC0"), Color(hex: "42A5F5"),
+            Color(hex: "26C6DA"), Color(hex: "66BB6A"),
+            Color(hex: "FFA726"), Color(hex: "EF5350")
         ]
         return colors[word.id % colors.count]
     }

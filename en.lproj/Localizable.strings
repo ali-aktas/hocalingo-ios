@@ -37,6 +37,18 @@
 "home_greeting_night" = "Good Night! ✨";
 "home_cta_title" = "Start Studying!";
 "home_start_btn" = "Start";
+"vault_title" = "My Word Vault";
+"vault_section_title" = "My Word Vault";
+"vault_show_all" = "See All";
+"vault_review_all" = "Review All Words";
+"vault_empty_title" = "Your vault is empty";
+"vault_empty_subtitle" = "Select a package and add words to start building your vault";
+"vault_preview_empty" = "Start selecting words to fill your vault";
+"vault_tap_to_reveal" = "Tap to reveal";
+"vault_reveal" = "Reveal";
+"vault_next" = "Next";
+"vault_finish" = "Done";
+"vault_turkish" = "Turkish";
 
 // Motivation Texts
 "motivation_1" = "Just 10 minutes a day and you can learn a thousand words in a year";
@@ -146,6 +158,13 @@
 "terms_of_service" = "Terms of Service";
 "contact_support" = "Support";
 "notification_time_label" = "Notification Time";
+"premium_badge_upgrade" = "Go Premium";
+"premium_badge_active" = "Premium Experience";
+"confirmation_notification_title" = "Notification Time Updated";
+"confirmation_direction_title" = "Study Direction Changed";
+"confirmation_theme_title" = "Theme Updated";
+"confirmation_language_title" = "Language Changed";
+"language_card_title" = "Interface Language";
 
 // MARK: - Theme Modes
 "theme_light" = "Light Theme";
@@ -232,6 +251,7 @@
 "word_selection_new_package" = "Select New Package";
 "word_selection_limit_reached_title" = "Daily Limit Reached";
 "word_selection_limit_reached_message" = "You've reached your daily word selection limit. Upgrade to Premium or try again tomorrow.";
+"word_selection_limit_short" = "Today's limit reached. Upgrade to add more.";
 "word_selection_limit_title" = "Daily Selection Limit Reached";
 "word_selection_limit_message" = "You've selected 15 words today.\nYou can still skip words freely, or upgrade to Premium for unlimited selections!";
 "word_selection_limit_close" = "Continue Reviewing";

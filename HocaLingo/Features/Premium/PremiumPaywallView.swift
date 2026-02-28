@@ -243,7 +243,7 @@ struct PremiumPaywallView: View {
                     plan: .annual,
                     package: annualPackage,
                     title: "Yıllık",
-                    badge: "%90 İNDİRİM",
+                    badge: "EN POPÜLER",
                     isSelected: selectedPlan == .annual
                 )
             }

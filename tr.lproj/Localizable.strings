@@ -37,6 +37,18 @@
 "home_greeting_night" = "İyi Geceler! ✨";
 "home_cta_title" = "Çalışmaya Başla!";
 "home_start_btn" = "Başla";
+"vault_title" = "Kelime Kasam";
+"vault_section_title" = "Kelime Kasan";
+"vault_show_all" = "Tümünü Gör";
+"vault_review_all" = "Tüm Kelimeleri Gözden Geçir";
+"vault_empty_title" = "Kasan henüz boş";
+"vault_empty_subtitle" = "Paket seçip kelime ekledikten sonra burada görünür";
+"vault_preview_empty" = "Kelime seçmeye başla";
+"vault_tap_to_reveal" = "Çeviriyi görmek için dokun";
+"vault_reveal" = "Göster";
+"vault_next" = "İleri";
+"vault_finish" = "Tamamla";
+"vault_turkish" = "Türkçe";
 
 // Motivasyon Metinleri
 "motivation_1" = "Günde sadece 10 dakika ile her ay 200+ kelime öğren!";
@@ -66,7 +78,7 @@
 
 // Aksiyonlar
 "action_start_study" = "Çalışmaya Başla";
-"action_select_package" = "Destene Kelime Ekle";
+"action_select_package" = "Yeni Kelimeler Seç";
 "action_select_package_desc" = "Öğrenmek için kelime seç";
 "action_ai_assistant" = "Okuma Pratiği Yap";
 "action_ai_assistant_desc" = "Sana özel okuma parçaları";
@@ -146,6 +158,13 @@
 "terms_of_service" = "Kullanım Şartları";
 "contact_support" = "Destek";
 "notification_time_label" = "Bildirim Saati";
+"premium_badge_upgrade" = "Premium'a Geç";
+"premium_badge_active" = "Premium Deneyim";
+"confirmation_notification_title" = "Bildirim Saati Güncellendi";
+"confirmation_direction_title" = "Çalışma Yönü Değiştirildi";
+"confirmation_theme_title" = "Tema Güncellendi";
+"confirmation_language_title" = "Dil Değiştirildi";
+"language_card_title" = "Arayüz Dili";
 
 // MARK: - Tema Modları
 "theme_light" = "Açık Tema";
@@ -232,6 +251,7 @@
 "word_selection_new_package" = "Yeni Paket Seç";
 "word_selection_limit_reached_title" = "Günlük Limit Doldu";
 "word_selection_limit_reached_message" = "Bugün için kelime seçme hakkınız doldu. Premium'a geçin veya yarın tekrar deneyin.";
+"word_selection_limit_short" = "Günlük limitin doldu. Daha fazlası için yükselt.";
 "word_selection_limit_title" = "Günlük Seçim Limitine Ulaşıldı";
 "word_selection_limit_message" = "Bugün 15 kelime seçtin.\nKelimeleri atlayabilirsin veya Premium'a geçerek sınırsız seçim yapabilirsin!";
 "word_selection_limit_close" = "İncelemeye Devam Et";

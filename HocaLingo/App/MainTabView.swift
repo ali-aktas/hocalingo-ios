@@ -51,7 +51,7 @@ struct MainTabView: View {
                     
                     // Study Tab
                     tabBarButton(
-                        icon: "rectangle.portrait.on.rectangle.portrait.angled.fill",
+                        icon: "play.fill",
                         label: "tab_study",
                         index: 1
                     )

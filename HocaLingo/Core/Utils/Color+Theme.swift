@@ -29,7 +29,7 @@ extension Color {
     static var themeCard: Color {
         Color(UIColor { traitCollection in
             traitCollection.userInterfaceStyle == .dark
-                ? UIColor(Color(hex: "1C1C1E"))  // Dark theme
+                ? UIColor(Color(hex: "28282F"))  // Dark theme
                 : UIColor(Color(hex: "FFFFFF"))  // Light theme
         })
     }
