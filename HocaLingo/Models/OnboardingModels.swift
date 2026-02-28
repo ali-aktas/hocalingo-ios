@@ -2,58 +2,103 @@
 //  OnboardingModels.swift
 //  HocaLingo
 //
-//  Onboarding data models - User preferences and flow control
+//  ✅ REDESIGNED: Premium onboarding flow models
+//  5-step flow: Promise → Empathy → Goal → Level → Summary
 //  Location: HocaLingo/Models/OnboardingModels.swift
 //
 
 import Foundation
 
-// MARK: - Learning Goal
-/// User's primary learning objective
-enum LearningGoal: String, Codable, CaseIterable {
-    case examFocused = "exam_focused"
-    case conversationFocused = "conversation_focused"
-    
-    var emoji: String {
+// MARK: - Onboarding Step
+/// Navigation control for the 5-screen onboarding flow
+enum OnboardingStep: Int, CaseIterable {
+    case promise = 0    // Screen 1: Welcome + mascot + brand promise
+    case empathy = 1    // Screen 2: "Which describes you?" (emotional hook)
+    case goal = 2       // Screen 3: Study direction (Understand / Speak)
+    case level = 3      // Screen 4: English level (4 options → package mapping)
+    case summary = 4    // Screen 5: Personalized summary + launch
+
+    var progressIndex: Int { rawValue }
+    static var totalSteps: Int { allCases.count }
+}
+
+// MARK: - Empathy Choice
+/// User's self-identified learning struggle (Screen 2)
+enum EmpathyChoice: String, Codable, CaseIterable {
+    case quitter = "quitter"           // "Başlayıp bırakıyorum"
+    case forgetful = "forgetful"       // "Kelimeler aklımda kalmıyor"
+    case noTime = "no_time"            // "Zamanım hiç yok"
+
+    var iconName: String {
         switch self {
-        case .examFocused: return "📘"
-        case .conversationFocused: return "🗣️"
+        case .quitter:   return "flame.fill"
+        case .forgetful: return "brain.head.profile"
+        case .noTime:    return "clock.fill"
+        }
+    }
+
+    var iconColor: String {
+        switch self {
+        case .quitter:   return "FF6B6B"
+        case .forgetful: return "845EF7"
+        case .noTime:    return "FFA94D"
         }
     }
 }
 
-// MARK: - English Level
-/// User's current English proficiency level
-enum EnglishLevel: String, Codable, CaseIterable {
-    case beginner = "beginner"
-    case intermediate = "intermediate"
-    case advanced = "advanced"
+// MARK: - Learning Goal (maps to StudyDirection)
+/// User's primary learning objective → determines default StudyDirection
+enum LearningGoal: String, Codable, CaseIterable {
+    case understand = "understand"       // EN → TR (reading, listening, exams)
+    case speak = "speak"                 // TR → EN (speaking, recall)
 }
 
-// MARK: - Onboarding Step
-/// Navigation control for onboarding screens
-enum OnboardingStep: Int {
-    case introduction = 0  // Screen 1: Welcome + mascot
-    case userProfile = 1   // Screen 2: 2 questions
-    case swipeDemo = 2     // Screen 3: Swipe demo
-    case studyDemo = 3     // Screen 4: Flip + difficulty demo
-    
-    var progressValue: Int {
-        return rawValue + 1  // 1, 2, 3, 4
+// MARK: - English Level (4 tiers with package mapping)
+/// User's self-assessed level → maps to a default vocabulary package
+enum EnglishLevel: String, Codable, CaseIterable {
+    case beginner = "beginner"                 // A1-A2
+    case intermediate = "intermediate"         // B1
+    case upperIntermediate = "upper_intermediate" // B2
+    case advanced = "advanced"                 // C1
+
+    /// Maps level to the default package ID for post-onboarding word selection
+    var defaultPackageId: String {
+        switch self {
+        case .beginner:          return "standard_a1_001"
+        case .intermediate:      return "standard_b1_001"
+        case .upperIntermediate: return "standard_b2_001"
+        case .advanced:          return "standard_c1_001"
+        }
     }
-    
-    var totalSteps: Int {
-        return 4
+
+    /// SF Symbol for the level card
+    var iconName: String {
+        switch self {
+        case .beginner:          return "leaf.fill"
+        case .intermediate:      return "book.fill"
+        case .upperIntermediate: return "briefcase.fill"
+        case .advanced:          return "star.fill"
+        }
+    }
+
+    var iconColor: String {
+        switch self {
+        case .beginner:          return "4ECDC4"
+        case .intermediate:      return "6366F1"
+        case .upperIntermediate: return "F59E0B"
+        case .advanced:          return "EF4444"
+        }
     }
 }
 
 // MARK: - Onboarding Data
-/// User selections during onboarding
+/// Collected user selections during the onboarding flow
 struct OnboardingData: Codable {
+    var empathyChoice: EmpathyChoice?
     var learningGoal: LearningGoal?
     var englishLevel: EnglishLevel?
     var isCompleted: Bool = false
-    
+
     var isReadyToComplete: Bool {
         return learningGoal != nil && englishLevel != nil
     }

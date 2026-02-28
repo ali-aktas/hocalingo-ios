@@ -348,6 +348,66 @@
 "onboarding_button_next" = "İlerle";
 "onboarding_button_skip" = "Atla";
 
+// ============================================================
+// 🌍 NEW ONBOARDING LOCALIZATION KEYS
+// Add these to your Localizable.strings (Turkish)
+// ============================================================
+
+// MARK: - Screen 1: Promise
+"onboarding_promise_title" = "Dil bilgisi yok.\nSadece kelime.";
+"onboarding_promise_subtitle" = "Günde 10 dakika yeter.";
+
+// MARK: - Screen 2: Empathy
+"onboarding_empathy_title" = "En çok hangisi seni tanımlıyor?";
+"onboarding_empathy_quitter" = "Başlayıp bırakıyorum";
+"onboarding_empathy_forgetful" = "Kelimeler aklımda kalmıyor";
+"onboarding_empathy_no_time" = "Zamanım hiç yok";
+"onboarding_empathy_response" = "Tam senlik bir sistem var.";
+
+// MARK: - Screen 3: Goal (StudyDirection)
+"onboarding_goal_title" = "Ne için öğreniyorsun?";
+"onboarding_goal_understand" = "Anlamak";
+"onboarding_goal_speak" = "Konuşmak";
+"onboarding_goal_understand_short" = "Okuma, dinleme, sınav";
+"onboarding_goal_speak_short" = "Kelimeyi hatırla, kullan";
+"onboarding_goal_explain_understand" = "İngilizce kelimeyi görüp Türkçesini bulacaksın.";
+"onboarding_goal_explain_speak" = "Türkçe kelimeyi görüp İngilizcesini bulacaksın.";
+"onboarding_goal_changeable" = "İstediğin zaman değiştirebilirsin.";
+
+// MARK: - Screen 4: Level
+"onboarding_level_title" = "Seviyen nedir?";
+"onboarding_level_beginner" = "Başlangıç";
+"onboarding_level_intermediate" = "Orta";
+"onboarding_level_upper" = "Orta-İleri";
+"onboarding_level_advanced" = "İleri";
+"onboarding_level_beginner_desc" = "Hello, Thank you gibi temel kelimeler";
+"onboarding_level_intermediate_desc" = "Günlük konuşma kelimeleri";
+"onboarding_level_upper_desc" = "İş ve akademik kelimeler";
+"onboarding_level_advanced_desc" = "Gelişmiş ve az kullanılan kelimeler";
+"onboarding_level_response_beginner" = "Harika başlangıç noktası!";
+"onboarding_level_response_intermediate" = "Güzel, temeli biliyorsun!";
+"onboarding_level_response_upper" = "Ciddi iş, beğendim!";
+"onboarding_level_response_advanced" = "Vay, iddialısın!";
+
+// MARK: - Screen 5: Summary
+"onboarding_summary_title" = "Planın hazır!";
+"onboarding_summary_goal" = "Hedef";
+"onboarding_summary_level" = "Seviye";
+"onboarding_summary_ready" = "Hazır";
+"onboarding_summary_ready_value" = "Kelimeler seni bekliyor";
+"onboarding_summary_goal_speak" = "Konuşmak";
+"onboarding_summary_goal_understand" = "Anlamak";
+
+// MARK: - Buttons
+"onboarding_button_start" = "Başla";
+"onboarding_button_continue" = "Devam";
+"onboarding_button_launch" = "Kelime Seçmeye Başla";
+"onboarding_button_skip" = "Atla";
+
+// MARK: - Completion
+"onboarding_success" = "Hazırsın!";
+
+
 // Ekran 2 - Kullanıcı Tanıma
 "onboarding_question1_title" = "Öncelikli öğrenme amacın nedir?";
 "onboarding_goal_exam" = "Sınava hazırlık";

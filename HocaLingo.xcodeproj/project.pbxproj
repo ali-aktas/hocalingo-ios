@@ -10,6 +10,7 @@
 		0E7A28AA2F2D2F3B0056FD6C /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 0E7A28A92F2D2F3B0056FD6C /* RevenueCat */; };
 		0E7A28AC2F2D30BC0056FD6C /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 0E7A28AB2F2D30BC0056FD6C /* Configuration.storekit */; };
 		0E7A28AD2F2D30BC0056FD6C /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 0E7A28AB2F2D30BC0056FD6C /* Configuration.storekit */; };
+		0EA0B3EE2F53AC5300EEDCE7 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0EA0B3ED2F53AC5300EEDCE7 /* Lottie */; };
 		0EC5FC772F192647002129FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EC5FC752F192647002129FC /* Localizable.strings */; };
 		0EC5FC782F192647002129FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EC5FC752F192647002129FC /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -87,6 +88,7 @@
 				Core/Utils/ContentCleaner.swift,
 				Core/Utils/ContentValidator.swift,
 				Core/Utils/DailySelectionLimitManager.swift,
+				Core/Utils/LottieView.swift,
 				Core/Utils/NotificationDelegate.swift,
 				Core/Utils/NotificationManager.swift,
 				Core/Utils/PromptBuilder.swift,
@@ -114,14 +116,18 @@
 				Features/Home/HomeViewModel.swift,
 				Features/Home/WordVault/WordVaultSheet.swift,
 				Features/Home/WordVault/WordVaultViewModel.swift,
+				Features/Onboarding/Components/GlassCard.swift,
+				Features/Onboarding/Components/OnboardingBackground.swift,
 				Features/Onboarding/Components/OnboardingButton.swift,
-				Features/Onboarding/Components/ProgressIndicator.swift,
-				Features/Onboarding/OnboardingScreen1View.swift,
-				Features/Onboarding/OnboardingScreen2View.swift,
-				Features/Onboarding/OnboardingScreen3View.swift,
-				Features/Onboarding/OnboardingScreen4View.swift,
+				Features/Onboarding/Components/ProgressDots.swift,
+				Features/Onboarding/Components/SpeechBubble.swift,
 				Features/Onboarding/OnboardingView.swift,
 				Features/Onboarding/OnboardingViewModel.swift,
+				Features/Onboarding/Screens/EmpathyScreen.swift,
+				Features/Onboarding/Screens/GoalScreen.swift,
+				Features/Onboarding/Screens/LevelScreen.swift,
+				Features/Onboarding/Screens/PromiseScreen.swift,
+				Features/Onboarding/Screens/SummaryScreen.swift,
 				Features/Premium/PremiumPaywallView.swift,
 				Features/Profile/Components/AnnualStatsSection.swift,
 				Features/Profile/Components/CompactSelectorRow.swift,
@@ -262,6 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E7A28AA2F2D2F3B0056FD6C /* RevenueCat in Frameworks */,
+				0EA0B3EE2F53AC5300EEDCE7 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -331,6 +338,7 @@
 			name = HocaLingo;
 			packageProductDependencies = (
 				0E7A28A92F2D2F3B0056FD6C /* RevenueCat */,
+				0EA0B3ED2F53AC5300EEDCE7 /* Lottie */,
 			);
 			productName = HocaLingo;
 			productReference = 0EC909CE2F18743E00FEBC67 /* HocaLingo.app */;
@@ -419,6 +427,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				0E7A28A82F2D2F3B0056FD6C /* XCRemoteSwiftPackageReference "purchases-ios" */,
+				0EA0B3EC2F53AC5300EEDCE7 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0EC909CF2F18743E00FEBC67 /* Products */;
@@ -834,6 +843,14 @@
 				minimumVersion = 5.56.1;
 			};
 		};
+		0EA0B3EC2F53AC5300EEDCE7 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.6.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -841,6 +858,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0E7A28A82F2D2F3B0056FD6C /* XCRemoteSwiftPackageReference "purchases-ios" */;
 			productName = RevenueCat;
+		};
+		0EA0B3ED2F53AC5300EEDCE7 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EA0B3EC2F53AC5300EEDCE7 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

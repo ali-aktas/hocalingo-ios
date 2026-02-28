@@ -2,122 +2,164 @@
 //  OnboardingViewModel.swift
 //  HocaLingo
 //
-//  Onboarding flow manager - Handles navigation, user selections, and persistence
+//  ✅ REDESIGNED: Premium 5-step onboarding flow manager
+//  Handles navigation, selections, persistence, and post-onboarding routing
 //  Location: HocaLingo/Features/Onboarding/OnboardingViewModel.swift
 //
+
 import SwiftUI
 import Combine
 
 // MARK: - Onboarding View Model
 class OnboardingViewModel: ObservableObject {
-    
+
     // MARK: - Published Properties
-    @Published var currentStep: OnboardingStep = .introduction
+    @Published var currentStep: OnboardingStep = .promise
     @Published var onboardingData = OnboardingData()
     @Published var showCompletionAnimation = false
-    
-    // MARK: - Private Properties
+    @Published var mascotMessage: LocalizedStringKey? = nil
+
+    // MARK: - Private
     private let userDefaults = UserDefaultsManager.shared
-    
-    // MARK: - Navigation Control
-    
-    /// Move to next screen
-    func nextStep() {
+
+    // MARK: - Computed
+    var canProceed: Bool {
         switch currentStep {
-        case .introduction:
-            currentStep = .userProfile
-        case .userProfile:
-            // Only proceed if both questions answered
-            guard onboardingData.learningGoal != nil,
-                  onboardingData.englishLevel != nil else {
-                return
-            }
-            currentStep = .swipeDemo
-        case .swipeDemo:
-            currentStep = .studyDemo
-        case .studyDemo:
-            // Final step - complete onboarding
+        case .promise:  return true
+        case .empathy:  return onboardingData.empathyChoice != nil
+        case .goal:     return onboardingData.learningGoal != nil
+        case .level:    return onboardingData.englishLevel != nil
+        case .summary:  return true
+        }
+    }
+
+    // MARK: - Navigation
+
+    func nextStep() {
+        guard canProceed else { return }
+
+        switch currentStep {
+        case .promise:
+            currentStep = .empathy
+        case .empathy:
+            currentStep = .goal
+        case .goal:
+            currentStep = .level
+        case .level:
+            currentStep = .summary
+        case .summary:
             completeOnboarding()
         }
     }
-    
-    /// Go back to previous screen
-    func previousStep() {
-        switch currentStep {
-        case .introduction:
-            break // Can't go back from first screen
-        case .userProfile:
-            currentStep = .introduction
-        case .swipeDemo:
-            currentStep = .userProfile
-        case .studyDemo:
-            currentStep = .swipeDemo
-        }
-    }
-    
-    /// Skip onboarding (can be called from any screen)
+
     func skipOnboarding() {
-        // Save minimal default data
-        onboardingData.learningGoal = .examFocused  // Default
-        onboardingData.englishLevel = .intermediate  // Default
+        // Set safe defaults
+        onboardingData.empathyChoice = .forgetful
+        onboardingData.learningGoal = .understand
+        onboardingData.englishLevel = .intermediate
         completeOnboarding()
     }
-    
-    // MARK: - User Selection Handlers
-    
-    func selectLearningGoal(_ goal: LearningGoal) {
+
+    // MARK: - Selection Handlers
+
+    func selectEmpathy(_ choice: EmpathyChoice) {
+        withAnimation(.spring(response: 0.3)) {
+            onboardingData.empathyChoice = choice
+        }
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+
+        // Show mascot response after short delay
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            withAnimation(.spring(response: 0.4)) {
+                self.mascotMessage = "onboarding_empathy_response"
+            }
+        }
+    }
+
+    func selectGoal(_ goal: LearningGoal) {
         withAnimation(.spring(response: 0.3)) {
             onboardingData.learningGoal = goal
         }
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
     }
-    
-    func selectEnglishLevel(_ level: EnglishLevel) {
+
+    func selectLevel(_ level: EnglishLevel) {
         withAnimation(.spring(response: 0.3)) {
             onboardingData.englishLevel = level
         }
+        UIImpactFeedbackGenerator(style: .light).impactOccurred()
+
+        // Show mascot message based on level
+        let key: LocalizedStringKey
+        switch level {
+        case .beginner:          key = "onboarding_level_response_beginner"
+        case .intermediate:      key = "onboarding_level_response_intermediate"
+        case .upperIntermediate: key = "onboarding_level_response_upper"
+        case .advanced:          key = "onboarding_level_response_advanced"
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            withAnimation(.spring(response: 0.4)) {
+                self.mascotMessage = key
+            }
+        }
     }
-    
+
+    /// Clear mascot message when moving to next step
+    func clearMascotMessage() {
+        mascotMessage = nil
+    }
+
     // MARK: - Completion
-    
+
     private func completeOnboarding() {
-        // Save user preferences
         saveOnboardingData()
-        
-        // Mark onboarding as completed
+
+        // Mark completed
         UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
-        
-        // Show completion animation
+
+        // Trigger completion animation
         withAnimation(.spring(response: 0.4)) {
             showCompletionAnimation = true
         }
-        
+
+        UINotificationFeedbackGenerator().notificationOccurred(.success)
+
         print("✅ Onboarding completed")
-        print("   - Learning Goal: \(onboardingData.learningGoal?.rawValue ?? "none")")
-        print("   - English Level: \(onboardingData.englishLevel?.rawValue ?? "none")")
+        print("   - Empathy: \(onboardingData.empathyChoice?.rawValue ?? "none")")
+        print("   - Goal: \(onboardingData.learningGoal?.rawValue ?? "none")")
+        print("   - Level: \(onboardingData.englishLevel?.rawValue ?? "none")")
+        print("   - Package: \(onboardingData.englishLevel?.defaultPackageId ?? "none")")
     }
-    
-    // MARK: - Data Persistence
-    
+
+    // MARK: - Persistence
+
     private func saveOnboardingData() {
+        // Save study direction based on goal
         if let goal = onboardingData.learningGoal {
-            UserDefaults.standard.set(goal.rawValue, forKey: "userLearningGoal")
+            let direction: StudyDirection = (goal == .understand) ? .enToTr : .trToEn
+            userDefaults.saveStudyDirection(direction)
+            print("   → Study direction saved: \(direction.rawValue)")
         }
-        
+
+        // Save selected package based on level
         if let level = onboardingData.englishLevel {
-            UserDefaults.standard.set(level.rawValue, forKey: "userEnglishLevel")
+            userDefaults.saveSelectedPackage(level.defaultPackageId)
+            print("   → Default package saved: \(level.defaultPackageId)")
+        }
+
+        // Save full onboarding data as JSON
+        onboardingData.isCompleted = true
+        if let encoded = try? JSONEncoder().encode(onboardingData) {
+            UserDefaults.standard.set(encoded, forKey: "onboardingData")
         }
     }
-    
-    // MARK: - Helpers
-    
-    var canProceed: Bool {
-        switch currentStep {
-        case .introduction:
-            return true
-        case .userProfile:
-            return onboardingData.learningGoal != nil && onboardingData.englishLevel != nil
-        case .swipeDemo, .studyDemo:
-            return true
+
+    /// Load saved onboarding data (for summary screen or later use)
+    static func loadSavedData() -> OnboardingData? {
+        guard let data = UserDefaults.standard.data(forKey: "onboardingData"),
+              let decoded = try? JSONDecoder().decode(OnboardingData.self, from: data) else {
+            return nil
         }
+        return decoded
     }
 }
