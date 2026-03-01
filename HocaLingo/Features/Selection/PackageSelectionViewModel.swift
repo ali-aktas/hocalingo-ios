@@ -2,9 +2,10 @@
 //  PackageSelectionViewModel.swift
 //  HocaLingo
 //
-//  ✅ FIX: premium_travel_001 restored (6 packages, not 5)
-//  ✅ FIX: Standard color steps ~12 brightness units apart (was ~7, too subtle)
-//  ✅ PRESERVED: All logic, functions, premium manager
+//  🔴 REDESIGN: Added iconName to PackageModel for SF Symbols
+//  🔴 REDESIGN: Premium packages updated (Travel, Business, Phrases, Idioms, Social, Academic)
+//  ✅ PRESERVED: All logic, functions, premium manager, standard IDs
+//  ✅ PRESERVED: loadWordCount, selectPackage, getUnseenWordCount
 //
 //  Location: HocaLingo/Features/Selection/PackageSelectionViewModel.swift
 //
@@ -28,6 +29,7 @@ struct PackageModel: Identifiable, Codable {
     let colorHex: String
     let isPremium: Bool
     let category: PackageCategory
+    let iconName: String // SF Symbol name
     
     var color: Color {
         Color(hex: colorHex)
@@ -66,48 +68,54 @@ class PackageSelectionViewModel: ObservableObject {
         
         // STANDARD PACKAGES — Purple monochrome, ~12 brightness units per step
         // A1 (lightest #9B8FD4) → C2 (darkest #594798), clearly distinct but same family
-        let standardMetadata: [(id: String, level: String, name: String, description: String, colorHex: String)] = [
+        let standardMetadata: [(id: String, level: String, name: String, description: String, colorHex: String, iconName: String)] = [
             (
                 id: "standard_a1_001",
                 level: "level_a1",
                 name: "package_name_beginner",
                 description: "Basic everyday words",
-                colorHex: "9B8FD4"   // Lightest purple
+                colorHex: "9B8FD4",   // Lightest purple
+                iconName: "leaf.fill"
             ),
             (
                 id: "standard_a2_001",
                 level: "level_a2",
                 name: "package_name_elementary",
                 description: "Common phrases",
-                colorHex: "8E80C8"   // ~12 units darker
+                colorHex: "8E80C8",   // ~12 units darker
+                iconName: "book.fill"
             ),
             (
                 id: "standard_b1_001",
                 level: "level_b1",
                 name: "package_name_intermediate",
                 description: "Work and travel vocabulary",
-                colorHex: "8172BC"   // ~12 units darker
+                colorHex: "8172BC",   // ~12 units darker
+                iconName: "bookmark.fill"
             ),
             (
                 id: "standard_b2_001",
                 level: "level_b2",
                 name: "package_name_upper_intermediate",
                 description: "Professional English",
-                colorHex: "7363B0"   // ~12 units darker
+                colorHex: "7363B0",   // ~12 units darker
+                iconName: "text.book.closed.fill"
             ),
             (
                 id: "standard_c1_001",
                 level: "level_c1",
                 name: "package_name_advanced",
                 description: "Advanced expressions",
-                colorHex: "6655A4"   // ~12 units darker
+                colorHex: "6655A4",   // ~12 units darker
+                iconName: "graduationcap.fill"
             ),
             (
                 id: "standard_c2_001",
                 level: "level_c2",
                 name: "package_name_mastery",
                 description: "Near-native vocabulary",
-                colorHex: "594798"   // Darkest purple
+                colorHex: "594798",   // Darkest purple
+                iconName: "crown.fill"
             )
         ]
         
@@ -122,53 +130,60 @@ class PackageSelectionViewModel: ObservableObject {
                 wordCount: wordCount,
                 colorHex: metadata.colorHex,
                 isPremium: false,
-                category: .standard
+                category: .standard,
+                iconName: metadata.iconName
             )
         }
         
-        // PREMIUM PACKAGES — Gold theme, UNCHANGED (6 packages restored)
-        let premiumMetadata: [(id: String, level: String, name: String, description: String, colorHex: String)] = [
-            (
-                id: "premium_business_001",
-                level: "premium_level",
-                name: "premium_package_business",
-                description: "Professional workplace English",
-                colorHex: "DAA520"   // Goldenrod
-            ),
+        // PREMIUM PACKAGES — Themed collections with unique gold tones
+        let premiumMetadata: [(id: String, level: String, name: String, description: String, colorHex: String, iconName: String)] = [
             (
                 id: "premium_travel_001",
                 level: "premium_level",
                 name: "premium_package_travel",
                 description: "Tourism and navigation",
-                colorHex: "FFD700"   // Gold
+                colorHex: "FFD700",   // Gold
+                iconName: "airplane"
             ),
             (
-                id: "premium_tech_001",
+                id: "premium_business_001",
                 level: "premium_level",
-                name: "premium_package_tech",
-                description: "Programming and IT terms",
-                colorHex: "F4A460"   // Sandy brown
+                name: "premium_package_business",
+                description: "Professional workplace English",
+                colorHex: "DAA520",   // Goldenrod
+                iconName: "briefcase.fill"
             ),
             (
-                id: "premium_medical_001",
+                id: "premium_phrases_001",
                 level: "premium_level",
-                name: "premium_package_medical",
-                description: "Healthcare vocabulary",
-                colorHex: "DDA15E"   // Bronze
-            ),
-            (
-                id: "premium_academic_001",
-                level: "premium_level",
-                name: "premium_package_academic",
-                description: "University and research",
-                colorHex: "CD853F"   // Peru
+                name: "premium_package_phrases",
+                description: "Common native expressions",
+                colorHex: "F4A460",   // Sandy brown
+                iconName: "text.bubble.fill"
             ),
             (
                 id: "premium_idioms_001",
                 level: "premium_level",
                 name: "premium_package_idioms",
                 description: "Native expressions",
-                colorHex: "D4AF37"   // Metallic gold
+                colorHex: "D4AF37",   // Metallic gold
+                iconName: "theatermasks.fill"
+            ),
+            (
+                id: "premium_social_001",
+                level: "premium_level",
+                name: "premium_package_social",
+                description: "Daily conversation skills",
+                colorHex: "DDA15E",   // Bronze
+                iconName: "person.2.fill"
+            ),
+            (
+                id: "premium_academic_001",
+                level: "premium_level",
+                name: "premium_package_academic",
+                description: "University and research",
+                colorHex: "CD853F",   // Peru
+                iconName: "building.columns.fill"
             )
         ]
         
@@ -183,7 +198,8 @@ class PackageSelectionViewModel: ObservableObject {
                 wordCount: wordCount,
                 colorHex: metadata.colorHex,
                 isPremium: true,
-                category: .premium
+                category: .premium,
+                iconName: metadata.iconName
             )
         }
         
