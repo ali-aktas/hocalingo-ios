@@ -387,55 +387,86 @@
 "annual_stats_skipped_label" = "Words Skipped";
 
 
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// MARK: - AI Story
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// ============================================
+// AIStory Localizable Strings
+// Add these to your existing Localizable.strings files
+// ============================================
 
-"ai_story_title"    = "AI Story Assistant";
-"ai_story_subtitle" = "Create stories from your vocabulary with AI and reinforce what you've learned.";
-"story_history"     = "Story History";
-"create_story"      = "Create Story";
-"quota_remaining"   = "Remaining";
-"stories_this_month" = "This Month";
+// ==============================
+// 🇬🇧 ENGLISH (en.lproj/Localizable.strings)
+// ==============================
 
-// Creator Dialog
-"story_creator_title"     = "Create Story";
-"story_topic_placeholder" = "Topic (optional)";
-"story_topic_hint"        = "e.g. Space adventure, coffee break";
-"select_type"             = "Story Type";
-"select_length"           = "Length";
-"generate_button"         = "Generate Story";
+// --- Main Screen ---
+"ai_story_title" = "AI Story Assistant";
+"ai_story_subtitle" = "Create stories from the words you're learning with AI";
+"ai_story_quota" = "Remaining";
+"ai_story_quota_premium" = "Premium • Monthly";
+"ai_story_quota_free" = "Free • Monthly";
+"ai_story_history" = "History";
+"ai_story_stories" = "stories";
+"ai_story_tap_to_browse" = "Tap to browse";
+"ai_story_recent" = "Recent Stories";
+"ai_story_create" = "Create Story";
+"ai_story_loading" = "Loading...";
+"ai_story_no_stories" = "No stories yet";
 
-// Generating Animation
-"collecting_words" = "Collecting your words...";
-"writing_story"    = "Writing your story...";
-"final_touches"    = "Final touches...";
+// --- History ---
+"ai_story_history_title" = "Story History";
 
-// Story Detail
-"your_words"       = "Your Words";
-"story_created"    = "Created";
-"tap_word_hint"    = "Tap words to see their meanings";
+// --- Creator ---
+"ai_story_creator_title" = "New Story";
+"ai_story_creator_subtitle" = "Customize your AI-generated story";
+"ai_story_topic_label" = "Topic (Optional)";
+"ai_story_topic_placeholder" = "e.g. A space adventure, A day at school...";
+"ai_story_topic_hint" = "Leave empty for a random topic";
+"ai_story_type_label" = "Story Type";
+"ai_story_length_label" = "Story Length";
+"ai_story_generate" = "Generate Story";
+"ai_story_word_info" = "%d words required • %d available";
+"ai_story_quota_warning_premium_%d" = "Last %d credits remaining this month";
+"ai_story_quota_warning_free_%d" = "Last %d credits remaining. Upgrade to Premium for 30!";
 
-// Story Types
-"story_type_motivation" = "Motivation";
-"story_type_fantasy"    = "Fantasy Story";
-"story_type_dialogue"   = "Dialogue";
+// --- Story Types ---
+"story_type_motivation" = "Motivational";
+"story_type_fantasy" = "Fantasy";
+"story_type_dialogue" = "Dialogue";
 
-// Story Lengths
+// --- Story Lengths ---
 "story_length_short" = "Short";
-"story_length_long"  = "Long";
+"story_length_long" = "Long";
+"story_read_time_short" = "1-2 min";
+"story_read_time_long" = "5-7 min";
 
-// Error Messages
-"quota_exceeded_free"       = "You've reached the 3 story monthly limit. Go Premium for 30 stories!";
-"quota_exceeded_premium"    = "You've reached the 30 story monthly limit. Come back next month!";
-"insufficient_words_error"  = "Not enough words. At least %d words required.";
-"api_error"                 = "Something went wrong. Please try again.";
-"network_error"             = "Check your internet connection.";
+// --- Detail View ---
+"ai_story_your_words" = "Your Words";
+"ai_story_words_used_%d" = "%d words used";
+"ai_story_reading_section" = "Story";
+"ai_story_delete_title" = "Delete Story";
+"ai_story_delete_message" = "This story will be permanently deleted. This action cannot be undone.";
+"ai_story_delete_confirm" = "Delete";
 
-// Success / Action
-"story_created_success" = "🎉 Story created!";
-"story_deleted"         = "Story deleted";
-"story_favorited"       = "Added to favorites";
+// --- Generating ---
+"collecting_words" = "Collecting Words...";
+"writing_story" = "Writing Story...";
+"final_touches" = "Final Touches...";
+"ai_story_generating_wait" = "This may take a few seconds";
+
+// --- Insufficient Words Dialog ---
+"ai_story_insufficient_title" = "Not Enough Words";
+"ai_story_insufficient_desc" = "You need more active words to generate this story. Keep learning to unlock it!";
+"ai_story_required" = "Required";
+"ai_story_available" = "Available";
+"ai_story_add_words" = "Add More Words";
+"ai_story_close" = "Close";
+
+// --- Error Dialog ---
+"ai_story_error_title" = "Something Went Wrong";
+
+// --- Common ---
+"ok_button" = "OK";
+"cancel_button" = "Cancel";
+"close" = "Close";
+
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

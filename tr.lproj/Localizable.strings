@@ -388,51 +388,76 @@
 // MARK: - AI Story
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"ai_story_title"     = "Yapay Zeka Hikaye Asistanı";
-"ai_story_subtitle"  = "Yapay zeka ile destendeki kelimelerden hikayeler oluştur, öğrendiklerini pekiştir.";
-"story_history"      = "Geçmiş Hikayeler";
-"create_story"       = "Hikaye Oluştur";
-"quota_remaining"    = "Kalan Hak";
-"stories_this_month" = "Bu Ay";
+// --- Ana Ekran ---
+"ai_story_title" = "AI Hikaye Asistanı";
+"ai_story_subtitle" = "Yapay zeka ile öğrendiğin kelimelerden hikayeler oluştur";
+"ai_story_quota" = "Kalan Hak";
+"ai_story_quota_premium" = "Premium • Aylık";
+"ai_story_quota_free" = "Ücretsiz • Aylık";
+"ai_story_history" = "Geçmiş";
+"ai_story_stories" = "hikaye";
+"ai_story_tap_to_browse" = "Görmek için dokun";
+"ai_story_recent" = "Son Hikayeler";
+"ai_story_create" = "Hikaye Oluştur";
+"ai_story_loading" = "Yükleniyor...";
+"ai_story_no_stories" = "Henüz hikaye yok";
 
-// Creator Dialog
-"story_creator_title"     = "Hikaye Oluştur";
-"story_topic_placeholder" = "Konu (isteğe bağlı)";
-"story_topic_hint"        = "Örn: Uzay macerası, kahve molası";
-"select_type"             = "Hikaye Türü";
-"select_length"           = "Uzunluk";
-"generate_button"         = "Hikaye Oluştur";
+// --- Geçmiş ---
+"ai_story_history_title" = "Hikaye Geçmişi";
 
-// Generating Animation
-"collecting_words" = "Kelimelerini topluyorum...";
-"writing_story"    = "Hikayeni yazıyorum...";
-"final_touches"    = "Son rötuşlar...";
+// --- Oluşturucu ---
+"ai_story_creator_title" = "Yeni Hikaye";
+"ai_story_creator_subtitle" = "AI hikayeni özelleştir";
+"ai_story_topic_label" = "Konu (İsteğe Bağlı)";
+"ai_story_topic_placeholder" = "ör. Bir uzay macerası, Okulda bir gün...";
+"ai_story_topic_hint" = "Boş bırakırsan rastgele konu seçilir";
+"ai_story_type_label" = "Hikaye Türü";
+"ai_story_length_label" = "Hikaye Uzunluğu";
+"ai_story_generate" = "Hikaye Oluştur";
+"ai_story_word_info" = "%d kelime gerekli • Mevcut: %d";
+"ai_story_quota_warning_premium_%d" = "Bu ay son %d hakkınız kaldı";
+"ai_story_quota_warning_free_%d" = "Son %d hakkınız kaldı. Premium ile 30 hikaye!";
 
-// Story Detail
-"your_words"    = "Senin Kelimelerin";
-"story_created" = "Oluşturulma";
-"tap_word_hint" = "Kelimelere dokun anlamlarını gör";
-
-// Story Types
+// --- Hikaye Türleri ---
 "story_type_motivation" = "Motivasyon";
-"story_type_fantasy"    = "Fantastik Hikaye";
-"story_type_dialogue"   = "Diyalog";
+"story_type_fantasy" = "Fantastik";
+"story_type_dialogue" = "Diyalog";
 
-// Story Lengths
+// --- Hikaye Uzunlukları ---
 "story_length_short" = "Kısa";
-"story_length_long"  = "Uzun";
+"story_length_long" = "Uzun";
+"story_read_time_short" = "1-2 dk";
+"story_read_time_long" = "5-7 dk";
 
-// Error Messages
-"quota_exceeded_free"      = "Aylık 3 hikaye limitine ulaştınız. Premium ile 30 hikaye yazın!";
-"quota_exceeded_premium"   = "Aylık 30 hikaye limitine ulaştınız. Yeni ay başında devam edebilirsiniz.";
-"insufficient_words_error" = "Yeterli kelime yok. En az %d kelime gerekli.";
-"api_error"                = "Bir hata oluştu. Lütfen tekrar deneyin.";
-"network_error"            = "İnternet bağlantınızı kontrol edin.";
+// --- Detay Görünümü ---
+"ai_story_your_words" = "Senin Kelimelerin";
+"ai_story_words_used_%d" = "%d kelime kullanıldı";
+"ai_story_reading_section" = "Hikaye";
+"ai_story_delete_title" = "Hikayeyi Sil";
+"ai_story_delete_message" = "Bu hikaye kalıcı olarak silinecek. Bu işlem geri alınamaz.";
+"ai_story_delete_confirm" = "Sil";
 
-// Success / Action
-"story_created_success" = "🎉 Hikaye oluşturuldu!";
-"story_deleted"         = "Hikaye silindi";
-"story_favorited"       = "Favorilere eklendi";
+// --- Oluşturma Animasyonu ---
+"collecting_words" = "Kelimeler Toplanıyor...";
+"writing_story" = "Hikaye Yazılıyor...";
+"final_touches" = "Son Dokunuşlar...";
+"ai_story_generating_wait" = "Bu birkaç saniye sürebilir";
+
+// --- Yetersiz Kelime Diyaloğu ---
+"ai_story_insufficient_title" = "Yeterli Kelime Yok";
+"ai_story_insufficient_desc" = "Bu hikayeyi oluşturmak için daha fazla aktif kelimeye ihtiyacın var. Öğrenmeye devam et!";
+"ai_story_required" = "Gerekli";
+"ai_story_available" = "Mevcut";
+"ai_story_add_words" = "Kelime Ekle";
+"ai_story_close" = "Kapat";
+
+// --- Hata Diyaloğu ---
+"ai_story_error_title" = "Bir Sorun Oluştu";
+
+// --- Ortak ---
+"ok_button" = "Tamam";
+"cancel_button" = "İptal";
+"close" = "Kapat";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

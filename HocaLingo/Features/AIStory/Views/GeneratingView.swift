@@ -3,19 +3,20 @@
 //  HocaLingo
 //
 //  Features/AIStory/Views/GeneratingView.swift
-//  Premium glow animation overlay
+//  ✅ REDESIGNED: Lottie animation, cleaner design, SF Symbols
+//  Location: HocaLingo/Features/AIStory/Views/GeneratingView.swift
 //
 
 import SwiftUI
+import Lottie
 import Combine
 
-/// Generating overlay with premium glow animation
+/// Generating overlay with Lottie animation
 struct GeneratingView: View {
     
     @ObservedObject var viewModel: AIStoryViewModel
-    @State private var rotation: Double = 0
-    @State private var glowIntensity: Double = 0.8
     @State private var dotCount: Int = 0
+    @State private var pulseScale: CGFloat = 1.0
     
     private let timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     
@@ -25,11 +26,11 @@ struct GeneratingView: View {
             Color.black.opacity(0.85)
                 .ignoresSafeArea()
             
-            VStack(spacing: 40) {
-                // Rotating glow circle
-                glowCircle
+            VStack(spacing: 36) {
+                // Lottie animation circle
+                animationSection
                 
-                // Phase icon and text
+                // Phase content
                 phaseContent
                 
                 // Animated dots
@@ -37,36 +38,27 @@ struct GeneratingView: View {
             }
         }
         .onAppear {
-            startAnimations()
+            startPulse()
         }
         .onReceive(timer) { _ in
             dotCount = (dotCount + 1) % 4
         }
     }
     
-    // MARK: - Components
+    // MARK: - Animation Section
     
-    private var glowCircle: some View {
+    private var animationSection: some View {
         ZStack {
-            // Outer glow
-            Circle()
-                .fill(
-                    RadialGradient(
-                        colors: [
-                            Color(hex: "6366F1").opacity(glowIntensity),
-                            Color(hex: "8B5CF6").opacity(glowIntensity * 0.6),
-                            Color.clear
-                        ],
-                        center: .center,
-                        startRadius: 20,
-                        endRadius: 140
-                    )
-                )
-                .frame(width: 280, height: 280)
-                .blur(radius: 30)
-                .rotationEffect(.degrees(rotation))
+            // Lottie sparkle ambient
+            LottieView(
+                animationName: "sparkle_ambient",
+                loopMode: .loop,
+                animationSpeed: 0.6
+            )
+            .frame(width: 260, height: 260)
+            .opacity(0.7)
             
-            // Inner circle
+            // Inner gradient circle with pulse
             Circle()
                 .fill(
                     LinearGradient(
@@ -78,54 +70,61 @@ struct GeneratingView: View {
                         endPoint: .bottomTrailing
                     )
                 )
-                .frame(width: 120, height: 120)
-                .shadow(color: Color(hex: "6366F1").opacity(0.6), radius: 20, y: 10)
+                .frame(width: 80, height: 80)
+                .shadow(color: Color(hex: "6366F1").opacity(0.5), radius: 20)
+                .scaleEffect(pulseScale)
             
             // Phase icon
-            Image(systemName: currentPhase.icon)
-                .font(.system(size: 48, weight: .semibold, design: .rounded))
+            Image(systemName: viewModel.uiState.generatingPhase.icon)
+                .font(.system(size: 30, weight: .semibold))
                 .foregroundColor(.white)
+                .scaleEffect(pulseScale)
         }
     }
+    
+    // MARK: - Phase Content
     
     private var phaseContent: some View {
-        VStack(spacing: 12) {
-            Text(LocalizedStringKey(currentPhase.title))
-                .font(.system(size: 22, weight: .bold, design: .rounded))
+        VStack(spacing: 10) {
+            Text(LocalizedStringKey(viewModel.uiState.generatingPhase.title))
+                .font(.system(size: 20, weight: .bold, design: .rounded))
                 .foregroundColor(.white)
+                .animation(.easeInOut, value: viewModel.uiState.generatingPhase)
             
-            Text("Lütfen bekleyin")
-                .font(.system(size: 15))
-                .foregroundColor(.white.opacity(0.7))
+            Text("ai_story_generating_wait")
+                .font(.system(size: 14))
+                .foregroundColor(.white.opacity(0.5))
         }
     }
     
+    // MARK: - Animated Dots
+    
     private var animatedDots: some View {
-        HStack(spacing: 8) {
-            ForEach(0..<3) { index in
+        HStack(spacing: 6) {
+            ForEach(0..<3, id: \.self) { index in
                 Circle()
-                    .fill(Color.white.opacity(index <= dotCount ? 0.8 : 0.3))
+                    .fill(Color(hex: "6366F1"))
                     .frame(width: 8, height: 8)
+                    .opacity(index < dotCount ? 1.0 : 0.3)
                     .animation(.easeInOut(duration: 0.3), value: dotCount)
             }
         }
     }
     
-    // MARK: - Helpers
+    // MARK: - Pulse Animation
     
-    private var currentPhase: GeneratingPhase {
-        viewModel.uiState.generatingPhase
-    }
-    
-    private func startAnimations() {
-        // Rotation animation
-        withAnimation(.linear(duration: 3).repeatForever(autoreverses: false)) {
-            rotation = 360
-        }
-        
-        // Pulse animation
-        withAnimation(.easeInOut(duration: 1.5).repeatForever(autoreverses: true)) {
-            glowIntensity = 1.2
+    private func startPulse() {
+        withAnimation(
+            .easeInOut(duration: 1.2)
+            .repeatForever(autoreverses: true)
+        ) {
+            pulseScale = 1.08
         }
     }
+}
+
+// MARK: - Preview
+
+#Preview {
+    GeneratingView(viewModel: AIStoryViewModel())
 }

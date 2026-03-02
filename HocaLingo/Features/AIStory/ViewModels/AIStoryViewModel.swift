@@ -3,7 +3,8 @@
 //  HocaLingo
 //
 //  Features/AIStory/ViewModels/AIStoryViewModel.swift
-//  ✅ FULLY FIXED: Kelime yükleme basitleştirildi, error handling düzeltildi
+//  ✅ FIXED: Favorite lag fixed, insufficient words check improved
+//  Location: HocaLingo/Features/AIStory/ViewModels/AIStoryViewModel.swift
 //
 
 import Foundation
@@ -32,11 +33,11 @@ class AIStoryViewModel: ObservableObject {
         self.repository = repository
         self.userDefaults = userDefaults
         
-        // ✅ Observe premium status
+        // Observe premium status
         observePremiumStatus()
     }
     
-    // MARK: - ✅ Premium Status Observer
+    // MARK: - Premium Status Observer
     
     private func observePremiumStatus() {
         PremiumManager.shared.$isPremium
@@ -131,6 +132,25 @@ class AIStoryViewModel: ObservableObject {
     // MARK: - Story Generation
     
     private func handleGenerateStory() async {
+        // ✅ Check insufficient words BEFORE closing creator
+        let requiredWords = uiState.creatorLength.exactDeckWords
+        let direction = userDefaults.loadStudyDirection()
+        
+        // Count eligible words (progress < 21 days)
+        let eligibleCount = uiState.allWords.filter { word in
+            guard let progress = userDefaults.loadProgress(for: word.id, direction: direction) else {
+                return true // Learning phase words are eligible
+            }
+            return progress.intervalDays < 21.0
+        }.count
+        
+        if eligibleCount < requiredWords {
+            uiState.insufficientWordsRequired = requiredWords
+            uiState.insufficientWordsAvailable = eligibleCount
+            uiState.showInsufficientWords = true
+            return
+        }
+        
         // Close creator sheet FIRST
         uiState.showCreator = false
         
@@ -213,10 +233,19 @@ class AIStoryViewModel: ObservableObject {
     
     // MARK: - Story Management
     
+    /// ✅ FIXED: Updates currentStory immediately for instant UI feedback
     private func handleToggleFavorite(_ id: String) {
         do {
             try repository.toggleFavorite(id: id)
+            
+            // ✅ Update stories list
             loadStories()
+            
+            // ✅ FIXED: Also update currentStory if it's the toggled one
+            if var current = uiState.currentStory, current.id == id {
+                current.isFavorite.toggle()
+                uiState.currentStory = current
+            }
         } catch {
             uiState.error = .saveFailed
         }
@@ -261,11 +290,11 @@ class AIStoryViewModel: ObservableObject {
         uiState.quota = quotaManager.getCurrentQuota(isPremium: uiState.isPremium)
     }
     
-    /// ✅ COMPLETELY REWRITTEN: Sadece seçili kelimeleri UserDefaults'tan yükle
+    /// Load selected words from UserDefaults
     private func loadWords() {
         print("🔍 Loading words for AI Story...")
         
-        // 1. Seçili kelime ID'lerini al
+        // 1. Get selected word IDs
         let selectedWordIds = Set(userDefaults.loadSelectedWords())
         print("📝 Found \(selectedWordIds.count) selected word IDs")
         
@@ -275,8 +304,7 @@ class AIStoryViewModel: ObservableObject {
             return
         }
         
-        // 2. Kelimeleri yükle (UserDefaults'ta Word objesi olarak saklanıyor)
-        // NOT: Kelimeler global olarak saklanıyor, paket bazlı değil!
+        // 2. Load words from various sources
         var allWords: [Word] = []
         
         // User-added words
@@ -284,7 +312,7 @@ class AIStoryViewModel: ObservableObject {
         allWords.append(contentsOf: userWords.filter { selectedWordIds.contains($0.id) })
         print("👤 Loaded \(userWords.filter { selectedWordIds.contains($0.id) }.count) user-added words")
         
-        // Package words - sadece A1 paketi var şu an
+        // Package words
         if let url = Bundle.main.url(forResource: "standard_a1_001", withExtension: "json"),
            let data = try? Data(contentsOf: url),
            let package = try? JSONDecoder().decode(VocabularyPackage.self, from: data) {
@@ -296,7 +324,7 @@ class AIStoryViewModel: ObservableObject {
         uiState.allWords = allWords
         print("✅ Total loaded \(allWords.count) words for AI Story")
         
-        // DEBUG: Print progress info
+        // Debug: Print eligible word count
         let direction = userDefaults.loadStudyDirection()
         let eligibleCount = allWords.filter { word in
             guard let progress = userDefaults.loadProgress(for: word.id, direction: direction) else {

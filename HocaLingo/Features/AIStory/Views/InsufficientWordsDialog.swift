@@ -3,12 +3,13 @@
 //  HocaLingo
 //
 //  Features/AIStory/Views/InsufficientWordsDialog.swift
-//  AI-themed dialog for insufficient eligible words warning
+//  ✅ REDESIGNED: Modern design, SF Symbols, localized strings
+//  Location: HocaLingo/Features/AIStory/Views/InsufficientWordsDialog.swift
 //
 
 import SwiftUI
 
-/// Insufficient words dialog - Shown when user doesn't have enough words (progress < 21 days)
+/// Insufficient words dialog - Shown when user doesn't have enough eligible words
 struct InsufficientWordsDialog: View {
     
     let required: Int
@@ -30,139 +31,109 @@ struct InsufficientWordsDialog: View {
             
             // Dialog card
             VStack(spacing: 0) {
-                // Header
                 headerSection
-                
-                // Content
                 contentSection
-                
-                // Buttons
                 buttonsSection
             }
-            .frame(maxWidth: 340)
+            .frame(maxWidth: 320)
             .background(
-                RoundedRectangle(cornerRadius: 24)
-                    .fill(isDarkMode ? Color(hex: "1F1B2E") : Color.white)
-                    .shadow(color: .black.opacity(0.2), radius: 20, y: 10)
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(isDarkMode ? Color(hex: "1E1730") : Color.white)
+                    .shadow(color: .black.opacity(0.25), radius: 24, y: 12)
             )
-            .padding(.horizontal, 32)
+            .padding(.horizontal, 36)
         }
     }
     
     // MARK: - Header
     
     private var headerSection: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 14) {
             // Icon
             ZStack {
                 Circle()
-                    .fill(Color.orange.opacity(0.15))
-                    .frame(width: 80, height: 80)
+                    .fill(Color.orange.opacity(0.12))
+                    .frame(width: 64, height: 64)
                 
                 Image(systemName: "exclamationmark.triangle.fill")
-                    .font(.system(size: 36))
+                    .font(.system(size: 28))
                     .foregroundColor(.orange)
             }
             
             // Title
-            Text("Not Enough Active Words")
-                .font(.system(size: 22, weight: .bold, design: .rounded))
+            Text("ai_story_insufficient_title")
+                .font(.system(size: 20, weight: .bold, design: .rounded))
                 .foregroundColor(.themePrimary)
                 .multilineTextAlignment(.center)
         }
-        .padding(.top, 32)
+        .padding(.top, 28)
         .padding(.horizontal, 24)
     }
     
     // MARK: - Content
     
     private var contentSection: some View {
-        VStack(spacing: 20) {
+        VStack(spacing: 16) {
             // Explanation
-            Text("AI needs words you're actively learning (progress < 21 days) to create a story.")
-                .font(.system(size: 15))
+            Text("ai_story_insufficient_desc")
+                .font(.system(size: 14))
                 .foregroundColor(.themeSecondary)
                 .multilineTextAlignment(.center)
-                .lineSpacing(4)
             
-            // Stats box
+            // Stats row
             HStack(spacing: 0) {
-                // Available
-                VStack(spacing: 6) {
-                    Text("\(available)")
-                        .font(.system(size: 28, weight: .bold, design: .rounded))
-                        .foregroundColor(.orange)
-                    
-                    Text("Available")
-                        .font(.system(size: 13))
+                // Required
+                VStack(spacing: 4) {
+                    Text("\(required)")
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .foregroundColor(.accentPurple)
+                    Text("ai_story_required")
+                        .font(.system(size: 11))
                         .foregroundColor(.themeSecondary)
                 }
                 .frame(maxWidth: .infinity)
                 
                 // Divider
                 Rectangle()
-                    .fill(Color.themeSecondary.opacity(0.2))
-                    .frame(width: 1, height: 50)
+                    .fill(Color.themeDivider)
+                    .frame(width: 1, height: 36)
                 
-                // Required
-                VStack(spacing: 6) {
-                    Text("\(required)")
-                        .font(.system(size: 28, weight: .bold, design: .rounded))
-                        .foregroundColor(.accentPurple)
-                    
-                    Text("Required")
-                        .font(.system(size: 13))
+                // Available
+                VStack(spacing: 4) {
+                    Text("\(available)")
+                        .font(.system(size: 24, weight: .bold, design: .rounded))
+                        .foregroundColor(.orange)
+                    Text("ai_story_available")
+                        .font(.system(size: 11))
                         .foregroundColor(.themeSecondary)
                 }
                 .frame(maxWidth: .infinity)
             }
-            .padding(.vertical, 20)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(isDarkMode ? Color(hex: "2A2438") : Color(hex: "F5F5F5"))
-            )
-            
-            // Tip
-            HStack(spacing: 12) {
-                Image(systemName: "lightbulb.fill")
-                    .font(.system(size: 18))
-                    .foregroundColor(.accentPurple)
-                
-                Text("Add more words to your deck and start studying!")
-                    .font(.system(size: 14))
-                    .foregroundColor(.themeSecondary)
-                    .lineSpacing(3)
-                
-                Spacer()
-            }
-            .padding(16)
+            .padding(14)
             .background(
                 RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.accentPurple.opacity(0.1))
+                    .fill(Color.themeCardSecondary)
             )
         }
         .padding(.horizontal, 24)
-        .padding(.vertical, 20)
+        .padding(.top, 16)
     }
     
     // MARK: - Buttons
     
     private var buttonsSection: some View {
-        VStack(spacing: 12) {
-            // Primary: Add Words
-            Button {
-                onAddWords()
-            } label: {
-                HStack(spacing: 10) {
+        VStack(spacing: 10) {
+            // Add Words button (primary)
+            Button(action: onAddWords) {
+                HStack(spacing: 8) {
                     Image(systemName: "plus.circle.fill")
-                        .font(.system(size: 18, weight: .semibold, design: .rounded))
-                    
-                    Text("Add More Words")
-                        .font(.system(size: 17, weight: .semibold, design: .rounded))
+                        .font(.system(size: 16))
+                    Text("ai_story_add_words")
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
                 }
                 .foregroundColor(.white)
                 .frame(maxWidth: .infinity)
-                .padding(.vertical, 16)
+                .padding(.vertical, 13)
                 .background(
                     LinearGradient(
                         colors: [Color(hex: "6366F1"), Color(hex: "8B5CF6")],
@@ -170,21 +141,20 @@ struct InsufficientWordsDialog: View {
                         endPoint: .trailing
                     )
                 )
-                .cornerRadius(14)
+                .cornerRadius(12)
             }
             
-            // Secondary: Dismiss
-            Button {
-                onDismiss()
-            } label: {
-                Text("Maybe Later")
-                    .font(.system(size: 16, weight: .medium, design: .rounded))
+            // Close button (secondary)
+            Button(action: onDismiss) {
+                Text("ai_story_close")
+                    .font(.system(size: 14, weight: .medium, design: .rounded))
                     .foregroundColor(.themeSecondary)
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 14)
+                    .padding(.vertical, 10)
             }
         }
         .padding(.horizontal, 24)
+        .padding(.top, 20)
         .padding(.bottom, 24)
     }
     
@@ -196,15 +166,10 @@ struct InsufficientWordsDialog: View {
 // MARK: - Preview
 
 #Preview {
-    ZStack {
-        Color.gray.ignoresSafeArea()
-        
-        InsufficientWordsDialog(
-            required: 15,
-            available: 8,
-            onDismiss: {},
-            onAddWords: {}
-        )
-    }
-    .environmentObject(ThemeViewModel())
+    InsufficientWordsDialog(
+        required: 20,
+        available: 8,
+        onDismiss: {},
+        onAddWords: {}
+    )
 }

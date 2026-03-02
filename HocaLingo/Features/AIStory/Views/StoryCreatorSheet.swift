@@ -3,12 +3,13 @@
 //  HocaLingo
 //
 //  Features/AIStory/Views/StoryCreatorSheet.swift
-//  ✅ UPDATED: Integrated InsufficientWordsDialog
+//  ✅ REDESIGNED: SF Symbols, compact layout, modern pill buttons
+//  Location: HocaLingo/Features/AIStory/Views/StoryCreatorSheet.swift
 //
 
 import SwiftUI
 
-/// Story Creator Sheet - Premium design form
+/// Story Creator Sheet - Modern design form
 struct StoryCreatorSheet: View {
     
     @ObservedObject var viewModel: AIStoryViewModel
@@ -27,8 +28,8 @@ struct StoryCreatorSheet: View {
                 
                 VStack(spacing: 0) {
                     // Scrollable content
-                    ScrollView {
-                        VStack(spacing: 24) {
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 20) {
                             // Header
                             headerSection
                             
@@ -41,6 +42,9 @@ struct StoryCreatorSheet: View {
                             // Length Selection
                             lengthSection
                             
+                            // Word count info
+                            wordCountInfo
+                            
                             // Quota Warning (if low)
                             if viewModel.uiState.quota.remaining <= 1 {
                                 quotaWarning
@@ -50,22 +54,22 @@ struct StoryCreatorSheet: View {
                             Spacer(minLength: 100)
                         }
                         .padding(.horizontal, 20)
-                        .padding(.top, 20)
+                        .padding(.top, 16)
                     }
                     
-                    // ✅ Generate button at bottom (outside ScrollView)
+                    // Generate button at bottom (outside ScrollView)
                     VStack(spacing: 0) {
                         Divider()
                             .background(Color.themeSecondary.opacity(0.2))
                         
                         generateButton
                             .padding(.horizontal, 20)
-                            .padding(.vertical, 16)
+                            .padding(.vertical, 14)
                     }
                     .background(Color.themeBackground)
                 }
                 
-                // ✅ NEW: Insufficient words dialog overlay
+                // Insufficient words dialog overlay
                 if viewModel.uiState.showInsufficientWords {
                     InsufficientWordsDialog(
                         required: viewModel.uiState.insufficientWordsRequired,
@@ -74,22 +78,24 @@ struct StoryCreatorSheet: View {
                             viewModel.uiState.showInsufficientWords = false
                         },
                         onAddWords: {
-                            // Close dialog and creator sheet
                             viewModel.uiState.showInsufficientWords = false
                             dismiss()
-                            // User will be navigated to package selection automatically
                         }
                     )
                     .transition(.opacity)
                     .zIndex(100)
                 }
             }
-            .navigationTitle("story_creator_title")
+            .navigationTitle("ai_story_creator_title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("close") {
+                    Button {
                         dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 20))
+                            .foregroundColor(.themeSecondary)
                     }
                 }
             }
@@ -102,121 +108,148 @@ struct StoryCreatorSheet: View {
     // MARK: - Header
     
     private var headerSection: some View {
-        VStack(spacing: 12) {
+        VStack(spacing: 6) {
             Image(systemName: "sparkles")
-                .font(.system(size: 48))
+                .font(.system(size: 28, weight: .medium))
                 .foregroundColor(.accentPurple)
             
-            Text("story_creator_title")
-                .font(.system(size: 24, weight: .bold, design: .rounded))
-                .foregroundColor(.themePrimary)
+            Text("ai_story_creator_subtitle")
+                .font(.system(size: 13))
+                .foregroundColor(.themeSecondary)
                 .multilineTextAlignment(.center)
         }
     }
     
-    // MARK: - Topic Section
+    // MARK: - Topic Input
     
     private var topicSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("story_topic_placeholder")
-                .font(.system(size: 16, weight: .semibold))
-                .foregroundColor(.themePrimary)
+        VStack(alignment: .leading, spacing: 8) {
+            Label {
+                Text("ai_story_topic_label")
+                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+            } icon: {
+                Image(systemName: "pencil.line")
+                    .font(.system(size: 12))
+            }
+            .foregroundColor(.themePrimary)
             
-            TextField(NSLocalizedString("story_topic_hint", comment: ""), text: Binding(
-                get: { viewModel.uiState.creatorTopic },
-                set: { viewModel.handle(.updateTopic($0)) }
-            ))
-            .focused($isTopicFocused)
-            .textFieldStyle(.plain)
-            .padding(16)
-            .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color.themeCard)
-            )
-            .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(Color.accentPurple.opacity(0.3), lineWidth: 1)
-            )
+            TextField("", text: $viewModel.uiState.creatorTopic, prompt: Text("ai_story_topic_placeholder").foregroundColor(.themeSecondary.opacity(0.6)))
+                .font(.system(size: 15))
+                .foregroundColor(.themePrimary)
+                .padding(14)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color.themeCard)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 12)
+                                .stroke(Color.accentPurple.opacity(isTopicFocused ? 0.4 : 0.1), lineWidth: 1)
+                        )
+                )
+                .focused($isTopicFocused)
+            
+            Text("ai_story_topic_hint")
+                .font(.system(size: 11))
+                .foregroundColor(.themeSecondary.opacity(0.7))
         }
     }
     
-    // MARK: - Type Section
+    // MARK: - Type Selection
     
     private var typeSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("select_type")
-                .font(.system(size: 16, weight: .semibold, design: .rounded))
-                .foregroundColor(.themePrimary)
+        VStack(alignment: .leading, spacing: 10) {
+            Label {
+                Text("ai_story_type_label")
+                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+            } icon: {
+                Image(systemName: "text.book.closed")
+                    .font(.system(size: 12))
+            }
+            .foregroundColor(.themePrimary)
             
-            VStack(spacing: 12) {
+            VStack(spacing: 8) {
                 ForEach(StoryType.allCases) { type in
                     TypePillButton(
                         type: type,
                         isSelected: viewModel.uiState.creatorType == type,
                         isPremium: viewModel.uiState.isPremium
                     ) {
-                        // ✅ Premium check
-                        let isLocked = (type == .fantasy) && !viewModel.uiState.isPremium
-                        
-                        if isLocked {
-                            showPaywall = true
-                        } else {
-                            viewModel.handle(.selectType(type))
-                        }
+                        viewModel.handle(.selectType(type))
                     }
                 }
             }
         }
     }
     
-    // MARK: - Length Section
+    // MARK: - Length Selection
     
     private var lengthSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Text("select_length")
-                .font(.system(size: 16, weight: .semibold))
-                .foregroundColor(.themePrimary)
+        VStack(alignment: .leading, spacing: 10) {
+            Label {
+                Text("ai_story_length_label")
+                    .font(.system(size: 14, weight: .semibold, design: .rounded))
+            } icon: {
+                Image(systemName: "ruler")
+                    .font(.system(size: 12))
+            }
+            .foregroundColor(.themePrimary)
             
-            HStack(spacing: 12) {
+            HStack(spacing: 10) {
                 ForEach(StoryLength.allCases) { length in
                     LengthPillButton(
                         length: length,
                         isSelected: viewModel.uiState.creatorLength == length,
                         isPremium: viewModel.uiState.isPremium
                     ) {
-                        // ✅ Premium check
-                        let isLocked = (length == .long) && !viewModel.uiState.isPremium
-                        
-                        if isLocked {
-                            showPaywall = true
-                        } else {
-                            viewModel.handle(.selectLength(length))
-                        }
+                        viewModel.handle(.selectLength(length))
                     }
                 }
             }
         }
     }
     
-    // MARK: - Quota Warning
+    // MARK: - Word Count Info
     
-    private var quotaWarning: some View {
-        HStack(spacing: 12) {
-            Image(systemName: "exclamationmark.triangle.fill")
-                .foregroundColor(.orange)
-            
-            Text(viewModel.uiState.isPremium
-                 ? "Son \(viewModel.uiState.quota.remaining) hakkınız kaldı"
-                 : "Son \(viewModel.uiState.quota.remaining) hakkınız kaldı. Premium ile 30 hikaye yazın!")
+    private var wordCountInfo: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "info.circle")
                 .font(.system(size: 13))
+                .foregroundColor(.accentPurple.opacity(0.7))
+            
+            Text(String(format: NSLocalizedString("ai_story_word_info", comment: ""),
+                 viewModel.uiState.creatorLength.exactDeckWords,
+                 viewModel.uiState.allWords.count))
+                .font(.system(size: 12))
                 .foregroundColor(.themeSecondary)
             
             Spacer()
         }
-        .padding(16)
+        .padding(12)
         .background(
-            RoundedRectangle(cornerRadius: 16)
-                .fill(Color.orange.opacity(0.1))
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.accentPurple.opacity(0.06))
+        )
+    }
+    
+    // MARK: - Quota Warning
+    
+    private var quotaWarning: some View {
+        HStack(spacing: 8) {
+            Image(systemName: "exclamationmark.triangle")
+                .font(.system(size: 14))
+                .foregroundColor(.orange)
+            
+            Text(viewModel.uiState.isPremium
+                 ? "ai_story_quota_warning_premium_\(viewModel.uiState.quota.remaining)"
+                 : "ai_story_quota_warning_free_\(viewModel.uiState.quota.remaining)")
+                .font(.system(size: 12))
+                .foregroundColor(.themeSecondary)
+            
+            Spacer()
+        }
+        .padding(12)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.orange.opacity(0.08))
         )
     }
     
@@ -224,10 +257,8 @@ struct StoryCreatorSheet: View {
     
     private var generateButton: some View {
         Button {
-            // Dismiss keyboard first
             isTopicFocused = false
             
-            // ✅ Premium check
             let selectedType = viewModel.uiState.creatorType
             let selectedLength = viewModel.uiState.creatorLength
             let requiresPremium = (selectedType == .fantasy) || (selectedLength == .long)
@@ -235,23 +266,21 @@ struct StoryCreatorSheet: View {
             if requiresPremium && !viewModel.uiState.isPremium {
                 showPaywall = true
             } else if !viewModel.uiState.hasQuota {
-                // No quota - error will be shown
                 viewModel.handle(.generateStory)
             } else {
-                // Generate story (insufficient words check happens in ViewModel)
                 viewModel.handle(.generateStory)
             }
         } label: {
-            HStack(spacing: 12) {
+            HStack(spacing: 10) {
                 Image(systemName: "sparkles")
-                    .font(.system(size: 20, weight: .semibold, design: .rounded))
+                    .font(.system(size: 18, weight: .semibold))
                 
-                Text("generate_button")
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                Text("ai_story_generate")
+                    .font(.system(size: 17, weight: .bold, design: .rounded))
             }
             .foregroundColor(.white)
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 18)
+            .padding(.vertical, 16)
             .background(
                 LinearGradient(
                     colors: [Color(hex: "6366F1"), Color(hex: "8B5CF6")],
@@ -259,22 +288,19 @@ struct StoryCreatorSheet: View {
                     endPoint: .trailing
                 )
             )
-            .cornerRadius(16)
-            .shadow(color: Color(hex: "6366F1").opacity(0.4), radius: 12, y: 6)
+            .cornerRadius(14)
+            .shadow(color: Color(hex: "6366F1").opacity(0.35), radius: 10, y: 5)
         }
     }
 }
 
-// MARK: - Type Pill Button
+// MARK: - Type Pill Button (Modernized)
 
 struct TypePillButton: View {
     let type: StoryType
     let isSelected: Bool
     let isPremium: Bool
     let action: () -> Void
-    
-    @Environment(\.colorScheme) private var colorScheme
-    @Environment(\.themeViewModel) private var themeViewModel
     
     private var isLocked: Bool {
         (type == .fantasy) && !isPremium
@@ -283,12 +309,20 @@ struct TypePillButton: View {
     var body: some View {
         Button(action: action) {
             HStack(spacing: 12) {
-                Text(type.icon)
-                    .font(.system(size: 24))
+                // SF Symbol icon in colored circle
+                ZStack {
+                    Circle()
+                        .fill(isSelected ? Color.white.opacity(0.2) : type.iconColor.opacity(0.12))
+                        .frame(width: 36, height: 36)
+                    
+                    Image(systemName: type.iconName)
+                        .font(.system(size: 15, weight: .semibold))
+                        .foregroundColor(isSelected ? .white : type.iconColor)
+                }
                 
                 VStack(alignment: .leading, spacing: 2) {
                     Text(type.displayName)
-                        .font(.system(size: 16, weight: .semibold, design: .rounded))
+                        .font(.system(size: 15, weight: .semibold, design: .rounded))
                         .foregroundColor(isSelected ? .white : .themePrimary)
                 }
                 
@@ -296,13 +330,14 @@ struct TypePillButton: View {
                 
                 if isLocked {
                     Image(systemName: "crown.fill")
-                        .font(.system(size: 16))
+                        .font(.system(size: 14))
                         .foregroundColor(.orange)
                 }
             }
-            .padding(16)
+            .padding(.horizontal, 14)
+            .padding(.vertical, 12)
             .background(
-                RoundedRectangle(cornerRadius: 16)
+                RoundedRectangle(cornerRadius: 14)
                     .fill(isSelected
                           ? LinearGradient(
                               colors: [Color(hex: "6366F1"), Color(hex: "8B5CF6")],
@@ -317,15 +352,15 @@ struct TypePillButton: View {
                     )
             )
             .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(isSelected ? Color.clear : Color.accentPurple.opacity(0.2), lineWidth: 1)
+                RoundedRectangle(cornerRadius: 14)
+                    .stroke(isSelected ? Color.clear : Color.accentPurple.opacity(0.12), lineWidth: 1)
             )
         }
         .buttonStyle(PlainButtonStyle())
     }
 }
 
-// MARK: - Length Pill Button
+// MARK: - Length Pill Button (Modernized)
 
 struct LengthPillButton: View {
     let length: StoryLength
@@ -333,36 +368,38 @@ struct LengthPillButton: View {
     let isPremium: Bool
     let action: () -> Void
     
-    @Environment(\.colorScheme) private var colorScheme
-    @Environment(\.themeViewModel) private var themeViewModel
-    
     private var isLocked: Bool {
         (length == .long) && !isPremium
     }
     
     var body: some View {
         Button(action: action) {
-            VStack(spacing: 8) {
-                HStack(spacing: 4) {
+            VStack(spacing: 6) {
+                // Icon
+                Image(systemName: length.iconName)
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundColor(isSelected ? .white : .accentPurple)
+                
+                HStack(spacing: 3) {
                     Text(length.displayName)
-                        .font(.system(size: 16, weight: .semibold, design: .rounded))
+                        .font(.system(size: 14, weight: .semibold, design: .rounded))
                         .foregroundColor(isSelected ? .white : .themePrimary)
                     
                     if isLocked {
                         Image(systemName: "crown.fill")
-                            .font(.system(size: 12))
+                            .font(.system(size: 10))
                             .foregroundColor(.orange)
                     }
                 }
                 
-                Text("\(length.exactDeckWords) words")
-                    .font(.system(size: 12))
-                    .foregroundColor(isSelected ? .white.opacity(0.8) : .themeSecondary)
+                Text(length.estimatedReadTime)
+                    .font(.system(size: 11))
+                    .foregroundColor(isSelected ? .white.opacity(0.7) : .themeSecondary)
             }
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 16)
+            .padding(.vertical, 14)
             .background(
-                RoundedRectangle(cornerRadius: 16)
+                RoundedRectangle(cornerRadius: 14)
                     .fill(isSelected
                           ? LinearGradient(
                               colors: [Color(hex: "6366F1"), Color(hex: "8B5CF6")],
@@ -377,8 +414,8 @@ struct LengthPillButton: View {
                     )
             )
             .overlay(
-                RoundedRectangle(cornerRadius: 16)
-                    .stroke(isSelected ? Color.clear : Color.accentPurple.opacity(0.2), lineWidth: 1)
+                RoundedRectangle(cornerRadius: 14)
+                    .stroke(isSelected ? Color.clear : Color.accentPurple.opacity(0.12), lineWidth: 1)
             )
         }
         .buttonStyle(PlainButtonStyle())

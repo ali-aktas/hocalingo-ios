@@ -3,12 +3,14 @@
 //  HocaLingo
 //
 //  Features/AIStory/AIStoryMainView.swift
-//  AI Story Generation - Main Screen (COMPLETE VERSION)
+//  ✅ REDESIGNED: Modern AI-themed UI, no emojis, Lottie, compact layout
+//  Location: HocaLingo/Features/AIStory/AIStoryMainView.swift
 //
 
 import SwiftUI
+import Lottie
 
-/// AI Story Main Screen - Complete with ViewModel integration
+/// AI Story Main Screen - Complete modern redesign
 struct AIStoryMainView: View {
     
     @StateObject private var viewModel = AIStoryViewModel()
@@ -33,11 +35,8 @@ struct AIStoryMainView: View {
                 GeneratingView(viewModel: viewModel)
             }
         }
-        .navigationTitle("AI Hikaye Asistanı")
+        .navigationTitle(Text("ai_story_title"))
         .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-    
-        }
         .sheet(isPresented: $viewModel.uiState.showCreator) {
             StoryCreatorSheet(viewModel: viewModel)
         }
@@ -55,9 +54,9 @@ struct AIStoryMainView: View {
             set: { _ in viewModel.uiState.error = nil }
         )) { error in
             Alert(
-                title: Text("error"),
-                message: Text(error.errorDescription ?? "Bilinmeyen hata"),
-                dismissButton: .default(Text("Tamam"))
+                title: Text("ai_story_error_title"),
+                message: Text(error.localizedDescription),
+                dismissButton: .default(Text("ok_button"))
             )
         }
         .onAppear {
@@ -71,118 +70,141 @@ struct AIStoryMainView: View {
         ZStack {
             LinearGradient(
                 colors: isDarkMode ? [
-                    Color(hex: "1A1625"),
-                    Color(hex: "211A2E")
+                    Color(hex: "0F0B1A"),
+                    Color(hex: "1A1128")
                 ] : [
-                    Color(hex: "FBF2FF"),
-                    Color(hex: "FAF1FF")
+                    Color(hex: "F8F4FF"),
+                    Color(hex: "F0E8FF")
                 ],
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )
             .ignoresSafeArea()
             
-            // Glow effect
+            // Subtle glow
             Circle()
-                .fill(Color.accentPurple.opacity(isDarkMode ? 0.15 : 0.08))
-                .frame(width: 400, height: 400)
-                .blur(radius: 60)
-                .offset(x: 100, y: -200)
+                .fill(Color.accentPurple.opacity(isDarkMode ? 0.12 : 0.06))
+                .frame(width: 350, height: 350)
+                .blur(radius: 80)
+                .offset(x: 80, y: -180)
         }
     }
     
     // MARK: - Main Content
     
     private var mainContent: some View {
-        ScrollView {
-            VStack(spacing: 24) {
-                // Header
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 20) {
+                // Header with Lottie
                 headerSection
                 
-                // Cards Row
-                HStack(spacing: 16) {
-                    quotaCard
-                    historyCard
-                }
+                // Stats Row (Quota + History)
+                statsRow
                 
                 // Recent Stories
                 if !viewModel.uiState.stories.isEmpty {
                     recentStoriesSection
                 }
                 
+                // Bottom spacing for floating button
                 Spacer(minLength: 100)
             }
             .padding(.horizontal, 20)
-            .padding(.top, 20)
+            .padding(.top, 12)
         }
         .overlay(
             // Floating Create Button
             VStack {
                 Spacer()
                 createButton
-                    .padding(.bottom, 40)
                     .padding(.horizontal, 20)
+                    .padding(.bottom, 32)
             }
         )
     }
     
-    // MARK: - Sections
+    // MARK: - Header Section
     
     private var headerSection: some View {
-        VStack(spacing: 12) {
-            Image("lingo_ai_header")
-                .resizable()
-                .scaledToFill()
-                .frame(width: 180, height: 140)
+        VStack(spacing: 8) {
+            ZStack {
+                // Sparkle ambient Lottie behind mascot
+                LottieView(
+                    animationName: "sparkle_ambient",
+                    loopMode: .loop,
+                    animationSpeed: 0.4
+                )
+                .frame(width: 200, height: 160)
+                .opacity(0.5)
+                .allowsHitTesting(false)
+                
+                // Mascot image
+                Image("lingo_ai_header")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 140, height: 110)
+            }
             
-            Text("AI Hikaye Asistanı")
-                .font(.system(size: 28, weight: .bold, design: .rounded))
+            Text("ai_story_title")
+                .font(.system(size: 24, weight: .bold, design: .rounded))
                 .foregroundColor(.themePrimary)
             
-            Text("Yapay zeka ile öğrendiğin kelimelerden hikayeler oluştur")
-                .font(.system(size: 14))
+            Text("ai_story_subtitle")
+                .font(.system(size: 13))
                 .foregroundColor(.themeSecondary)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal, 20)
+                .padding(.horizontal, 32)
+        }
+    }
+    
+    // MARK: - Stats Row
+    
+    private var statsRow: some View {
+        HStack(spacing: 12) {
+            quotaCard
+            historyCard
         }
     }
     
     private var quotaCard: some View {
         Button {
             if !viewModel.uiState.hasQuota {
-                // TODO: Show premium sheet
+                // Premium paywall
             }
         } label: {
-            VStack(alignment: .leading, spacing: 12) {
-                HStack {
+            VStack(alignment: .leading, spacing: 10) {
+                HStack(spacing: 6) {
                     Image(systemName: "bolt.fill")
+                        .font(.system(size: 13, weight: .semibold))
                         .foregroundColor(.accentPurple)
-                    Text("quota_remaining")
-                        .font(.system(size: 14, weight: .semibold, design: .rounded))
-                        .foregroundColor(.themePrimary)
+                    
+                    Text("ai_story_quota")
+                        .font(.system(size: 12, weight: .semibold, design: .rounded))
+                        .foregroundColor(.themeSecondary)
+                    
                     Spacer()
                 }
                 
-                HStack(alignment: .firstTextBaseline, spacing: 4) {
+                HStack(alignment: .firstTextBaseline, spacing: 3) {
                     Text("\(viewModel.uiState.quota.remaining)")
-                        .font(.system(size: 42, weight: .bold, design: .rounded))
+                        .font(.system(size: 34, weight: .bold, design: .rounded))
                         .foregroundColor(.accentPurple)
                     
                     Text("/ \(viewModel.uiState.quota.limit)")
-                        .font(.system(size: 20, weight: .medium, design: .rounded))
+                        .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundColor(.themeSecondary)
                 }
                 
-                Text(viewModel.uiState.isPremium ? "Premium - 30/ay" : "Free - 3/ay")
+                Text(viewModel.uiState.isPremium ? "ai_story_quota_premium" : "ai_story_quota_free")
                     .font(.system(size: 11))
                     .foregroundColor(.themeSecondary)
+                    .lineLimit(1)
             }
-            .padding(18)
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(14)
             .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(isDarkMode ? Color(hex: "2A2438") : .white)
-                    .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 4)
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(isDarkMode ? Color(hex: "1E1730") : .white)
+                    .shadow(color: .black.opacity(isDarkMode ? 0.3 : 0.06), radius: 8, y: 3)
             )
         }
         .buttonStyle(PlainButtonStyle())
@@ -192,45 +214,50 @@ struct AIStoryMainView: View {
         Button {
             viewModel.handle(.openHistory)
         } label: {
-            VStack(alignment: .leading, spacing: 12) {
-                HStack {
-                    Image(systemName: "book.fill")
-                        .foregroundColor(.orange)
-                    Text("Hikayeler")
-                        .font(.system(size: 14, weight: .semibold, design: .rounded))
-                        .foregroundColor(.themePrimary)
+            VStack(alignment: .leading, spacing: 10) {
+                HStack(spacing: 6) {
+                    Image(systemName: "clock.arrow.circlepath")
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundColor(Color(hex: "F59E0B"))
+                    
+                    Text("ai_story_history")
+                        .font(.system(size: 12, weight: .semibold, design: .rounded))
+                        .foregroundColor(.themeSecondary)
+                    
                     Spacer()
                 }
                 
-                HStack(alignment: .firstTextBaseline, spacing: 4) {
+                HStack(alignment: .firstTextBaseline, spacing: 3) {
                     Text("\(viewModel.uiState.stories.count)")
-                        .font(.system(size: 42, weight: .bold, design: .rounded))
-                        .foregroundColor(.orange)
+                        .font(.system(size: 34, weight: .bold, design: .rounded))
+                        .foregroundColor(Color(hex: "F59E0B"))
                     
-                    Text("hikaye")
-                        .font(.system(size: 16, weight: .medium, design: .rounded))
+                    Text("ai_story_stories")
+                        .font(.system(size: 14, weight: .medium, design: .rounded))
                         .foregroundColor(.themeSecondary)
                 }
                 
-                Text("stories_this_month")
+                Text("ai_story_tap_to_browse")
                     .font(.system(size: 11))
                     .foregroundColor(.themeSecondary)
+                    .lineLimit(1)
             }
-            .padding(18)
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(14)
             .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(isDarkMode ? Color(hex: "2A2438") : .white)
-                    .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 4)
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(isDarkMode ? Color(hex: "1E1730") : .white)
+                    .shadow(color: .black.opacity(isDarkMode ? 0.3 : 0.06), radius: 8, y: 3)
             )
         }
         .buttonStyle(PlainButtonStyle())
     }
     
+    // MARK: - Recent Stories Section
+    
     private var recentStoriesSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("Son Hikayeler")
-                .font(.system(size: 20, weight: .bold, design: .rounded))
+        VStack(alignment: .leading, spacing: 12) {
+            Text("ai_story_recent")
+                .font(.system(size: 18, weight: .bold, design: .rounded))
                 .foregroundColor(.themePrimary)
             
             ForEach(Array(viewModel.uiState.stories.prefix(3))) { story in
@@ -241,46 +268,50 @@ struct AIStoryMainView: View {
         }
     }
     
+    // MARK: - Create Button
+    
     private var createButton: some View {
         Button {
             viewModel.handle(.openCreator)
         } label: {
-            HStack(spacing: 12) {
+            HStack(spacing: 10) {
                 Image(systemName: "sparkles")
-                    .font(.system(size: 20, weight: .semibold, design: .rounded))
+                    .font(.system(size: 18, weight: .semibold))
                 
-                Text("create_story")
-                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                Text("ai_story_create")
+                    .font(.system(size: 17, weight: .bold, design: .rounded))
             }
             .foregroundColor(.white)
             .frame(maxWidth: .infinity)
-            .padding(.vertical, 18)
+            .padding(.vertical, 16)
             .background(
                 LinearGradient(
                     colors: viewModel.uiState.hasQuota
                         ? [Color(hex: "6366F1"), Color(hex: "8B5CF6")]
-                        : [Color.gray, Color.gray.opacity(0.8)],
+                        : [Color.gray.opacity(0.6), Color.gray.opacity(0.4)],
                     startPoint: .leading,
                     endPoint: .trailing
                 )
             )
-            .cornerRadius(16)
+            .cornerRadius(14)
             .shadow(
                 color: viewModel.uiState.hasQuota
-                    ? Color(hex: "6366F1").opacity(0.4)
+                    ? Color(hex: "6366F1").opacity(0.35)
                     : Color.clear,
-                radius: 12,
-                y: 6
+                radius: 10, y: 5
             )
         }
         .disabled(!viewModel.uiState.hasQuota)
     }
     
+    // MARK: - Loading View
+    
     private var loadingView: some View {
-        VStack(spacing: 16) {
+        VStack(spacing: 14) {
             ProgressView()
-                .scaleEffect(1.5)
-            Text("loading")
+                .scaleEffect(1.3)
+            Text("ai_story_loading")
+                .font(.system(size: 14))
                 .foregroundColor(.themeSecondary)
         }
     }
@@ -292,7 +323,7 @@ struct AIStoryMainView: View {
     }
 }
 
-// MARK: - Story Row Card
+// MARK: - Story Row Card (Modernized)
 
 struct StoryRowCard: View {
     let story: GeneratedStory
@@ -303,47 +334,69 @@ struct StoryRowCard: View {
     
     var body: some View {
         Button(action: action) {
-            HStack(spacing: 16) {
-                // Type icon
-                Text(story.type.icon)
-                    .font(.system(size: 36))
+            HStack(spacing: 14) {
+                // Type icon (SF Symbol in colored circle)
+                ZStack {
+                    Circle()
+                        .fill(story.type.iconColor.opacity(0.12))
+                        .frame(width: 44, height: 44)
+                    
+                    Image(systemName: story.type.iconName)
+                        .font(.system(size: 18, weight: .semibold))
+                        .foregroundColor(story.type.iconColor)
+                }
                 
                 // Content
-                VStack(alignment: .leading, spacing: 6) {
+                VStack(alignment: .leading, spacing: 4) {
                     Text(story.title)
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .font(.system(size: 15, weight: .bold, design: .rounded))
                         .foregroundColor(.themePrimary)
                         .lineLimit(1)
                     
                     Text(story.preview)
-                        .font(.system(size: 13))
+                        .font(.system(size: 12))
                         .foregroundColor(.themeSecondary)
                         .lineLimit(2)
                     
-                    HStack(spacing: 8) {
-                        Label(story.length.displayName, systemImage: story.length.icon)
-                            .font(.system(size: 11))
-                            .foregroundColor(.themeSecondary)
+                    HStack(spacing: 6) {
+                        // Length badge
+                        HStack(spacing: 3) {
+                            Image(systemName: story.length.iconName)
+                                .font(.system(size: 9))
+                            Text(story.length.displayName)
+                                .font(.system(size: 10))
+                        }
+                        .foregroundColor(.themeSecondary)
                         
+                        // Favorite indicator
                         if story.isFavorite {
                             Image(systemName: "heart.fill")
-                                .font(.system(size: 11))
+                                .font(.system(size: 9))
                                 .foregroundColor(.red)
                         }
+                        
+                        // Word count badge
+                        HStack(spacing: 2) {
+                            Image(systemName: "textformat.abc")
+                                .font(.system(size: 9))
+                            Text("\(story.usedWords.count)")
+                                .font(.system(size: 10))
+                        }
+                        .foregroundColor(.accentPurple.opacity(0.7))
                     }
                 }
                 
                 Spacer()
                 
                 Image(systemName: "chevron.right")
-                    .font(.system(size: 14))
-                    .foregroundColor(.themeSecondary)
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundColor(.themeTertiary)
             }
-            .padding(16)
+            .padding(14)
             .background(
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(isDarkMode ? Color(hex: "2A2438") : .white)
-                    .shadow(color: .black.opacity(0.08), radius: 8, x: 0, y: 3)
+                RoundedRectangle(cornerRadius: 14)
+                    .fill(isDarkMode ? Color(hex: "1E1730") : .white)
+                    .shadow(color: .black.opacity(isDarkMode ? 0.2 : 0.06), radius: 6, y: 2)
             )
         }
         .buttonStyle(PlainButtonStyle())
@@ -354,7 +407,7 @@ struct StoryRowCard: View {
     }
 }
 
-// MARK: - Story History Sheet
+// MARK: - Story History Sheet (Modernized)
 
 struct StoryHistorySheet: View {
     @ObservedObject var viewModel: AIStoryViewModel
@@ -362,27 +415,43 @@ struct StoryHistorySheet: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(viewModel.uiState.stories) { story in
-                    Button {
-                        viewModel.handle(.openDetail(story))
-                    } label: {
-                        StoryRowCard(story: story) {
-                            viewModel.handle(.openDetail(story))
+            Group {
+                if viewModel.uiState.stories.isEmpty {
+                    // Empty state
+                    VStack(spacing: 16) {
+                        Image(systemName: "book.closed")
+                            .font(.system(size: 40))
+                            .foregroundColor(.themeSecondary.opacity(0.5))
+                        Text("ai_story_no_stories")
+                            .font(.system(size: 15))
+                            .foregroundColor(.themeSecondary)
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                } else {
+                    List {
+                        ForEach(viewModel.uiState.stories) { story in
+                            StoryRowCard(story: story) {
+                                viewModel.handle(.openDetail(story))
+                            }
+                            .listRowBackground(Color.clear)
+                            .listRowSeparator(.hidden)
+                            .listRowInsets(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
                         }
                     }
-                    .listRowBackground(Color.clear)
-                    .listRowSeparator(.hidden)
+                    .listStyle(.plain)
                 }
             }
-            .listStyle(.plain)
             .background(Color.themeBackground)
-            .navigationTitle("story_history")
+            .navigationTitle("ai_story_history_title")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("close") {
+                    Button {
                         dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 20))
+                            .foregroundColor(.themeSecondary)
                     }
                 }
             }

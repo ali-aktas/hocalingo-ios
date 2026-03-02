@@ -3,7 +3,8 @@
 //  HocaLingo
 //
 //  Features/AIStory/Views/StoryDetailView.swift
-//  Story detail with interactive word highlighting
+//  ✅ REDESIGNED: Modern detail view, fixed favorite lag, SF Symbols
+//  Location: HocaLingo/Features/AIStory/Views/StoryDetailView.swift
 //
 
 import SwiftUI
@@ -19,11 +20,12 @@ struct StoryDetailView: View {
     
     @State private var selectedWord: WordWithMeaning? = nil
     @State private var showDeleteAlert = false
+    @State private var isFavoriteLocal: Bool = false
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 24) {
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 20) {
                     // Header
                     headerSection
                     
@@ -36,7 +38,7 @@ struct StoryDetailView: View {
                     Spacer(minLength: 40)
                 }
                 .padding(.horizontal, 20)
-                .padding(.top, 20)
+                .padding(.top, 16)
             }
             .background(Color.themeBackground)
             .navigationBarTitleDisplayMode(.inline)
@@ -47,19 +49,23 @@ struct StoryDetailView: View {
                     } label: {
                         Image(systemName: "xmark.circle.fill")
                             .foregroundColor(.themeSecondary)
-                            .font(.title3)
+                            .font(.system(size: 20))
                     }
                 }
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    HStack(spacing: 16) {
-                        // Favorite button
+                    HStack(spacing: 14) {
+                        // Favorite button - ✅ FIXED: Uses local state for instant feedback
                         Button {
+                            // Instant local feedback
+                            isFavoriteLocal.toggle()
+                            // Persist to storage
                             viewModel.handle(.toggleFavorite(story.id))
                         } label: {
-                            Image(systemName: story.isFavorite ? "heart.fill" : "heart")
-                                .foregroundColor(story.isFavorite ? .red : .themeSecondary)
-                                .font(.title3)
+                            Image(systemName: isFavoriteLocal ? "heart.fill" : "heart")
+                                .foregroundColor(isFavoriteLocal ? .red : .themeSecondary)
+                                .font(.system(size: 18))
+                                .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isFavoriteLocal)
                         }
                         
                         // Delete button
@@ -68,73 +74,112 @@ struct StoryDetailView: View {
                         } label: {
                             Image(systemName: "trash")
                                 .foregroundColor(.themeSecondary)
-                                .font(.title3)
+                                .font(.system(size: 16))
                         }
                     }
                 }
+            }
+            .alert("ai_story_delete_title", isPresented: $showDeleteAlert) {
+                Button("ai_story_delete_confirm", role: .destructive) {
+                    viewModel.handle(.deleteStory(story.id))
+                    dismiss()
+                }
+                Button("cancel_button", role: .cancel) {}
+            } message: {
+                Text("ai_story_delete_message")
             }
             .sheet(item: $selectedWord) { word in
                 WordMeaningSheet(word: word)
                     .presentationDetents([.height(200)])
             }
-            .alert("Hikayeyi Sil", isPresented: $showDeleteAlert) {
-                Button("İptal", role: .cancel) { }
-                Button("Sil", role: .destructive) {
-                    viewModel.handle(.deleteStory(story.id))
-                    dismiss()
-                }
-            } message: {
-                Text("Bu hikayeyi silmek istediğinizden emin misiniz?")
+            .onAppear {
+                isFavoriteLocal = story.isFavorite
             }
         }
     }
     
-    // MARK: - Sections
+    // MARK: - Header Section
     
     private var headerSection: some View {
-        VStack(spacing: 12) {
-            // Type icon
-            Text(story.type.icon)
-                .font(.system(size: 48))
+        VStack(spacing: 10) {
+            // Type + Length badges
+            HStack(spacing: 8) {
+                // Type badge
+                HStack(spacing: 5) {
+                    Image(systemName: story.type.iconName)
+                        .font(.system(size: 11, weight: .semibold))
+                    Text(story.type.displayName)
+                        .font(.system(size: 12, weight: .medium, design: .rounded))
+                }
+                .foregroundColor(story.type.iconColor)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
+                .background(
+                    Capsule()
+                        .fill(story.type.iconColor.opacity(0.1))
+                )
+                
+                // Length badge
+                HStack(spacing: 5) {
+                    Image(systemName: story.length.iconName)
+                        .font(.system(size: 11, weight: .semibold))
+                    Text(story.length.displayName)
+                        .font(.system(size: 12, weight: .medium, design: .rounded))
+                }
+                .foregroundColor(.themeSecondary)
+                .padding(.horizontal, 10)
+                .padding(.vertical, 5)
+                .background(
+                    Capsule()
+                        .fill(Color.themeSecondary.opacity(0.1))
+                )
+                
+                Spacer()
+            }
             
             // Title
             Text(story.title)
-                .font(.system(size: 28, weight: .bold, design: .rounded))
+                .font(.system(size: 22, weight: .bold, design: .rounded))
                 .foregroundColor(.themePrimary)
-                .multilineTextAlignment(.center)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
-            // Metadata
-            HStack(spacing: 16) {
-                Label(story.length.displayName, systemImage: story.length.icon)
-                    .font(.system(size: 13))
-                    .foregroundColor(.themeSecondary)
+            // Date + word count
+            HStack(spacing: 12) {
+                HStack(spacing: 4) {
+                    Image(systemName: "calendar")
+                        .font(.system(size: 11))
+                    Text(story.formattedDate)
+                        .font(.system(size: 12))
+                }
                 
-                Text("•")
-                    .foregroundColor(.themeSecondary)
+                HStack(spacing: 4) {
+                    Image(systemName: "textformat.abc")
+                        .font(.system(size: 11))
+                    Text("ai_story_words_used_\(story.usedWords.count)")
+                        .font(.system(size: 12))
+                }
                 
-                Text(story.formattedDate)
-                    .font(.system(size: 13))
-                    .foregroundColor(.themeSecondary)
+                Spacer()
             }
+            .foregroundColor(.themeSecondary)
         }
     }
     
+    // MARK: - Story Content
+    
     private var storyContent: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            // Hint
-            HStack(spacing: 8) {
-                Image(systemName: "hand.tap.fill")
-                    .foregroundColor(.accentPurple)
-                Text("tap_word_hint")
+        VStack(alignment: .leading, spacing: 0) {
+            // Reading indicator
+            HStack(spacing: 6) {
+                Image(systemName: "book.fill")
                     .font(.system(size: 12))
-                    .foregroundColor(.themeSecondary)
+                Text("ai_story_reading_section")
+                    .font(.system(size: 13, weight: .semibold, design: .rounded))
             }
-            .padding(.horizontal, 16)
-            .padding(.vertical, 8)
-            .background(
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.accentPurple.opacity(0.1))
-            )
+            .foregroundColor(.accentPurple)
+            .padding(.horizontal, 20)
+            .padding(.top, 16)
+            .padding(.bottom, 12)
             
             // Story text with highlighted words
             InteractiveStoryText(
@@ -144,32 +189,61 @@ struct StoryDetailView: View {
                     selectedWord = word
                 }
             )
-            .font(.system(size: 17, design: .serif))
-            .lineSpacing(6)
+            .font(.system(size: 16, design: .serif))
+            .lineSpacing(7)
             .foregroundColor(.themePrimary)
-            .padding(20)
-            .background(
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(Color.themeCard)
-            )
+            .padding(.horizontal, 20)
+            .padding(.bottom, 20)
         }
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color.themeCard)
+                .shadow(color: .black.opacity(isDarkMode ? 0.15 : 0.04), radius: 6, y: 2)
+        )
     }
     
+    // MARK: - Your Words Section
+    
     private var yourWordsSection: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            Text("your_words")
-                .font(.system(size: 20, weight: .bold, design: .rounded))
-                .foregroundColor(.themePrimary)
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 6) {
+                Image(systemName: "bookmark.fill")
+                    .font(.system(size: 14))
+                    .foregroundColor(.accentPurple)
+                
+                Text("ai_story_your_words")
+                    .font(.system(size: 18, weight: .bold, design: .rounded))
+                    .foregroundColor(.themePrimary)
+                
+                Spacer()
+                
+                Text("\(story.usedWords.count)")
+                    .font(.system(size: 13, weight: .bold, design: .rounded))
+                    .foregroundColor(.accentPurple)
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 3)
+                    .background(
+                        Capsule()
+                            .fill(Color.accentPurple.opacity(0.1))
+                    )
+            }
             
             LazyVGrid(columns: [
                 GridItem(.flexible()),
                 GridItem(.flexible())
-            ], spacing: 12) {
+            ], spacing: 10) {
                 ForEach(story.usedWords) { word in
                     WordCard(word: word)
+                        .onTapGesture {
+                            selectedWord = word
+                        }
                 }
             }
         }
+    }
+    
+    private var isDarkMode: Bool {
+        themeViewModel.isDarkMode(in: colorScheme)
     }
 }
 
@@ -183,7 +257,6 @@ struct InteractiveStoryText: View {
     var body: some View {
         Text(buildAttributedString())
             .environment(\.openURL, OpenURLAction { url in
-                // Handle word tap
                 if let wordId = Int(url.absoluteString.replacingOccurrences(of: "word://", with: "")) {
                     if let word = words.first(where: { $0.id == wordId }) {
                         onWordTap(word)
@@ -196,22 +269,15 @@ struct InteractiveStoryText: View {
     private func buildAttributedString() -> AttributedString {
         var attributedString = AttributedString(content)
         
-        // Highlight each word
         for word in words {
-            let ranges = word.ranges(in: content)
+            let ranges = word.wholeWordRanges(in: content)
             
             for range in ranges {
                 if let attributedRange = Range<AttributedString.Index>(range, in: attributedString) {
-                    // Purple color
+                    // Purple color for deck words
                     attributedString[attributedRange].foregroundColor = Color(hex: "6366F1")
-                    
-                    // Bold
-                    attributedString[attributedRange].font = .system(size: 17, weight: .bold, design: .serif)
-                    
-                    // Underline
+                    attributedString[attributedRange].font = .system(size: 16, weight: .bold, design: .serif)
                     attributedString[attributedRange].underlineStyle = .single
-                    
-                    // Link (for tap detection)
                     attributedString[attributedRange].link = URL(string: "word://\(word.id)")
                 }
             }
@@ -221,30 +287,35 @@ struct InteractiveStoryText: View {
     }
 }
 
-// MARK: - Word Card
+// MARK: - Word Card (Modernized)
 
 struct WordCard: View {
     let word: WordWithMeaning
     
+    @Environment(\.colorScheme) private var colorScheme
+    @Environment(\.themeViewModel) private var themeViewModel
+    
     var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
+        VStack(alignment: .leading, spacing: 4) {
             Text(word.english)
-                .font(.system(size: 16, weight: .bold, design: .rounded))
+                .font(.system(size: 14, weight: .bold, design: .rounded))
                 .foregroundColor(Color(hex: "6366F1"))
             
             Text(word.turkish)
-                .font(.system(size: 14))
+                .font(.system(size: 12))
                 .foregroundColor(.themeSecondary)
+                .lineLimit(1)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(16)
+        .padding(.horizontal, 12)
+        .padding(.vertical, 10)
         .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color.themeCard)
-        )
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(Color(hex: "6366F1").opacity(0.3), lineWidth: 1)
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color(hex: "6366F1").opacity(0.06))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10)
+                        .stroke(Color(hex: "6366F1").opacity(0.1), lineWidth: 1)
+                )
         )
     }
 }
@@ -257,26 +328,50 @@ struct WordMeaningSheet: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            // Handle
-            RoundedRectangle(cornerRadius: 3)
-                .fill(Color.secondary.opacity(0.3))
-                .frame(width: 40, height: 6)
-                .padding(.top, 12)
+            // Drag indicator
+            RoundedRectangle(cornerRadius: 2.5)
+                .fill(Color.themeSecondary.opacity(0.3))
+                .frame(width: 36, height: 5)
+                .padding(.top, 8)
             
-            // Content
             VStack(spacing: 12) {
                 Text(word.english)
-                    .font(.system(size: 28, weight: .bold, design: .rounded))
+                    .font(.system(size: 24, weight: .bold, design: .rounded))
                     .foregroundColor(Color(hex: "6366F1"))
                 
+                Image(systemName: "arrow.down")
+                    .font(.system(size: 16))
+                    .foregroundColor(.themeSecondary)
+                
                 Text(word.turkish)
-                    .font(.system(size: 22, weight: .medium, design: .rounded))
+                    .font(.system(size: 20, weight: .medium, design: .rounded))
                     .foregroundColor(.themePrimary)
             }
             
             Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .frame(maxWidth: .infinity)
         .background(Color.themeBackground)
     }
+}
+
+// MARK: - WordWithMeaning Identifiable for sheet binding
+
+// Already Identifiable via id property
+
+// MARK: - Preview
+
+#Preview {
+    StoryDetailView(
+        story: GeneratedStory(
+            title: "Test Story",
+            content: "This is a test story with some happy words.",
+            usedWordIds: [1],
+            usedWords: [WordWithMeaning(id: 1, english: "happy", turkish: "mutlu")],
+            topic: nil,
+            type: .motivation,
+            length: .short
+        ),
+        viewModel: AIStoryViewModel()
+    )
 }

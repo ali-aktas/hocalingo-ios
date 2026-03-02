@@ -3,7 +3,8 @@
 //  HocaLingo
 //
 //  AI Story Generation - Story Type Enum
-//  ✅ FIXED: Fantasy now creates ORIGINAL characters, not Keloğlan
+//  ✅ REDESIGNED: SF Symbols replace emojis
+//  Location: HocaLingo/Models/StoryType.swift
 //
 
 import Foundation
@@ -11,6 +12,7 @@ import SwiftUI
 
 /// Story type classification
 /// Defines the style and format of generated stories
+/// ✅ REDESIGNED: Emojis replaced with SF Symbols
 enum StoryType: String, Codable, CaseIterable, Identifiable {
     case motivation  // Motivational/inspirational content
     case fantasy     // Fantasy story with original characters
@@ -31,15 +33,33 @@ enum StoryType: String, Codable, CaseIterable, Identifiable {
         }
     }
     
-    /// Emoji icon for UI
-    var icon: String {
+    /// ✅ SF Symbol icon name (replaces emoji)
+    var iconName: String {
         switch self {
         case .motivation:
-            return "💪"
+            return "flame.fill"
         case .fantasy:
-            return "🦸"  // Superhero
+            return "wand.and.stars"
         case .dialogue:
-            return "💬"
+            return "bubble.left.and.bubble.right.fill"
+        }
+    }
+    
+    /// ✅ DEPRECATED: Old emoji icon - now returns SF Symbol name for compatibility
+    /// Views should use iconName instead
+    var icon: String {
+        return iconName
+    }
+    
+    /// Icon color for UI
+    var iconColor: Color {
+        switch self {
+        case .motivation:
+            return Color(hex: "F59E0B")  // Amber
+        case .fantasy:
+            return Color(hex: "8B5CF6")  // Purple
+        case .dialogue:
+            return Color(hex: "3B82F6")  // Blue
         }
     }
     
@@ -55,7 +75,7 @@ enum StoryType: String, Codable, CaseIterable, Identifiable {
     }
     
     /// Instruction for AI prompt
-    /// ✅ FIXED: Fantasy creates ORIGINAL characters now
+    /// ✅ FIXED: Fantasy creates ORIGINAL characters
     var promptInstruction: String {
         switch self {
         case .motivation:
@@ -64,13 +84,13 @@ enum StoryType: String, Codable, CaseIterable, Identifiable {
             return """
             tamamen ORİJİNAL bir fantastik hikaye yaz.
             
-            🎭 KARAKTER KURALLARI:
+            KARAKTER KURALLARI:
             - TAMAMEN YENİ bir karakter yarat (isim, kişilik, güçler)
             - Mevcut hiçbir karakteri kullanma (Keloğlan, Nasrettin Hoca vs. YASAK)
             - Yaratıcı ol: süper güçleri olan, konuşan hayvanlar, büyülü varlıklar olabilir
             - Çocuklara uygun, ilham verici bir kahraman olmalı
             
-            🌟 HİKAYE ELEMANLARI:
+            HİKAYE ELEMANLARI:
             - Büyülü bir dünya veya olağanüstü olaylar
             - Macera ve keşif
             - İyi vs kötü temelli değil, öğretici olmalı

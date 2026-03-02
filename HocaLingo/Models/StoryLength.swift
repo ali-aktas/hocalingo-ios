@@ -3,7 +3,7 @@
 //  HocaLingo
 //
 //  AI Story Generation - Story Length Classification
-//  ✅ UPDATED: Exact word counts (20 and 40) - NO ranges
+//  ✅ REDESIGNED: Higher deck word counts + SF Symbols
 //  Location: HocaLingo/Models/StoryLength.swift
 //
 
@@ -12,9 +12,10 @@ import SwiftUI
 
 /// Story length classification
 /// Determines word count and vocabulary complexity
+/// ✅ REDESIGNED: More deck words + emoji removed
 enum StoryLength: String, Codable, CaseIterable, Identifiable {
-    case short  // ~180 words, exactly 20 deck words
-    case long   // ~600 words, exactly 40 deck words
+    case short  // ~220 words, 20 deck words
+    case long   // ~600 words, 45 deck words
     
     var id: String { rawValue }
     
@@ -29,37 +30,46 @@ enum StoryLength: String, Codable, CaseIterable, Identifiable {
         }
     }
     
-    /// Emoji icon for UI
+    /// ✅ SF Symbol icon (replaces emoji)
+    var iconName: String {
+        switch self {
+        case .short:
+            return "doc.text"
+        case .long:
+            return "doc.text.fill"
+        }
+    }
+    
+    /// ✅ DEPRECATED: Old emoji icon - kept for backward compatibility
     var icon: String {
         switch self {
         case .short:
-            return "📄"
+            return "doc.text"
         case .long:
-            return "📚"
+            return "doc.text.fill"
         }
     }
     
     /// Target word count for generated story
-    /// +20% increase from Android version
     var targetWordCount: Int {
         switch self {
         case .short:
-            return 220  // 150 + 20%
+            return 220
         case .long:
-            return 600  // 500 + 20%
+            return 600
         }
     }
     
-    /// Exact deck words to include
-    /// SHORT: Exactly 20 words
-    /// LONG: Exactly 40 words
-    /// ✅ NO ranges - AI must use this EXACT count
+    /// ✅ INCREASED: Exact deck words to include
+    /// SHORT: 20 words (was 15)
+    /// LONG: 45 words (was 30)
+    /// More deck words = higher English density
     var exactDeckWords: Int {
         switch self {
         case .short:
-            return 15
+            return 20
         case .long:
-            return 30
+            return 45
         }
     }
     
@@ -68,19 +78,19 @@ enum StoryLength: String, Codable, CaseIterable, Identifiable {
     var maxTokens: Int {
         switch self {
         case .short:
-            return 400   // ~220 words
+            return 500   // Slightly increased for denser English
         case .long:
-            return 1000   // ~700 words
+            return 1200  // Slightly increased for denser English
         }
     }
     
     /// Estimated reading time
-    var estimatedReadTime: String {
+    var estimatedReadTime: LocalizedStringKey {
         switch self {
         case .short:
-            return "1-2 dk"
+            return "story_read_time_short"
         case .long:
-            return "5-7 dk"
+            return "story_read_time_long"
         }
     }
     

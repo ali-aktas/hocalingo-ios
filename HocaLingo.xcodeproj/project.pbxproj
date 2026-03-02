@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E19133B2F551F520025BF5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E19133A2F551F520025BF5F /* Assets.xcassets */; };
+		0E19133C2F551F520025BF5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E19133A2F551F520025BF5F /* Assets.xcassets */; };
 		0E7A28AA2F2D2F3B0056FD6C /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 0E7A28A92F2D2F3B0056FD6C /* RevenueCat */; };
 		0E7A28AC2F2D30BC0056FD6C /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 0E7A28AB2F2D30BC0056FD6C /* Configuration.storekit */; };
 		0E7A28AD2F2D30BC0056FD6C /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 0E7A28AB2F2D30BC0056FD6C /* Configuration.storekit */; };
@@ -33,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E19133A2F551F520025BF5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E7A28AB2F2D30BC0056FD6C /* Configuration.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Configuration.storekit; sourceTree = "<group>"; };
 		0EC5FC762F192647002129FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		0EC5FC792F192821002129FC /* tr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = tr; path = tr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -66,7 +69,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				App/MainTabView.swift,
-				Assets.xcassets,
 				Core/API/GeminiAPIService.swift,
 				Core/API/GeminiModels.swift,
 				Core/Storage/JSONLoader.swift,
@@ -177,7 +179,6 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				App/MainTabView.swift,
-				Assets.xcassets,
 				Core/Storage/JSONLoader.swift,
 				Core/Storage/QuotaManager.swift,
 				Core/Storage/StoryRepository.swift,
@@ -299,6 +300,7 @@
 		0EC909C52F18743E00FEBC67 = {
 			isa = PBXGroup;
 			children = (
+				0E19133A2F551F520025BF5F /* Assets.xcassets */,
 				0E7A28AB2F2D30BC0056FD6C /* Configuration.storekit */,
 				0EC5FC752F192647002129FC /* Localizable.strings */,
 				0EC90A072F18860100FEBC67 /* HocaLingo */,
@@ -448,6 +450,7 @@
 			files = (
 				0E7A28AD2F2D30BC0056FD6C /* Configuration.storekit in Resources */,
 				0EC5FC782F192647002129FC /* Localizable.strings in Resources */,
+				0E19133B2F551F520025BF5F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,6 +458,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E19133C2F551F520025BF5F /* Assets.xcassets in Resources */,
 				0EC5FC772F192647002129FC /* Localizable.strings in Resources */,
 				0E7A28AC2F2D30BC0056FD6C /* Configuration.storekit in Resources */,
 			);
