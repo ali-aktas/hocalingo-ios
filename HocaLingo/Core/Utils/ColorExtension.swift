@@ -38,36 +38,36 @@ extension Color {
     /// ✅ NEW: 30 random pastel colors for study cards
     /// Each card gets a color based on: index % 30
     static let pastelColors: [Color] = [
-        Color(hex: "FFE5E5"),  // Light pink
-        Color(hex: "E1F5FE"),  // Light blue
-        Color(hex: "FFF3E0"),  // Light orange
-        Color(hex: "F3E5F5"),  // Light purple
-        Color(hex: "E8F5E9"),  // Light green
-        Color(hex: "FFF9C4"),  // Light yellow
-        Color(hex: "FCE4EC"),  // Light rose
-        Color(hex: "E0F2F1"),  // Light teal
-        Color(hex: "FFF8E1"),  // Light amber
-        Color(hex: "F1F8E9"),  // Light lime
-        Color(hex: "E8EAF6"),  // Light indigo
-        Color(hex: "FBE9E7"),  // Light deep orange
-        Color(hex: "ECEFF1"),  // Light blue grey
-        Color(hex: "F9FBE7"),  // Light lime green
-        Color(hex: "E3F2FD"),  // Pale blue
-        Color(hex: "FFF3E0"),  // Pale peach
-        Color(hex: "E1BEE7"),  // Pale lavender
-        Color(hex: "C8E6C9"),  // Pale green
-        Color(hex: "FFE082"),  // Pale gold
-        Color(hex: "FFCCBC"),  // Pale coral
-        Color(hex: "B2EBF2"),  // Pale cyan
-        Color(hex: "F0F4C3"),  // Pale yellow-green
-        Color(hex: "D1C4E9"),  // Pale purple
-        Color(hex: "FFAB91"),  // Pale orange
-        Color(hex: "CFD8DC"),  // Pale grey-blue
-        Color(hex: "DCEDC8"),  // Pale lime
-        Color(hex: "BBDEFB"),  // Pale sky blue
-        Color(hex: "FFE0B2"),  // Pale apricot
-        Color(hex: "C5CAE9"),  // Pale periwinkle
-        Color(hex: "B2DFDB")   // Pale mint
+        Color(hex: "FDE2E4"), // Soft blush
+        Color(hex: "DCEEFE"), // Powder blue
+        Color(hex: "FFE8D6"), // Soft peach
+        Color(hex: "EADCF8"), // Soft lavender
+        Color(hex: "DFF7E3"), // Mint green
+        Color(hex: "FFF4CC"), // Cream yellow
+        Color(hex: "FAD2E1"), // Rosy pink
+        Color(hex: "D7F3F0"), // Aqua mist
+        Color(hex: "FCEFE3"), // Light sand
+        Color(hex: "E6F4EA"), // Fresh light green
+        Color(hex: "E3E8FF"), // Periwinkle light
+        Color(hex: "FFE2DD"), // Soft coral blush
+        Color(hex: "EEF1F7"), // Cool light grey
+        Color(hex: "F4FCE9"), // Soft lime milk
+        Color(hex: "E6F2FF"), // Ice blue
+        Color(hex: "FFF1E6"), // Apricot cream
+        Color(hex: "E9D8FD"), // Lilac pastel
+        Color(hex: "D8F3DC"), // Soft meadow
+        Color(hex: "FFF6E0"), // Vanilla pastel
+        Color(hex: "FFDCDC"), // Pale watermelon
+        Color(hex: "D0F0FD"), // Light cyan cloud
+        Color(hex: "F7F9D9"), // Light pistachio
+        Color(hex: "E4D9FF"), // Misty violet
+        Color(hex: "FFD8BE"), // Soft apricot
+        Color(hex: "E7EDF3"), // Modern fog grey
+        Color(hex: "EAF7E1"), // Spring light
+        Color(hex: "DCEBFF"), // Sky milk
+        Color(hex: "FFEBD6"), // Peach cream
+        Color(hex: "DCD6F7"), // Soft indigo haze
+        Color(hex: "D6F5F0")  // Pastel turquoise
     ]
     
     /// Get pastel color by index

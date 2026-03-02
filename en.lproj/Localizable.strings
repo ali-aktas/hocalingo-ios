@@ -1,10 +1,11 @@
 /*
    Localizable.strings (English)
    HocaLingo
-   
+
    Location: en.lproj/Localizable.strings
-   ✅ Organized by feature/screen sections
-   ✅ Includes all keys from redesigned PackageSelectionView
+   ✅ Keys synchronized with Turkish file (tr.lproj)
+   ✅ Duplicates removed
+   ✅ Sections organized consistently
 */
 
 
@@ -12,62 +13,164 @@
 // MARK: - Common / Shared
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"loading" = "Loading...";
-"cancel" = "Cancel";
-"close" = "Close";
-"error" = "Error";
-"save" = "Save";
-"delete" = "Delete";
-"done" = "Done";
-"ok" = "OK";
-"back_button" = "Back";
+"loading"          = "Loading...";
+"cancel"           = "Cancel";
+"close"            = "Close";
+"error"            = "Error";
+"save"             = "Save";
+"delete"           = "Delete";
+"done"             = "Done";
+"ok"               = "OK";
+"back_button"      = "Back";
+"retry"            = "Retry";
+"continue_btn"     = "Continue";
+"edit"             = "Edit";
+"finish"           = "Finish";
+"skip"             = "Skip";
+"next"             = "Next";
+"previous"         = "Previous";
+"apply"            = "Apply";
 "unit_minute_short" = "m";
-"unit_hour_short" = "h";
+"unit_hour_short"  = "h";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Tab Bar
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"tab_home" = "Home";
-"tab_study" = "Study";
-"tab_ai" = "AI Stories";
-"tab_profile" = "Profile";
+"tab_home"           = "Home";
+"tab_study"          = "Study";
+"tab_ai"             = "AI Stories";
+"tab_profile"        = "Profile";
+"ai_assistant_title" = "AI Assistant";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Home Screen
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"home_title" = "HocaLingo";
-"home_start_btn" = "START";
-"stat_monthly_stats" = "Monthly Stats";
+"home_title"              = "HocaLingo";
+"home_start_btn"          = "Start";
+"stat_monthly_stats"      = "Monthly Stats";
 
-// Home Action Buttons
-"home_action_packages" = "Word Packages";
-"home_action_packages_subtitle" = "Browse level packs";
-"home_action_add_word" = "Add Word";
-"home_action_add_word_subtitle" = "Create your own";
-"home_action_ai_story" = "AI Stories";
-"home_action_ai_story_subtitle" = "Practice with stories";
+// Greeting
+"home_greeting_morning"   = "Good Morning! ☀️";
+"home_greeting_afternoon" = "Good Afternoon! 🌤️";
+"home_greeting_evening"   = "Good Evening! 🌙";
+"home_greeting_night"     = "Good Night! ✨";
+"home_cta_title"          = "Let's Start Studying!";
 
-// Home Stats Cards
-"stat_study_time" = "Study Time";
-"stat_active_days" = "Active Days";
-"stat_total_words" = "Total Words";
-"stat_discipline" = "Discipline";
+// Action Buttons
+"action_start_study"        = "Start Studying";
+"action_select_package"     = "Word Packages";
+"action_select_package_desc" = "Browse level packs";
+"action_add_word"           = "Add Word";
+"action_add_word_desc"      = "Create your own";
+"action_ai_assistant"       = "AI Stories";
+"action_ai_assistant_desc"  = "Practice with stories";
 
-// Motivational Texts (Hero Card Rotation)
-"motivation_1" = "Just 10 minutes a day changes everything!";
-"motivation_2" = "You'll see how easy English is!";
-"motivation_3" = "Small steps, big goals 🎯";
-"motivation_4" = "Every word brings you closer to fluency";
-"motivation_5" = "Practice makes perfect 💪";
-"motivation_6" = "Your English journey continues!";
-"motivation_7" = "Today is a great day to learn";
-"motivation_8" = "Success comes with patience ⏳";
-"motivation_9" = "Welcome to the world of English!";
-"motivation_10" = "Keep the momentum going! 🔥";
+// Stats Cards
+"stat_streak_days"      = "Streak";
+"stat_active_days"      = "Active";
+"stat_today_words"      = "Today's Words";
+"stat_total_learned"    = "Total Learned";
+"stat_this_month_days"  = "Active Days";
+"stat_this_month_time"  = "Study Time";
+"stat_discipline_score" = "Discipline";
+"stat_learned_words"    = "Words Learned";
+"unit_minute_short"   = "min";
+
+// Motivational Texts (English)
+"motivation_1"  = "With just 10 minutes a day, learn 200+ words every month!";
+"motivation_2"  = "What’s the point of grammar without vocabulary?";
+"motivation_3"  = "Even dust becomes a mountain when it gathers. Start now!";
+"motivation_4"  = "Every word brings you one step closer to your goal";
+"motivation_5"  = "Practice makes progress. Let’s begin!";
+"motivation_6"  = "Your English journey continues — you're doing great today!";
+"motivation_7"  = "It’s a perfect time to learn!";
+"motivation_8"  = "Success comes with patience. Keep going!";
+"motivation_9"  = "Welcome to the real world of English";
+"motivation_10" = "Even 1 minute counts. Just don’t delay!";
+"motivation_11" = "5 words today, a whole new level next month!";
+"motivation_12" = "Small effort. Every day. That’s the secret.";
+"motivation_13" = "One more word learned — you’re already ahead!";
+"motivation_14" = "Don’t wait for the perfect moment. Start now!";
+"motivation_15" = "Every repetition makes your memory stronger";
+"motivation_16" = "Small steps turn into real fluency";
+"motivation_17" = "If you don’t quit today, your future self will thank you";
+"motivation_18" = "Don’t just scroll. Learn and move forward!";
+"motivation_19" = "Language learning is a marathon — and you’ve found your pace";
+"motivation_20" = "Speak a little braver every single day!";
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Word Vault
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"vault_title"         = "Word Vault";
+"vault_section_title" = "Word Vault";
+"vault_show_all"      = "See All";
+"vault_review_all"    = "Review All Words";
+"vault_empty_title"   = "Your vault is empty";
+"vault_empty_subtitle" = "Select a package and add words to see them here";
+"vault_preview_empty" = "Start selecting words";
+"vault_tap_to_reveal" = "Tap to see translation";
+"vault_reveal"        = "Reveal";
+"vault_next"          = "Next";
+"vault_finish"        = "Finish";
+"vault_turkish"       = "Turkish";
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Study Screen
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"study_title"              = "Study";
+"study_navbar_title"       = "Spaced Repetition";
+"flip_card"                = "Flip Card";
+"show_answer"              = "Show Answer";
+"study_flip_card_hint"     = "Tap to flip";
+"study_hard"               = "Hard";
+"study_medium"             = "Medium";
+"study_easy"               = "Easy";
+"hard_button"              = "Hard";
+"medium_button"            = "Medium";
+"easy_button"              = "Easy";
+"study_completed_title"    = "Session Complete!";
+"study_completed_message"  = "You completed today's goal!";
+"study_progress"           = "Progress: %d/%d";
+"study_words_reviewed"     = "words reviewed";
+"study_empty_first_time_title"   = "Welcome!";
+"study_empty_first_time_message" = "Select words from packages to start learning.";
+"study_empty_title"        = "Congratulations!";
+"study_empty_message"      = "No words to study! Add more words or wait for reviews.";
+"study_select_words"       = "Select Words";
+"study_browse_packages"    = "Browse Packages";
+"study_go_home"            = "Go to Home";
+
+// Study Time Labels
+"time_5_min" = "5m";
+"time_later" = "Later";
+"time_today" = "Today";
+"time_soon"  = "Soon";
+"time_1_day" = "1d";
+"time_n_days" = "%dd";
+"time_n_wk"  = "%dwk";
+"time_n_mo"  = "%dmo";
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Card Style Settings
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"card_style_settings_title"    = "Card Style";
+"card_style_settings_subtitle" = "Choose your preferred card style";
+"card_style_colorful"          = "Colorful";
+"card_style_colorful_description" = "Vibrant random colors for each card";
+"card_style_minimal"           = "Minimal";
+"card_style_minimal_description" = "Clean single-color design";
+"card_style_premium"           = "Premium Gradient";
+"card_style_premium_description" = "Stunning gradient designs (Premium Only)";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -76,244 +179,393 @@
 
 // Tab Selector
 "tab_standard" = "Standard";
-"tab_premium" = "Premium";
+"tab_premium"  = "Premium";
 
 // Standard Header
-"package_selection_title" = "Level Packages";
-"package_selection_subtitle" = "Choose a package that fits your level";
+"package_selection_title"    = "Choose Your Level";
+"package_selection_subtitle" = "Select a package to start learning words";
 
 // Premium Header
-"premium_packages_title" = "Special Collections";
-"premium_packages_subtitle" = "Take your English to the next level with exclusive content";
-"premium_upgrade_button" = "Upgrade to Premium";
-"premium_upgrade_short" = "Unlock";
+"premium_header_title"    = "Special Collections";
+"premium_header_subtitle" = "Take your English to the next level with exclusive content";
+"premium_upgrade_button"  = "Upgrade to Premium";
+"premium_upgrade_short"   = "Unlock";
 
-// Header Info Text
-"packages_count" = "packages";
-"words_count" = "words";
+// Info Counts
+"packages_count"   = "packages";
+"words_count"      = "words";
 "collections_count" = "collections";
 "thematic_content" = "Thematic content";
 
 // Card Status
-"package_premium_required" = "Premium required";
-"package_completed" = "Completed ✓";
-"package_words_left" = "words left";
+"premium_unlock_required" = "Premium Required";
+"package_completed"       = "Completed";
+"package_words_left"      = "words left";
+"package_words_count"     = "%d words";
+"package_selected"        = "Selected";
+"package_select"          = "Select";
+"package_downloaded"      = "Downloaded";
+"package_download"        = "Download";
+"package_all_completed"   = "You've completed all words in this package!";
 
-// Empty Package Overlay
-"package_empty_title" = "All Done!";
-"package_empty_message" = "You've completed all words in this package. Great job!";
-"package_empty_button" = "Got it";
+// Empty State Overlay
+"package_empty_title"   = "All Done! 🎉";
+"package_empty_message" = "You've seen all words in this package.\nTime to explore other packages!";
+"package_empty_button"  = "Browse Packages";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Package Names — Standard (A1–C2)
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"package_name_beginner" = "Beginner";
-"package_name_elementary" = "Elementary";
-"package_name_intermediate" = "Intermediate";
+"package_name_beginner"          = "Beginner";
+"package_name_elementary"        = "Elementary";
+"package_name_intermediate"      = "Intermediate";
 "package_name_upper_intermediate" = "Upper Intermediate";
-"package_name_advanced" = "Advanced";
-"package_name_mastery" = "Mastery";
+"package_name_advanced"          = "Advanced";
+"package_name_mastery"           = "Mastery";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Package Names — Premium
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"premium_package_travel" = "Travel & Tourism";
+"premium_packages_title" = "Premium paketler";
 "premium_package_business" = "Business & Interview";
-"premium_package_phrases" = "Phrases & Expressions";
-"premium_package_idioms" = "Idioms & Sayings";
-"premium_package_social" = "Social & Chat";
-"premium_package_academic" = "Academic & Advanced";
+"premium_package_travel"   = "Travel & Tourism";
+"premium_package_tech"     = "Technology & Software";
+"premium_package_medical"  = "Medical Terms";
+"premium_package_academic" = "Academic English";
+"premium_package_idioms"   = "Idioms & Expressions";
+"premium_package_phrases"  = "Phrases & Expressions";
+"premium_package_social"   = "Social & Chat";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Level Labels
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"level_a1" = "A1";
-"level_a2" = "A2";
-"level_b1" = "B1";
-"level_b2" = "B2";
-"level_c1" = "C1";
-"level_c2" = "C2";
-"premium_level" = "PRO";
+"level_a1"    = "A1";
+"level_a2"    = "A2";
+"level_b1"    = "B1";
+"level_b2"    = "B2";
+"level_c1"    = "C1";
+"level_c2"    = "C2";
+"premium_level" = "Premium";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Word Selection Screen
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"word_selection_title" = "Choose Words";
-"word_selection_subtitle" = "Swipe right to learn, left to skip";
-"word_selection_learn" = "Learn";
-"word_selection_skip" = "Skip";
+"word_selection_title"        = "Word Selection";
+"word_selection_back"         = "Back";
+"word_selection_instruction"  = "Add new words to your study deck";
+"word_selection_learn"        = "Learn";
+"word_selection_skip"         = "Skip";
+"word_selection_selected"     = "Selected";
 "word_selection_selected_count" = "Selected";
 "word_selection_hidden_count" = "Skipped";
-"word_selection_complete_title" = "Selection Complete!";
-"word_selection_complete_subtitle" = "Your words are ready for study";
-"word_selection_start_learning" = "Start Learning";
-"word_selection_limit_title" = "Free Limit Reached";
-"word_selection_limit_short" = "Upgrade to Premium for unlimited word selection.";
-
-
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// MARK: - Study Screen
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"study_title" = "Study";
-"study_tap_to_flip" = "Tap to flip";
-"study_difficulty_easy" = "Easy";
-"study_difficulty_medium" = "Medium";
-"study_difficulty_hard" = "Hard";
-"study_difficulty_easy_time" = "4 days";
-"study_difficulty_medium_time" = "1 day";
-"study_difficulty_hard_time" = "10 min";
-"study_session_complete" = "Session Complete!";
-"study_words_reviewed" = "words reviewed";
-"study_empty_first_time_title" = "Welcome!";
-"study_empty_first_time_message" = "Select words from packages to start learning.";
-"study_empty_title" = "Congratulations!";
-"study_empty_message" = "No words to study! Add more words or wait for reviews.";
-"study_select_words" = "Select Words";
-"study_browse_packages" = "Browse Packages";
-"study_go_home" = "Go to Home";
-
-
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// MARK: - Card Style Settings
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"card_style_settings_title" = "Card Style";
-"card_style_colorful" = "Colorful";
-"card_style_minimal" = "Minimal";
-"card_style_premium" = "Premium";
-"card_style_apply" = "Apply Style";
-
-
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// MARK: - Word Vault
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"vault_title" = "Word Vault";
-"vault_empty_title" = "Your vault is empty";
-"vault_empty_message" = "Words you select will appear here.";
-"vault_review_all" = "Review All";
+"word_selection_daily_limit"  = "Daily Limit";
+"word_selection_swipe_hint"   = "← Skip   |   Learn →";
+"word_selection_undo"         = "Undo";
+"word_selection_start_study"  = "Study (%d)";
+"word_selection_remaining"    = "selections left";
+"word_selection_complete_title"   = "Congratulations! 🎉";
+"word_selection_complete_message" = "You've seen all words in this package.\nReady to pick a new package?";
+"word_selection_start_learning"   = "Start Learning";
+"word_selection_new_package"      = "Choose New Package";
+"word_selection_limit_reached_title"   = "Daily Limit Reached";
+"word_selection_limit_reached_message" = "You've reached today's word selection limit. Upgrade to Premium or try again tomorrow.";
+"word_selection_limit_short"  = "Daily limit reached. Upgrade for more.";
+"word_selection_limit_title"  = "Daily Selection Limit Reached";
+"word_selection_limit_message" = "You've selected 15 words today.\nYou can skip words or upgrade to Premium for unlimited selection!";
+"word_selection_limit_close"  = "Continue Browsing";
+"word_selection_subtitle"     = "Swipe right to learn, left to skip";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Add Word Dialog
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"add_word_title" = "Add New Word";
-"add_word_english" = "English Word";
-"add_word_turkish" = "Turkish Translation";
-"add_word_example_en" = "Example sentence (English)";
-"add_word_example_tr" = "Example sentence (Turkish)";
-"add_word_save" = "Save Word";
-"add_word_success" = "Word added successfully!";
-"add_word_info" = "Add your own words to study alongside package words.";
-
-
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-// MARK: - AI Story
-// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-"ai_story_title" = "AI Story Assistant";
-"story_history" = "Story History";
-"story_create" = "Create Story";
-"story_generating" = "Generating your story...";
-"story_quota_remaining" = "stories remaining today";
+"add_word_title"       = "Add New Word";
+"add_word_english"     = "English Word";
+"add_word_turkish"     = "Turkish Translation";
+"add_word_example_en"  = "Example sentence (English, optional)";
+"add_word_example_tr"  = "Example sentence (Turkish, optional)";
+"add_word_save"        = "Save Word";
+"add_word_success"     = "Word added successfully! 🎉";
+"add_word_error"       = "Error adding word";
+"add_word_info"        = "Customize your study list by adding your own words";
+"add_word_required"    = "This field is required";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Profile & Settings
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"profile_welcome" = "Settings";
-"settings_title" = "Preferences";
-"legal_title" = "Legal & Support";
+"profile_welcome"      = "Profile";
+"settings_title"       = "Settings";
+"stats_title"          = "Statistics";
+"stats_streak"         = "Streak";
+"stats_words"          = "Words";
+"stats_mastered"       = "Mastered";
+"stats_this_year_days"  = "Active Days This Year";
+"stats_this_year_hours" = "Study Hours This Year";
+"stats_words_skipped"   = "Words Skipped";
+
+// Legal
+"legal_title"            = "Legal & Support";
+"legal_privacy"          = "Privacy Policy";
+"legal_terms"            = "Terms of Service";
+"legal_rate_app"         = "Rate the App";
+"legal_support"          = "Contact Support";
+"legal_support_subtitle" = "Feedback";
+"legal_contact"          = "Contact Us";
+"legal_version"          = "Version";
+"privacy_policy"         = "Privacy Policy";
+"terms_of_service"       = "Terms of Service";
+"contact_support"        = "Support";
+
+// Premium Badges
+"premium_active"              = "Premium Active";
+"premium_active_description"  = "You have full access to all features";
+"premium_upgrade_title"       = "Go Premium";
+"premium_upgrade_subtitle"    = "Unlimited access, ad-free";
+"premium_badge_active"        = "Premium Active";
+"premium_badge_upgrade"       = "Upgrade to Premium";
+
+// Premium Card (Profile Section)
+"premium_card_title"          = "Premium";
+"premium_card_subtitle"       = "Unlock all features";
+"premium_card_upgrade_button" = "Upgrade Now";
 
 // Notification Settings
-"notification_card_title" = "Notifications";
+"notification_card_title"    = "Notifications";
 "notification_card_subtitle" = "Daily study reminders";
-"notification_time_label" = "Reminder Time";
+"notification_time_label"    = "Reminder Time";
 
 // Study Direction
-"study_direction_card_title" = "Study Direction";
-"direction_en_tr_display" = "EN → TR";
-"direction_tr_en_display" = "TR → EN";
+"study_direction_card_title"    = "Study Direction";
+"study_direction_card_subtitle" = "Choose your learning mode";
+"direction_en_to_tr"   = "English → Turkish";
+"direction_tr_to_en"   = "Turkish → English";
+"direction_mixed"      = "Mixed";
+"direction_en_tr_display" = "English → Turkish";
+"direction_tr_en_display" = "Turkish → English";
 
 // Theme
-"theme_card_title" = "Theme";
+"theme_card_title"    = "Theme";
 "theme_card_subtitle" = "App appearance";
+"theme_light"         = "Light Theme";
+"theme_dark"          = "Dark Theme";
+"theme_system"        = "System";
 "theme_light_display" = "Light";
-"theme_dark_display" = "Dark";
+"theme_dark_display"  = "Dark";
 "theme_system_display" = "System";
 
 // Language
-"language_card_title" = "Language";
-"language_card_subtitle" = "App language";
-"language_english" = "English";
-"language_turkish" = "Türkçe";
+"language_card_title"    = "App Language";
+"language_card_subtitle" = "Language selection";
+"language_english"       = "English";
+"language_turkish"       = "Türkçe";
 
-// Premium Badge
-"premium_badge_active" = "PRO";
-"premium_badge_upgrade" = "Upgrade";
-
-// Legal
-"legal_privacy" = "Privacy Policy";
-"legal_terms" = "Terms of Service";
-"legal_contact" = "Contact Us";
-"legal_version" = "Version";
-
-// Confirmation Dialogs
-"confirmation_direction_title" = "Direction Updated";
-"confirmation_theme_title" = "Theme Updated";
-"confirmation_language_title" = "Language Updated";
+// Confirmation Toasts
 "confirmation_notification_title" = "Reminder Updated";
+"confirmation_direction_title"    = "Study Direction Changed";
+"confirmation_theme_title"        = "Theme Updated";
+"confirmation_language_title"     = "Language Changed";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Annual Stats
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"annual_stats_title" = "Annual Overview";
-"annual_stats_days_label" = "Active Days";
-"annual_stats_hours_label" = "Study Hours";
+"annual_stats_title"        = "Annual Overview";
+"annual_stats_days_label"   = "Active Days";
+"annual_stats_hours_label"  = "Study Hours";
 "annual_stats_skipped_label" = "Words Skipped";
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - AI Story
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"ai_story_title"    = "AI Story Assistant";
+"ai_story_subtitle" = "Create stories from your vocabulary with AI and reinforce what you've learned.";
+"story_history"     = "Story History";
+"create_story"      = "Create Story";
+"quota_remaining"   = "Remaining";
+"stories_this_month" = "This Month";
+
+// Creator Dialog
+"story_creator_title"     = "Create Story";
+"story_topic_placeholder" = "Topic (optional)";
+"story_topic_hint"        = "e.g. Space adventure, coffee break";
+"select_type"             = "Story Type";
+"select_length"           = "Length";
+"generate_button"         = "Generate Story";
+
+// Generating Animation
+"collecting_words" = "Collecting your words...";
+"writing_story"    = "Writing your story...";
+"final_touches"    = "Final touches...";
+
+// Story Detail
+"your_words"       = "Your Words";
+"story_created"    = "Created";
+"tap_word_hint"    = "Tap words to see their meanings";
+
+// Story Types
+"story_type_motivation" = "Motivation";
+"story_type_fantasy"    = "Fantasy Story";
+"story_type_dialogue"   = "Dialogue";
+
+// Story Lengths
+"story_length_short" = "Short";
+"story_length_long"  = "Long";
+
+// Error Messages
+"quota_exceeded_free"       = "You've reached the 3 story monthly limit. Go Premium for 30 stories!";
+"quota_exceeded_premium"    = "You've reached the 30 story monthly limit. Come back next month!";
+"insufficient_words_error"  = "Not enough words. At least %d words required.";
+"api_error"                 = "Something went wrong. Please try again.";
+"network_error"             = "Check your internet connection.";
+
+// Success / Action
+"story_created_success" = "🎉 Story created!";
+"story_deleted"         = "Story deleted";
+"story_favorited"       = "Added to favorites";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Onboarding
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"onboarding_button_next" = "Continue";
-"onboarding_button_start" = "Start Learning!";
-"onboarding_question1_title" = "What's your goal?";
-"onboarding_question2_title" = "What's your English level?";
-"onboarding_goal_exam" = "Exam Prep";
-"onboarding_goal_conversation" = "Conversation";
-"onboarding_level_beginner" = "Beginner";
-"onboarding_level_intermediate" = "Intermediate";
-"onboarding_level_advanced" = "Advanced";
+"onboarding_screen1_message" = "The best way to learn English is vocabulary. The best way to learn vocabulary is HocaLingo!";
+
+// Buttons
+"onboarding_button_next"     = "Continue";
+"onboarding_button_skip"     = "Skip";
+"onboarding_button_start"    = "Start";
+"onboarding_button_continue" = "Continue";
+"onboarding_button_launch"   = "Start Choosing Words";
+"onboarding_success"         = "You're ready!";
+
+// Screen 1: Promise
+"onboarding_promise_title"    = "No grammar.\nJust words.";
+"onboarding_promise_subtitle" = "10 minutes a day is enough.";
+
+// Screen 2: Empathy
+"onboarding_empathy_title"     = "Which one describes you most?";
+"onboarding_empathy_quitter"   = "I keep starting and stopping";
+"onboarding_empathy_forgetful" = "Words don't stick in my memory";
+"onboarding_empathy_no_time"   = "I never have enough time";
+"onboarding_empathy_response"  = "There's a system made just for you.";
+
+// Screen 3: Goal (StudyDirection)
+"onboarding_goal_title"             = "Why are you learning?";
+"onboarding_goal_understand"        = "To Understand";
+"onboarding_goal_speak"             = "To Speak";
+"onboarding_goal_understand_short"  = "Reading, listening, exams";
+"onboarding_goal_speak_short"       = "Remember words, use them";
+"onboarding_goal_explain_understand" = "You'll see an English word and find its Turkish meaning.";
+"onboarding_goal_explain_speak"     = "You'll see a Turkish word and find its English equivalent.";
+"onboarding_goal_changeable"        = "You can change this anytime.";
+"onboarding_goal_exam"              = "Exam Preparation";
+"onboarding_goal_conversation"      = "Conversation";
+
+// Screen 4: Level
+"onboarding_level_title"              = "What's your level?";
+"onboarding_level_beginner"           = "Beginner";
+"onboarding_level_intermediate"       = "Intermediate";
+"onboarding_level_upper"              = "Upper-Intermediate";
+"onboarding_level_advanced"           = "Advanced";
+"onboarding_level_beginner_desc"      = "Basic words like Hello, Thank you";
+"onboarding_level_intermediate_desc"  = "Everyday conversation words";
+"onboarding_level_upper_desc"         = "Business and academic words";
+"onboarding_level_advanced_desc"      = "Advanced and rarely used words";
+"onboarding_level_response_beginner"  = "Great starting point!";
+"onboarding_level_response_intermediate" = "Nice, you know the basics!";
+"onboarding_level_response_upper"     = "Serious stuff, I like it!";
+"onboarding_level_response_advanced"  = "Wow, ambitious!";
+
+// Questions (Legacy)
+"onboarding_question1_title" = "What is your primary learning goal?";
+"onboarding_question2_title" = "What is your current English level?";
+
+// Screen 5: Summary
+"onboarding_summary_title"        = "Your plan is ready!";
+"onboarding_summary_goal"         = "Goal";
+"onboarding_summary_level"        = "Level";
+"onboarding_summary_ready"        = "Ready";
+"onboarding_summary_ready_value"  = "Words are waiting for you";
+"onboarding_summary_goal_speak"   = "Speaking";
+"onboarding_summary_goal_understand" = "Understanding";
+
+// Swipe Demo
+"onboarding_swipe_hint_initial" = "Watch how it works";
+"onboarding_swipe_hint_action"  = "Now swipe right to add";
+"onboarding_feedback_added"     = "Added to your study deck!";
+
+// Study Demo
+"onboarding_study_hint1"   = "Try to remember first";
+"onboarding_study_hint2"   = "Tap the card to see the meaning";
+"onboarding_study_hint3"   = "Choose how hard it was";
+"onboarding_study_warning" = "Think about it — did you really know it?";
+
+// Difficulty Buttons (Demo)
+"onboarding_difficulty_hard"   = "Hard";
+"onboarding_difficulty_medium" = "Medium";
+"onboarding_difficulty_easy"   = "Easy";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Premium / Paywall
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"premium_title" = "HocaLingo Premium";
-"premium_subtitle" = "Unlock the full experience";
-"premium_feature_words" = "Thousands of New Words";
-"premium_feature_unlimited" = "Unlimited Premium Experience";
-"premium_feature_stories" = "Personalized Reading Stories";
-"premium_plan_weekly" = "Weekly";
-"premium_plan_annual" = "Annual";
-"premium_plan_popular" = "MOST POPULAR";
-"premium_purchase" = "Subscribe";
-"premium_restore" = "Restore Purchases";
-"premium_terms" = "Terms of Service";
-"premium_privacy" = "Privacy Policy";
+"paywall_title"           = "Go Premium";
+"paywall_subtitle"        = "Make Learning Unlimited";
+"paywall_feature_1"       = "Learn Thousands of New Words";
+"paywall_feature_2"       = "Unlimited Daily Word Selection";
+"paywall_feature_3"       = "30 AI Story Uses Per Month";
+"paywall_feature_4"       = "Premium Card Designs";
+"paywall_plan_weekly"     = "Weekly";
+"paywall_plan_yearly"     = "Annual";
+"paywall_best_value"      = "BEST VALUE";
+"paywall_purchase_button" = "Start Premium";
+"paywall_restore"         = "Restore Purchases";
+"paywall_terms"           = "Terms of Service";
+"paywall_privacy"         = "Privacy Policy";
+
+"premium_upgrade_prompt_title"   = "Unlock Premium";
+"premium_upgrade_prompt_message" = "Unlimited access to all features";
+"premium_upgrade_prompt_button"  = "Upgrade Now";
+
+"onboarding_premium_title"    = "Start Your Premium Journey";
+"onboarding_premium_subtitle" = "Try Premium features free for 7 days";
+"onboarding_premium_skip"     = "Maybe Later";
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Notifications
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"notification_title"  = "HocaLingo";
+"notification_msg_1"  = "Even 5 minutes of practice makes a difference! 🚀";
+"notification_msg_2"  = "Waiting for the bus? How about studying some words? 🚌";
+"notification_msg_3"  = "On a coffee break? How about flipping some cards? ☕";
+"notification_msg_4"  = "Your future self will thank you for these 5 minutes! 💪";
+"notification_msg_5"  = "Small steps lead to big progress. Let's go! 🎯";
+"notification_msg_6"  = "Quick study = big progress! Let's get started! 🌟";
+"notification_msg_7"  = "Between classes? Perfect time to learn! 📚";
+"notification_msg_8"  = "Your English is waiting! Just a few words today 🔥";
+"notification_msg_9"  = "Lunch break? Add some words to the menu! 🍽️";
+"notification_msg_10" = "Can't sleep? Close the day productively with a quick study! 🌙";
+
+"notification_ai_title" = "✨ AI Story Time!";
+"notification_ai_msg_1" = "Create personalized stories from your deck with AI 🎨";
+"notification_ai_msg_2" = "You can have AI write you a custom story! Try it now 🤖";
+"notification_ai_msg_3" = "Unleash your creativity with AI! Create your reading story ✨";
+"notification_ai_msg_4" = "Your AI storyteller is ready! What will you create today? 📖";
+"notification_ai_msg_5" = "Transform learning with AI stories! Start the adventure 🚀";

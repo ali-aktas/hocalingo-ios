@@ -1,539 +1,566 @@
 /*
-  Localizable.strings (Turkish)
-  HocaLingo
+   Localizable.strings (Turkish)
+   HocaLingo
 
+   Location: tr.lproj/Localizable.strings
+   ✅ Keys synchronized with English file (en.lproj)
+   ✅ Duplicate keys removed
+   ✅ Missing translations added
 */
 
-// MARK: - Tab Başlıkları
-"tab_home" = "Ana Sayfa";
-"tab_study" = "Çalış";
-"tab_ai" = "Yapay Zeka";
-"tab_profile" = "Profil";
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Common / Shared
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"loading"          = "Yükleniyor…";
+"cancel"           = "İptal";
+"close"            = "Kapat";
+"error"            = "Hata";
+"save"             = "Kaydet";
+"delete"           = "Sil";
+"done"             = "Tamam";
+"ok"               = "Tamam";
+"back_button"      = "Geri";
+"retry"            = "Tekrar Dene";
+"continue_btn"     = "Devam Et";
+"edit"             = "Düzenle";
+"finish"           = "Bitir";
+"skip"             = "Geç";
+"next"             = "Sonraki";
+"previous"         = "Önceki";
+"apply"            = "Uygula";
+"unit_minute_short" = "dk";
+"unit_hour_short"  = "s";
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Tab Bar
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"tab_home"           = "Ana Sayfa";
+"tab_study"          = "Çalış";
+"tab_ai"             = "Yapay Zeka";
+"tab_profile"        = "Profil";
 "ai_assistant_title" = "AI Asistan";
 
-// MARK: - Genel
-"loading" = "Yükleniyor…";
-"error" = "Hata";
-"retry" = "Tekrar Dene";
-"continue_btn" = "Devam Et";
-"cancel" = "İptal";
-"save" = "Kaydet";
-"delete" = "Sil";
-"edit" = "Düzenle";
-"finish" = "Bitir";
-"skip" = "Geç";
-"next" = "Sonraki";
-"previous" = "Önceki";
-"close" = "Kapat";
 
-// MARK: - Ana Ekran
-"home_title" = "HocaLingo";
-"home_greeting_morning" = "Günaydın! ☀️";
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Home Screen
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"home_title"              = "HocaLingo";
+"home_start_btn"          = "Başla";
+"stat_monthly_stats"      = "Bu ayın istatistikleri";
+
+// Greeting
+"home_greeting_morning"   = "Günaydın! ☀️";
 "home_greeting_afternoon" = "İyi Günler! 🌤️";
-"home_greeting_evening" = "İyi Akşamlar! 🌙";
-"home_greeting_night" = "İyi Geceler! ✨";
-"home_cta_title" = "Çalışmaya Başla!";
-"home_start_btn" = "Başla";
-"vault_title" = "Kelime Kasam";
-"vault_section_title" = "Kelime Kasan";
-"vault_show_all" = "Tümünü Gör";
-"vault_review_all" = "Tüm Kelimeleri Gözden Geçir";
-"vault_empty_title" = "Kasan henüz boş";
-"vault_empty_subtitle" = "Paket seçip kelime ekledikten sonra burada görünür";
-"vault_preview_empty" = "Kelime seçmeye başla";
-"vault_tap_to_reveal" = "Çeviriyi görmek için dokun";
-"vault_reveal" = "Göster";
-"vault_next" = "İleri";
-"vault_finish" = "Tamamla";
-"vault_turkish" = "Türkçe";
+"home_greeting_evening"   = "İyi Akşamlar! 🌙";
+"home_greeting_night"     = "İyi Geceler! ✨";
+"home_cta_title"          = "Çalışmaya Başla!";
 
-// Motivasyon Metinleri
-"motivation_1" = "Günde sadece 10 dakika ile her ay 200+ kelime öğren!";
-"motivation_2" = "Kelime bilmeden kural çalışmanın ne anlamı var?";
-"motivation_3" = "Toz bile birikerek dağ olur. Hadi Başla!";
-"motivation_4" = "Her kelime seni hedefe bir adım daha yaklaştırıyor";
-"motivation_5" = "Pratik mükemmelleştirir, hadi başlayalım!";
-"motivation_6" = "İngilizce yolculuğun devam ediyor, bugün harikasın!";
-"motivation_7" = "Öğrenmek için şahane bir vakit!";
-"motivation_8" = "Başarı sabırla gelir, devam et!";
-"motivation_9" = "İngilizce'nin gerçek dünyasına hoş geldin";
-"motivation_10" = "Bazen sadece 1 dakika çalış, ama erteleme!";
-
-// İstatistikler
-"stat_streak_days" = "Günlük Seri";
-"stat_today_words" = "Bugünkü Kelimeler";
-"stat_total_learned" = "Toplam Öğrenilen";
-"stat_this_month_days" = "Aktif Günler";
-"stat_this_month_time" = "Çalışma Süresi";
-"stat_discipline_score" = "İstikrar";
-"stat_active_days" = "Aktif Günler";
-"stat_study_time_min" = "dakika";
-"stat_monthly_stats" = "Bu ayın istatistikleri";
-"stat_learned_words" = "Öğrendiğin";
-"unit_minute_short" = "dk";
-"unit_hour_short" = "s";
-
-// Aksiyonlar
-"action_start_study" = "Çalışmaya Başla";
-"action_select_package" = "Yeni Kelimeler Seç";
+// Action Buttons
+"action_start_study"         = "Çalışmaya Başla";
+"action_select_package"      = "Yeni Kelimeler Seç";
 "action_select_package_desc" = "Öğrenmek için kelime seç";
-"action_ai_assistant" = "Okuma Pratiği Yap";
-"action_ai_assistant_desc" = "Sana özel okuma parçaları";
-"action_add_word" = "Kelime Kaydet";
-"action_add_word_desc" = "Kendi kelimelerini ekle";
+"action_add_word"            = "Kelime Kaydet";
+"action_add_word_desc"       = "Kendi kelimelerini ekle";
+"action_ai_assistant"        = "Okuma Pratiği Yap";
+"action_ai_assistant_desc"   = "Sana özel okuma parçaları";
 
-// MARK: - Çalışma Ekranı
-"study_title" = "Çalış";
-"hard_button" = "Zor";
-"medium_button" = "Orta";
-"easy_button" = "Kolay";
-"flip_card" = "Kartı Çevir";
-"show_answer" = "Cevabı Göster";
-"study_completed_title" = "Harika!";
-"study_completed_message" = "Bugünkü hedefini tamamladın!";
-"study_progress" = "İlerleme: %d/%d";
-"study_navbar_title" = "Aralıklı Tekrar Çalışması";
-"study_flip_card_hint" = "Kartı çevir";
-"study_hard" = "Zor";
-"study_medium" = "Orta";
-"study_easy" = "Kolay";
+// Stats Cards
+"stat_streak_days"      = "Günlük Seri";
+"stat_active_days"      = "Aktiflik";
+"stat_today_words"      = "Bugünkü Kelimeler";
+"stat_total_learned"    = "Toplam Öğrenilen";
+"stat_this_month_days"  = "Aktif Günler";
+"stat_this_month_time"  = "Çalışma Süresi";
+"stat_discipline_score" = "İstikrar";
+"stat_learned_words"    = "Öğrenilen";
+"stat_study_time_min"   = "dakika";
 
-// Study difficulty buttons
-"study_hard" = "Zor";
-"study_medium" = "Orta";
-"study_easy" = "Kolay";
+// Motivational Texts
+"motivation_1"  = "Günde 10 dakika çalışarak her ay 200 kelime öğren!";
+"motivation_2"  = "Kelime bilmeden kural çalışmakla vakit kaybetmene gerek yok.";
+"motivation_3"  = "Toz bile birikerek dağ olur. Hadi, üşenme. Sadece 10 dakika!";
+"motivation_4"  = "Her kelime seni hedefe bir adım daha yaklaştırıyor";
+"motivation_5"  = "Pratik mükemmelleştirir, hadi başlayalım!";
+"motivation_6"  = "İngilizce yolculuğun devam ediyor, bugün harikasın!";
+"motivation_7"  = "Öğrenmek için şahane bir vakit!";
+"motivation_8"  = "Başarı sabırla gelir, sabret ve devam et!";
+"motivation_9"  = "İngilizce'nin gerçek dünyasına hoş geldin!";
+"motivation_10" = "Gerekirse 2 dakika çalış, ama erteleme!";
+"motivation_11"  = "Bugün 5 kelime, 1 ay sonra bambaşka bir seviye!";
+"motivation_12"  = "Az ama her gün. Sırrımız bu.";
+"motivation_13"  = "Bir kelime bile öğrensen, dünki halinden öndesin!";
+"motivation_14"  = "Mükemmel zamanı bekleme, şimdi başla!";
+"motivation_15"  = "Her tekrar hafızanı biraz daha güçlendirir";
+"motivation_16"  = "Küçük adımlar büyük akıcılığa dönüşür";
+"motivation_17"  = "Bugün vazgeçmezsen, yarın teşekkür edeceksin";
+"motivation_18"  = "Sonuca odaklanma, sürece güven!";
+"motivation_19"  = "Dil öğrenmek maraton, sen ritmi yakaladın!";
+"motivation_20"  = "Her gün biraz daha cesur konuş!";
 
-// Study time labels
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Word Vault
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"vault_title"          = "Kelime Kasam";
+"vault_section_title"  = "Kelime Kasam";
+"vault_show_all"       = "Tümünü Gör";
+"vault_review_all"     = "Tüm Kelimeleri Gözden Geçir";
+"vault_empty_title"    = "Kasan henüz boş";
+"vault_empty_subtitle" = "Paket seçip kelime ekledikten sonra burada görünür";
+"vault_preview_empty"  = "Kelime seçmeye başla";
+"vault_tap_to_reveal"  = "Çeviriyi görmek için dokun";
+"vault_reveal"         = "Göster";
+"vault_next"           = "İleri";
+"vault_finish"         = "Tamamla";
+"vault_turkish"        = "Türkçe";
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Study Screen
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"study_title"              = "Çalış";
+"study_navbar_title"       = "Aralıklı Tekrar Çalışması";
+"flip_card"                = "Kartı Çevir";
+"show_answer"              = "Cevabı Göster";
+"study_flip_card_hint"     = "Kartı çevir";
+"study_hard"               = "Zor";
+"study_medium"             = "Orta";
+"study_easy"               = "Kolay";
+"hard_button"              = "Zor";
+"medium_button"            = "Orta";
+"easy_button"              = "Kolay";
+"study_completed_title"    = "Harika!";
+"study_completed_message"  = "Bugünkü hedefini tamamladın!";
+"study_progress"           = "İlerleme: %d/%d";
+"study_words_reviewed"     = "kelime tekrar edildi";
+"study_empty_first_time_title"   = "Hoş Geldin!";
+"study_empty_first_time_message" = "Çalışmaya başlamak için paketlerden kelime seç.";
+"study_empty_title"        = "Tebrikler!";
+"study_empty_message"      = "Çalışılacak kelime yok! Daha fazla kelime ekle veya tekrar zamanını bekle.";
+"study_select_words"       = "Kelime Seç";
+"study_browse_packages"    = "Paketlere Gözat";
+"study_go_home"            = "Ana Sayfaya Git";
+
+// Study Time Labels
 "time_5_min" = "5 dk";
 "time_later" = "Sonra";
 "time_today" = "Bugün";
-"time_soon" = "Yakında";
+"time_soon"  = "Yakında";
 "time_1_day" = "1 gün";
 "time_n_days" = "%d gün";
-"time_n_wk" = "%d hf";
-"time_n_mo" = "%d ay";
+"time_n_wk"  = "%d hf";
+"time_n_mo"  = "%d ay";
 
-// Card Style Settings
-"card_style_settings_title" = "Kart Tasarımı";
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Card Style Settings
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"card_style_settings_title"    = "Kart Tasarımı";
 "card_style_settings_subtitle" = "Tercih ettiğiniz kart stilini seçin";
-"apply" = "Uygula";
-
-// Card Styles
-"card_style_colorful" = "Renkli";
+"card_style_colorful"          = "Renkli";
 "card_style_colorful_description" = "Her kart için canlı rastgele renkler";
-"card_style_minimal" = "Minimal";
+"card_style_minimal"           = "Minimal";
 "card_style_minimal_description" = "Temiz tek renkli tasarım";
-"card_style_premium" = "Premium Gradyan";
+"card_style_premium"           = "Premium Gradyan";
 "card_style_premium_description" = "Muhteşem gradyan tasarımlar (Sadece Premium)";
 
 
-// MARK: - Profil Ekranı
-"profile_welcome" = "Profil";
-"premium_active" = "Premium Aktif";
-"premium_upgrade_title" = "Premium'a Geç";
-"premium_upgrade_subtitle" = "Sınırsız erişim, reklamsız";
-"stats_title" = "İstatistikler";
-"stats_streak" = "Seri";
-"stats_words" = "Kelime";
-"stats_mastered" = "Öğrenildi";
-"stats_this_year_days" = "Bu Yıl Aktif Günler";
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Package Selection Screen
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+// Tab Selector
+"tab_standard" = "Standart";
+"tab_premium"  = "Premium";
+
+// Standard Header
+"package_selection_title"    = "Seviyeni Seç";
+"package_selection_subtitle" = "Kelime öğrenmeye başlamak için bir paket seç";
+
+// Premium Header
+"premium_header_title"    = "Özel Koleksiyonlar";
+"premium_header_subtitle" = "Özel içeriklerle İngilizceni bir üst seviyeye taşı";
+"premium_upgrade_button"  = "Premium'a Geç";
+"premium_upgrade_short"   = "Kilidi Aç";
+
+// Info Counts
+"packages_count"   = "paket";
+"words_count"      = "kelime";
+"collections_count" = "koleksiyon";
+"thematic_content" = "Tematik içerik";
+
+// Card Status
+"premium_unlock_required" = "Premium Gerekli";
+"package_completed"       = "Tamamlandı";
+"package_words_left"      = "kelime kaldı";
+"package_words_count"     = "%d kelime";
+"package_selected"        = "Seçili";
+"package_select"          = "Seç";
+"package_downloaded"      = "İndirildi";
+"package_download"        = "İndir";
+"package_all_completed"   = "Bu paketteki tüm kelimeleri tamamladınız!";
+
+// Empty State Overlay
+"package_empty_title"   = "Hepsi Bitti! 🎉";
+"package_empty_message" = "Bu paketteki tüm kelimeleri gördün.\nDiğer paketleri keşfetme vakti!";
+"package_empty_button"  = "Paketlere Göz At";
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Package Names — Standard (A1–C2)
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"package_name_beginner"           = "Başlangıç";
+"package_name_elementary"         = "Temel Seviye";
+"package_name_intermediate"       = "Orta Seviye";
+"package_name_upper_intermediate" = "Orta Üst Seviye";
+"package_name_advanced"           = "İleri Seviye";
+"package_name_mastery"            = "Anadil Seviyesi";
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Package Names — Premium
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"premium_package_business" = "İş İngilizcesi";
+"premium_package_travel"   = "Seyahat & Turizm";
+"premium_package_academic" = "Akademik İngilizce";
+"premium_package_idioms"   = "Günlük Deyimler";
+"premium_package_phrases"  = "Kalıplar & Edatlar";
+"premium_package_social"   = "Gündelik İfadeler";
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Level Labels
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"level_a1"    = "A1";
+"level_a2"    = "A2";
+"level_b1"    = "B1";
+"level_b2"    = "B2";
+"level_c1"    = "C1";
+"level_c2"    = "C2";
+"premium_level" = "Premium";
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Word Selection Screen
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"word_selection_title"         = "Kelime Seçimi";
+"word_selection_back"          = "Geri";
+"word_selection_instruction"   = "Çalışma destesine yeni kelimeler ekle";
+"word_selection_learn"         = "Öğren";
+"word_selection_skip"          = "Geç";
+"word_selection_selected"      = "Seçilen";
+"word_selection_selected_count" = "Seçilen";
+"word_selection_hidden_count"  = "Geçilen";
+"word_selection_daily_limit"   = "Günlük Limit";
+"word_selection_swipe_hint"    = "← Geç   |   Öğren →";
+"word_selection_undo"          = "Geri Al";
+"word_selection_start_study"   = "Çalış (%d)";
+"word_selection_remaining"     = "seçim hakkı kaldı";
+"word_selection_complete_title"    = "Tebrikler! 🎉";
+"word_selection_complete_message"  = "Bu paketteki tüm kelimeleri gördün.\nYeni bir paket seçmeye hazır mısın?";
+"word_selection_start_learning"    = "Çalışmaya Başla";
+"word_selection_new_package"       = "Yeni Paket Seç";
+"word_selection_limit_reached_title"   = "Günlük Limit Doldu";
+"word_selection_limit_reached_message" = "Bugün için kelime seçme hakkınız doldu. Premium'a geçin veya yarın tekrar deneyin.";
+"word_selection_limit_short"   = "Günlük limitin doldu. Daha fazlası için yükselt.";
+"word_selection_limit_title"   = "Günlük Seçim Limitine Ulaşıldı";
+"word_selection_limit_message" = "Bugün 15 kelime seçtin.\nKelimeleri atlayabilirsin veya Premium'a geçerek sınırsız seçim yapabilirsin!";
+"word_selection_limit_close"   = "İncelemeye Devam Et";
+"word_selection_subtitle"      = "Öğrenmek için sağa, geçmek için sola kaydır";
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Add Word Dialog
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"add_word_title"      = "Kelime Ekle";
+"add_word_english"    = "İngilizce";
+"add_word_turkish"    = "Türkçe";
+"add_word_example_en" = "İngilizce Örnek Cümle (opsiyonel)";
+"add_word_example_tr" = "Türkçe Örnek Cümle (opsiyonel)";
+"add_word_save"       = "Kaydet";
+"add_word_success"    = "Kelime başarıyla eklendi! 🎉";
+"add_word_error"      = "Kelime eklenirken hata oluştu";
+"add_word_info"       = "Kendi kelimelerinizi ekleyerek çalışma listenizi özelleştirin";
+"add_word_required"   = "Bu alan zorunludur";
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Profile & Settings
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"profile_welcome"      = "Profil";
+"settings_title"       = "Ayarlar";
+"stats_title"          = "İstatistikler";
+"stats_streak"         = "Seri";
+"stats_words"          = "Kelime";
+"stats_mastered"       = "Öğrenildi";
+"stats_this_year_days"  = "Bu Yıl Aktif Günler";
 "stats_this_year_hours" = "Bu Yıl Çalışma Saatleri";
-"stats_words_skipped" = "Geçilen Kelimeler";
-"settings_title" = "Ayarlar";
-"settings_theme" = "Tema";
-"settings_notifications" = "Bildirimler";
-"settings_direction" = "Çalışma Yönü";
-"settings_daily_goal" = "Günlük Hedef";
-"settings_language" = "Arayüz Dili";
-"legal_title" = "Yasal & Destek";
-"legal_privacy" = "Gizlilik Politikası";
-"legal_terms" = "Kullanım Şartları";
-"legal_rate_app" = "Uygulamayı Oyla";
-"legal_support" = "Destek İlet";
+"stats_words_skipped"   = "Geçilen Kelimeler";
+
+// Legal
+"legal_title"            = "Yasal & Destek";
+"legal_privacy"          = "Gizlilik Politikası";
+"legal_terms"            = "Kullanım Şartları";
+"legal_rate_app"         = "Uygulamayı Oyla";
+"legal_support"          = "Destek İlet";
 "legal_support_subtitle" = "Geri Bildirim";
-"privacy_policy" = "Gizlilik Politikası";
-"terms_of_service" = "Kullanım Şartları";
-"contact_support" = "Destek";
-"notification_time_label" = "Bildirim Saati";
-"premium_badge_upgrade" = "Premium'a Geç";
-"premium_badge_active" = "Premium Deneyim";
-"confirmation_notification_title" = "Bildirim Saati Güncellendi";
-"confirmation_direction_title" = "Çalışma Yönü Değiştirildi";
-"confirmation_theme_title" = "Tema Güncellendi";
-"confirmation_language_title" = "Dil Değiştirildi";
-"language_card_title" = "Arayüz Dili";
+"legal_contact"          = "Bize Ulaş";
+"legal_version"          = "Sürüm";
+"privacy_policy"         = "Gizlilik Politikası";
+"terms_of_service"       = "Kullanım Şartları";
+"contact_support"        = "Destek";
 
-// MARK: - Tema Modları
-"theme_light" = "Açık Tema";
-"theme_dark" = "Koyu Tema";
-"theme_system" = "Sistem";
-"theme_light_display" = "Açık Mod";
-"theme_dark_display" = "Koyu Mod";
-"theme_system_display" = "Sistem";
+// Premium Badges
+"premium_active"              = "Premium Aktif";
+"premium_active_description"  = "Tüm özelliklere tam erişiminiz var";
+"premium_upgrade_title"       = "Premium'a Geç";
+"premium_upgrade_subtitle"    = "Sınırsız erişim, reklamsız";
+"premium_badge_active"        = "Premium Deneyim";
+"premium_badge_upgrade"       = "Premium'a Geç";
 
-// MARK: - Çalışma Yönleri
-"direction_en_to_tr" = "İngilizce → Türkçe";
-"direction_tr_to_en" = "Türkçe → İngilizce";
-"direction_mixed" = "Karışık";
+// Premium Card (Profile Section)
+"premium_card_title"          = "Premium";
+"premium_card_subtitle"       = "Tüm özelliklerin kilidini aç";
+"premium_card_upgrade_button" = "Hemen Yükselt";
+
+// Notification Settings
+"notification_card_title"    = "Günlük Hatırlatıcılar";
+"notification_card_subtitle" = "Bildirimlerle düzenli kal";
+"notification_time_label"    = "Bildirim Saati";
+
+// Study Direction
+"study_direction_card_title"    = "Çalışma Yönü";
+"study_direction_card_subtitle" = "Öğrenme modunu seç";
+"direction_en_to_tr"   = "İngilizce → Türkçe";
+"direction_tr_to_en"   = "Türkçe → İngilizce";
+"direction_mixed"      = "Karışık";
 "direction_en_tr_display" = "İngilizce → Türkçe";
 "direction_tr_en_display" = "Türkçe → İngilizce";
 
-// MARK: - Dil Görünüm İsimleri
-"language_english" = "English";
-"language_turkish" = "Türkçe";
+// Theme
+"theme_card_title"    = "Tema";
+"theme_card_subtitle" = "Görünüm";
+"theme_light"         = "Açık Tema";
+"theme_dark"          = "Koyu Tema";
+"theme_system"        = "Sistem";
+"theme_light_display" = "Açık Mod";
+"theme_dark_display"  = "Koyu Mod";
+"theme_system_display" = "Sistem";
 
-// MARK: - Paket Seçimi Sekmeleri
-"tab_standard" = "Standart";
-"tab_premium" = "Premium";
+// Language
+"language_card_title"    = "Dil";
+"language_card_subtitle" = "Dil seçimi";
+"language_english"       = "English";
+"language_turkish"       = "Türkçe";
 
-// MARK: - Paket Seçimi
-"package_selection_title" = "Seviyeni Seç";
-"package_selection_subtitle" = "Kelime öğrenmeye başlamak için bir paket seç";
-"package_completed" = "Tamamlandı";
-"package_words_left" = "kelime kaldı";
-"package_empty_title" = "Hepsi Bitti! 🎉";
-"package_empty_message" = "Bu paketteki tüm kelimeleri gördün.\nDiğer paketleri keşfetme vakti!";
-"package_empty_button" = "Paketlere Göz At";
-"package_words_count" = "%d kelime";
-"package_selected" = "Seçili";
-"package_select" = "Seç";
-"package_downloaded" = "İndirildi";
-"package_download" = "İndir";
-"package_all_completed" = "Bu paketteki tüm kelimeleri tamamladınız!";
+// Confirmation Toasts
+"confirmation_notification_title" = "Bildirim Saati Güncellendi";
+"confirmation_direction_title"    = "Çalışma Yönü Değiştirildi";
+"confirmation_theme_title"        = "Tema Güncellendi";
+"confirmation_language_title"     = "Dil Değiştirildi";
 
-// MARK: - Standart Paket Seviyeleri
-"level_a1" = "A1";
-"level_a2" = "A2";
-"level_b1" = "B1";
-"level_b2" = "B2";
-"level_c1" = "C1";
-"level_c2" = "C2";
 
-// MARK: - Standart Paket İsimleri
-"package_name_beginner" = "Başlangıç";
-"package_name_elementary" = "Temel Seviye";
-"package_name_intermediate" = "Orta Seviye";
-"package_name_upper_intermediate" = "Orta Üst Seviye";
-"package_name_advanced" = "İleri Seviye";
-"package_name_mastery" = "Anadil Seviyesi";
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Annual Stats
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-// MARK: - Premium Bölümü
-"premium_level" = "Premium";
-"premium_header_title" = "Premium İçerik";
-"premium_header_subtitle" = "Özel gelişmiş kelime paketleri";
-"premium_upgrade_button" = "Premium'a Geç";
-"premium_unlock_required" = "Premium Gerekli";
-
-// MARK: - Premium Paket İsimleri
-"premium_package_business" = "İş İngilizcesi";
-"premium_package_travel" = "Seyahat & Turizm";
-"premium_package_tech" = "Teknoloji & Yazılım";
-"premium_package_medical" = "Tıbbi Terimler";
-"premium_package_academic" = "Akademik İngilizce";
-"premium_package_idioms" = "Deyimler & İfadeler";
-
-// MARK: - Kelime Seçimi
-"word_selection_title" = "Kelime Seçimi";
-"word_selection_back" = "Geri";
-"word_selection_instruction" = "Çalışma destesine yeni kelimeler ekle";
-"word_selection_selected" = "Seçilen";
-"word_selection_daily_limit" = "Günlük Limit";
-"word_selection_swipe_hint" = "← Geç   |   Öğren →";
-"word_selection_undo" = "Geri Al";
-"word_selection_start_study" = "Çalış (%d)";
-"word_selection_remaining" = "seçim hakkı kaldı";
-"word_selection_complete_title" = "Tebrikler! 🎉";
-"word_selection_complete_message" = "Bu paketteki tüm kelimeleri gördün.\nYeni bir paket seçmeye hazır mısın!";
-"word_selection_start_learning" = "Çalışmaya Başla";
-"word_selection_new_package" = "Yeni Paket Seç";
-"word_selection_limit_reached_title" = "Günlük Limit Doldu";
-"word_selection_limit_reached_message" = "Bugün için kelime seçme hakkınız doldu. Premium'a geçin veya yarın tekrar deneyin.";
-"word_selection_limit_short" = "Günlük limitin doldu. Daha fazlası için yükselt.";
-"word_selection_limit_title" = "Günlük Seçim Limitine Ulaşıldı";
-"word_selection_limit_message" = "Bugün 15 kelime seçtin.\nKelimeleri atlayabilirsin veya Premium'a geçerek sınırsız seçim yapabilirsin!";
-"word_selection_limit_close" = "İncelemeye Devam Et";
-"word_selection_skip" = "Geç";
-"word_selection_learn" = "Öğren";
-
-// MARK: - Kelime Ekle
-"add_word_title" = "Kelime Ekle";
-"add_word_english" = "İngilizce";
-"add_word_turkish" = "Türkçe";
-"add_word_example_en" = "İngilizce Örnek Cümle (opsiyonel)";
-"add_word_example_tr" = "Türkçe Örnek Cümle (opsiyonel)";
-"add_word_save" = "Kaydet";
-"add_word_success" = "Kelime başarıyla eklendi! 🎉";
-"add_word_error" = "Kelime eklenirken hata oluştu";
-"add_word_info" = "Kendi kelimelerinizi ekleyerek çalışma listenizi özelleştirin";
-"add_word_required" = "Bu alan zorunludur";
-
-// MARK: - Profil Kartları
-"annual_stats_title" = "Yıllık İstatistikler";
-"annual_stats_days_label" = "Aktif Günler";
-"annual_stats_hours_label" = "Çalışma Saati";
+"annual_stats_title"         = "Yıllık İstatistikler";
+"annual_stats_days_label"    = "Aktif Günler";
+"annual_stats_hours_label"   = "Çalışma Saati";
 "annual_stats_skipped_label" = "Geçilen Kelimeler";
 
-"study_direction_card_title" = "Çalışma Yönü";
-"study_direction_card_subtitle" = "Öğrenme modunu seç";
 
-"language_card_title" = "Arayüz Dili";
-"language_card_subtitle" = "Dil seçimi";
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - AI Story
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"theme_card_title" = "Tema";
-"theme_card_subtitle" = "Görünüm";
-
-"notification_card_title" = "Günlük Hatırlatıcılar";
-"notification_card_subtitle" = "Bildirimlerle düzenli kal";
-
-"premium_card_title" = "Premium";
-"premium_card_subtitle" = "Tüm özelliklerin kilidini aç";
-"premium_card_upgrade_button" = "Hemen Yükselt";
-
-// MARK: - Premium Paywall
-"paywall_title" = "Premium'a Geç";
-"paywall_subtitle" = "Tüm özelliklerin kilidini aç, sınırsız öğren";
-"paywall_feature_1" = "Sınırsız kelime seçimi";
-"paywall_feature_2" = "Reklamsız deneyim";
-"paywall_feature_3" = "Premium kelime paketleri";
-"paywall_feature_4" = "Yapay zeka asistanı";
-"paywall_plan_monthly" = "Aylık Plan";
-"paywall_plan_yearly" = "Yıllık Plan";
-"paywall_price_monthly" = "₺99,99/ay";
-"paywall_price_yearly" = "₺799,99/yıl";
-"paywall_best_value" = "EN AVANTAJLI";
-"paywall_purchase_button" = "Devam Et";
-"paywall_restore" = "Satın Alımları Geri Yükle";
-"paywall_terms" = "Kullanım Şartları";
-"paywall_privacy" = "Gizlilik Politikası";
-
-// Header
-"paywall_title" = "Premium'a Geç";
-"paywall_subtitle" = "Öğrenmeyi Sınırsız Hale Getir";
-
-// Features (now hardcoded in Turkish in the view for simplicity)
-// But you can keep these for reference
-"paywall_feature_1" = "Binlerce Yeni Kelime ve Kalıp Öğren";
-"paywall_feature_2" = "Günlük Sınırsız Kelime Seçme Hakkı";
-"paywall_feature_3" = "Aylık 30 Yapay Zeka Kullanma Hakkı";
-"paywall_feature_4" = "Premium Kart Tasarımları";
-
-// Pricing Plans
-"paywall_plan_weekly" = "Haftalık";
-"paywall_plan_yearly" = "Yıllık";
-"paywall_best_value" = "EN AVANTAJLI";
-
-// Purchase Button
-"paywall_purchase_button" = "Premium'a Başla";
-
-// Footer
-"paywall_restore" = "Satın Alımları Geri Yükle";
-"paywall_terms" = "Kullanım Koşulları";
-"paywall_privacy" = "Gizlilik Politikası";
-
-// MARK: - Premium Yükseltme İstemleri
-"premium_upgrade_prompt_title" = "Premium Kilidi Aç";
-"premium_upgrade_prompt_message" = "Tüm özelliklere sınırsız erişim";
-"premium_upgrade_prompt_button" = "Şimdi Yükselt";
-
-// MARK: - Onboarding Premium Push (Gelecek)
-"onboarding_premium_title" = "Premium Yolculuğuna Başla";
-"onboarding_premium_subtitle" = "Premium özellikleri 7 gün ücretsiz dene";
-"onboarding_premium_skip" = "Belki Daha Sonra";
-
-// MARK: - Onboarding
-"onboarding_screen1_message" = "İngilizce öğrenmenin en iyi yolu kelime öğrenmek, kelime öğrenmenin en iyi yolu HocaLingo!";
-"onboarding_button_next" = "İlerle";
-"onboarding_button_skip" = "Atla";
-
-// ============================================================
-// 🌍 NEW ONBOARDING LOCALIZATION KEYS
-// Add these to your Localizable.strings (Turkish)
-// ============================================================
-
-// MARK: - Screen 1: Promise
-"onboarding_promise_title" = "Dil bilgisi yok.\nSadece kelime.";
-"onboarding_promise_subtitle" = "Günde 10 dakika yeter.";
-
-// MARK: - Screen 2: Empathy
-"onboarding_empathy_title" = "En çok hangisi seni tanımlıyor?";
-"onboarding_empathy_quitter" = "Başlayıp bırakıyorum";
-"onboarding_empathy_forgetful" = "Kelimeler aklımda kalmıyor";
-"onboarding_empathy_no_time" = "Zamanım hiç yok";
-"onboarding_empathy_response" = "Tam senlik bir sistem var.";
-
-// MARK: - Screen 3: Goal (StudyDirection)
-"onboarding_goal_title" = "Ne için öğreniyorsun?";
-"onboarding_goal_understand" = "Anlamak";
-"onboarding_goal_speak" = "Konuşmak";
-"onboarding_goal_understand_short" = "Okuma, dinleme, sınav";
-"onboarding_goal_speak_short" = "Kelimeyi hatırla, kullan";
-"onboarding_goal_explain_understand" = "İngilizce kelimeyi görüp Türkçesini bulacaksın.";
-"onboarding_goal_explain_speak" = "Türkçe kelimeyi görüp İngilizcesini bulacaksın.";
-"onboarding_goal_changeable" = "İstediğin zaman değiştirebilirsin.";
-
-// MARK: - Screen 4: Level
-"onboarding_level_title" = "Seviyen nedir?";
-"onboarding_level_beginner" = "Başlangıç";
-"onboarding_level_intermediate" = "Orta";
-"onboarding_level_upper" = "Orta-İleri";
-"onboarding_level_advanced" = "İleri";
-"onboarding_level_beginner_desc" = "Hello, Thank you gibi temel kelimeler";
-"onboarding_level_intermediate_desc" = "Günlük konuşma kelimeleri";
-"onboarding_level_upper_desc" = "İş ve akademik kelimeler";
-"onboarding_level_advanced_desc" = "Gelişmiş ve az kullanılan kelimeler";
-"onboarding_level_response_beginner" = "Harika başlangıç noktası!";
-"onboarding_level_response_intermediate" = "Güzel, temeli biliyorsun!";
-"onboarding_level_response_upper" = "Ciddi iş, beğendim!";
-"onboarding_level_response_advanced" = "Vay, iddialısın!";
-
-// MARK: - Screen 5: Summary
-"onboarding_summary_title" = "Planın hazır!";
-"onboarding_summary_goal" = "Hedef";
-"onboarding_summary_level" = "Seviye";
-"onboarding_summary_ready" = "Hazır";
-"onboarding_summary_ready_value" = "Kelimeler seni bekliyor";
-"onboarding_summary_goal_speak" = "Konuşmak";
-"onboarding_summary_goal_understand" = "Anlamak";
-
-// MARK: - Buttons
-"onboarding_button_start" = "Başla";
-"onboarding_button_continue" = "Devam";
-"onboarding_button_launch" = "Kelime Seçmeye Başla";
-"onboarding_button_skip" = "Atla";
-
-// MARK: - Completion
-"onboarding_success" = "Hazırsın!";
-
-
-// Ekran 2 - Kullanıcı Tanıma
-"onboarding_question1_title" = "Öncelikli öğrenme amacın nedir?";
-"onboarding_goal_exam" = "Sınava hazırlık";
-"onboarding_goal_conversation" = "Konuşmak";
-
-"onboarding_question2_title" = "Mevcut İngilizce seviyen nedir?";
-"onboarding_level_beginner" = "Başlangıç";
-"onboarding_level_intermediate" = "Orta";
-"onboarding_level_advanced" = "İleri";
-
-// Ekran 3 - Kaydırma Demosu
-"onboarding_swipe_hint_initial" = "Nasıl çalıştığını izle";
-"onboarding_swipe_hint_action" = "Şimdi sağa kaydırarak ekle";
-"onboarding_feedback_added" = "Çalışma destene eklendi!";
-
-// Ekran 4 - Çalışma Demosu
-"onboarding_study_hint1" = "Önce hatırlamaya çalış";
-"onboarding_study_hint2" = "Anlamını görmek için karta dokun";
-"onboarding_study_hint3" = "Ne kadar zorlandığını seç";
-"onboarding_study_warning" = "Biraz düşün, gerçekten öğrendin mi?";
-"onboarding_success" = "Harika! Bu kelimeyi öğreneceksin.";
-
-// Zorluk Butonları (Demo)
-"onboarding_difficulty_hard" = "Zor";
-"onboarding_difficulty_medium" = "Orta";
-"onboarding_difficulty_easy" = "Kolay";
-
-// Premium Paywall
-"paywall_title" = "Premium Üyesi Ol";
-"paywall_subtitle" = "Tüm özelliklerin kilidini aç ve premium kalitede öğren!";
-"paywall_feature_1" = "Sınırsız Kelime Seçimi";
-"paywall_feature_2" = "Reklamsız Deneyim";
-"paywall_feature_3" = "Premium Kelime Paketleri";
-"paywall_feature_4" = "Yapay Zeka Asistanı";
-"paywall_plan_weekly" = "Haftalık";
-"paywall_plan_yearly" = "Yıllık";
-"paywall_best_value" = "En İyi Fiyat";
-"paywall_purchase_button" = "Devam Et";
-"paywall_restore" = "Satın Alımları Geri Yükle";
-"paywall_terms" = "Kullanım Koşulları";
-"paywall_privacy" = "Gizlilik Politikası";
-"premium_active_description" = "Tüm özelliklere tam erişiminiz var";
-
-// MARK: - AI Story Generation
-// ==========================================
-
-// Story Types
-"story_type_motivation" = "Motivasyon";
-"story_type_fantasy" = "Fantastik Hikaye";
-"story_type_dialogue" = "Diyalog";
-
-// Story Lengths
-"story_length_short" = "Kısa";
-"story_length_long" = "Uzun";
-
-// Main Screen
-"ai_story_title" = "Yapay Zeka Hikaye Asistanı";
-"ai_story_subtitle" = "Yapay zeka ile destendeki kelimelerden hikayeler oluştur, öğrendiklerini pekiştir.";
-"create_story" = "Hikaye Oluştur";
-"story_history" = "Geçmiş Hikayeler";
-"quota_remaining" = "Kalan Hak";
+"ai_story_title"     = "Yapay Zeka Hikaye Asistanı";
+"ai_story_subtitle"  = "Yapay zeka ile destendeki kelimelerden hikayeler oluştur, öğrendiklerini pekiştir.";
+"story_history"      = "Geçmiş Hikayeler";
+"create_story"       = "Hikaye Oluştur";
+"quota_remaining"    = "Kalan Hak";
 "stories_this_month" = "Bu Ay";
 
 // Creator Dialog
-"story_creator_title" = "Hikaye Oluştur";
+"story_creator_title"     = "Hikaye Oluştur";
 "story_topic_placeholder" = "Konu (isteğe bağlı)";
-"story_topic_hint" = "Örn: Uzay macerası, kahve molası";
-"select_type" = "Hikaye Türü";
-"select_length" = "Uzunluk";
-"generate_button" = "Hikaye Oluştur";
+"story_topic_hint"        = "Örn: Uzay macerası, kahve molası";
+"select_type"             = "Hikaye Türü";
+"select_length"           = "Uzunluk";
+"generate_button"         = "Hikaye Oluştur";
 
 // Generating Animation
 "collecting_words" = "Kelimelerini topluyorum...";
-"writing_story" = "Hikayeni yazıyorum...";
-"final_touches" = "Son rötuşlar...";
+"writing_story"    = "Hikayeni yazıyorum...";
+"final_touches"    = "Son rötuşlar...";
 
 // Story Detail
-"your_words" = "Senin Kelimelerin";
+"your_words"    = "Senin Kelimelerin";
 "story_created" = "Oluşturulma";
 "tap_word_hint" = "Kelimelere dokun anlamlarını gör";
 
-// Errors
-"quota_exceeded_free" = "Aylık 3 hikaye limitine ulaştınız. Premium ile 30 hikaye yazın!";
-"quota_exceeded_premium" = "Aylık 30 hikaye limitine ulaştınız. Yeni ay başında devam edebilirsiniz.";
+// Story Types
+"story_type_motivation" = "Motivasyon";
+"story_type_fantasy"    = "Fantastik Hikaye";
+"story_type_dialogue"   = "Diyalog";
+
+// Story Lengths
+"story_length_short" = "Kısa";
+"story_length_long"  = "Uzun";
+
+// Error Messages
+"quota_exceeded_free"      = "Aylık 3 hikaye limitine ulaştınız. Premium ile 30 hikaye yazın!";
+"quota_exceeded_premium"   = "Aylık 30 hikaye limitine ulaştınız. Yeni ay başında devam edebilirsiniz.";
 "insufficient_words_error" = "Yeterli kelime yok. En az %d kelime gerekli.";
-"api_error" = "Bir hata oluştu. Lütfen tekrar deneyin.";
-"network_error" = "İnternet bağlantınızı kontrol edin.";
+"api_error"                = "Bir hata oluştu. Lütfen tekrar deneyin.";
+"network_error"            = "İnternet bağlantınızı kontrol edin.";
 
-// Success Messages
+// Success / Action
 "story_created_success" = "🎉 Hikaye oluşturuldu!";
-"story_deleted" = "Hikaye silindi";
-"story_favorited" = "Favorilere eklendi";
+"story_deleted"         = "Hikaye silindi";
+"story_favorited"       = "Favorilere eklendi";
 
-// AI Story
-"quota_remaining" = "Kalan Hak";
-"stories_this_month" = "Bu Ay";
-"create_story" = "Hikaye Oluştur";
-"story_creator_title" = "Hikaye Oluştur";
-"story_topic_placeholder" = "Konu (isteğe bağlı)";
-"story_topic_hint" = "Örn: Uzay macerası, kahve molası";
-"select_type" = "Hikaye Türü";
-"select_length" = "Uzunluk";
-"generate_button" = "Hikaye Oluştur";
-"collecting_words" = "Kelimelerini topluyorum...";
-"writing_story" = "Hikayeni yazıyorum...";
-"final_touches" = "Son rötuşlar...";
-"your_words" = "Senin Kelimelerin";
-"tap_word_hint" = "Kelimelere dokun anlamlarını gör";
-"story_history" = "Geçmiş Hikayeler";
 
-// MARK: - Günlük Hatırlatma Bildirimleri
-"notification_title" = "HocaLingo";
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Onboarding
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-// Çeşitli motivasyonel mesajlar (10 varyasyon)
-"notification_msg_1" = "Sadece 5 dakikalık pratik bile fark yaratır! 🚀";
-"notification_msg_2" = "Otobüs mü bekliyorsun? Kelime çalışmaya ne dersin? 🚌";
-"notification_msg_3" = "Kahve molasında mısın? İngilizce kart çevirmeye ne dersin? ☕";
-"notification_msg_4" = "Gelecekteki sen bu 5 dakikaya teşekkür edecek! 💪";
-"notification_msg_5" = "Küçük adımlar büyük ilerlemelere yol açar. Hadi başla! 🎯";
-"notification_msg_6" = "Hızlı çalışma = Büyük ilerleme! Hadi başlayalım! 🌟";
-"notification_msg_7" = "Ders arası mı? Öğrenmek için mükemmel zaman! 📚";
-"notification_msg_8" = "İngilizcen seni bekliyor! Bugün sadece birkaç kelime 🔥";
-"notification_msg_9" = "Öğle arası mı? Menüye biraz kelime ekle! 🍽️";
+"onboarding_screen1_message" = "İngilizce öğrenmenin en iyi yolu kelime öğrenmek, kelime öğrenmenin en iyi yolu HocaLingo!";
+
+// Buttons
+"onboarding_button_next"     = "İlerle";
+"onboarding_button_skip"     = "Atla";
+"onboarding_button_start"    = "Başla";
+"onboarding_button_continue" = "Devam";
+"onboarding_button_launch"   = "Kelime Seçmeye Başla";
+"onboarding_success"         = "Hazırsın!";
+
+// Screen 1: Promise
+"onboarding_promise_title"    = "Dil bilgisi yok.\nSadece kelime.";
+"onboarding_promise_subtitle" = "Günde 10 dakika yeter.";
+
+// Screen 2: Empathy
+"onboarding_empathy_title"     = "En çok hangisi seni tanımlıyor?";
+"onboarding_empathy_quitter"   = "Başlayıp bırakıyorum";
+"onboarding_empathy_forgetful" = "Kelimeler aklımda kalmıyor";
+"onboarding_empathy_no_time"   = "Zamanım hiç yok";
+"onboarding_empathy_response"  = "Tam senlik bir sistem var.";
+
+// Screen 3: Goal (StudyDirection)
+"onboarding_goal_title"              = "Ne için öğreniyorsun?";
+"onboarding_goal_understand"         = "Anlamak";
+"onboarding_goal_speak"              = "Konuşmak";
+"onboarding_goal_understand_short"   = "Okuma, dinleme, sınav";
+"onboarding_goal_speak_short"        = "Kelimeyi hatırla, kullan";
+"onboarding_goal_explain_understand" = "İngilizce kelimeyi görüp Türkçesini bulacaksın.";
+"onboarding_goal_explain_speak"      = "Türkçe kelimeyi görüp İngilizcesini bulacaksın.";
+"onboarding_goal_changeable"         = "İstediğin zaman değiştirebilirsin.";
+"onboarding_goal_exam"               = "Sınava hazırlık";
+"onboarding_goal_conversation"       = "Konuşmak";
+
+// Screen 4: Level
+"onboarding_level_title"               = "Seviyen nedir?";
+"onboarding_level_beginner"            = "Başlangıç";
+"onboarding_level_intermediate"        = "Orta";
+"onboarding_level_upper"               = "Orta-İleri";
+"onboarding_level_advanced"            = "İleri";
+"onboarding_level_beginner_desc"       = "Hello, Thank you gibi temel kelimeler";
+"onboarding_level_intermediate_desc"   = "Günlük konuşma kelimeleri";
+"onboarding_level_upper_desc"          = "İş ve akademik kelimeler";
+"onboarding_level_advanced_desc"       = "Gelişmiş ve az kullanılan kelimeler";
+"onboarding_level_response_beginner"   = "Harika başlangıç noktası!";
+"onboarding_level_response_intermediate" = "Güzel, temeli biliyorsun!";
+"onboarding_level_response_upper"      = "Ciddi iş, beğendim!";
+"onboarding_level_response_advanced"   = "Vay, iddialısın!";
+
+// Questions (Legacy)
+"onboarding_question1_title" = "Öncelikli öğrenme amacın nedir?";
+"onboarding_question2_title" = "Mevcut İngilizce seviyen nedir?";
+
+// Screen 5: Summary
+"onboarding_summary_title"        = "Planın hazır!";
+"onboarding_summary_goal"         = "Hedef";
+"onboarding_summary_level"        = "Seviye";
+"onboarding_summary_ready"        = "Hazır";
+"onboarding_summary_ready_value"  = "Kelimeler seni bekliyor";
+"onboarding_summary_goal_speak"   = "Konuşmak";
+"onboarding_summary_goal_understand" = "Anlamak";
+
+// Swipe Demo
+"onboarding_swipe_hint_initial" = "Nasıl çalıştığını izle";
+"onboarding_swipe_hint_action"  = "Şimdi sağa kaydırarak ekle";
+"onboarding_feedback_added"     = "Çalışma destene eklendi!";
+
+// Study Demo
+"onboarding_study_hint1"   = "Önce hatırlamaya çalış";
+"onboarding_study_hint2"   = "Anlamını görmek için karta dokun";
+"onboarding_study_hint3"   = "Ne kadar zorlandığını seç";
+"onboarding_study_warning" = "Biraz düşün, gerçekten öğrendin mi?";
+
+// Difficulty Buttons (Demo)
+"onboarding_difficulty_hard"   = "Zor";
+"onboarding_difficulty_medium" = "Orta";
+"onboarding_difficulty_easy"   = "Kolay";
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Premium / Paywall
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"paywall_title"           = "Premium'a Geç";
+"paywall_subtitle"        = "Öğrenmeyi Sınırsız Hale Getir";
+"paywall_feature_1"       = "Binlerce Yeni Kelime ve Kalıp Öğren";
+"paywall_feature_2"       = "Günlük Sınırsız Kelime Seçme Hakkı";
+"paywall_feature_3"       = "Aylık 30 Yapay Zeka Kullanma Hakkı";
+"paywall_feature_4"       = "Premium Kart Tasarımları";
+"paywall_plan_weekly"     = "Haftalık";
+"paywall_plan_yearly"     = "Yıllık";
+"paywall_best_value"      = "EN AVANTAJLI";
+"paywall_purchase_button" = "Premium'a Başla";
+"paywall_restore"         = "Satın Alımları Geri Yükle";
+"paywall_terms"           = "Kullanım Koşulları";
+"paywall_privacy"         = "Gizlilik Politikası";
+
+"premium_upgrade_prompt_title"   = "Premium Kilidi Aç";
+"premium_upgrade_prompt_message" = "Tüm özelliklere sınırsız erişim";
+"premium_upgrade_prompt_button"  = "Şimdi Yükselt";
+
+"onboarding_premium_title"    = "Premium Yolculuğuna Başla";
+"onboarding_premium_subtitle" = "Premium özellikleri 7 gün ücretsiz dene";
+"onboarding_premium_skip"     = "Belki Daha Sonra";
+
+
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// MARK: - Notifications
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"notification_title"  = "HocaLingo";
+"notification_msg_1"  = "Sadece 5 dakikalık pratik bile fark yaratır! 🚀";
+"notification_msg_2"  = "Otobüs mü bekliyorsun? Kelime çalışmaya ne dersin? 🚌";
+"notification_msg_3"  = "Kahve molasında mısın? İngilizce kart çevirmeye ne dersin? ☕";
+"notification_msg_4"  = "Gelecekteki sen bu 5 dakikaya teşekkür edecek! 💪";
+"notification_msg_5"  = "Küçük adımlar büyük ilerlemelere yol açar. Hadi başla! 🎯";
+"notification_msg_6"  = "Hızlı çalışma = Büyük ilerleme! Hadi başlayalım! 🌟";
+"notification_msg_7"  = "Ders arası mı? Öğrenmek için mükemmel zaman! 📚";
+"notification_msg_8"  = "İngilizcen seni bekliyor! Bugün sadece birkaç kelime 🔥";
+"notification_msg_9"  = "Öğle arası mı? Menüye biraz kelime ekle! 🍽️";
 "notification_msg_10" = "Uykun mu kaçtı? Hızlı bir çalışma ile günü verimli kapat! 🌙";
 
-// MARK: - Haftalık AI Hikaye Bildirimleri
 "notification_ai_title" = "✨ AI Hikaye Zamanı!";
-
-// AI odaklı mesajlar (5 varyasyon)
 "notification_ai_msg_1" = "Yapay zeka ile çalışma destene özel hikayeler yarat 🎨";
 "notification_ai_msg_2" = "Yapay zekaya kendine özel bir hikaye yazdırabilirsin! Hemen dene 🤖";
 "notification_ai_msg_3" = "AI ile yaratıcılığını ortaya çıkar! Reading hikayeni oluştur ✨";

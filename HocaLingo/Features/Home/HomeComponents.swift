@@ -162,7 +162,7 @@ struct HeroCardView: View {
         Group {
             switch currentContentType {
             case .image(let index):
-                let mascots = ["lingohoca1", "lingohoca2", "lingohoca3"]
+                let mascots = ["lingohoca1", "lingohoca2", "lingohoca3", "lingohoca_celebrate", "lingohoca_nod", "lingohoca_nod"]
                 Image(mascots[index % mascots.count])
                     .resizable()
                     .scaledToFit()
@@ -322,13 +322,13 @@ struct HomeActionButtonsSection: View {
 
             // ── PRIMARY: Package Selection — solid teal, single label ──
             Button(action: onPackageSelect) {
-                HStack(spacing: 14) {
+                HStack(spacing: 16) {
                     Image(systemName: "rectangle.portrait.on.rectangle.portrait.angled.fill")
                         .font(.system(size: 22, weight: .bold))
                         .foregroundColor(.white)
 
                     Text(LocalizedStringKey("action_select_package"))
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
                         .foregroundColor(.white)
 
                     Spacer()
@@ -336,9 +336,9 @@ struct HomeActionButtonsSection: View {
                 }
                 .padding(.horizontal, 20)
                 .padding(.vertical, 18)
-                .background(teal)
+                .background(orange)
                 .clipShape(RoundedRectangle(cornerRadius: 18))
-                .shadow(color: teal.opacity(0.4), radius: 12, y: 5)
+                .shadow(color: orange.opacity(0.3), radius: 12, y: 5)
             }
             .buttonStyle(ScaleButtonStyle())
             .frame(maxWidth: .infinity)
@@ -347,15 +347,15 @@ struct HomeActionButtonsSection: View {
             Button(action: onAddWord) {
                 Image(systemName: "plus")
                     .font(.system(size: 22, weight: .bold, design: .rounded))
-                    .foregroundColor(orange)
-                    .frame(width: 62, height: 62)
+                    .foregroundColor(teal)
+                    .frame(width: 72, height: 72)
                     .background(Color.themeCard)
                     .clipShape(RoundedRectangle(cornerRadius: 18))
                     .overlay(
                         RoundedRectangle(cornerRadius: 18)
-                            .strokeBorder(orange.opacity(isDark ? 0.45 : 0.35), lineWidth: 1.8)
+                            .strokeBorder(teal.opacity(isDark ? 0.45 : 0.35), lineWidth: 1.8)
                     )
-                    .shadow(color: orange.opacity(0.15), radius: 8, y: 3)
+                    .shadow(color: teal.opacity(0.15), radius: 8, y: 3)
             }
             .buttonStyle(SpringButtonStyle())
         }

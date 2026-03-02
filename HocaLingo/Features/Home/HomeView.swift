@@ -23,7 +23,7 @@ struct HomeView: View {
     @State private var heroBreathe: CGFloat  = 1.0
     @State private var showVaultSheet: Bool  = false
 
-    private let rotationTimer = Timer.publish(every: 40, on: .main, in: .common).autoconnect()
+    private let rotationTimer = Timer.publish(every: 20, on: .main, in: .common).autoconnect()
     private var isDarkMode: Bool { themeViewModel.isDarkMode(in: colorScheme) }
 
     // MARK: - Body

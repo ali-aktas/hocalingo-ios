@@ -42,7 +42,17 @@ class HomeViewModel: ObservableObject {
         "motivation_7",  // Today is a great day to learn
         "motivation_8",  // Success comes with patience
         "motivation_9",  // Welcome to the world of English
-        "motivation_10"  // Keep the momentum going!
+        "motivation_10",  // Keep the momentum going!
+        "motivation_11",  // Just 10 minutes a day...
+        "motivation_12",  // You'll see how easy English is...
+        "motivation_13",  // Small steps, big goals
+        "motivation_14",  // Every word brings you closer
+        "motivation_15",  // Practice makes perfect
+        "motivation_16",  // Your English journey continues
+        "motivation_17",  // Today is a great day to learn
+        "motivation_18",  // Success comes with patience
+        "motivation_19",  // Welcome to the world of English
+        "motivation_20"  // Keep the momentum going!
     ]
     
     // ✅ ROTATION SEQUENCE: [image, text, text, text, image, text, text, text, image, text, text, text, text]
@@ -60,7 +70,20 @@ class HomeViewModel: ObservableObject {
         .text(6),       // motivation_7
         .text(7),       // motivation_8
         .text(8),       // motivation_9
-        .text(9)        // motivation_10
+        .text(9),        // motivation_10
+        .image(3),      // lingohoca1
+        .text(10),        // motivation_11
+        .text(11),        // motivation_12
+        .text(12),        // motivation_13
+        .text(13),        // motivation_14
+        .image(4),      // lingohoca1
+        .text(14),        // motivation_15
+        .text(15),        // motivation_16
+        .text(16),        // motivation_17
+        .text(17),        // motivation_18
+        .image(5),      // lingohoca1
+        .text(18),        // motivation_19
+        .text(19)        // motivation_20
     ]
     
     private var currentRotationIndex = 0
@@ -272,8 +295,8 @@ class HomeViewModel: ObservableObject {
 // MARK: - Hero Content Type
 /// Defines what content to show in hero card (image or motivation text)
 enum HeroContentType: Equatable {
-    case image(Int)  // Image index (0, 1, 2)
-    case text(Int)   // Motivation text index (0-9)
+    case image(Int)  // Image index (0, 1, 2, 3, 4)
+    case text(Int)   // Motivation text index (0-19)
 }
 
 // ✅ REMOVED: HomeEvent, HomeUiState, DailyGoalProgress, MonthlyStats
