@@ -213,6 +213,18 @@
 "package_empty_message" = "Bu paketteki tüm kelimeleri gördün.\nDiğer paketleri keşfetme vakti!";
 "package_empty_button"  = "Paketlere Göz At";
 
+// First Selection
+"first_selection_intro_title" = "Öğrenmek istediğin kelimeleri seçelim!";
+"first_selection_swipe_right" = "Bilmiyorum — sağa kaydır, öğren";
+"first_selection_swipe_left" = "Zaten biliyorum — sola kaydır, atla";
+"first_selection_start" = "Hazırım, Başlayalım!";
+"first_selection_skip" = "Atla";
+"first_selection_soft_limit_title" = "Harika başlangıç! 🎉";
+"first_selection_soft_limit_message" = "İlk gün için bu kadar yeter, hadi çalışalım!";
+"first_selection_start_learning" = "Çalışmaya Başla";
+"first_selection_continue" = "Daha fazla seç";
+
+
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Package Names — Standard (A1–C2)
@@ -267,18 +279,20 @@
 "word_selection_swipe_hint"    = "← Geç   |   Öğren →";
 "word_selection_undo"          = "Geri Al";
 "word_selection_start_study"   = "Çalış (%d)";
-"word_selection_remaining"     = "seçim hakkı kaldı";
 "word_selection_complete_title"    = "Tebrikler! 🎉";
 "word_selection_complete_message"  = "Bu paketteki tüm kelimeleri gördün.\nYeni bir paket seçmeye hazır mısın?";
 "word_selection_start_learning"    = "Çalışmaya Başla";
 "word_selection_new_package"       = "Yeni Paket Seç";
 "word_selection_limit_reached_title"   = "Günlük Limit Doldu";
 "word_selection_limit_reached_message" = "Bugün için kelime seçme hakkınız doldu. Premium'a geçin veya yarın tekrar deneyin.";
-"word_selection_limit_short"   = "Günlük limitin doldu. Daha fazlası için yükselt.";
-"word_selection_limit_title"   = "Günlük Seçim Limitine Ulaşıldı";
 "word_selection_limit_message" = "Bugün 15 kelime seçtin.\nKelimeleri atlayabilirsin veya Premium'a geçerek sınırsız seçim yapabilirsin!";
 "word_selection_limit_close"   = "İncelemeye Devam Et";
 "word_selection_subtitle"      = "Öğrenmek için sağa, geçmek için sola kaydır";
+// Weekly limit (replaces daily)
+"word_selection_limit_title" = "Haftalık limite ulaştın!";
+"word_selection_limit_short" = "Premium ile sınırsız kelime seç.";
+"word_selection_remaining" = "kelime hakkın kaldı bu hafta";
+
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

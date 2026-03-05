@@ -1,6 +1,15 @@
 {
-  "originHash" : "c7410b91805c60ffa585f5280190f49b2386733070def3695ed73acdce91ffae",
+  "originHash" : "dbae82d0ee0af1bf55a72322c496187a323e735ada6a3b6acf41e13266209f3e",
   "pins" : [
+    {
+      "identity" : "facebook-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/facebook/facebook-ios-sdk",
+      "state" : {
+        "revision" : "c19607d535864533523d1f437c84035e5fb101cf",
+        "version" : "14.1.0"
+      }
+    },
     {
       "identity" : "lottie-ios",
       "kind" : "remoteSourceControl",

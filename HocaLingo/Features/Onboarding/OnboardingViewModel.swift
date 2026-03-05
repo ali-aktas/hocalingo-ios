@@ -40,6 +40,7 @@ class OnboardingViewModel: ObservableObject {
 
         switch currentStep {
         case .promise:
+            MetaEventManager.shared.logOnboardingStart()
             currentStep = .empathy
         case .empathy:
             currentStep = .goal
@@ -113,6 +114,12 @@ class OnboardingViewModel: ObservableObject {
 
     private func completeOnboarding() {
         saveOnboardingData()
+        
+        // Meta Events
+        MetaEventManager.shared.logOnboardingCompleted()
+        if let level = onboardingData.englishLevel {
+            MetaEventManager.shared.logOnboardingLevelSelected(level: level.rawValue)
+        }
 
         // Mark completed
         UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")

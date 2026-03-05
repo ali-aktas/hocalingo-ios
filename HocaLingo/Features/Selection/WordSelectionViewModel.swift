@@ -61,7 +61,7 @@ class WordSelectionViewModel: ObservableObject {
     private let soundManager = SoundManager.shared
     private let jsonLoader = JSONLoader()
     private let userDefaults = UserDefaultsManager.shared
-    private let selectionLimitManager = DailySelectionLimitManager.shared
+    private let selectionLimitManager = WeeklySelectionLimitManager.shared
 
     /// Guard window matches SwipeableCardView animationDuration (0.28s) + small margin.
     private let swipeGuardDuration: Double = 0.32

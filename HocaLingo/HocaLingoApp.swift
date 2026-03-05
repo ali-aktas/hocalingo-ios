@@ -9,6 +9,7 @@
 import SwiftUI
 import UserNotifications
 import RevenueCat
+import FBSDKCoreKit
 
 @main
 struct HocaLingoApp: App {
@@ -21,7 +22,7 @@ struct HocaLingoApp: App {
     
     // MARK: - Onboarding State
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
-    
+    @AppStorage("hasCompletedFirstWordSelection") private var hasCompletedFirstWordSelection: Bool = false
     // MARK: - Initialization
     init() {
         // Set notification delegate
@@ -37,6 +38,9 @@ struct HocaLingoApp: App {
         Purchases.configure(withAPIKey: "appl_sfCiEYrSXxYYRRjbMFZOjwBfagG")
         
         print("✅ RevenueCat initialized")
+        
+        // Meta SDK Configuration
+        MetaEventManager.shared.configure()
     }
     
     // MARK: - Computed Properties
@@ -47,12 +51,12 @@ struct HocaLingoApp: App {
     var body: some Scene {
         WindowGroup {
             Group {
-                if hasCompletedOnboarding {
-                    // ✅ FIXED: Main app without parameters
-                    MainTabViewWrapper()
-                } else {
-                    // Onboarding flow
+                if !hasCompletedOnboarding {
                     OnboardingView(hasCompletedOnboarding: $hasCompletedOnboarding)
+                } else if !hasCompletedFirstWordSelection {
+                    FirstWordSelectionView(hasCompletedFirstWordSelection: $hasCompletedFirstWordSelection)
+                } else {
+                    MainTabViewWrapper()
                 }
             }
             .preferredColorScheme(themeViewModel.effectiveColorScheme)

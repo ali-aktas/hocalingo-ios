@@ -112,6 +112,13 @@ struct MainTabView: View {
         .onAppear {
             RatingManager.shared.checkAndShowRating()
             checkAndShowPaywall()
+            // After first word selection → open Study tab
+            if UserDefaults.standard.bool(forKey: "shouldOpenStudyAfterFirstSelection") {
+                selectedTab = 1
+                UserDefaults.standard.set(false, forKey: "shouldOpenStudyAfterFirstSelection")
+            }
+            // Meta: Activate app event (tracks app opens)
+            MetaEventManager.shared.activateApp()
         }
         .sheet(isPresented: $showPaywallOnLaunch) {
             PremiumPaywallView()

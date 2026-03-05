@@ -149,6 +149,10 @@ class PremiumManager: ObservableObject {
                 self.isPremium = isActive
                 self.userDefaults.set(isActive, forKey: self.premiumKey)
                 print("✅ Purchase successful! Premium: \(isActive)")
+                // Meta Event: subscription purchased
+                if isActive {
+                    MetaEventManager.shared.logSubscriptionStarted(price: 0, currency: "TRY")
+                }
                 completion(isActive, nil)
             }
         }

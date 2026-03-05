@@ -213,6 +213,16 @@
 "package_empty_message" = "You've seen all words in this package.\nTime to explore other packages!";
 "package_empty_button"  = "Browse Packages";
 
+// First Selection
+"first_selection_intro_title" = "Let's pick the words you want to learn!";
+"first_selection_swipe_right" = "Don't know it — swipe right, learn it";
+"first_selection_swipe_left" = "Already know — swipe left, skip it";
+"first_selection_start" = "I'm Ready, Let's Go!";
+"first_selection_skip" = "Skip";
+"first_selection_soft_limit_title" = "Great start! 🎉";
+"first_selection_soft_limit_message" = "That's enough for day one, let's start studying!";
+"first_selection_start_learning" = "Start Learning";
+"first_selection_continue" = "Select more";
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Package Names — Standard (A1–C2)
@@ -270,18 +280,18 @@
 "word_selection_swipe_hint"   = "← Skip   |   Learn →";
 "word_selection_undo"         = "Undo";
 "word_selection_start_study"  = "Study (%d)";
-"word_selection_remaining"    = "selections left";
 "word_selection_complete_title"   = "Congratulations! 🎉";
 "word_selection_complete_message" = "You've seen all words in this package.\nReady to pick a new package?";
 "word_selection_start_learning"   = "Start Learning";
 "word_selection_new_package"      = "Choose New Package";
 "word_selection_limit_reached_title"   = "Daily Limit Reached";
 "word_selection_limit_reached_message" = "You've reached today's word selection limit. Upgrade to Premium or try again tomorrow.";
-"word_selection_limit_short"  = "Daily limit reached. Upgrade for more.";
-"word_selection_limit_title"  = "Daily Selection Limit Reached";
 "word_selection_limit_message" = "You've selected 15 words today.\nYou can skip words or upgrade to Premium for unlimited selection!";
 "word_selection_limit_close"  = "Continue Browsing";
 "word_selection_subtitle"     = "Swipe right to learn, left to skip";
+"word_selection_limit_title" = "Weekly limit reached!";
+"word_selection_limit_short" = "Go Premium for unlimited words.";
+"word_selection_remaining" = "words left this week";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

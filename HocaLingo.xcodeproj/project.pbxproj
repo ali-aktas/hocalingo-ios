@@ -13,6 +13,7 @@
 		0E7A28AC2F2D30BC0056FD6C /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 0E7A28AB2F2D30BC0056FD6C /* Configuration.storekit */; };
 		0E7A28AD2F2D30BC0056FD6C /* Configuration.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 0E7A28AB2F2D30BC0056FD6C /* Configuration.storekit */; };
 		0EA0B3EE2F53AC5300EEDCE7 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 0EA0B3ED2F53AC5300EEDCE7 /* Lottie */; };
+		0EB05EE62F5A023B000C152D /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 0EB05EE52F5A023B000C152D /* FacebookCore */; };
 		0EC5FC772F192647002129FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EC5FC752F192647002129FC /* Localizable.strings */; };
 		0EC5FC782F192647002129FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EC5FC752F192647002129FC /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -91,6 +92,7 @@
 				Core/Utils/ContentValidator.swift,
 				Core/Utils/DailySelectionLimitManager.swift,
 				Core/Utils/LottieView.swift,
+				Core/Utils/MetaEventManager.swift,
 				Core/Utils/NotificationDelegate.swift,
 				Core/Utils/NotificationManager.swift,
 				Core/Utils/PromptBuilder.swift,
@@ -99,6 +101,7 @@
 				Core/Utils/SpacedRepetition.swift,
 				Core/Utils/ThemeViewModel.swift,
 				Core/Utils/TTSManager.swift,
+				Core/Utils/WeeklySelectionLimitManager.swift,
 				Core/Utils/WordSelector.swift,
 				Features/AIStory/AIStoryMainView.swift,
 				Features/AIStory/Components/InteractiveWordView.swift,
@@ -138,6 +141,7 @@
 				Features/Profile/Components/SettingsRowType.swift,
 				Features/Profile/ProfileView.swift,
 				Features/Profile/ProfileViewModel.swift,
+				Features/Selection/FirstWordSelectionView.swift,
 				Features/Selection/PackageCardComponents.swift,
 				Features/Selection/PackageSelectionView.swift,
 				Features/Selection/PackageSelectionViewModel.swift,
@@ -198,6 +202,7 @@
 				Features/Home/HomeUiState.swift,
 				Features/Home/HomeView.swift,
 				Features/Home/HomeViewModel.swift,
+				Features/Selection/FirstWordSelectionView.swift,
 				Features/Selection/PackageCardComponents.swift,
 				Features/Selection/PackageSelectionView.swift,
 				Features/Selection/PackageSelectionViewModel.swift,
@@ -269,6 +274,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0E7A28AA2F2D2F3B0056FD6C /* RevenueCat in Frameworks */,
+				0EB05EE62F5A023B000C152D /* FacebookCore in Frameworks */,
 				0EA0B3EE2F53AC5300EEDCE7 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +347,7 @@
 			packageProductDependencies = (
 				0E7A28A92F2D2F3B0056FD6C /* RevenueCat */,
 				0EA0B3ED2F53AC5300EEDCE7 /* Lottie */,
+				0EB05EE52F5A023B000C152D /* FacebookCore */,
 			);
 			productName = HocaLingo;
 			productReference = 0EC909CE2F18743E00FEBC67 /* HocaLingo.app */;
@@ -430,6 +437,7 @@
 			packageReferences = (
 				0E7A28A82F2D2F3B0056FD6C /* XCRemoteSwiftPackageReference "purchases-ios" */,
 				0EA0B3EC2F53AC5300EEDCE7 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				0EB05EE42F5A023B000C152D /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0EC909CF2F18743E00FEBC67 /* Products */;
@@ -857,6 +865,14 @@
 				minimumVersion = 4.6.0;
 			};
 		};
+		0EB05EE42F5A023B000C152D /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 14.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -869,6 +885,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0EA0B3EC2F53AC5300EEDCE7 /* XCRemoteSwiftPackageReference "lottie-ios" */;
 			productName = Lottie;
+		};
+		0EB05EE52F5A023B000C152D /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EB05EE42F5A023B000C152D /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

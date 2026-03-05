@@ -125,6 +125,18 @@ class StudyViewModel: ObservableObject {
                     object: nil
                 )
                 print("📢 Study session completed notification sent")
+                
+                // Meta Event: lesson completed
+                MetaEventManager.shared.logStudyCompleted(
+                    wordsStudied: cardsCompletedCount,
+                    direction: studyDirection.rawValue
+                )
+
+                // Meta Event: first study ever (one-time)
+                if !UserDefaults.standard.bool(forKey: "has_completed_first_study") {
+                    MetaEventManager.shared.logFirstStudyCompleted()
+                    UserDefaults.standard.set(true, forKey: "has_completed_first_study")
+                }
             }
         }
     }
