@@ -64,8 +64,8 @@ struct GoalScreen: View {
                 VStack(spacing: 8) {
                     // Direction explanation
                     Text(goalExplanation(for: goal))
-                        .font(.system(size: 14, weight: .medium, design: .rounded))
-                        .foregroundColor(Color.white.opacity(0.7))
+                        .font(.system(size: 15, weight: .medium, design: .rounded))
+                        .foregroundColor(Color.white.opacity(0.8))
                         .multilineTextAlignment(.center)
 
                     // Changeable note

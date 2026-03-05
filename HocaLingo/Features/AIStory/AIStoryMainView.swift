@@ -134,7 +134,7 @@ struct AIStoryMainView: View {
                     loopMode: .loop,
                     animationSpeed: 0.4
                 )
-                .frame(width: 200, height: 160)
+                .frame(width: 160, height: 180)
                 .opacity(0.5)
                 .allowsHitTesting(false)
                 
@@ -142,7 +142,7 @@ struct AIStoryMainView: View {
                 Image("lingo_ai_header")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 140, height: 110)
+                    .frame(width: 160, height: 180)
             }
             
             Text("ai_story_title")

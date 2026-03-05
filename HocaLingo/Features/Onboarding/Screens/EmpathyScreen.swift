@@ -50,7 +50,7 @@ struct EmpathyScreen: View {
                     Image("lingohoca_nod")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 80, height: 80)
+                        .frame(width: 140, height: 140)
 
                     SpeechBubble(message: message)
                 }

@@ -30,7 +30,7 @@ struct SummaryScreen: View {
                     LottieView(
                         animationName: "confetti_minimal",
                         loopMode: .playOnce,
-                        animationSpeed: 1.0
+                        animationSpeed: 0.8
                     )
                     .frame(width: 300, height: 300)
                     .allowsHitTesting(false)
@@ -41,10 +41,10 @@ struct SummaryScreen: View {
                 Image("lingohoca_celebrate")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 180, height: 180)
+                    .frame(width: 200, height: 200)
                     .opacity(mascotOpacity)
             }
-            .padding(.bottom, 24)
+            .padding(.bottom, 18)
 
             // Summary card
             summaryCard

@@ -2,7 +2,7 @@
 //  HocaLingoApp.swift
 //  HocaLingo
 //
-//  ✅ FIXED: Simplified - MainTabView takes no parameters
+//  ✅ UPDATED: Meta SDK via UIApplicationDelegateAdaptor
 //  Location: HocaLingo/HocaLingoApp.swift
 //
 
@@ -14,6 +14,9 @@ import FBSDKCoreKit
 @main
 struct HocaLingoApp: App {
     
+    // MARK: - Meta SDK (MUST be first — initializes via AppDelegate)
+    @UIApplicationDelegateAdaptor(MetaAppDelegate.self) var appDelegate
+    
     // MARK: - Theme Management
     @StateObject private var themeViewModel = ThemeViewModel.shared
     
@@ -23,6 +26,10 @@ struct HocaLingoApp: App {
     // MARK: - Onboarding State
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
     @AppStorage("hasCompletedFirstWordSelection") private var hasCompletedFirstWordSelection: Bool = false
+    
+    // MARK: - Scene Phase (Meta activate on foreground)
+    @Environment(\.scenePhase) private var scenePhase
+    
     // MARK: - Initialization
     init() {
         // Set notification delegate
@@ -38,9 +45,7 @@ struct HocaLingoApp: App {
         Purchases.configure(withAPIKey: "appl_sfCiEYrSXxYYRRjbMFZOjwBfagG")
         
         print("✅ RevenueCat initialized")
-        
-        // Meta SDK Configuration
-        MetaEventManager.shared.configure()
+        // Meta SDK is initialized via MetaAppDelegate — no code needed here
     }
     
     // MARK: - Computed Properties
@@ -62,6 +67,12 @@ struct HocaLingoApp: App {
             .preferredColorScheme(themeViewModel.effectiveColorScheme)
             .environment(\.themeViewModel, themeViewModel)
             .environment(\.locale, currentLocale)
+            .onChange(of: scenePhase) { _, newPhase in
+                if newPhase == .active {
+                    MetaEventManager.shared.activateApp()
+                
+                }
+            }
         }
     }
 }
@@ -73,25 +84,23 @@ struct MainTabViewWrapper: View {
     var body: some View {
         MainTabView()
             .onAppear {
-                // ✅ CLEAR BADGE: Reset badge when app opens (iOS 17+)
+                // CLEAR BADGE: Reset badge when app opens (iOS 17+)
                 UNUserNotificationCenter.current().setBadgeCount(0) { error in
                     if let error = error {
                         print("❌ Badge clear error: \(error)")
                     }
                 }
                 
-                // ✅ NEW: Request notification permission on first launch (after onboarding)
+                // Request notification permission on first launch (after onboarding)
                 requestNotificationPermissionIfNeeded()
             }
     }
     
     // MARK: - First-Time Notification Permission
     private func requestNotificationPermissionIfNeeded() {
-        // Only request once
         guard !hasRequestedNotificationPermission else { return }
         hasRequestedNotificationPermission = true
         
-        // Small delay for better UX (after paywall might show)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
             NotificationManager.shared.requestPermissionOnFirstLaunch { granted in
                 if granted {

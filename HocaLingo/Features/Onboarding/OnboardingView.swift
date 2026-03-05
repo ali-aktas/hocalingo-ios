@@ -116,7 +116,7 @@ struct OnboardingView: View {
                     loopMode: .playOnce,
                     animationSpeed: 1.0
                 )
-                .frame(width: 120, height: 120)
+                .frame(width: 200, height: 200)
 
                 Text("onboarding_success")
                     .font(.system(size: 24, weight: .bold, design: .rounded))

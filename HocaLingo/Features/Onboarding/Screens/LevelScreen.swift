@@ -51,7 +51,7 @@ struct LevelScreen: View {
                     Image("lingohoca_nod")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 64, height: 64)
+                        .frame(width: 84, height: 84)
 
                     SpeechBubble(message: message)
                 }

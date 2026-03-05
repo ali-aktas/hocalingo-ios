@@ -18,9 +18,9 @@ struct FirstWordSelectionView: View {
     @State private var dummyTab: Int = 0
     @State private var selectedCountTracker: Int = 0
     @State private var showSoftLimitDialog: Bool = false
-    
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.themeViewModel) private var themeViewModel
+    @State private var showWordSelection: Bool = false
     
     // MARK: - Constants
     private let softLimit = 20
@@ -37,9 +37,7 @@ struct FirstWordSelectionView: View {
                 introScreen
                     .transition(.opacity)
             } else {
-                NavigationStack {
-                    WordSelectionView(packageId: packageId, selectedTab: $dummyTab)
-                }
+                Color.clear
             }
             
             // Soft limit dialog overlay
@@ -51,6 +49,14 @@ struct FirstWordSelectionView: View {
         }
         .preferredColorScheme(.dark)
         .animation(.easeInOut(duration: 0.3), value: showIntro)
+        .fullScreenCover(isPresented: $showWordSelection) {
+            NavigationStack {
+                WordSelectionView(packageId: packageId, selectedTab: $dummyTab)
+            }
+        }
+        .onChange(of: showWordSelection) { _, newValue in
+            if !newValue { completeFirstSelection() }
+        }
         .animation(.easeInOut(duration: 0.25), value: showSoftLimitDialog)
         // Intercept tab change (WordSelectionView sets tab=1 when "Start Learning")
         .onChange(of: dummyTab) { _, newValue in
@@ -113,6 +119,7 @@ struct FirstWordSelectionView: View {
                     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                     withAnimation {
                         showIntro = false
+                        showWordSelection = true
                     }
                 }) {
                     Text(LocalizedStringKey("first_selection_start"))

@@ -39,7 +39,7 @@ struct PromiseScreen: View {
                 }
 
                 // Mascot with entrance animation
-                Image("lingohoca_wave")
+                Image("lingohoca1")
                     .resizable()
                     .scaledToFit()
                     .frame(width: 260, height: 260)

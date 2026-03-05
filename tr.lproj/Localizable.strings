@@ -489,42 +489,42 @@
 "onboarding_success"         = "Hazırsın!";
 
 // Screen 1: Promise
-"onboarding_promise_title"    = "Dil bilgisi yok.\nSadece kelime.";
-"onboarding_promise_subtitle" = "Günde 10 dakika yeter.";
+"onboarding_promise_title"    = "Kurallar yok.\nSadece kelime öğren.";
+"onboarding_promise_subtitle" = "Günde 10 dakika yeter!";
 
 // Screen 2: Empathy
 "onboarding_empathy_title"     = "En çok hangisi seni tanımlıyor?";
 "onboarding_empathy_quitter"   = "Başlayıp bırakıyorum";
 "onboarding_empathy_forgetful" = "Kelimeler aklımda kalmıyor";
 "onboarding_empathy_no_time"   = "Zamanım hiç yok";
-"onboarding_empathy_response"  = "Tam senlik bir sistem var.";
+"onboarding_empathy_response"  = "HocaLingo Tam sana göre!";
 
 // Screen 3: Goal (StudyDirection)
-"onboarding_goal_title"              = "Ne için öğreniyorsun?";
-"onboarding_goal_understand"         = "Anlamak";
+"onboarding_goal_title"              = "Önceliğin ne?";
+"onboarding_goal_understand"         = "Sınavlar";
 "onboarding_goal_speak"              = "Konuşmak";
-"onboarding_goal_understand_short"   = "Okuma, dinleme, sınav";
-"onboarding_goal_speak_short"        = "Kelimeyi hatırla, kullan";
-"onboarding_goal_explain_understand" = "İngilizce kelimeyi görüp Türkçesini bulacaksın.";
-"onboarding_goal_explain_speak"      = "Türkçe kelimeyi görüp İngilizcesini bulacaksın.";
+"onboarding_goal_understand_short"   = "Okuma ve dinleme";
+"onboarding_goal_speak_short"        = "Konuşma ve yazma";
+"onboarding_goal_explain_understand" = "İngilizce kelimeyi görüp Türkçesini hatırlayacaksın.";
+"onboarding_goal_explain_speak"      = "Türkçe kelimeyi görüp İngilizcesini hatırlayacaksın.";
 "onboarding_goal_changeable"         = "İstediğin zaman değiştirebilirsin.";
 "onboarding_goal_exam"               = "Sınava hazırlık";
 "onboarding_goal_conversation"       = "Konuşmak";
 
 // Screen 4: Level
-"onboarding_level_title"               = "Seviyen nedir?";
+"onboarding_level_title"               = "Seviyeni seç";
 "onboarding_level_beginner"            = "Başlangıç";
 "onboarding_level_intermediate"        = "Orta";
 "onboarding_level_upper"               = "Orta-İleri";
 "onboarding_level_advanced"            = "İleri";
-"onboarding_level_beginner_desc"       = "Hello, Thank you gibi temel kelimeler";
+"onboarding_level_beginner_desc"       = "Hello, Welcome gibi temel kelimeler";
 "onboarding_level_intermediate_desc"   = "Günlük konuşma kelimeleri";
-"onboarding_level_upper_desc"          = "İş ve akademik kelimeler";
-"onboarding_level_advanced_desc"       = "Gelişmiş ve az kullanılan kelimeler";
-"onboarding_level_response_beginner"   = "Harika başlangıç noktası!";
+"onboarding_level_upper_desc"          = "Geniş kelime bilgisi";
+"onboarding_level_advanced_desc"       = "Ana dil seviyesinde kelime bilgisi";
+"onboarding_level_response_beginner"   = "Başlangıçlar hep en keyiflisidir!";
 "onboarding_level_response_intermediate" = "Güzel, temeli biliyorsun!";
-"onboarding_level_response_upper"      = "Ciddi iş, beğendim!";
-"onboarding_level_response_advanced"   = "Vay, iddialısın!";
+"onboarding_level_response_upper"      = "İşte bir kendini geliştirme meraklısı daha!";
+"onboarding_level_response_advanced"   = "Vay, iddialısın! Mükemmel olmana yardım edeceğim.";
 
 // Questions (Legacy)
 "onboarding_question1_title" = "Öncelikli öğrenme amacın nedir?";

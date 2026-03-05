@@ -2,45 +2,84 @@
 //  MetaEventManager.swift
 //  HocaLingo
 //
-//  ✅ NEW: Meta (Facebook) App Events tracking for ad optimization
-//  Tracks user funnel: install → onboarding → word selection → study → purchase
+//  ✅ Meta (Facebook) App Events tracking for ad optimization
 //  Location: Core/Utils/MetaEventManager.swift
 //
 
 import Foundation
+import UIKit
 import FBSDKCoreKit
 
+// MARK: - App Delegate for Meta SDK
+/// SwiftUI apps need a UIApplicationDelegate for Meta SDK to work
+class MetaAppDelegate: NSObject, UIApplicationDelegate {
+    
+    func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+    ) -> Bool {
+        
+        // Meta SDK initialization — MUST happen here, not in SwiftUI init()
+        ApplicationDelegate.shared.application(
+            application,
+            didFinishLaunchingWithOptions: launchOptions
+        )
+        
+        Settings.shared.isAutoLogAppEventsEnabled = true
+        Settings.shared.isAdvertiserIDCollectionEnabled = true
+        
+        #if DEBUG
+        Settings.shared.enableLoggingBehavior(.appEvents)
+        Settings.shared.enableLoggingBehavior(.networkRequests)
+        print("✅ Meta SDK initialized via AppDelegate + debug logging ON")
+        #else
+        print("✅ Meta SDK initialized via AppDelegate")
+        #endif
+        
+        return true
+    }
+    
+    func application(
+        _ app: UIApplication,
+        open url: URL,
+        options: [UIApplication.OpenURLOptionsKey: Any] = [:]
+    ) -> Bool {
+        ApplicationDelegate.shared.application(
+            app,
+            open: url,
+            sourceApplication: options[UIApplication.OpenURLOptionsKey.sourceApplication] as? String,
+            annotation: options[UIApplication.OpenURLOptionsKey.annotation]
+        )
+    }
+}
+
 // MARK: - Meta Event Manager
-/// Centralized Meta App Events tracker
-/// All event names and parameters defined in one place
 class MetaEventManager {
     static let shared = MetaEventManager()
     private init() {}
     
-    // MARK: - SDK Initialization
+    // MARK: - App Activation
     
-    /// Call this once in HocaLingoApp.init()
-    func configure() {
-        Settings.shared.isAutoLogAppEventsEnabled = true
-        Settings.shared.isAdvertiserIDCollectionEnabled = true
-        print("✅ Meta SDK configured")
-    }
-    
-    /// Call this in app launch (activates app event automatically)
+    /// Call when app becomes active (foreground)
     func activateApp() {
         AppEvents.shared.activateApp()
         print("📊 Meta: App activated")
     }
     
-    // MARK: - Funnel Events (Analytics)
+    /// Send a test event to verify SDK works
+    func logTestEvent() {
+        AppEvents.shared.logEvent(AppEvents.Name("test_event"))
+        AppEvents.shared.flush()
+        print("📊 Meta: test_event sent + flushed")
+    }
     
-    /// Onboarding started (user sees first screen)
+    // MARK: - Funnel Events
+    
     func logOnboardingStart() {
         AppEvents.shared.logEvent(AppEvents.Name("onboarding_start"))
         print("📊 Meta: onboarding_start")
     }
     
-    /// Onboarding level selected (with level parameter)
     func logOnboardingLevelSelected(level: String) {
         AppEvents.shared.logEvent(
             AppEvents.Name("onboarding_level_selected"),
@@ -49,15 +88,13 @@ class MetaEventManager {
         print("📊 Meta: onboarding_level_selected → \(level)")
     }
     
-    /// Onboarding completed (standard Meta event)
     func logOnboardingCompleted() {
         AppEvents.shared.logEvent(.completedRegistration)
-        print("📊 Meta: CompleteRegistration (onboarding done)")
+        print("📊 Meta: CompleteRegistration")
     }
     
     // MARK: - Engagement Events
     
-    /// First word selection completed (with count)
     func logFirstWordSelectionCompleted(wordCount: Int) {
         AppEvents.shared.logEvent(
             AppEvents.Name("first_word_selection_completed"),
@@ -66,7 +103,6 @@ class MetaEventManager {
         print("📊 Meta: first_word_selection_completed → \(wordCount) words")
     }
     
-    /// Study session completed (lesson_completed)
     func logStudyCompleted(wordsStudied: Int, direction: String) {
         AppEvents.shared.logEvent(
             AppEvents.Name("lesson_completed"),
@@ -78,7 +114,6 @@ class MetaEventManager {
         print("📊 Meta: lesson_completed → \(wordsStudied) words (\(direction))")
     }
     
-    /// First ever study session
     func logFirstStudyCompleted() {
         AppEvents.shared.logEvent(AppEvents.Name("first_study_completed"))
         print("📊 Meta: first_study_completed")
@@ -86,13 +121,11 @@ class MetaEventManager {
     
     // MARK: - Monetization Events
     
-    /// Trial started (if you add free trial later)
     func logTrialStarted() {
         AppEvents.shared.logEvent(AppEvents.Name("fb_mobile_start_trial"))
         print("📊 Meta: StartTrial")
     }
     
-    /// Premium subscription purchased
     func logSubscriptionStarted(price: Double, currency: String = "TRY") {
         AppEvents.shared.logEvent(
             .purchased,
