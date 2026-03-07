@@ -2,7 +2,8 @@
 //  StudyEmptyStateView.swift
 //  HocaLingo
 //
-//  Empty state view when no words available for study
+//  ✅ FIX: showPackageSelection is now a @Binding — sheet lives in StudyView.
+//  ✅ LOCALIZED: All hardcoded Turkish strings replaced with L() keys.
 //  Location: HocaLingo/Features/Study/StudyEmptyStateView.swift
 //
 
@@ -11,37 +12,32 @@ import SwiftUI
 // MARK: - Study Empty State View
 struct StudyEmptyStateView: View {
     @Binding var selectedTab: Int
-    @Environment(\.dismiss) private var dismiss
-    @State private var showPackageSelection = false
-    @State private var selectedTabForSheet: Int = 0
+    @Binding var showPackageSelection: Bool
     let isFirstTime: Bool
-    
+
     var body: some View {
         VStack(spacing: 32) {
             Spacer()
-            
+
             Image(isFirstTime ? "lingohoca3" : "lingohoca2")
                 .resizable()
                 .scaledToFit()
                 .frame(width: isFirstTime ? 200 : 180, height: isFirstTime ? 200 : 180)
-            
+
             VStack(spacing: 12) {
-                Text(isFirstTime ? "Hoş Geldin!" : "Tebrikler!")
+                Text(L(isFirstTime ? "study_empty_welcome_title" : "study_empty_completed_title"))
                     .font(.system(size: 24, weight: .bold, design: .rounded))
                     .foregroundColor(.primary)
-                
-                Text(isFirstTime
-                     ? "Öğrenmeye başlamak için kelime paketlerinden kelime seç."
-                     : "Çalışacak kelimen kalmadı! Daha fazla kelime ekleyebilir veya mevcut kelimelerin tekrarını bekleyebilirsin."
-                )
-                .font(.system(size: 16, weight: .regular, design: .rounded))
-                .foregroundColor(.secondary)
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 40)
+
+                Text(L(isFirstTime ? "study_empty_welcome_subtitle" : "study_empty_completed_subtitle"))
+                    .font(.system(size: 16, weight: .regular, design: .rounded))
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 40)
             }
-            
+
             Spacer()
-            
+
             VStack(spacing: 16) {
                 Button(action: {
                     showPackageSelection = true
@@ -49,8 +45,8 @@ struct StudyEmptyStateView: View {
                     HStack(spacing: 12) {
                         Image(systemName: isFirstTime ? "plus.circle.fill" : "square.grid.2x2.fill")
                             .font(.system(size: 20))
-                        
-                        Text(isFirstTime ? "Kelime Seç" : "Paketlere Gözat")
+
+                        Text(L(isFirstTime ? "study_empty_select_words_button" : "study_empty_browse_packages_button"))
                             .font(.system(size: 18, weight: .semibold, design: .rounded))
                     }
                     .foregroundColor(.white)
@@ -66,11 +62,11 @@ struct StudyEmptyStateView: View {
                     .cornerRadius(16)
                     .shadow(color: Color(hex: "4ECDC4").opacity(0.3), radius: 10, x: 0, y: 5)
                 }
-                
+
                 Button(action: {
                     selectedTab = 0
                 }) {
-                    Text("Ana Sayfaya Dön")
+                    Text(L("study_empty_go_home_button"))
                         .font(.system(size: 16, weight: .medium, design: .rounded))
                         .foregroundColor(Color(hex: "4ECDC4"))
                         .frame(maxWidth: .infinity)
@@ -82,14 +78,6 @@ struct StudyEmptyStateView: View {
             .padding(.horizontal, 24)
             .padding(.bottom, 40)
         }
-        .sheet(isPresented: $showPackageSelection) {
-            PackageSelectionView(selectedTab: $selectedTabForSheet)
-                .onDisappear {
-                    if selectedTabForSheet == 1 {
-                        selectedTab = 1
-                    }
-                }
-        }
+        // No .sheet here — lives in StudyView to avoid auto-dismiss bug
     }
 }
-

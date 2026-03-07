@@ -3,6 +3,7 @@
 //  HocaLingo
 //
 //  ✅ UPDATED: Ad system removed + Settings button active + Card style support
+//  ✅ FIX: Package selection sheet stays open while selecting words
 //  Location: HocaLingo/Features/Study/StudyView.swift
 //
 
@@ -15,6 +16,10 @@ struct StudyView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.themeViewModel) private var themeViewModel
     @Environment(\.colorScheme) private var colorScheme
+
+    // ✅ FIX: Sheet lifted here so it survives StudyEmptyStateView being removed
+    @State private var showEmptyStatePackageSelection = false
+    @State private var emptyStatePackageTab: Int = 0
     
     var body: some View {
         ZStack {
@@ -38,8 +43,24 @@ struct StudyView: View {
         .navigationBarHidden(true)
         .animation(.easeInOut(duration: 0.3), value: viewModel.isSessionComplete)
         .sheet(isPresented: $viewModel.showStyleSettings) {
-            // ✅ NEW: Card style settings sheet
             CardStyleSettingsView(viewModel: viewModel)
+        }
+        // ✅ FIX: Sheet lives here, not in StudyEmptyStateView
+        .sheet(isPresented: $showEmptyStatePackageSelection) {
+            PackageSelectionView(selectedTab: $emptyStatePackageTab)
+                .onDisappear {
+                    if emptyStatePackageTab == 1 {
+                        selectedTab = 1
+                    }
+                    emptyStatePackageTab = 0
+                }
+        }
+        // ✅ FIX: Pause queue reload while sheet is open, reload when closed
+        .onChange(of: showEmptyStatePackageSelection) { _, isOpen in
+            viewModel.isPackageSelectionActive = isOpen
+            if !isOpen {
+                viewModel.loadStudyQueue()
+            }
         }
     }
     
@@ -86,7 +107,7 @@ struct StudyView: View {
                         selectedTab = 0
                     },
                     onSettings: {
-                        viewModel.showStyleSettings = true  // ✅ NEW: Open settings
+                        viewModel.showStyleSettings = true
                     }
                 )
                 .padding(.horizontal, 16)
@@ -104,14 +125,13 @@ struct StudyView: View {
                 
                 Spacer(minLength: 20)
                 
-                // ✅ UPDATED: FlipCard with new props (no ads)
                 if viewModel.studyQueue.count > 0 {
                     StudyFlipCard(
                         card: viewModel.currentCard,
                         isFlipped: viewModel.isCardFlipped,
                         cardColor: viewModel.currentCardColor,
-                        cardGradient: viewModel.currentCardGradient,  // ✅ NEW
-                        cardStyle: viewModel.cardStyle,               // ✅ NEW
+                        cardGradient: viewModel.currentCardGradient,
+                        cardStyle: viewModel.cardStyle,
                         exampleSentence: viewModel.currentExampleSentence,
                         shouldShowSpeakerOnFront: viewModel.shouldShowSpeakerOnFront == true,
                         isCardFlipped: viewModel.isCardFlipped,
@@ -124,9 +144,10 @@ struct StudyView: View {
                         removal: .move(edge: .leading).combined(with: .opacity)
                     ))
                 } else {
-                    // Empty state
+                    // ✅ FIX: binding passed so button triggers sheet above
                     StudyEmptyStateView(
                         selectedTab: $selectedTab,
+                        showPackageSelection: $showEmptyStatePackageSelection,
                         isFirstTime: UserDefaultsManager.shared.loadUserStats().totalWordsStudied == 0
                     )
                 }
@@ -161,7 +182,7 @@ struct StudyView: View {
 // MARK: - Top Bar
 struct StudyTopBar: View {
     let onClose: () -> Void
-    let onSettings: () -> Void  // ✅ NEW: Settings action
+    let onSettings: () -> Void
     
     var body: some View {
         HStack {
@@ -182,7 +203,6 @@ struct StudyTopBar: View {
             
             Spacer()
             
-            // ✅ UPDATED: Settings button (now active)
             Button(action: onSettings) {
                 Image(systemName: "gearshape")
                     .font(.system(size: 16, weight: .semibold, design: .rounded))
@@ -272,12 +292,12 @@ struct StudyButtons: View {
         } else {
             Button(action: {}) {
                 Text("study_flip_card_hint")
-                    .font(.system(size: 15, weight: .thin, design: .rounded))
+                    .font(.system(size: 16, weight: .thin, design: .rounded))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
                     .background(
-                        Color(hex: "E7EDF3").opacity(0.1)
+                        Color(hex: "E7EDF3").opacity(0.2)
                     )
                     .cornerRadius(18)
             }
@@ -313,5 +333,4 @@ struct StudyActionButton: View {
         }
         .disabled(!isEnabled)
     }
-    
 }

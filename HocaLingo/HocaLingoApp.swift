@@ -32,6 +32,14 @@ struct HocaLingoApp: App {
     
     // MARK: - Initialization
     init() {
+        
+        // Set initial language based on system language (runs only once on first launch)
+        if UserDefaults.standard.string(forKey: "app_language") == nil {
+            let defaultLanguage = AppLanguage.systemDefault.rawValue
+            UserDefaults.standard.set(defaultLanguage, forKey: "app_language")
+            print("🌍 Initial language set: \(defaultLanguage)")
+        }
+        
         // Set notification delegate
         UNUserNotificationCenter.current().delegate = NotificationDelegate.shared
         

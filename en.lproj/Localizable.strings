@@ -158,6 +158,43 @@
 "time_n_wk"  = "%dwk";
 "time_n_mo"  = "%dmo";
 
+// ============================================================
+// STUDY COMPLETION SCREEN — Add to en.lproj/Localizable.strings
+// ============================================================
+
+// Motivational messages (random pick on each completion)
+"study_completion_title_1" = "Great! 🎉";
+"study_completion_subtitle_1" = "You completed today's study session!";
+
+"study_completion_title_2" = "Excellent! ⭐";
+"study_completion_subtitle_2" = "You're staying consistent!";
+
+"study_completion_title_3" = "Awesome! 🚀";
+"study_completion_subtitle_3" = "One step closer to your goal!";
+
+"study_completion_title_4" = "Bravo! 💪";
+"study_completion_subtitle_4" = "Keep it up, you're doing amazing!";
+
+"study_completion_title_5" = "Congrats! 🎯";
+"study_completion_subtitle_5" = "You're steadily reaching your goals!";
+
+// Buttons
+"study_completion_home_button" = "Home";
+"study_completion_packages_button" = "Select Package";
+
+// ============================================================
+// STUDY EMPTY STATE — Add to en.lproj/Localizable.strings
+// ============================================================
+
+"study_empty_welcome_title" = "Welcome!";
+"study_empty_welcome_subtitle" = "Select words from vocabulary packages to start learning.";
+
+"study_empty_completed_title" = "Congratulations!";
+"study_empty_completed_subtitle" = "No words left to study! You can add more words or wait for your current words to be ready for review.";
+
+"study_empty_select_words_button" = "Select Words";
+"study_empty_browse_packages_button" = "Browse Packages";
+"study_empty_go_home_button" = "Go to Home";
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Card Style Settings

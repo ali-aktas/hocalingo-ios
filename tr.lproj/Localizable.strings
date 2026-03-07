@@ -159,6 +159,45 @@
 "time_n_mo"  = "%d ay";
 
 
+// ============================================================
+// STUDY COMPLETION SCREEN — tr.lproj/Localizable.strings'e ekle
+// ============================================================
+
+// Motivasyonel mesajlar (her tamamlamada rastgele seçilir)
+"study_completion_title_1" = "Harika! 🎉";
+"study_completion_subtitle_1" = "Bugünlük çalışmanı tamamladın!";
+
+"study_completion_title_2" = "Mükemmel! ⭐";
+"study_completion_subtitle_2" = "Disiplinle devam ediyorsun!";
+
+"study_completion_title_3" = "Süpersin! 🚀";
+"study_completion_subtitle_3" = "Başarıya bir adım daha yaklaştın!";
+
+"study_completion_title_4" = "Bravo! 💪";
+"study_completion_subtitle_4" = "Böyle devam et, harikasın!";
+
+"study_completion_title_5" = "Tebrikler! 🎯";
+"study_completion_subtitle_5" = "Hedeflerine adım adım ilerliyorsun!";
+
+// Butonlar
+"study_completion_home_button" = "Ana Sayfa";
+"study_completion_packages_button" = "Paket Seç";
+
+// ============================================================
+// STUDY EMPTY STATE — tr.lproj/Localizable.strings'e ekle
+// ============================================================
+
+"study_empty_welcome_title" = "Hoş Geldin!";
+"study_empty_welcome_subtitle" = "Öğrenmeye başlamak için kelime paketlerinden kelime seç.";
+
+"study_empty_completed_title" = "Tebrikler!";
+"study_empty_completed_subtitle" = "Çalışacak kelimen kalmadı! Daha fazla kelime ekleyebilir veya mevcut kelimelerin tekrarını bekleyebilirsin.";
+
+"study_empty_select_words_button" = "Kelime Seç";
+"study_empty_browse_packages_button" = "Paketlere Gözat";
+"study_empty_go_home_button" = "Ana Sayfaya Dön";
+
+
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Card Style Settings
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

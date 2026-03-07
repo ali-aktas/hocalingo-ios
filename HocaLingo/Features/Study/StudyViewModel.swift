@@ -148,6 +148,8 @@ class StudyViewModel: ObservableObject {
     @Published var displayCard: StudyCard?
     @Published var isSessionActive: Bool = false
     
+    var isPackageSelectionActive: Bool = false
+    
     // MARK: - Dependencies
     private let userDefaults = UserDefaultsManager.shared
     private let jsonLoader = JSONLoader()
@@ -386,10 +388,13 @@ class StudyViewModel: ObservableObject {
             .store(in: &cancellables)
     }
     
+
     private func observeWordsChanged() {
         NotificationCenter.default.publisher(for: NSNotification.Name("WordsChanged"))
             .sink { [weak self] _ in
-                self?.loadStudyQueue()
+                guard let self = self else { return }
+                guard !self.isPackageSelectionActive else { return } // ← YENİ SATIR
+                self.loadStudyQueue()
             }
             .store(in: &cancellables)
     }
