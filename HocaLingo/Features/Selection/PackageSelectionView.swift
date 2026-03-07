@@ -49,7 +49,7 @@ struct PackageSelectionView: View {
                     
                     // Full-width tab selector
                     tabSelector
-                        .padding(.horizontal, 20)
+                        .padding(.horizontal, 32)
                         .padding(.top, 4)
                     
                     // Tab content
@@ -69,7 +69,11 @@ struct PackageSelectionView: View {
                 }
             }
             .navigationBarHidden(true)
-            .navigationDestination(item: $selectedPackageForNavigation) { packageId in
+                .onChange(of: selectedTab) { _, newValue in
+                    // Auto-dismiss sheet when WordSelectionView navigates to Study tab
+                    if newValue == 1 { dismiss() }
+                }
+                .navigationDestination(item: $selectedPackageForNavigation) { packageId in
                 WordSelectionView(packageId: packageId, selectedTab: $selectedTab)
             }
             .sheet(isPresented: $viewModel.showPremiumSheet) {
@@ -102,8 +106,8 @@ struct PackageSelectionView: View {
     private var tabSelector: some View {
         ZStack {
             // Background capsule
-            RoundedRectangle(cornerRadius: 16)
-                .fill(isDarkMode ? Color.white.opacity(0.06) : Color.black.opacity(0.04))
+            RoundedRectangle(cornerRadius: 20)
+                    .fill(isDarkMode ? Color.white.opacity(0.035) : Color.black.opacity(0.022))
             
             // Animated sliding indicator
             GeometryReader { geo in
@@ -150,7 +154,7 @@ struct PackageSelectionView: View {
                 )
             }
         }
-        .frame(height: 48)
+        .frame(height: 40)
     }
     
     // MARK: - Standard Packages View
@@ -266,12 +270,12 @@ struct PackageSelectionView: View {
     private var standardInfoText: String {
         let totalPackages = viewModel.standardPackages.count
         let totalWords = viewModel.standardPackages.reduce(0) { $0 + $1.wordCount }
-        return "\(totalPackages) " + NSLocalizedString("packages_count", comment: "") + " · \(totalWords) " + NSLocalizedString("words_count", comment: "")
+        return "\(totalPackages) \(L("packages_count")) · \(totalWords) \(L("words_count"))"
     }
     
     private var premiumInfoText: String {
         let totalPackages = viewModel.premiumPackages.count
-        return "\(totalPackages) " + NSLocalizedString("collections_count", comment: "") + " · " + NSLocalizedString("thematic_content", comment: "")
+        return "\(totalPackages) \(L("collections_count")) · \(L("thematic_content"))"
     }
     
     // MARK: - Empty Package Overlay

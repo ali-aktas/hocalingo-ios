@@ -65,9 +65,9 @@ struct MonthlyStats {
     
     /// ✅ Localized format: "8 min / 2h 56m" or "8dk / 1s 27dk"
     var formattedStudyTime: String {
-        let minUnit = NSLocalizedString("unit_minute_short", comment: "")
-        let hourUnit = NSLocalizedString("unit_hour_short", comment: "")
-        
+        let minUnit = L("unit_minute_short")
+        let hourUnit = L("unit_hour_short")
+
         func formatTime(_ totalMin: Int) -> String {
             let h = totalMin / 60
             let m = totalMin % 60

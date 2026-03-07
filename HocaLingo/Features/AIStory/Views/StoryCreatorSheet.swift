@@ -30,8 +30,6 @@ struct StoryCreatorSheet: View {
                     // Scrollable content
                     ScrollView(showsIndicators: false) {
                         VStack(spacing: 20) {
-                            // Header
-                            headerSection
                             
                             // Topic Input
                             topicSection
@@ -102,21 +100,6 @@ struct StoryCreatorSheet: View {
             .sheet(isPresented: $showPaywall) {
                 PremiumPaywallView()
             }
-        }
-    }
-    
-    // MARK: - Header
-    
-    private var headerSection: some View {
-        VStack(spacing: 6) {
-            Image(systemName: "sparkles")
-                .font(.system(size: 28, weight: .medium))
-                .foregroundColor(.accentPurple)
-            
-            Text("ai_story_creator_subtitle")
-                .font(.system(size: 13))
-                .foregroundColor(.themeSecondary)
-                .multilineTextAlignment(.center)
         }
     }
     
@@ -215,9 +198,7 @@ struct StoryCreatorSheet: View {
                 .font(.system(size: 13))
                 .foregroundColor(.accentPurple.opacity(0.7))
             
-            Text(String(format: NSLocalizedString("ai_story_word_info", comment: ""),
-                 viewModel.uiState.creatorLength.exactDeckWords,
-                 viewModel.uiState.allWords.count))
+            Text(L("ai_story_word_info", viewModel.uiState.creatorLength.exactDeckWords, viewModel.uiState.allWords.count))
                 .font(.system(size: 12))
                 .foregroundColor(.themeSecondary)
             

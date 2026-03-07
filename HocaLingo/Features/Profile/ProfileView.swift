@@ -27,6 +27,7 @@ struct ProfileView: View {
     // Confirmation dialog state
     @State private var confirmationInfo: ConfirmationInfo? = nil
     @State private var showConfirmation = false
+    @AppStorage("app_language") private var appLanguageCode: String = "en"
     
     // Binding indices for CompactSelectorRow (derived from ViewModel)
     @State private var directionIndex: Int = 0
@@ -62,10 +63,7 @@ struct ProfileView: View {
                 // MARK: - Scrollable Content
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 12) {
-                        
-                        // ─── SETTINGS SECTION HEADER ───
-                        sectionHeader(key: "settings_title")
-
+                    
                         
                         // 1. Notifications (keep SettingsCard as-is — it works perfectly)
                         SettingsCard(
@@ -211,8 +209,14 @@ struct ProfileView: View {
                         .transition(.opacity)
                 }
             }
-            .navigationTitle(Text(LocalizedStringKey("profile_welcome")))
-            .navigationBarTitleDisplayMode(.large)
+            .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Text(LocalizedStringKey("settings_title"))
+                            .font(.system(size: 17, weight: .semibold, design: .rounded))
+                            .foregroundColor(.themePrimary)
+                    }
+                }
             .navigationBarItems(trailing: premiumBadge)
         }
         .sheet(isPresented: $showPremiumSheet) {

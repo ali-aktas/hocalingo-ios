@@ -270,18 +270,18 @@ struct StudyButtons: View {
                 )
             }
         } else {
-            // Flip card prompt
             Button(action: {}) {
                 Text("study_flip_card_hint")
-                    .font(.system(size: 16, weight: .medium, design: .rounded))
+                    .font(.system(size: 15, weight: .thin, design: .rounded))
                     .foregroundColor(.white)
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
-                    .background(Color(hex: "D1C4E9"))
+                    .background(
+                        Color(hex: "E7EDF3").opacity(0.1)
+                    )
                     .cornerRadius(18)
             }
             .disabled(true)
-            .opacity(0.5)
             .padding(.horizontal, 8)
         }
     }

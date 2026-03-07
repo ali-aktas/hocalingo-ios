@@ -198,9 +198,9 @@ struct PremiumPaywallView: View {
     // MARK: - Features Section
     private var featuresSection: some View {
         VStack(spacing: 10) {
-            featureLine(icon: "book.fill", text: "Binlerce Yeni Kelime")
-            featureLine(icon: "infinity", text: "Sınırsız ve Premium Deneyim")
-            featureLine(icon: "sparkles", text: "Sana Özel Okuma Parçaları")
+            featureLine(icon: "book.fill", text: "Binlerce yeni kelime ve kalıp öğren")
+            featureLine(icon: "infinity", text: "Limitleri kaldır ve diğerlerine fark at")
+            featureLine(icon: "sparkles", text: "Yapay zeka ile öğrendiklerini pekiştir")
         }
         .padding(.vertical, 6)
     }

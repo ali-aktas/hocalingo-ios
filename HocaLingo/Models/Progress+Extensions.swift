@@ -111,56 +111,56 @@ extension Progress {
     
     /// Get time until review for button display (shorter format)
     func getButtonTimeText(quality: Int) -> String {
-        
-        if learningPhase {
-            // Learning phase times
-            switch quality {
-            case 1: // HARD
-                return NSLocalizedString("time_5_min", comment: "")
-            case 2: // MEDIUM
-                return NSLocalizedString("time_later", comment: "")
-            case 3: // EASY
-                return NSLocalizedString("time_today", comment: "")
-            default:
-                return NSLocalizedString("time_soon", comment: "")
-            }
-        } else {
-            // Review phase times (based on current interval)
-            switch quality {
-            case 1: // HARD - back to learning
-                return NSLocalizedString("time_5_min", comment: "")
-            case 2: // MEDIUM - reduced interval
-                let reducedDays = Int(intervalDays * 0.8)
-                if reducedDays == 0 {
-                    return NSLocalizedString("time_today", comment: "")
-                } else if reducedDays == 1 {
-                    return NSLocalizedString("time_1_day", comment: "")
-                } else if reducedDays < 7 {
-                    return String(format: NSLocalizedString("time_n_days", comment: ""), reducedDays)
-                } else {
-                    let weeks = reducedDays / 7
-                    return String(format: NSLocalizedString("time_n_wk", comment: ""), weeks)
+            
+            if learningPhase {
+                // Learning phase times
+                switch quality {
+                case 1: // HARD
+                    return L("time_5_min")
+                case 2: // MEDIUM
+                    return L("time_later")
+                case 3: // EASY
+                    return L("time_today")
+                default:
+                    return L("time_soon")
                 }
-            case 3: // EASY - normal interval
-                let nextDays = Int(intervalDays * easeFactor)
-                if nextDays == 0 {
-                    return NSLocalizedString("time_today", comment: "")
-                } else if nextDays == 1 {
-                    return NSLocalizedString("time_1_day", comment: "")
-                } else if nextDays < 7 {
-                    return String(format: NSLocalizedString("time_n_days", comment: ""), nextDays)
-                } else if nextDays < 30 {
-                    let weeks = nextDays / 7
-                    return String(format: NSLocalizedString("time_n_wk", comment: ""), weeks)
-                } else {
-                    let months = nextDays / 30
-                    return String(format: NSLocalizedString("time_n_mo", comment: ""), months)
+            } else {
+                // Review phase times (based on current interval)
+                switch quality {
+                case 1: // HARD - back to learning
+                    return L("time_5_min")
+                case 2: // MEDIUM - reduced interval
+                    let reducedDays = Int(intervalDays * 0.8)
+                    if reducedDays == 0 {
+                        return L("time_today")
+                    } else if reducedDays == 1 {
+                        return L("time_1_day")
+                    } else if reducedDays < 7 {
+                        return L("time_n_days", reducedDays)
+                    } else {
+                        let weeks = reducedDays / 7
+                        return L("time_n_wk", weeks)
+                    }
+                case 3: // EASY - normal interval
+                    let nextDays = Int(intervalDays * easeFactor)
+                    if nextDays == 0 {
+                        return L("time_today")
+                    } else if nextDays == 1 {
+                        return L("time_1_day")
+                    } else if nextDays < 7 {
+                        return L("time_n_days", nextDays)
+                    } else if nextDays < 30 {
+                        let weeks = nextDays / 7
+                        return L("time_n_wk", weeks)
+                    } else {
+                        let months = nextDays / 30
+                        return L("time_n_mo", months)
+                    }
+                default:
+                    return L("time_soon")
                 }
-            default:
-                return NSLocalizedString("time_soon", comment: "")
             }
         }
-    }
     
     
     // MARK: - Phase Display

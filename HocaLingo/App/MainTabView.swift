@@ -63,10 +63,10 @@ struct MainTabView: View {
                         index: 2
                     )
                     
-                    // Profile Tab
+                    // Settings Tab
                     tabBarButton(
-                        icon: "person.fill",
-                        label: "tab_profile",
+                        icon: "gearshape.fill",
+                        label: "settings_title",
                         index: 3
                     )
                 }

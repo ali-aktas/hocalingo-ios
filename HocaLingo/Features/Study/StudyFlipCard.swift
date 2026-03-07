@@ -190,14 +190,13 @@ private struct CardFace: View {
                 // TTS Button
                 if showSpeakerButton {
                     Button(action: onSpeakerTap) {
-                        Image(systemName: "speaker.wave.2.fill")
-                            .font(.system(size: 28))
-                            .foregroundColor(textColor)
-                            .shadow(color: .black.opacity(0.3), radius: 2, x: 0, y: 2)
+                        Image(systemName: "speaker.wave.2")
+                            .font(.system(size: 20, weight: .medium))
+                            .foregroundStyle(textColor.opacity(0.85))
+                            .padding(10)
                     }
                     .padding(.bottom, 24)
-                }
-            }
+                }            }
         }
     }
     

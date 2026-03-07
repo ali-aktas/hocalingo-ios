@@ -126,10 +126,10 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 "study_title"              = "Çalış";
-"study_navbar_title"       = "Aralıklı Tekrar Çalışması";
+"study_navbar_title"       = "Akıllı Tekrar";
 "flip_card"                = "Kartı Çevir";
 "show_answer"              = "Cevabı Göster";
-"study_flip_card_hint"     = "Kartı çevir";
+"study_flip_card_hint"     = "Ne kadar hatırlıyorsun?";
 "study_hard"               = "Zor";
 "study_medium"             = "Orta";
 "study_easy"               = "Kolay";

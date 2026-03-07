@@ -28,8 +28,8 @@ struct SwipeableCardView: View {
     private let animationDuration: Double = 0.35
     
     // ✅ Button colors (matching action buttons)
-    private let skipColor = Color(hex: "EF5350") // Red
-    private let learnColor = Color(hex: "66BB6A") // Green
+    private let skipColor = Color(hex: "FF3B30") // Vivid iOS Red
+    private let learnColor = Color(hex: "34C759") // Vivid iOS Green
     
     // MARK: - Computed Properties
     
@@ -143,58 +143,52 @@ struct SwipeableCardView: View {
     }
     
     // MARK: - Skip Overlay (RED)
-    /// ✅ Updated: Red color matching skip button
     private var skipOverlay: some View {
-        VStack {
-            HStack {
-                Spacer()
-                
-                VStack(spacing: 8) {
-                    Image(systemName: "xmark.circle.fill")
-                        .font(.system(size: 56, weight: .bold, design: .rounded))
-                        .foregroundColor(skipColor) // ✅ Red
+            VStack {
+                HStack {
+                    Spacer()
                     
-                    Text("SKIP")
-                        .font(.system(size: 20, weight: .black, design: .rounded))
-                        .foregroundColor(skipColor) // ✅ Red
+                    VStack(spacing: 6) {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 52, weight: .bold, design: .rounded))
+                            .foregroundColor(skipColor)
+                        
+                        Text(LocalizedStringKey("word_selection_skip"))
+                            .font(.system(size: 18, weight: .black, design: .rounded))
+                            .foregroundColor(skipColor)
+                    }
+                    .padding(.trailing, 28)
+                    .padding(.top, 36)
                 }
-                .padding(.trailing, 32)
-                .padding(.top, 40)
-                
                 Spacer()
             }
-            Spacer()
+            .background(skipColor.opacity(0.12))
+            .cornerRadius(24)
         }
-        .background(skipColor.opacity(0.15)) // ✅ Light red background
-        .cornerRadius(24)
-    }
     
     // MARK: - Learn Overlay (GREEN)
-    /// ✅ Updated: Green color matching learn button
     private var learnOverlay: some View {
-        VStack {
-            HStack {
-                Spacer()
-                
-                VStack(spacing: 8) {
-                    Image(systemName: "checkmark.circle.fill")
-                        .font(.system(size: 56, weight: .bold, design: .rounded))
-                        .foregroundColor(learnColor) // ✅ Green
+            VStack {
+                HStack {
+                    VStack(spacing: 6) {
+                        Image(systemName: "checkmark.circle.fill")
+                            .font(.system(size: 52, weight: .bold, design: .rounded))
+                            .foregroundColor(learnColor)
+                        
+                        Text(LocalizedStringKey("word_selection_learn"))
+                            .font(.system(size: 18, weight: .black, design: .rounded))
+                            .foregroundColor(learnColor)
+                    }
+                    .padding(.leading, 28)
+                    .padding(.top, 36)
                     
-                    Text("LEARN")
-                        .font(.system(size: 20, weight: .black, design: .rounded))
-                        .foregroundColor(learnColor) // ✅ Green
+                    Spacer()
                 }
-                .padding(.leading, 32)
-                .padding(.top, 40)
-                
                 Spacer()
             }
-            Spacer()
+            .background(learnColor.opacity(0.12))
+            .cornerRadius(24)
         }
-        .background(learnColor.opacity(0.15)) // ✅ Light green background
-        .cornerRadius(24)
-    }
     
     // MARK: - Handle Swipe End
     private func handleSwipeEnd(translation: CGSize) {

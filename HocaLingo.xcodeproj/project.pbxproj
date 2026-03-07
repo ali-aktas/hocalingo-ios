@@ -91,6 +91,7 @@
 				Core/Utils/ContentCleaner.swift,
 				Core/Utils/ContentValidator.swift,
 				Core/Utils/DailySelectionLimitManager.swift,
+				Core/Utils/LocalizationHelper.swift,
 				Core/Utils/LottieView.swift,
 				Core/Utils/MetaEventManager.swift,
 				Core/Utils/NotificationDelegate.swift,

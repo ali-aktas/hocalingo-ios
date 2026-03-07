@@ -2,7 +2,13 @@
 //  AddWordDialogView.swift
 //  HocaLingo
 //
-//  Premium, theme-aware manual word entry dialog.
+//  ✅ REDESIGNED: Premium theme-aware UI from scratch
+//  - ProfileView gradient background + ambient glow
+//  - FocusState animated border highlights
+//  - Sticky save button outside ScrollView (like StoryCreatorSheet)
+//  - Clean section headers with rounded icon squares
+//  ✅ PRESERVED: All ViewModel logic unchanged
+//  Location: Features/Home/AddWordDialogView.swift
 //
 
 import SwiftUI
@@ -10,84 +16,134 @@ import Combine
 
 // MARK: - Add Word Dialog View
 struct AddWordDialogView: View {
-    
+
     @Environment(\.dismiss) private var dismiss
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.themeViewModel) private var themeViewModel
-    
+
     @StateObject private var viewModel = AddWordViewModel()
+    @AppStorage("app_language") private var appLanguageCode: String = "en"
+
     @State private var showSuccessAnimation = false
-    
+    @FocusState private var focusedField: FormField?
+
+    private enum FormField { case enWord, enExample, trWord, trExample }
+
+    private var isDarkMode: Bool { themeViewModel.isDarkMode(in: colorScheme) }
+
+    // MARK: - Body
     var body: some View {
         NavigationStack {
             ZStack {
-                // 1. Dinamik Arka Plan
-                Color.themeBackground
-                    .ignoresSafeArea()
-                
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 24) {
-                        
-                        // Bilgi Paneli
-                        infoBanner
-                        
-                        // İngilizce Giriş Bölümü
-                        wordSection(
-                            title: NSLocalizedString("add_word_english", comment: ""),
-                            wordText: $viewModel.englishWord,
-                            exampleText: $viewModel.exampleEn,
-                            examplePlaceholder: NSLocalizedString("add_word_example_en", comment: ""),
-                            icon: "textformat.abc",
-                            accentColor: .themePrimaryButton,
-                            placeholder: "e.g. Serendipity"
-                        )
-                        
-                        // Türkçe Giriş Bölümü
-                        wordSection(
-                            title: NSLocalizedString("add_word_turkish", comment: ""),
-                            wordText: $viewModel.turkishWord,
-                            exampleText: $viewModel.exampleTr,
-                            examplePlaceholder: NSLocalizedString("add_word_example_tr", comment: ""),
-                            icon: "character.book.closed.fill",
-                            accentColor: .accentTeal,
-                            placeholder: "Örn: Mutlu tesadüf"
-                        )
-                        
-                        Spacer(minLength: 20)
-                        
-                        // Kaydet Butonu
-                        saveButtonSection
-                        
-                        // Hata Mesajı (Varsa)
-                        if let error = viewModel.errorMessage {
-                            errorBanner(message: error)
+                // ── Background (matches ProfileView) ──
+                LinearGradient(
+                    colors: isDarkMode
+                        ? [Color(hex: "1A1625"), Color(hex: "211A2E")]
+                        : [Color(hex: "FBF2FF"), Color(hex: "FAF1FF")],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
+
+                // Ambient glow
+                Circle()
+                    .fill(Color.accentPurple.opacity(isDarkMode ? 0.13 : 0.07))
+                    .frame(width: 320, height: 320)
+                    .blur(radius: 70)
+                    .offset(x: 120, y: -200)
+                    .allowsHitTesting(false)
+
+                // ── Main layout: Scroll + sticky button ──
+                VStack(spacing: 0) {
+
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 20) {
+
+                            infoBanner
+                                .padding(.top, 4)
+
+                            inputSection(
+                                headerKey: "add_word_english",
+                                headerIcon: "textformat.abc",
+                                accentColor: Color(hex: "6366F1"),
+                                wordBinding: $viewModel.englishWord,
+                                wordField: .enWord,
+                                wordPlaceholder: "e.g. Serendipity",
+                                exampleKey: "add_word_example_en",
+                                exampleBinding: $viewModel.exampleEn,
+                                exampleField: .enExample,
+                                nextField: .trWord
+                            )
+
+                            inputSection(
+                                headerKey: "add_word_turkish",
+                                headerIcon: "character.book.closed.fill",
+                                accentColor: Color(hex: "4ECDC4"),
+                                wordBinding: $viewModel.turkishWord,
+                                wordField: .trWord,
+                                wordPlaceholder: "Örn: Mutlu tesadüf",
+                                exampleKey: "add_word_example_tr",
+                                exampleBinding: $viewModel.exampleTr,
+                                exampleField: .trExample,
+                                nextField: nil
+                            )
+
+                            if let error = viewModel.errorMessage {
+                                errorBanner(message: error)
+                            }
+
+                            Spacer(minLength: 16)
                         }
+                        .padding(.horizontal, 20)
+                        .padding(.top, 16)
+                        .padding(.bottom, 12)
                     }
-                    .padding(20)
+
+                    // ── Sticky bottom button ──
+                    VStack(spacing: 0) {
+                        Divider()
+                            .background(Color.themeSecondary.opacity(0.15))
+
+                        saveButton
+                            .padding(.horizontal, 20)
+                            .padding(.top, 14)
+                            .padding(.bottom, 28)
+                    }
+                    .background(
+                        (isDarkMode ? Color(hex: "211A2E") : Color(hex: "FAF1FF"))
+                            .opacity(0.97)
+                    )
                 }
-                
-                // Başarı Overlay (Premium Bulanıklık Efekti)
+
+                // ── Success overlay ──
                 if showSuccessAnimation {
                     successOverlay
+                        .transition(.opacity.combined(with: .scale(scale: 0.95)))
+                        .zIndex(100)
                 }
             }
-            .navigationTitle(NSLocalizedString("add_word_title", comment: ""))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(NSLocalizedString("cancel", comment: "")) {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text(LocalizedStringKey("add_word_title"))
+                        .font(.system(size: 17, weight: .bold, design: .rounded))
+                        .foregroundColor(.themePrimary)
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
                         dismiss()
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                            .font(.system(size: 22))
+                            .foregroundColor(.themeSecondary)
                     }
-                    .foregroundColor(.themePrimary)
-                    .fontWeight(.medium)
                 }
             }
             .onChange(of: viewModel.showSuccessAnimation) { _, newValue in
                 if newValue {
-                    withAnimation(.spring()) {
+                    withAnimation(.spring(response: 0.45, dampingFraction: 0.72)) {
                         showSuccessAnimation = true
                     }
-                    // Animasyon sonrası otomatik kapanış
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.8) {
                         dismiss()
                     }
@@ -95,150 +151,250 @@ struct AddWordDialogView: View {
             }
         }
     }
-}
 
-// MARK: - UI Components
-private extension AddWordDialogView {
-    
-    func wordSection(
-        title: String,
-        wordText: Binding<String>,
-        exampleText: Binding<String>,
-        examplePlaceholder: String,
-        icon: String,
-        accentColor: Color,
-        placeholder: String
-    ) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Label(title, systemImage: icon)
-                .font(.system(size: 14, weight: .bold, design: .rounded))
-                .foregroundColor(accentColor)
-                .padding(.leading, 4)
-            
-            VStack(spacing: 0) {
-                // Kelime TextField
-                TextField(placeholder, text: wordText)
-                    .font(.system(size: 18, weight: .semibold, design: .rounded))
-                    .foregroundColor(.themePrimary)
-                    .padding()
-                    .background(Color.themeCard)
-                    .cornerRadius(14, corners: [.topLeft, .topRight])
-                    .textInputAutocapitalization(.never)
-                
-                Divider()
-                    .background(Color.themeDivider)
-                    .padding(.horizontal)
-                
-                // Örnek Cümle TextField
-                HStack(spacing: 10) {
-                    Image(systemName: "quote.bubble.fill")
-                        .font(.system(size: 12))
-                        .foregroundColor(accentColor.opacity(0.6))
-                    
-                    TextField(examplePlaceholder, text: exampleText)
-                        .font(.system(size: 14))
-                        .foregroundColor(.themeSecondary)
-                        .textInputAutocapitalization(.sentences)
-                }
-                .padding()
-                .background(Color.themeCard)
-                .cornerRadius(14, corners: [.bottomLeft, .bottomRight])
+    // MARK: - Info Banner
+    private var infoBanner: some View {
+        HStack(spacing: 14) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color(hex: "FB9322").opacity(0.15))
+                    .frame(width: 36, height: 36)
+                Image(systemName: "sparkles")
+                    .font(.system(size: 15, weight: .semibold))
+                    .foregroundColor(Color(hex: "FB9322"))
             }
-            .overlay(
-                RoundedRectangle(cornerRadius: 14)
-                    .stroke(Color.themeBorder, lineWidth: 1)
-            )
-            .shadow(color: Color.themeShadow, radius: 10, y: 4)
-        }
-    }
-    
-    var infoBanner: some View {
-        HStack(spacing: 12) {
-            Image(systemName: "sparkles")
-                .font(.title3)
-                .foregroundColor(.accentOrange)
-            
-            Text(NSLocalizedString("add_word_info", comment: ""))
+
+            Text(LocalizedStringKey("add_word_info"))
                 .font(.system(size: 13, weight: .medium, design: .rounded))
                 .foregroundColor(.themeSecondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            Spacer()
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(16)
-        .background(Color.accentOrange.opacity(0.1))
-        .cornerRadius(16)
+        .padding(14)
+        .background(
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(hex: "FB9322").opacity(isDarkMode ? 0.07 : 0.05))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 16)
+                        .stroke(Color(hex: "FB9322").opacity(0.2), lineWidth: 1)
+                )
+        )
     }
-    
-    var saveButtonSection: some View {
+
+    // MARK: - Input Section
+    private func inputSection(
+        headerKey: String,
+        headerIcon: String,
+        accentColor: Color,
+        wordBinding: Binding<String>,
+        wordField: FormField,
+        wordPlaceholder: String,
+        exampleKey: String,
+        exampleBinding: Binding<String>,
+        exampleField: FormField,
+        nextField: FormField?
+    ) -> some View {
+        let isActive = focusedField == wordField || focusedField == exampleField
+
+        return VStack(alignment: .leading, spacing: 10) {
+
+            // Section header
+            HStack(spacing: 8) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 9)
+                        .fill(accentColor.opacity(0.15))
+                        .frame(width: 30, height: 30)
+                    Image(systemName: headerIcon)
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundColor(accentColor)
+                }
+                Text(LocalizedStringKey(headerKey))
+                    .font(.system(size: 14, weight: .bold, design: .rounded))
+                    .foregroundColor(accentColor)
+                Spacer()
+            }
+
+            // Stacked card
+            VStack(spacing: 0) {
+
+                // Word field
+                TextField(wordPlaceholder, text: wordBinding)
+                    .font(.system(size: 18, weight: .semibold, design: .rounded))
+                    .foregroundColor(.themePrimary)
+                    .focused($focusedField, equals: wordField)
+                    .textInputAutocapitalization(.never)
+                    .autocorrectionDisabled()
+                    .submitLabel(nextField != nil ? .next : .done)
+                    .onSubmit { focusedField = exampleField }
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 16)
+
+                Divider()
+                    .background(Color.themeDivider)
+                    .padding(.horizontal, 16)
+
+                // Example field
+                HStack(spacing: 10) {
+                    Image(systemName: "text.quote")
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(accentColor.opacity(0.45))
+                        .frame(width: 16)
+
+                    TextField(L(exampleKey), text: exampleBinding)
+                        .font(.system(size: 14, design: .rounded))
+                        .foregroundColor(.themeSecondary)
+                        .focused($focusedField, equals: exampleField)
+                        .textInputAutocapitalization(.sentences)
+                        .submitLabel(nextField != nil ? .next : .done)
+                        .onSubmit {
+                            focusedField = nextField
+                        }
+                }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 13)
+            }
+            .background(
+                RoundedRectangle(cornerRadius: 18)
+                    .fill(Color.themeCard)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 18)
+                    .stroke(
+                        isActive ? accentColor.opacity(0.5) : Color.themeBorder.opacity(0.6),
+                        lineWidth: isActive ? 2 : 1
+                    )
+            )
+            .shadow(
+                color: isActive
+                    ? accentColor.opacity(0.2)
+                    : Color.black.opacity(isDarkMode ? 0.18 : 0.05),
+                radius: isActive ? 14 : 8,
+                x: 0, y: 4
+            )
+            .animation(.easeInOut(duration: 0.2), value: focusedField)
+        }
+    }
+
+    // MARK: - Save Button
+    private var saveButton: some View {
         Button {
+            focusedField = nil
             viewModel.saveWord()
         } label: {
             ZStack {
                 if viewModel.isLoading {
                     ProgressView().tint(.white)
                 } else {
-                    HStack(spacing: 8) {
+                    HStack(spacing: 10) {
                         Image(systemName: "checkmark.circle.fill")
-                        Text(NSLocalizedString("add_word_save", comment: ""))
+                            .font(.system(size: 19, weight: .semibold))
+                        Text(LocalizedStringKey("add_word_save"))
+                            .font(.system(size: 17, weight: .bold, design: .rounded))
                     }
-                    .font(.system(size: 17, weight: .bold, design: .rounded))
+                    .foregroundColor(.white)
                 }
             }
-            .foregroundColor(.white)
             .frame(maxWidth: .infinity)
-            .frame(height: 58)
+            .frame(height: 56)
             .background(
-                viewModel.canSave ?
-                LinearGradient(colors: [.themePrimaryButtonGradientStart, .themePrimaryButtonGradientEnd], startPoint: .leading, endPoint: .trailing) :
-                LinearGradient(colors: [Color.gray.opacity(0.3)], startPoint: .leading, endPoint: .trailing)
+                Group {
+                    if viewModel.canSave {
+                        LinearGradient(
+                            colors: [.themePrimaryButtonGradientStart, .themePrimaryButtonGradientEnd],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    } else {
+                        LinearGradient(
+                            colors: [Color.gray.opacity(0.25), Color.gray.opacity(0.25)],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    }
+                }
             )
             .cornerRadius(18)
-            .shadow(color: viewModel.canSave ? Color.themePrimaryButtonShadow : Color.clear, radius: 12, y: 6)
+            .shadow(
+                color: viewModel.canSave ? Color.themePrimaryButtonShadow.opacity(0.45) : .clear,
+                radius: 14, x: 0, y: 6
+            )
         }
         .disabled(!viewModel.canSave || viewModel.isLoading)
-        .padding(.top, 8)
+        .scaleEffect(viewModel.canSave ? 1.0 : 0.97)
+        .animation(.spring(response: 0.3, dampingFraction: 0.7), value: viewModel.canSave)
     }
 
-    func errorBanner(message: String) -> some View {
-        Label(message, systemImage: "exclamationmark.triangle.fill")
-            .font(.system(size: 13, weight: .bold, design: .rounded))
-            .foregroundColor(.red)
-            .padding()
-            .frame(maxWidth: .infinity)
-            .background(Color.red.opacity(0.1))
-            .cornerRadius(12)
+    // MARK: - Error Banner
+    private func errorBanner(message: String) -> some View {
+        HStack(spacing: 10) {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .font(.system(size: 14, weight: .semibold))
+                .foregroundColor(.red)
+            Text(message)
+                .font(.system(size: 13, weight: .medium, design: .rounded))
+                .foregroundColor(.red)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(14)
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(Color.red.opacity(0.08))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.red.opacity(0.2), lineWidth: 1)
+                )
+        )
     }
-    
-    var successOverlay: some View {
+
+    // MARK: - Success Overlay
+    private var successOverlay: some View {
         ZStack {
             Rectangle()
                 .fill(.ultraThinMaterial)
                 .ignoresSafeArea()
-            
-            VStack(spacing: 20) {
-                Image(systemName: "checkmark.seal.fill")
-                    .font(.system(size: 70))
-                    .foregroundColor(.accentGreen)
-                    .symbolEffect(.bounce, value: showSuccessAnimation)
-                
-                Text(NSLocalizedString("add_word_success", comment: ""))
+
+            VStack(spacing: 22) {
+                ZStack {
+                    Circle()
+                        .fill(Color(hex: "4ECDC4").opacity(0.12))
+                        .frame(width: 110, height: 110)
+                    Circle()
+                        .fill(Color(hex: "4ECDC4").opacity(0.2))
+                        .frame(width: 80, height: 80)
+                    Image(systemName: "checkmark.seal.fill")
+                        .font(.system(size: 44, weight: .bold))
+                        .foregroundColor(Color(hex: "4ECDC4"))
+                        .symbolEffect(.bounce, value: showSuccessAnimation)
+                }
+
+                Text(LocalizedStringKey("add_word_success"))
                     .font(.system(size: 22, weight: .heavy, design: .rounded))
                     .foregroundColor(.themePrimary)
             }
-            .padding(40)
-            .background(Color.themeCard)
-            .cornerRadius(30)
-            .shadow(color: Color.black.opacity(0.2), radius: 40)
+            .padding(.horizontal, 40)
+            .padding(.vertical, 44)
+            .background(
+                RoundedRectangle(cornerRadius: 30)
+                    .fill(Color.themeCard)
+                    .shadow(color: .black.opacity(isDarkMode ? 0.4 : 0.15), radius: 50, y: 10)
+            )
+            .padding(.horizontal, 52)
         }
     }
 }
 
-// MARK: - Helper for Selective Rounded Corners
+// MARK: - Rounded Corner Helper
 struct RoundedCorner: Shape {
     var radius: CGFloat = .infinity
     var corners: UIRectCorner = .allCorners
 
     func path(in rect: CGRect) -> Path {
-        let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let path = UIBezierPath(
+            roundedRect: rect,
+            byRoundingCorners: corners,
+            cornerRadii: CGSize(width: radius, height: radius)
+        )
         return Path(path.cgPath)
     }
 }
@@ -249,7 +405,7 @@ extension View {
     }
 }
 
-// MARK: - ViewModel (Logic & IDs Preserved)
+// MARK: - ViewModel (Logic unchanged)
 class AddWordViewModel: ObservableObject {
     @Published var englishWord: String = ""
     @Published var turkishWord: String = ""
@@ -258,25 +414,25 @@ class AddWordViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var errorMessage: String? = nil
     @Published var showSuccessAnimation: Bool = false
-    
+
     private let userDefaults = UserDefaultsManager.shared
-    
+
     var canSave: Bool {
         !englishWord.trimmingCharacters(in: .whitespaces).isEmpty &&
         !turkishWord.trimmingCharacters(in: .whitespaces).isEmpty
     }
-    
+
     func saveWord() {
         guard canSave else { return }
         isLoading = true
         errorMessage = nil
-        
+
         let newWordId = generateUniqueWordId()
         let example = Example(
             en: exampleEn.trimmingCharacters(in: .whitespaces),
             tr: exampleTr.trimmingCharacters(in: .whitespaces)
         )
-        
+
         let newWord = Word(
             id: newWordId,
             english: englishWord.trimmingCharacters(in: .whitespaces),
@@ -288,27 +444,27 @@ class AddWordViewModel: ObservableObject {
             reversible: true,
             userAdded: true
         )
-        
+
         var userWords = userDefaults.loadUserAddedWords()
         userWords.append(newWord)
         userDefaults.saveUserAddedWords(userWords)
-        
+
         createInitialProgress(for: newWord)
-        
+
         isLoading = false
         showSuccessAnimation = true
-        
+
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.clearForm()
         }
     }
-    
+
     private func generateUniqueWordId() -> Int {
         let existingWords = userDefaults.loadUserAddedWords()
         let maxId = existingWords.map { $0.id }.max() ?? 99999
         return max(100000, maxId + 1)
     }
-    
+
     private func createInitialProgress(for word: Word) {
         let directions: [StudyDirection] = [.enToTr, .trToEn]
         for dir in directions {
@@ -322,7 +478,7 @@ class AddWordViewModel: ObservableObject {
             userDefaults.saveProgress(prog, for: word.id, direction: dir)
         }
     }
-    
+
     private func clearForm() {
         englishWord = ""; turkishWord = ""; exampleEn = ""; exampleTr = ""; errorMessage = nil
     }

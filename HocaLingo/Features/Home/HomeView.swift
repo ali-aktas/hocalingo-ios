@@ -3,6 +3,7 @@
 //  HocaLingo
 //
 //  Thin orchestrator — all heavy UI lives in HomeComponents.swift
+//  ✅ FIXED: @AppStorage added for reactive language switching
 //  Location: Features/Home/HomeView.swift
 //
 
@@ -19,6 +20,9 @@ struct HomeView: View {
 
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.themeViewModel) private var themeViewModel
+
+    // ✅ Triggers SwiftUI re-render when language changes
+    @AppStorage("app_language") private var appLanguageCode: String = "en"
 
     @State private var heroBreathe: CGFloat  = 1.0
     @State private var showVaultSheet: Bool  = false
@@ -55,7 +59,7 @@ struct HomeView: View {
             }
             .navigationBarHidden(true)
             // Navigation destinations
-            .navigationDestination(isPresented: $viewModel.shouldNavigateToPackageSelection) {
+            .sheet(isPresented: $viewModel.shouldNavigateToPackageSelection) {
                 PackageSelectionView(selectedTab: $selectedTab)
             }
             .navigationDestination(isPresented: $viewModel.shouldNavigateToAIAssistant) {
@@ -199,7 +203,7 @@ struct HomeView: View {
         }
     }
 
-    // Sparkline data generators (same logic as before)
+    // Sparkline data generators
     private func generateStreakChartData() -> [Double] {
         [3, 4, 5, 6, 7, Double(viewModel.uiState.streakDays)]
     }

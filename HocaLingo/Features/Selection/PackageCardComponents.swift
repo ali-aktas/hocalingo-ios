@@ -91,24 +91,20 @@ struct StandardPackageCard: View {
                     // Package icon in a rounded square
                     ZStack {
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(Color.white.opacity(0.2))
+                            .fill(Color.white.opacity(0.18))
                             .frame(width: 38, height: 38)
                         
                         Image(systemName: package.iconName)
                             .font(.system(size: 17, weight: .bold))
-                            .foregroundColor(.white)
+                            .foregroundColor(Color(hex: "4ECDC4"))
                     }
                     
                     Spacer()
                     
                     // Level badge
                     Text(LocalizedStringKey(package.level))
-                        .font(.system(size: 11, weight: .heavy))
-                        .padding(.horizontal, 9)
-                        .padding(.vertical, 4)
-                        .background(Color.white.opacity(0.25))
-                        .foregroundColor(.white)
-                        .clipShape(Capsule())
+                            .font(.system(size: 12, weight: .heavy))
+                            .foregroundColor(Color(hex: "4ECDC4"))
                 }
                 
                 Spacer()
@@ -222,12 +218,12 @@ struct PremiumPackageCard: View {
                     // Package icon in a gold-tinted rounded square
                     ZStack {
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(Color(hex: "FFD700").opacity(isDarkMode ? 0.15 : 0.12))
+                            .fill(Color(hex: "4ECDC4").opacity(isDarkMode ? 0.15 : 0.12))
                             .frame(width: 38, height: 38)
                         
                         Image(systemName: package.iconName)
                             .font(.system(size: 17, weight: .bold))
-                            .foregroundColor(Color(hex: "FFD700"))
+                            .foregroundColor(Color(hex: "4ECDC4"))
                     }
                     
                     Spacer()

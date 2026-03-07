@@ -152,13 +152,6 @@ struct StoryDetailView: View {
                         .font(.system(size: 12))
                 }
                 
-                HStack(spacing: 4) {
-                    Image(systemName: "textformat.abc")
-                        .font(.system(size: 11))
-                    Text("ai_story_words_used_\(story.usedWords.count)")
-                        .font(.system(size: 12))
-                }
-                
                 Spacer()
             }
             .foregroundColor(.themeSecondary)

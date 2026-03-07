@@ -22,6 +22,8 @@ struct HeroCardView: View {
 
     @Environment(\.themeViewModel) private var themeViewModel
     @Environment(\.colorScheme) private var colorScheme
+    // Triggers re-render when language changes → motivation text updates immediately
+    @AppStorage("app_language") private var appLanguageCode: String = "en"
 
     @State private var particleOffsets: [CGSize] = Array(repeating: .zero, count: 5)
     @State private var particleOpacities: [Double] = Array(repeating: 0, count: 5)
