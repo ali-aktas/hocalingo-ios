@@ -52,15 +52,17 @@ struct PackageSelectionView: View {
                         .padding(.horizontal, 32)
                         .padding(.top, 4)
                     
-                    // Tab content
-                    TabView(selection: $currentTab) {
-                        standardPackagesView
-                            .tag(0)
-                        
-                        premiumPackagesView
-                            .tag(1)
+                    // Tab content — manual switching to avoid page-style gesture conflicts in sheets
+                    Group {
+                        if currentTab == 0 {
+                            standardPackagesView
+                                .transition(.opacity)
+                        } else {
+                            premiumPackagesView
+                                .transition(.opacity)
+                        }
                     }
-                    .tabViewStyle(.page(indexDisplayMode: .never))
+                    .animation(.easeInOut(duration: 0.2), value: currentTab)
                 }
                 
                 // Empty package overlay

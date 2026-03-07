@@ -3,7 +3,7 @@
 //  HocaLingo
 //
 //  ✅ UPDATED: Ad system removed + Settings button active + Card style support
-//  ✅ FIX: Package selection sheet stays open while selecting words
+//  ✅ FIX: Package selection sheets lifted here to survive view hierarchy changes
 //  Location: HocaLingo/Features/Study/StudyView.swift
 //
 
@@ -21,14 +21,19 @@ struct StudyView: View {
     @State private var showEmptyStatePackageSelection = false
     @State private var emptyStatePackageTab: Int = 0
     
+    // ✅ FIX: Sheet lifted here so it survives StudyCompletionView being removed
+    @State private var showCompletionPackageSelection = false
+    @State private var completionPackageTab: Int = 0
+    
     var body: some View {
         ZStack {
             if viewModel.isSessionComplete {
-                // Completion screen
+                // Completion screen — passes binding so button triggers sheet above
                 StudyCompletionView(
                     selectedTab: $selectedTab,
                     onContinue: { dismiss() },
-                    onRestart: { dismiss() }
+                    onRestart: { dismiss() },
+                    showPackageSelection: $showCompletionPackageSelection
                 )
                 .transition(.opacity)
             } else {
@@ -45,7 +50,7 @@ struct StudyView: View {
         .sheet(isPresented: $viewModel.showStyleSettings) {
             CardStyleSettingsView(viewModel: viewModel)
         }
-        // ✅ FIX: Sheet lives here, not in StudyEmptyStateView
+        // ✅ FIX: Empty state package selection sheet
         .sheet(isPresented: $showEmptyStatePackageSelection) {
             PackageSelectionView(selectedTab: $emptyStatePackageTab)
                 .onDisappear {
@@ -55,8 +60,25 @@ struct StudyView: View {
                     emptyStatePackageTab = 0
                 }
         }
-        // ✅ FIX: Pause queue reload while sheet is open, reload when closed
+        // ✅ FIX: Completion state package selection sheet
+        .sheet(isPresented: $showCompletionPackageSelection) {
+            PackageSelectionView(selectedTab: $completionPackageTab)
+                .onDisappear {
+                    if completionPackageTab == 1 {
+                        selectedTab = 1
+                    }
+                    completionPackageTab = 0
+                }
+        }
+        // ✅ FIX: Pause queue reload while empty state sheet is open
         .onChange(of: showEmptyStatePackageSelection) { _, isOpen in
+            viewModel.isPackageSelectionActive = isOpen
+            if !isOpen {
+                viewModel.loadStudyQueue()
+            }
+        }
+        // ✅ FIX: Pause queue reload while completion sheet is open
+        .onChange(of: showCompletionPackageSelection) { _, isOpen in
             viewModel.isPackageSelectionActive = isOpen
             if !isOpen {
                 viewModel.loadStudyQueue()

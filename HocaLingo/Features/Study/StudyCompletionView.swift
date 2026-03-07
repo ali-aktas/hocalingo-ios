@@ -2,6 +2,7 @@
 //  StudyCompletionView.swift
 //  HocaLingo
 //
+//  ✅ FIXED: Sheet lifted to StudyView to prevent auto-dismiss when isSessionComplete changes
 //  ✅ FIXED: All hardcoded Turkish strings replaced with L() localization keys
 //  Location: HocaLingo/Features/Study/StudyCompletionView.swift
 //
@@ -13,9 +14,10 @@ struct StudyCompletionView: View {
     @Binding var selectedTab: Int
     let onContinue: () -> Void
     let onRestart: () -> Void
+    
+    // ✅ FIX: Sheet now lives in StudyView — this is a binding
+    @Binding var showPackageSelection: Bool
 
-    @State private var showPackageSelection = false
-    @State private var selectedTabForSheet: Int = 0
     @State private var animateSuccess = false
     @State private var currentMessageIndex = 0
 
@@ -83,7 +85,7 @@ struct StudyCompletionView: View {
                         .shadow(color: Color(hex: "4ECDC4").opacity(0.3), radius: 12, x: 0, y: 6)
                     }
 
-                    // Package selection button
+                    // Package selection button — triggers sheet in StudyView
                     Button(action: {
                         showPackageSelection = true
                     }) {
@@ -113,14 +115,7 @@ struct StudyCompletionView: View {
                 animateSuccess = true
             }
         }
-        .sheet(isPresented: $showPackageSelection) {
-            PackageSelectionView(selectedTab: $selectedTabForSheet)
-                .onDisappear {
-                    if selectedTabForSheet == 1 {
-                        selectedTab = 1
-                    }
-                }
-        }
+        // ✅ FIX: No .sheet here anymore — lives in StudyView to avoid auto-dismiss bug
     }
 }
 
@@ -129,6 +124,7 @@ struct StudyCompletionView: View {
     StudyCompletionView(
         selectedTab: .constant(1),
         onContinue: {},
-        onRestart: {}
+        onRestart: {},
+        showPackageSelection: .constant(false)
     )
 }
