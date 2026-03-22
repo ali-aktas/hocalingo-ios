@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Lottie
 
 // MARK: - Word Selection View
 struct WordSelectionView: View {
@@ -14,6 +15,7 @@ struct WordSelectionView: View {
 
     @StateObject private var viewModel: WordSelectionViewModel
     @State private var showPremiumSheet = false
+    @State private var showSwipeHint = false
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.themeViewModel) private var themeViewModel
@@ -60,6 +62,13 @@ struct WordSelectionView: View {
             if viewModel.selectionLimitReached {
                 selectionLimitOverlay
             }
+        
+            // Swipe hint overlay (first time only)
+            SwipeHintOverlay(
+                hintTextKey: "swipe_hint_word_selection",
+                userDefaultsKey: "has_seen_word_selection_hint",
+                isVisible: $showSwipeHint
+            )
         }
         .navigationTitle("HocaLingo")
         .navigationBarTitleDisplayMode(.inline)
@@ -74,7 +83,14 @@ struct WordSelectionView: View {
             }
         }
         .sheet(isPresented: $showPremiumSheet) {
-            PremiumPaywallView()
+                    PremiumPaywallView()
+                }
+                .onAppear {
+                    if shouldShowHint(for: "has_seen_word_selection_hint") {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                            showSwipeHint = true
+                }
+            }
         }
     }
 
@@ -276,9 +292,12 @@ struct WordSelectionView: View {
     // MARK: - Completion View
     private var completionView: some View {
         VStack(spacing: 32) {
-            Image(systemName: "checkmark.circle.fill")
-                .font(.system(size: 80))
-                .foregroundColor(themeAccentColor)
+            LottieView(
+                animationName: "checkmark_success",
+                loopMode: .playOnce,
+                animationSpeed: 1.0
+            )
+            .frame(width: 120, height: 120)
 
             VStack(spacing: 12) {
                 Text(LocalizedStringKey("word_selection_complete_title"))
@@ -404,7 +423,15 @@ struct WordSelectionView: View {
             )
             .padding(.horizontal, 36)
         }
+        // Swipe hint overlay (first time only)
+        return SwipeHintOverlay(
+            hintTextKey: "swipe_hint_word_selection",
+            userDefaultsKey: "has_seen_word_selection_hint",
+            isVisible: $showSwipeHint
+        )
     }
+    
+    
 
     // MARK: - Loading / Error Views
     private var loadingView: some View {

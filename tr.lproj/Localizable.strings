@@ -626,6 +626,7 @@
 // MARK: - Notifications
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+"notification_word_title" = "Günün Kelimesi 📚";
 "notification_title"  = "HocaLingo";
 "notification_msg_1"  = "Sadece 5 dakikalık pratik bile fark yaratır! 🚀";
 "notification_msg_2"  = "Otobüs mü bekliyorsun? Kelime çalışmaya ne dersin? 🚌";
@@ -636,11 +637,15 @@
 "notification_msg_7"  = "Ders arası mı? Öğrenmek için mükemmel zaman! 📚";
 "notification_msg_8"  = "İngilizcen seni bekliyor! Bugün sadece birkaç kelime 🔥";
 "notification_msg_9"  = "Öğle arası mı? Menüye biraz kelime ekle! 🍽️";
-"notification_msg_10" = "Uykun mu kaçtı? Hızlı bir çalışma ile günü verimli kapat! 🌙";
+"notification_msg_10" = "5 dakikan var mı? Hızlı bir çalışma ile gününe fayda kat!";
 
 "notification_ai_title" = "✨ AI Hikaye Zamanı!";
-"notification_ai_msg_1" = "Yapay zeka ile çalışma destene özel hikayeler yarat 🎨";
+"notification_ai_msg_1" = "Yapay zeka ile kelime kasana özel hikayeler yarat 🎨";
 "notification_ai_msg_2" = "Yapay zekaya kendine özel bir hikaye yazdırabilirsin! Hemen dene 🤖";
 "notification_ai_msg_3" = "AI ile yaratıcılığını ortaya çıkar! Reading hikayeni oluştur ✨";
 "notification_ai_msg_4" = "AI hikaye anlatıcın hazır! Bugün ne yaratacaksın? 📖";
 "notification_ai_msg_5" = "AI hikayeleri ile öğrenmeyi dönüştür! Maceraya başla 🚀";
+
+"swipe_hint_word_selection" = "Öğrenmek için sağa kaydır\nAtlamak için sola kaydır";
+"swipe_hint_study" = "Kartı çevirmek için dokun\nSonra ne kadar bildiğini seç";
+"hint_tap_to_dismiss" = "Devam etmek için dokun";

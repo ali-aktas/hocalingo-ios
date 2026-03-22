@@ -49,6 +49,10 @@
 		0E12B1B92F1A98E2002FCE76 /* Exceptions for "Resources" folder in "HocaLingo" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Animations/checkmark_success.json,
+				Animations/confetti_minimal.json,
+				Animations/sparkle_ambient.json,
+				Animations/swipe_hint.json,
 				Sounds/card_flip.wav,
 				Sounds/click_sound.wav,
 				Sounds/playSwipeLeft.wav,
@@ -100,6 +104,7 @@
 				Core/Utils/RatingManager.swift,
 				Core/Utils/SoundManager.swift,
 				Core/Utils/SpacedRepetition.swift,
+				Core/Utils/SwipeHintOverlay.swift,
 				Core/Utils/ThemeViewModel.swift,
 				Core/Utils/TTSManager.swift,
 				Core/Utils/WeeklySelectionLimitManager.swift,

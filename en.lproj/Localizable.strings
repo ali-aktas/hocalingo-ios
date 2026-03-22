@@ -277,15 +277,13 @@
 // MARK: - Package Names — Premium
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"premium_packages_title" = "Premium paketler";
+"premium_packages_title" = "Premium packages";
+"premium_package_academic" = "Academic English";
+"premium_package_phrases"  = "Phrases";
+"premium_package_social"   = "Social & Chat";
 "premium_package_business" = "Business & Interview";
 "premium_package_travel"   = "Travel & Tourism";
-"premium_package_tech"     = "Technology & Software";
-"premium_package_medical"  = "Medical Terms";
-"premium_package_academic" = "Academic English";
 "premium_package_idioms"   = "Idioms & Expressions";
-"premium_package_phrases"  = "Phrases & Expressions";
-"premium_package_social"   = "Social & Chat";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -629,6 +627,7 @@
 // MARK: - Notifications
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+"notification_word_title" = "Word of the Day 📚";
 "notification_title"  = "HocaLingo";
 "notification_msg_1"  = "Even 5 minutes of practice makes a difference! 🚀";
 "notification_msg_2"  = "Waiting for the bus? How about studying some words? 🚌";
@@ -647,3 +646,8 @@
 "notification_ai_msg_3" = "Unleash your creativity with AI! Create your reading story ✨";
 "notification_ai_msg_4" = "Your AI storyteller is ready! What will you create today? 📖";
 "notification_ai_msg_5" = "Transform learning with AI stories! Start the adventure 🚀";
+
+"swipe_hint_word_selection" = "Swipe right to learn\nSwipe left to skip";
+"swipe_hint_study" = "Tap the card to flip it\nThen rate how well you knew it";
+"hint_tap_to_dismiss" = "Tap anywhere to continue";
+

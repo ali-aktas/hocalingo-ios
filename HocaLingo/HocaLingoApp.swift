@@ -101,6 +101,9 @@ struct MainTabViewWrapper: View {
                 
                 // Request notification permission on first launch (after onboarding)
                 requestNotificationPermissionIfNeeded()
+                
+                // ✅ NEW: Refresh daily notifications with fresh words on every app open
+                NotificationManager.shared.refreshDailyRemindersIfNeeded()
             }
     }
     

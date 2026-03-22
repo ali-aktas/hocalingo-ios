@@ -8,6 +8,7 @@
 //
 
 import SwiftUI
+import Lottie
 
 // MARK: - Study View
 struct StudyView: View {
@@ -20,6 +21,7 @@ struct StudyView: View {
     // ✅ FIX: Sheet lifted here so it survives StudyEmptyStateView being removed
     @State private var showEmptyStatePackageSelection = false
     @State private var emptyStatePackageTab: Int = 0
+    @State private var showStudyHint = false
     
     // ✅ FIX: Sheet lifted here so it survives StudyCompletionView being removed
     @State private var showCompletionPackageSelection = false
@@ -44,6 +46,11 @@ struct StudyView: View {
         .onAppear {
             viewModel.onViewAppear()
             checkNotificationNavigation()
+            if shouldShowHint(for: "has_seen_study_hint") {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
+                    showStudyHint = true
+                }
+            }
         }
         .navigationBarHidden(true)
         .animation(.easeInOut(duration: 0.3), value: viewModel.isSessionComplete)
@@ -187,15 +194,22 @@ struct StudyView: View {
                         onMedium: { viewModel.answerCard(difficulty: .medium) },
                         onEasy: { viewModel.answerCard(difficulty: .easy) }
                     )
-                    .padding(.horizontal, 16)
-                    .padding(.bottom, 32)
+                        .padding(.horizontal, 16)
+                            .padding(.bottom, 32)
+                    }
                 }
+                                
+                // Study hint overlay (first time only)
+                SwipeHintOverlay(
+                    hintTextKey: "swipe_hint_study",
+                    userDefaultsKey: "has_seen_study_hint",
+                    isVisible: $showStudyHint
+                )
             }
+            .navigationBarHidden(true)
         }
-        .navigationBarHidden(true)
-    }
-    
-    var isDarkMode: Bool {
+            
+            var isDarkMode: Bool {
             themeViewModel.isDarkMode(in: colorScheme)
     }
 }
