@@ -131,6 +131,12 @@ class StudyViewModel: ObservableObject {
                     wordsStudied: cardsCompletedCount,
                     direction: studyDirection.rawValue
                 )
+                
+                MixpanelManager.shared.trackStudySessionCompleted(
+                    cardsCompleted: cardsCompletedCount,
+                    direction: studyDirection.rawValue)
+                
+                MixpanelManager.shared.trackDayStreak()
 
                 // Meta Event: first study ever (one-time)
                 if !UserDefaults.standard.bool(forKey: "has_completed_first_study") {
@@ -220,6 +226,7 @@ class StudyViewModel: ObservableObject {
     
     func onViewAppear() {
         isSessionActive = true
+        MixpanelManager.shared.trackStudySessionStarted(direction: studyDirection.rawValue, queueSize: studyQueue.count)
         if studyDirection == .enToTr {
             playCurrentWordAudio()
         }
@@ -258,6 +265,14 @@ class StudyViewModel: ObservableObject {
     func answerCard(difficulty: CardDifficulty) {
         guard displayCard != nil else { return }
         soundManager.playClickSound()
+        if let card = displayCard {
+            let progress = currentProgress[card.wordId]
+            MixpanelManager.shared.trackCardAnswered(
+                difficulty: "\(difficulty)",
+                wordId: card.wordId,
+                isLearningPhase: progress?.learningPhase ?? true
+            )
+        }
         handleStudyResponse(difficulty: difficulty)
     }
     

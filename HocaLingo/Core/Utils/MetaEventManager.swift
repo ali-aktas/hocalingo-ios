@@ -2,7 +2,8 @@
 //  MetaEventManager.swift
 //  HocaLingo
 //
-//  ✅ Meta (Facebook) App Events tracking for ad optimization
+//  ✅ UPDATED: Added retention tracking (day 3, day 7) + paywall_viewed
+//  ✅ Retention events fire automatically on app open — no manual calls needed
 //  Location: Core/Utils/MetaEventManager.swift
 //
 
@@ -58,12 +59,24 @@ class MetaEventManager {
     static let shared = MetaEventManager()
     private init() {}
     
+    // MARK: - Retention Tracking Keys
+    private let installDateKey = "meta_install_date"
+    private let day3FiredKey = "meta_day3_retention_fired"
+    private let day7FiredKey = "meta_day7_retention_fired"
+    
     // MARK: - App Activation
     
     /// Call when app becomes active (foreground)
+    /// Also checks and fires retention events automatically
     func activateApp() {
         AppEvents.shared.activateApp()
         print("📊 Meta: App activated")
+        
+        // Track install date on first ever launch
+        trackInstallDateIfNeeded()
+        
+        // Check retention milestones
+        checkRetentionEvents()
     }
     
     /// Send a test event to verify SDK works
@@ -119,6 +132,18 @@ class MetaEventManager {
         print("📊 Meta: first_study_completed")
     }
     
+    // MARK: - ✅ NEW: Paywall Event
+    
+    /// Track when paywall is displayed to the user
+    /// Call this from PremiumPaywallView.onAppear
+    func logPaywallViewed(trigger: String) {
+        AppEvents.shared.logEvent(
+            AppEvents.Name("paywall_viewed"),
+            parameters: [AppEvents.ParameterName("trigger"): trigger]
+        )
+        print("📊 Meta: paywall_viewed (trigger: \(trigger))")
+    }
+    
     // MARK: - Monetization Events
     
     func logTrialStarted() {
@@ -135,5 +160,36 @@ class MetaEventManager {
             ]
         )
         print("📊 Meta: Purchase → \(price) \(currency)")
+    }
+    
+    // MARK: - ✅ NEW: Retention Tracking (Automatic)
+    
+    /// Record install date on first launch (called automatically from activateApp)
+    private func trackInstallDateIfNeeded() {
+        guard UserDefaults.standard.object(forKey: installDateKey) == nil else { return }
+        UserDefaults.standard.set(Date(), forKey: installDateKey)
+        print("📊 Meta: Install date recorded")
+    }
+    
+    /// Check if day 3 or day 7 retention events should fire
+    /// Each fires exactly once when the user opens the app on/after that day
+    private func checkRetentionEvents() {
+        guard let installDate = UserDefaults.standard.object(forKey: installDateKey) as? Date else { return }
+        
+        let daysSinceInstall = Calendar.current.dateComponents([.day], from: installDate, to: Date()).day ?? 0
+        
+        // Day 3 retention (fires once, on or after day 3)
+        if daysSinceInstall >= 3 && !UserDefaults.standard.bool(forKey: day3FiredKey) {
+            AppEvents.shared.logEvent(AppEvents.Name("day_3_retention"))
+            UserDefaults.standard.set(true, forKey: day3FiredKey)
+            print("📊 Meta: day_3_retention ✅ (day \(daysSinceInstall))")
+        }
+        
+        // Day 7 retention (fires once, on or after day 7)
+        if daysSinceInstall >= 7 && !UserDefaults.standard.bool(forKey: day7FiredKey) {
+            AppEvents.shared.logEvent(AppEvents.Name("day_7_retention"))
+            UserDefaults.standard.set(true, forKey: day7FiredKey)
+            print("📊 Meta: day_7_retention ✅ (day \(daysSinceInstall))")
+        }
     }
 }

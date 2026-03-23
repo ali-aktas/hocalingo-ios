@@ -50,30 +50,39 @@ class ProfileViewModel: ObservableObject {
     func changeStudyDirection(to direction: StudyDirection) {
         studyDirection = direction
         userDefaults.saveStudyDirection(direction)
-        
+            
         // Notify other views to refresh
         NotificationCenter.default.post(
             name: NSNotification.Name("StudyDirectionChanged"),
             object: nil
         )
+            
+        // Analytics
+        MixpanelManager.shared.trackSettingChanged(setting: "study_direction", newValue: direction.rawValue)
     }
     
     /// Changes theme mode and saves to UserDefaults
     func changeThemeMode(to mode: ThemeMode) {
         themeMode = mode
         userDefaults.saveThemeMode(mode)
+            
+        // Analytics
+        MixpanelManager.shared.trackSettingChanged(setting: "theme_mode", newValue: mode.rawValue)
     }
     
     /// Changes app language and triggers UI refresh
     func changeLanguage(to language: AppLanguage) {
         appLanguage = language
         userDefaults.saveAppLanguage(language)
-        
+            
         // Post notification for all views to refresh locale-dependent content
         NotificationCenter.default.post(
             name: NSNotification.Name("AppLanguageChanged"),
             object: nil
         )
+            
+        // Analytics
+        MixpanelManager.shared.trackSettingChanged(setting: "app_language", newValue: language.rawValue)
     }
     
     /// Toggles push notifications and manages permissions/scheduling

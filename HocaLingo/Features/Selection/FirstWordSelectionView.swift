@@ -261,6 +261,7 @@ struct FirstWordSelectionView: View {
         // Meta Event
         let selections = UserDefaultsManager.shared.getWordSelections(packageId: packageId)
         MetaEventManager.shared.logFirstWordSelectionCompleted(wordCount: selections.selected.count)
+        MixpanelManager.shared.trackWordSelectionCompleted(packageId: packageId, wordsSelected: selections.selected.count, wordsSkipped: selections.hidden.count)
         
         // Flag: MainTabView should open on Study tab (index 1)
         UserDefaults.standard.set(true, forKey: "shouldOpenStudyAfterFirstSelection")

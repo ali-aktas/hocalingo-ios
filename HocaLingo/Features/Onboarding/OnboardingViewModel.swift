@@ -41,13 +41,17 @@ class OnboardingViewModel: ObservableObject {
         switch currentStep {
         case .promise:
             MetaEventManager.shared.logOnboardingStart()
+            MixpanelManager.shared.trackOnboardingStarted()
             currentStep = .empathy
         case .empathy:
             currentStep = .goal
+            MixpanelManager.shared.trackOnboardingStepCompleted(step: "empathy", selection: onboardingData.empathyChoice?.rawValue)
         case .goal:
             currentStep = .level
+            MixpanelManager.shared.trackOnboardingStepCompleted(step: "goal", selection: onboardingData.learningGoal?.rawValue)
         case .level:
             currentStep = .summary
+            MixpanelManager.shared.trackOnboardingStepCompleted(step: "level", selection: onboardingData.englishLevel?.rawValue)
         case .summary:
             completeOnboarding()
         }
@@ -58,6 +62,7 @@ class OnboardingViewModel: ObservableObject {
         onboardingData.empathyChoice = .forgetful
         onboardingData.learningGoal = .understand
         onboardingData.englishLevel = .intermediate
+        MixpanelManager.shared.trackOnboardingSkipped(atStep: currentStep.rawValue.description)
         completeOnboarding()
     }
 

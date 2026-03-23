@@ -41,6 +41,7 @@ class NotificationDelegate: NSObject, UNUserNotificationCenterDelegate {
         // Get destination from userInfo
         if let destination = userInfo["destination"] as? String {
             print("📱 Notification tapped: destination = \(destination)")
+            MixpanelManager.shared.trackNotificationTapped(destination: destination)
             
             // Set flag for navigation
             if destination == "study" {

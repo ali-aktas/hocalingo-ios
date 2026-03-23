@@ -90,7 +90,10 @@ struct PremiumPaywallView: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: { dismiss() }) {
+                    Button(action: {
+                        MixpanelManager.shared.trackPaywallDismissed(trigger: "direct")
+                        dismiss()
+                    }) {
                         Image(systemName: "xmark.circle.fill")
                             .font(.system(size: 24))
                             .symbolRenderingMode(.palette)
@@ -100,6 +103,8 @@ struct PremiumPaywallView: View {
             }
             .onAppear {
                 fetchOfferings()
+                MetaEventManager.shared.logPaywallViewed(trigger: "direct")
+                MixpanelManager.shared.trackPaywallViewed(trigger: "direct")
             }
             .sheet(isPresented: $showPrivacyPolicy) {
                 SafariView(url: URL(string: "https://ali-aktas.github.io/hocalingo-legal/privacy-policy.html")!)

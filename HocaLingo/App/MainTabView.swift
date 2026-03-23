@@ -119,6 +119,7 @@ struct MainTabView: View {
             }
             // Meta: Activate app event (tracks app opens)
             MetaEventManager.shared.activateApp()
+            MixpanelManager.shared.trackAppOpened()
         }
         .sheet(isPresented: $showPaywallOnLaunch) {
             PremiumPaywallView()

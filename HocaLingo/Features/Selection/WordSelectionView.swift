@@ -83,14 +83,16 @@ struct WordSelectionView: View {
             }
         }
         .sheet(isPresented: $showPremiumSheet) {
-                    PremiumPaywallView()
-                }
-                .onAppear {
-                    if shouldShowHint(for: "has_seen_word_selection_hint") {
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-                            showSwipeHint = true
+            PremiumPaywallView()
+        }
+        .onAppear {
+            if shouldShowHint(for: "has_seen_word_selection_hint") {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+                    showSwipeHint = true
                 }
             }
+            
+            MixpanelManager.shared.trackWordSelectionStarted(packageId: packageId)
         }
     }
 

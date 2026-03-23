@@ -51,9 +51,11 @@ struct HocaLingoApp: App {
         #endif
         
         Purchases.configure(withAPIKey: "appl_sfCiEYrSXxYYRRjbMFZOjwBfagG")
-        
         print("✅ RevenueCat initialized")
         // Meta SDK is initialized via MetaAppDelegate — no code needed here
+        
+        // ✅ NEW: Mixpanel analytics
+        MixpanelManager.shared.configure()
     }
     
     // MARK: - Computed Properties

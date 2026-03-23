@@ -16,6 +16,7 @@
 		0EB05EE62F5A023B000C152D /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 0EB05EE52F5A023B000C152D /* FacebookCore */; };
 		0EC5FC772F192647002129FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EC5FC752F192647002129FC /* Localizable.strings */; };
 		0EC5FC782F192647002129FC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0EC5FC752F192647002129FC /* Localizable.strings */; };
+		0ED680AE2F711FD00088F6BF /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 0ED680AD2F711FD00088F6BF /* Mixpanel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 				Core/Utils/LocalizationHelper.swift,
 				Core/Utils/LottieView.swift,
 				Core/Utils/MetaEventManager.swift,
+				Core/Utils/MixpanelManager.swift,
 				Core/Utils/NotificationDelegate.swift,
 				Core/Utils/NotificationManager.swift,
 				Core/Utils/PromptBuilder.swift,
@@ -281,6 +283,7 @@
 			files = (
 				0E7A28AA2F2D2F3B0056FD6C /* RevenueCat in Frameworks */,
 				0EB05EE62F5A023B000C152D /* FacebookCore in Frameworks */,
+				0ED680AE2F711FD00088F6BF /* Mixpanel in Frameworks */,
 				0EA0B3EE2F53AC5300EEDCE7 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -354,6 +357,7 @@
 				0E7A28A92F2D2F3B0056FD6C /* RevenueCat */,
 				0EA0B3ED2F53AC5300EEDCE7 /* Lottie */,
 				0EB05EE52F5A023B000C152D /* FacebookCore */,
+				0ED680AD2F711FD00088F6BF /* Mixpanel */,
 			);
 			productName = HocaLingo;
 			productReference = 0EC909CE2F18743E00FEBC67 /* HocaLingo.app */;
@@ -444,6 +448,7 @@
 				0E7A28A82F2D2F3B0056FD6C /* XCRemoteSwiftPackageReference "purchases-ios" */,
 				0EA0B3EC2F53AC5300EEDCE7 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				0EB05EE42F5A023B000C152D /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				0ED680AC2F711FD00088F6BF /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0EC909CF2F18743E00FEBC67 /* Products */;
@@ -879,6 +884,14 @@
 				minimumVersion = 14.1.0;
 			};
 		};
+		0ED680AC2F711FD00088F6BF /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mixpanel/mixpanel-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -896,6 +909,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0EB05EE42F5A023B000C152D /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
 			productName = FacebookCore;
+		};
+		0ED680AD2F711FD00088F6BF /* Mixpanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0ED680AC2F711FD00088F6BF /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
+			productName = Mixpanel;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
