@@ -32,6 +32,7 @@ struct StudyCard: Identifiable {
     let wordId: Int
     let frontText: String
     let backText: String
+    let secondaryBackText: String  // Other meanings (small font), empty if single meaning
 }
 
 // MARK: - Card Colors
@@ -330,7 +331,8 @@ class StudyViewModel: ObservableObject {
                 id: UUID(),
                 wordId: word.id,
                 frontText: getFrontText(for: word),
-                backText: getBackText(for: word)
+                backText: getBackText(for: word),
+                secondaryBackText: getSecondaryBackText(for: word)
             )
         }
         self.currentCardIndex = 0
@@ -379,7 +381,8 @@ class StudyViewModel: ObservableObject {
                     id: UUID(),
                     wordId: word.id,
                     frontText: getFrontText(for: word),
-                    backText: getBackText(for: word)
+                    backText: getBackText(for: word),
+                    secondaryBackText: getSecondaryBackText(for: word)
                 )
             }
             currentCardIndex = 0
@@ -483,7 +486,7 @@ class StudyViewModel: ObservableObject {
     // MARK: - Computed Properties
     
     var currentCard: StudyCard {
-        displayCard ?? studyQueue.first ?? StudyCard(id: UUID(), wordId: 0, frontText: "", backText: "")
+        displayCard ?? studyQueue.first ?? StudyCard(id: UUID(), wordId: 0, frontText: "", backText: "", secondaryBackText: "")
     }
 
     var shouldShowSpeakerOnFront: Bool {
@@ -552,10 +555,21 @@ class StudyViewModel: ObservableObject {
     private func getBackText(for word: Word) -> String {
         switch studyDirection {
         case .enToTr:
-            // Show all Turkish meanings joined on back
-            return word.allTurkishMeanings
+            // Only PRIMARY meaning (shown big on card)
+            return word.meanings.first?.turkish ?? ""
         case .trToEn:
             return word.english
+        }
+    }
+
+    private func getSecondaryBackText(for word: Word) -> String {
+        switch studyDirection {
+        case .enToTr:
+            // Secondary meanings (shown small below primary)
+            let secondary = word.meanings.dropFirst().map { $0.turkish }
+            return secondary.joined(separator: ", ")
+        case .trToEn:
+            return ""
         }
     }
     

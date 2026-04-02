@@ -613,6 +613,7 @@
 "paywall_restore"         = "Restore Purchases";
 "paywall_terms"           = "Terms of Service";
 "paywall_privacy"         = "Privacy Policy";
+"package_words" = "words";
 
 "premium_upgrade_prompt_title"   = "Unlock Premium";
 "premium_upgrade_prompt_message" = "Unlimited access to all features";

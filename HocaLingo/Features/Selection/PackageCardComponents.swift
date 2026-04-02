@@ -232,7 +232,7 @@ struct PremiumPackageCard: View {
                     if !isPremiumUser {
                         Image(systemName: "lock.fill")
                             .font(.system(size: 14))
-                            .foregroundColor(Color(hex: "FFD700").opacity(0.7))
+                            .foregroundColor(isDarkMode ? Color(hex: "FFD700").opacity(0.7) : Color(hex: "8B5CF6").opacity(0.6))
                     } else if unseenCount == 0 {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.system(size: 16))
@@ -255,10 +255,15 @@ struct PremiumPackageCard: View {
                 
                 // Status text
                 if !isPremiumUser {
-                    Text("package_premium_required")
-                        .font(.system(size: 12, weight: .semibold))
-                        .foregroundColor(Color(hex: "FFD700"))
-                        .padding(.top, 4)
+                    HStack(spacing: 4) {
+                        Image(systemName: "lock.fill")
+                            .font(.system(size: 9))
+                        Text("\(package.wordCount) ")
+                        + Text("package_words")
+                    }
+                    .font(.system(size: 12, weight: .semibold))
+                    .foregroundColor(isDarkMode ? Color(hex: "FFD700") : Color(hex: "8B5CF6"))
+                    .padding(.top, 4)
                 } else if unseenCount == 0 {
                     Text("package_completed")
                         .font(.system(size: 12, weight: .medium))
@@ -294,31 +299,45 @@ struct PremiumPackageCard: View {
     
     private var cardBackground: some View {
         ZStack {
-            // Subtle gradient tint from package color
-            RoundedRectangle(cornerRadius: 22)
-                .fill(
-                    LinearGradient(
-                        colors: [
-                            Color(hex: package.colorHex).opacity(isDarkMode ? 0.12 : 0.08),
-                            Color(hex: package.colorHex).opacity(isDarkMode ? 0.06 : 0.03)
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
+            if isPremiumUser {
+                // Unlocked: subtle tint (current nice design)
+                RoundedRectangle(cornerRadius: 22)
+                    .fill(
+                        LinearGradient(
+                            colors: [
+                                Color(hex: package.colorHex).opacity(isDarkMode ? 0.12 : 0.08),
+                                Color(hex: package.colorHex).opacity(isDarkMode ? 0.06 : 0.03)
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
                     )
-                )
-            
-            // Glass material overlay
-            RoundedRectangle(cornerRadius: 22)
-                .fill(.ultraThinMaterial)
-                .opacity(isDarkMode ? 0.6 : 0.5)
+                RoundedRectangle(cornerRadius: 22)
+                    .fill(.ultraThinMaterial)
+                    .opacity(isDarkMode ? 0.6 : 0.5)
+            } else {
+                // Locked: themed premium feel
+                RoundedRectangle(cornerRadius: 22)
+                    .fill(
+                        LinearGradient(
+                            colors: isDarkMode
+                                ? [Color(hex: "2A2235"), Color(hex: "1E1A2B")]
+                                : [Color(hex: "F3EEFF"), Color(hex: "EDE5FF")],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
+                    )
+            }
         }
     }
-    
+
     private var cardBorderColor: Color {
         if isSelected {
-            return Color(hex: "FFD700")
+            return isDarkMode ? Color(hex: "FFD700") : Color(hex: "8B5CF6")
         } else if !isPremiumUser {
-            return Color(hex: "FFD700").opacity(isDarkMode ? 0.25 : 0.18)
+            return isDarkMode
+                ? Color(hex: "FFD700").opacity(0.25)
+                : Color(hex: "8B5CF6").opacity(0.2)
         } else {
             return Color.clear
         }

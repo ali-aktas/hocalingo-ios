@@ -293,37 +293,49 @@ class AIStoryViewModel: ObservableObject {
     /// Load selected words from UserDefaults
     private func loadWords() {
         print("🔍 Loading words for AI Story...")
-        
+
         // 1. Get selected word IDs
         let selectedWordIds = Set(userDefaults.loadSelectedWords())
         print("📝 Found \(selectedWordIds.count) selected word IDs")
-        
+
         guard !selectedWordIds.isEmpty else {
             print("⚠️ No selected words found")
             uiState.allWords = []
             return
         }
-        
-        // 2. Load words from various sources
+
+        // 2. Load words from ALL packages dynamically
         var allWords: [Word] = []
-        
+        var seenIds = Set<Int>()
+        let jsonLoader = JSONLoader()
+
+        // Discover all packages from UserDefaults keys
+        let allKeys = UserDefaults.standard.dictionaryRepresentation().keys
+            .filter { $0.hasPrefix("package_") && $0.hasSuffix("_selected") }
+
+        for key in allKeys {
+            let packageId = String(key.dropFirst("package_".count).dropLast("_selected".count))
+            if let package = try? jsonLoader.loadVocabularyPackage(filename: packageId) {
+                let packageWords = package.words.filter {
+                    selectedWordIds.contains($0.id) && !seenIds.contains($0.id)
+                }
+                for word in packageWords { seenIds.insert(word.id) }
+                allWords.append(contentsOf: packageWords)
+                print("📦 Loaded \(packageWords.count) words from \(packageId)")
+            }
+        }
+
         // User-added words
         let userWords = userDefaults.loadUserAddedWords()
-        allWords.append(contentsOf: userWords.filter { selectedWordIds.contains($0.id) })
-        print("👤 Loaded \(userWords.filter { selectedWordIds.contains($0.id) }.count) user-added words")
-        
-        // Package words
-        if let url = Bundle.main.url(forResource: "standard_a1_001", withExtension: "json"),
-           let data = try? Data(contentsOf: url),
-           let package = try? JSONDecoder().decode(VocabularyPackage.self, from: data) {
-            let packageWords = package.words.filter { selectedWordIds.contains($0.id) }
-            allWords.append(contentsOf: packageWords)
-            print("📦 Loaded \(packageWords.count) words from standard_a1_001")
+        let selectedUserWords = userWords.filter {
+            selectedWordIds.contains($0.id) && !seenIds.contains($0.id)
         }
-        
+        allWords.append(contentsOf: selectedUserWords)
+        print("👤 Loaded \(selectedUserWords.count) user-added words")
+
         uiState.allWords = allWords
         print("✅ Total loaded \(allWords.count) words for AI Story")
-        
+
         // Debug: Print eligible word count
         let direction = userDefaults.loadStudyDirection()
         let eligibleCount = allWords.filter { word in

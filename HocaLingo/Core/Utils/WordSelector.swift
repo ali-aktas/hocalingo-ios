@@ -52,12 +52,12 @@ class WordSelector {
         // ✅ NO random range - always 20 or 40
         let selectedWords = eligibleWords.shuffled().prefix(exactCount)
         
-        // Step 4: Convert to WordWithMeaning
+        // Step 4: Convert to WordWithMeaning (with all meanings)
         return selectedWords.map { word in
             WordWithMeaning(
                 id: word.id,
                 english: word.english,
-                turkish: word.turkish
+                meanings: word.meanings
             )
         }
     }

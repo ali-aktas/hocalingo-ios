@@ -127,7 +127,7 @@ struct WordSelectionView: View {
                     if let nextWord = viewModel.nextWord {
                         SwipeableCardView(
                             word: nextWord.english,
-                            translation: nextWord.turkish,
+                            translation: nextWord.allTurkishMeanings,
                             cardColor: cardColor(for: nextWord),
                             onSwipeLeft: {},
                             onSwipeRight: {}
@@ -146,7 +146,7 @@ struct WordSelectionView: View {
                     if let currentWord = viewModel.currentWord {
                         SwipeableCardView(
                             word: currentWord.english,
-                            translation: currentWord.turkish,
+                            translation: currentWord.allTurkishMeanings,
                             cardColor: cardColor(for: currentWord),
                             onSwipeLeft: { viewModel.swipeLeft() },
                             onSwipeRight: { viewModel.swipeRight() }

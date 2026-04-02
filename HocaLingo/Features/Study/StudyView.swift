@@ -329,11 +329,11 @@ struct StudyButtons: View {
             Button(action: {}) {
                 Text("study_flip_card_hint")
                     .font(.system(size: 16, weight: .thin, design: .rounded))
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(hex: "8B5CF6"))
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 16)
                     .background(
-                        Color(hex: "E7EDF3").opacity(0.2)
+                        Color(hex: "8B5CF6").opacity(0.12)
                     )
                     .cornerRadius(18)
             }

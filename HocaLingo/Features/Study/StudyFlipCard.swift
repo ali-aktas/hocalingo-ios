@@ -71,6 +71,7 @@ struct StudyFlipCard: View {
             // Back side (flipped state)
             CardFace(
                 mainText: card.backText,
+                secondaryText: card.secondaryBackText,
                 exampleText: exampleSentence,
                 backgroundColor: cardColor,
                 backgroundGradient: cardGradient,
@@ -89,6 +90,7 @@ struct StudyFlipCard: View {
             // Front side (default state)
             CardFace(
                 mainText: card.frontText,
+                secondaryText: "",
                 exampleText: exampleSentence,
                 backgroundColor: cardColor,
                 backgroundGradient: cardGradient,
@@ -149,6 +151,7 @@ struct StudyFlipCard: View {
 /// Single side of the flip card with style support
 private struct CardFace: View {
     let mainText: String
+    let secondaryText: String
     let exampleText: String
     let backgroundColor: Color
     let backgroundGradient: [Color]?
@@ -163,40 +166,61 @@ private struct CardFace: View {
             RoundedRectangle(cornerRadius: 28)
                 .fill(cardBackground)
             
-            // Content
-            VStack(spacing: 20) {
-                Spacer()
-                
-                // Main text (word)
-                Text(mainText)
-                    .font(.system(size: 32, weight: .bold, design: .rounded))
-                    .foregroundColor(textColor)
-                    .multilineTextAlignment(.center)
-                    .padding(.horizontal, 24)
-                    .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 2)
-                
-                // Example sentence
-                if !exampleText.isEmpty {
-                    Text(exampleText)
-                        .font(.system(size: 14, weight: .regular, design: .rounded))
-                        .foregroundColor(textColor.opacity(0.9))
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal, 32)
-                        .lineLimit(2)
-                }
-                
-                Spacer()
-                
-                // TTS Button
-                if showSpeakerButton {
-                    Button(action: onSpeakerTap) {
-                        Image(systemName: "speaker.wave.2")
-                            .font(.system(size: 20, weight: .medium))
-                            .foregroundStyle(textColor.opacity(0.85))
-                            .padding(10)
-                    }
-                    .padding(.bottom, 24)
-                }            }
+                        // Content
+                        VStack(spacing: 0) {
+                            Spacer()
+
+                            // Primary text (word / main meaning)
+                            Text(mainText)
+                                .font(.system(size: secondaryText.isEmpty ? 32 : 28, weight: .bold, design: .rounded))
+                                .foregroundColor(textColor)
+                                .multilineTextAlignment(.center)
+                                .padding(.horizontal, 24)
+                                .shadow(color: .black.opacity(0.2), radius: 2, x: 0, y: 2)
+
+                            // Secondary meanings block
+                            if !secondaryText.isEmpty {
+                                // Thin divider between meanings
+                                Rectangle()
+                                    .fill(textColor.opacity(0.25))
+                                    .frame(width: 100, height: 1)
+                                    .padding(.vertical, 14)
+
+                                // Other meaning(s)
+                                Text(secondaryText)
+                                    .font(.system(size: 22, weight: .medium, design: .rounded))
+                                    .foregroundColor(textColor.opacity(0.85))
+                                    .multilineTextAlignment(.center)
+                                    .padding(.horizontal, 28)
+                                    .lineLimit(2)
+                            }
+
+                            // Example sentence — visually distinct from meanings
+                            if !exampleText.isEmpty {
+                                Text(exampleText)
+                                    .font(.system(size: 14, weight: .regular, design: .rounded))
+                                    .italic()
+                                    .foregroundColor(textColor.opacity(0.6))
+                                    .multilineTextAlignment(.center)
+                                    .padding(.horizontal, 32)
+                                    .padding(.top, secondaryText.isEmpty ? 20 : 18)
+                                    .lineLimit(2)
+                            }
+
+                            Spacer()
+
+                            // TTS Button
+                            if showSpeakerButton {
+                                Button(action: onSpeakerTap) {
+                                    Image(systemName: "speaker.wave.2")
+                                        .font(.system(size: 20, weight: .medium))
+                                        .foregroundStyle(textColor.opacity(0.85))
+                                        .padding(10)
+                                }
+                                .padding(.bottom, 24)
+                            }
+                        }
+            
         }
     }
     
@@ -271,7 +295,8 @@ private struct CardFace: View {
                 id: UUID(),
                 wordId: 1,
                 frontText: "Hello",
-                backText: "Merhaba"
+                backText: "Merhaba",
+                secondaryBackText: "selam"
             ),
             isFlipped: false,
             cardColor: Color(hex: "6366F1"),
@@ -291,7 +316,8 @@ private struct CardFace: View {
                 id: UUID(),
                 wordId: 2,
                 frontText: "Hello",
-                backText: "Merhaba"
+                backText: "Merhaba",
+                secondaryBackText: "selam"
             ),
             isFlipped: false,
             cardColor: Color(hex: "9CA3AF"),
@@ -311,7 +337,8 @@ private struct CardFace: View {
                 id: UUID(),
                 wordId: 3,
                 frontText: "Hello",
-                backText: "Merhaba"
+                backText: "Merhaba",
+                secondaryBackText: "selam"
             ),
             isFlipped: false,
             cardColor: Color(hex: "667eea"),

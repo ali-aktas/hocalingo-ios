@@ -612,7 +612,10 @@
 "paywall_restore"         = "Satın Alımları Geri Yükle";
 "paywall_terms"           = "Kullanım Koşulları";
 "paywall_privacy"         = "Gizlilik Politikası";
+"package_words" = "kelime";
 
+
+"premium_packages_title"   = "Binlerce Yeni Kelime";
 "premium_upgrade_prompt_title"   = "Premium Kilidi Aç";
 "premium_upgrade_prompt_message" = "Tüm özelliklere sınırsız erişim";
 "premium_upgrade_prompt_button"  = "Şimdi Yükselt";
