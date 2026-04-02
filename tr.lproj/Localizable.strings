@@ -534,9 +534,9 @@
 // Screen 2: Empathy
 "onboarding_empathy_title"     = "En çok hangisi seni tanımlıyor?";
 "onboarding_empathy_quitter"   = "Başlayıp bırakıyorum";
-"onboarding_empathy_forgetful" = "Kelimeler aklımda kalmıyor";
-"onboarding_empathy_no_time"   = "Zamanım hiç yok";
-"onboarding_empathy_response"  = "HocaLingo Tam sana göre!";
+"onboarding_empathy_forgetful" = "Düzenli çalışamıyorum";
+"onboarding_empathy_no_time"   = "Çalışmaya üşeniyorum";
+"onboarding_empathy_response"  = "HocaLingo tam sana göre!";
 
 // Screen 3: Goal (StudyDirection)
 "onboarding_goal_title"              = "Önceliğin ne?";

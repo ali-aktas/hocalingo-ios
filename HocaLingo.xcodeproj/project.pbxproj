@@ -183,7 +183,9 @@
 				Models/UserStats.swift,
 				Models/VocabularyPackage.swift,
 				Models/Word.swift,
+				premium_travel_001.json,
 				standard_a1_001.json,
+				standard_a2_001.json,
 			);
 			target = 0EC909CD2F18743E00FEBC67 /* HocaLingo */;
 		};
@@ -239,7 +241,9 @@
 				Models/UserStats.swift,
 				Models/VocabularyPackage.swift,
 				Models/Word.swift,
+				premium_travel_001.json,
 				standard_a1_001.json,
+				standard_a2_001.json,
 			);
 			target = 0EC909DA2F18743F00FEBC67 /* HocaLingoTests */;
 		};

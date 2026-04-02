@@ -12,8 +12,9 @@ import Combine
 struct VaultWord: Identifiable {
     let id: Int
     let english: String
-    let turkish: String
-    let addedOrder: Int      // lower = older, higher = newer
+    let turkish: String          // Primary meaning (backward compat)
+    let allMeanings: String      // All meanings joined — "ışık, hafif"
+    let addedOrder: Int          // lower = older, higher = newer
     let isUserAdded: Bool
 }
 
@@ -74,8 +75,9 @@ class WordVaultViewModel: ObservableObject {
                     id: word.id,
                     english: word.english,
                     turkish: word.turkish,
+                    allMeanings: word.allTurkishMeanings,
                     addedOrder: orderCounter,
-                    isUserAdded: false
+                    isUserAdded: word.userAdded
                 ))
                 orderCounter += 1
             }
@@ -88,8 +90,9 @@ class WordVaultViewModel: ObservableObject {
                 id: word.id,
                 english: word.english,
                 turkish: word.turkish,
+                allMeanings: word.allTurkishMeanings,
                 addedOrder: orderCounter,
-                isUserAdded: true
+                isUserAdded: word.userAdded
             ))
             orderCounter += 1
         }

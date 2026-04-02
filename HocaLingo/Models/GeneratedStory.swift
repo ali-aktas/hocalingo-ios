@@ -68,7 +68,31 @@ struct GeneratedStory: Identifiable, Codable, Equatable {
 struct WordWithMeaning: Identifiable, Codable, Equatable {
     let id: Int        // Word ID from database
     let english: String
-    let turkish: String
+    let meanings: [Meaning]
+
+    // Backward compat — existing code uses .turkish
+    var turkish: String {
+        meanings.map { $0.turkish }.joined(separator: ", ")
+    }
+
+    /// Primary meaning only
+    var primaryTurkish: String {
+        meanings.first?.turkish ?? ""
+    }
+
+    // Convenience init for old-style creation
+    init(id: Int, english: String, turkish: String) {
+        self.id = id
+        self.english = english
+        self.meanings = [Meaning(turkish: turkish, example: Example(en: "", tr: ""))]
+    }
+
+    // New-style init
+    init(id: Int, english: String, meanings: [Meaning]) {
+        self.id = id
+        self.english = english
+        self.meanings = meanings
+    }
     
     /// ⚠️ DEPRECATED: Old substring matching (caused "sand" in "sandalye" issue)
     /// Use wholeWordRanges() instead

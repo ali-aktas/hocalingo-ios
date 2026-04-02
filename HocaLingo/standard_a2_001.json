@@ -1,0 +1,3628 @@
+{
+  "package_info": {
+    "id": "standard_a2_001",
+    "version": "2.0.0",
+    "level": "A2",
+    "language_pair": "en_tr",
+    "total_words": 200,
+    "updated_at": "2026-03-24",
+    "description": "A2 level English-Turkish vocabulary - Elementary everyday phrases",
+    "attribution": "HocaLingo vocabulary database"
+  },
+  "words": [
+    {
+      "id": 1203,
+      "english": "umbrella",
+      "pronunciation": "ʌmˈbrɛlə",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "şemsiye",
+          "example": {
+            "en": "I always carry an umbrella when it rains.",
+            "tr": "Yağmur yağdığında her zaman şemsiye taşırım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1204,
+      "english": "cloudy",
+      "pronunciation": "ˈklaʊdi",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bulutlu",
+          "example": {
+            "en": "It is cloudy and cool today.",
+            "tr": "Bugün hava bulutlu ve serin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1205,
+      "english": "sunny",
+      "pronunciation": "ˈsʌni",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "güneşli",
+          "example": {
+            "en": "We had a sunny day at the beach.",
+            "tr": "Sahilde güneşli bir gün geçirdik."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1206,
+      "english": "windy",
+      "pronunciation": "ˈwɪndi",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "rüzgarlı",
+          "example": {
+            "en": "It is very windy outside today.",
+            "tr": "Bugün dışarısı çok rüzgarlı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1207,
+      "english": "temperature",
+      "pronunciation": "ˈtɛmprətʃə",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sıcaklık",
+          "example": {
+            "en": "The temperature is thirty degrees today.",
+            "tr": "Bugün sıcaklık otuz derece."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1208,
+      "english": "turn left",
+      "pronunciation": "tɜːn lɛft",
+      "level": "A2",
+      "category": "directions",
+      "reversible": false,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sola dön",
+          "example": {
+            "en": "Turn left at the traffic lights.",
+            "tr": "Trafik ışıklarında sola dön."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1209,
+      "english": "turn right",
+      "pronunciation": "tɜːn raɪt",
+      "level": "A2",
+      "category": "directions",
+      "reversible": false,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sağa dön",
+          "example": {
+            "en": "Turn right after the bank.",
+            "tr": "Bankadan sonra sağa dön."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1210,
+      "english": "straight ahead",
+      "pronunciation": "streɪt əˈhɛd",
+      "level": "A2",
+      "category": "directions",
+      "reversible": false,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "düz devam et",
+          "example": {
+            "en": "Go straight ahead and you will see the hotel.",
+            "tr": "Düz devam et, oteli göreceksin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1211,
+      "english": "near",
+      "pronunciation": "nɪə",
+      "level": "A2",
+      "category": "directions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yakın",
+          "example": {
+            "en": "The supermarket is near my house.",
+            "tr": "Süpermarket evime yakın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1212,
+      "english": "far",
+      "pronunciation": "fɑː",
+      "level": "A2",
+      "category": "directions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "uzak",
+          "example": {
+            "en": "Is the station far from here?",
+            "tr": "İstasyon buradan uzak mı?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 1213,
+      "english": "price",
+      "pronunciation": "praɪs",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fiyat",
+          "example": {
+            "en": "What is the price of this jacket?",
+            "tr": "Bu ceketin fiyatı nedir?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 1214,
+      "english": "cheap",
+      "pronunciation": "tʃiːp",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ucuz",
+          "example": {
+            "en": "This bag is very cheap at the market.",
+            "tr": "Bu çanta markette çok ucuz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1215,
+      "english": "expensive",
+      "pronunciation": "ɪkˈspɛnsɪv",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "pahalı",
+          "example": {
+            "en": "That coat is too expensive for me.",
+            "tr": "O palto benim için çok pahalı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1216,
+      "english": "receipt",
+      "pronunciation": "rɪˈsiːt",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fiş",
+          "example": {
+            "en": "Can I have a receipt, please?",
+            "tr": "Fiş alabilir miyim, lütfen?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 1217,
+      "english": "size",
+      "pronunciation": "saɪz",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "beden",
+          "example": {
+            "en": "Do you have this dress in a smaller size?",
+            "tr": "Bu elbise daha küçük bedende var mı?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 1218,
+      "english": "bus",
+      "pronunciation": "bʌs",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "otobüs",
+          "example": {
+            "en": "I take the bus to work every morning.",
+            "tr": "Her sabah işe otobüsle gidiyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1219,
+      "english": "train",
+      "pronunciation": "treɪn",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tren",
+          "example": {
+            "en": "The train to Istanbul leaves at nine.",
+            "tr": "İstanbul treni dokuzda kalkıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1220,
+      "english": "taxi",
+      "pronunciation": "ˈtæksi",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "taksi",
+          "example": {
+            "en": "We took a taxi to the airport.",
+            "tr": "Havalimanına taksiyle gittik."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1221,
+      "english": "bicycle",
+      "pronunciation": "ˈbaɪsɪkəl",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bisiklet",
+          "example": {
+            "en": "She rides her bicycle to school.",
+            "tr": "Okula bisikletiyle gidiyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1222,
+      "english": "ticket",
+      "pronunciation": "ˈtɪkɪt",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bilet",
+          "example": {
+            "en": "I need to buy a bus ticket.",
+            "tr": "Otobüs bileti almam gerekiyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1223,
+      "english": "kitchen",
+      "pronunciation": "ˈkɪtʃɪn",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "mutfak",
+          "example": {
+            "en": "My mother is cooking in the kitchen.",
+            "tr": "Annem mutfakta yemek pişiriyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1224,
+      "english": "bathroom",
+      "pronunciation": "ˈbɑːθruːm",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "banyo",
+          "example": {
+            "en": "There is one bathroom upstairs.",
+            "tr": "Üst katta bir banyo var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1225,
+      "english": "living room",
+      "pronunciation": "ˈlɪvɪŋ ruːm",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "oturma odası",
+          "example": {
+            "en": "We watch TV in the living room.",
+            "tr": "Oturma odasında televizyon izliyoruz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1226,
+      "english": "bedroom",
+      "pronunciation": "ˈbɛdruːm",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yatak odası",
+          "example": {
+            "en": "She has a small but cosy bedroom.",
+            "tr": "Küçük ama rahat bir yatak odası var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1227,
+      "english": "garden",
+      "pronunciation": "ˈɡɑːdən",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bahçe",
+          "example": {
+            "en": "We have breakfast in the garden.",
+            "tr": "Bahçede kahvaltı ediyoruz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1228,
+      "english": "jacket",
+      "pronunciation": "ˈdʒækɪt",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ceket",
+          "example": {
+            "en": "He is wearing a blue jacket today.",
+            "tr": "Bugün mavi bir ceket giyiyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1229,
+      "english": "sweater",
+      "pronunciation": "ˈswɛtə",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kazak",
+          "example": {
+            "en": "Put on a sweater, it is cold outside.",
+            "tr": "Kazak giy, dışarısı soğuk."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1230,
+      "english": "jeans",
+      "pronunciation": "dʒiːnz",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kot pantolon",
+          "example": {
+            "en": "She always wears jeans on weekends.",
+            "tr": "Hafta sonları her zaman kot pantolon giyer."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1231,
+      "english": "scarf",
+      "pronunciation": "skɑːf",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "atkı",
+          "example": {
+            "en": "He wrapped a warm scarf around his neck.",
+            "tr": "Boynuna sıcak bir atkı sardı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1232,
+      "english": "gloves",
+      "pronunciation": "ɡlʌvz",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "eldiven",
+          "example": {
+            "en": "I need gloves because it is freezing.",
+            "tr": "Hava dondurucu olduğu için eldiven lazım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1233,
+      "english": "headache",
+      "pronunciation": "ˈhɛdeɪk",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "baş ağrısı",
+          "example": {
+            "en": "I have a bad headache today.",
+            "tr": "Bugün çok kötü bir baş ağrım var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1234,
+      "english": "medicine",
+      "pronunciation": "ˈmɛdsɪn",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ilaç",
+          "example": {
+            "en": "The doctor gave me some medicine.",
+            "tr": "Doktor bana biraz ilaç verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1235,
+      "english": "doctor",
+      "pronunciation": "ˈdɒktə",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "doktor",
+          "example": {
+            "en": "I have an appointment with the doctor.",
+            "tr": "Doktorla randevum var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1236,
+      "english": "fever",
+      "pronunciation": "ˈfiːvə",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ateş",
+          "example": {
+            "en": "The child has a high fever.",
+            "tr": "Çocuğun yüksek ateşi var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1237,
+      "english": "feel better",
+      "pronunciation": "fiːl ˈbɛtə",
+      "level": "A2",
+      "category": "health",
+      "reversible": false,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kendini daha iyi hissetmek",
+          "example": {
+            "en": "I hope you feel better soon.",
+            "tr": "Umarım yakında kendini daha iyi hissedersin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1238,
+      "english": "curly",
+      "pronunciation": "ˈkɜːli",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kıvırcık",
+          "example": {
+            "en": "She has long curly hair.",
+            "tr": "Uzun kıvırcık saçları var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1239,
+      "english": "slim",
+      "pronunciation": "slɪm",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ince",
+          "example": {
+            "en": "He is tall and slim.",
+            "tr": "Uzun boylu ve ince."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1240,
+      "english": "glasses",
+      "pronunciation": "ˈɡlɑːsɪz",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gözlük",
+          "example": {
+            "en": "My teacher wears round glasses.",
+            "tr": "Öğretmenim yuvarlak gözlük takıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1241,
+      "english": "beard",
+      "pronunciation": "bɪəd",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sakal",
+          "example": {
+            "en": "My father has a short beard.",
+            "tr": "Babamın kısa sakalı var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1242,
+      "english": "age",
+      "pronunciation": "eɪdʒ",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yaş",
+          "example": {
+            "en": "What is your age?",
+            "tr": "Kaç yaşındasın?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 1243,
+      "english": "wake up",
+      "pronunciation": "weɪk ʌp",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "uyanmak",
+          "example": {
+            "en": "I wake up at seven every morning.",
+            "tr": "Her sabah yedide uyanırım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1244,
+      "english": "get dressed",
+      "pronunciation": "ɡɛt drɛst",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": false,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "giyinmek",
+          "example": {
+            "en": "She gets dressed quickly in the morning.",
+            "tr": "Sabahları hızlı giyinir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1245,
+      "english": "brush teeth",
+      "pronunciation": "brʌʃ tiːθ",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": false,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "diş fırçalamak",
+          "example": {
+            "en": "You should brush your teeth twice a day.",
+            "tr": "Günde iki kez diş fırçalamalısın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1246,
+      "english": "have breakfast",
+      "pronunciation": "hæv ˈbrɛkfəst",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": false,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kahvaltı yapmak",
+          "example": {
+            "en": "We always have breakfast together as a family.",
+            "tr": "Ailece her zaman birlikte kahvaltı yaparız."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1247,
+      "english": "go to bed",
+      "pronunciation": "ɡəʊ tə bɛd",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": false,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yatmak",
+          "example": {
+            "en": "I go to bed at ten o'clock.",
+            "tr": "Saat onda yatarım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1248,
+      "english": "swimming",
+      "pronunciation": "ˈswɪmɪŋ",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yüzme",
+          "example": {
+            "en": "Swimming is my favourite sport.",
+            "tr": "Yüzme en sevdiğim spor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1249,
+      "english": "painting",
+      "pronunciation": "ˈpeɪntɪŋ",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "resim yapma",
+          "example": {
+            "en": "She enjoys painting in her free time.",
+            "tr": "Boş zamanlarında resim yapmaktan hoşlanıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1250,
+      "english": "cooking",
+      "pronunciation": "ˈkʊkɪŋ",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yemek pişirme",
+          "example": {
+            "en": "Cooking is both fun and useful.",
+            "tr": "Yemek pişirme hem eğlenceli hem faydalı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1251,
+      "english": "dancing",
+      "pronunciation": "ˈdɑːnsɪŋ",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dans etme",
+          "example": {
+            "en": "He started dancing lessons last month.",
+            "tr": "Geçen ay dans derslerine başladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1252,
+      "english": "photography",
+      "pronunciation": "fəˈtɒɡrəfi",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fotoğrafçılık",
+          "example": {
+            "en": "Photography is a popular hobby for many people.",
+            "tr": "Fotoğrafçılık pek çok insan için popüler bir hobi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1253,
+      "english": "cashier",
+      "pronunciation": "kæˈʃɪər",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kasiyer",
+          "example": {
+            "en": "The cashier gave me my change.",
+            "tr": "Kasiyer bana para üstümü verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1254,
+      "english": "shopping cart",
+      "pronunciation": "ˈʃɒpɪŋ kɑːrt",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "alışveriş arabası",
+          "example": {
+            "en": "She put the milk in the shopping cart.",
+            "tr": "Sütü alışveriş arabasına koydu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1255,
+      "english": "discount",
+      "pronunciation": "ˈdɪskaʊnt",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "indirim",
+          "example": {
+            "en": "There is a big discount on shoes today.",
+            "tr": "Bugün ayakkabılarda büyük bir indirim var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1256,
+      "english": "fitting room",
+      "pronunciation": "ˈfɪtɪŋ ruːm",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "soyunma odası",
+          "example": {
+            "en": "Can I use the fitting room, please?",
+            "tr": "Soyunma odasını kullanabilir miyim, lütfen?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 1257,
+      "english": "corner",
+      "pronunciation": "ˈkɔːrnər",
+      "level": "A2",
+      "category": "directions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "köşe",
+          "example": {
+            "en": "The café is on the corner of the street.",
+            "tr": "Kafe sokağın köşesinde."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1258,
+      "english": "traffic light",
+      "pronunciation": "ˈtræfɪk laɪt",
+      "level": "A2",
+      "category": "directions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "trafik ışığı",
+          "example": {
+            "en": "Turn right at the traffic light.",
+            "tr": "Trafik ışığında sağa dön."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1259,
+      "english": "crossroads",
+      "pronunciation": "ˈkrɒsrəʊdz",
+      "level": "A2",
+      "category": "directions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kavşak",
+          "example": {
+            "en": "Go straight at the crossroads.",
+            "tr": "Kavşakta düz git."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1260,
+      "english": "bridge",
+      "pronunciation": "brɪdʒ",
+      "level": "A2",
+      "category": "directions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "köprü",
+          "example": {
+            "en": "The school is just past the bridge.",
+            "tr": "Okul köprünün hemen ötesinde."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1261,
+      "english": "foggy",
+      "pronunciation": "ˈfɒɡi",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sisli",
+          "example": {
+            "en": "It is foggy outside this morning.",
+            "tr": "Bu sabah dışarısı sisli."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1262,
+      "english": "storm",
+      "pronunciation": "stɔːrm",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fırtına",
+          "example": {
+            "en": "There was a big storm last night.",
+            "tr": "Dün gece büyük bir fırtına vardı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1264,
+      "english": "degrees",
+      "pronunciation": "dɪˈɡriːz",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "derece",
+          "example": {
+            "en": "It is thirty degrees outside today.",
+            "tr": "Bugün dışarısı otuz derece."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1265,
+      "english": "hiking",
+      "pronunciation": "ˈhaɪkɪŋ",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yürüyüş yapmak",
+          "example": {
+            "en": "We go hiking in the mountains every weekend.",
+            "tr": "Her hafta sonu dağlarda yürüyüş yaparız."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1266,
+      "english": "gardening",
+      "pronunciation": "ˈɡɑːrdənɪŋ",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bahçecilik",
+          "example": {
+            "en": "My grandmother enjoys gardening in the morning.",
+            "tr": "Büyükannem sabahları bahçecilik yapmaktan hoşlanır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1267,
+      "english": "cycling",
+      "pronunciation": "ˈsaɪklɪŋ",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bisiklet sürmek",
+          "example": {
+            "en": "Cycling in the park is very relaxing.",
+            "tr": "Parkta bisiklet sürmek çok rahatlatıcı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1268,
+      "english": "fishing",
+      "pronunciation": "ˈfɪʃɪŋ",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "balık tutmak",
+          "example": {
+            "en": "My father likes fishing on Sunday mornings.",
+            "tr": "Babam Pazar sabahları balık tutmayı sever."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1269,
+      "english": "flight",
+      "pronunciation": "flaɪt",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "uçuş",
+          "example": {
+            "en": "My flight to London is at noon.",
+            "tr": "Londra'ya uçuşum öğlen."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1270,
+      "english": "platform",
+      "pronunciation": "ˈplætfɔːrm",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "peron",
+          "example": {
+            "en": "The train leaves from platform three.",
+            "tr": "Tren üç numaralı perondan kalkıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1271,
+      "english": "departure",
+      "pronunciation": "dɪˈpɑːrtʃər",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kalkış",
+          "example": {
+            "en": "The departure time is seven o'clock.",
+            "tr": "Kalkış saati yedi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1272,
+      "english": "arrival",
+      "pronunciation": "əˈraɪvəl",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "varış",
+          "example": {
+            "en": "What is the arrival time of the bus?",
+            "tr": "Otobüsün varış saati ne?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 1273,
+      "english": "garage",
+      "pronunciation": "ˈɡærɑːʒ",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "garaj",
+          "example": {
+            "en": "My dad parks the car in the garage.",
+            "tr": "Babam arabayı garaja park eder."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1274,
+      "english": "balcony",
+      "pronunciation": "ˈbælkəni",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "balkon",
+          "example": {
+            "en": "We have breakfast on the balcony.",
+            "tr": "Balkonda kahvaltı yaparız."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1275,
+      "english": "ceiling",
+      "pronunciation": "ˈsiːlɪŋ",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tavan",
+          "example": {
+            "en": "The ceiling in this room is very high.",
+            "tr": "Bu odanın tavanı çok yüksek."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1276,
+      "english": "floor",
+      "pronunciation": "flɔːr",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zemin",
+          "example": {
+            "en": "The floor is cold in the morning.",
+            "tr": "Sabahları zemin soğuk olur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1277,
+      "english": "stairs",
+      "pronunciation": "stɛrz",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "merdiven",
+          "example": {
+            "en": "Be careful on the stairs, they are wet.",
+            "tr": "Merdivende dikkatli ol, ıslak."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1278,
+      "english": "belt",
+      "pronunciation": "bɛlt",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kemer",
+          "example": {
+            "en": "He wears a black belt with his trousers.",
+            "tr": "Pantolonuyla siyah kemer takar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1279,
+      "english": "boots",
+      "pronunciation": "buːts",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bot",
+          "example": {
+            "en": "She wears boots when it snows.",
+            "tr": "Kar yağdığında bot giyer."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1280,
+      "english": "pyjamas",
+      "pronunciation": "pəˈdʒɑːməz",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "pijama",
+          "example": {
+            "en": "He puts on his pyjamas before going to bed.",
+            "tr": "Yatmadan önce pijamasını giyer."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1281,
+      "english": "skirt",
+      "pronunciation": "skɜːrt",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "etek",
+          "example": {
+            "en": "She bought a new skirt for the party.",
+            "tr": "Parti için yeni bir etek aldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1282,
+      "english": "tie",
+      "pronunciation": "taɪ",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kravat",
+          "example": {
+            "en": "My father wears a tie to work every day.",
+            "tr": "Babam her gün işe kravat takarak gider."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1283,
+      "english": "pharmacy",
+      "pronunciation": "ˈfɑːrməsi",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "eczane",
+          "example": {
+            "en": "I need to go to the pharmacy for medicine.",
+            "tr": "İlaç almak için eczaneye gitmeliyim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1284,
+      "english": "toothache",
+      "pronunciation": "ˈtuːθeɪk",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "diş ağrısı",
+          "example": {
+            "en": "She has a terrible toothache today.",
+            "tr": "Bugün çok kötü bir diş ağrısı var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1286,
+      "english": "allergy",
+      "pronunciation": "ˈælərdʒi",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "alerji",
+          "example": {
+            "en": "He has an allergy to cats.",
+            "tr": "Kedilere karşı alerjisi var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1287,
+      "english": "appointment",
+      "pronunciation": "əˈpɔɪntmənt",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "randevu",
+          "example": {
+            "en": "I have a doctor's appointment at three o'clock.",
+            "tr": "Saat üçte doktor randevum var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1288,
+      "english": "blonde",
+      "pronunciation": "blɒnd",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sarışın",
+          "example": {
+            "en": "She has long blonde hair.",
+            "tr": "Uzun sarı saçları var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1289,
+      "english": "freckles",
+      "pronunciation": "ˈfrɛkəlz",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çil",
+          "example": {
+            "en": "The boy has red hair and freckles.",
+            "tr": "Çocuğun kızıl saçları ve çilleri var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1290,
+      "english": "moustache",
+      "pronunciation": "məˈstɑːʃ",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bıyık",
+          "example": {
+            "en": "My grandfather has a long white moustache.",
+            "tr": "Büyükbabamın uzun beyaz bir bıyığı var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1291,
+      "english": "muscular",
+      "pronunciation": "ˈmʌskjʊlər",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kaslı",
+          "example": {
+            "en": "He is very tall and muscular.",
+            "tr": "Çok uzun boylu ve kaslı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1292,
+      "english": "have a shower",
+      "pronunciation": "hæv ə ˈʃaʊər",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "duş almak",
+          "example": {
+            "en": "I have a shower every morning.",
+            "tr": "Her sabah duş alırım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1293,
+      "english": "go to work",
+      "pronunciation": "ɡəʊ tə wɜːrk",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "işe gitmek",
+          "example": {
+            "en": "She goes to work by bus every day.",
+            "tr": "Her gün otobüsle işe gider."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1294,
+      "english": "have lunch",
+      "pronunciation": "hæv lʌntʃ",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "öğle yemeği yemek",
+          "example": {
+            "en": "We usually have lunch at one o'clock.",
+            "tr": "Genellikle saat birde öğle yemeği yeriz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1295,
+      "english": "have dinner",
+      "pronunciation": "hæv ˈdɪnər",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "akşam yemeği yemek",
+          "example": {
+            "en": "My family has dinner together every evening.",
+            "tr": "Ailem her akşam birlikte akşam yemeği yer."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1296,
+      "english": "go shopping",
+      "pronunciation": "ɡəʊ ˈʃɒpɪŋ",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "alışverişe gitmek",
+          "example": {
+            "en": "We go shopping at the market on Saturdays.",
+            "tr": "Cumartesi günleri markete alışverişe gideriz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1297,
+      "english": "flight attendant",
+      "pronunciation": "flaɪt əˈtɛndənt",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hostes",
+          "example": {
+            "en": "The flight attendant brought me some water.",
+            "tr": "Hostes bana biraz su getirdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1298,
+      "english": "suitcase",
+      "pronunciation": "ˈsuːtkeɪs",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bavul",
+          "example": {
+            "en": "My suitcase is too heavy to carry.",
+            "tr": "Bavulum taşımak için çok ağır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1299,
+      "english": "bored",
+      "pronunciation": "bɔːrd",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sıkılmış",
+          "example": {
+            "en": "The children look bored at the museum.",
+            "tr": "Çocuklar müzede sıkılmış görünüyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1300,
+      "english": "excited",
+      "pronunciation": "ɪkˈsaɪtɪd",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "heyecanlı",
+          "example": {
+            "en": "She is very excited about her birthday party.",
+            "tr": "Doğum günü partisi için çok heyecanlı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1301,
+      "english": "worried",
+      "pronunciation": "ˈwʌrid",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "endişeli",
+          "example": {
+            "en": "He looks worried about the exam tomorrow.",
+            "tr": "Yarınki sınav hakkında endişeli görünüyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1302,
+      "english": "comfortable",
+      "pronunciation": "ˈkʌmftəbəl",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "rahat",
+          "example": {
+            "en": "This sofa is very comfortable to sit on.",
+            "tr": "Bu kanepe oturmak için çok rahat."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1303,
+      "english": "change",
+      "pronunciation": "tʃeɪndʒ",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "para üstü",
+          "example": {
+            "en": "Here is your change, sir.",
+            "tr": "Para üstünüz burada, efendim."
+          }
+        },
+        {
+          "turkish": "değiştirmek",
+          "example": {
+            "en": "I want to change this shirt please.",
+            "tr": "Bu gömleği değiştirmek istiyorum lütfen."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1304,
+      "english": "pay",
+      "pronunciation": "peɪ",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ödemek",
+          "example": {
+            "en": "Can I pay by card here?",
+            "tr": "Burada kartla ödeme yapabilir miyim?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 1305,
+      "english": "queue",
+      "pronunciation": "kjuː",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kuyruk / sıra",
+          "example": {
+            "en": "There is a long queue at the checkout.",
+            "tr": "Kasada uzun bir kuyruk var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1306,
+      "english": "refund",
+      "pronunciation": "ˈriːfʌnd",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "para iadesi",
+          "example": {
+            "en": "I would like a refund for this item.",
+            "tr": "Bu ürün için para iadesi istiyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1307,
+      "english": "special offer",
+      "pronunciation": "ˈspɛʃəl ˈɒfə",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "özel teklif / indirimli fiyat",
+          "example": {
+            "en": "This week there is a special offer on coffee.",
+            "tr": "Bu hafta kahvede özel teklif var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1308,
+      "english": "map",
+      "pronunciation": "mæp",
+      "level": "A2",
+      "category": "directions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "harita",
+          "example": {
+            "en": "Can you show me on the map?",
+            "tr": "Haritada gösterebilir misiniz?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 1309,
+      "english": "lost",
+      "pronunciation": "lɒst",
+      "level": "A2",
+      "category": "directions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kaybolmuş / yolu kaybetmiş",
+          "example": {
+            "en": "I am lost. Can you help me?",
+            "tr": "Yolumu kaybettim. Yardım edebilir misiniz?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 1310,
+      "english": "block",
+      "pronunciation": "blɒk",
+      "level": "A2",
+      "category": "directions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "blok / sokak arası",
+          "example": {
+            "en": "The bank is two blocks from here.",
+            "tr": "Banka buradan iki blok uzakta."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1311,
+      "english": "opposite",
+      "pronunciation": "ˈɒpəzɪt",
+      "level": "A2",
+      "category": "directions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "karşısında",
+          "example": {
+            "en": "The pharmacy is opposite the school.",
+            "tr": "Eczane okulun karşısında."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1312,
+      "english": "next to",
+      "pronunciation": "nɛkst tuː",
+      "level": "A2",
+      "category": "directions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yanında",
+          "example": {
+            "en": "The supermarket is next to the bank.",
+            "tr": "Süpermarket bankanın yanında."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1313,
+      "english": "thunder",
+      "pronunciation": "ˈθʌndə",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gök gürültüsü",
+          "example": {
+            "en": "I can hear thunder outside.",
+            "tr": "Dışarıda gök gürültüsü duyabiliyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1314,
+      "english": "lightning",
+      "pronunciation": "ˈlaɪtnɪŋ",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "şimşek",
+          "example": {
+            "en": "There was lightning in the sky last night.",
+            "tr": "Dün gece gökyüzünde şimşek çaktı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1315,
+      "english": "freezing",
+      "pronunciation": "ˈfriːzɪŋ",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dondurucu soğuk",
+          "example": {
+            "en": "It is freezing outside today.",
+            "tr": "Bugün dışarısı dondurucu soğuk."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1316,
+      "english": "forecast",
+      "pronunciation": "ˈfɔːkɑːst",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hava tahmini",
+          "example": {
+            "en": "The weather forecast says rain tomorrow.",
+            "tr": "Hava tahmini yarın yağmur olduğunu söylüyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1317,
+      "english": "humid",
+      "pronunciation": "ˈhjuːmɪd",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "nemli",
+          "example": {
+            "en": "Summer in Istanbul is very humid.",
+            "tr": "İstanbul'da yaz çok nemli olur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1318,
+      "english": "collect",
+      "pronunciation": "kəˈlɛkt",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "koleksiyon yapmak / toplamak",
+          "example": {
+            "en": "She likes to collect old coins.",
+            "tr": "Eski madeni para toplamayı seviyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1319,
+      "english": "draw",
+      "pronunciation": "drɔː",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çizmek / resim yapmak",
+          "example": {
+            "en": "He draws pictures in his free time.",
+            "tr": "Boş zamanlarında resim çizer."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1320,
+      "english": "knitting",
+      "pronunciation": "ˈnɪtɪŋ",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "örgü örmek",
+          "example": {
+            "en": "My grandmother enjoys knitting in the evening.",
+            "tr": "Büyükannem akşamları örgü örmekten hoşlanır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1321,
+      "english": "singing",
+      "pronunciation": "ˈsɪŋɪŋ",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "şarkı söylemek",
+          "example": {
+            "en": "She loves singing in the school choir.",
+            "tr": "Okul korosunda şarkı söylemeyi çok seviyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1322,
+      "english": "reading",
+      "pronunciation": "ˈriːdɪŋ",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "okuma / kitap okuma",
+          "example": {
+            "en": "Reading is my favourite hobby.",
+            "tr": "Okumak benim en sevdiğim hobim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1323,
+      "english": "motorbike",
+      "pronunciation": "ˈməʊtəbaɪk",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "motosiklet",
+          "example": {
+            "en": "He goes to work on his motorbike.",
+            "tr": "İşe motosikletiyle gider."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1324,
+      "english": "ferry",
+      "pronunciation": "ˈfɛri",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "feribot / vapur",
+          "example": {
+            "en": "We took the ferry to cross the river.",
+            "tr": "Nehri geçmek için vapura bindik."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1325,
+      "english": "tram",
+      "pronunciation": "træm",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tramvay",
+          "example": {
+            "en": "The tram stops in front of the museum.",
+            "tr": "Tramvay müzenin önünde durur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1326,
+      "english": "seat belt",
+      "pronunciation": "siːt bɛlt",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "emniyet kemeri",
+          "example": {
+            "en": "Always wear your seat belt in the car.",
+            "tr": "Arabada her zaman emniyet kemerini tak."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1327,
+      "english": "underground",
+      "pronunciation": "ˈʌndəɡraʊnd",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "metro",
+          "example": {
+            "en": "The underground is fast in big cities.",
+            "tr": "Büyük şehirlerde metro hızlıdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1328,
+      "english": "shelf",
+      "pronunciation": "ʃɛlf",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "raf",
+          "example": {
+            "en": "The books are on the shelf.",
+            "tr": "Kitaplar rafın üzerinde."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1329,
+      "english": "curtain",
+      "pronunciation": "ˈkɜːtən",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "perde",
+          "example": {
+            "en": "Please close the curtains at night.",
+            "tr": "Lütfen geceleri perdeleri kapat."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1330,
+      "english": "lamp",
+      "pronunciation": "læmp",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "lamba",
+          "example": {
+            "en": "There is a lamp next to the bed.",
+            "tr": "Yatağın yanında bir lamba var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1331,
+      "english": "fridge",
+      "pronunciation": "frɪdʒ",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "buzdolabı",
+          "example": {
+            "en": "Put the milk in the fridge please.",
+            "tr": "Lütfen sütü buzdolabına koy."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1332,
+      "english": "washing machine",
+      "pronunciation": "ˈwɒʃɪŋ məˈʃiːn",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çamaşır makinesi",
+          "example": {
+            "en": "The washing machine is in the bathroom.",
+            "tr": "Çamaşır makinesi banyoda."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1333,
+      "english": "collar",
+      "pronunciation": "ˈkɒlə",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yaka",
+          "example": {
+            "en": "His shirt has a white collar.",
+            "tr": "Gömleğinin yakası beyaz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1334,
+      "english": "sleeve",
+      "pronunciation": "sliːv",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kol (giysi)",
+          "example": {
+            "en": "This shirt has short sleeves.",
+            "tr": "Bu gömleğin kısa kolları var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1335,
+      "english": "pocket",
+      "pronunciation": "ˈpɒkɪt",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "cep",
+          "example": {
+            "en": "My keys are in my pocket.",
+            "tr": "Anahtarlarım cebimde."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1336,
+      "english": "raincoat",
+      "pronunciation": "ˈreɪnkəʊt",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yağmurluk",
+          "example": {
+            "en": "Don't forget your raincoat, it will rain.",
+            "tr": "Yağmurlukunu unutma, yağmur yağacak."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1337,
+      "english": "tights",
+      "pronunciation": "taɪts",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "külotlu çorap",
+          "example": {
+            "en": "She wears tights in cold weather.",
+            "tr": "Soğuk havalarda külotlu çorap giyer."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1338,
+      "english": "cough",
+      "pronunciation": "kɒf",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "öksürmek / öksürük",
+          "example": {
+            "en": "I have a bad cough this week.",
+            "tr": "Bu hafta kötü bir öksürüğüm var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1340,
+      "english": "rest",
+      "pronunciation": "rɛst",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dinlenmek",
+          "example": {
+            "en": "You need to rest after the operation.",
+            "tr": "Ameliyattan sonra dinlenmen gerekiyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1341,
+      "english": "stomachache",
+      "pronunciation": "ˈstʌməkeɪk",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "mide ağrısı / karın ağrısı",
+          "example": {
+            "en": "I have a stomachache after lunch.",
+            "tr": "Öğle yemeğinden sonra mide ağrım var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1342,
+      "english": "sore throat",
+      "pronunciation": "sɔː θrəʊt",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "boğaz ağrısı",
+          "example": {
+            "en": "I can't speak because of my sore throat.",
+            "tr": "Boğaz ağrım yüzünden konuşamıyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1343,
+      "english": "dark",
+      "pronunciation": "dɑːk",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "esmer / koyu renkli",
+          "example": {
+            "en": "She has dark hair and brown eyes.",
+            "tr": "Koyu renkli saçları ve kahverengi gözleri var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1344,
+      "english": "pale",
+      "pronunciation": "peɪl",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "soluk / açık tenli",
+          "example": {
+            "en": "She looks pale today. Is she okay?",
+            "tr": "Bugün soluk görünüyor. İyi mi?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 1345,
+      "english": "medium height",
+      "pronunciation": "ˈmiːdiəm haɪt",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "orta boylu",
+          "example": {
+            "en": "He is medium height with brown hair.",
+            "tr": "Kahverengi saçlı, orta boylu biri."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1346,
+      "english": "overweight",
+      "pronunciation": "ˌəʊvəˈweɪt",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kilolu / fazla kilolu",
+          "example": {
+            "en": "The doctor said he is slightly overweight.",
+            "tr": "Doktor hafifçe kilolu olduğunu söyledi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1347,
+      "english": "bald",
+      "pronunciation": "bɔːld",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kel / kelleşmiş",
+          "example": {
+            "en": "My uncle is tall and bald.",
+            "tr": "Amcam uzun boylu ve kel."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1348,
+      "english": "get up",
+      "pronunciation": "ɡɛt ʌp",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kalkmak / yataktan kalkmak",
+          "example": {
+            "en": "I get up at seven every morning.",
+            "tr": "Her sabah yedide kalkıyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1349,
+      "english": "take a break",
+      "pronunciation": "teɪk ə breɪk",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "mola vermek",
+          "example": {
+            "en": "Let's take a break and have some tea.",
+            "tr": "Mola verelim ve biraz çay içelim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1350,
+      "english": "come home",
+      "pronunciation": "kʌm həʊm",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "eve gelmek",
+          "example": {
+            "en": "She comes home at six in the evening.",
+            "tr": "Akşam altıda eve gelir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1351,
+      "english": "spend time",
+      "pronunciation": "spɛnd taɪm",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zaman geçirmek",
+          "example": {
+            "en": "I like to spend time with my family.",
+            "tr": "Ailemle zaman geçirmeyi severim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1352,
+      "english": "go for a walk",
+      "pronunciation": "ɡəʊ fər ə wɔːk",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yürüyüşe çıkmak",
+          "example": {
+            "en": "We go for a walk in the park every evening.",
+            "tr": "Her akşam parkta yürüyüşe çıkıyoruz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1353,
+      "english": "try on",
+      "pronunciation": "traɪ ɒn",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "denemek (giysi)",
+          "example": {
+            "en": "Can I try on this jacket, please?",
+            "tr": "Bu ceketi deneyebilir miyim, lütfen?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 1354,
+      "english": "sale",
+      "pronunciation": "seɪl",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "indirim",
+          "example": {
+            "en": "The shop has a big sale this weekend.",
+            "tr": "Mağazada bu hafta sonu büyük indirim var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1355,
+      "english": "total",
+      "pronunciation": "ˈtoʊtəl",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "toplam",
+          "example": {
+            "en": "The total is fifteen pounds.",
+            "tr": "Toplam on beş pound."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1356,
+      "english": "exchange",
+      "pronunciation": "ɪksˈtʃeɪndʒ",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "değiştirmek",
+          "example": {
+            "en": "I want to exchange this shirt for a larger size.",
+            "tr": "Bu gömleği daha büyük bedenle değiştirmek istiyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1357,
+      "english": "department store",
+      "pronunciation": "dɪˈpɑːtmənt stɔː",
+      "level": "A2",
+      "category": "shopping",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "büyük mağaza",
+          "example": {
+            "en": "We bought furniture from the department store.",
+            "tr": "Büyük mağazadan mobilya aldık."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1358,
+      "english": "street",
+      "pronunciation": "striːt",
+      "level": "A2",
+      "category": "directions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sokak",
+          "example": {
+            "en": "The bakery is on the next street.",
+            "tr": "Fırın bir sonraki sokakta."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1359,
+      "english": "roundabout",
+      "pronunciation": "ˈraʊndəbaʊt",
+      "level": "A2",
+      "category": "directions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dönel kavşak",
+          "example": {
+            "en": "Turn right at the roundabout.",
+            "tr": "Dönel kavşakta sağa dön."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1360,
+      "english": "pedestrian",
+      "pronunciation": "pɪˈdestriən",
+      "level": "A2",
+      "category": "directions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yaya",
+          "example": {
+            "en": "Use the pedestrian crossing to cross the road.",
+            "tr": "Yolu geçmek için yaya geçidini kullan."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1361,
+      "english": "avenue",
+      "pronunciation": "ˈævɪnjuː",
+      "level": "A2",
+      "category": "directions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "cadde, bulvar",
+          "example": {
+            "en": "The hotel is on Fifth Avenue.",
+            "tr": "Otel Beşinci Cadde'de."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1362,
+      "english": "bus stop",
+      "pronunciation": "bʌs stɒp",
+      "level": "A2",
+      "category": "directions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "otobüs durağı",
+          "example": {
+            "en": "Wait for me at the bus stop.",
+            "tr": "Otobüs durağında beni bekle."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1363,
+      "english": "rainbow",
+      "pronunciation": "ˈreɪnboʊ",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gökkuşağı",
+          "example": {
+            "en": "We saw a beautiful rainbow after the rain.",
+            "tr": "Yağmurdan sonra güzel bir gökkuşağı gördük."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1364,
+      "english": "degree",
+      "pronunciation": "dɪˈɡriː",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "derece",
+          "example": {
+            "en": "It is thirty degrees outside today.",
+            "tr": "Bugün dışarısı otuz derece."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1365,
+      "english": "hail",
+      "pronunciation": "heɪl",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dolu",
+          "example": {
+            "en": "There was heavy hail during the storm.",
+            "tr": "Fırtına sırasında yoğun dolu yağdı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1366,
+      "english": "ice",
+      "pronunciation": "aɪs",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "buz",
+          "example": {
+            "en": "The roads are covered with ice this morning.",
+            "tr": "Bu sabah yollar buzla kaplı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1367,
+      "english": "breeze",
+      "pronunciation": "briːz",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "esinti, hafif rüzgar",
+          "example": {
+            "en": "There is a cool breeze by the sea.",
+            "tr": "Deniz kenarında serin bir esinti var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1368,
+      "english": "board game",
+      "pronunciation": "bɔːd ɡeɪm",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "masa oyunu",
+          "example": {
+            "en": "We play board games on Friday evenings.",
+            "tr": "Cuma akşamları masa oyunu oynarız."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1369,
+      "english": "jogging",
+      "pronunciation": "ˈdʒɒɡɪŋ",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "koşu yapma, yavaş koşma",
+          "example": {
+            "en": "She goes jogging in the park every morning.",
+            "tr": "Her sabah parkta koşu yapar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1370,
+      "english": "camping",
+      "pronunciation": "ˈkæmpɪŋ",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kamp yapma",
+          "example": {
+            "en": "We love camping in the mountains in summer.",
+            "tr": "Yazın dağlarda kamp yapmayı seviyoruz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1371,
+      "english": "chess",
+      "pronunciation": "tʃes",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "satranç",
+          "example": {
+            "en": "My father taught me to play chess.",
+            "tr": "Babam bana satranç oynamayı öğretti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1372,
+      "english": "volunteer",
+      "pronunciation": "ˌvɒlənˈtɪə",
+      "level": "A2",
+      "category": "hobbies",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gönüllü olmak",
+          "example": {
+            "en": "She volunteers at the local animal shelter.",
+            "tr": "Yerel hayvan barınağında gönüllü çalışıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1373,
+      "english": "airport",
+      "pronunciation": "ˈeəpɔːt",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "havalimanı",
+          "example": {
+            "en": "We need to arrive at the airport early.",
+            "tr": "Havalimanına erken varmamız gerekiyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1374,
+      "english": "passenger",
+      "pronunciation": "ˈpæsɪndʒə",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yolcu",
+          "example": {
+            "en": "The bus was full of passengers.",
+            "tr": "Otobüs yolcularla doluydu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1375,
+      "english": "timetable",
+      "pronunciation": "ˈtaɪmteɪbəl",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zaman çizelgesi, tarife",
+          "example": {
+            "en": "Check the timetable before you travel.",
+            "tr": "Seyahat etmeden önce tarifeye bak."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1376,
+      "english": "driver",
+      "pronunciation": "ˈdraɪvə",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sürücü",
+          "example": {
+            "en": "The bus driver was very friendly.",
+            "tr": "Otobüs şoförü çok güler yüzlüydü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1377,
+      "english": "return ticket",
+      "pronunciation": "rɪˈtɜːn ˈtɪkɪt",
+      "level": "A2",
+      "category": "transport",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gidiş-dönüş bileti",
+          "example": {
+            "en": "I bought a return ticket to London.",
+            "tr": "Londra için gidiş-dönüş bileti aldım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1378,
+      "english": "sofa",
+      "pronunciation": "ˈsoʊfə",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kanepe",
+          "example": {
+            "en": "We sit on the sofa and watch TV.",
+            "tr": "Kanepede oturup televizyon izleriz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1379,
+      "english": "wardrobe",
+      "pronunciation": "ˈwɔːdroʊb",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dolap, gardırop",
+          "example": {
+            "en": "My clothes are in the wardrobe.",
+            "tr": "Kıyafetlerim gardıropta."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1380,
+      "english": "pillow",
+      "pronunciation": "ˈpɪloʊ",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yastık",
+          "example": {
+            "en": "I need a soft pillow to sleep comfortably.",
+            "tr": "Rahat uyumak için yumuşak bir yastığa ihtiyacım var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1381,
+      "english": "blanket",
+      "pronunciation": "ˈblæŋkɪt",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "battaniye",
+          "example": {
+            "en": "She wrapped herself in a warm blanket.",
+            "tr": "Kendini sıcak bir battaniyeye sardı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1382,
+      "english": "microwave",
+      "pronunciation": "ˈmaɪkrəweɪv",
+      "level": "A2",
+      "category": "home",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "mikrodalga fırın",
+          "example": {
+            "en": "Heat the soup in the microwave for two minutes.",
+            "tr": "Çorbayı mikrodalga fırında iki dakika ısıt."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1383,
+      "english": "vest",
+      "pronunciation": "vest",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "atlet",
+          "example": {
+            "en": "He wears a vest under his shirt.",
+            "tr": "Gömleğinin altına atlet giyer."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1384,
+      "english": "tracksuit",
+      "pronunciation": "ˈtræksuːt",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "eşofman",
+          "example": {
+            "en": "She wore a tracksuit to the gym.",
+            "tr": "Spor salonuna eşofmanla gitti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1385,
+      "english": "swimsuit",
+      "pronunciation": "ˈswɪmsuːt",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "mayo",
+          "example": {
+            "en": "Don't forget to pack your swimsuit.",
+            "tr": "Mayonu bavuluna koymayı unutma."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1386,
+      "english": "zip",
+      "pronunciation": "zɪp",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fermuar",
+          "example": {
+            "en": "The zip on my jacket is broken.",
+            "tr": "Ceketimin fermuarı bozuk."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1387,
+      "english": "button",
+      "pronunciation": "ˈbʌtən",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "düğme",
+          "example": {
+            "en": "A button fell off my coat.",
+            "tr": "Paltomun düğmesi düştü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1388,
+      "english": "prescription",
+      "pronunciation": "prɪˈskrɪpʃən",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "reçete",
+          "example": {
+            "en": "The doctor gave me a prescription for antibiotics.",
+            "tr": "Doktor bana antibiyotik için reçete yazdı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1389,
+      "english": "pain",
+      "pronunciation": "peɪn",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ağrı, acı",
+          "example": {
+            "en": "I have a pain in my back.",
+            "tr": "Sırtımda ağrı var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1390,
+      "english": "injection",
+      "pronunciation": "ɪnˈdʒekʃən",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iğne, enjeksiyon",
+          "example": {
+            "en": "The nurse gave him an injection.",
+            "tr": "Hemşire ona iğne yaptı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1391,
+      "english": "blood pressure",
+      "pronunciation": "blʌd ˈpreʃə",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tansiyon, kan basıncı",
+          "example": {
+            "en": "The doctor checked my blood pressure.",
+            "tr": "Doktor tansiyonumu ölçtü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1392,
+      "english": "ambulance",
+      "pronunciation": "ˈæmbjʊləns",
+      "level": "A2",
+      "category": "health",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ambulans",
+          "example": {
+            "en": "Call an ambulance, he is seriously injured.",
+            "tr": "Ambulans çağır, ciddi şekilde yaralı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1393,
+      "english": "straight hair",
+      "pronunciation": "streɪt heə",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "düz saç",
+          "example": {
+            "en": "She has long, straight hair.",
+            "tr": "Uzun, düz saçları var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1394,
+      "english": "ponytail",
+      "pronunciation": "ˈpoʊniteɪl",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "at kuyruğu (saç modeli)",
+          "example": {
+            "en": "She always wears her hair in a ponytail.",
+            "tr": "Saçını her zaman at kuyruğu yapar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1395,
+      "english": "wrinkle",
+      "pronunciation": "ˈrɪŋkəl",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kırışık",
+          "example": {
+            "en": "My grandfather has wrinkles around his eyes.",
+            "tr": "Dedemin gözlerinin çevresinde kırışıklar var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1396,
+      "english": "attractive",
+      "pronunciation": "əˈtræktɪv",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çekici, cazip",
+          "example": {
+            "en": "Everyone says she is very attractive.",
+            "tr": "Herkes onun çok çekici olduğunu söylüyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1397,
+      "english": "friendly",
+      "pronunciation": "ˈfrendli",
+      "level": "A2",
+      "category": "describing people",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "arkadaş canlısı, cana yakın",
+          "example": {
+            "en": "Our new neighbour is very friendly.",
+            "tr": "Yeni komşumuz çok cana yakın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1398,
+      "english": "get home",
+      "pronunciation": "ɡet hoʊm",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "eve gelmek, eve varmak",
+          "example": {
+            "en": "I usually get home at six o'clock.",
+            "tr": "Genellikle saat altıda eve gelirim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1399,
+      "english": "set the table",
+      "pronunciation": "set ðə ˈteɪbəl",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sofrayı kurmak",
+          "example": {
+            "en": "Please set the table before dinner.",
+            "tr": "Lütfen akşam yemeğinden önce sofrayı kur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1400,
+      "english": "do homework",
+      "pronunciation": "duː ˈhoʊmwɜːk",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ödev yapmak",
+          "example": {
+            "en": "She does her homework after school.",
+            "tr": "Okuldan sonra ödevini yapar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1401,
+      "english": "do the dishes",
+      "pronunciation": "duː ðə ˈdɪʃɪz",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bulaşık yıkamak",
+          "example": {
+            "en": "He does the dishes every evening.",
+            "tr": "Her akşam bulaşıkları yıkar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1402,
+      "english": "check the news",
+      "pronunciation": "tʃek ðə njuːz",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "haberlere bakmak",
+          "example": {
+            "en": "I check the news on my phone every morning.",
+            "tr": "Her sabah telefonumdan haberlere bakarım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1403,
+      "english": "wave",
+      "pronunciation": "weɪv",
+      "level": "A2",
+      "category": "weather",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dalga",
+          "example": {
+            "en": "The waves at the beach were very big today.",
+            "tr": "Sahildeki dalgalar bugün çok büyüktü."
+          }
+        },
+        {
+          "turkish": "el sallamak",
+          "example": {
+            "en": "She waved goodbye to her friend at the door.",
+            "tr": "Kapıda arkadaşına el sallayarak veda etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1404,
+      "english": "fitting",
+      "pronunciation": "ˈfɪtɪŋ",
+      "level": "A2",
+      "category": "clothes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "uygun",
+          "example": {
+            "en": "This jacket is fitting for cold weather.",
+            "tr": "Bu ceket soğuk hava için uygun."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1405,
+      "english": "weekly",
+      "pronunciation": "ˈwiːkli",
+      "level": "A2",
+      "category": "routine activities",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "haftalık",
+          "example": {
+            "en": "We do our weekly shopping every Saturday morning.",
+            "tr": "Haftalık alışverişimizi her Cumartesi sabahı yapıyoruz."
+          }
+        }
+      ]
+    }
+  ]
+}

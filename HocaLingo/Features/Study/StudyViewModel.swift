@@ -436,21 +436,32 @@ class StudyViewModel: ObservableObject {
     }
 
     private func loadAllSelectedWords() throws -> [Word] {
-        let selectedIds = userDefaults.loadSelectedWords()
+        let selectedIds = Set(userDefaults.loadSelectedWords())
         var loadedWords: [Word] = []
-        let packageFiles = ["standard_a1_001", "standard_a1_002", "standard_b1_001"]
-        
-        for packageId in packageFiles {
+        var seenIds = Set<Int>()
+
+        // Dynamically discover all packages from UserDefaults keys
+        let allKeys = UserDefaults.standard.dictionaryRepresentation().keys
+            .filter { $0.hasPrefix("package_") && $0.hasSuffix("_selected") }
+
+        for key in allKeys {
+            let packageId = String(key.dropFirst("package_".count).dropLast("_selected".count))
             if let package = try? jsonLoader.loadVocabularyPackage(filename: packageId) {
-                let selectedFromPackage = package.words.filter { selectedIds.contains($0.id) }
+                let selectedFromPackage = package.words.filter {
+                    selectedIds.contains($0.id) && !seenIds.contains($0.id)
+                }
+                for word in selectedFromPackage { seenIds.insert(word.id) }
                 loadedWords.append(contentsOf: selectedFromPackage)
             }
         }
-        
+
+        // User-added words
         let userWords = userDefaults.loadUserAddedWords()
-        let selectedUserWords = userWords.filter { selectedIds.contains($0.id) }
+        let selectedUserWords = userWords.filter {
+            selectedIds.contains($0.id) && !seenIds.contains($0.id)
+        }
         loadedWords.append(contentsOf: selectedUserWords)
-        
+
         return loadedWords
     }
 
@@ -514,9 +525,10 @@ class StudyViewModel: ObservableObject {
     
     var currentExampleSentence: String {
         guard let word = allWords.first(where: { $0.id == currentCard.wordId }) else { return "" }
+        let ex = word.meanings.first?.example ?? Example(en: "", tr: "")
         switch studyDirection {
-        case .enToTr: return isCardFlipped ? word.example.tr : word.example.en
-        case .trToEn: return isCardFlipped ? word.example.en : word.example.tr
+        case .enToTr: return isCardFlipped ? ex.tr : ex.en
+        case .trToEn: return isCardFlipped ? ex.en : ex.tr
         }
     }
     
@@ -528,10 +540,23 @@ class StudyViewModel: ObservableObject {
     }
     
     private func getFrontText(for word: Word) -> String {
-        studyDirection == .enToTr ? word.english : word.turkish
+        switch studyDirection {
+        case .enToTr:
+            return word.english
+        case .trToEn:
+            // Show all Turkish meanings joined on front
+            return word.allTurkishMeanings
+        }
     }
     
     private func getBackText(for word: Word) -> String {
-        studyDirection == .enToTr ? word.turkish : word.english
+        switch studyDirection {
+        case .enToTr:
+            // Show all Turkish meanings joined on back
+            return word.allTurkishMeanings
+        case .trToEn:
+            return word.english
+        }
     }
+    
 }

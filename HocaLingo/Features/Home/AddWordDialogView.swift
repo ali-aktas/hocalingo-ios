@@ -450,6 +450,7 @@ class AddWordViewModel: ObservableObject {
         userDefaults.saveUserAddedWords(userWords)
 
         createInitialProgress(for: newWord)
+        userDefaults.addToSelectedWords(newWordId)
 
         isLoading = false
         showSuccessAnimation = true
