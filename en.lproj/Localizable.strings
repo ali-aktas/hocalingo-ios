@@ -124,6 +124,24 @@
 "vault_review_title" = "Review Your Words";
 
 
+// MARK: - Hard Word
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"quiz_title" = "Hard Words Quiz";
+"quiz_select_meaning" = "Select the correct meaning";
+"quiz_next" = "Next";
+"quiz_see_results" = "See Results";
+"quiz_word_graduated" = "Word Mastered!";
+"quiz_session_complete" = "Session Complete";
+"quiz_correct" = "Correct";
+"quiz_wrong" = "Wrong";
+"quiz_best_streak" = "Best Streak";
+"quiz_graduated" = "Mastered";
+"quiz_graduated_list" = "Words you mastered:";
+"quiz_continue_studying" = "Continue Studying";
+"quiz_done" = "Done";
+
+
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Study Screen
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

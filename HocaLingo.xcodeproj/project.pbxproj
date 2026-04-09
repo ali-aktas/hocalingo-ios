@@ -122,6 +122,8 @@
 				Features/AIStory/Views/StoryCreatorSheet.swift,
 				Features/AIStory/Views/StoryDetailView.swift,
 				Features/AIStory/Views/StoryHistoryView.swift,
+				Features/HardWordsQuiz/HardWordsQuizView.swift,
+				Features/HardWordsQuiz/HardWordsQuizViewModel.swift,
 				Features/Home/AddWordDialogView.swift,
 				Features/Home/HomeComponents.swift,
 				Features/Home/HomeUiState.swift,

@@ -33,7 +33,7 @@ class WordVaultViewModel: ObservableObject {
 
     /// Words with 3+ hard presses (for hard words quiz)
     var hardWords: [VaultWord] {
-        vaultWords.filter { $0.hardPresses >= 3 }
+        vaultWords.filter { $0.hardPresses >= 5 }
     }
     var hardWordsCount: Int { hardWords.count }
 

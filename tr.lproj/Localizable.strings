@@ -119,9 +119,28 @@
 "vault_next"           = "İleri";
 "vault_finish"         = "Tamamla";
 "vault_turkish"        = "Türkçe";
-"vault_hard_words"     = "Zor Kelimeler";
-"vault_hard_words_title" = "Zor Kelimeler Çalışması";
+"vault_hard_words"     = "Zorlandığın Kelimeler";
+"vault_hard_words_title" = "Zorlandığın Kelimeleri Çalış";
 "vault_review_title"   = "Kelimelerini Gözden Geçir";
+
+
+// MARK: - Hard Word
+// ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+"quiz_title" = "Zor Kelimeler Quiz";
+"quiz_select_meaning" = "Doğru anlamı seç";
+"quiz_next" = "Sonraki";
+"quiz_see_results" = "Sonuçları Gör";
+"quiz_word_graduated" = "Kelime Öğrenildi!";
+"quiz_session_complete" = "Oturum Tamamlandı";
+"quiz_correct" = "Doğru";
+"quiz_wrong" = "Yanlış";
+"quiz_best_streak" = "En İyi Seri";
+"quiz_graduated" = "Öğrenilen";
+"quiz_graduated_list" = "Öğrendiğin kelimeler:";
+"quiz_continue_studying" = "Çalışmaya Devam";
+"quiz_done" = "Tamam";
+
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Study Screen
@@ -348,7 +367,7 @@
 "add_word_save"       = "Kaydet";
 "add_word_success"    = "Kelime başarıyla eklendi! 🎉";
 "add_word_error"      = "Kelime eklenirken hata oluştu";
-"add_word_info"       = "Kendi kelimelerinizi ekleyerek çalışma listenizi özelleştirin";
+"add_word_info"       = "Gün içinde karşına çıkan kelimeleri çalışma destene ekle";
 "add_word_required"   = "Bu alan zorunludur";
 
 

@@ -74,11 +74,7 @@ struct WordVaultSheet: View {
                 )
             }
             .fullScreenCover(isPresented: $showHardReview) {
-                SequentialReviewView(
-                    words: vaultVM.hardWords,
-                    accent: Color(hex: "EF4444"),
-                    titleKey: "vault_hard_words_title"
-                )
+                HardWordsQuizView()
             }
             .sheet(isPresented: $showPremiumPaywall) {
                 PremiumPaywallView()
