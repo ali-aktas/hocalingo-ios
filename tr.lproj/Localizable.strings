@@ -119,7 +119,9 @@
 "vault_next"           = "İleri";
 "vault_finish"         = "Tamamla";
 "vault_turkish"        = "Türkçe";
-
+"vault_hard_words"     = "Zor Kelimeler";
+"vault_hard_words_title" = "Zor Kelimeler Çalışması";
+"vault_review_title"   = "Kelimelerini Gözden Geçir";
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Study Screen

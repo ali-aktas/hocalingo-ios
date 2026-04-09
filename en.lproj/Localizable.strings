@@ -119,6 +119,9 @@
 "vault_next"          = "Next";
 "vault_finish"        = "Finish";
 "vault_turkish"       = "Turkish";
+"vault_hard_words" = "Hard Words";
+"vault_hard_words_title" = "Hard Words Review";
+"vault_review_title" = "Review Your Words";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
