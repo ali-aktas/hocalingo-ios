@@ -634,7 +634,10 @@
 "paywall_restore"         = "Restore Purchases";
 "paywall_terms"           = "Terms of Service";
 "paywall_privacy"         = "Privacy Policy";
-"package_words" = "words";
+"package_words"           = "words";
+"paywall_continue"        = "Continue";
+"paywall_cancel_anytime"  = "Cancel anytime";
+"paywall_restore_empty"   = "No purchases found to restore";
 
 "premium_upgrade_prompt_title"   = "Unlock Premium";
 "premium_upgrade_prompt_message" = "Unlimited access to all features";

@@ -424,7 +424,7 @@ struct PremiumPaywallView: View {
                     ProgressView()
                         .tint(.white)
                 } else {
-                    Text("Devam Et")
+                    Text(LocalizedStringKey("paywall_continue"))
                         .font(.system(size: 18, weight: .bold, design: .rounded))
                 }
             }
@@ -441,7 +441,7 @@ struct PremiumPaywallView: View {
     
     // MARK: - Cancel Anytime Text
     private var cancelAnytimeText: some View {
-        Text("Dilediğin zaman iptal edebilirsin")
+        Text(LocalizedStringKey("paywall_cancel_anytime"))
             .font(.system(size: 13, weight: .medium))
             .foregroundColor(.themeSecondary)
             .multilineTextAlignment(.center)
@@ -526,7 +526,7 @@ struct PremiumPaywallView: View {
                 print("✅ Purchases restored successfully!")
                 dismiss()
             } else {
-                errorMessage = "No purchases found to restore"
+                errorMessage = NSLocalizedString("paywall_restore_empty", comment: "")
                 showError = true
                 print("⚠️ No purchases to restore")
             }

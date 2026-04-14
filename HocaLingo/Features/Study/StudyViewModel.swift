@@ -321,6 +321,7 @@ class StudyViewModel: ObservableObject {
         
         if learningWords.isEmpty {
             isSessionComplete = true
+            SoundManager.shared.playSuccess()
             return
         }
         

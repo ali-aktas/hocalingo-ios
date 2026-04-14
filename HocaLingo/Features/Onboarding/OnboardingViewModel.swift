@@ -132,6 +132,7 @@ class OnboardingViewModel: ObservableObject {
         // Trigger completion animation
         withAnimation(.spring(response: 0.4)) {
             showCompletionAnimation = true
+            SoundManager.shared.playSuccess()
         }
 
         UINotificationFeedbackGenerator().notificationOccurred(.success)

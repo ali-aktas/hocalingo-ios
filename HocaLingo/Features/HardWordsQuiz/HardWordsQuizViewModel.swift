@@ -196,7 +196,7 @@ class HardWordsQuizViewModel: ObservableObject {
             stats.correctCount += 1
             stats.streak += 1
             if stats.streak > stats.bestStreak { stats.bestStreak = stats.streak }
-            soundManager.playSwipeRight()
+            soundManager.playSuccess()
 
             // Increment quiz correct count
             incrementQuizCorrect(for: question.wordId)
@@ -209,7 +209,7 @@ class HardWordsQuizViewModel: ObservableObject {
             answerState = .wrong(correctAnswer: question.correctTurkish)
             stats.wrongCount += 1
             stats.streak = 0
-            soundManager.playSwipeLeft()
+            soundManager.playWrong()
 
             // Reset quiz correct count on wrong answer
             resetQuizCorrect(for: question.wordId)
@@ -222,7 +222,7 @@ class HardWordsQuizViewModel: ObservableObject {
 
         if nextIndex >= questions.count {
             sessionState = .sessionComplete
-            soundManager.playCardFlip()
+            soundManager.playClickSound()
             return
         }
 

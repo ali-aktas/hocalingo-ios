@@ -26,6 +26,8 @@ class SoundManager: ObservableObject {
     private var cardFlipPlayer: AVAudioPlayer?
     private var swipeRightPlayer: AVAudioPlayer?
     private var swipeLeftPlayer: AVAudioPlayer?
+    private var successPlayer: AVAudioPlayer?
+    private var wrongPlayer: AVAudioPlayer?
     private var isInitialized: Bool = false
     private var useSystemBeeps: Bool = false
     
@@ -110,13 +112,43 @@ class SoundManager: ObservableObject {
             print("⚠️ swipe_left.mp3 not found in bundle")
         }
         
-        isInitialized = loadedCount == 4
+        // 5. Load success sound
+        if let successURL = Bundle.main.url(forResource: "success_sound", withExtension: "wav") {
+            do {
+                successPlayer = try AVAudioPlayer(contentsOf: successURL)
+                successPlayer?.prepareToPlay()
+                successPlayer?.volume = 0.4
+                loadedCount += 1
+                print("✅ Success sound loaded")
+            } catch {
+                print("❌ Failed to load success sound: \(error.localizedDescription)")
+            }
+        } else {
+            print("⚠️ success_sound.wav not found in bundle")
+        }
+        
+        // 6. Load wrong sound
+        if let wrongURL = Bundle.main.url(forResource: "wrong_sound", withExtension: "wav") {
+            do {
+                wrongPlayer = try AVAudioPlayer(contentsOf: wrongURL)
+                wrongPlayer?.prepareToPlay()
+                wrongPlayer?.volume = 0.4
+                loadedCount += 1
+                print("✅ Wrong sound loaded")
+            } catch {
+                print("❌ Failed to load wrong sound: \(error.localizedDescription)")
+            }
+        } else {
+            print("⚠️ wrong_sound.wav not found in bundle")
+        }
+        
+        isInitialized = loadedCount == 6
         useSystemBeeps = !isInitialized
         
         if isInitialized {
-            print("✅ SoundManager initialized successfully (4/4 sounds)")
+            print("✅ SoundManager initialized successfully (6/6 sounds)")
         } else {
-            print("⚠️ SoundManager using system beeps as fallback (\(loadedCount)/4 sounds)")
+            print("⚠️ SoundManager using system beeps as fallback (\(loadedCount)/6 sounds)")
         }
     }
     
@@ -178,6 +210,35 @@ class SoundManager: ObservableObject {
         }
     }
     
+    /// Play success sound (quiz correct, session complete, onboarding finish)
+    func playSuccess() {
+        guard isEnabled else { return }
+            
+        if useSystemBeeps || successPlayer == nil {
+            AudioServicesPlaySystemSound(1025)  // Positive sound
+            print("🔊 Success beep played (fallback)")
+        } else {
+            successPlayer?.currentTime = 0
+            successPlayer?.play()
+            print("🔊 Success sound played")
+        }
+    }
+    
+    /// Play wrong answer sound (quiz wrong answer)
+    func playWrong() {
+        guard isEnabled else { return }
+        
+        if useSystemBeeps || wrongPlayer == nil {
+            AudioServicesPlaySystemSound(1073)  // Error sound
+            print("🔊 Wrong beep played (fallback)")
+        } else {
+            wrongPlayer?.currentTime = 0
+            wrongPlayer?.play()
+            print("🔊 Wrong sound played")
+        }
+    }
+    
+    
     /// Toggle sound effects on/off
     func toggleEnabled() {
         isEnabled.toggle()
@@ -186,11 +247,11 @@ class SoundManager: ObservableObject {
     
     /// Set volume for all sounds
     func setVolume(_ volume: Float) {
-        let clampedVolume = min(max(volume, 0.0), 1.0)
-        clickPlayer?.volume = clampedVolume * 0.3
-        cardFlipPlayer?.volume = clampedVolume * 0.5
-        swipeRightPlayer?.volume = clampedVolume * 0.6
-        swipeLeftPlayer?.volume = clampedVolume * 0.6
+        let clampedVolume = min(max(volume, 0.0), 0.8)
+        clickPlayer?.volume = clampedVolume * 0.4
+        cardFlipPlayer?.volume = clampedVolume * 0.4
+        swipeRightPlayer?.volume = clampedVolume * 0.4
+        swipeLeftPlayer?.volume = clampedVolume * 0.4
         print("Sound volume set to \(clampedVolume)")
     }
     

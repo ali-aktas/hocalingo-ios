@@ -58,6 +58,8 @@
 				Sounds/click_sound.wav,
 				Sounds/playSwipeLeft.wav,
 				Sounds/playSwipeRight.wav,
+				Sounds/success_sound.wav,
+				Sounds/wrong_sound.wav,
 			);
 			target = 0EC909CD2F18743E00FEBC67 /* HocaLingo */;
 		};
@@ -68,6 +70,8 @@
 				Sounds/click_sound.wav,
 				Sounds/playSwipeLeft.wav,
 				Sounds/playSwipeRight.wav,
+				Sounds/success_sound.wav,
+				Sounds/wrong_sound.wav,
 			);
 			target = 0EC909DA2F18743F00FEBC67 /* HocaLingoTests */;
 		};

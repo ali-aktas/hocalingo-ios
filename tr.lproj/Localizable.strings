@@ -633,8 +633,10 @@
 "paywall_restore"         = "Satın Alımları Geri Yükle";
 "paywall_terms"           = "Kullanım Koşulları";
 "paywall_privacy"         = "Gizlilik Politikası";
-"package_words" = "kelime";
-
+"package_words"           = "kelime";
+"paywall_continue"        = "Devam Et";
+"paywall_cancel_anytime"  = "Dilediğin zaman iptal edebilirsin";
+"paywall_restore_empty"   = "Geri yüklenecek satın alma bulunamadı";
 
 "premium_packages_title"   = "Binlerce Yeni Kelime";
 "premium_upgrade_prompt_title"   = "Premium Kilidi Aç";

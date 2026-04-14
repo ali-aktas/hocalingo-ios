@@ -239,8 +239,9 @@ struct HardWordsQuizView: View {
 
         return Button(action: {
             guard viewModel.answerState == .unanswered else { return }
-            viewModel.selectOption(option)
-            animateAnswer(correct: option.isCorrect, question: question)
+                        let graduatedBefore = viewModel.stats.graduatedWords.count
+                        viewModel.selectOption(option)
+                        animateAnswer(correct: option.isCorrect, graduatedBefore: graduatedBefore, question: question)
         }) {
             HStack(spacing: 14) {
                 // Status icon
@@ -349,7 +350,7 @@ struct HardWordsQuizView: View {
     }
 
     // MARK: - Animations
-    private func animateAnswer(correct: Bool, question: QuizQuestion) {
+    private func animateAnswer(correct: Bool, graduatedBefore: Int, question: QuizQuestion) {
         if correct {
             // Correct: green glow + scale bounce
             withAnimation(.easeInOut(duration: 0.3)) { showCorrectGlow = true }
@@ -358,8 +359,8 @@ struct HardWordsQuizView: View {
 
             // Check graduation with slight delay for UX
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                if viewModel.stats.graduatedWords.last != nil {
-                    graduatedWordName = question.english
+                if viewModel.stats.graduatedWords.count > graduatedBefore {
+                    graduatedWordName = viewModel.stats.graduatedWords.last ?? question.english
                     withAnimation(.easeInOut(duration: 0.3)) { graduationOverlay = true }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         withAnimation(.easeInOut(duration: 0.3)) { graduationOverlay = false }
