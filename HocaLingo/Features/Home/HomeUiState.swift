@@ -25,7 +25,12 @@ struct HomeUiState {
     /// This is for the flame badge at top of Home screen
     /// Resets if user skips a day
     var currentStreak: Int = 0
-    
+
+    /// Number of cards ready to study right now
+    /// = learning phase cards + cards whose nextReviewAt <= now
+    /// Used for HeroCard "ready to study" display
+    var wordsReadyToStudy: Int = 0
+
     var dailyGoalProgress: DailyGoalProgress = DailyGoalProgress()
     var monthlyStats: MonthlyStats = MonthlyStats()
     var error: String? = nil

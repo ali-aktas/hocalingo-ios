@@ -107,10 +107,68 @@ class HomeViewModel: ObservableObject {
             let userStats = userDefaults.loadUserStats()
             self.uiState.currentStreak = userStats.currentStreak
 
+            // 6. Words Ready to Study (same logic as StudyViewModel.shouldShowCard)
+            self.uiState.wordsReadyToStudy = self.calculateWordsReadyToStudy()
+
             self.uiState.isLoading = false
 
-            print("📊 Dashboard loaded: learned=\(self.uiState.streakDays) streak=\(self.uiState.currentStreak)")
+            print("📊 Dashboard loaded: learned=\(self.uiState.streakDays) streak=\(self.uiState.currentStreak) ready=\(self.uiState.wordsReadyToStudy)")
         }
+    }
+    
+    
+    // MARK: - Calculate Words Ready to Study
+    /// Mirrors StudyViewModel.shouldShowCard logic — returns count of cards
+    /// that are in learning phase OR have nextReviewAt <= now
+    private func calculateWordsReadyToStudy() -> Int {
+        let direction = userDefaults.loadStudyDirection()
+        let selectedIds = Set(userDefaults.loadSelectedWords())
+        
+        guard !selectedIds.isEmpty else { return 0 }
+        
+        // Load all selected words (package + user-added)
+        var allWords: [Word] = []
+        var seenIds = Set<Int>()
+        let jsonLoader = JSONLoader()
+        
+        // Discover packages from UserDefaults
+        let allKeys = UserDefaults.standard.dictionaryRepresentation().keys
+            .filter { $0.hasPrefix("package_") && $0.hasSuffix("_selected") }
+        
+        for key in allKeys {
+            let packageId = String(key.dropFirst("package_".count).dropLast("_selected".count))
+            if let package = try? jsonLoader.loadVocabularyPackage(filename: packageId) {
+                let packageWords = package.words.filter {
+                    selectedIds.contains($0.id) && !seenIds.contains($0.id)
+                }
+                for word in packageWords { seenIds.insert(word.id) }
+                allWords.append(contentsOf: packageWords)
+            }
+        }
+        
+        // User-added words
+        let userWords = userDefaults.loadUserAddedWords()
+        let selectedUserWords = userWords.filter {
+            selectedIds.contains($0.id) && !seenIds.contains($0.id)
+        }
+        allWords.append(contentsOf: selectedUserWords)
+        
+        // Count: learning phase OR review time has come
+        let now = Date()
+        let readyCount = allWords.filter { word in
+            guard let progress = userDefaults.loadProgress(for: word.id, direction: direction) else {
+                // No progress yet = new card = ready to study
+                return true
+            }
+            
+            if progress.learningPhase {
+                return true
+            }
+            
+            return progress.nextReviewAt <= now
+        }.count
+        
+        return readyCount
     }
 
     // MARK: - Monthly Stats (separate function — NOT nested inside loadDashboardData)

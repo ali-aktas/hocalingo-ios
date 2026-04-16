@@ -124,17 +124,66 @@ struct HeroCardView: View {
     }
 
     private var playButton: some View {
-        ZStack {
-            Image("play")
-                .resizable()
-                .scaledToFit()
-
-            Text(LocalizedStringKey("home_start_btn"))
-                .font(.system(size: 18, weight: .black, design: .rounded))
-                .foregroundColor(pillForeground)
-                .offset(x: -4)
+        VStack(alignment: .leading, spacing: 0) {
+            // Status indicator
+            HStack(spacing: 6) {
+                Circle()
+                    .fill(Color(hex: "4ADE80"))
+                    .frame(width: 6, height: 6)
+                    .shadow(color: Color(hex: "4ADE80").opacity(0.8), radius: 3)
+                
+                Text(LocalizedStringKey("home_ready_status"))
+                    .font(.system(size: 11, weight: .bold, design: .rounded))
+                    .foregroundColor(.white.opacity(0.8))
+                    .tracking(1.2)
+                    .textCase(.uppercase)
+            }
+            
+            // Tight spacing between status and number
+            Spacer().frame(height: 4)
+            
+            // Big number — actual cards ready to study
+            Text("\(uiState.wordsReadyToStudy)")
+                .font(.system(size: 48, weight: .black, design: .rounded))
+                .foregroundColor(.white)
+                .shadow(color: .black.opacity(0.15), radius: 4, y: 2)
+                .lineLimit(1)
+                .minimumScaleFactor(0.7)
+            
+            // Label directly below number
+            Text(LocalizedStringKey("home_words_remaining"))
+                .font(.system(size: 13, weight: .semibold, design: .rounded))
+                .foregroundColor(.white.opacity(0.85))
+                .lineLimit(1)
+                .padding(.top, 2)
+            
+            // Push pill to bottom
+            Spacer(minLength: 10)
+            
+            // Action hint pill
+            HStack(spacing: 6) {
+                Text(LocalizedStringKey("home_tap_to_continue"))
+                    .font(.system(size: 12, weight: .heavy, design: .rounded))
+                    .foregroundColor(.white)
+                
+                Image(systemName: "arrow.right")
+                    .font(.system(size: 11, weight: .black))
+                    .foregroundColor(.white)
+            }
+            .padding(.horizontal, 12)
+            .padding(.vertical, 7)
+            .background(
+                Capsule()
+                    .fill(Color.white.opacity(0.2))
+                    .overlay(
+                        Capsule()
+                            .stroke(Color.white.opacity(0.3), lineWidth: 1)
+                    )
+            )
         }
-        .frame(width: 130, height: 130)
+        .frame(width: 155, height: 130, alignment: .leading)
+        .padding(.leading, 4)
+        .padding(.vertical, 10)
     }
 
     // MARK: - Rotating Content (mascot / motivation text)

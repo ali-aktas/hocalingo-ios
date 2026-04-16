@@ -53,6 +53,11 @@
 "home_start_btn"          = "Başla";
 "stat_monthly_stats"      = "Bu ayın istatistikleri";
 
+/* MARK: - Home Hero Card (Alternative 1 - Dashboard) */
+"home_ready_status" = "Akıllı tekrar";
+"home_words_remaining" = "kelime hazır";
+"home_tap_to_continue" = "Devam Et";
+
 // Greeting
 "home_greeting_morning"   = "Günaydın! ☀️";
 "home_greeting_afternoon" = "İyi Günler! 🌤️";
@@ -81,26 +86,26 @@
 "stat_study_time_min"   = "dakika";
 
 // Motivational Texts
-"motivation_1"  = "Günde 10 dakika çalışarak her ay 200 kelime öğren!";
-"motivation_2"  = "Kelime bilmeden kural çalışmakla vakit kaybetmene gerek yok.";
-"motivation_3"  = "Toz bile birikerek dağ olur. Hadi, üşenme. Sadece 10 dakika!";
-"motivation_4"  = "Her kelime seni hedefe bir adım daha yaklaştırıyor";
-"motivation_5"  = "Pratik mükemmelleştirir, hadi başlayalım!";
-"motivation_6"  = "İngilizce yolculuğun devam ediyor, bugün harikasın!";
-"motivation_7"  = "Öğrenmek için şahane bir vakit!";
-"motivation_8"  = "Başarı sabırla gelir, sabret ve devam et!";
-"motivation_9"  = "İngilizce'nin gerçek dünyasına hoş geldin!";
+"motivation_1"  = "1 kelime öğrendin mi? Harika, o senin artık.";
+"motivation_2"  = "Bugün 5 dakika. Yarın seni şaşırtacak.";
+"motivation_3"  = "Yeni bir kelime, yeni bir kapı.";
+"motivation_4"  = "Her kelime seni hedefine bir adım daha yaklaştırır.";
+"motivation_5"  = "Kelime bilmek, cümleye güvenle başlamaktır.";
+"motivation_6"  = "Akıcılık mucize değil, tekrarın kardeşidir.";
+"motivation_7"  = "Öğrenmenin en iyi zamanı şimdi.";
+"motivation_8"  = "Sabırsızlanma, ilerleme sessizce olur.";
+"motivation_9"  = "İngilizce bir dil değil, bir alışkanlık.";
 "motivation_10" = "Gerekirse 2 dakika çalış, ama erteleme!";
-"motivation_11"  = "Bugün 5 kelime, 1 ay sonra bambaşka bir seviye!";
-"motivation_12"  = "Az ama her gün. Sırrımız bu.";
-"motivation_13"  = "Bir kelime bile öğrensen, dünki halinden öndesin!";
-"motivation_14"  = "Mükemmel zamanı bekleme, şimdi başla!";
-"motivation_15"  = "Her tekrar hafızanı biraz daha güçlendirir";
-"motivation_16"  = "Küçük adımlar büyük akıcılığa dönüşür";
-"motivation_17"  = "Bugün vazgeçmezsen, yarın teşekkür edeceksin";
-"motivation_18"  = "Sonuca odaklanma, sürece güven!";
-"motivation_19"  = "Dil öğrenmek maraton, sen ritmi yakaladın!";
-"motivation_20"  = "Her gün biraz daha cesur konuş!";
+"motivation_11" = "Küçük başla. İlerleme kendini gösterir.";
+"motivation_12" = "Az ama her gün. Sırrımız bu.";
+"motivation_13" = "Bir kelime bile öğrensen, dünki halinden öndesin!";
+"motivation_14" = "Mükemmel zamanı bekleme, şimdi başla!";
+"motivation_15" = "Tekrar, hafızanı sessizce inşa eder.";
+"motivation_16" = "Bugünkü çaban, yarınki rahatlığın.";
+"motivation_17" = "Bugün vazgeçmezsen, yarın teşekkür edeceksin.";
+"motivation_18" = "Sonuca odaklanma, sürece güven!";
+"motivation_19" = "Dil öğrenmek maraton, sen ritmi yakaladın!";
+"motivation_20" = "Her gün biraz daha cesur konuş!";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

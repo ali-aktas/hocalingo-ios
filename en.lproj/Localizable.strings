@@ -53,6 +53,11 @@
 "home_start_btn"          = "Start";
 "stat_monthly_stats"      = "Monthly Stats";
 
+/* MARK: - Home Hero Card (Alternative 1 - Dashboard) */
+"home_ready_status" = "Smart repetition";
+"home_words_remaining" = "cards ready";
+"home_tap_to_continue" = "Continue";
+
 // Greeting
 "home_greeting_morning"   = "Good Morning! ☀️";
 "home_greeting_afternoon" = "Good Afternoon! 🌤️";
@@ -81,27 +86,26 @@
 "unit_minute_short"   = "min";
 
 // Motivational Texts (English)
-"motivation_1"  = "With just 10 minutes a day, learn 200+ words every month!";
-"motivation_2"  = "What’s the point of grammar without vocabulary?";
-"motivation_3"  = "Even dust becomes a mountain when it gathers. Start now!";
-"motivation_4"  = "Every word brings you one step closer to your goal";
-"motivation_5"  = "Practice makes progress. Let’s begin!";
-"motivation_6"  = "Your English journey continues — you're doing great today!";
-"motivation_7"  = "It’s a perfect time to learn!";
-"motivation_8"  = "Success comes with patience. Keep going!";
-"motivation_9"  = "Welcome to the real world of English";
-"motivation_10" = "Even 1 minute counts. Just don’t delay!";
-"motivation_11" = "5 words today, a whole new level next month!";
-"motivation_12" = "Small effort. Every day. That’s the secret.";
-"motivation_13" = "One more word learned — you’re already ahead!";
-"motivation_14" = "Don’t wait for the perfect moment. Start now!";
-"motivation_15" = "Every repetition makes your memory stronger";
-"motivation_16" = "Small steps turn into real fluency";
-"motivation_17" = "If you don’t quit today, your future self will thank you";
-"motivation_18" = "Don’t just scroll. Learn and move forward!";
-"motivation_19" = "Language learning is a marathon — and you’ve found your pace";
-"motivation_20" = "Speak a little braver every single day!";
-
+"motivation_1"  = "Learned a new word? Great, it's yours now.";
+"motivation_2"  = "Five minutes today. Tomorrow will surprise you.";
+"motivation_3"  = "A new word is a new door.";
+"motivation_4"  = "Every word takes you one step closer to your goal.";
+"motivation_5"  = "Knowing words means starting sentences with confidence.";
+"motivation_6"  = "Fluency isn't magic — it's the sibling of repetition.";
+"motivation_7"  = "The best time to learn is now.";
+"motivation_8"  = "Don't rush. Progress happens quietly.";
+"motivation_9"  = "English isn't a language — it's a habit.";
+"motivation_10" = "Study 2 minutes if needed, just don't postpone!";
+"motivation_11" = "Start small. Progress shows itself.";
+"motivation_12" = "A little, every day. That's our secret.";
+"motivation_13" = "Even one word ahead of yesterday is progress!";
+"motivation_14" = "Don't wait for the perfect moment — start now!";
+"motivation_15" = "Repetition quietly builds your memory.";
+"motivation_16" = "Today's effort is tomorrow's ease.";
+"motivation_17" = "If you don't quit today, tomorrow you'll thank yourself.";
+"motivation_18" = "Don't focus on the result, trust the process!";
+"motivation_19" = "Language learning is a marathon — you've found the rhythm!";
+"motivation_20" = "Speak a little bolder each day!";
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Word Vault
