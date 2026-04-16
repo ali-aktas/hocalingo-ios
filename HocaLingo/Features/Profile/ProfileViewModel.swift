@@ -16,7 +16,7 @@ class ProfileViewModel: ObservableObject {
     @Published var appLanguage: AppLanguage = .english
     @Published var themeMode: ThemeMode = .system
     @Published var notificationsEnabled: Bool = false
-    @Published var notificationTime: Int = 9  // Default 9 AM
+    @Published var notificationTime: Int = 13  // Default 1 PM
     @Published var annualStats: AnnualStats = .empty
     
     // MARK: - Private Properties

@@ -93,10 +93,10 @@ struct StandardPackageCard: View {
                         RoundedRectangle(cornerRadius: 12)
                             .fill(Color.white.opacity(0.18))
                             .frame(width: 38, height: 38)
-                        
+
                         Image(systemName: package.iconName)
                             .font(.system(size: 17, weight: .bold))
-                            .foregroundColor(Color(hex: "4ECDC4"))
+                            .foregroundColor(.white)
                     }
                     
                     Spacer()
@@ -104,7 +104,7 @@ struct StandardPackageCard: View {
                     // Level badge
                     Text(LocalizedStringKey(package.level))
                             .font(.system(size: 12, weight: .heavy))
-                            .foregroundColor(Color(hex: "4ECDC4"))
+                            .foregroundColor(.white)
                 }
                 
                 Spacer()
@@ -218,12 +218,12 @@ struct PremiumPackageCard: View {
                     // Package icon in a gold-tinted rounded square
                     ZStack {
                         RoundedRectangle(cornerRadius: 12)
-                            .fill(Color(hex: "4ECDC4").opacity(isDarkMode ? 0.15 : 0.12))
+                            .fill(Color.white.opacity(isDarkMode ? 0.18 : 0.25))
                             .frame(width: 38, height: 38)
-                        
+
                         Image(systemName: package.iconName)
                             .font(.system(size: 17, weight: .bold))
-                            .foregroundColor(Color(hex: "4ECDC4"))
+                            .foregroundColor(.white)
                     }
                     
                     Spacer()
@@ -232,11 +232,11 @@ struct PremiumPackageCard: View {
                     if !isPremiumUser {
                         Image(systemName: "lock.fill")
                             .font(.system(size: 14))
-                            .foregroundColor(isDarkMode ? Color(hex: "FFD700").opacity(0.7) : Color(hex: "8B5CF6").opacity(0.6))
+                            .foregroundColor(.white.opacity(0.85))
                     } else if unseenCount == 0 {
                         Image(systemName: "checkmark.circle.fill")
                             .font(.system(size: 16))
-                            .foregroundColor(Color(hex: "4ECDC4"))
+                            .foregroundColor(.white)
                     } else {
                         Image(systemName: "chevron.right.circle.fill")
                             .font(.system(size: 16))
@@ -249,7 +249,7 @@ struct PremiumPackageCard: View {
                 // Package name
                 Text(LocalizedStringKey(package.name))
                     .font(.system(size: 15, weight: .bold, design: .rounded))
-                    .foregroundColor(.themePrimary)
+                    .foregroundColor(.white)
                     .lineLimit(2)
                     .minimumScaleFactor(0.8)
                 
@@ -262,17 +262,17 @@ struct PremiumPackageCard: View {
                         + Text("package_words")
                     }
                     .font(.system(size: 12, weight: .semibold))
-                    .foregroundColor(isDarkMode ? Color(hex: "FFD700") : Color(hex: "8B5CF6"))
+                    .foregroundColor(.white.opacity(0.9))
                     .padding(.top, 4)
                 } else if unseenCount == 0 {
                     Text("package_completed")
                         .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(.themeSecondary)
+                        .foregroundColor(.white.opacity(0.85))
                         .padding(.top, 4)
                 } else {
                     (Text("\(unseenCount) ") + Text("package_words_left"))
                         .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(.themeSecondary)
+                        .foregroundColor(.white.opacity(0.85))
                         .padding(.top, 4)
                 }
             }
@@ -299,35 +299,32 @@ struct PremiumPackageCard: View {
     
     private var cardBackground: some View {
         ZStack {
-            if isPremiumUser {
-                // Unlocked: subtle tint (current nice design)
-                RoundedRectangle(cornerRadius: 22)
-                    .fill(
-                        LinearGradient(
-                            colors: [
-                                Color(hex: package.colorHex).opacity(isDarkMode ? 0.12 : 0.08),
-                                Color(hex: package.colorHex).opacity(isDarkMode ? 0.06 : 0.03)
-                            ],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
+            // Unified gold gradient for both locked and unlocked — consistent rich gold feel
+            RoundedRectangle(cornerRadius: 22)
+                .fill(
+                    LinearGradient(
+                        colors: [
+                            Color(hex: "D4A017"),  // Rich gold top
+                            Color(hex: "B8860B")   // Dark goldenrod bottom
+                        ],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
                     )
-                RoundedRectangle(cornerRadius: 22)
-                    .fill(.ultraThinMaterial)
-                    .opacity(isDarkMode ? 0.6 : 0.5)
-            } else {
-                // Locked: themed premium feel
-                RoundedRectangle(cornerRadius: 22)
-                    .fill(
-                        LinearGradient(
-                            colors: isDarkMode
-                                ? [Color(hex: "2A2235"), Color(hex: "1E1A2B")]
-                                : [Color(hex: "F3EEFF"), Color(hex: "EDE5FF")],
-                            startPoint: .topLeading,
-                            endPoint: .bottomTrailing
-                        )
+                )
+            
+            // Subtle shimmer overlay for premium feel
+            RoundedRectangle(cornerRadius: 22)
+                .fill(
+                    LinearGradient(
+                        colors: [
+                            Color.white.opacity(0.15),
+                            Color.clear,
+                            Color.black.opacity(0.08)
+                        ],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
                     )
-            }
+                )
         }
     }
 

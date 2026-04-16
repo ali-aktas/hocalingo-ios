@@ -210,14 +210,16 @@ struct ProfileView: View {
                 }
             }
             .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Text(LocalizedStringKey("settings_title"))
-                            .font(.system(size: 17, weight: .semibold, design: .rounded))
-                            .foregroundColor(.themePrimary)
-                    }
+            .toolbar {
+                ToolbarItem(placement: .principal) {
+                    Text(LocalizedStringKey("settings_title"))
+                        .font(.system(size: 18, weight: .bold, design: .rounded))
+                        .foregroundColor(.themePrimary)
                 }
-            .navigationBarItems(trailing: premiumBadge)
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    premiumBadge
+                }
+            }
         }
         .sheet(isPresented: $showPremiumSheet) {
             PremiumPaywallView()
@@ -247,27 +249,24 @@ struct ProfileView: View {
                     : "premium_badge_upgrade"))
                     .font(.system(size: 12, weight: .bold, design: .rounded))
             }
-            .foregroundColor(viewModel.isPremium ? Color(hex: "92400E") : .white)
+            .foregroundColor(.white)
             .padding(.horizontal, 12)
             .padding(.vertical, 7)
             .background(
                 Capsule()
                     .fill(
                         LinearGradient(
-                            colors: viewModel.isPremium
-                                ? [Color(hex: "FDE68A"), Color(hex: "FCD34D")]
-                                : [Color(hex: "FFD700"), Color(hex: "FFA500")],
+                            colors: [Color(hex: "FFD700"), Color(hex: "FFA500")],
                             startPoint: .topLeading,
                             endPoint: .bottomTrailing
                         )
                     )
-                    .shadow(color: Color(hex: "FFD700").opacity(0.4), radius: 6, x: 0, y: 3)
+                    .shadow(color: Color(hex: "FFD700").opacity(0.5), radius: 8, x: 0, y: 4)
             )
         }
         .buttonStyle(PlainButtonStyle())
         .disabled(viewModel.isPremium)
     }
-    
     // MARK: - Section Header
     private func sectionHeader(key: String) -> some View {
         HStack {

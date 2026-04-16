@@ -107,10 +107,10 @@
 // MARK: - Word Vault
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-"vault_title"          = "Kelime Kasam";
-"vault_section_title"  = "Kelime Kasam";
+"vault_title"          = "Kelime Kasan";
+"vault_section_title"  = "Kelime Kasan";
 "vault_show_all"       = "Tümünü Gör";
-"vault_review_all"     = "Tüm Kelimeleri Gözden Geçir";
+"vault_review_all"     = "Kelimelerini incele";
 "vault_empty_title"    = "Kasan henüz boş";
 "vault_empty_subtitle" = "Paket seçip kelime ekledikten sonra burada görünür";
 "vault_preview_empty"  = "Kelime seçmeye başla";
@@ -329,7 +329,7 @@
 
 "word_selection_title"         = "Kelime Seçimi";
 "word_selection_back"          = "Geri";
-"word_selection_instruction"   = "Çalışma destesine yeni kelimeler ekle";
+"word_selection_instruction"   = "Kelime kasana yeni kelimeler ekle";
 "word_selection_learn"         = "Öğren";
 "word_selection_skip"          = "Geç";
 "word_selection_selected"      = "Seçilen";
@@ -367,7 +367,7 @@
 "add_word_save"       = "Kaydet";
 "add_word_success"    = "Kelime başarıyla eklendi! 🎉";
 "add_word_error"      = "Kelime eklenirken hata oluştu";
-"add_word_info"       = "Gün içinde karşına çıkan kelimeleri çalışma destene ekle";
+"add_word_info"       = "Gün içinde karşına çıkan kelimeleri kelime kasana ekle";
 "add_word_required"   = "Bu alan zorunludur";
 
 
@@ -602,7 +602,7 @@
 // Swipe Demo
 "onboarding_swipe_hint_initial" = "Nasıl çalıştığını izle";
 "onboarding_swipe_hint_action"  = "Şimdi sağa kaydırarak ekle";
-"onboarding_feedback_added"     = "Çalışma destene eklendi!";
+"onboarding_feedback_added"     = "Kelime kasana eklendi!";
 
 // Study Demo
 "onboarding_study_hint1"   = "Önce hatırlamaya çalış";

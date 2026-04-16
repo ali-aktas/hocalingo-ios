@@ -137,8 +137,12 @@ class UserDefaultsManager {
     }
 
     /// Load notification time
-    /// ✅ FIXED: Default changed from 9 AM to 1 PM (13:00)
+    /// ✅ FIXED: Returns 13 if key doesn't exist (UserDefaults.integer returns 0 for missing keys)
     func loadNotificationTime() -> Int {
+        // Check if key exists — if not, return default 13 (1 PM)
+        if UserDefaults.standard.object(forKey: Keys.notificationTime) == nil {
+            return 13
+        }
         let hour = UserDefaults.standard.integer(forKey: Keys.notificationTime)
         return hour >= 0 && hour < 24 ? hour : 13
     }

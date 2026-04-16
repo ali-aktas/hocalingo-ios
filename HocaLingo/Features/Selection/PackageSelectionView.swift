@@ -39,9 +39,22 @@ struct PackageSelectionView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Clean background — matches app-wide themeBackground
-                Color.themeBackground
-                    .ignoresSafeArea()
+                // Background gradient — matches HomeView exactly (cream in light, dark purple in dark)
+                LinearGradient(
+                    colors: isDarkMode
+                        ? [Color(hex: "1A1625"), Color(hex: "211A2E")]
+                        : [Color(hex: "FBF2FF"), Color(hex: "FAF1FF")],
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .ignoresSafeArea()
+
+                // Ambient blur circle — consistent with HomeView
+                Circle()
+                    .fill(Color.accentPurple.opacity(isDarkMode ? 0.15 : 0.08))
+                    .frame(width: 350, height: 350)
+                    .blur(radius: 60)
+                    .offset(x: 120, y: -250)
                 
                 VStack(spacing: 0) {
                     // Custom back button row
