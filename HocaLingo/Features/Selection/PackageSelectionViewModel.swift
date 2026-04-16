@@ -135,57 +135,65 @@ class PackageSelectionViewModel: ObservableObject {
             )
         }
         
-        // PREMIUM PACKAGES — Themed collections with unique gold tones
-        let premiumMetadata: [(id: String, level: String, name: String, description: String, colorHex: String, iconName: String)] = [
-            (
-                id: "premium_travel_001",
-                level: "premium_level",
-                name: "premium_package_travel",
-                description: "Tourism and navigation",
-                colorHex: "FFD700",   // Gold
-                iconName: "airplane"
-            ),
-            (
-                id: "premium_business_001",
-                level: "premium_level",
-                name: "premium_package_business",
-                description: "Professional workplace English",
-                colorHex: "DAA520",   // Goldenrod
-                iconName: "briefcase.fill"
-            ),
-            (
-                id: "premium_phrases_001",
-                level: "premium_level",
-                name: "premium_package_phrases",
-                description: "Common native expressions",
-                colorHex: "F4A460",   // Sandy brown
-                iconName: "text.bubble.fill"
-            ),
-            (
-                id: "premium_idioms_001",
-                level: "premium_level",
-                name: "premium_package_idioms",
-                description: "Native expressions",
-                colorHex: "D4AF37",   // Metallic gold
-                iconName: "theatermasks.fill"
-            ),
-            (
-                id: "premium_social_001",
-                level: "premium_level",
-                name: "premium_package_social",
-                description: "Daily conversation skills",
-                colorHex: "DDA15E",   // Bronze
-                iconName: "person.2.fill"
-            ),
-            (
-                id: "premium_academic_001",
-                level: "premium_level",
-                name: "premium_package_academic",
-                description: "University and research",
-                colorHex: "CD853F",   // Peru
-                iconName: "building.columns.fill"
-            )
-        ]
+        // PREMIUM PACKAGES — 7 themed collections
+                let premiumMetadata: [(id: String, level: String, name: String, description: String, colorHex: String, iconName: String)] = [
+                    (
+                        id: "premium_travel_001",
+                        level: "premium_level",
+                        name: "premium_package_travel",
+                        description: "Tourism and navigation",
+                        colorHex: "FFD700",
+                        iconName: "airplane"
+                    ),
+                    (
+                        id: "premium_business_001",
+                        level: "premium_level",
+                        name: "premium_package_business",
+                        description: "Professional workplace English",
+                        colorHex: "DAA520",
+                        iconName: "briefcase.fill"
+                    ),
+                    (
+                        id: "premium_idioms_001",
+                        level: "premium_level",
+                        name: "premium_package_idioms",
+                        description: "Idioms, expressions & patterns",
+                        colorHex: "D4AF37",
+                        iconName: "theatermasks.fill"
+                    ),
+                    (
+                        id: "premium_social_001",
+                        level: "premium_level",
+                        name: "premium_package_social",
+                        description: "Daily conversation skills",
+                        colorHex: "DDA15E",
+                        iconName: "person.2.fill"
+                    ),
+                    (
+                        id: "premium_academic_001",
+                        level: "premium_level",
+                        name: "premium_package_academic",
+                        description: "University and research",
+                        colorHex: "CD853F",
+                        iconName: "building.columns.fill"
+                    ),
+                    (
+                        id: "premium_slang_001",
+                        level: "premium_level",
+                        name: "premium_package_slang",
+                        description: "Internet abbreviations & modern slang",
+                        colorHex: "FF6B6B",
+                        iconName: "number.circle.fill"
+                    ),
+                    (
+                        id: "premium_food_001",
+                        level: "premium_level",
+                        name: "premium_package_food",
+                        description: "Ingredients, cooking & dining",
+                        colorHex: "E8A838",
+                        iconName: "fork.knife"
+                    )
+                ]
         
         // Build premium packages
         premiumPackages = premiumMetadata.map { metadata in

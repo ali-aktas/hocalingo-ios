@@ -1,0 +1,3464 @@
+{
+  "package_info": {
+    "id": "premium_idioms_001",
+    "version": "2.0.0",
+    "level": "MIXED",
+    "language_pair": "en_tr",
+    "total_words": 187,
+    "updated_at": "2026-04-03",
+    "description": "Daily Idioms, Expressions & Patterns",
+    "attribution": "HocaLingo vocabulary database"
+  },
+  "words": [
+    {
+      "id": 3938,
+      "english": "hit the road",
+      "pronunciation": "hɪt ðə roʊd",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yola çıkmak / çekip gitmek",
+          "example": {
+            "en": "We should hit the road early to avoid traffic.",
+            "tr": "Trafikten kaçınmak için erken yola çıkmalıyız."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3939,
+      "english": "piece of cake",
+      "pronunciation": "piːs əv keɪk",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çocuk oyuncağı / çok kolay",
+          "example": {
+            "en": "Don't worry about the test — it's a piece of cake.",
+            "tr": "Sınav için endişelenme — çocuk oyuncağı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3940,
+      "english": "under the weather",
+      "pronunciation": "ˈʌndər ðə ˈweðər",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "keyifsiz hissetmek / hasta hissetmek",
+          "example": {
+            "en": "I'm feeling a bit under the weather today.",
+            "tr": "Bugün biraz keyifsiz hissediyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3941,
+      "english": "get cold feet",
+      "pronunciation": "ɡɛt koʊld fiːt",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "cesareti kırılmak / vazgeçmek",
+          "example": {
+            "en": "She got cold feet before her job interview.",
+            "tr": "İş mülakatından önce cesareti kırıldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3942,
+      "english": "actions speak louder than words",
+      "pronunciation": "ˈækʃənz spiːk ˈlaʊdər ðæn wɜːrdz",
+      "level": "MIXED",
+      "category": "proverbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "söz değil, iş önemlidir",
+          "example": {
+            "en": "Don't just promise — actions speak louder than words.",
+            "tr": "Sadece söz verme — söz değil, iş önemlidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3943,
+      "english": "better late than never",
+      "pronunciation": "ˈbɛtər leɪt ðæn ˈnɛvər",
+      "level": "MIXED",
+      "category": "proverbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "geç olsun da güç olmasın",
+          "example": {
+            "en": "He finally apologized — better late than never.",
+            "tr": "Sonunda özür diledi — geç olsun da güç olmasın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3944,
+      "english": "cool",
+      "pronunciation": "kuːl",
+      "level": "MIXED",
+      "category": "mild slang",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "harika / süper / olur",
+          "example": {
+            "en": "That new café downtown is really cool.",
+            "tr": "Şehir merkezindeki o yeni kafe gerçekten harika."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3945,
+      "english": "awesome",
+      "pronunciation": "ˈɔːsəm",
+      "level": "MIXED",
+      "category": "mild slang",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "muhteşem / harika",
+          "example": {
+            "en": "The concert last night was absolutely awesome.",
+            "tr": "Dün geceki konser kesinlikle muhteşemdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3946,
+      "english": "no big deal",
+      "pronunciation": "noʊ bɪɡ diːl",
+      "level": "MIXED",
+      "category": "mild slang",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "büyük bir şey değil / önemli değil",
+          "example": {
+            "en": "I helped him move, but it was no big deal.",
+            "tr": "Taşınmasına yardım ettim ama büyük bir şey değildi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3947,
+      "english": "raining cats and dogs",
+      "pronunciation": "ˈreɪnɪŋ kæts ænd dɒɡz",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bardaktan boşanırcasına yağmur yağmak",
+          "example": {
+            "en": "Take an umbrella — it's raining cats and dogs out there.",
+            "tr": "Şemsiyeni al — dışarıda bardaktan boşanırcasına yağmur yağıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3948,
+      "english": "feeling blue",
+      "pronunciation": "ˈfiːlɪŋ bluː",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kendini hüzünlü hissetmek / moralinin bozuk olması",
+          "example": {
+            "en": "She's been feeling blue since her friend moved away.",
+            "tr": "Arkadaşı taşındığından beri kendini hüzünlü hissediyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3949,
+      "english": "fingers crossed",
+      "pronunciation": "ˈfɪŋɡərz krɒst",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "umarım / parmaklar çapraz (iyi şanslar dilemek)",
+          "example": {
+            "en": "I have my interview tomorrow — fingers crossed!",
+            "tr": "Yarın mülakatım var — umarım iyi gider!"
+          }
+        }
+      ]
+    },
+    {
+      "id": 3950,
+      "english": "knock on wood",
+      "pronunciation": "nɒk ɒn wʊd",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "nazar değmesin / tahtaya vur",
+          "example": {
+            "en": "I haven't been sick all year, knock on wood.",
+            "tr": "Bu yıl hiç hastalanmadım, nazar değmesin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3951,
+      "english": "light at the end of the tunnel",
+      "pronunciation": "laɪt æt ðə ɛnd əv ðə ˈtʌnəl",
+      "level": "MIXED",
+      "category": "everyday metaphors",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tünelin sonundaki ışık / zorluğun bitişine yaklaşmak",
+          "example": {
+            "en": "After months of struggle, I can finally see the light at the end of the tunnel.",
+            "tr": "Aylarca süren zorluğun ardından nihayet tünelin sonundaki ışığı görebiliyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3952,
+      "english": "bite the bullet",
+      "pronunciation": "baɪt ðə ˈbʊlɪt",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dişini sıkıp katlanmak / zorluğa göğüs germek",
+          "example": {
+            "en": "I hated the dentist but I bit the bullet and went.",
+            "tr": "Dişçiden nefret ediyordum ama dişimi sıkıp gittim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3953,
+      "english": "spill the beans",
+      "pronunciation": "spɪl ðə biːnz",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ağzından kaçırmak / sırrı ifşa etmek",
+          "example": {
+            "en": "Don't spill the beans about the surprise party.",
+            "tr": "Sürpriz parti hakkında ağzından kaçırma."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3954,
+      "english": "hit the nail on the head",
+      "pronunciation": "hɪt ðə neɪl ɒn ðə hɛd",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tam on ikiden vurmak / tam isabet",
+          "example": {
+            "en": "You hit the nail on the head with that comment.",
+            "tr": "O yorumunla tam on ikiden vurdun."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3955,
+      "english": "cost an arm and a leg",
+      "pronunciation": "kɒst ən ɑːrm ænd ə lɛɡ",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çok pahalıya mal olmak / göz çıkarmak",
+          "example": {
+            "en": "That new phone costs an arm and a leg.",
+            "tr": "O yeni telefon göz çıkarıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3956,
+      "english": "once in a blue moon",
+      "pronunciation": "wʌns ɪn ə bluː muːn",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kırk yılda bir / çok nadir",
+          "example": {
+            "en": "He calls me once in a blue moon.",
+            "tr": "Beni kırk yılda bir arar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3957,
+      "english": "burn bridges",
+      "pronunciation": "bɜːrn ˈbrɪdʒɪz",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "köprüleri yakmak / ilişkileri kalıcı olarak bozmak",
+          "example": {
+            "en": "Don't burn bridges when you leave a job.",
+            "tr": "İşten ayrılırken köprüleri yakma."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3958,
+      "english": "go the extra mile",
+      "pronunciation": "ɡoʊ ðə ˈɛkstrə maɪl",
+      "level": "MIXED",
+      "category": "everyday metaphors",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fazladan çaba göstermek / ekstra gayret etmek",
+          "example": {
+            "en": "She always goes the extra mile for her students.",
+            "tr": "Öğrencileri için her zaman fazladan çaba gösterir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3959,
+      "english": "the ball is in your court",
+      "pronunciation": "ðə bɔːl ɪz ɪn jɔːr kɔːrt",
+      "level": "MIXED",
+      "category": "everyday metaphors",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "top sende / sıra sende",
+          "example": {
+            "en": "I made my offer — the ball is in your court now.",
+            "tr": "Teklifimi yaptım — top artık sende."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3960,
+      "english": "hit the sack",
+      "pronunciation": "hɪt ðə sæk",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "uyumaya gitmek / yatmak",
+          "example": {
+            "en": "I'm exhausted — I'm going to hit the sack.",
+            "tr": "Çok yorgunum — yatmaya gidiyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3961,
+      "english": "hang in there",
+      "pronunciation": "hæŋ ɪn ðɛr",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "pes etme / dayanmaya devam et",
+          "example": {
+            "en": "Things will get better soon — hang in there!",
+            "tr": "Her şey yakında düzelecek — pes etme!"
+          }
+        }
+      ]
+    },
+    {
+      "id": 3962,
+      "english": "on the fence",
+      "pronunciation": "ɒn ðə fɛns",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kararsız olmak",
+          "example": {
+            "en": "She is still on the fence about accepting the job offer.",
+            "tr": "İş teklifini kabul etmek konusunda hâlâ kararsız."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3963,
+      "english": "rule of thumb",
+      "pronunciation": "ruːl əv θʌm",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "genel kural, pratik kural",
+          "example": {
+            "en": "As a rule of thumb, save at least ten percent of your income.",
+            "tr": "Genel kural olarak gelirinizin en az yüzde onunu biriktirin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3964,
+      "english": "under pressure",
+      "pronunciation": "ˈʌndə ˈprɛʃə",
+      "level": "MIXED",
+      "category": "everyday metaphors",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "baskı altında olmak",
+          "example": {
+            "en": "He always performs well when he is under pressure.",
+            "tr": "Baskı altındayken her zaman iyi performans gösterir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3965,
+      "english": "beat around the bush",
+      "pronunciation": "biːt əˈraʊnd ðə bʊʃ",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "lafı dolandırmak, ağzında gevelemek",
+          "example": {
+            "en": "Stop beating around the bush and just tell me the truth.",
+            "tr": "Lafı dolandırmayı bırak ve bana sadece gerçeği söyle."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3966,
+      "english": "let the cat out of the bag",
+      "pronunciation": "lɛt ðə kæt aʊt əv ðə bæɡ",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sırrı ifşa etmek, ağzından kaçırmak",
+          "example": {
+            "en": "He let the cat out of the bag about the surprise party.",
+            "tr": "Sürpriz parti hakkındaki sırrı ağzından kaçırdı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3967,
+      "english": "every cloud has a silver lining",
+      "pronunciation": "ˈɛvri klaʊd hæz ə ˈsɪlvə ˈlaɪnɪŋ",
+      "level": "MIXED",
+      "category": "proverbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "her işte bir hayır vardır",
+          "example": {
+            "en": "Losing that job was hard, but every cloud has a silver lining.",
+            "tr": "O işi kaybetmek zordu ama her işte bir hayır vardır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3968,
+      "english": "the more, the merrier",
+      "pronunciation": "ðə mɔː ðə ˈmɛriə",
+      "level": "MIXED",
+      "category": "proverbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ne kadar çok, o kadar iyi",
+          "example": {
+            "en": "Invite all your friends — the more, the merrier!",
+            "tr": "Tüm arkadaşlarını davet et — ne kadar çok, o kadar iyi!"
+          }
+        }
+      ]
+    },
+    {
+      "id": 3969,
+      "english": "give it a shot",
+      "pronunciation": "ɡɪv ɪt ə ʃɒt",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "denemek, şansını denemek",
+          "example": {
+            "en": "I have never cooked Thai food, but I will give it a shot.",
+            "tr": "Hiç Tay yemeği pişirmedim ama bir deneyeyim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3970,
+      "english": "my bad",
+      "pronunciation": "maɪ bæd",
+      "level": "MIXED",
+      "category": "mild slang",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "benim hatam, özür dilerim",
+          "example": {
+            "en": "I forgot to send the file — my bad!",
+            "tr": "Dosyayı göndermeyi unuttum — benim hatam!"
+          }
+        }
+      ]
+    },
+    {
+      "id": 3971,
+      "english": "hang out",
+      "pronunciation": "hæŋ aʊt",
+      "level": "MIXED",
+      "category": "mild slang",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "takılmak, vakit geçirmek",
+          "example": {
+            "en": "We like to hang out at the coffee shop on weekends.",
+            "tr": "Hafta sonları kahvede takılmayı severiz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3972,
+      "english": "pull someone's leg",
+      "pronunciation": "pʊl ˈsʌmwʌnz lɛɡ",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "birini takılmak, şaka yapmak",
+          "example": {
+            "en": "Are you serious or are you just pulling my leg?",
+            "tr": "Ciddî misin yoksa sadece beni mi takılıyorsun?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 3974,
+      "english": "see eye to eye",
+      "pronunciation": "siː aɪ tə aɪ",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "aynı fikirde olmak, anlaşmak",
+          "example": {
+            "en": "They do not always see eye to eye, but they respect each other.",
+            "tr": "Her zaman aynı fikirde olmuyorlar ama birbirlerine saygı duyuyorlar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3975,
+      "english": "sooner or later",
+      "pronunciation": "ˈsuːnər ɔː ˈleɪtə",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "er ya da geç",
+          "example": {
+            "en": "Sooner or later, you will have to face the problem.",
+            "tr": "Er ya da geç bu sorunla yüzleşmek zorunda kalacaksın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3976,
+      "english": "the tip of the iceberg",
+      "pronunciation": "ðə tɪp əv ðə ˈaɪsbɜːɡ",
+      "level": "MIXED",
+      "category": "everyday metaphors",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "buzdağının görünen kısmı",
+          "example": {
+            "en": "The complaints we received are just the tip of the iceberg.",
+            "tr": "Aldığımız şikâyetler sadece buzdağının görünen kısmı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3977,
+      "english": "break a leg",
+      "pronunciation": "breɪk ə lɛɡ",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bol şans, başarılar",
+          "example": {
+            "en": "Break a leg at your performance tonight!",
+            "tr": "Bu geceki performansında bol şans!"
+          }
+        }
+      ]
+    },
+    {
+      "id": 3978,
+      "english": "sleep on it",
+      "pronunciation": "sliːp ɒn ɪt",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bir geceye yatırmak, üzerine uyumak",
+          "example": {
+            "en": "It is a big decision, so sleep on it before you decide.",
+            "tr": "Bu büyük bir karar, o yüzden bir geceye yatır sonra karar ver."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3979,
+      "english": "a blessing in disguise",
+      "pronunciation": "ə ˈblɛsɪŋ ɪn dɪsˈɡaɪz",
+      "level": "MIXED",
+      "category": "proverbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "görünürde kötü ama aslında iyi olan şey, hayırlı bela",
+          "example": {
+            "en": "Missing that flight was a blessing in disguise — I met my wife there.",
+            "tr": "O uçuşu kaçırmak hayırlı bir bela oldu — orada eşimle tanıştım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3980,
+      "english": "lose track of time",
+      "pronunciation": "luːz træk əv taɪm",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zamanı unutmak, vakti geçirmek",
+          "example": {
+            "en": "I was reading and completely lost track of time.",
+            "tr": "Kitap okurken zamanı tamamen unuttu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3981,
+      "english": "sick and tired",
+      "pronunciation": "sɪk ənd ˈtaɪəd",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bıkmış usanmış olmak",
+          "example": {
+            "en": "I am sick and tired of waiting for an answer.",
+            "tr": "Cevap beklemekten bıktım usandım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3982,
+      "english": "on top of the world",
+      "pronunciation": "ɒn tɒp əv ðə wɜːld",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kendini çok iyi hissetmek, mutluluktan uçmak",
+          "example": {
+            "en": "After winning the award, she felt on top of the world.",
+            "tr": "Ödülü kazandıktan sonra kendini mutluluktan uçuyor gibi hissetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3983,
+      "english": "fair enough",
+      "pronunciation": "fɛər ɪˈnʌf",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "makul, tamam, olur",
+          "example": {
+            "en": "You do not want to come? Fair enough, we understand.",
+            "tr": "Gelmek istemiyorsun? Tamam, anlıyoruz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3984,
+      "english": "bite off more than you can chew",
+      "pronunciation": "baɪt ɒf mɔː ðən juː kæn tʃuː",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gücünün üzerinde iş üstlenmek",
+          "example": {
+            "en": "He took on five projects at once and bit off more than he could chew.",
+            "tr": "Bir anda beş proje üstlendi ve gücünün üzerinde iş aldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3985,
+      "english": "like two peas in a pod",
+      "pronunciation": "laɪk tuː piːz ɪn ə pɒd",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "birbirinin aynısı olmak, ikiz gibi olmak",
+          "example": {
+            "en": "Those two are like two peas in a pod — always together.",
+            "tr": "O ikisi birbirinin aynısı — her zaman birlikte."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3986,
+      "english": "hit a wall",
+      "pronunciation": "hɪt ə wɔːl",
+      "level": "MIXED",
+      "category": "everyday metaphors",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çıkmaza girmek, tıkanmak",
+          "example": {
+            "en": "I have been working all day and I have completely hit a wall.",
+            "tr": "Bütün gün çalıştım ve tamamen tıkandım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3988,
+      "english": "wrap one's head around",
+      "pronunciation": "ræp wʌnz hɛd əˈraʊnd",
+      "level": "MIXED",
+      "category": "everyday metaphors",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kafasına yatırmak",
+          "example": {
+            "en": "I can't wrap my head around this math problem.",
+            "tr": "Bu matematik problemini bir türlü kafama yatıramıyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3989,
+      "english": "cut to the chase",
+      "pronunciation": "kʌt tə ðə tʃeɪs",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "lafı dolandırmadan konuya gelmek",
+          "example": {
+            "en": "Let's cut to the chase and discuss the real issue.",
+            "tr": "Lafı dolandırmadan asıl konuyu konuşalım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3991,
+      "english": "it takes two to tango",
+      "pronunciation": "ɪt teɪks tuː tə ˈtæŋɡoʊ",
+      "level": "MIXED",
+      "category": "proverbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "her işte iki taraf vardır",
+          "example": {
+            "en": "They both argued, but it takes two to tango.",
+            "tr": "İkisi de tartıştı; her işte iki taraf vardır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3992,
+      "english": "blow off steam",
+      "pronunciation": "bloʊ ɔf stiːm",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "stres atmak",
+          "example": {
+            "en": "She goes for a run to blow off steam after work.",
+            "tr": "İşten sonra stres atmak için koşuya çıkar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3993,
+      "english": "wicked",
+      "pronunciation": "ˈwɪkɪd",
+      "level": "MIXED",
+      "category": "mild slang",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "müthiş",
+          "example": {
+            "en": "That new restaurant downtown is wicked good.",
+            "tr": "Şehir merkezindeki yeni restoran müthiş."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3994,
+      "english": "the whole nine yards",
+      "pronunciation": "ðə hoʊl naɪn jɑːrdz",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "her şeyi dahil etmek",
+          "example": {
+            "en": "She decorated the house with lights, wreaths, the whole nine yards.",
+            "tr": "Evi ışıklarla, çelenklerle, her şeyiyle süsledi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3995,
+      "english": "on the same page",
+      "pronunciation": "ɒn ðə seɪm peɪdʒ",
+      "level": "MIXED",
+      "category": "everyday metaphors",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "aynı fikirde olmak",
+          "example": {
+            "en": "Let's make sure we're all on the same page before starting.",
+            "tr": "Başlamadan önce hepimizin aynı fikirde olduğundan emin olalım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3996,
+      "english": "hit the books",
+      "pronunciation": "hɪt ðə bʊks",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ders çalışmak",
+          "example": {
+            "en": "I have a big exam tomorrow, so I need to hit the books.",
+            "tr": "Yarın büyük sınavım var, ders çalışmam lazım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3997,
+      "english": "give someone the cold shoulder",
+      "pronunciation": "ɡɪv ˈsʌmwʌn ðə koʊld ˈʃoʊldər",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "birini görmezden gelmek",
+          "example": {
+            "en": "After their argument, she gave him the cold shoulder all day.",
+            "tr": "Tartışmalarının ardından bütün gün onu görmezden geldi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3998,
+      "english": "touché",
+      "pronunciation": "tuːˈʃeɪ",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iyi nokta, haklısın",
+          "example": {
+            "en": "Touché — you made a very good point there.",
+            "tr": "İyi nokta — orada gerçekten haklıydın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3999,
+      "english": "you reap what you sow",
+      "pronunciation": "juː riːp wɒt juː soʊ",
+      "level": "MIXED",
+      "category": "proverbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ne ekersen onu biçersin",
+          "example": {
+            "en": "He worked hard and succeeded — you reap what you sow.",
+            "tr": "Çok çalıştı ve başardı — ne ekersen onu biçersin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4000,
+      "english": "a penny for your thoughts",
+      "pronunciation": "ə ˈpɛni fər jər θɔːts",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ne düşünüyorsun?",
+          "example": {
+            "en": "You've been quiet all evening — a penny for your thoughts.",
+            "tr": "Bütün akşam sessizdin — ne düşünüyorsun?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4001,
+      "english": "that's the way the cookie crumbles",
+      "pronunciation": "ðæts ðə weɪ ðə ˈkʊki ˈkrʌmblz",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "işte hayat böyle",
+          "example": {
+            "en": "I didn't get the job, but that's the way the cookie crumbles.",
+            "tr": "İşi alamadım ama işte hayat böyle."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4002,
+      "english": "chilled out",
+      "pronunciation": "tʃɪld aʊt",
+      "level": "MIXED",
+      "category": "mild slang",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "rahat, sakin",
+          "example": {
+            "en": "He's so chilled out — nothing seems to bother him.",
+            "tr": "O kadar rahat biri ki hiçbir şey onu rahatsız etmiyor gibi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4003,
+      "english": "under one's belt",
+      "pronunciation": "ˈʌndər wʌnz bɛlt",
+      "level": "MIXED",
+      "category": "everyday metaphors",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "deneyim kazanmış olmak",
+          "example": {
+            "en": "With three years of experience under her belt, she got the promotion.",
+            "tr": "Üç yıllık deneyim kazanmış olarak terfi aldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4004,
+      "english": "lame",
+      "pronunciation": "leɪm",
+      "level": "MIXED",
+      "category": "mild slang",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "saçma, berbat",
+          "example": {
+            "en": "That excuse sounds really lame — nobody will believe it.",
+            "tr": "O bahane gerçekten saçma — kimse inanmaz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4005,
+      "english": "two birds, one stone",
+      "pronunciation": "tuː bɜːrdz wʌn stoʊn",
+      "level": "MIXED",
+      "category": "proverbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tek taşla iki kuş vurmak",
+          "example": {
+            "en": "I'll shop and visit grandma on the same trip — two birds, one stone.",
+            "tr": "Aynı yolculukta hem alışveriş yapar hem anneannemi ziyaret ederim — tek taşla iki kuş."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4006,
+      "english": "jump the gun",
+      "pronunciation": "dʒʌmp ðə ɡʌn",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "acele karar vermek",
+          "example": {
+            "en": "Don't jump the gun — wait until you have all the facts.",
+            "tr": "Acele karar verme — tüm gerçekleri öğrenene kadar bekle."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4007,
+      "english": "get out of hand",
+      "pronunciation": "ɡɛt aʊt əv hænd",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kontrolden çıkmak",
+          "example": {
+            "en": "The argument got out of hand very quickly.",
+            "tr": "Tartışma çok hızlı kontrolden çıktı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4008,
+      "english": "steal someone's thunder",
+      "pronunciation": "stiːl ˈsʌmwʌnz ˈθʌndər",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "birinin gösterişini çalmak",
+          "example": {
+            "en": "She announced her engagement and stole the bride's thunder.",
+            "tr": "Nişanlandığını duyurdu ve gelinin gösterişini çaldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4009,
+      "english": "Rome wasn't built in a day",
+      "pronunciation": "roʊm wɒznt bɪlt ɪn ə deɪ",
+      "level": "MIXED",
+      "category": "proverbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sabır gerektirir, büyük işler zaman alır",
+          "example": {
+            "en": "Be patient with your progress — Rome wasn't built in a day.",
+            "tr": "İlerlemende sabırlı ol — büyük işler zaman alır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4010,
+      "english": "dead ringer",
+      "pronunciation": "dɛd ˈrɪŋər",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tıpkısının aynısı",
+          "example": {
+            "en": "She's a dead ringer for her mother when she was young.",
+            "tr": "Gençliğindeki annesinin tıpkısının aynısı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4011,
+      "english": "in the nick of time",
+      "pronunciation": "ɪn ðə nɪk əv taɪm",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tam zamanında",
+          "example": {
+            "en": "The ambulance arrived in the nick of time.",
+            "tr": "Ambulans tam zamanında geldi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4013,
+      "english": "miss the boat",
+      "pronunciation": "mɪs ðə boʊt",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fırsatı kaçırmak",
+          "example": {
+            "en": "He missed the boat by not applying for the job sooner.",
+            "tr": "Daha önce başvurmayarak fırsatı kaçırdı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4014,
+      "english": "on the go",
+      "pronunciation": "ɒn ðə ɡoʊ",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sürekli meşgul olmak",
+          "example": {
+            "en": "She's always on the go with work and family.",
+            "tr": "İş ve aile ile her zaman sürekli meşgul."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4015,
+      "english": "straight from the horse's mouth",
+      "pronunciation": "streɪt frəm ðə hɔːrsɪz maʊθ",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "doğrudan kaynağından öğrenmek",
+          "example": {
+            "en": "I heard it straight from the horse's mouth — she's leaving.",
+            "tr": "Doğrudan kaynağından duydum — o ayrılıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4016,
+      "english": "piece of mind",
+      "pronunciation": "piːs əv maɪnd",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "içini dökmek, fikrini açıkça söylemek",
+          "example": {
+            "en": "She gave him a piece of her mind about his behaviour.",
+            "tr": "Davranışı hakkında ona fikrini açıkça söyledi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4017,
+      "english": "get the hang of",
+      "pronunciation": "ɡɛt ðə hæŋ əv",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bir şeyin nasıl yapıldığını kavramak",
+          "example": {
+            "en": "It took me a week to get the hang of the new software.",
+            "tr": "Yeni yazılımın nasıl kullanıldığını kavramam bir hafta aldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4018,
+      "english": "go back to square one",
+      "pronunciation": "ɡoʊ bæk tə skwɛr wʌn",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sıfırdan başlamak",
+          "example": {
+            "en": "The plan failed, so we had to go back to square one.",
+            "tr": "Plan başarısız oldu, bu yüzden sıfırdan başlamak zorunda kaldık."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4019,
+      "english": "up in the air",
+      "pronunciation": "ʌp ɪn ðə ɛr",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "belirsiz olmak, havada kalmak",
+          "example": {
+            "en": "Our holiday plans are still up in the air.",
+            "tr": "Tatil planlarımız hâlâ belirsiz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4020,
+      "english": "hit the ground running",
+      "pronunciation": "hɪt ðə ɡraʊnd ˈrʌnɪŋ",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hızlı bir başlangıç yapmak",
+          "example": {
+            "en": "She hit the ground running on her first day at work.",
+            "tr": "İşinin ilk gününde hızlı bir başlangıç yaptı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4021,
+      "english": "kill two birds with one stone",
+      "pronunciation": "kɪl tuː bɜːrdz wɪð wʌn stoʊn",
+      "level": "MIXED",
+      "category": "proverbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bir taşla iki kuş vurmak",
+          "example": {
+            "en": "I'll drop off the package and visit mum — kill two birds with one stone.",
+            "tr": "Paketi bırakır ve annemi ziyaret ederim — bir taşla iki kuş vururum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4022,
+      "english": "the early bird catches the worm",
+      "pronunciation": "ðə ɜːrli bɜːrd kæʧɪz ðə wɜːrm",
+      "level": "MIXED",
+      "category": "proverbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "erken kalkan yol alır",
+          "example": {
+            "en": "He arrived first in line — the early bird catches the worm.",
+            "tr": "Kuyruğa ilk o geldi — erken kalkan yol alır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4023,
+      "english": "let sleeping dogs lie",
+      "pronunciation": "lɛt ˈsliːpɪŋ dɒɡz laɪ",
+      "level": "MIXED",
+      "category": "proverbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "uyuyan yılanı uyandırmamak",
+          "example": {
+            "en": "Don't bring up the argument again — let sleeping dogs lie.",
+            "tr": "Tartışmayı yeniden gündeme getirme — uyuyan yılanı uyandırma."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4024,
+      "english": "lit",
+      "pronunciation": "lɪt",
+      "level": "MIXED",
+      "category": "mild slang",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "harika, muhteşem",
+          "example": {
+            "en": "That concert last night was absolutely lit!",
+            "tr": "Dün geceki konser kesinlikle muhteşemdi!"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4025,
+      "english": "vibe",
+      "pronunciation": "vaɪb",
+      "level": "MIXED",
+      "category": "mild slang",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "atmosfer, enerji, his",
+          "example": {
+            "en": "This café has such a great vibe.",
+            "tr": "Bu kafenin harika bir atmosferi var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4026,
+      "english": "keep your chin up",
+      "pronunciation": "kiːp jɔːr tʃɪn ʌp",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "moralini bozmamak, başını dik tutmak",
+          "example": {
+            "en": "Keep your chin up — things will get better soon.",
+            "tr": "Moralini bozma — yakında her şey düzelecek."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4027,
+      "english": "add fuel to the fire",
+      "pronunciation": "æd fjuːl tə ðə faɪər",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ateşe körükle gitmek",
+          "example": {
+            "en": "His comment only added fuel to the fire.",
+            "tr": "Yorumu sadece ateşe körükle gitmek oldu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4028,
+      "english": "have a lot on one's plate",
+      "pronunciation": "hæv ə lɒt ɒn wʌnz pleɪt",
+      "level": "MIXED",
+      "category": "everyday metaphors",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çok işi olmak, yoğun olmak",
+          "example": {
+            "en": "I can't help right now — I have a lot on my plate.",
+            "tr": "Şu an yardım edemem — çok işim var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4029,
+      "english": "read between the lines",
+      "pronunciation": "riːd bɪˈtwiːn ðə laɪnz",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "satır aralarını okumak",
+          "example": {
+            "en": "You need to read between the lines of his email.",
+            "tr": "E-postasının satır aralarını okuman gerekiyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4031,
+      "english": "an arm and a leg",
+      "pronunciation": "ən ɑːrm ænd ə lɛɡ",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çok pahalıya patlamak",
+          "example": {
+            "en": "That new phone costs an arm and a leg.",
+            "tr": "O yeni telefon çok pahalıya patlıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4032,
+      "english": "catch someone off guard",
+      "pronunciation": "kæʧ ˈsʌmwʌn ɒf ɡɑːrd",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "birini hazırlıksız yakalamak",
+          "example": {
+            "en": "The question caught me completely off guard.",
+            "tr": "Soru beni tamamen hazırlıksız yakaladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4033,
+      "english": "give the benefit of the doubt",
+      "pronunciation": "ɡɪv ðə ˈbɛnɪfɪt əv ðə daʊt",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iyi niyetle yaklaşmak, şüpheye rağmen güvenmek",
+          "example": {
+            "en": "Let's give him the benefit of the doubt this time.",
+            "tr": "Bu sefer ona iyi niyetle yaklaşalım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4034,
+      "english": "hit close to home",
+      "pronunciation": "hɪt kloʊs tə hoʊm",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "canını yakmak, içten dokunmak",
+          "example": {
+            "en": "That film about loss really hit close to home.",
+            "tr": "Kayıpla ilgili o film gerçekten içten dokundu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4035,
+      "english": "pull yourself together",
+      "pronunciation": "pʊl jɔːrˌsɛlf təˈɡɛðər",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kendine gelmek, toparlanmak",
+          "example": {
+            "en": "Take a deep breath and pull yourself together.",
+            "tr": "Derin bir nefes al ve kendine gel."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4036,
+      "english": "at the drop of a hat",
+      "pronunciation": "æt ðə drɒp əv ə hæt",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "anında, hiç düşünmeden",
+          "example": {
+            "en": "She's ready to travel at the drop of a hat.",
+            "tr": "Hiç düşünmeden yola çıkmaya hazır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4039,
+      "english": "get a grip",
+      "pronunciation": "ɡɛt ə ɡrɪp",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kendine hâkim olmak",
+          "example": {
+            "en": "Get a grip — everything is going to be fine.",
+            "tr": "Kendine hâkim ol, her şey yoluna girecek."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4040,
+      "english": "the last straw",
+      "pronunciation": "ðə lɑːst strɔː",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bardağı taşıran son damla",
+          "example": {
+            "en": "That rude comment was the last straw for her.",
+            "tr": "O kaba yorum onun için bardağı taşıran son damlaydı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4041,
+      "english": "bite the dust",
+      "pronunciation": "baɪt ðə dʌst",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çuvallamak / başarısız olmak",
+          "example": {
+            "en": "Their new business plan bit the dust within months.",
+            "tr": "Yeni iş planları aylar içinde çuvalladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4042,
+      "english": "the elephant in the room",
+      "pronunciation": "ðə ˈɛlɪfənt ɪn ðə ruːm",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "görmezden gelinen açık sorun",
+          "example": {
+            "en": "Nobody talked about the elephant in the room.",
+            "tr": "Kimse görmezden gelinen o açık sorundan bahsetmedi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4043,
+      "english": "no pain, no gain",
+      "pronunciation": "noʊ peɪn noʊ ɡeɪn",
+      "level": "MIXED",
+      "category": "proverbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "emeksiz yemek olmaz",
+          "example": {
+            "en": "You have to train hard — no pain, no gain.",
+            "tr": "Sıkı antrenman yapman gerekiyor — emeksiz yemek olmaz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4044,
+      "english": "throw in the towel",
+      "pronunciation": "θroʊ ɪn ðə ˈtaʊəl",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "pes etmek / havlu atmak",
+          "example": {
+            "en": "After months of trying, he finally threw in the towel.",
+            "tr": "Aylarca denemesinin ardından sonunda havlu attı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4045,
+      "english": "not my cup of tea",
+      "pronunciation": "nɒt maɪ kʌp əv tiː",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "benim zevkime göre değil / hoşlanmadığım bir şey",
+          "example": {
+            "en": "Horror movies are not really my cup of tea.",
+            "tr": "Korku filmleri pek benim zevkime göre değil."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4046,
+      "english": "speak of the devil",
+      "pronunciation": "spiːk əv ðə ˈdɛvəl",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iti an, çomağı hazırla",
+          "example": {
+            "en": "Speak of the devil — there's Jake right now!",
+            "tr": "İti an, çomağı hazırla — işte Jake tam şu an geldi!"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4047,
+      "english": "in hot water",
+      "pronunciation": "ɪn hɒt ˈwɔːtər",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "başı belada olmak",
+          "example": {
+            "en": "He got in hot water for missing the deadline.",
+            "tr": "Son teslim tarihini kaçırdığı için başı belaya girdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4048,
+      "english": "go cold turkey",
+      "pronunciation": "ɡoʊ koʊld ˈtɜːrki",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bir alışkanlığı aniden bırakmak",
+          "example": {
+            "en": "She quit smoking cold turkey last year.",
+            "tr": "Geçen yıl sigarayı aniden bıraktı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4050,
+      "english": "that ship has sailed",
+      "pronunciation": "ðæt ʃɪp hæz seɪld",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "o fırsat kaçtı / artık çok geç",
+          "example": {
+            "en": "I wanted to apologise, but that ship has sailed.",
+            "tr": "Özür dilemek istiyordum ama artık çok geç, o fırsat kaçtı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4051,
+      "english": "it's a small world",
+      "pronunciation": "ɪts ə smɔːl wɜːrld",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dünya küçük",
+          "example": {
+            "en": "We met someone we knew in Paris — it's a small world!",
+            "tr": "Paris'te tanıdık biriyle karşılaştık — dünya gerçekten küçük!"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4052,
+      "english": "sketchy",
+      "pronunciation": "ˈskɛtʃi",
+      "level": "MIXED",
+      "category": "mild slang",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "şüpheli / güvenilmez görünen",
+          "example": {
+            "en": "That guy at the corner looks a bit sketchy.",
+            "tr": "Köşedeki o adam biraz şüpheli görünüyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4053,
+      "english": "totally",
+      "pronunciation": "ˈtoʊtəli",
+      "level": "MIXED",
+      "category": "mild slang",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kesinlikle / tamamen",
+          "example": {
+            "en": "Are you coming tonight? — Totally!",
+            "tr": "Bu gece geliyor musun? — Kesinlikle!"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4054,
+      "english": "on the house",
+      "pronunciation": "ɒn ðə haʊs",
+      "level": "MIXED",
+      "category": "everyday metaphors",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ödeme gerektirmez / bedava (işletmeden ikram)",
+          "example": {
+            "en": "The waiter said dessert was on the house.",
+            "tr": "Garson tatlının işletmeden ikram olduğunu söyledi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4055,
+      "english": "the ball is rolling",
+      "pronunciation": "ðə bɔːl ɪz ˈroʊlɪŋ",
+      "level": "MIXED",
+      "category": "everyday metaphors",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iş yürümeye başladı / süreç başladı",
+          "example": {
+            "en": "We signed the contract — the ball is rolling now.",
+            "tr": "Sözleşmeyi imzaladık — süreç artık başladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4056,
+      "english": "lost for words",
+      "pronunciation": "lɒst fər wɜːrdz",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "söyleyecek söz bulamamak / ağzı açık kalmak",
+          "example": {
+            "en": "She was completely lost for words after the surprise.",
+            "tr": "Sürprizin ardından tamamen ağzı açık kaldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4057,
+      "english": "a dime a dozen",
+      "pronunciation": "ə daɪm ə ˈdʌzən",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bol miktarda bulunan / değersiz / herkes yapabilir",
+          "example": {
+            "en": "Good ideas are a dime a dozen — execution is key.",
+            "tr": "İyi fikirler her yerde bulunur — asıl önemli olan uygulamaktır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4058,
+      "english": "keep someone in the loop",
+      "pronunciation": "kiːp ˈsʌmwʌn ɪn ðə luːp",
+      "level": "MIXED",
+      "category": "everyday metaphors",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "birini bilgilendirmeye devam etmek / gelişmelerden haberdar etmek",
+          "example": {
+            "en": "Please keep me in the loop about any changes.",
+            "tr": "Herhangi bir değişiklik olursa lütfen beni haberdar et."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4059,
+      "english": "under the radar",
+      "pronunciation": "ˈʌndər ðə ˈreɪdɑːr",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fark edilmeden / göze batmadan",
+          "example": {
+            "en": "She managed to stay under the radar all year.",
+            "tr": "Tüm yıl boyunca fark edilmeden kalmayı başardı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4060,
+      "english": "don't judge a book by its cover",
+      "pronunciation": "doʊnt dʒʌdʒ ə bʊk baɪ ɪts ˈkʌvər",
+      "level": "MIXED",
+      "category": "proverbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "görünüşe göre hüküm vermemek / dışına bakarak içini anlama",
+          "example": {
+            "en": "Don't judge a book by its cover — he's actually very kind.",
+            "tr": "Görünüşe bakarak hüküm verme — aslında çok iyi kalpli biri."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4061,
+      "english": "bite the hand that feeds you",
+      "pronunciation": "baɪt ðə hænd ðæt fiːdz juː",
+      "level": "MIXED",
+      "category": "proverbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "nankör olmak / iyilik yapana kötülük etmek",
+          "example": {
+            "en": "Don't criticise your employer — that's biting the hand that feeds you.",
+            "tr": "İşvereni eleştirme — bu nankörlük olur, iyilik yapana kötülük etmiş olursun."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4063,
+      "english": "get a move on",
+      "pronunciation": "ɡɛt ə muːv ɒn",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "acele etmek",
+          "example": {
+            "en": "Get a move on or we'll miss the train!",
+            "tr": "Acele et yoksa treni kaçırırız!"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4064,
+      "english": "out of the blue",
+      "pronunciation": "aʊt əv ðə bluː",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "aniden, hiç beklenmedik bir anda",
+          "example": {
+            "en": "She called me out of the blue after five years.",
+            "tr": "Beş yılın ardından hiç beklemediğim bir anda aradı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4065,
+      "english": "it's not rocket science",
+      "pronunciation": "ɪts nɒt ˈrɒkɪt ˈsaɪəns",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çok zor bir şey değil, beyin ameliyatı değil",
+          "example": {
+            "en": "Just follow the recipe — it's not rocket science.",
+            "tr": "Sadece tarifi takip et, beyin ameliyatı değil ki."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4067,
+      "english": "get on someone's nerves",
+      "pronunciation": "ɡɛt ɒn ˈsʌmwʌnz nɜːvz",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sinir bozmak, asabını bozmak",
+          "example": {
+            "en": "That constant noise is really getting on my nerves.",
+            "tr": "O sürekli gürültü gerçekten sinirimi bozuyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4068,
+      "english": "down to earth",
+      "pronunciation": "daʊn tʊ ɜːθ",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ayakları yere basan, samimi",
+          "example": {
+            "en": "Despite her fame, she's very down to earth.",
+            "tr": "Tüm şöhretine rağmen çok ayakları yere basan biri."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4070,
+      "english": "call it a day",
+      "pronunciation": "kɔːl ɪt ə deɪ",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "günü noktalamak, işe son vermek",
+          "example": {
+            "en": "We've done enough work — let's call it a day.",
+            "tr": "Yeterince çalıştık, günü noktalayalım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4071,
+      "english": "on the bright side",
+      "pronunciation": "ɒn ðə braɪt saɪd",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "olumlu tarafından bakmak",
+          "example": {
+            "en": "On the bright side, at least we learned something.",
+            "tr": "Olumlu tarafından bakarsak, en azından bir şeyler öğrendik."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4072,
+      "english": "for good",
+      "pronunciation": "fɔː ɡʊd",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sonsuza dek, bir daha geri dönmemek üzere",
+          "example": {
+            "en": "She moved to Canada for good last year.",
+            "tr": "Geçen yıl Kanada'ya bir daha geri dönmemek üzere taşındı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4073,
+      "english": "get away with",
+      "pronunciation": "ɡɛt əˈweɪ wɪð",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sıyrılmak, cezasız kalmak",
+          "example": {
+            "en": "He always gets away with arriving late.",
+            "tr": "Geç gelmekten her zaman sıyrılır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4074,
+      "english": "slip one's mind",
+      "pronunciation": "slɪp wʌnz maɪnd",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "aklından çıkmak, unutmak",
+          "example": {
+            "en": "Sorry I forgot to call — it completely slipped my mind.",
+            "tr": "Aramayı unuttuğum için özür dilerim, aklımdan çıkmış."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4075,
+      "english": "take it easy",
+      "pronunciation": "teɪk ɪt ˈiːzi",
+      "level": "MIXED",
+      "category": "mild slang",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "rahatlamak, kendine iyi bakmak",
+          "example": {
+            "en": "You've been working too hard — take it easy this weekend.",
+            "tr": "Çok fazla çalıştın, bu hafta sonu biraz rahatla."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4076,
+      "english": "bummer",
+      "pronunciation": "ˈbʌmər",
+      "level": "MIXED",
+      "category": "mild slang",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "üzücü şey, hayal kırıklığı",
+          "example": {
+            "en": "It's a real bummer that the concert was cancelled.",
+            "tr": "Konser iptal edildi, gerçekten üzücü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4077,
+      "english": "keep one's fingers on the pulse",
+      "pronunciation": "kiːp wʌnz ˈfɪŋɡərz ɒn ðə pʌls",
+      "level": "MIXED",
+      "category": "everyday metaphors",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "nabzını tutmak, gelişmeleri yakından takip etmek",
+          "example": {
+            "en": "A good manager keeps their finger on the pulse of the team.",
+            "tr": "İyi bir yönetici ekibin nabzını tutar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4078,
+      "english": "word of mouth",
+      "pronunciation": "wɜːd əv maʊθ",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kulaktan kulağa, ağızdan ağza",
+          "example": {
+            "en": "Most of their business comes through word of mouth.",
+            "tr": "İşlerinin büyük çoğunluğu kulaktan kulağa yayılarak geliyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4079,
+      "english": "hang on",
+      "pronunciation": "hæŋ ɒn",
+      "level": "MIXED",
+      "category": "mild slang",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "beklemek, dur bir dakika",
+          "example": {
+            "en": "Hang on, I'll be ready in just a minute.",
+            "tr": "Bir dakika bekle, hemen hazır oluyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4081,
+      "english": "all in all",
+      "pronunciation": "ɔːl ɪn ɔːl",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sonuç olarak, her şey bir arada düşünüldüğünde",
+          "example": {
+            "en": "All in all, it was a really good trip.",
+            "tr": "Her şey bir arada düşünüldüğünde gerçekten güzel bir geziydi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4082,
+      "english": "bless you",
+      "pronunciation": "blɛs juː",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çok yaşa (hapşırıktan sonra söylenir)",
+          "example": {
+            "en": "She sneezed and everyone said 'bless you'.",
+            "tr": "Hapşırdı ve herkes 'çok yaşa' dedi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4083,
+      "english": "it goes without saying",
+      "pronunciation": "ɪt ɡəʊz wɪðˈaʊt ˈseɪɪŋ",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "söylemeye gerek yok, aşikâr",
+          "example": {
+            "en": "It goes without saying that honesty is important.",
+            "tr": "Dürüstlüğün önemli olduğunu söylemeye gerek yok."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4084,
+      "english": "keep a low profile",
+      "pronunciation": "kiːp ə ləʊ ˈprəʊfaɪl",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dikkat çekmemek, sessiz sedasız olmak",
+          "example": {
+            "en": "After the scandal, he decided to keep a low profile.",
+            "tr": "Skandalın ardından dikkat çekmemeye karar verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4085,
+      "english": "tie the knot",
+      "pronunciation": "taɪ ðə nɒt",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "evlenmek, düğün yapmak",
+          "example": {
+            "en": "They finally tied the knot after dating for seven years.",
+            "tr": "Yedi yıl çıktıktan sonra sonunda evlendiler."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4086,
+      "english": "good riddance",
+      "pronunciation": "ɡʊd ˈrɪdəns",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iyi ki gitti, defol gitti",
+          "example": {
+            "en": "He finally quit the team — good riddance!",
+            "tr": "Sonunda takımdan ayrıldı — iyi ki gitti!"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4089,
+      "english": "burn the midnight oil",
+      "pronunciation": "bɜːn ðə ˈmɪdnaɪt ɔɪl",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gece geç saatlere kadar çalışmak",
+          "example": {
+            "en": "She burned the midnight oil to finish her report on time.",
+            "tr": "Raporunu zamanında bitirmek için gece geç saatlere kadar çalıştı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4091,
+      "english": "practice makes perfect",
+      "pronunciation": "ˈpræktɪs meɪks ˈpɜːfɪkt",
+      "level": "MIXED",
+      "category": "proverbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tekrar ustalık kazandırır",
+          "example": {
+            "en": "Keep playing the guitar every day — practice makes perfect.",
+            "tr": "Her gün gitarını çalmaya devam et, tekrar ustalık kazandırır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4092,
+      "english": "under the table",
+      "pronunciation": "ˈʌndər ðə ˈteɪbəl",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "el altından, kayıt dışı",
+          "example": {
+            "en": "He was paying his workers under the table.",
+            "tr": "İşçilerine kayıt dışı ödeme yapıyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4093,
+      "english": "have butterflies in one's stomach",
+      "pronunciation": "hæv ˈbʌtərflaɪz ɪn wʌnz ˈstʌmək",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "içi titremek, heyecandan midesi kasılmak",
+          "example": {
+            "en": "I always have butterflies in my stomach before a big presentation.",
+            "tr": "Büyük bir sunum öncesinde içim her zaman titrer."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4094,
+      "english": "blessing in disguise",
+      "pronunciation": "ˈblɛsɪŋ ɪn dɪsˈɡaɪz",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "görünürde kötü ama aslında iyi olan şey",
+          "example": {
+            "en": "Losing that job was a blessing in disguise — I found a better one.",
+            "tr": "O işi kaybetmek görünürde kötüydü ama daha iyisini buldum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4095,
+      "english": "once in a while",
+      "pronunciation": "wʌns ɪn ə waɪl",
+      "level": "MIXED",
+      "category": "everyday metaphors",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ara sıra, zaman zaman",
+          "example": {
+            "en": "It's okay to treat yourself once in a while.",
+            "tr": "Ara sıra kendinizi şımartmak tamam."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4096,
+      "english": "on the tip of one's tongue",
+      "pronunciation": "ɒn ðə tɪp ɒv wʌnz tʌŋ",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dilinin ucunda olmak",
+          "example": {
+            "en": "Her name is on the tip of my tongue but I can't remember it.",
+            "tr": "Adı dilimin ucunda ama bir türlü aklıma gelmiyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4097,
+      "english": "no sweat",
+      "pronunciation": "noʊ swɛt",
+      "level": "MIXED",
+      "category": "mild slang",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sorun değil, çok kolay",
+          "example": {
+            "en": "Can you fix this for me? No sweat, I'll do it now.",
+            "tr": "Bunu benim için düzeltebilir misin? Sorun değil, şimdi yaparım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4098,
+      "english": "touch wood",
+      "pronunciation": "tʌtʃ wʊd",
+      "level": "MIXED",
+      "category": "cultural expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "nazar değmesin, tahtaya vur",
+          "example": {
+            "en": "I haven't been sick all year — touch wood!",
+            "tr": "Bu yıl hiç hastalanmadım, nazar değmesin!"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4099,
+      "english": "keep one's cool",
+      "pronunciation": "kiːp wʌnz kuːl",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "soğukkanlılığını korumak",
+          "example": {
+            "en": "Even in the crisis, she managed to keep her cool.",
+            "tr": "Kriz anında bile soğukkanlılığını korudu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4102,
+      "english": "on cloud nine",
+      "pronunciation": "ɒn klaʊd naɪn",
+      "level": "MIXED",
+      "category": "figurative language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "havada uçmak, son derece mutlu olmak",
+          "example": {
+            "en": "She was on cloud nine after getting the job offer.",
+            "tr": "İş teklifini aldıktan sonra havada uçuyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4104,
+      "english": "from scratch",
+      "pronunciation": "frɒm skrætʃ",
+      "level": "MIXED",
+      "category": "common idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sıfırdan başlamak",
+          "example": {
+            "en": "We had to build the website from scratch.",
+            "tr": "Web sitesini sıfırdan kurmak zorunda kaldık."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4106,
+      "english": "give up",
+      "pronunciation": "ɡɪv ʌp",
+      "level": "MIXED",
+      "category": "phrasal verbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "vazgeçmek",
+          "example": {
+            "en": "Don't give up — you are almost there.",
+            "tr": "Vazgeçme, neredeyse başardın."
+          }
+        },
+        {
+          "turkish": "bırakmak (bir alışkanlığı)",
+          "example": {
+            "en": "He gave up smoking after twenty years.",
+            "tr": "Yirmi yıl sonra sigarayı bıraktı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4110,
+      "english": "come across",
+      "pronunciation": "kʌm əˈkrɒs",
+      "level": "MIXED",
+      "category": "phrasal verbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "rastlamak, tesadüfen bulmak",
+          "example": {
+            "en": "I came across an old photo while cleaning my room.",
+            "tr": "Odamı temizlerken eski bir fotoğrafa rastladım."
+          }
+        },
+        {
+          "turkish": "görünmek, izlenim vermek",
+          "example": {
+            "en": "She comes across as very confident in interviews.",
+            "tr": "Mülakatlar sırasında çok kendinden emin görünüyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4111,
+      "english": "break down",
+      "pronunciation": "breɪk daʊn",
+      "level": "MIXED",
+      "category": "phrasal verbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "arızalanmak, bozulmak",
+          "example": {
+            "en": "Our car broke down on the motorway last night.",
+            "tr": "Dün gece otoyolda arabamız bozuldu."
+          }
+        },
+        {
+          "turkish": "ağlamak, duygusal çöküş yaşamak",
+          "example": {
+            "en": "He broke down when he heard the sad news.",
+            "tr": "Üzücü haberi duyunca duygusal bir çöküş yaşadı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4112,
+      "english": "set up",
+      "pronunciation": "sɛt ʌp",
+      "level": "MIXED",
+      "category": "phrasal verbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kurmak, oluşturmak",
+          "example": {
+            "en": "They set up a new company last year.",
+            "tr": "Geçen yıl yeni bir şirket kurdular."
+          }
+        },
+        {
+          "turkish": "hazırlamak, düzenlemek",
+          "example": {
+            "en": "Can you set up the projector before the meeting?",
+            "tr": "Toplantıdan önce projektörü hazırlayabilir misin?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4113,
+      "english": "pick up",
+      "pronunciation": "pɪk ʌp",
+      "level": "MIXED",
+      "category": "phrasal verbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "almak, kaldırmak",
+          "example": {
+            "en": "Can you pick up the kids from school today?",
+            "tr": "Bugün çocukları okuldan alabilir misin?"
+          }
+        },
+        {
+          "turkish": "öğrenmek (kendiliğinden)",
+          "example": {
+            "en": "She picked up Spanish while living in Madrid.",
+            "tr": "Madrid'de yaşarken İspanyolcayı kendiliğinden öğrendi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4115,
+      "english": "make a decision",
+      "pronunciation": "meɪk ə dɪˈsɪʒən",
+      "level": "MIXED",
+      "category": "collocations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "karar vermek",
+          "example": {
+            "en": "You need to make a decision before the deadline.",
+            "tr": "Son tarihten önce karar vermen gerekiyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4116,
+      "english": "take a chance",
+      "pronunciation": "teɪk ə tʃɑːns",
+      "level": "MIXED",
+      "category": "collocations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "risk almak, şansını denemek",
+          "example": {
+            "en": "I decided to take a chance and apply for the job.",
+            "tr": "Risk almaya karar verdim ve iş başvurusunda bulundum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4117,
+      "english": "pay attention",
+      "pronunciation": "peɪ əˈtɛnʃən",
+      "level": "MIXED",
+      "category": "collocations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dikkat etmek, dikkat vermek",
+          "example": {
+            "en": "Please pay attention to the instructions carefully.",
+            "tr": "Lütfen talimatlara dikkatlice dikkat edin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4119,
+      "english": "have a look",
+      "pronunciation": "hæv ə lʊk",
+      "level": "MIXED",
+      "category": "collocations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bir bakmak, göz atmak",
+          "example": {
+            "en": "Can you have a look at this report for me?",
+            "tr": "Bu rapora benim için bir göz atabilir misin?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4120,
+      "english": "on behalf of",
+      "pronunciation": "ɒn bɪˈhɑːf əv",
+      "level": "MIXED",
+      "category": "prepositional phrases",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "adına, namına",
+          "example": {
+            "en": "I am speaking on behalf of the whole team.",
+            "tr": "Tüm ekip adına konuşuyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4121,
+      "english": "in spite of",
+      "pronunciation": "ɪn spaɪt əv",
+      "level": "MIXED",
+      "category": "prepositional phrases",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "rağmen, karşın",
+          "example": {
+            "en": "She finished the race in spite of her injury.",
+            "tr": "Yaralanmasına rağmen yarışı tamamladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4122,
+      "english": "in terms of",
+      "pronunciation": "ɪn tɜːmz əv",
+      "level": "MIXED",
+      "category": "prepositional phrases",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "açısından, bakımından",
+          "example": {
+            "en": "In terms of cost, this plan is the best option.",
+            "tr": "Maliyet açısından bu plan en iyi seçenektir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4123,
+      "english": "due to",
+      "pronunciation": "djuː tuː",
+      "level": "MIXED",
+      "category": "prepositional phrases",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "nedeniyle, yüzünden",
+          "example": {
+            "en": "The flight was cancelled due to bad weather.",
+            "tr": "Uçuş kötü hava nedeniyle iptal edildi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4124,
+      "english": "manage to",
+      "pronunciation": "ˈmænɪdʒ tə",
+      "level": "MIXED",
+      "category": "verb patterns",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "başarmak, -ebildi (güçlükle)",
+          "example": {
+            "en": "We managed to finish the project on time.",
+            "tr": "Projeyi zamanında bitirmeyi başardık."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4126,
+      "english": "used to",
+      "pronunciation": "juːst tə",
+      "level": "MIXED",
+      "category": "verb patterns",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "eskiden yapmak (artık yapmıyor)",
+          "example": {
+            "en": "I used to walk to school when I was young.",
+            "tr": "Küçükken okula yürüyerek giderdim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4127,
+      "english": "be about to",
+      "pronunciation": "biː əˈbaʊt tə",
+      "level": "MIXED",
+      "category": "verb patterns",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "üzere olmak, tam yapmak üzere",
+          "example": {
+            "en": "I was about to call you when you walked in.",
+            "tr": "Sen içeri girdiğinde tam seni aramak üzereydim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4129,
+      "english": "in the meantime",
+      "pronunciation": "ɪn ðə ˈmiːntaɪm",
+      "level": "MIXED",
+      "category": "common chunks",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bu arada, bu süre zarfında",
+          "example": {
+            "en": "The order will arrive Tuesday; in the meantime, use this one.",
+            "tr": "Sipariş Salı gelecek; bu arada bunu kullan."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4150,
+      "english": "by the way",
+      "pronunciation": "baɪ ðə weɪ",
+      "level": "MIXED",
+      "category": "common chunks",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bu arada",
+          "example": {
+            "en": "By the way, did you hear about the new café downtown?",
+            "tr": "Bu arada, şehir merkezindeki yeni kafeden duydun mu?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4178,
+      "english": "get up to",
+      "pronunciation": "ɡɛt ʌp tuː",
+      "level": "MIXED",
+      "category": "phrasal verbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yapmak, (ne) yapmak (merak sorarken)",
+          "example": {
+            "en": "What did you get up to at the weekend?",
+            "tr": "Hafta sonu ne yaptın?"
+          }
+        },
+        {
+          "turkish": "kadar ulaşmak, -e kadar gelmek (ilerleme)",
+          "example": {
+            "en": "I've got up to chapter five in the book.",
+            "tr": "Kitabın beşinci bölümüne kadar geldim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4106,
+      "english": "give up",
+      "pronunciation": "ɡɪv ʌp",
+      "level": "MIXED",
+      "category": "phrasal verbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "vazgeçmek",
+          "example": {
+            "en": "Don't give up — you are almost there.",
+            "tr": "Vazgeçme, neredeyse başardın."
+          }
+        },
+        {
+          "turkish": "bırakmak (bir alışkanlığı)",
+          "example": {
+            "en": "He gave up smoking after twenty years.",
+            "tr": "Yirmi yıl sonra sigarayı bıraktı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4110,
+      "english": "come across",
+      "pronunciation": "kʌm əˈkrɒs",
+      "level": "MIXED",
+      "category": "phrasal verbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "rastlamak, tesadüfen bulmak",
+          "example": {
+            "en": "I came across an old photo while cleaning my room.",
+            "tr": "Odamı temizlerken eski bir fotoğrafa rastladım."
+          }
+        },
+        {
+          "turkish": "görünmek, izlenim vermek",
+          "example": {
+            "en": "She comes across as very confident in interviews.",
+            "tr": "Mülakatlar sırasında çok kendinden emin görünüyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4111,
+      "english": "break down",
+      "pronunciation": "breɪk daʊn",
+      "level": "MIXED",
+      "category": "phrasal verbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "arızalanmak, bozulmak",
+          "example": {
+            "en": "Our car broke down on the motorway last night.",
+            "tr": "Dün gece otoyolda arabamız bozuldu."
+          }
+        },
+        {
+          "turkish": "ağlamak, duygusal çöküş yaşamak",
+          "example": {
+            "en": "He broke down when he heard the sad news.",
+            "tr": "Üzücü haberi duyunca duygusal bir çöküş yaşadı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4112,
+      "english": "set up",
+      "pronunciation": "sɛt ʌp",
+      "level": "MIXED",
+      "category": "phrasal verbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kurmak, oluşturmak",
+          "example": {
+            "en": "They set up a new company last year.",
+            "tr": "Geçen yıl yeni bir şirket kurdular."
+          }
+        },
+        {
+          "turkish": "hazırlamak, düzenlemek",
+          "example": {
+            "en": "Can you set up the projector before the meeting?",
+            "tr": "Toplantıdan önce projektörü hazırlayabilir misin?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4113,
+      "english": "pick up",
+      "pronunciation": "pɪk ʌp",
+      "level": "MIXED",
+      "category": "phrasal verbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "almak, kaldırmak",
+          "example": {
+            "en": "Can you pick up the kids from school today?",
+            "tr": "Bugün çocukları okuldan alabilir misin?"
+          }
+        },
+        {
+          "turkish": "öğrenmek (kendiliğinden)",
+          "example": {
+            "en": "She picked up Spanish while living in Madrid.",
+            "tr": "Madrid'de yaşarken İspanyolcayı kendiliğinden öğrendi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4115,
+      "english": "make a decision",
+      "pronunciation": "meɪk ə dɪˈsɪʒən",
+      "level": "MIXED",
+      "category": "collocations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "karar vermek",
+          "example": {
+            "en": "You need to make a decision before the deadline.",
+            "tr": "Son tarihten önce karar vermen gerekiyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4116,
+      "english": "take a chance",
+      "pronunciation": "teɪk ə tʃɑːns",
+      "level": "MIXED",
+      "category": "collocations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "risk almak, şansını denemek",
+          "example": {
+            "en": "I decided to take a chance and apply for the job.",
+            "tr": "Risk almaya karar verdim ve iş başvurusunda bulundum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4117,
+      "english": "pay attention",
+      "pronunciation": "peɪ əˈtɛnʃən",
+      "level": "MIXED",
+      "category": "collocations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dikkat etmek, dikkat vermek",
+          "example": {
+            "en": "Please pay attention to the instructions carefully.",
+            "tr": "Lütfen talimatlara dikkatlice dikkat edin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4119,
+      "english": "have a look",
+      "pronunciation": "hæv ə lʊk",
+      "level": "MIXED",
+      "category": "collocations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bir bakmak, göz atmak",
+          "example": {
+            "en": "Can you have a look at this report for me?",
+            "tr": "Bu rapora benim için bir göz atabilir misin?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4120,
+      "english": "on behalf of",
+      "pronunciation": "ɒn bɪˈhɑːf əv",
+      "level": "MIXED",
+      "category": "prepositional phrases",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "adına, namına",
+          "example": {
+            "en": "I am speaking on behalf of the whole team.",
+            "tr": "Tüm ekip adına konuşuyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4121,
+      "english": "in spite of",
+      "pronunciation": "ɪn spaɪt əv",
+      "level": "MIXED",
+      "category": "prepositional phrases",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "rağmen, karşın",
+          "example": {
+            "en": "She finished the race in spite of her injury.",
+            "tr": "Yaralanmasına rağmen yarışı tamamladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4122,
+      "english": "in terms of",
+      "pronunciation": "ɪn tɜːmz əv",
+      "level": "MIXED",
+      "category": "prepositional phrases",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "açısından, bakımından",
+          "example": {
+            "en": "In terms of cost, this plan is the best option.",
+            "tr": "Maliyet açısından bu plan en iyi seçenektir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4123,
+      "english": "due to",
+      "pronunciation": "djuː tuː",
+      "level": "MIXED",
+      "category": "prepositional phrases",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "nedeniyle, yüzünden",
+          "example": {
+            "en": "The flight was cancelled due to bad weather.",
+            "tr": "Uçuş kötü hava nedeniyle iptal edildi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4124,
+      "english": "manage to",
+      "pronunciation": "ˈmænɪdʒ tə",
+      "level": "MIXED",
+      "category": "verb patterns",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "başarmak, -ebildi (güçlükle)",
+          "example": {
+            "en": "We managed to finish the project on time.",
+            "tr": "Projeyi zamanında bitirmeyi başardık."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4126,
+      "english": "used to",
+      "pronunciation": "juːst tə",
+      "level": "MIXED",
+      "category": "verb patterns",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "eskiden yapmak (artık yapmıyor)",
+          "example": {
+            "en": "I used to walk to school when I was young.",
+            "tr": "Küçükken okula yürüyerek giderdim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4127,
+      "english": "be about to",
+      "pronunciation": "biː əˈbaʊt tə",
+      "level": "MIXED",
+      "category": "verb patterns",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "üzere olmak, tam yapmak üzere",
+          "example": {
+            "en": "I was about to call you when you walked in.",
+            "tr": "Sen içeri girdiğinde tam seni aramak üzereydim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4129,
+      "english": "in the meantime",
+      "pronunciation": "ɪn ðə ˈmiːntaɪm",
+      "level": "MIXED",
+      "category": "common chunks",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bu arada, bu süre zarfında",
+          "example": {
+            "en": "The order will arrive Tuesday; in the meantime, use this one.",
+            "tr": "Sipariş Salı gelecek; bu arada bunu kullan."
+          }
+        }
+      ]
+    },
+    {
+      "id": 4150,
+      "english": "by the way",
+      "pronunciation": "baɪ ðə weɪ",
+      "level": "MIXED",
+      "category": "common chunks",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bu arada",
+          "example": {
+            "en": "By the way, did you hear about the new café downtown?",
+            "tr": "Bu arada, şehir merkezindeki yeni kafeden duydun mu?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 4178,
+      "english": "get up to",
+      "pronunciation": "ɡɛt ʌp tuː",
+      "level": "MIXED",
+      "category": "phrasal verbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yapmak, (ne) yapmak (merak sorarken)",
+          "example": {
+            "en": "What did you get up to at the weekend?",
+            "tr": "Hafta sonu ne yaptın?"
+          }
+        },
+        {
+          "turkish": "kadar ulaşmak, -e kadar gelmek (ilerleme)",
+          "example": {
+            "en": "I've got up to chapter five in the book.",
+            "tr": "Kitabın beşinci bölümüne kadar geldim."
+          }
+        }
+      ]
+    }
+  ]
+}

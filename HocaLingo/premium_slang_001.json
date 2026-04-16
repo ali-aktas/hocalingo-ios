@@ -1,0 +1,806 @@
+{
+  "package_info": {
+    "id": "premium_slang_001",
+    "version": "2.0.0",
+    "level": "MIXED",
+    "language_pair": "en_tr",
+    "total_words": 44,
+    "updated_at": "2026-04-03",
+    "description": "Internet Slang & Text Abbreviations - Online communication essentials",
+    "attribution": "HocaLingo vocabulary database"
+  },
+  "words": [
+    {
+      "id": 5155,
+      "english": "idk",
+      "pronunciation": "aɪ diː keɪ",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bilmiyorum (I don't know kısaltması)",
+          "example": {
+            "en": "idk what to eat tonight, any suggestions?",
+            "tr": "Bu gece ne yiyeceğimi bilmiyorum, bir önerin var mı?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 5156,
+      "english": "lmao",
+      "pronunciation": "ɛl ɛm eɪ oʊ",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çok güldüm (laughing my ass off kısaltması)",
+          "example": {
+            "en": "He slipped on a banana peel lmao",
+            "tr": "Muz kabuğuna bastı çok güldüm 😂"
+          }
+        }
+      ]
+    },
+    {
+      "id": 5157,
+      "english": "brb",
+      "pronunciation": "biː ɑːr biː",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hemen döneceğim (be right back kısaltması)",
+          "example": {
+            "en": "brb, someone's at the door",
+            "tr": "Hemen döneceğim, kapıda biri var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5158,
+      "english": "tbh",
+      "pronunciation": "tiː biː eɪtʃ",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "açıkçası / dürüst olmak gerekirse (to be honest kısaltması)",
+          "example": {
+            "en": "tbh I didn't really enjoy that movie",
+            "tr": "Açıkçası o filmi pek beğenmedim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5159,
+      "english": "imo",
+      "pronunciation": "aɪ ɛm oʊ",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bence / benim görüşüme göre (in my opinion kısaltması)",
+          "example": {
+            "en": "imo that was the best season of the show",
+            "tr": "Bence bu dizinin en iyi sezonuydu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5160,
+      "english": "nvm",
+      "pronunciation": "ɛn viː ɛm",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "boşver / neyse (never mind kısaltması)",
+          "example": {
+            "en": "nvm I found it myself",
+            "tr": "Boşver, kendim buldum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5161,
+      "english": "smh",
+      "pronunciation": "ɛs ɛm eɪtʃ",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "başımı sallıyorum / inanamıyorum (shaking my head kısaltması)",
+          "example": {
+            "en": "He forgot her birthday again smh",
+            "tr": "Yine doğum gününü unutmuş, inanamıyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5162,
+      "english": "omg",
+      "pronunciation": "oʊ ɛm dʒiː",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ya tanrım / inanılmaz (oh my god kısaltması)",
+          "example": {
+            "en": "omg I just won a free trip to Paris!",
+            "tr": "Ya tanrım, Paris'e ücretsiz bir gezi kazandım!"
+          }
+        }
+      ]
+    },
+    {
+      "id": 5163,
+      "english": "lol",
+      "pronunciation": "ɛl oʊ ɛl",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "haha / güldüm (laughing out loud kısaltması)",
+          "example": {
+            "en": "That meme was so random lol",
+            "tr": "O meme çok saçmaydı haha 😂"
+          }
+        }
+      ]
+    },
+    {
+      "id": 5164,
+      "english": "dm",
+      "pronunciation": "diː ɛm",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "özel mesaj atmak / DM (direct message kısaltması)",
+          "example": {
+            "en": "DM me if you want the details",
+            "tr": "Detayları istiyorsan bana DM at."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5165,
+      "english": "irl",
+      "pronunciation": "aɪ ɑːr ɛl",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gerçek hayatta (in real life kısaltması)",
+          "example": {
+            "en": "We finally met irl after talking online for months",
+            "tr": "Aylarca çevrimiçi konuştuktan sonra nihayet gerçek hayatta buluştuk."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5166,
+      "english": "ghosting",
+      "pronunciation": "ˈɡoʊstɪŋ",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "birdenbire iletişimi kesmek / hayalet olmak",
+          "example": {
+            "en": "He stopped replying to all her messages — classic ghosting",
+            "tr": "Tüm mesajlarını yanıtsız bıraktı, tam anlamıyla hayalet oldu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5167,
+      "english": "slay",
+      "pronunciation": "sleɪ",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çok iyi yapmak / harika görünmek",
+          "example": {
+            "en": "She absolutely slayed that presentation today",
+            "tr": "Bugün o sunumu kesinlikle çok iyi yaptı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5168,
+      "english": "sus",
+      "pronunciation": "sʌs",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "şüpheli / kuşkulu",
+          "example": {
+            "en": "That email looks really sus, don't click it",
+            "tr": "O e-posta gerçekten şüpheli görünüyor, tıklama."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5170,
+      "english": "lowkey",
+      "pronunciation": "ˈloʊkiː",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "biraz / gizliden / aslında",
+          "example": {
+            "en": "I lowkey want to cancel plans and stay home",
+            "tr": "Aslında planları iptal edip evde kalmak istiyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5171,
+      "english": "highkey",
+      "pronunciation": "ˈhaɪkiː",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "açıkça / kesinlikle / gerçekten çok",
+          "example": {
+            "en": "I highkey love this new album so much",
+            "tr": "Bu yeni albümü gerçekten çok seviyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5172,
+      "english": "salty",
+      "pronunciation": "ˈsɔːlti",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "alıngan / küskün / bozuk",
+          "example": {
+            "en": "He's still salty about losing the game yesterday",
+            "tr": "Dünkü maçı kaybettiği için hâlâ küskün."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5173,
+      "english": "flex",
+      "pronunciation": "flɛks",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hava atmak / gösteriş yapmak",
+          "example": {
+            "en": "He's always flexing his new sneakers on Instagram",
+            "tr": "Instagram'da sürekli yeni spor ayakkabılarıyla hava atıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5174,
+      "english": "goat",
+      "pronunciation": "ɡoʊt",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tüm zamanların en iyisi (Greatest Of All Time kısaltması)",
+          "example": {
+            "en": "Everyone argues about who the real GOAT of football is",
+            "tr": "Herkes futbolun gerçek tüm zamanların en iyisinin kim olduğunu tartışıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5175,
+      "english": "toxic",
+      "pronunciation": "ˈtɒksɪk",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zehirli / zararlı (ilişki veya kişi için)",
+          "example": {
+            "en": "She finally left that toxic relationship behind",
+            "tr": "Sonunda o zehirli ilişkiyi geride bıraktı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5176,
+      "english": "cancel culture",
+      "pronunciation": "ˈkænsəl ˈkʌltʃər",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iptal kültürü / çevrimiçi boykot etme",
+          "example": {
+            "en": "Cancel culture has become a major topic on social media",
+            "tr": "İptal kültürü sosyal medyada önemli bir konu haline geldi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5177,
+      "english": "rofl",
+      "pronunciation": "ɑːr oʊ ɛf ɛl",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yerde yuvarlanarak gülüyorum (rolling on the floor laughing kısaltması)",
+          "example": {
+            "en": "That video of the dog had me rofl all night",
+            "tr": "O köpek videosu beni bütün gece güldürdü, yerde yuvarlanıyordum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5179,
+      "english": "simp",
+      "pronunciation": "sɪmp",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "aşırı yalakalık eden kişi / birinin her dediğine uyan",
+          "example": {
+            "en": "He bought her flowers every single day, total simp behavior",
+            "tr": "Her gün çiçek aldı, tam anlamıyla aşırı yalakalık eden biri."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5184,
+      "english": "fyi",
+      "pronunciation": "ɛf waɪ aɪ",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bilgin olsun / bilginize",
+          "example": {
+            "en": "Fyi, the meeting has been moved to 3 pm.",
+            "tr": "Bilgin olsun, toplantı saat 15.00'e alındı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5195,
+      "english": "cancel",
+      "pronunciation": "ˈkænsəl",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "boykot etmek / sosyal medyada silmek",
+          "example": {
+            "en": "Fans threatened to cancel the celebrity after the scandal.",
+            "tr": "Hayranlar skandalın ardından o ünlüyü boykot etmekle tehdit etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5196,
+      "english": "ratio",
+      "pronunciation": "ˈreɪʃioʊ",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "beğeni oranıyla ezmek / ratio yemek",
+          "example": {
+            "en": "His tweet got ratioed hard — replies outnumbered likes.",
+            "tr": "Tweet'i çok kötü ratio yedi — yanıtlar beğenileri geçti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5197,
+      "english": "TL;DR",
+      "pronunciation": "tiː ɛl diː ɑːr",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çok uzundu okumadım / kısa özet",
+          "example": {
+            "en": "TL;DR — the project failed because of poor planning.",
+            "tr": "Kısa özet — proje kötü planlama yüzünden başarısız oldu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5198,
+      "english": "aka",
+      "pronunciation": "eɪ keɪ eɪ",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "diğer adıyla / bir de bilinen adıyla",
+          "example": {
+            "en": "He's a real night owl, aka he never sleeps before 2 am.",
+            "tr": "O gerçek bir gece kuşu, diğer adıyla sabah 2'den önce hiç uyumaz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5199,
+      "english": "ASAP",
+      "pronunciation": "eɪ ɛs eɪ piː",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "en kısa sürede / bir an önce",
+          "example": {
+            "en": "Please send me the file ASAP, the deadline is in an hour.",
+            "tr": "Lütfen dosyayı bir an önce gönder, son tarih bir saat sonra."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5200,
+      "english": "ETA",
+      "pronunciation": "iː tiː eɪ",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tahmini varış saati / ne zaman gelirsin",
+          "example": {
+            "en": "What's your ETA? We're all waiting at the restaurant.",
+            "tr": "Tahmini varış saatin ne? Hepimiz restoranda bekliyoruz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5201,
+      "english": "DIY",
+      "pronunciation": "diː aɪ waɪ",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kendin yap / kendin uğraş",
+          "example": {
+            "en": "She built her own bookshelf with a DIY tutorial on YouTube.",
+            "tr": "YouTube'daki kendin yap videosuyla kendi kitaplığını inşa etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5202,
+      "english": "lmk",
+      "pronunciation": "el em keɪ",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bana haber ver / bildir",
+          "example": {
+            "en": "lmk if you're coming to the party tonight!",
+            "tr": "Bu gece partiye gelip gelmediğini bana haber ver!"
+          }
+        }
+      ]
+    },
+    {
+      "id": 5204,
+      "english": "ngl",
+      "pronunciation": "en dʒiː el",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yalan söylemeyeyim / açıkçası",
+          "example": {
+            "en": "ngl, I actually enjoyed that cringe show.",
+            "tr": "Açıkçası, o saçma diziyi gerçekten beğendim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5205,
+      "english": "gg",
+      "pronunciation": "dʒiː dʒiː",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iyi oyun / güzel maçtı",
+          "example": {
+            "en": "gg everyone, that was a tough match!",
+            "tr": "Herkese güzel maçtı, çok zorlu bir karşılaşmaydı!"
+          }
+        }
+      ]
+    },
+    {
+      "id": 5207,
+      "english": "w",
+      "pronunciation": "dʌbljuː",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "galibiyet / kazanma",
+          "example": {
+            "en": "Getting free tickets was a total W today.",
+            "tr": "Bugün ücretsiz bilet almak tam anlamıyla bir galibiyetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5208,
+      "english": "l",
+      "pronunciation": "el",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "mağlubiyet / kayıp / rezillik",
+          "example": {
+            "en": "Missing the concert was a big L honestly.",
+            "tr": "Konseri kaçırmak açıkçası büyük bir kayıptı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5209,
+      "english": "mid",
+      "pronunciation": "mɪd",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "vasat / ortalama / idare eder",
+          "example": {
+            "en": "That new restaurant was honestly just mid.",
+            "tr": "O yeni restoran açıkçası sadece vasattı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5210,
+      "english": "rent free",
+      "pronunciation": "rent friː",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kafadan gitmeyen / aklından çıkmayan",
+          "example": {
+            "en": "That song is living rent free in my head.",
+            "tr": "O şarkı kafamdan hiç gitmiyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5211,
+      "english": "bussin",
+      "pronunciation": "bʌsɪn",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çok lezzetli / harika / mükemmel",
+          "example": {
+            "en": "This homemade pizza is absolutely bussin!",
+            "tr": "Bu ev yapımı pizza gerçekten çok harika!"
+          }
+        }
+      ]
+    },
+    {
+      "id": 5212,
+      "english": "hits different",
+      "pronunciation": "hɪts ˈdɪfrənt",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "farklı hissettiriyor / bambaşka bir his veriyor",
+          "example": {
+            "en": "Coffee on a rainy morning just hits different.",
+            "tr": "Yağmurlu bir sabahta kahve içmek bambaşka bir his veriyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5213,
+      "english": "understood the assignment",
+      "pronunciation": "ˌʌndəˈstʊd ðə əˈsaɪnmənt",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ne yapması gerektiğini anladı / tam üstüne bastı",
+          "example": {
+            "en": "Her outfit for the gala? She understood the assignment.",
+            "tr": "Gala kıyafeti mi? Ne yapması gerektiğini tam anladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5214,
+      "english": "it's giving",
+      "pronunciation": "ɪts ˈɡɪvɪŋ",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "havası var / izlenimi veriyor",
+          "example": {
+            "en": "That outfit is giving main character energy.",
+            "tr": "O kıyafetin ana karakter havası var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5215,
+      "english": "iykyk",
+      "pronunciation": "aɪ waɪ keɪ waɪ keɪ",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bilenler bilir",
+          "example": {
+            "en": "3am snacks just hit different, iykyk.",
+            "tr": "Gece 3'te yenen atıştırmalıklar bambaşka, bilenler bilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5216,
+      "english": "sfs",
+      "pronunciation": "ɛs ɛf ɛs",
+      "level": "MIXED",
+      "category": "Internet Slang & Text Abbreviations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "takip karşılığı takip (shoutout for shoutout)",
+          "example": {
+            "en": "Anyone want to do sfs? My page needs more followers.",
+            "tr": "Sfs yapmak isteyen var mı? Sayfamın daha fazla takipçiye ihtiyacı var."
+          }
+        }
+      ]
+    }
+  ]
+}

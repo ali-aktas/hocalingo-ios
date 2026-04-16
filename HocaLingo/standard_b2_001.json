@@ -1,0 +1,1905 @@
+{
+  "package_info": {
+    "id": "standard_b2_001",
+    "version": "2.0.0",
+    "level": "B2",
+    "language_pair": "en_tr",
+    "total_words": 100,
+    "updated_at": "2026-03-24",
+    "description": "B2 level English-Turkish vocabulary - Upper intermediate",
+    "attribution": "HocaLingo vocabulary database"
+  },
+  "words": [
+    {
+      "id": 1610,
+      "english": "acknowledge",
+      "pronunciation": "əkˈnɒlɪdʒ",
+      "level": "B2",
+      "category": "formal language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kabul etmek",
+          "example": {
+            "en": "She acknowledged her mistake in front of the team.",
+            "tr": "Ekibin önünde hatasını kabul etti."
+          }
+        },
+        {
+          "turkish": "onaylamak",
+          "example": {
+            "en": "Please acknowledge receipt of this email.",
+            "tr": "Lütfen bu e-postanın alındığını onaylayın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1611,
+      "english": "persistent",
+      "pronunciation": "pəˈsɪstənt",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ısrarcı",
+          "example": {
+            "en": "She was persistent in her efforts to find a solution.",
+            "tr": "Bir çözüm bulmak için ısrarcı davrandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1612,
+      "english": "implication",
+      "pronunciation": "ˌɪmplɪˈkeɪʃən",
+      "level": "B2",
+      "category": "debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çıkarım",
+          "example": {
+            "en": "The implications of this decision are far-reaching.",
+            "tr": "Bu kararın çıkarımları çok geniş kapsamlıdır."
+          }
+        },
+        {
+          "turkish": "ima",
+          "example": {
+            "en": "His words carried the implication that she was wrong.",
+            "tr": "Sözleri onun yanıldığına dair bir ima taşıyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1613,
+      "english": "advocate",
+      "pronunciation": "ˈædvəkɪt",
+      "level": "B2",
+      "category": "debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "savunmak",
+          "example": {
+            "en": "She advocates for equal rights in the workplace.",
+            "tr": "İş yerinde eşit haklar için savunuculuk yapıyor."
+          }
+        },
+        {
+          "turkish": "savunucu",
+          "example": {
+            "en": "He is a strong advocate of environmental protection.",
+            "tr": "Çevre koruma konusunda güçlü bir savunucudur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1614,
+      "english": "forthcoming",
+      "pronunciation": "ˌfɔːθˈkʌmɪŋ",
+      "level": "B2",
+      "category": "formal language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yaklaşan",
+          "example": {
+            "en": "Details about the forthcoming event will be announced soon.",
+            "tr": "Yaklaşan etkinliğe ilişkin ayrıntılar yakında duyurulacak."
+          }
+        },
+        {
+          "turkish": "açık sözlü",
+          "example": {
+            "en": "He was not very forthcoming about his plans.",
+            "tr": "Planları hakkında pek açık sözlü değildi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1615,
+      "english": "ethical",
+      "pronunciation": "ˈeθɪkəl",
+      "level": "B2",
+      "category": "debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "etik",
+          "example": {
+            "en": "Scientists must consider the ethical consequences of their research.",
+            "tr": "Bilim insanları araştırmalarının etik sonuçlarını göz önünde bulundurmalıdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1616,
+      "english": "feasible",
+      "pronunciation": "ˈfiːzɪbəl",
+      "level": "B2",
+      "category": "professional life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "uygulanabilir",
+          "example": {
+            "en": "The manager asked whether the plan was feasible.",
+            "tr": "Yönetici planın uygulanabilir olup olmadığını sordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1617,
+      "english": "transparent",
+      "pronunciation": "trænsˈpærənt",
+      "level": "B2",
+      "category": "professional life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "şeffaf",
+          "example": {
+            "en": "The company aims to be transparent about its financial decisions.",
+            "tr": "Şirket, mali kararları konusunda şeffaf olmayı hedefliyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1618,
+      "english": "reluctant",
+      "pronunciation": "rɪˈlʌktənt",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "isteksiz",
+          "example": {
+            "en": "He was reluctant to share his personal opinions.",
+            "tr": "Kişisel görüşlerini paylaşmaya isteksizdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1619,
+      "english": "grievance",
+      "pronunciation": "ˈɡriːvəns",
+      "level": "B2",
+      "category": "professional life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "şikâyet",
+          "example": {
+            "en": "Employees can raise a grievance with the HR department.",
+            "tr": "Çalışanlar İK departmanına şikâyette bulunabilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1620,
+      "english": "bias",
+      "pronunciation": "ˈbaɪəs",
+      "level": "B2",
+      "category": "debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "önyargı",
+          "example": {
+            "en": "The report was criticised for its political bias.",
+            "tr": "Rapor, siyasi önyargısı nedeniyle eleştirildi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1621,
+      "english": "innovation",
+      "pronunciation": "ˌɪnəˈveɪʃən",
+      "level": "B2",
+      "category": "science basics",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yenilik",
+          "example": {
+            "en": "Technological innovation is changing the world rapidly.",
+            "tr": "Teknolojik yenilik dünyayı hızla değiştiriyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1622,
+      "english": "spontaneous",
+      "pronunciation": "spɒnˈteɪniəs",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kendiliğinden olan",
+          "example": {
+            "en": "Their trip to Paris was completely spontaneous.",
+            "tr": "Paris gezileri tamamen kendiliğinden gerçekleşti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1623,
+      "english": "hypothesis",
+      "pronunciation": "haɪˈpɒθɪsɪs",
+      "level": "B2",
+      "category": "science basics",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hipotez",
+          "example": {
+            "en": "The scientist tested her hypothesis through a series of experiments.",
+            "tr": "Bilim insanı hipotezini bir dizi deney yoluyla test etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1624,
+      "english": "legitimate",
+      "pronunciation": "lɪˈdʒɪtɪmət",
+      "level": "B2",
+      "category": "formal language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "meşru",
+          "example": {
+            "en": "He had a legitimate reason for missing the meeting.",
+            "tr": "Toplantıyı kaçırmak için meşru bir nedeni vardı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1625,
+      "english": "initiative",
+      "pronunciation": "ɪˈnɪʃətɪv",
+      "level": "B2",
+      "category": "professional life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "inisiyatif",
+          "example": {
+            "en": "She took the initiative and organised the event herself.",
+            "tr": "İnisiyatif alarak etkinliği kendisi organize etti."
+          }
+        },
+        {
+          "turkish": "girişim",
+          "example": {
+            "en": "The government launched a new health initiative.",
+            "tr": "Hükümet yeni bir sağlık girişimi başlattı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1626,
+      "english": "contradictory",
+      "pronunciation": "ˌkɒntrəˈdɪktəri",
+      "level": "B2",
+      "category": "debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çelişkili",
+          "example": {
+            "en": "The two studies produced contradictory results.",
+            "tr": "İki çalışma çelişkili sonuçlar ortaya koydu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1627,
+      "english": "resentment",
+      "pronunciation": "rɪˈzentmənt",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kırgınlık",
+          "example": {
+            "en": "She felt deep resentment after being passed over for promotion.",
+            "tr": "Terfi için gözardı edildikten sonra derin bir kırgınlık hissetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1628,
+      "english": "cynical",
+      "pronunciation": "ˈsɪnɪkəl",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "alaycı",
+          "example": {
+            "en": "He became cynical about politics after years of disappointment.",
+            "tr": "Yıllar süren hayal kırıklıklarının ardından siyaset hakkında alaycı bir tutum geliştirdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1629,
+      "english": "inheritance",
+      "pronunciation": "ɪnˈherɪtəns",
+      "level": "B2",
+      "category": "culture",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "miras",
+          "example": {
+            "en": "She used her inheritance to start a small business.",
+            "tr": "Mirasını küçük bir iş kurmak için kullandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1630,
+      "english": "verdict",
+      "pronunciation": "ˈvɜːdɪkt",
+      "level": "B2",
+      "category": "current events",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "karar",
+          "example": {
+            "en": "The jury delivered a not-guilty verdict after hours of deliberation.",
+            "tr": "Jüri saatler süren müzakerenin ardından beraat kararı verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1631,
+      "english": "inevitable",
+      "pronunciation": "ɪnˈevɪtəbəl",
+      "level": "B2",
+      "category": "formal language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kaçınılmaz",
+          "example": {
+            "en": "Change is inevitable in any growing organisation.",
+            "tr": "Her büyüyen organizasyonda değişim kaçınılmazdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1632,
+      "english": "notion",
+      "pronunciation": "ˈnəʊʃən",
+      "level": "B2",
+      "category": "debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kavram",
+          "example": {
+            "en": "The notion of fairness is interpreted differently across cultures.",
+            "tr": "Adalet kavramı kültürlere göre farklı yorumlanmaktadır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1633,
+      "english": "empirical",
+      "pronunciation": "ɪmˈpɪrɪkəl",
+      "level": "B2",
+      "category": "science basics",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ampirik",
+          "example": {
+            "en": "The theory is supported by empirical evidence from multiple studies.",
+            "tr": "Teori, birden fazla çalışmadan elde edilen ampirik kanıtlarla desteklenmektedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1634,
+      "english": "breakthrough",
+      "pronunciation": "ˈbreɪkθruː",
+      "level": "B2",
+      "category": "science basics",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çığır açan gelişme",
+          "example": {
+            "en": "Researchers announced a major breakthrough in cancer treatment.",
+            "tr": "Araştırmacılar kanser tedavisinde önemli bir çığır açan gelişme duyurdu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1635,
+      "english": "eloquent",
+      "pronunciation": "ˈeləkwənt",
+      "level": "B2",
+      "category": "formal language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "belagatli",
+          "example": {
+            "en": "She gave an eloquent speech at the graduation ceremony.",
+            "tr": "Mezuniyet töreninde belagatli bir konuşma yaptı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1636,
+      "english": "ritual",
+      "pronunciation": "ˈrɪtʃuəl",
+      "level": "B2",
+      "category": "culture",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ritüel",
+          "example": {
+            "en": "Morning coffee has become a daily ritual for many people.",
+            "tr": "Sabah kahvesi pek çok insan için günlük bir ritüele dönüştü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1637,
+      "english": "heritage",
+      "pronunciation": "ˈherɪtɪdʒ",
+      "level": "B2",
+      "category": "culture",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kültürel miras",
+          "example": {
+            "en": "The old city is a UNESCO World Heritage site.",
+            "tr": "Eski şehir bir UNESCO Dünya Kültürel Mirası alanıdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1638,
+      "english": "stigma",
+      "pronunciation": "ˈstɪɡmə",
+      "level": "B2",
+      "category": "current events",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "damgalama",
+          "example": {
+            "en": "There is still a social stigma attached to mental illness.",
+            "tr": "Akıl hastalığına hâlâ sosyal bir damgalama eşlik etmektedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1639,
+      "english": "profound",
+      "pronunciation": "prəˈfaʊnd",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "derin",
+          "example": {
+            "en": "The experience had a profound effect on her outlook on life.",
+            "tr": "Bu deneyim onun hayata bakışı üzerinde derin bir etki bıraktı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1640,
+      "english": "delegate",
+      "pronunciation": "ˈdelɪɡeɪt",
+      "level": "B2",
+      "category": "professional life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yetki devretmek",
+          "example": {
+            "en": "A good manager knows how to delegate tasks effectively.",
+            "tr": "İyi bir yönetici görevleri etkili biçimde devretmeyi bilir."
+          }
+        },
+        {
+          "turkish": "delege",
+          "example": {
+            "en": "Each country sent a delegate to the international summit.",
+            "tr": "Her ülke uluslararası zirveye bir delege gönderdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1641,
+      "english": "legislation",
+      "pronunciation": "ˌledʒɪsˈleɪʃən",
+      "level": "B2",
+      "category": "current events",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "mevzuat",
+          "example": {
+            "en": "New legislation on data privacy came into force last year.",
+            "tr": "Veri gizliliğine ilişkin yeni mevzuat geçen yıl yürürlüğe girdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1642,
+      "english": "phenomenon",
+      "pronunciation": "fɪˈnɒmɪnən",
+      "level": "B2",
+      "category": "science basics",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fenomen",
+          "example": {
+            "en": "Scientists are studying the phenomenon of aurora borealis.",
+            "tr": "Bilim insanları kuzey ışıkları fenomenini inceliyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1643,
+      "english": "take a toll on",
+      "pronunciation": "teɪk ə təʊl ɒn",
+      "level": "B2",
+      "category": "idiomatic expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "olumsuz etkilemek",
+          "example": {
+            "en": "Working long hours is taking a toll on his health.",
+            "tr": "Uzun saatler çalışmak sağlığını olumsuz etkiliyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1644,
+      "english": "in the long run",
+      "pronunciation": "ɪn ðə lɒŋ rʌn",
+      "level": "B2",
+      "category": "idiomatic expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "uzun vadede",
+          "example": {
+            "en": "Investing in education pays off in the long run.",
+            "tr": "Eğitime yatırım yapmak uzun vadede meyvesini verir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1645,
+      "english": "stereotype",
+      "pronunciation": "ˈsteriəˌtaɪp",
+      "level": "B2",
+      "category": "culture",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kalıp yargı",
+          "example": {
+            "en": "We should challenge stereotypes rather than accept them.",
+            "tr": "Kalıp yargıları kabullenmek yerine sorgulamalıyız."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1646,
+      "english": "obsolete",
+      "pronunciation": "ˈɒbsəliːt",
+      "level": "B2",
+      "category": "current events",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "modası geçmiş",
+          "example": {
+            "en": "Some traditional skills are becoming obsolete in the digital age.",
+            "tr": "Dijital çağda bazı geleneksel beceriler modası geçmiş hale geliyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1647,
+      "english": "discrepancy",
+      "pronunciation": "dɪˈskrepənsi",
+      "level": "B2",
+      "category": "professional life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tutarsızlık",
+          "example": {
+            "en": "There was a discrepancy between the two financial reports.",
+            "tr": "İki mali rapor arasında bir tutarsızlık vardı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1648,
+      "english": "empathy",
+      "pronunciation": "ˈempəθi",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "empati",
+          "example": {
+            "en": "Showing empathy is an essential quality in a good leader.",
+            "tr": "Empati göstermek iyi bir liderde olması gereken temel bir özelliktir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1649,
+      "english": "rhetoric",
+      "pronunciation": "ˈretərɪk",
+      "level": "B2",
+      "category": "debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "retorik",
+          "example": {
+            "en": "His speech was full of political rhetoric and empty promises.",
+            "tr": "Konuşması siyasi retorik ve boş vaatlerle doluydu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1650,
+      "english": "misconception",
+      "pronunciation": "ˌmɪskənˈsepʃən",
+      "level": "B2",
+      "category": "debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yanlış kanı",
+          "example": {
+            "en": "There is a common misconception that eating fat makes you gain weight.",
+            "tr": "Yağ yemenin kilo aldırdığına dair yaygın bir yanlış kanı vardır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1651,
+      "english": "suppress",
+      "pronunciation": "səˈpres",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bastırmak",
+          "example": {
+            "en": "He tried to suppress his anger during the difficult conversation.",
+            "tr": "Zorlu konuşma sırasında öfkesini bastırmaya çalıştı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1652,
+      "english": "norm",
+      "pronunciation": "nɔːm",
+      "level": "B2",
+      "category": "culture",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "norm",
+          "example": {
+            "en": "Remote work has become the norm in many industries.",
+            "tr": "Uzaktan çalışma pek çok sektörde norm haline geldi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1653,
+      "english": "comply with",
+      "pronunciation": "kəmˈplaɪ wɪð",
+      "level": "B2",
+      "category": "professional life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "uymak",
+          "example": {
+            "en": "All employees must comply with the new safety regulations.",
+            "tr": "Tüm çalışanlar yeni güvenlik yönetmeliklerine uymak zorundadır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1654,
+      "english": "skeptical",
+      "pronunciation": "ˈskeptɪkəl",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "şüpheci",
+          "example": {
+            "en": "Many scientists remain skeptical about the new findings.",
+            "tr": "Pek çok bilim insanı yeni bulgular konusunda şüpheci kalmaya devam ediyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1655,
+      "english": "prospect",
+      "pronunciation": "ˈprɒspekt",
+      "level": "B2",
+      "category": "professional life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "olasılık",
+          "example": {
+            "en": "The prospect of losing her job filled her with anxiety.",
+            "tr": "İşini kaybetme olasılığı onu kaygıyla doldurdu."
+          }
+        },
+        {
+          "turkish": "aday",
+          "example": {
+            "en": "He is considered a strong prospect for the manager role.",
+            "tr": "Yönetici pozisyonu için güçlü bir aday olarak değerlendiriliyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1656,
+      "english": "allegation",
+      "pronunciation": "ˌæləˈɡeɪʃən",
+      "level": "B2",
+      "category": "current events",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iddia",
+          "example": {
+            "en": "The politician denied the allegations of corruption.",
+            "tr": "Politikacı yolsuzluk iddialarını reddetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1657,
+      "english": "parameter",
+      "pronunciation": "pəˈræmɪtə",
+      "level": "B2",
+      "category": "science basics",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "parametre",
+          "example": {
+            "en": "Scientists adjusted the parameters of the experiment carefully.",
+            "tr": "Bilim insanları deneyin parametrelerini dikkatli bir şekilde ayarladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1658,
+      "english": "at the expense of",
+      "pronunciation": "æt ðə ɪkˈspens ɒv",
+      "level": "B2",
+      "category": "idiomatic expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "pahasına",
+          "example": {
+            "en": "He achieved success at the expense of his personal life.",
+            "tr": "Kişisel hayatı pahasına başarıya ulaştı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1659,
+      "english": "turn a blind eye",
+      "pronunciation": "tɜːn ə blaɪnd aɪ",
+      "level": "B2",
+      "category": "idiomatic expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "görmezden gelmek",
+          "example": {
+            "en": "The authorities turned a blind eye to the illegal activity.",
+            "tr": "Yetkililer yasadışı faaliyeti görmezden geldi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1660,
+      "english": "nuance",
+      "pronunciation": "ˈnjuːɑːns",
+      "level": "B2",
+      "category": "formal language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "nüans",
+          "example": {
+            "en": "The nuance of her argument was lost in translation.",
+            "tr": "Argümanının nüansı çeviride kayboldu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1661,
+      "english": "leverage",
+      "pronunciation": "ˈlɛvərɪdʒ",
+      "level": "B2",
+      "category": "professional life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "avantaj olarak kullanmak",
+          "example": {
+            "en": "She used her experience to leverage a better salary.",
+            "tr": "Daha iyi bir maaş için deneyimini avantaj olarak kullandı."
+          }
+        },
+        {
+          "turkish": "kaldıraç gücü",
+          "example": {
+            "en": "The company had significant leverage in the negotiations.",
+            "tr": "Şirketin müzakerelerde önemli bir kaldıraç gücü vardı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1662,
+      "english": "consensus",
+      "pronunciation": "kənˈsɛnsəs",
+      "level": "B2",
+      "category": "debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "görüş birliği",
+          "example": {
+            "en": "The committee reached a consensus after hours of discussion.",
+            "tr": "Komite saatler süren tartışmanın ardından görüş birliğine vardı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1663,
+      "english": "alienate",
+      "pronunciation": "ˈeɪliəneɪt",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yabancılaştırmak",
+          "example": {
+            "en": "His harsh words alienated many of his closest friends.",
+            "tr": "Sert sözleri en yakın arkadaşlarının çoğunu yabancılaştırdı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1664,
+      "english": "fiscal",
+      "pronunciation": "ˈfɪskəl",
+      "level": "B2",
+      "category": "current events",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "mali",
+          "example": {
+            "en": "The government announced new fiscal policies to reduce the deficit.",
+            "tr": "Hükümet açığı azaltmak için yeni mali politikalar açıkladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1665,
+      "english": "resonate",
+      "pronunciation": "ˈrɛzəneɪt",
+      "level": "B2",
+      "category": "culture",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yankı uyandırmak",
+          "example": {
+            "en": "The film's message resonated deeply with young audiences.",
+            "tr": "Filmin mesajı genç izleyicilerde derin bir yankı uyandırdı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1666,
+      "english": "concede",
+      "pronunciation": "kənˈsiːd",
+      "level": "B2",
+      "category": "debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kabul etmek",
+          "example": {
+            "en": "He conceded that his initial plan had serious flaws.",
+            "tr": "İlk planının ciddi kusurları olduğunu kabul etti."
+          }
+        },
+        {
+          "turkish": "teslim etmek",
+          "example": {
+            "en": "The candidate conceded defeat after the election results.",
+            "tr": "Aday seçim sonuçlarının ardından yenilgiyi teslim etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1667,
+      "english": "articulate",
+      "pronunciation": "ɑːˈtɪkjʊlət",
+      "level": "B2",
+      "category": "formal language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kendini iyi ifade eden",
+          "example": {
+            "en": "She is an articulate speaker who always makes her point clearly.",
+            "tr": "Fikrini her zaman net bir şekilde ortaya koyan, kendini iyi ifade eden bir konuşmacıdır."
+          }
+        },
+        {
+          "turkish": "dile getirmek",
+          "example": {
+            "en": "It is hard to articulate exactly how I feel about this.",
+            "tr": "Bu konuda tam olarak nasıl hissettiğimi dile getirmek zor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1668,
+      "english": "tenure",
+      "pronunciation": "ˈtɛnjə",
+      "level": "B2",
+      "category": "professional life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "görev süresi",
+          "example": {
+            "en": "During her tenure as director, the company expanded rapidly.",
+            "tr": "Direktör olarak görev süresi boyunca şirket hızla büyüdü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1669,
+      "english": "gratitude",
+      "pronunciation": "ˈɡrætɪtjuːd",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "minnettarlık",
+          "example": {
+            "en": "She expressed her gratitude for all the support she had received.",
+            "tr": "Aldığı tüm destek için minnettarlığını dile getirdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1670,
+      "english": "volatile",
+      "pronunciation": "ˈvɒlətaɪl",
+      "level": "B2",
+      "category": "current events",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "oynak",
+          "example": {
+            "en": "The stock market has been extremely volatile this week.",
+            "tr": "Borsa bu hafta son derece oynak oldu."
+          }
+        },
+        {
+          "turkish": "değişken",
+          "example": {
+            "en": "The political situation in the region remains volatile.",
+            "tr": "Bölgedeki siyasi durum değişken olmaya devam ediyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1671,
+      "english": "portrayal",
+      "pronunciation": "pɔːˈtreɪəl",
+      "level": "B2",
+      "category": "culture",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tasvir",
+          "example": {
+            "en": "The film's portrayal of war shocked many viewers.",
+            "tr": "Filmin savaş tasvirri pek çok izleyiciyi sarstı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1672,
+      "english": "pragmatic",
+      "pronunciation": "præɡˈmætɪk",
+      "level": "B2",
+      "category": "formal language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "pratik düşünen",
+          "example": {
+            "en": "We need a pragmatic approach to solving this problem.",
+            "tr": "Bu sorunu çözmek için pratik düşünen bir yaklaşıma ihtiyacımız var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1673,
+      "english": "subsidise",
+      "pronunciation": "ˈsʌbsɪdaɪz",
+      "level": "B2",
+      "category": "current events",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sübvanse etmek",
+          "example": {
+            "en": "The government decided to subsidise public transport costs.",
+            "tr": "Hükümet toplu taşıma maliyetlerini sübvanse etmeye karar verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1674,
+      "english": "disparity",
+      "pronunciation": "dɪˈspærɪti",
+      "level": "B2",
+      "category": "debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "eşitsizlik",
+          "example": {
+            "en": "There is a growing disparity between the rich and the poor.",
+            "tr": "Zenginler ile yoksullar arasında büyüyen bir eşitsizlik var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1675,
+      "english": "commemorate",
+      "pronunciation": "kəˈmɛməreɪt",
+      "level": "B2",
+      "category": "culture",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "anmak",
+          "example": {
+            "en": "A ceremony was held to commemorate the fallen soldiers.",
+            "tr": "Şehit askerleri anmak için bir tören düzenlendi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1676,
+      "english": "redundancy",
+      "pronunciation": "rɪˈdʌndənsi",
+      "level": "B2",
+      "category": "professional life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "işten çıkarılma",
+          "example": {
+            "en": "Many workers faced redundancy when the factory closed down.",
+            "tr": "Fabrika kapandığında pek çok işçi işten çıkarılmayla yüz yüze geldi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1677,
+      "english": "indifferent",
+      "pronunciation": "ɪnˈdɪfrənt",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ilgisiz",
+          "example": {
+            "en": "He seemed completely indifferent to the criticism he received.",
+            "tr": "Aldığı eleştirilere karşı tamamen ilgisiz görünüyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1678,
+      "english": "mediocre",
+      "pronunciation": "ˌmiːdiˈəʊkə",
+      "level": "B2",
+      "category": "formal language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "vasat",
+          "example": {
+            "en": "The restaurant received mediocre reviews from most critics.",
+            "tr": "Restoran eleştirmenlerin çoğundan vasat yorumlar aldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1679,
+      "english": "referendum",
+      "pronunciation": "ˌrɛfəˈrɛndəm",
+      "level": "B2",
+      "category": "current events",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "referandum",
+          "example": {
+            "en": "Citizens voted in a referendum on the new constitution.",
+            "tr": "Vatandaşlar yeni anayasa üzerine referandumda oy kullandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1680,
+      "english": "curator",
+      "pronunciation": "kjʊˈreɪtə",
+      "level": "B2",
+      "category": "culture",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "küratör",
+          "example": {
+            "en": "The curator designed an impressive exhibition about modern art.",
+            "tr": "Küratör modern sanat hakkında etkileyici bir sergi tasarladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1681,
+      "english": "probation",
+      "pronunciation": "prəˈbeɪʃən",
+      "level": "B2",
+      "category": "professional life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "deneme süresi",
+          "example": {
+            "en": "New employees are typically on probation for three months.",
+            "tr": "Yeni çalışanlar genellikle üç ay boyunca deneme süresindedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1682,
+      "english": "trait",
+      "pronunciation": "treɪt",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kişilik özelliği",
+          "example": {
+            "en": "Curiosity is one of her most admirable personality traits.",
+            "tr": "Merak, onun en takdire değer kişilik özelliklerinden biridir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1683,
+      "english": "speculation",
+      "pronunciation": "ˌspɛkjʊˈleɪʃən",
+      "level": "B2",
+      "category": "current events",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "spekülasyon",
+          "example": {
+            "en": "There is widespread speculation about the company's future plans.",
+            "tr": "Şirketin gelecekteki planları hakkında yaygın bir spekülasyon var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1684,
+      "english": "uprising",
+      "pronunciation": "ˈʌpraɪzɪŋ",
+      "level": "B2",
+      "category": "current events",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ayaklanma",
+          "example": {
+            "en": "The popular uprising led to major political changes in the country.",
+            "tr": "Halk ayaklanması ülkede büyük siyasi değişikliklere yol açtı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1685,
+      "english": "mortality",
+      "pronunciation": "mɔːˈtælɪti",
+      "level": "B2",
+      "category": "science basics",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ölüm oranı",
+          "example": {
+            "en": "New treatments have significantly reduced infant mortality rates.",
+            "tr": "Yeni tedaviler bebek ölüm oranlarını önemli ölçüde azalttı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1686,
+      "english": "impartial",
+      "pronunciation": "ɪmˈpɑːʃəl",
+      "level": "B2",
+      "category": "debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tarafsız",
+          "example": {
+            "en": "A judge must remain impartial throughout the entire trial.",
+            "tr": "Bir yargıç tüm dava boyunca tarafsız kalmalıdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1687,
+      "english": "demographics",
+      "pronunciation": "ˌdɛməˈɡræfɪks",
+      "level": "B2",
+      "category": "current events",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "demografik yapı",
+          "example": {
+            "en": "The demographics of the city have changed significantly over time.",
+            "tr": "Şehrin demografik yapısı zaman içinde önemli ölçüde değişti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1688,
+      "english": "eloquence",
+      "pronunciation": "ˈɛləkwəns",
+      "level": "B2",
+      "category": "formal language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hitabet",
+          "example": {
+            "en": "The leader's eloquence inspired thousands of people.",
+            "tr": "Liderin hitabeti binlerce insana ilham verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1689,
+      "english": "solidarity",
+      "pronunciation": "ˌsɒlɪˈdærɪti",
+      "level": "B2",
+      "category": "debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dayanışma",
+          "example": {
+            "en": "Workers showed solidarity by going on strike together.",
+            "tr": "İşçiler birlikte greve giderek dayanışma gösterdiler."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1690,
+      "english": "bittersweet",
+      "pronunciation": "ˈbɪtəswiːt",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tatlı acı",
+          "example": {
+            "en": "Leaving the city was a bittersweet experience for her.",
+            "tr": "Şehri terk etmek onun için tatlı acı bir deneyimdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1691,
+      "english": "momentum",
+      "pronunciation": "məˈmɛntəm",
+      "level": "B2",
+      "category": "science basics",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ivme",
+          "example": {
+            "en": "The campaign gained momentum as more people joined in.",
+            "tr": "Kampanya daha fazla kişi katıldıkça ivme kazandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1692,
+      "english": "protocol",
+      "pronunciation": "ˈprəʊtəkɒl",
+      "level": "B2",
+      "category": "professional life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "protokol",
+          "example": {
+            "en": "Staff must follow the safety protocol in case of emergency.",
+            "tr": "Personel acil durumlarda güvenlik protokolüne uymak zorundadır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1693,
+      "english": "tackle",
+      "pronunciation": "ˈtækəl",
+      "level": "B2",
+      "category": "idiomatic expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ele almak",
+          "example": {
+            "en": "We need to tackle the issue of inequality in education.",
+            "tr": "Eğitimdeki eşitsizlik sorununu ele almamız gerekiyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1694,
+      "english": "stagnant",
+      "pronunciation": "ˈstæɡnənt",
+      "level": "B2",
+      "category": "current events",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "durağan",
+          "example": {
+            "en": "The economy remained stagnant despite new government policies.",
+            "tr": "Yeni hükümet politikalarına rağmen ekonomi durağan kaldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1695,
+      "english": "acclaim",
+      "pronunciation": "əˈkleɪm",
+      "level": "B2",
+      "category": "culture",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "takdir",
+          "example": {
+            "en": "The novel received widespread critical acclaim after its release.",
+            "tr": "Roman yayınlanmasının ardından geniş çaplı eleştirel takdir gördü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1696,
+      "english": "cut corners",
+      "pronunciation": "kʌt ˈkɔːnəz",
+      "level": "B2",
+      "category": "idiomatic expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "işi kolayına kaçmak",
+          "example": {
+            "en": "They cut corners during construction, which caused serious problems.",
+            "tr": "İnşaat sırasında işi kolayına kaçtılar ve bu ciddi sorunlara yol açtı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1697,
+      "english": "get the ball rolling",
+      "pronunciation": "ɡɛt ðə bɔːl ˈrəʊlɪŋ",
+      "level": "B2",
+      "category": "idiomatic expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "topu taca atmamak",
+          "example": {
+            "en": "Let's get the ball rolling by discussing the main agenda items.",
+            "tr": "Ana gündem maddelerini ele alarak işe koyulalım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1698,
+      "english": "deteriorate",
+      "pronunciation": "dɪˈtɪəriəreɪt",
+      "level": "B2",
+      "category": "science basics",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kötüleşmek",
+          "example": {
+            "en": "His health began to deteriorate rapidly after the diagnosis.",
+            "tr": "Teşhisin ardından sağlığı hızla kötüleşmeye başladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1699,
+      "english": "aspiration",
+      "pronunciation": "ˌæspɪˈreɪʃən",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "özlem",
+          "example": {
+            "en": "Her aspiration to become a scientist drove her to study harder.",
+            "tr": "Bilim insanı olma özlemi onu daha çok çalışmaya yöneltti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1700,
+      "english": "collaborate",
+      "pronunciation": "kəˈlæbəreɪt",
+      "level": "B2",
+      "category": "professional life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iş birliği yapmak",
+          "example": {
+            "en": "The two companies agreed to collaborate on a new research project.",
+            "tr": "İki şirket yeni bir araştırma projesinde iş birliği yapmayı kabul etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1701,
+      "english": "consent",
+      "pronunciation": "kənˈsɛnt",
+      "level": "B2",
+      "category": "formal language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "rıza",
+          "example": {
+            "en": "Participants must give written consent before joining the study.",
+            "tr": "Katılımcılar çalışmaya katılmadan önce yazılı rıza vermelidir."
+          }
+        },
+        {
+          "turkish": "onay vermek",
+          "example": {
+            "en": "She consented to the procedure after speaking with her doctor.",
+            "tr": "Doktoruyla konuştuktan sonra işleme onay verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1703,
+      "english": "setback",
+      "pronunciation": "ˈsɛtbæk",
+      "level": "B2",
+      "category": "idiomatic expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "aksilik",
+          "example": {
+            "en": "The team suffered a major setback when their funding was cut.",
+            "tr": "Finansmanları kesilince ekip büyük bir aksilikle karşılaştı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1704,
+      "english": "disillusionment",
+      "pronunciation": "ˌdɪsɪˈluːʒənmənt",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hayal kırıklığı",
+          "example": {
+            "en": "There is widespread disillusionment with the current political system.",
+            "tr": "Mevcut siyasi sisteme karşı yaygın bir hayal kırıklığı var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1705,
+      "english": "render",
+      "pronunciation": "ˈrɛndə",
+      "level": "B2",
+      "category": "formal language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hale getirmek",
+          "example": {
+            "en": "The storm rendered the road completely impassable.",
+            "tr": "Fırtına yolu tamamen geçilemez hale getirdi."
+          }
+        },
+        {
+          "turkish": "sunmak",
+          "example": {
+            "en": "The artist rendered a stunning portrait of the city at night.",
+            "tr": "Sanatçı gece şehrinin çarpıcı bir portresini sundu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1706,
+      "english": "be in the same boat",
+      "pronunciation": "biː ɪn ðə seɪm bəʊt",
+      "level": "B2",
+      "category": "idiomatic expressions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "aynı gemide olmak",
+          "example": {
+            "en": "We're all in the same boat when it comes to rising costs.",
+            "tr": "Artan maliyetler söz konusu olduğunda hepimiz aynı gemideyiz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1707,
+      "english": "awe",
+      "pronunciation": "ɔː",
+      "level": "B2",
+      "category": "nuanced emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hayranlık ve korku karışımı duygu",
+          "example": {
+            "en": "She stood in awe at the sight of the vast mountain range.",
+            "tr": "Geniş dağ silsilesini görünce hayranlık ve korku karışımı bir duygu içinde kaldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1708,
+      "english": "overhaul",
+      "pronunciation": "ˈəʊvəhɔːl",
+      "level": "B2",
+      "category": "professional life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "köklü değişiklik",
+          "example": {
+            "en": "The education system is in need of a complete overhaul.",
+            "tr": "Eğitim sistemi köklü bir değişikliğe muhtaç."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1709,
+      "english": "polarise",
+      "pronunciation": "ˈpəʊləraɪz",
+      "level": "B2",
+      "category": "debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kutuplaştırmak",
+          "example": {
+            "en": "The controversial policy has polarised public opinion sharply.",
+            "tr": "Tartışmalı politika kamuoyunu keskin biçimde kutuplaştırdı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1710,
+      "english": "scrutinize",
+      "pronunciation": "ˈskruːtɪnaɪz",
+      "level": "B2",
+      "category": "formal language",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "titizlikle incelemek",
+          "example": {
+            "en": "The committee will scrutinize every detail of the proposal.",
+            "tr": "Komite, teklifin her ayrıntısını titizlikle inceleyecek."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1565 @@
+{
+  "package_info": {
+    "id": "premium_academic_001",
+    "version": "2.0.0",
+    "level": "MIXED",
+    "language_pair": "en_tr",
+    "total_words": 85,
+    "updated_at": "2026-04-03",
+    "description": "Academic English - Research, essays, university life, exams, presentations",
+    "attribution": "HocaLingo vocabulary database"
+  },
+  "words": [
+    {
+      "id": 3763,
+      "english": "methodology",
+      "pronunciation": "ˌmeθəˈdɒlədʒi",
+      "level": "MIXED",
+      "category": "Research Methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "metodoloji",
+          "example": {
+            "en": "The paper clearly explains the research methodology used.",
+            "tr": "Makale, kullanılan araştırma metodolojisini açıkça açıklıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3764,
+      "english": "plagiarism",
+      "pronunciation": "ˈpleɪdʒərɪzəm",
+      "level": "MIXED",
+      "category": "Citation",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "intihal",
+          "example": {
+            "en": "The student failed the course due to plagiarism.",
+            "tr": "Öğrenci, intihal nedeniyle dersten kaldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3765,
+      "english": "bibliography",
+      "pronunciation": "ˌbɪbliˈɒɡrəfi",
+      "level": "MIXED",
+      "category": "Citation",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kaynakça",
+          "example": {
+            "en": "Always include a bibliography at the end of your essay.",
+            "tr": "Deneminin sonuna her zaman kaynakça ekle."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3766,
+      "english": "furthermore",
+      "pronunciation": "ˈfɜːðəmɔː",
+      "level": "MIXED",
+      "category": "Essay Writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ayrıca / bunun yanı sıra",
+          "example": {
+            "en": "Furthermore, the data supports the original thesis statement.",
+            "tr": "Ayrıca, veriler özgün tez ifadesini desteklemektedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3767,
+      "english": "nevertheless",
+      "pronunciation": "ˌnevəðəˈles",
+      "level": "MIXED",
+      "category": "Essay Writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bununla birlikte / yine de",
+          "example": {
+            "en": "The sample was small; nevertheless, the findings were significant.",
+            "tr": "Örneklem küçüktü; bununla birlikte bulgular anlamlıydı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3769,
+      "english": "enrollment",
+      "pronunciation": "ɪnˈrəʊlmənt",
+      "level": "MIXED",
+      "category": "University Life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kayıt / kayıt yaptırma",
+          "example": {
+            "en": "Enrollment for the spring semester begins next Monday.",
+            "tr": "Bahar dönemi için kayıt gelecek Pazartesi başlıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3771,
+      "english": "abstract",
+      "pronunciation": "ˈæbstrækt",
+      "level": "MIXED",
+      "category": "Thesis",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "özet (akademik makale özeti)",
+          "example": {
+            "en": "The abstract summarizes the key findings of the thesis.",
+            "tr": "Özet, tezin temel bulgularını özetlemektedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3772,
+      "english": "peer review",
+      "pronunciation": "pɪə rɪˈvjuː",
+      "level": "MIXED",
+      "category": "Thesis",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hakemli değerlendirme / akran değerlendirmesi",
+          "example": {
+            "en": "The article was accepted after a rigorous peer review process.",
+            "tr": "Makale, titiz bir hakemli değerlendirme sürecinin ardından kabul edildi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3773,
+      "english": "evaluate",
+      "pronunciation": "ɪˈvæljueɪt",
+      "level": "MIXED",
+      "category": "Analysis",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "değerlendirmek",
+          "example": {
+            "en": "You must critically evaluate the sources you use.",
+            "tr": "Kullandığın kaynakları eleştirel bir şekilde değerlendirmelisin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3776,
+      "english": "paraphrase",
+      "pronunciation": "ˈpærəfreɪz",
+      "level": "MIXED",
+      "category": "Citation",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "başka kelimelerle ifade etmek / yeniden ifade etmek",
+          "example": {
+            "en": "You should paraphrase sources rather than copy them directly.",
+            "tr": "Kaynakları doğrudan kopyalamak yerine başka kelimelerle ifade etmelisin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3777,
+      "english": "literature review",
+      "pronunciation": "ˈlɪtərətʃə rɪˈvjuː",
+      "level": "MIXED",
+      "category": "Thesis",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "literatür taraması / alanyazın incelemesi",
+          "example": {
+            "en": "The literature review covers studies from the last twenty years.",
+            "tr": "Literatür taraması son yirmi yılın çalışmalarını kapsamaktadır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3778,
+      "english": "questionnaire",
+      "pronunciation": "ˌkwestʃəˈneə",
+      "level": "MIXED",
+      "category": "Research Methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "anket formu",
+          "example": {
+            "en": "Participants were asked to complete an online questionnaire.",
+            "tr": "Katılımcılardan çevrimiçi bir anket formunu doldurmaları istendi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3779,
+      "english": "cramming",
+      "pronunciation": "ˈkræmɪŋ",
+      "level": "MIXED",
+      "category": "Study Skills",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sınava son anda yoğun çalışma / ezber yapma",
+          "example": {
+            "en": "Cramming the night before rarely leads to good exam results.",
+            "tr": "Sınavdan önceki gece son anda yoğun çalışmak nadiren iyi sonuçlar verir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3780,
+      "english": "transcript",
+      "pronunciation": "ˈtrænskrɪpt",
+      "level": "MIXED",
+      "category": "University Life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "not dökümü / transkript",
+          "example": {
+            "en": "You must submit an official transcript with your application.",
+            "tr": "Başvurunuzla birlikte resmi not dökümü sunmanız gerekmektedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3781,
+      "english": "elective",
+      "pronunciation": "ɪˈlektɪv",
+      "level": "MIXED",
+      "category": "University Life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "seçmeli ders",
+          "example": {
+            "en": "Students must complete two electives from outside their major.",
+            "tr": "Öğrenciler, bölümleri dışından iki seçmeli ders tamamlamalıdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3782,
+      "english": "fallacy",
+      "pronunciation": "ˈfæləsi",
+      "level": "MIXED",
+      "category": "Critical Thinking",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "mantık yanılgısı / safsata",
+          "example": {
+            "en": "The professor identified a logical fallacy in the student's argument.",
+            "tr": "Profesör, öğrencinin argümanında bir mantık yanılgısı tespit etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3783,
+      "english": "validity",
+      "pronunciation": "vəˈlɪdɪti",
+      "level": "MIXED",
+      "category": "Critical Thinking",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "geçerlilik",
+          "example": {
+            "en": "The validity of the test results was questioned by reviewers.",
+            "tr": "Test sonuçlarının geçerliliği değerlendiriciler tarafından sorgulandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3784,
+      "english": "dormitory",
+      "pronunciation": "ˈdɔːmɪtri",
+      "level": "MIXED",
+      "category": "University Life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yurt / öğrenci yurdu",
+          "example": {
+            "en": "First-year students are required to live in the dormitory.",
+            "tr": "Birinci sınıf öğrencilerinin öğrenci yurdunda kalması zorunludur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3785,
+      "english": "midterm",
+      "pronunciation": "ˈmɪdtɜːm",
+      "level": "MIXED",
+      "category": "Exams",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "vize sınavı / dönem ortası sınavı",
+          "example": {
+            "en": "The midterm exam will cover chapters one through six.",
+            "tr": "Vize sınavı birinci ila altıncı bölümleri kapsayacaktır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3786,
+      "english": "visual aid",
+      "pronunciation": "ˈvɪʒuəl eɪd",
+      "level": "MIXED",
+      "category": "Academic Presentations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "görsel materyal / görsel yardımcı",
+          "example": {
+            "en": "She used a chart as a visual aid during her presentation.",
+            "tr": "Sunumu sırasında görsel materyal olarak bir grafik kullandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3791,
+      "english": "sample",
+      "pronunciation": "ˈsɑːmpəl",
+      "level": "MIXED",
+      "category": "Research Methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "örneklem",
+          "example": {
+            "en": "The study used a sample of two hundred university students.",
+            "tr": "Çalışmada iki yüz üniversite öğrencisinden oluşan bir örneklem kullanıldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3792,
+      "english": "variable",
+      "pronunciation": "ˈveəriəbəl",
+      "level": "MIXED",
+      "category": "Research Methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "değişken",
+          "example": {
+            "en": "Temperature was controlled as an independent variable in the experiment.",
+            "tr": "Sıcaklık, deneyde bağımsız bir değişken olarak kontrol edildi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3793,
+      "english": "findings",
+      "pronunciation": "ˈfaɪndɪŋz",
+      "level": "MIXED",
+      "category": "Thesis",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bulgular",
+          "example": {
+            "en": "The findings of the study support the original hypothesis.",
+            "tr": "Çalışmanın bulguları özgün hipotezi desteklemektedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3794,
+      "english": "argument",
+      "pronunciation": "ˈɑːɡjʊmənt",
+      "level": "MIXED",
+      "category": "Essay Writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "argüman",
+          "example": {
+            "en": "Her essay presented a compelling argument supported by strong evidence.",
+            "tr": "Makalesi, güçlü kanıtlarla desteklenen ikna edici bir argüman sundu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3795,
+      "english": "conclusion",
+      "pronunciation": "kənˈkluːʒən",
+      "level": "MIXED",
+      "category": "Essay Writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sonuç",
+          "example": {
+            "en": "The conclusion should briefly restate the main points of your essay.",
+            "tr": "Sonuç bölümü, makalenizin ana noktalarını kısaca yeniden belirtmelidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3796,
+      "english": "however",
+      "pronunciation": "haʊˈevə",
+      "level": "MIXED",
+      "category": "Essay Writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ancak / bununla birlikte",
+          "example": {
+            "en": "The results were promising; however, further research is needed.",
+            "tr": "Sonuçlar umut vericiydi; ancak daha fazla araştırmaya ihtiyaç vardır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3797,
+      "english": "moreover",
+      "pronunciation": "mɔːrˈoʊvər",
+      "level": "MIXED",
+      "category": "Essay Writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "üstelik / dahası",
+          "example": {
+            "en": "The study was thorough; moreover, it included a large sample size.",
+            "tr": "Çalışma kapsamlıydı; dahası, büyük bir örneklem büyüklüğü içeriyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3798,
+      "english": "assumption",
+      "pronunciation": "əˈsʌmpʃən",
+      "level": "MIXED",
+      "category": "Critical Thinking",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "varsayım",
+          "example": {
+            "en": "Critical thinkers always question the assumptions behind an argument.",
+            "tr": "Eleştirel düşünürler, bir argümanın arkasındaki varsayımları her zaman sorgular."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3800,
+      "english": "perspective",
+      "pronunciation": "pəˈspektɪv",
+      "level": "MIXED",
+      "category": "Critical Thinking",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bakış açısı",
+          "example": {
+            "en": "Consider this issue from a historical perspective.",
+            "tr": "Bu konuyu tarihsel bir bakış açısıyla değerlendirin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3802,
+      "english": "GPA",
+      "pronunciation": "dʒiː piː eɪ",
+      "level": "MIXED",
+      "category": "University Life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "not ortalaması (GPA)",
+          "example": {
+            "en": "She maintained a high GPA throughout her undergraduate degree.",
+            "tr": "Lisans eğitimi boyunca yüksek bir not ortalaması korudu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3805,
+      "english": "appendix",
+      "pronunciation": "əˈpendɪks",
+      "level": "MIXED",
+      "category": "Thesis",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ek",
+          "example": {
+            "en": "Raw data and survey forms were placed in the appendix of the thesis.",
+            "tr": "Ham veriler ve anket formları tezin ekine yerleştirildi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3806,
+      "english": "podium",
+      "pronunciation": "ˈpəʊdiəm",
+      "level": "MIXED",
+      "category": "Academic Presentations",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kürsü",
+          "example": {
+            "en": "The professor walked to the podium and began her lecture.",
+            "tr": "Profesör kürsüye yürüdü ve dersine başladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3808,
+      "english": "dean",
+      "pronunciation": "diːn",
+      "level": "MIXED",
+      "category": "University Life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dekan",
+          "example": {
+            "en": "Students submitted their appeals directly to the dean of the faculty.",
+            "tr": "Öğrenciler itirazlarını doğrudan fakülte dekanına iletti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3809,
+      "english": "retake",
+      "pronunciation": "ˈriːteɪk",
+      "level": "MIXED",
+      "category": "Exams",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yeniden sınava girmek",
+          "example": {
+            "en": "He failed the exam and had to retake it in September.",
+            "tr": "Sınavdan kaldı ve Eylül ayında yeniden sınava girmek zorunda kaldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3810,
+      "english": "outline",
+      "pronunciation": "ˈaʊtlaɪn",
+      "level": "MIXED",
+      "category": "Study Skills",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ana hatlarıyla belirtmek",
+          "example": {
+            "en": "Before writing, outline the main points of your essay.",
+            "tr": "Yazmadan önce makalenizin ana noktalarını ana hatlarıyla belirtin."
+          }
+        },
+        {
+          "turkish": "taslak",
+          "example": {
+            "en": "She created a detailed outline before starting her research paper.",
+            "tr": "Araştırma makalesine başlamadan önce ayrıntılı bir taslak oluşturdu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3811,
+      "english": "multiple choice",
+      "pronunciation": "ˈmʌltɪpəl tʃɔɪs",
+      "level": "MIXED",
+      "category": "Exams",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çoktan seçmeli",
+          "example": {
+            "en": "The final exam consisted of fifty multiple choice questions.",
+            "tr": "Final sınavı elli çoktan seçmeli sorudan oluşuyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3816,
+      "english": "grade",
+      "pronunciation": "ɡreɪd",
+      "level": "MIXED",
+      "category": "lectures",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "not",
+          "example": {
+            "en": "She received a high grade on her final essay.",
+            "tr": "Final makalesinden yüksek bir not aldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3818,
+      "english": "attendance",
+      "pronunciation": "əˈtendəns",
+      "level": "MIXED",
+      "category": "lectures",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "devam",
+          "example": {
+            "en": "Regular attendance is required to pass this course.",
+            "tr": "Bu dersi geçmek için düzenli devam zorunludur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3819,
+      "english": "experiment",
+      "pronunciation": "ɪkˈsperɪmənt",
+      "level": "MIXED",
+      "category": "research methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "deney",
+          "example": {
+            "en": "The team designed an experiment to test their hypothesis.",
+            "tr": "Ekip, hipotezlerini test etmek için bir deney tasarladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3820,
+      "english": "survey",
+      "pronunciation": "ˈsɜːveɪ",
+      "level": "MIXED",
+      "category": "research methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "anket",
+          "example": {
+            "en": "The study used a survey to collect data from five hundred students.",
+            "tr": "Çalışma, beş yüz öğrenciden veri toplamak için bir anket kullandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3821,
+      "english": "data",
+      "pronunciation": "ˈdeɪtə",
+      "level": "MIXED",
+      "category": "research methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "veri",
+          "example": {
+            "en": "The researchers analyzed the data collected over six months.",
+            "tr": "Araştırmacılar altı ay boyunca toplanan veriyi analiz etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3822,
+      "english": "reference",
+      "pronunciation": "ˈrefərəns",
+      "level": "MIXED",
+      "category": "citation",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kaynak",
+          "example": {
+            "en": "Every claim in the essay must be supported by a reference.",
+            "tr": "Makaledeki her iddia bir kaynakla desteklenmelidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3823,
+      "english": "footnote",
+      "pronunciation": "ˈfʊtnəʊt",
+      "level": "MIXED",
+      "category": "citation",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dipnot",
+          "example": {
+            "en": "The author clarified the term in a footnote at the bottom of the page.",
+            "tr": "Yazar, terimi sayfanın altındaki bir dipnotta açıkladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3824,
+      "english": "quote",
+      "pronunciation": "kwəʊt",
+      "level": "MIXED",
+      "category": "citation",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "alıntı yapmak",
+          "example": {
+            "en": "She chose to quote directly from the original source.",
+            "tr": "Doğrudan özgün kaynaktan alıntı yapmayı tercih etti."
+          }
+        },
+        {
+          "turkish": "alıntı",
+          "example": {
+            "en": "The opening quote set the tone for the entire essay.",
+            "tr": "Açılış alıntısı makalenin tamamının tonunu belirledi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3825,
+      "english": "analyze",
+      "pronunciation": "ˈænəlaɪz",
+      "level": "MIXED",
+      "category": "analysis",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "analiz etmek",
+          "example": {
+            "en": "Students were asked to analyze the poem's use of metaphor.",
+            "tr": "Öğrencilerden şiirdeki mecaz kullanımını analiz etmeleri istendi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3826,
+      "english": "compare",
+      "pronunciation": "kəmˈpeər",
+      "level": "MIXED",
+      "category": "analysis",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "karşılaştırmak",
+          "example": {
+            "en": "The essay asks you to compare two different economic systems.",
+            "tr": "Makale, iki farklı ekonomik sistemi karşılaştırmanızı istiyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3827,
+      "english": "contrast",
+      "pronunciation": "ˈkɒntrɑːst",
+      "level": "MIXED",
+      "category": "analysis",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zıtlık",
+          "example": {
+            "en": "There is a sharp contrast between the two authors' writing styles.",
+            "tr": "İki yazarın yazı üslubu arasında belirgin bir zıtlık vardır."
+          }
+        },
+        {
+          "turkish": "karşıtlığını ortaya koymak",
+          "example": {
+            "en": "The study contrasts urban and rural approaches to education.",
+            "tr": "Çalışma, eğitime yönelik kentsel ve kırsal yaklaşımların karşıtlığını ortaya koymaktadır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3828,
+      "english": "assess",
+      "pronunciation": "əˈses",
+      "level": "MIXED",
+      "category": "analysis",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "değerlendirmek",
+          "example": {
+            "en": "The examiner will assess your ability to construct a logical argument.",
+            "tr": "Sınav görevlisi, mantıklı bir argüman oluşturma yeteneğinizi değerlendirecektir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3829,
+      "english": "interpret",
+      "pronunciation": "ɪnˈtɜːprɪt",
+      "level": "MIXED",
+      "category": "analysis",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yorumlamak",
+          "example": {
+            "en": "Scholars continue to interpret this text in very different ways.",
+            "tr": "Akademisyenler bu metni çok farklı şekillerde yorumlamaya devam etmektedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3832,
+      "english": "reasoning",
+      "pronunciation": "ˈriːzənɪŋ",
+      "level": "MIXED",
+      "category": "critical thinking",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "akıl yürütme",
+          "example": {
+            "en": "Sound reasoning is essential when constructing an academic argument.",
+            "tr": "Akademik bir argüman oluştururken sağlam akıl yürütme esastır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3835,
+      "english": "major",
+      "pronunciation": "ˈmeɪdʒər",
+      "level": "MIXED",
+      "category": "university life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ana dal",
+          "example": {
+            "en": "He chose economics as his major in his first year.",
+            "tr": "Birinci sınıfta ana dalı olarak ekonomiyi seçti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3844,
+      "english": "campus",
+      "pronunciation": "ˈkæmpəs",
+      "level": "MIXED",
+      "category": "University Life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kampüs",
+          "example": {
+            "en": "The university campus has a library, cafeteria, and sports facilities.",
+            "tr": "Üniversite kampüsünde kütüphane, kafeterya ve spor tesisleri bulunmaktadır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3845,
+      "english": "faculty",
+      "pronunciation": "ˈfækəlti",
+      "level": "MIXED",
+      "category": "University Life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fakülte",
+          "example": {
+            "en": "She enrolled in the Faculty of Engineering at a top university.",
+            "tr": "Prestijli bir üniversitenin Mühendislik Fakültesi'ne kaydoldu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3846,
+      "english": "minor",
+      "pronunciation": "ˈmaɪnər",
+      "level": "MIXED",
+      "category": "University Life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yan dal",
+          "example": {
+            "en": "He chose economics as his minor alongside his psychology degree.",
+            "tr": "Psikoloji derecesinin yanı sıra yan dal olarak ekonomiyi seçti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3847,
+      "english": "categorize",
+      "pronunciation": "ˈkætɪɡəraɪz",
+      "level": "MIXED",
+      "category": "Analysis",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kategorilere ayırmak",
+          "example": {
+            "en": "The researcher categorized the responses into three distinct groups.",
+            "tr": "Araştırmacı yanıtları üç farklı gruba ayırdı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3848,
+      "english": "classify",
+      "pronunciation": "ˈklæsɪfaɪ",
+      "level": "MIXED",
+      "category": "Analysis",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sınıflandırmak",
+          "example": {
+            "en": "Students were asked to classify the data according to type.",
+            "tr": "Öğrencilerden verileri türüne göre sınıflandırmaları istendi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3849,
+      "english": "synthesize",
+      "pronunciation": "ˈsɪnθɪsaɪz",
+      "level": "MIXED",
+      "category": "Critical Thinking",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sentezlemek",
+          "example": {
+            "en": "A strong essay must synthesize ideas from multiple sources effectively.",
+            "tr": "Güçlü bir makale, farklı kaynaklardan gelen fikirleri etkin biçimde sentezlemelidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3850,
+      "english": "framework",
+      "pronunciation": "ˈfreɪmwɜːk",
+      "level": "MIXED",
+      "category": "Research Methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çerçeve",
+          "example": {
+            "en": "The study used a theoretical framework based on cognitive learning.",
+            "tr": "Çalışma, bilişsel öğrenmeye dayanan teorik bir çerçeve kullandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3854,
+      "english": "to summarize",
+      "pronunciation": "tə ˈsʌməraɪz",
+      "level": "MIXED",
+      "category": "Essay Writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "özetlemek gerekirse",
+          "example": {
+            "en": "To summarize, the study found a strong link between diet and mood.",
+            "tr": "Özetlemek gerekirse, çalışma diyet ile ruh hali arasında güçlü bir bağ buldu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3855,
+      "english": "consequently",
+      "pronunciation": "ˈkɒnsɪkwəntli",
+      "level": "MIXED",
+      "category": "Essay Writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sonuç olarak",
+          "example": {
+            "en": "The sample size was too small; consequently, the results were inconclusive.",
+            "tr": "Örneklem büyüklüğü çok küçüktü; sonuç olarak bulgular kesin değildi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3856,
+      "english": "evidence suggests",
+      "pronunciation": "ˈɛvɪdəns səˈdʒɛsts",
+      "level": "MIXED",
+      "category": "Academic Debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kanıtlar gösteriyor ki",
+          "example": {
+            "en": "Evidence suggests that sleep deprivation affects academic performance significantly.",
+            "tr": "Kanıtlar, uyku yoksunluğunun akademik performansı önemli ölçüde etkilediğini gösteriyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3857,
+      "english": "it can be argued",
+      "pronunciation": "ɪt kæn biː ˈɑːɡjuːd",
+      "level": "MIXED",
+      "category": "Academic Debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iddia edilebilir ki",
+          "example": {
+            "en": "It can be argued that traditional exams do not measure real ability.",
+            "tr": "Geleneksel sınavların gerçek yeteneği ölçmediği iddia edilebilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3858,
+      "english": "contrary to",
+      "pronunciation": "ˈkɒntrəri tuː",
+      "level": "MIXED",
+      "category": "Academic Debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "aksine",
+          "example": {
+            "en": "Contrary to popular belief, multitasking reduces overall productivity.",
+            "tr": "Yaygın kanının aksine, çoklu görev genel verimliliği düşürür."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3859,
+      "english": "according to",
+      "pronunciation": "əˈkɔːdɪŋ tuː",
+      "level": "MIXED",
+      "category": "Academic Debate",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "göre",
+          "example": {
+            "en": "According to recent studies, bilingual students perform better in problem-solving tasks.",
+            "tr": "Son çalışmalara göre, iki dilli öğrenciler problem çözme görevlerinde daha başarılıdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3860,
+      "english": "passing grade",
+      "pronunciation": "ˈpɑːsɪŋ ɡreɪd",
+      "level": "MIXED",
+      "category": "Exams",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "geçer not",
+          "example": {
+            "en": "Students must achieve a passing grade to continue to the next course.",
+            "tr": "Öğrencilerin bir sonraki derse geçebilmek için geçer not alması gerekmektedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3861,
+      "english": "flashcard",
+      "pronunciation": "ˈflæʃkɑːd",
+      "level": "MIXED",
+      "category": "Study Skills",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ezber kartı",
+          "example": {
+            "en": "She used flashcards to memorize key vocabulary before the exam.",
+            "tr": "Sınav öncesinde temel kelimeleri ezberlemek için ezber kartları kullandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3869,
+      "english": "final exam",
+      "pronunciation": "ˈfaɪnəl ɪɡˈzæm",
+      "level": "MIXED",
+      "category": "exams",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "final sınavı",
+          "example": {
+            "en": "The final exam will cover all topics from the entire semester.",
+            "tr": "Final sınavı tüm dönem boyunca işlenen konuları kapsayacaktır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3870,
+      "english": "curve",
+      "pronunciation": "kɜːv",
+      "level": "MIXED",
+      "category": "exams",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "not düzeltmesi",
+          "example": {
+            "en": "The professor applied a curve because the exam was too difficult.",
+            "tr": "Sınav çok zor olduğu için profesör not düzeltmesi uyguladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3871,
+      "english": "time limit",
+      "pronunciation": "taɪm ˈlɪmɪt",
+      "level": "MIXED",
+      "category": "exams",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "süre sınırı",
+          "example": {
+            "en": "There is a strict two-hour time limit for this examination.",
+            "tr": "Bu sınav için kesin bir iki saatlik süre sınırı vardır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3872,
+      "english": "essay question",
+      "pronunciation": "ˈɛseɪ ˈkwɛstʃən",
+      "level": "MIXED",
+      "category": "exams",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yazılı soru",
+          "example": {
+            "en": "The essay question required a detailed analysis of the topic.",
+            "tr": "Yazılı soru, konunun ayrıntılı bir analizini gerektiriyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3873,
+      "english": "highlight",
+      "pronunciation": "ˈhaɪlaɪt",
+      "level": "MIXED",
+      "category": "study skills",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "vurgulamak",
+          "example": {
+            "en": "She used a yellow marker to highlight key terms in her notes.",
+            "tr": "Notlarındaki anahtar terimleri vurgulamak için sarı bir işaretleyici kullandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3874,
+      "english": "underline",
+      "pronunciation": "ˌʌndəˈlaɪn",
+      "level": "MIXED",
+      "category": "study skills",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "altını çizmek",
+          "example": {
+            "en": "He tends to underline important sentences while reading textbooks.",
+            "tr": "Ders kitaplarını okurken önemli cümlelerin altını çizme eğilimindedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3875,
+      "english": "memorize",
+      "pronunciation": "ˈmɛməraɪz",
+      "level": "MIXED",
+      "category": "study skills",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ezberlemek",
+          "example": {
+            "en": "It is more effective to understand concepts than to memorize them.",
+            "tr": "Kavramları ezberlemekten çok anlamak daha etkilidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3877,
+      "english": "source",
+      "pronunciation": "sɔːs",
+      "level": "MIXED",
+      "category": "citation",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kaynak",
+          "example": {
+            "en": "Always cite the source when using information in your essay.",
+            "tr": "Makalenizde bilgi kullanırken her zaman kaynağı belirtin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3883,
+      "english": "discussion",
+      "pronunciation": "dɪˈskʌʃən",
+      "level": "MIXED",
+      "category": "thesis",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tartışma bölümü",
+          "example": {
+            "en": "The discussion section interprets the findings in relation to existing theory.",
+            "tr": "Tartışma bölümü, bulguları mevcut teoriye bağlı olarak yorumlar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3886,
+      "english": "notes",
+      "pronunciation": "nəʊts",
+      "level": "MIXED",
+      "category": "lectures",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ders notu",
+          "example": {
+            "en": "She reviewed her notes carefully before the midterm examination.",
+            "tr": "Vize sınavından önce ders notlarını dikkatlice gözden geçirdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3896,
+      "english": "citation",
+      "pronunciation": "saɪˈteɪʃən",
+      "level": "MIXED",
+      "category": "Citation",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "atıf",
+          "example": {
+            "en": "Every claim in the essay requires a proper citation.",
+            "tr": "Makaledeki her iddia uygun bir atıf gerektirmektedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3927,
+      "english": "critical thinking",
+      "pronunciation": "ˈkrɪtɪkəl ˈθɪŋkɪŋ",
+      "level": "MIXED",
+      "category": "Critical Thinking",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "eleştirel düşünme",
+          "example": {
+            "en": "University courses are designed to develop critical thinking skills.",
+            "tr": "Üniversite dersleri eleştirel düşünme becerilerini geliştirmek için tasarlanmıştır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3929,
+      "english": "word count",
+      "pronunciation": "wɜːd kaʊnt",
+      "level": "MIXED",
+      "category": "Essay Writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kelime sayısı",
+          "example": {
+            "en": "The essay must not exceed the required word count of 2000.",
+            "tr": "Makale 2000 kelimelik gerekli kelime sayısını aşmamalıdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3931,
+      "english": "prerequisite",
+      "pronunciation": "priːˈrɛkwɪzɪt",
+      "level": "MIXED",
+      "category": "University Life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ön koşul",
+          "example": {
+            "en": "Statistics is a prerequisite for this advanced research methods course.",
+            "tr": "İstatistik, bu ileri araştırma yöntemleri dersinin ön koşuludur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3932,
+      "english": "academic integrity",
+      "pronunciation": "ˌækəˈdɛmɪk ɪnˈtɛɡrɪti",
+      "level": "MIXED",
+      "category": "Academic Ethics",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "akademik dürüstlük",
+          "example": {
+            "en": "All students must uphold academic integrity in their work.",
+            "tr": "Tüm öğrenciler çalışmalarında akademik dürüstlüğü korumalıdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3933,
+      "english": "office hours",
+      "pronunciation": "ˈɒfɪs ˈaʊəz",
+      "level": "MIXED",
+      "category": "University Life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "danışma saatleri",
+          "example": {
+            "en": "You can visit the professor during office hours to ask questions.",
+            "tr": "Soru sormak için danışma saatlerinde profesörü ziyaret edebilirsiniz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3934,
+      "english": "annotate",
+      "pronunciation": "ˈænəteɪt",
+      "level": "MIXED",
+      "category": "Study Skills",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "not düşmek",
+          "example": {
+            "en": "It helps to annotate your textbook while reading.",
+            "tr": "Okurken ders kitabına not düşmek faydalıdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3935,
+      "english": "thesis statement",
+      "pronunciation": "ˈθiːsɪs ˈsteɪtmənt",
+      "level": "MIXED",
+      "category": "Essay Writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tez cümlesi",
+          "example": {
+            "en": "A strong thesis statement clearly expresses the essay's main argument.",
+            "tr": "Güçlü bir tez cümlesi, makalenin ana argümanını açıkça ifade eder."
+          }
+        }
+      ]
+    },
+    {
+      "id": 3936,
+      "english": "semester abroad",
+      "pronunciation": "sɪˈmɛstər əˈbrɔːd",
+      "level": "MIXED",
+      "category": "University Life",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yurt dışı dönemi",
+          "example": {
+            "en": "She chose to do a semester abroad in Barcelona to improve her Spanish.",
+            "tr": "İspanyolcasını geliştirmek için Barselona'da bir yurt dışı dönemi yapmayı seçti."
+          }
+        }
+      ]
+    }
+  ]
+}

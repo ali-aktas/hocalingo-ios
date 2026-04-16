@@ -286,8 +286,8 @@ struct PremiumPackageCard: View {
                     .stroke(cardBorderColor, lineWidth: cardBorderWidth)
             )
             .shadow(
-                color: isDarkMode ? Color.clear : Color(hex: package.colorHex).opacity(0.15),
-                radius: 8,
+                color: Color(hex: package.colorHex).opacity(isDarkMode ? 0.35 : 0.25),
+                radius: isDarkMode ? 12 : 8,
                 y: 4
             )
             .scaleEffect(isSelected ? 0.96 : 1.0)
@@ -298,35 +298,36 @@ struct PremiumPackageCard: View {
     // MARK: - Card Styling
     
     private var cardBackground: some View {
-        ZStack {
-            // Unified gold gradient for both locked and unlocked — consistent rich gold feel
-            RoundedRectangle(cornerRadius: 22)
-                .fill(
-                    LinearGradient(
-                        colors: [
-                            Color(hex: "D4A017"),  // Rich gold top
-                            Color(hex: "B8860B")   // Dark goldenrod bottom
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
+            ZStack {
+                // Base gradient using package's own color
+                RoundedRectangle(cornerRadius: 22)
+                    .fill(
+                        LinearGradient(
+                            colors: [
+                                Color(hex: package.colorHex),
+                                Color(hex: package.colorHex).opacity(0.7)
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
                     )
-                )
-            
-            // Subtle shimmer overlay for premium feel
-            RoundedRectangle(cornerRadius: 22)
-                .fill(
-                    LinearGradient(
-                        colors: [
-                            Color.white.opacity(0.15),
-                            Color.clear,
-                            Color.black.opacity(0.08)
-                        ],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
+                
+                // Metallic shimmer overlay
+                RoundedRectangle(cornerRadius: 22)
+                    .fill(
+                        LinearGradient(
+                            colors: [
+                                Color.white.opacity(0.25),
+                                Color.white.opacity(0.05),
+                                Color.clear,
+                                Color.black.opacity(0.12)
+                            ],
+                            startPoint: .topLeading,
+                            endPoint: .bottomTrailing
+                        )
                     )
-                )
+            }
         }
-    }
 
     private var cardBorderColor: Color {
         if isSelected {

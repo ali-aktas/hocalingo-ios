@@ -39,8 +39,8 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 "tab_home"           = "Ana Sayfa";
-"tab_study"          = "Çalış";
-"tab_ai"             = "Yapay Zeka";
+"tab_study"          = "Öğren";
+"tab_ai"             = "Okuma Yap";
 "tab_profile"        = "Profil";
 "ai_assistant_title" = "AI Asistan";
 
@@ -313,6 +313,9 @@
 "premium_package_idioms"   = "Günlük Deyimler";
 "premium_package_phrases"  = "Kalıplar & Edatlar";
 "premium_package_social"   = "Gündelik İfadeler";
+"premium_package_slang" = "İnternet Jargonu";
+"premium_package_food" = "Yemek & Mutfak";
+"premium_package_idioms" = "Deyimler & Kalıplar";
 
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -468,8 +471,8 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 // --- Ana Ekran ---
-"ai_story_title" = "AI Hikaye Asistanı";
-"ai_story_subtitle" = "Yapay zeka ile öğrendiğin kelimelerden hikayeler oluştur";
+"ai_story_title" = "Yapay Zeka Okuma Asistanı";
+"ai_story_subtitle" = "Yapay zeka ile öğrendiğin kelimelerden okuma parçaları oluştur";
 "ai_story_quota" = "Kalan Hak";
 "ai_story_quota_premium" = "Premium • Aylık";
 "ai_story_quota_free" = "Ücretsiz • Aylık";

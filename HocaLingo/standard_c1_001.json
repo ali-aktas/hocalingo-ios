@@ -1,0 +1,1821 @@
+{
+  "package_info": {
+    "id": "standard_c1_001",
+    "version": "2.0.0",
+    "level": "C1",
+    "language_pair": "en_tr",
+    "total_words": 100,
+    "updated_at": "2026-03-24",
+    "description": "C1 level English-Turkish vocabulary - Advanced proficiency",
+    "attribution": "HocaLingo vocabulary database"
+  },
+  "words": [
+    {
+      "id": 1711,
+      "english": "exacerbate",
+      "pronunciation": "ɪɡˈzæsəbeɪt",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kötüleştirmek",
+          "example": {
+            "en": "The new policy exacerbated tensions between the two groups.",
+            "tr": "Yeni politika iki grup arasındaki gerginliği kötüleştirdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1712,
+      "english": "circumvent",
+      "pronunciation": "ˌsɜːkəmˈvent",
+      "level": "C1",
+      "category": "professional jargon",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "atlatmak",
+          "example": {
+            "en": "Some companies try to circumvent tax regulations through offshore accounts.",
+            "tr": "Bazı şirketler vergi düzenlemelerini kıyı bankacılığı yoluyla atlatmaya çalışır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1713,
+      "english": "complacent",
+      "pronunciation": "kəmˈpleɪsənt",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "özünü beğenmiş",
+          "example": {
+            "en": "We cannot afford to become complacent about our environmental responsibilities.",
+            "tr": "Çevresel sorumluluklarımız konusunda özümüzü beğenmiş olamayız."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1714,
+      "english": "pervasive",
+      "pronunciation": "pəˈveɪsɪv",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yaygın",
+          "example": {
+            "en": "A pervasive sense of uncertainty affected the entire organisation.",
+            "tr": "Yaygın bir belirsizlik duygusu tüm organizasyonu etkiledi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1715,
+      "english": "elicit",
+      "pronunciation": "ɪˈlɪsɪt",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ortaya çıkarmak",
+          "example": {
+            "en": "The journalist's questions elicited a surprising confession from the minister.",
+            "tr": "Gazetecinin soruları bakandan şaşırtıcı bir itirafı ortaya çıkardı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1716,
+      "english": "ambiguous",
+      "pronunciation": "æmˈbɪɡjuəs",
+      "level": "C1",
+      "category": "subtle distinctions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "muğlak",
+          "example": {
+            "en": "The contract contained several ambiguous clauses that caused disputes later.",
+            "tr": "Sözleşme, daha sonra anlaşmazlıklara yol açan birkaç muğlak madde içeriyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1717,
+      "english": "delineate",
+      "pronunciation": "dɪˈlɪnieɪt",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "açıkça belirtmek",
+          "example": {
+            "en": "The report delineates the responsibilities of each department clearly.",
+            "tr": "Rapor, her departmanın sorumluluklarını açıkça belirtmektedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1718,
+      "english": "contentious",
+      "pronunciation": "kənˈtenʃəs",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tartışmalı",
+          "example": {
+            "en": "Immigration remains one of the most contentious issues in modern politics.",
+            "tr": "Göç, modern siyasette en tartışmalı konulardan biri olmaya devam etmektedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1719,
+      "english": "corroborate",
+      "pronunciation": "kəˈrɒbəreɪt",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "doğrulamak",
+          "example": {
+            "en": "New evidence corroborated the findings of the original study.",
+            "tr": "Yeni kanıtlar, orijinal çalışmanın bulgularını doğruladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1720,
+      "english": "mitigate",
+      "pronunciation": "ˈmɪtɪɡeɪt",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hafifletmek",
+          "example": {
+            "en": "The government introduced measures to mitigate the effects of the recession.",
+            "tr": "Hükümet, durgunluğun etkilerini hafifletmek için önlemler aldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1721,
+      "english": "imminent",
+      "pronunciation": "ˈɪmɪnənt",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yakın",
+          "example": {
+            "en": "Scientists warned that a major earthquake was imminent in the region.",
+            "tr": "Bilim insanları, bölgede büyük bir depremin yakın olduğunu uyardı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1722,
+      "english": "meticulous",
+      "pronunciation": "mɪˈtɪkjʊləs",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "titiz",
+          "example": {
+            "en": "She was meticulous in her preparation for the board presentation.",
+            "tr": "Yönetim kurulu sunumu için hazırlıklarında çok titizdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1723,
+      "english": "coerce",
+      "pronunciation": "kəʊˈɜːs",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zorlamak",
+          "example": {
+            "en": "No employee should be coerced into working unpaid overtime.",
+            "tr": "Hiçbir çalışan ücretsiz fazla mesai yapmaya zorlanmamalıdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1724,
+      "english": "tangential",
+      "pronunciation": "tænˈdʒenʃəl",
+      "level": "C1",
+      "category": "subtle distinctions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "konuyla dolaylı ilgili",
+          "example": {
+            "en": "His comments were interesting but tangential to the main argument.",
+            "tr": "Yorumları ilginçti ancak ana argümanla dolaylı ilgiliydi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1725,
+      "english": "proliferate",
+      "pronunciation": "prəˈlɪfəreɪt",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çoğalmak",
+          "example": {
+            "en": "Misinformation tends to proliferate rapidly on social media platforms.",
+            "tr": "Yanlış bilgiler, sosyal medya platformlarında hızla çoğalma eğilimindedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1726,
+      "english": "dichotomy",
+      "pronunciation": "daɪˈkɒtəmi",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ikilik",
+          "example": {
+            "en": "There is a clear dichotomy between theory and practice in this field.",
+            "tr": "Bu alanda teori ve pratik arasında belirgin bir ikilik vardır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1727,
+      "english": "alleviate",
+      "pronunciation": "əˈliːvieɪt",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gidermek",
+          "example": {
+            "en": "The new programme aims to alleviate poverty in rural communities.",
+            "tr": "Yeni program, kırsal topluluklarda yoksulluğu gidermeyi hedeflemektedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1728,
+      "english": "reticent",
+      "pronunciation": "ˈretɪsənt",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çekingen",
+          "example": {
+            "en": "She was reticent about sharing her personal experiences with the group.",
+            "tr": "Kişisel deneyimlerini grupla paylaşmak konusunda çekingendi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1729,
+      "english": "vindicate",
+      "pronunciation": "ˈvɪndɪkeɪt",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "haklılığını kanıtlamak",
+          "example": {
+            "en": "The investigation vindicated the scientist who had been wrongly accused.",
+            "tr": "Soruşturma, haksız yere suçlanan bilim insanının haklılığını kanıtladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1730,
+      "english": "overarching",
+      "pronunciation": "ˌəʊvərˈɑːtʃɪŋ",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kapsayıcı",
+          "example": {
+            "en": "The overarching goal of the project is to reduce carbon emissions.",
+            "tr": "Projenin kapsayıcı hedefi karbon emisyonlarını azaltmaktır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1731,
+      "english": "envisage",
+      "pronunciation": "ɪnˈvɪzɪdʒ",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "öngörmek",
+          "example": {
+            "en": "The architects envisage a building that blends into the landscape.",
+            "tr": "Mimarlar, peyzajla bütünleşen bir bina öngörmektedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1732,
+      "english": "irrefutable",
+      "pronunciation": "ɪˈrefjʊtəbl",
+      "level": "C1",
+      "category": "rhetoric",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çürütülemez",
+          "example": {
+            "en": "The prosecution presented irrefutable evidence against the defendant.",
+            "tr": "Savcılık sanığa karşı çürütülemez kanıtlar sundu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1733,
+      "english": "susceptible",
+      "pronunciation": "səˈseptɪbl",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "duyarlı",
+          "example": {
+            "en": "Elderly people are particularly susceptible to respiratory infections.",
+            "tr": "Yaşlı insanlar solunum yolu enfeksiyonlarına özellikle duyarlıdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1734,
+      "english": "undermine",
+      "pronunciation": "ˌʌndəˈmaɪn",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zayıflatmak",
+          "example": {
+            "en": "Constant criticism can undermine an employee's confidence significantly.",
+            "tr": "Sürekli eleştiri, bir çalışanın güvenini önemli ölçüde zayıflatabilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1735,
+      "english": "converge",
+      "pronunciation": "kənˈvɜːdʒ",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bir noktada buluşmak",
+          "example": {
+            "en": "The two research fields converge when examining human behaviour online.",
+            "tr": "İki araştırma alanı, çevrimiçi insan davranışını incelerken bir noktada buluşmaktadır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1736,
+      "english": "categorical",
+      "pronunciation": "ˌkætəˈɡɒrɪkl",
+      "level": "C1",
+      "category": "rhetoric",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kesin",
+          "example": {
+            "en": "The minister gave a categorical denial of any involvement in the scandal.",
+            "tr": "Bakan, skandala herhangi bir müdahil olduğuna dair kesin bir inkâr sundu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1737,
+      "english": "inherent",
+      "pronunciation": "ɪnˈhɪərənt",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "doğasında olan",
+          "example": {
+            "en": "There is an inherent risk in any financial investment strategy.",
+            "tr": "Her finansal yatırım stratejisinde doğasında olan bir risk vardır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1738,
+      "english": "stringent",
+      "pronunciation": "ˈstrɪndʒənt",
+      "level": "C1",
+      "category": "professional jargon",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "katı",
+          "example": {
+            "en": "The industry must comply with stringent safety regulations at all times.",
+            "tr": "Sektörün her zaman katı güvenlik yönetmeliklerine uyması gerekmektedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1739,
+      "english": "precarious",
+      "pronunciation": "prɪˈkeərɪəs",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "güvensiz",
+          "example": {
+            "en": "Many young workers find themselves in a precarious employment situation.",
+            "tr": "Pek çok genç işçi kendini güvensiz bir istihdam durumunda bulmaktadır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1740,
+      "english": "impartially",
+      "pronunciation": "ɪmˈpɑːʃəli",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tarafsız bir şekilde",
+          "example": {
+            "en": "The committee must evaluate all applications impartially and fairly.",
+            "tr": "Komite tüm başvuruları tarafsız bir şekilde değerlendirmelidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1741,
+      "english": "convoluted",
+      "pronunciation": "ˈkɒnvəluːtɪd",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "karmaşık",
+          "example": {
+            "en": "The legal process was so convoluted that few could understand it.",
+            "tr": "Hukuki süreç o kadar karmaşıktı ki çok az kişi anlayabildi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1742,
+      "english": "ostensibly",
+      "pronunciation": "ɒˈstensɪbli",
+      "level": "C1",
+      "category": "subtle distinctions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "görünürde",
+          "example": {
+            "en": "The meeting was ostensibly about budget cuts but had a hidden agenda.",
+            "tr": "Toplantı görünürde bütçe kesintileriyle ilgiliydi ama gizli bir gündem içeriyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1743,
+      "english": "impede",
+      "pronunciation": "ɪmˈpiːd",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "engellemek",
+          "example": {
+            "en": "Bureaucratic procedures can seriously impede scientific progress.",
+            "tr": "Bürokratik prosedürler bilimsel ilerlemeyi ciddi ölçüde engelleyebilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1744,
+      "english": "relentless",
+      "pronunciation": "rɪˈlentləs",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "amansız",
+          "example": {
+            "en": "Her relentless dedication to the cause inspired everyone around her.",
+            "tr": "Davaya olan amansız bağlılığı etrafındaki herkese ilham verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1745,
+      "english": "invoke",
+      "pronunciation": "ɪnˈvəʊk",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "başvurmak",
+          "example": {
+            "en": "The defendant's lawyer invoked the right to remain silent.",
+            "tr": "Sanığın avukatı susma hakkına başvurdu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1746,
+      "english": "infer",
+      "pronunciation": "ɪnˈfɜː",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çıkarım yapmak",
+          "example": {
+            "en": "From the data, we can infer that consumer spending is declining.",
+            "tr": "Verilerden, tüketici harcamalarının düştüğü çıkarımını yapabiliriz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1747,
+      "english": "fallacious",
+      "pronunciation": "fəˈleɪʃəs",
+      "level": "C1",
+      "category": "rhetoric",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yanıltıcı",
+          "example": {
+            "en": "His argument was based on a fallacious assumption about human nature.",
+            "tr": "Argümanı, insan doğasına dair yanıltıcı bir varsayıma dayanıyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1748,
+      "english": "tenacious",
+      "pronunciation": "tɪˈneɪʃəs",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "inatçı",
+          "example": {
+            "en": "Only a tenacious researcher would pursue such a difficult problem for years.",
+            "tr": "Yalnızca inatçı bir araştırmacı bu kadar zor bir problemi yıllarca takip eder."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1749,
+      "english": "substantiate",
+      "pronunciation": "səbˈstænʃieɪt",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kanıtlamak",
+          "example": {
+            "en": "The researcher failed to substantiate her claims with reliable data.",
+            "tr": "Araştırmacı iddialarını güvenilir verilerle kanıtlayamadı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1750,
+      "english": "detrimental",
+      "pronunciation": "ˌdetrɪˈmentl",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zararlı",
+          "example": {
+            "en": "Excessive screen time can be detrimental to children's cognitive development.",
+            "tr": "Aşırı ekran süresi, çocukların bilişsel gelişimi için zararlı olabilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1751,
+      "english": "cursory",
+      "pronunciation": "ˈkɜːsəri",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "üstünkörü",
+          "example": {
+            "en": "Even a cursory glance at the report reveals serious inconsistencies.",
+            "tr": "Rapora üstünkörü bir bakış bile ciddi tutarsızlıkları ortaya koymaktadır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1752,
+      "english": "insidious",
+      "pronunciation": "ɪnˈsɪdɪəs",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sinsi",
+          "example": {
+            "en": "Workplace discrimination often operates in an insidious and subtle manner.",
+            "tr": "İşyerinde ayrımcılık çoğunlukla sinsi ve ince bir şekilde işlemektedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1753,
+      "english": "reverberate",
+      "pronunciation": "rɪˈvɜːbəreɪt",
+      "level": "C1",
+      "category": "rhetoric",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yankılanmak",
+          "example": {
+            "en": "The consequences of that decision reverberated throughout the entire industry.",
+            "tr": "O kararın sonuçları tüm sektörde yankılandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1754,
+      "english": "pragmatism",
+      "pronunciation": "ˈpræɡmətɪzəm",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "pragmatizm",
+          "example": {
+            "en": "His approach to leadership was defined by pragmatism rather than ideology.",
+            "tr": "Liderlik yaklaşımı ideoloji yerine pragmatizmle şekilleniyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1755,
+      "english": "embody",
+      "pronunciation": "ɪmˈbɒdi",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "somutlaştırmak",
+          "example": {
+            "en": "The sculpture embodies the nation's spirit of resilience and hope.",
+            "tr": "Heykel, ulusun dayanıklılık ve umut ruhunu somutlaştırmaktadır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1756,
+      "english": "concise",
+      "pronunciation": "kənˈsaɪs",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "özlü",
+          "example": {
+            "en": "Academic writing should be concise and avoid unnecessary repetition.",
+            "tr": "Akademik yazım özlü olmalı ve gereksiz tekrarlardan kaçınmalıdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1757,
+      "english": "futile",
+      "pronunciation": "ˈfjuːtaɪl",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "beyhude",
+          "example": {
+            "en": "Any attempt to negotiate under these conditions would be futile.",
+            "tr": "Bu koşullar altında müzakere girişimi beyhude olacaktır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1758,
+      "english": "unprecedented",
+      "pronunciation": "ʌnˈpresɪdentɪd",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "benzeri görülmemiş",
+          "example": {
+            "en": "The pandemic caused unprecedented disruption to global supply chains.",
+            "tr": "Pandemi, küresel tedarik zincirlerinde benzeri görülmemiş bir aksaklığa yol açtı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1759,
+      "english": "astute",
+      "pronunciation": "əˈstjuːt",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zeki",
+          "example": {
+            "en": "An astute investor recognises opportunity even in times of crisis.",
+            "tr": "Zeki bir yatırımcı, kriz dönemlerinde bile fırsatı fark eder."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1760,
+      "english": "paradox",
+      "pronunciation": "ˈpærədɒks",
+      "level": "C1",
+      "category": "rhetoric",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "paradoks",
+          "example": {
+            "en": "It is a paradox that the richest nations produce the most waste.",
+            "tr": "En zengin ulusların en çok atık üretmesi bir paradokstur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1761,
+      "english": "ameliorate",
+      "pronunciation": "əˈmiːliəreɪt",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iyileştirmek",
+          "example": {
+            "en": "New policies aim to ameliorate living conditions in rural areas.",
+            "tr": "Yeni politikalar kırsal bölgelerdeki yaşam koşullarını iyileştirmeyi hedefliyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1762,
+      "english": "acrimony",
+      "pronunciation": "ˈækrɪməni",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sertlik",
+          "example": {
+            "en": "The negotiations ended with considerable acrimony between the two parties.",
+            "tr": "Müzakereler, iki taraf arasında ciddi bir sertlikle sona erdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1763,
+      "english": "admonish",
+      "pronunciation": "ədˈmɒnɪʃ",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "uyarmak",
+          "example": {
+            "en": "The judge admonished the witness for withholding crucial evidence.",
+            "tr": "Hâkim, tanığı önemli delilleri gizlemesi nedeniyle uyardı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1764,
+      "english": "axiom",
+      "pronunciation": "ˈæksiəm",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "aksiyom",
+          "example": {
+            "en": "It is an axiom in economics that resources are scarce.",
+            "tr": "Kaynakların kıt olduğu, ekonomide bir aksiyomdur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1765,
+      "english": "belligerent",
+      "pronunciation": "bəˈlɪdʒərənt",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "saldırgan",
+          "example": {
+            "en": "His belligerent tone made the meeting tense and unproductive.",
+            "tr": "Saldırgan tonu toplantıyı gergin ve verimsiz hale getirdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1766,
+      "english": "candour",
+      "pronunciation": "ˈkændə",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "açık sözlülük",
+          "example": {
+            "en": "She spoke with refreshing candour about the company's failures.",
+            "tr": "Şirketin başarısızlıkları hakkında taze bir açık sözlülükle konuştu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1767,
+      "english": "capricious",
+      "pronunciation": "kəˈprɪʃəs",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kaprisli",
+          "example": {
+            "en": "The capricious weather made it difficult to plan outdoor events.",
+            "tr": "Kaprisli hava, açık hava etkinlikleri planlamayı zorlaştırdı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1768,
+      "english": "catharsis",
+      "pronunciation": "kəˈθɑːsɪs",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "arınma",
+          "example": {
+            "en": "Writing in her journal provided a sense of catharsis after the trauma.",
+            "tr": "Günlüğüne yazmak, travmanın ardından bir arınma hissi sağladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1769,
+      "english": "clandestine",
+      "pronunciation": "klænˈdestɪn",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gizli",
+          "example": {
+            "en": "The activists held clandestine meetings to avoid government surveillance.",
+            "tr": "Aktivistler, hükümet gözetiminden kaçınmak için gizli toplantılar yaptı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1770,
+      "english": "cogent",
+      "pronunciation": "ˈkəʊdʒənt",
+      "level": "C1",
+      "category": "rhetoric",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ikna edici",
+          "example": {
+            "en": "She presented a cogent argument that swayed the entire committee.",
+            "tr": "Tüm komiteyi etkileyen ikna edici bir argüman sundu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1771,
+      "english": "collateral",
+      "pronunciation": "kəˈlætərəl",
+      "level": "C1",
+      "category": "professional jargon",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "teminat",
+          "example": {
+            "en": "The bank required collateral before approving the business loan.",
+            "tr": "Banka, iş kredisini onaylamadan önce teminat talep etti."
+          }
+        },
+        {
+          "turkish": "yan etki",
+          "example": {
+            "en": "Civilian casualties were described as collateral damage in the report.",
+            "tr": "Sivil kayıplar raporda yan etki olarak nitelendirildi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1772,
+      "english": "commensurate",
+      "pronunciation": "kəˈmenʃərət",
+      "level": "C1",
+      "category": "professional jargon",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "orantılı",
+          "example": {
+            "en": "The salary should be commensurate with the candidate's experience.",
+            "tr": "Maaş, adayın deneyimiyle orantılı olmalıdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1773,
+      "english": "compel",
+      "pronunciation": "kəmˈpel",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zorlamak",
+          "example": {
+            "en": "The new evidence compelled the court to reopen the case.",
+            "tr": "Yeni kanıtlar mahkemeyi davayı yeniden açmaya zorladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1774,
+      "english": "condescending",
+      "pronunciation": "ˌkɒndɪˈsendɪŋ",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "küçümseyici",
+          "example": {
+            "en": "His condescending remarks upset the junior members of the team.",
+            "tr": "Küçümseyici açıklamaları ekibin genç üyelerini rahatsız etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1775,
+      "english": "confound",
+      "pronunciation": "kənˈfaʊnd",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "şaşırtmak",
+          "example": {
+            "en": "The unexpected results confounded researchers who expected a clear pattern.",
+            "tr": "Beklenmedik sonuçlar, net bir örüntü bekleyen araştırmacıları şaşırttı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1776,
+      "english": "conjecture",
+      "pronunciation": "kənˈdʒektʃə",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "spekülasyon",
+          "example": {
+            "en": "Without solid data, the analyst's claims remained pure conjecture.",
+            "tr": "Sağlam veri olmadan, analistin iddiaları saf spekülasyon olarak kaldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1777,
+      "english": "connotation",
+      "pronunciation": "ˌkɒnəˈteɪʃən",
+      "level": "C1",
+      "category": "rhetoric",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çağrışım",
+          "example": {
+            "en": "The word 'home' carries positive connotations of warmth and security.",
+            "tr": "'Ev' kelimesi sıcaklık ve güvenlik gibi olumlu çağrışımlar taşır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1778,
+      "english": "consolidate",
+      "pronunciation": "kənˈsɒlɪdeɪt",
+      "level": "C1",
+      "category": "professional jargon",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "pekiştirmek",
+          "example": {
+            "en": "The merger helped consolidate their position in the global market.",
+            "tr": "Birleşme, küresel pazardaki konumlarını pekiştirmelerine yardımcı oldu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1779,
+      "english": "contemplative",
+      "pronunciation": "kənˈtemplətɪv",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "derin düşünceli",
+          "example": {
+            "en": "She was in a contemplative mood, staring silently out the window.",
+            "tr": "Sessizce pencereden dışarı bakarken derin düşünceli bir ruh halindeydi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1780,
+      "english": "credibility",
+      "pronunciation": "ˌkredɪˈbɪlɪti",
+      "level": "C1",
+      "category": "rhetoric",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "güvenilirlik",
+          "example": {
+            "en": "The scandal severely damaged the politician's credibility with voters.",
+            "tr": "Skandal, politikacının seçmenler nezdindeki güvenilirliğine ciddi zarar verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1781,
+      "english": "daunting",
+      "pronunciation": "ˈdɔːntɪŋ",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yıldırıcı",
+          "example": {
+            "en": "The scale of the project was daunting, but the team remained determined.",
+            "tr": "Projenin boyutu yıldırıcıydı, ancak ekip kararlılığını korudu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1782,
+      "english": "debilitate",
+      "pronunciation": "dɪˈbɪlɪteɪt",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "güçsüz bırakmak",
+          "example": {
+            "en": "Prolonged stress can debilitate both the mind and the body.",
+            "tr": "Uzun süreli stres hem zihni hem de bedeni güçsüz bırakabilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1783,
+      "english": "decorum",
+      "pronunciation": "dɪˈkɔːrəm",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "nezaket kuralları",
+          "example": {
+            "en": "Delegates were expected to observe decorum throughout the ceremony.",
+            "tr": "Delegelerin tören boyunca nezaket kurallarına uymaları bekleniyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1784,
+      "english": "deferential",
+      "pronunciation": "ˌdefəˈrenʃəl",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "saygılı",
+          "example": {
+            "en": "The intern was deferential toward senior colleagues at all times.",
+            "tr": "Stajyer, kıdemli meslektaşlarına her zaman saygılı davrandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1785,
+      "english": "denigrate",
+      "pronunciation": "ˈdenɪɡreɪt",
+      "level": "C1",
+      "category": "rhetoric",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "aşağılamak",
+          "example": {
+            "en": "It is unprofessional to denigrate competitors in a business presentation.",
+            "tr": "İş sunumlarında rakipleri aşağılamak profesyonelce değildir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1786,
+      "english": "denote",
+      "pronunciation": "dɪˈnəʊt",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ifade etmek",
+          "example": {
+            "en": "The symbol asterisk denotes a footnote in academic texts.",
+            "tr": "Yıldız sembolü akademik metinlerde dipnotu ifade eder."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1787,
+      "english": "deplete",
+      "pronunciation": "dɪˈpliːt",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tüketmek",
+          "example": {
+            "en": "Intensive farming can deplete the soil of essential nutrients.",
+            "tr": "Yoğun tarım toprağı temel besinlerden tüketebilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1788,
+      "english": "despondent",
+      "pronunciation": "dɪˈspɒndənt",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "umutsuz",
+          "example": {
+            "en": "After repeated rejections, she felt despondent about her career prospects.",
+            "tr": "Tekrarlanan reddedilmelerin ardından kariyerine dair umudunu yitirdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1789,
+      "english": "dialectical",
+      "pronunciation": "ˌdaɪəˈlektɪkəl",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "diyalektik",
+          "example": {
+            "en": "The philosopher employed a dialectical approach to resolve the contradiction.",
+            "tr": "Filozof, çelişkiyi çözmek için diyalektik bir yaklaşım benimsedi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1790,
+      "english": "diligence",
+      "pronunciation": "ˈdɪlɪdʒəns",
+      "level": "C1",
+      "category": "professional jargon",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "özen",
+          "example": {
+            "en": "Due diligence is essential before signing any major business contract.",
+            "tr": "Önemli bir iş sözleşmesi imzalamadan önce gerekli özen şarttır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1791,
+      "english": "disseminate",
+      "pronunciation": "dɪˈsemɪneɪt",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yaymak",
+          "example": {
+            "en": "Academic journals exist to disseminate research findings widely.",
+            "tr": "Akademik dergiler araştırma bulgularını yaygın biçimde yaymak için vardır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1792,
+      "english": "diverge",
+      "pronunciation": "daɪˈvɜːdʒ",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ayrılmak",
+          "example": {
+            "en": "The two theories diverge significantly on the question of causality.",
+            "tr": "İki teori nedensellik meselesinde önemli ölçüde ayrılmaktadır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1793,
+      "english": "dogmatic",
+      "pronunciation": "dɒɡˈmætɪk",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dogmatik",
+          "example": {
+            "en": "A dogmatic approach leaves little room for creative problem-solving.",
+            "tr": "Dogmatik bir yaklaşım, yaratıcı problem çözme için çok az alan bırakır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1794,
+      "english": "elucidate",
+      "pronunciation": "ɪˈluːsɪdeɪt",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "açıklamak",
+          "example": {
+            "en": "The professor used diagrams to elucidate a complex theoretical concept.",
+            "tr": "Profesör, karmaşık teorik bir kavramı açıklamak için diyagramlar kullandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1795,
+      "english": "emulate",
+      "pronunciation": "ˈemjʊleɪt",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "örnek almak",
+          "example": {
+            "en": "Young entrepreneurs often try to emulate the strategies of successful leaders.",
+            "tr": "Genç girişimciler çoğunlukla başarılı liderlerin stratejilerini örnek almaya çalışır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1796,
+      "english": "ephemeral",
+      "pronunciation": "ɪˈfemərəl",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "geçici",
+          "example": {
+            "en": "Fame in the digital age can be ephemeral, fading within days.",
+            "tr": "Dijital çağda şöhret, günler içinde sönerek geçici olabilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1797,
+      "english": "epitomise",
+      "pronunciation": "ɪˈpɪtəmaɪz",
+      "level": "C1",
+      "category": "rhetoric",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "simgelemek",
+          "example": {
+            "en": "Her career epitomises the struggle of women in male-dominated industries.",
+            "tr": "Kariyeri, erkek egemen sektörlerdeki kadınların mücadelesini simgelemektedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1798,
+      "english": "equivocal",
+      "pronunciation": "ɪˈkwɪvəkəl",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "muğlak",
+          "example": {
+            "en": "The spokesperson gave an equivocal answer that satisfied no one.",
+            "tr": "Sözcü, kimseyi tatmin etmeyen muğlak bir yanıt verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1799,
+      "english": "eradicate",
+      "pronunciation": "ɪˈrædɪkeɪt",
+      "level": "C1",
+      "category": "academic",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kökünü kazımak",
+          "example": {
+            "en": "Global efforts to eradicate polio have largely been successful.",
+            "tr": "Poliomyeliti kökünden kazımaya yönelik küresel çabalar büyük ölçüde başarılı olmuştur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1800,
+      "english": "espouse",
+      "pronunciation": "ɪˈspaʊz",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "benimsemek",
+          "example": {
+            "en": "The party began to espouse more progressive environmental policies.",
+            "tr": "Parti daha ilerici çevre politikalarını benimsemeye başladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1801,
+      "english": "evasive",
+      "pronunciation": "ɪˈveɪsɪv",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kaçamaklı",
+          "example": {
+            "en": "The minister's evasive responses frustrated journalists at the press conference.",
+            "tr": "Bakanın kaçamaklı yanıtları basın toplantısındaki gazetecileri hayal kırıklığına uğrattı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1803,
+      "english": "expedient",
+      "pronunciation": "ɪkˈspiːdiənt",
+      "level": "C1",
+      "category": "professional jargon",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "elverişli",
+          "example": {
+            "en": "It may be expedient to delay the announcement until after the election.",
+            "tr": "Duyuruyu seçimden sonrasına ertelemek elverişli olabilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1804,
+      "english": "fervent",
+      "pronunciation": "ˈfɜːvənt",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ateşli",
+          "example": {
+            "en": "She was a fervent supporter of equal rights for all citizens.",
+            "tr": "Tüm vatandaşların eşit hakları için ateşli bir destekçiydi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1805,
+      "english": "flounder",
+      "pronunciation": "ˈflaʊndə",
+      "level": "C1",
+      "category": "advanced idioms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bocalamak",
+          "example": {
+            "en": "Without clear leadership, the project began to flounder badly.",
+            "tr": "Net bir liderlik olmadan proje ciddi biçimde bocalamaya başladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1806,
+      "english": "foreseeable",
+      "pronunciation": "fɔːˈsiːəbəl",
+      "level": "C1",
+      "category": "professional jargon",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "öngörülebilir",
+          "example": {
+            "en": "Remote working is likely to remain common for the foreseeable future.",
+            "tr": "Uzaktan çalışmanın öngörülebilir gelecekte yaygın kalması muhtemeldir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1807,
+      "english": "fraught",
+      "pronunciation": "frɔːt",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dolu",
+          "example": {
+            "en": "The peace negotiations were fraught with tension and mutual distrust.",
+            "tr": "Barış müzakereleri gerilim ve karşılıklı güvensizlikle doluydu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1808,
+      "english": "frugal",
+      "pronunciation": "ˈfruːɡəl",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tutumlu",
+          "example": {
+            "en": "Living a frugal lifestyle helped him save enough to retire early.",
+            "tr": "Tutumlu bir yaşam sürmesi ona erken emekli olmak için yeterince tasarruf etmeye yardımcı oldu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1809,
+      "english": "grandiose",
+      "pronunciation": "ˈɡrændiəʊs",
+      "level": "C1",
+      "category": "nuanced adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "görkemli",
+          "example": {
+            "en": "His grandiose plans for the company lacked any practical foundation.",
+            "tr": "Şirket için yaptığı görkemli planların hiçbir pratik temeli yoktu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1810,
+      "english": "hamper",
+      "pronunciation": "ˈhæmpə",
+      "level": "C1",
+      "category": "formal writing",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "engellemek",
+          "example": {
+            "en": "Bureaucratic procedures hampered the distribution of aid to victims.",
+            "tr": "Bürokratik prosedürler, mağdurlara yardım dağıtımını engelledi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1811,
+      "english": "hubris",
+      "pronunciation": "ˈhjuːbrɪs",
+      "level": "C1",
+      "category": "rhetoric",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kibir, aşırı özgüven",
+          "example": {
+            "en": "His hubris led him to underestimate his rivals, and he ultimately failed.",
+            "tr": "Kibri, rakiplerini küçümsemesine yol açtı ve sonunda başarısız oldu."
+          }
+        }
+      ]
+    }
+  ]
+}

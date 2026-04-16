@@ -1,0 +1,1814 @@
+{
+  "package_info": {
+    "id": "standard_c2_001",
+    "version": "2.0.0",
+    "level": "C2",
+    "language_pair": "en_tr",
+    "total_words": 100,
+    "updated_at": "2026-03-24",
+    "description": "C2 level English-Turkish vocabulary - Mastery level",
+    "attribution": "HocaLingo vocabulary database"
+  },
+  "words": [
+    {
+      "id": 1812,
+      "english": "abstruse",
+      "pronunciation": "æbˈstruːs",
+      "level": "C2",
+      "category": "rare but useful",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "anlaşılması güç",
+          "example": {
+            "en": "The professor's abstruse arguments confused even his colleagues.",
+            "tr": "Profesörün anlaşılması güç argümanları meslektaşlarını bile şaşırttı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1813,
+      "english": "acquiesce",
+      "pronunciation": "ˌækwiˈɛs",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "razı olmak",
+          "example": {
+            "en": "She acquiesced to their demands without raising any objection.",
+            "tr": "Hiçbir itirazda bulunmadan onların taleplerine razı oldu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1814,
+      "english": "adumbrate",
+      "pronunciation": "ˈædʌmbreɪt",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ana hatlarıyla belirtmek",
+          "example": {
+            "en": "The minister adumbrated the new policy without revealing full details.",
+            "tr": "Bakan tüm ayrıntıları açıklamadan yeni politikayı ana hatlarıyla belirtti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1815,
+      "english": "aegis",
+      "pronunciation": "ˈiːdʒɪs",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "himaye",
+          "example": {
+            "en": "The project was carried out under the aegis of the United Nations.",
+            "tr": "Proje, Birleşmiş Milletler'in himayesinde yürütüldü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1816,
+      "english": "aggrandise",
+      "pronunciation": "əˈɡrændaɪz",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "büyütmek",
+          "example": {
+            "en": "He used every opportunity to aggrandise his own reputation.",
+            "tr": "Kendi itibarını büyütmek için her fırsatı kullandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1817,
+      "english": "anathema",
+      "pronunciation": "əˈnæθɪmə",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "nefret edilen şey",
+          "example": {
+            "en": "Compromise was anathema to the ideological purists in the party.",
+            "tr": "Uzlaşmak, partideki ideolojik katılar için nefret edilen bir şeydi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1818,
+      "english": "ancillary",
+      "pronunciation": "ænˈsɪləri",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yardımcı",
+          "example": {
+            "en": "The ancillary staff played a vital role in the hospital's daily operations.",
+            "tr": "Yardımcı personel hastanenin günlük işleyişinde hayati bir rol oynadı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1819,
+      "english": "antediluvian",
+      "pronunciation": "ˌæntiːdɪˈluːviən",
+      "level": "C2",
+      "category": "archaic-but-alive",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "modası geçmiş",
+          "example": {
+            "en": "His antediluvian views on gender roles shocked the younger generation.",
+            "tr": "Toplumsal cinsiyet rolleri hakkındaki modası geçmiş görüşleri genç nesli şoke etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1820,
+      "english": "apostasy",
+      "pronunciation": "əˈpɒstəsi",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dinden dönme",
+          "example": {
+            "en": "Apostasy was historically punishable by death in many societies.",
+            "tr": "Tarihsel olarak birçok toplumda dinden dönme ölümle cezalandırılırdı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1821,
+      "english": "approbation",
+      "pronunciation": "ˌæprəˈbeɪʃən",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "onay",
+          "example": {
+            "en": "The artist sought the approbation of critics more than public fame.",
+            "tr": "Sanatçı, kamuya tanınmaktan çok eleştirmenlerin onayını arıyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1822,
+      "english": "arcane",
+      "pronunciation": "ɑːˈkeɪn",
+      "level": "C2",
+      "category": "rare but useful",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "esrarengiz",
+          "example": {
+            "en": "The manuscript was written in arcane symbols no one could decipher.",
+            "tr": "El yazması, kimsenin çözemediği esrarengiz sembollerle yazılmıştı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1823,
+      "english": "assiduous",
+      "pronunciation": "əˈsɪdjuəs",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gayretli",
+          "example": {
+            "en": "She was assiduous in her research, leaving no source unchecked.",
+            "tr": "Araştırmasında son derece gayretliydi; hiçbir kaynağı gözden kaçırmadı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1824,
+      "english": "atavistic",
+      "pronunciation": "ˌætəˈvɪstɪk",
+      "level": "C2",
+      "category": "rare but useful",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "atavistik",
+          "example": {
+            "en": "He felt an atavistic urge to protect his family against all threats.",
+            "tr": "Ailesini her türlü tehdide karşı korumak için atavistik bir dürtü hissetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1825,
+      "english": "attenuate",
+      "pronunciation": "əˈtɛnjueɪt",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zayıflatmak",
+          "example": {
+            "en": "The treaty aimed to attenuate the tensions between the two nations.",
+            "tr": "Antlaşma, iki ülke arasındaki gerginlikleri zayıflatmayı amaçlıyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1826,
+      "english": "avaricious",
+      "pronunciation": "ˌævəˈrɪʃəs",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "açgözlü",
+          "example": {
+            "en": "The avaricious landlord raised rents without any justification.",
+            "tr": "Açgözlü ev sahibi herhangi bir gerekçe olmaksızın kiraları artırdı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1827,
+      "english": "banal",
+      "pronunciation": "bəˈnɑːl",
+      "level": "C2",
+      "category": "colloquial mastery",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sıradan",
+          "example": {
+            "en": "His speech was so banal that the audience lost interest within minutes.",
+            "tr": "Konuşması o kadar sıradandı ki dinleyiciler birkaç dakika içinde ilgisini yitirdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1828,
+      "english": "baroque",
+      "pronunciation": "bəˈrɒk",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "aşırı süslü",
+          "example": {
+            "en": "The novel's baroque prose style made it difficult to follow.",
+            "tr": "Romanın aşırı süslü nesir üslubu onu takip etmeyi zorlaştırdı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1829,
+      "english": "bifurcate",
+      "pronunciation": "ˈbaɪfəkeɪt",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ikiye ayrılmak",
+          "example": {
+            "en": "The river bifurcates just before reaching the delta.",
+            "tr": "Nehir, deltaya ulaşmadan hemen önce ikiye ayrılır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1830,
+      "english": "blithe",
+      "pronunciation": "blaɪð",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kaygısız",
+          "example": {
+            "en": "She made a blithe remark about the crisis, as if it didn't concern her.",
+            "tr": "Sanki onu ilgilendirmiyormuş gibi kriz hakkında kaygısız bir yorum yaptı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1831,
+      "english": "bowdlerise",
+      "pronunciation": "ˈbaʊdləraɪz",
+      "level": "C2",
+      "category": "archaic-but-alive",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sansürlemek",
+          "example": {
+            "en": "The publisher chose to bowdlerise the novel's more explicit passages.",
+            "tr": "Yayıncı, romanın daha açık saçık pasajlarını sansürlemeyi tercih etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1832,
+      "english": "byzantine",
+      "pronunciation": "bɪˈzæntaɪn",
+      "level": "C2",
+      "category": "colloquial mastery",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "aşırı karmaşık",
+          "example": {
+            "en": "The byzantine regulations made it impossible to open a business quickly.",
+            "tr": "Aşırı karmaşık yönetmelikler, hızlıca iş kurulmasını imkânsız kılıyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1833,
+      "english": "cacophony",
+      "pronunciation": "kəˈkɒfəni",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gürültü patırtı",
+          "example": {
+            "en": "The market was filled with a cacophony of vendors shouting and horns blaring.",
+            "tr": "Pazar, satıcıların bağırışları ve korna seslerinin gürültü patırtısıyla doluydu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1834,
+      "english": "calumny",
+      "pronunciation": "ˈkæləmni",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iftira",
+          "example": {
+            "en": "The politician sued the newspaper for spreading calumny about his past.",
+            "tr": "Politikacı, gazetenin geçmişi hakkında iftira yaydığı için dava açtı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1835,
+      "english": "chicanery",
+      "pronunciation": "ʃɪˈkeɪnəri",
+      "level": "C2",
+      "category": "rare but useful",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hile",
+          "example": {
+            "en": "The deal was full of chicanery designed to deceive the investors.",
+            "tr": "Anlaşma, yatırımcıları aldatmak için tasarlanmış hilelerle doluydu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1836,
+      "english": "clemency",
+      "pronunciation": "ˈklɛmənsi",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "merhamet",
+          "example": {
+            "en": "The condemned prisoner appealed to the governor for clemency.",
+            "tr": "Mahkûm edilen mahkum, validen merhamet diledi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1837,
+      "english": "conflate",
+      "pronunciation": "kənˈfleɪt",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "birbirine karıştırmak",
+          "example": {
+            "en": "People often conflate nationality with ethnicity, which causes confusion.",
+            "tr": "İnsanlar çoğu zaman milliyeti etnik kimlikle birbirine karıştırır; bu da kafa karışıklığına yol açar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1838,
+      "english": "contrite",
+      "pronunciation": "ˈkɒntraɪt",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "pişman",
+          "example": {
+            "en": "He appeared genuinely contrite after his outburst at the meeting.",
+            "tr": "Toplantıdaki öfke patlamasının ardından gerçekten pişman görünüyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1839,
+      "english": "convivial",
+      "pronunciation": "kənˈvɪviəl",
+      "level": "C2",
+      "category": "colloquial mastery",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "cana yakın",
+          "example": {
+            "en": "The convivial host made every guest feel immediately at ease.",
+            "tr": "Cana yakın ev sahibi her misafirin hemen rahat hissetmesini sağladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1840,
+      "english": "cupidity",
+      "pronunciation": "kjuːˈpɪdɪti",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "açgözlülük",
+          "example": {
+            "en": "His cupidity led him to betray his closest allies for financial gain.",
+            "tr": "Açgözlülüğü, mali kazanç için en yakın müttefiklerine ihanet etmesine yol açtı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1841,
+      "english": "demagogue",
+      "pronunciation": "ˈdɛməɡɒɡ",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "demagog",
+          "example": {
+            "en": "The demagogue exploited public fears to consolidate his political power.",
+            "tr": "Demagog, siyasi gücünü pekiştirmek için halkın korkularını istismar etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1842,
+      "english": "denouement",
+      "pronunciation": "deɪˈnuːmɒ̃",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çözüm",
+          "example": {
+            "en": "The denouement of the play left the audience in stunned silence.",
+            "tr": "Oyunun çözümü seyircileri şaşkın bir sessizliğe bıraktı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1843,
+      "english": "desultory",
+      "pronunciation": "ˈdɛsəltəri",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dağınık",
+          "example": {
+            "en": "They exchanged desultory remarks without any real engagement.",
+            "tr": "Gerçek bir etkileşim olmaksızın dağınık yorumlar paylaştılar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1844,
+      "english": "diatribe",
+      "pronunciation": "ˈdaɪətraɪb",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sert eleştiri",
+          "example": {
+            "en": "His op-ed was little more than a diatribe against the opposition party.",
+            "tr": "Köşe yazısı, muhalefet partisine yönelik sert bir eleştiriden öteye geçmiyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1845,
+      "english": "disabuse",
+      "pronunciation": "ˌdɪsəˈbjuːz",
+      "level": "C2",
+      "category": "rare but useful",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yanlış fikirden vazgeçirmek",
+          "example": {
+            "en": "Allow me to disabuse you of the notion that this plan is foolproof.",
+            "tr": "Bu planın kusursuz olduğu düşüncesinden sizi vazgeçireyim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1846,
+      "english": "dissemble",
+      "pronunciation": "dɪˈsɛmbəl",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gizlemek",
+          "example": {
+            "en": "She tried to dissemble her disappointment behind a polite smile.",
+            "tr": "Hayal kırıklığını kibar bir gülümsemenin arkasında gizlemeye çalıştı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1847,
+      "english": "dissipate",
+      "pronunciation": "ˈdɪsɪpeɪt",
+      "level": "C2",
+      "category": "rare but useful",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dağılmak",
+          "example": {
+            "en": "Her anxiety began to dissipate as the results came in favourably.",
+            "tr": "Sonuçlar olumlu gelmeye başlayınca kaygısı dağılmaya başladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1848,
+      "english": "ebullient",
+      "pronunciation": "ɪˈbʊliənt",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "coşkulu",
+          "example": {
+            "en": "The ebullient crowd celebrated the victory long into the night.",
+            "tr": "Coşkulu kalabalık zaferi gecenin ilerleyen saatlerine kadar kutladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1849,
+      "english": "effrontery",
+      "pronunciation": "ɪˈfrʌntəri",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yüzsüzlük",
+          "example": {
+            "en": "He had the effrontery to demand an apology after his own misconduct.",
+            "tr": "Kendi yanlış davranışının ardından özür talep edecek kadar yüzsüzlük etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1850,
+      "english": "egregious",
+      "pronunciation": "ɪˈɡriːdʒəs",
+      "level": "C2",
+      "category": "rare but useful",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "rezil",
+          "example": {
+            "en": "The judge condemned the egregious abuse of power by the officials.",
+            "tr": "Hâkim, yetkililerin rezil güç istismarını kınadı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1851,
+      "english": "enervate",
+      "pronunciation": "ˈɛnəveɪt",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "güçten düşürmek",
+          "example": {
+            "en": "Years of bureaucratic obstruction enervated the reform movement.",
+            "tr": "Yıllarca süren bürokratik engeller reform hareketini güçten düşürdü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1852,
+      "english": "equanimity",
+      "pronunciation": "ˌɛkwəˈnɪmɪti",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ruhsal denge",
+          "example": {
+            "en": "She faced the devastating news with remarkable equanimity.",
+            "tr": "Yıkıcı haberi olağanüstü bir ruhsal dengeyle karşıladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1853,
+      "english": "ersatz",
+      "pronunciation": "ˈɛəzæts",
+      "level": "C2",
+      "category": "archaic-but-alive",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yapay",
+          "example": {
+            "en": "The resort offered an ersatz version of cultural authenticity for tourists.",
+            "tr": "Tatil köyü turistlere kültürel özgünlüğün yapay bir versiyonunu sunuyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1854,
+      "english": "evince",
+      "pronunciation": "ɪˈvɪns",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kanıtlamak",
+          "example": {
+            "en": "Her calm demeanour evinced a confidence that impressed the interviewers.",
+            "tr": "Sakin tavrı, mülakatçıları etkileyen bir özgüveni kanıtladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1855,
+      "english": "execrable",
+      "pronunciation": "ˈɛksɪkrəbəl",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "berbat",
+          "example": {
+            "en": "The critic described the film's screenplay as utterly execrable.",
+            "tr": "Eleştirmen filmin senaryosunu son derece berbat olarak nitelendirdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1856,
+      "english": "exegesis",
+      "pronunciation": "ˌɛksɪˈdʒiːsɪs",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "metin yorumu",
+          "example": {
+            "en": "Her doctoral thesis offered a rigorous exegesis of medieval religious texts.",
+            "tr": "Doktora tezi, ortaçağ dini metinlerinin titiz bir yorumunu sunuyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1857,
+      "english": "exonerate",
+      "pronunciation": "ɪɡˈzɒnəreɪt",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "aklamak",
+          "example": {
+            "en": "New DNA evidence finally exonerated the man convicted twenty years ago.",
+            "tr": "Yeni DNA kanıtı, yirmi yıl önce mahkûm edilen adamı nihayet akladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1858,
+      "english": "expatiate",
+      "pronunciation": "ɪkˈspeɪʃieɪt",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ayrıntılı açıklamak",
+          "example": {
+            "en": "The professor expatiated on the theory for nearly an hour.",
+            "tr": "Profesör teoriyi neredeyse bir saat boyunca ayrıntılı biçimde açıkladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1859,
+      "english": "fatuous",
+      "pronunciation": "ˈfætʃuəs",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "saçma",
+          "example": {
+            "en": "The committee dismissed his fatuous proposal without serious consideration.",
+            "tr": "Komite, saçma önerisini ciddi bir değerlendirme yapmadan reddetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1860,
+      "english": "fecund",
+      "pronunciation": "ˈfɛkənd",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "verimli",
+          "example": {
+            "en": "The playwright enjoyed the most fecund period of her career in her forties.",
+            "tr": "Oyun yazarı, kırklı yaşlarında kariyerinin en verimli dönemini yaşadı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1861,
+      "english": "feign",
+      "pronunciation": "feɪn",
+      "level": "C2",
+      "category": "colloquial mastery",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "numara yapmak",
+          "example": {
+            "en": "He feigned indifference, though the criticism clearly hurt him.",
+            "tr": "Eleştiri açıkça onu incitmiş olmasına rağmen ilgisizlik numarası yaptı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1862,
+      "english": "filibuster",
+      "pronunciation": "ˈfɪlɪbʌstər",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sözü uzatarak engelleme yapmak",
+          "example": {
+            "en": "The senator filibustered for hours to block the bill.",
+            "tr": "Senatör tasarıyı engellemek için saatlerce konuştu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1863,
+      "english": "finagle",
+      "pronunciation": "fɪˈneɪɡəl",
+      "level": "C2",
+      "category": "colloquial mastery",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kurnazlıkla elde etmek",
+          "example": {
+            "en": "He managed to finagle a backstage pass from the promoter.",
+            "tr": "Organizatörden kurnazlıkla sahne arkası geçişi elde etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1864,
+      "english": "flummox",
+      "pronunciation": "ˈflʌməks",
+      "level": "C2",
+      "category": "colloquial mastery",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "şaşırtmak",
+          "example": {
+            "en": "The professor's question completely flummoxed the entire class.",
+            "tr": "Profesörün sorusu tüm sınıfı tamamen şaşırttı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1865,
+      "english": "gainsay",
+      "pronunciation": "ˈɡeɪnseɪ",
+      "level": "C2",
+      "category": "archaic-but-alive",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "inkâr etmek",
+          "example": {
+            "en": "Nobody could gainsay the evidence presented before the court.",
+            "tr": "Mahkemede sunulan delilleri kimse inkâr edemezdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1866,
+      "english": "galvanise",
+      "pronunciation": "ˈɡælvənaɪz",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "harekete geçirmek",
+          "example": {
+            "en": "Her speech galvanised the crowd into immediate action.",
+            "tr": "Konuşması kalabalığı anında harekete geçirdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1867,
+      "english": "garrulous",
+      "pronunciation": "ˈɡærʊləs",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çok konuşkan",
+          "example": {
+            "en": "The garrulous old man told stories to anyone who would listen.",
+            "tr": "Çok konuşkan yaşlı adam, dinleyecek herkese hikâyeler anlattı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1868,
+      "english": "germane",
+      "pronunciation": "dʒəˈmeɪn",
+      "level": "C2",
+      "category": "highly specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ilgili",
+          "example": {
+            "en": "Please keep your remarks germane to the topic being discussed.",
+            "tr": "Lütfen yorumlarınızı tartışılan konuyla ilgili tutun."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1869,
+      "english": "glean",
+      "pronunciation": "ɡliːn",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "toparlamak",
+          "example": {
+            "en": "She gleaned valuable insights from years of field research.",
+            "tr": "Yıllarca süren saha araştırmalarından değerli bilgiler topladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1870,
+      "english": "glib",
+      "pronunciation": "ɡlɪb",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yüzeysel",
+          "example": {
+            "en": "His glib answer revealed he had not understood the gravity of the situation.",
+            "tr": "Yüzeysel cevabı, durumun ciddiyetini kavramadığını ortaya koydu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1871,
+      "english": "gloaming",
+      "pronunciation": "ˈɡloʊmɪŋ",
+      "level": "C2",
+      "category": "archaic-but-alive",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "alacakaranlık",
+          "example": {
+            "en": "They walked home through the soft gloaming of a summer evening.",
+            "tr": "Bir yaz akşamının yumuşak alacakaranlığında eve yürüdüler."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1872,
+      "english": "harangue",
+      "pronunciation": "həˈræŋ",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "uzun ve sert konuşma yapmak",
+          "example": {
+            "en": "The general harangued his troops before the decisive battle.",
+            "tr": "General, belirleyici savaştan önce askerlerine uzun ve sert bir konuşma yaptı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1873,
+      "english": "hapless",
+      "pronunciation": "ˈhæpləs",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "talihsiz",
+          "example": {
+            "en": "The hapless traveller missed every connection on his journey.",
+            "tr": "Talihsiz yolcu, yolculuğu boyunca her aktarmasını kaçırdı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1874,
+      "english": "hegemony",
+      "pronunciation": "hɪˈɡɛməni",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hegemonya",
+          "example": {
+            "en": "The empire maintained cultural hegemony over its conquered territories.",
+            "tr": "İmparatorluk, fethettiği topraklar üzerinde kültürel hegemonya sürdürdü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1875,
+      "english": "heresy",
+      "pronunciation": "ˈhɛrəsi",
+      "level": "C2",
+      "category": "archaic-but-alive",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sapkınlık",
+          "example": {
+            "en": "Challenging the founder's methods was considered heresy within the company.",
+            "tr": "Kurucunun yöntemlerine itiraz etmek şirket içinde sapkınlık olarak değerlendiriliyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1876,
+      "english": "heyday",
+      "pronunciation": "ˈheɪdeɪ",
+      "level": "C2",
+      "category": "rare but useful",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "altın çağ",
+          "example": {
+            "en": "In its heyday, the city was the cultural centre of the entire region.",
+            "tr": "Altın çağında şehir, tüm bölgenin kültür merkezi idi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1877,
+      "english": "hyperbole",
+      "pronunciation": "haɪˈpɜːbəli",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "abartı",
+          "example": {
+            "en": "Saying he was the greatest ever is pure hyperbole.",
+            "tr": "Onun şimdiye kadarki en büyük olduğunu söylemek salt abartıdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1878,
+      "english": "iconoclast",
+      "pronunciation": "aɪˈkɒnəklæst",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "geleneklere karşı çıkan kişi",
+          "example": {
+            "en": "The architect was an iconoclast who rejected all classical conventions.",
+            "tr": "Mimar, tüm klasik gelenekleri reddeden biri idi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1879,
+      "english": "ignominy",
+      "pronunciation": "ˈɪɡnəmɪni",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "rezalet",
+          "example": {
+            "en": "He suffered the ignominy of being dismissed in front of his colleagues.",
+            "tr": "Meslektaşlarının önünde kovulmanın rezaletine uğradı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1880,
+      "english": "immutable",
+      "pronunciation": "ɪˈmjuːtəbl",
+      "level": "C2",
+      "category": "highly specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "değişmez",
+          "example": {
+            "en": "The laws of mathematics are considered immutable across all cultures.",
+            "tr": "Matematik yasaları tüm kültürlerde değişmez kabul edilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1881,
+      "english": "impecunious",
+      "pronunciation": "ˌɪmpɪˈkjuːniəs",
+      "level": "C2",
+      "category": "archaic-but-alive",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "parasız",
+          "example": {
+            "en": "The impecunious student survived on scholarships and part-time work.",
+            "tr": "Parasız öğrenci burslar ve yarı zamanlı işlerle geçindi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1882,
+      "english": "impervious",
+      "pronunciation": "ɪmˈpɜːviəs",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "etkilenmez",
+          "example": {
+            "en": "She seemed impervious to criticism, no matter how harsh.",
+            "tr": "Ne kadar sert olursa olsun eleştiriye etkilenmez görünüyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1883,
+      "english": "impugn",
+      "pronunciation": "ɪmˈpjuːn",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sorgulamak",
+          "example": {
+            "en": "The lawyer sought to impugn the witness's credibility before the jury.",
+            "tr": "Avukat, jüri önünde tanığın güvenilirliğini sorgulamaya çalıştı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1884,
+      "english": "impunity",
+      "pronunciation": "ɪmˈpjuːnɪti",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "cezasızlık",
+          "example": {
+            "en": "The officials acted with complete impunity for decades.",
+            "tr": "Yetkililer on yıllar boyunca tam bir cezasızlıkla hareket etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1885,
+      "english": "inchoate",
+      "pronunciation": "ɪnˈkoʊɪt",
+      "level": "C2",
+      "category": "highly specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "henüz gelişmemiş",
+          "example": {
+            "en": "The plan was still inchoate when the funding was suddenly cut.",
+            "tr": "Fon aniden kesildiğinde plan hâlâ henüz gelişmemişti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1886,
+      "english": "incorrigible",
+      "pronunciation": "ɪnˈkɒrɪdʒɪbl",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ıslah edilemez",
+          "example": {
+            "en": "He was an incorrigible optimist, even in the bleakest circumstances.",
+            "tr": "En kasvetli koşullarda bile ıslah edilemez bir iyimserdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1887,
+      "english": "indefatigable",
+      "pronunciation": "ˌɪndɪˈfætɪɡəbl",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yorulmak bilmez",
+          "example": {
+            "en": "The indefatigable campaigner worked eighteen hours a day without complaint.",
+            "tr": "Yorulmak bilmez kampanyacı şikâyet etmeden günde on sekiz saat çalıştı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1888,
+      "english": "inimical",
+      "pronunciation": "ɪˈnɪmɪkl",
+      "level": "C2",
+      "category": "highly specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zararlı",
+          "example": {
+            "en": "Such policies are inimical to long-term economic growth.",
+            "tr": "Bu tür politikalar uzun vadeli ekonomik büyüme için zararlıdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1889,
+      "english": "iniquitous",
+      "pronunciation": "ɪˈnɪkwɪtəs",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "adaletsiz",
+          "example": {
+            "en": "The iniquitous tax system burdened the poorest members of society most.",
+            "tr": "Adaletsiz vergi sistemi en çok toplumun yoksullarını yükledi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1890,
+      "english": "insouciant",
+      "pronunciation": "ɪnˈsuːsiənt",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "umursamaz",
+          "example": {
+            "en": "His insouciant attitude towards deadlines drove his colleagues mad.",
+            "tr": "Son teslim tarihlerine karşı umursamaz tavrı meslektaşlarını çıldırttı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1891,
+      "english": "intransigent",
+      "pronunciation": "ɪnˈtrænsɪdʒənt",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "uzlaşmaz",
+          "example": {
+            "en": "The intransigent negotiator refused every compromise offered to him.",
+            "tr": "Uzlaşmaz müzakereci, kendisine sunulan her uzlaşmayı reddetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1892,
+      "english": "inveterate",
+      "pronunciation": "ɪnˈvɛtərɪt",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "köklü",
+          "example": {
+            "en": "She was an inveterate reader who rarely left the house without a book.",
+            "tr": "Evden nadiren kitapsız çıkan köklü bir okurdu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1893,
+      "english": "irascible",
+      "pronunciation": "ɪˈræsɪbl",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çabuk öfkelenen",
+          "example": {
+            "en": "The irascible professor snapped at students for the smallest mistakes.",
+            "tr": "Çabuk öfkelenen profesör, en küçük hatalar için öğrencilere çıkıştı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1894,
+      "english": "laconic",
+      "pronunciation": "ləˈkɒnɪk",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kısa ve öz",
+          "example": {
+            "en": "His laconic reply left everyone wondering what he truly meant.",
+            "tr": "Kısa ve öz cevabı, herkesin gerçekten ne kastettiğini merak etmesine yol açtı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1895,
+      "english": "lassitude",
+      "pronunciation": "ˈlæsɪtjuːd",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yorgunluk",
+          "example": {
+            "en": "A sense of lassitude overcame him after months of relentless work.",
+            "tr": "Aylarca süren amansız çalışmanın ardından bir yorgunluk hissi onu kapladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1896,
+      "english": "laud",
+      "pronunciation": "lɔːd",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "övmek",
+          "example": {
+            "en": "Critics lauded the novel as the finest work of the decade.",
+            "tr": "Eleştirmenler romanı on yılın en iyi eseri olarak övdü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1897,
+      "english": "loquacious",
+      "pronunciation": "ləˈkweɪʃəs",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "geveze",
+          "example": {
+            "en": "The loquacious host barely gave guests a chance to speak.",
+            "tr": "Geveze sunucu konuklara neredeyse konuşma fırsatı vermedi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1898,
+      "english": "lugubrious",
+      "pronunciation": "luːˈɡuːbriəs",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kederli",
+          "example": {
+            "en": "He wore a lugubrious expression throughout the entire ceremony.",
+            "tr": "Tören boyunca kederli bir ifade taşıdı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1899,
+      "english": "machiavellian",
+      "pronunciation": "ˌmækiəˈvɛliən",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "makyavelist",
+          "example": {
+            "en": "His machiavellian tactics allowed him to outmanoeuvre all his rivals.",
+            "tr": "Makyavelist taktikleri tüm rakiplerini alt etmesini sağladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1900,
+      "english": "magnanimous",
+      "pronunciation": "mæɡˈnænɪməs",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yüce gönüllü",
+          "example": {
+            "en": "The champion was magnanimous in victory, praising her defeated opponent.",
+            "tr": "Şampiyon zaferde yüce gönüllüydü ve mağlup rakibini övdü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1901,
+      "english": "malapropism",
+      "pronunciation": "ˈmæləprɒpɪzəm",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sözcük yanlış kullanımı",
+          "example": {
+            "en": "Saying 'for all intensive purposes' is a classic malapropism.",
+            "tr": "\"For all intensive purposes\" demek klasik bir sözcük yanlış kullanımıdır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1902,
+      "english": "malevolent",
+      "pronunciation": "məˈlɛvələnt",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kötü niyetli",
+          "example": {
+            "en": "A malevolent glare from across the room made her deeply uncomfortable.",
+            "tr": "Odanın karşısından gelen kötü niyetli bir bakış onu derinden rahatsız etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1903,
+      "english": "malfeasance",
+      "pronunciation": "mælˈfiːzəns",
+      "level": "C2",
+      "category": "domain-specific",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "görevi kötüye kullanma",
+          "example": {
+            "en": "The official was charged with malfeasance after diverting public funds.",
+            "tr": "Kamu fonlarını zimmete geçirdikten sonra yetkili görevi kötüye kullanmakla suçlandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1904,
+      "english": "maudlin",
+      "pronunciation": "ˈmɔːdlɪn",
+      "level": "C2",
+      "category": "colloquial mastery",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "aşırı duygusal",
+          "example": {
+            "en": "After a few drinks he became maudlin about his lost youth.",
+            "tr": "Birkaç içkinin ardından kaybettiği gençliği hakkında aşırı duygusal oldu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1905,
+      "english": "mendacious",
+      "pronunciation": "mɛnˈdeɪʃəs",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yalancı",
+          "example": {
+            "en": "The mendacious politician had deceived his constituents for years.",
+            "tr": "Yalancı politikacı yıllarca seçmenlerini aldatmıştı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1906,
+      "english": "mercurial",
+      "pronunciation": "mɜːˈkjʊəriəl",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "değişken",
+          "example": {
+            "en": "His mercurial temperament made working with him deeply unpredictable.",
+            "tr": "Değişken mizacı onunla çalışmayı derinden öngörülemez kılıyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1907,
+      "english": "meretricious",
+      "pronunciation": "ˌmɛrɪˈtrɪʃəs",
+      "level": "C2",
+      "category": "rare but useful",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gösterişli ama değersiz",
+          "example": {
+            "en": "The meretricious packaging concealed a thoroughly mediocre product inside.",
+            "tr": "Gösterişli ama değersiz ambalaj içerideki son derece vasat ürünü saklıyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1908,
+      "english": "mordant",
+      "pronunciation": "ˈmɔːdənt",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iğneleyici",
+          "example": {
+            "en": "Her mordant wit left audiences laughing and flinching simultaneously.",
+            "tr": "İğneleyici zekâsı izleyicileri aynı anda hem güldürüyor hem de irkiltiyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1909,
+      "english": "moribund",
+      "pronunciation": "ˈmɒrɪbʌnd",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "can çekişen",
+          "example": {
+            "en": "The once-thriving industry is now moribund, kept alive by subsidies alone.",
+            "tr": "Bir zamanlar canlı olan endüstri artık yalnızca sübvansiyonlarla ayakta tutulan can çekişen bir haldedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1910,
+      "english": "munificent",
+      "pronunciation": "mjuːˈnɪfɪsənt",
+      "level": "C2",
+      "category": "literary",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "cömert",
+          "example": {
+            "en": "The munificent donor funded an entire wing of the new hospital.",
+            "tr": "Cömert bağışçı yeni hastanenin tüm bir kanadını finanse etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1911,
+      "english": "nadir",
+      "pronunciation": "ˈneɪdɪr",
+      "level": "C2",
+      "category": "rare but useful",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "en düşük nokta",
+          "example": {
+            "en": "The resignation of its CEO marked the nadir of the company's fortunes.",
+            "tr": "CEO'nun istifası şirketin servetinin en düşük noktasını simgeledi."
+          }
+        }
+      ]
+    }
+  ]
+}

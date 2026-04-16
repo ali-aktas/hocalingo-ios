@@ -1,0 +1,2663 @@
+{
+  "package_info": {
+    "id": "premium_food_001",
+    "version": "2.0.0",
+    "level": "MIXED",
+    "language_pair": "en_tr",
+    "total_words": 146,
+    "updated_at": "2026-04-03",
+    "description": "Food & Kitchen - Ingredients, cooking, dining, recipes",
+    "attribution": "HocaLingo vocabulary database"
+  },
+  "words": [
+    {
+      "id": 5219,
+      "english": "broccoli",
+      "pronunciation": "ˈbrɒkəli",
+      "level": "MIXED",
+      "category": "vegetables",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "brokoli",
+          "example": {
+            "en": "Steam the broccoli for five minutes until tender.",
+            "tr": "Brokoliyi yumuşayana kadar beş dakika buharda pişirin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5220,
+      "english": "eggplant",
+      "pronunciation": "ˈɛɡplɑːnt",
+      "level": "MIXED",
+      "category": "vegetables",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "patlıcan",
+          "example": {
+            "en": "She roasted the eggplant with olive oil and garlic.",
+            "tr": "Patlıcanı zeytinyağı ve sarımsakla fırında kızarttı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5221,
+      "english": "zucchini",
+      "pronunciation": "zuːˈkiːni",
+      "level": "MIXED",
+      "category": "vegetables",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kabak",
+          "example": {
+            "en": "Slice the zucchini thinly and grill until golden.",
+            "tr": "Kabağı ince dilimleyip altın rengi olana kadar ızgarada pişirin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5222,
+      "english": "pomegranate",
+      "pronunciation": "ˈpɒmɪɡrænɪt",
+      "level": "MIXED",
+      "category": "fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "nar",
+          "example": {
+            "en": "Sprinkle pomegranate seeds over the salad for sweetness.",
+            "tr": "Tatlılık için salatanın üzerine nar taneleri serpin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5223,
+      "english": "avocado",
+      "pronunciation": "ævəˈkɑːdoʊ",
+      "level": "MIXED",
+      "category": "fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "avokado",
+          "example": {
+            "en": "Mash the avocado with lemon juice and salt.",
+            "tr": "Avokadoyu limon suyu ve tuzla ezin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5224,
+      "english": "blueberry",
+      "pronunciation": "ˈbluːbɛri",
+      "level": "MIXED",
+      "category": "fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yaban mersini",
+          "example": {
+            "en": "Add fresh blueberries to your morning oatmeal.",
+            "tr": "Sabah yulaf lapanıza taze yaban mersini ekleyin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5225,
+      "english": "salmon",
+      "pronunciation": "ˈsæmən",
+      "level": "MIXED",
+      "category": "meats and proteins",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "somon",
+          "example": {
+            "en": "Bake the salmon at 200 degrees for twenty minutes.",
+            "tr": "Somonu 200 derecede yirmi dakika fırında pişirin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5226,
+      "english": "tofu",
+      "pronunciation": "ˈtoʊfuː",
+      "level": "MIXED",
+      "category": "meats and proteins",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tofu",
+          "example": {
+            "en": "Marinate the tofu in soy sauce before stir-frying.",
+            "tr": "Tofuyu soteden önce soya sosunda marine edin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5227,
+      "english": "whipped cream",
+      "pronunciation": "wɪpt kriːm",
+      "level": "MIXED",
+      "category": "dairy",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çırpılmış krema",
+          "example": {
+            "en": "Top the hot cocoa with a dollop of whipped cream.",
+            "tr": "Sıcak kakaonun üzerine bir top çırpılmış krema koyun."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5228,
+      "english": "sourdough",
+      "pronunciation": "ˈsaʊədoʊ",
+      "level": "MIXED",
+      "category": "grains and carbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ekşi mayalı ekmek",
+          "example": {
+            "en": "This sourdough bread has a wonderful tangy flavour.",
+            "tr": "Bu ekşi mayalı ekmeğin harika bir ekşimsi tadı var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5229,
+      "english": "turmeric",
+      "pronunciation": "ˈtɜːmərɪk",
+      "level": "MIXED",
+      "category": "spices and herbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zerdeçal",
+          "example": {
+            "en": "Add a teaspoon of turmeric to give the soup a golden colour.",
+            "tr": "Çorbaya altın rengi vermek için bir çay kaşığı zerdeçal ekleyin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5230,
+      "english": "cumin",
+      "pronunciation": "ˈkjuːmɪn",
+      "level": "MIXED",
+      "category": "spices and herbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kimyon",
+          "example": {
+            "en": "Toast the cumin seeds before grinding them for more flavour.",
+            "tr": "Daha fazla aroma için kimyon tohumlarını öğütmeden önce kavurun."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5231,
+      "english": "caramelize",
+      "pronunciation": "ˈkærəməlaɪz",
+      "level": "MIXED",
+      "category": "cooking methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "karamelize etmek",
+          "example": {
+            "en": "Slowly caramelize the onions over low heat for sweetness.",
+            "tr": "Soğanları tatlılık için kısık ateşte yavaşça karamelize edin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5232,
+      "english": "blanch",
+      "pronunciation": "blɑːntʃ",
+      "level": "MIXED",
+      "category": "cooking methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "suda haşlayıp soğuk suya daldırmak",
+          "example": {
+            "en": "Blanch the green beans before adding them to the salad.",
+            "tr": "Yeşil fasulyeleri salataya eklemeden önce haşlayıp soğuk suya daldırın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5233,
+      "english": "colander",
+      "pronunciation": "ˈkɒləndər",
+      "level": "MIXED",
+      "category": "kitchen tools",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kevgir",
+          "example": {
+            "en": "Drain the pasta through a colander over the sink.",
+            "tr": "Makarnayı lavabonun üzerinde bir kevgirden süzün."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5234,
+      "english": "ladle",
+      "pronunciation": "ˈleɪdəl",
+      "level": "MIXED",
+      "category": "kitchen tools",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kepçe",
+          "example": {
+            "en": "Use a ladle to serve the hot soup into bowls.",
+            "tr": "Sıcak çorbayı kaselere servis etmek için kepçe kullanın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5235,
+      "english": "savory",
+      "pronunciation": "ˈseɪvəri",
+      "level": "MIXED",
+      "category": "food adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tuzlu ve lezzetli",
+          "example": {
+            "en": "I prefer savory breakfast dishes over sweet ones.",
+            "tr": "Tatlı olanlar yerine tuzlu ve lezzetli kahvaltı yemeklerini tercih ederim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5236,
+      "english": "overcooked",
+      "pronunciation": "ˌoʊvərˈkʊkt",
+      "level": "MIXED",
+      "category": "food adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fazla pişmiş",
+          "example": {
+            "en": "The steak was overcooked and had lost all its juiciness.",
+            "tr": "Biftek fazla pişmişti ve tüm sululuğunu kaybetmişti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5238,
+      "english": "lactose intolerant",
+      "pronunciation": "ˈlæktoʊs ɪnˈtɒlərənt",
+      "level": "MIXED",
+      "category": "dietary terms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "laktoz intoleransı olan",
+          "example": {
+            "en": "She is lactose intolerant, so she uses oat milk instead.",
+            "tr": "Laktoz intoleransı olduğu için bunun yerine yulaf sütü kullanıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5239,
+      "english": "medium-rare",
+      "pronunciation": "ˈmiːdiəm rɛr",
+      "level": "MIXED",
+      "category": "restaurant and ordering",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "az pişmiş (orta)",
+          "example": {
+            "en": "I'd like my steak cooked medium-rare, please.",
+            "tr": "Bifteğimin az pişmiş (orta) olmasını istiyorum, lütfen."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5240,
+      "english": "knead",
+      "pronunciation": "niːd",
+      "level": "MIXED",
+      "category": "baking",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yoğurmak",
+          "example": {
+            "en": "Knead the dough for ten minutes until it becomes smooth.",
+            "tr": "Hamuru pürüzsüz olana kadar on dakika yoğurun."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5241,
+      "english": "preheat",
+      "pronunciation": "ˌpriːˈhiːt",
+      "level": "MIXED",
+      "category": "baking",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "önceden ısıtmak",
+          "example": {
+            "en": "Preheat the oven to 180 degrees before baking the cake.",
+            "tr": "Pastayı pişirmeden önce fırını 180 dereceye önceden ısıtın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5242,
+      "english": "freshly squeezed",
+      "pronunciation": "ˈfrɛʃli skwiːzd",
+      "level": "MIXED",
+      "category": "drinks",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "taze sıkılmış",
+          "example": {
+            "en": "A glass of freshly squeezed orange juice is perfect at breakfast.",
+            "tr": "Bir bardak taze sıkılmış portakal suyu kahvaltıda mükemmeldir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5243,
+      "english": "whisk",
+      "pronunciation": "wɪsk",
+      "level": "MIXED",
+      "category": "kitchen tools",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çırpmak",
+          "example": {
+            "en": "Whisk the eggs and sugar together until light and fluffy.",
+            "tr": "Yumurta ve şekeri hafif ve kabarık olana kadar birlikte çırpın."
+          }
+        },
+        {
+          "turkish": "çırpıcı",
+          "example": {
+            "en": "Use a balloon whisk to mix the batter smoothly.",
+            "tr": "Hamuru pürüzsüzce karıştırmak için balon çırpıcı kullanın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5245,
+      "english": "spinach",
+      "pronunciation": "ˈspɪnɪtʃ",
+      "level": "MIXED",
+      "category": "vegetables",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ıspanak",
+          "example": {
+            "en": "Add fresh spinach to the omelette before folding it.",
+            "tr": "Omleti katlamadan önce içine taze ıspanak ekleyin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5246,
+      "english": "leek",
+      "pronunciation": "liːk",
+      "level": "MIXED",
+      "category": "vegetables",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "pırasa",
+          "example": {
+            "en": "Slice the leek thinly and sauté it in olive oil.",
+            "tr": "Pırasayı ince ince dilimleyip zeytinyağında soteleyin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5247,
+      "english": "artichoke",
+      "pronunciation": "ˈɑːtɪtʃəʊk",
+      "level": "MIXED",
+      "category": "vegetables",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "enginar",
+          "example": {
+            "en": "The artichoke hearts are marinated in lemon and olive oil.",
+            "tr": "Enginar gönülleri limon ve zeytinyağıyla marine edilmiştir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5248,
+      "english": "mango",
+      "pronunciation": "ˈmæŋɡəʊ",
+      "level": "MIXED",
+      "category": "fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "mango",
+          "example": {
+            "en": "Blend ripe mango with yogurt to make a smoothie.",
+            "tr": "Smoothie yapmak için olgun mangoyu yoğurtla blendırda çekin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5249,
+      "english": "fig",
+      "pronunciation": "fɪɡ",
+      "level": "MIXED",
+      "category": "fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "incir",
+          "example": {
+            "en": "Fresh figs taste wonderful with soft cheese and honey.",
+            "tr": "Taze incir, yumuşak peynir ve balla harika bir tat verir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5250,
+      "english": "peach",
+      "pronunciation": "piːtʃ",
+      "level": "MIXED",
+      "category": "fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "şeftali",
+          "example": {
+            "en": "Grill the peach halves and serve with ice cream.",
+            "tr": "Şeftali yarımlarını ızgarada pişirip dondurmayla servis edin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5251,
+      "english": "plum",
+      "pronunciation": "plʌm",
+      "level": "MIXED",
+      "category": "fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "erik",
+          "example": {
+            "en": "The plum sauce pairs perfectly with roasted duck.",
+            "tr": "Erik sosu, fırında ördekle mükemmel uyum sağlar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5252,
+      "english": "lamb",
+      "pronunciation": "læm",
+      "level": "MIXED",
+      "category": "meats and proteins",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kuzu eti",
+          "example": {
+            "en": "Slow-roast the lamb with garlic and rosemary for three hours.",
+            "tr": "Kuzu etini sarımsak ve biberiyeyle üç saat yavaş ateşte pişirin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5253,
+      "english": "shrimp",
+      "pronunciation": "ʃrɪmp",
+      "level": "MIXED",
+      "category": "meats and proteins",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "karides",
+          "example": {
+            "en": "Stir-fry the shrimp with garlic and chilli for two minutes.",
+            "tr": "Karidesi sarımsak ve biberle iki dakika kavurun."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5254,
+      "english": "tuna",
+      "pronunciation": "ˈtjuːnə",
+      "level": "MIXED",
+      "category": "meats and proteins",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ton balığı",
+          "example": {
+            "en": "Mix canned tuna with mayonnaise and celery for a sandwich filling.",
+            "tr": "Sandviç dolgusu için konserve ton balığını mayonez ve kerevizle karıştırın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5255,
+      "english": "cottage cheese",
+      "pronunciation": "ˈkɒtɪdʒ tʃiːz",
+      "level": "MIXED",
+      "category": "dairy",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "süzme peynir",
+          "example": {
+            "en": "Cottage cheese is a high-protein, low-fat breakfast option.",
+            "tr": "Süzme peynir, yüksek proteinli ve az yağlı bir kahvaltı seçeneğidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5256,
+      "english": "oatmeal",
+      "pronunciation": "ˈəʊtmiːl",
+      "level": "MIXED",
+      "category": "grains and carbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yulaf ezmesi",
+          "example": {
+            "en": "Cook the oatmeal with milk and top it with berries.",
+            "tr": "Yulaf ezmesini sütle pişirip üzerine meyveler koyun."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5257,
+      "english": "barley",
+      "pronunciation": "ˈbɑːli",
+      "level": "MIXED",
+      "category": "grains and carbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "arpa",
+          "example": {
+            "en": "Add pearl barley to the soup to make it more filling.",
+            "tr": "Çorbayı daha doyurucu hale getirmek için inci arpa ekleyin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5258,
+      "english": "oregano",
+      "pronunciation": "ɒˈrɛɡənəʊ",
+      "level": "MIXED",
+      "category": "spices and herbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kekik",
+          "example": {
+            "en": "Sprinkle dried oregano over the pizza before baking.",
+            "tr": "Pizzanın üzerine fırına koymadan önce kuru kekik serpin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5259,
+      "english": "dill",
+      "pronunciation": "dɪl",
+      "level": "MIXED",
+      "category": "spices and herbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dereotu",
+          "example": {
+            "en": "Chop fresh dill and mix it into the yogurt sauce.",
+            "tr": "Taze dereotunu doğrayıp yoğurt sosuna karıştırın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5260,
+      "english": "paprika",
+      "pronunciation": "pəˈpriːkə",
+      "level": "MIXED",
+      "category": "spices and herbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kırmızı biber tozu",
+          "example": {
+            "en": "Season the chicken with smoked paprika before grilling.",
+            "tr": "Tavuğu ızgaraya koymadan önce tütsülenmiş kırmızı bibertozuyla baharatlayın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5261,
+      "english": "sauté",
+      "pronunciation": "ˈsəʊteɪ",
+      "level": "MIXED",
+      "category": "cooking methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sotede pişirmek",
+          "example": {
+            "en": "Sauté the onions in butter over medium heat until golden.",
+            "tr": "Soğanları orta ateşte tereyağında altın rengi olana kadar sotede pişirin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5262,
+      "english": "marinate",
+      "pronunciation": "ˈmærɪneɪt",
+      "level": "MIXED",
+      "category": "cooking methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "marine etmek",
+          "example": {
+            "en": "Marinate the beef in soy sauce and garlic overnight.",
+            "tr": "Sığır etini soya sosu ve sarımsakla bir gece marine edin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5263,
+      "english": "poach",
+      "pronunciation": "pəʊtʃ",
+      "level": "MIXED",
+      "category": "cooking methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hafif suda pişirmek",
+          "example": {
+            "en": "Poach the eggs in gently simmering water for three minutes.",
+            "tr": "Yumurtaları hafifçe kaynayan suda üç dakika pişirin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5264,
+      "english": "spatula",
+      "pronunciation": "ˈspætʃʊlə",
+      "level": "MIXED",
+      "category": "kitchen tools",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "spatula",
+          "example": {
+            "en": "Use a spatula to flip the pancakes without breaking them.",
+            "tr": "Krepleri kırmadan çevirmek için spatula kullanın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5266,
+      "english": "tangy",
+      "pronunciation": "ˈtæŋi",
+      "level": "MIXED",
+      "category": "food adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "keskin ekşi",
+          "example": {
+            "en": "The lemon vinaigrette has a pleasantly tangy flavour.",
+            "tr": "Limonlu sos hoş bir keskin ekşi tada sahip."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5267,
+      "english": "yeast",
+      "pronunciation": "jiːst",
+      "level": "MIXED",
+      "category": "baking",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "maya",
+          "example": {
+            "en": "Dissolve the yeast in warm water before adding it to the flour.",
+            "tr": "Mayayı una eklemeden önce ılık suda eritin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5268,
+      "english": "batter",
+      "pronunciation": "ˈbætə",
+      "level": "MIXED",
+      "category": "baking",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hamur (sıvı)",
+          "example": {
+            "en": "Pour the pancake batter into the hot pan and wait.",
+            "tr": "Krep hamurunun (sıvı) sıcak tavaya dökün ve bekleyin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5270,
+      "english": "celery",
+      "pronunciation": "ˈseləri",
+      "level": "MIXED",
+      "category": "vegetables",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kereviz",
+          "example": {
+            "en": "Chop the celery finely before adding it to the soup.",
+            "tr": "Kerevizi çorbaya eklemeden önce ince ince doğrayın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5275,
+      "english": "beef",
+      "pronunciation": "biːf",
+      "level": "MIXED",
+      "category": "meats and proteins",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sığır eti",
+          "example": {
+            "en": "This stew is made with slow-cooked beef and vegetables.",
+            "tr": "Bu güveç yavaş pişirilmiş sığır eti ve sebzelerden yapılmıştır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5276,
+      "english": "poultry",
+      "pronunciation": "ˈpoʊltri",
+      "level": "MIXED",
+      "category": "meats and proteins",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kümes hayvanı eti",
+          "example": {
+            "en": "The recipe works well with any type of poultry.",
+            "tr": "Tarif her tür kümes hayvanı etiyle iyi sonuç verir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5277,
+      "english": "cream",
+      "pronunciation": "kriːm",
+      "level": "MIXED",
+      "category": "dairy",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "krema",
+          "example": {
+            "en": "Stir in the cream and simmer on low heat.",
+            "tr": "Kremayı karıştırın ve kısık ateşte pişirmeye devam edin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5279,
+      "english": "quinoa",
+      "pronunciation": "ˈkiːnwɑː",
+      "level": "MIXED",
+      "category": "grains and carbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kinoa",
+          "example": {
+            "en": "Rinse the quinoa thoroughly before cooking it.",
+            "tr": "Kinoayı pişirmeden önce iyice durulayın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5280,
+      "english": "whole wheat",
+      "pronunciation": "hoʊl wiːt",
+      "level": "MIXED",
+      "category": "grains and carbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tam buğday",
+          "example": {
+            "en": "She always buys whole wheat bread for a healthier option.",
+            "tr": "Daha sağlıklı bir seçenek için her zaman tam buğday ekmeği alır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5281,
+      "english": "cinnamon",
+      "pronunciation": "ˈsɪnəmən",
+      "level": "MIXED",
+      "category": "spices and herbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tarçın",
+          "example": {
+            "en": "Add a teaspoon of cinnamon to the apple cake batter.",
+            "tr": "Elmalı kek hamurunun içine bir çay kaşığı tarçın ekleyin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5282,
+      "english": "rosemary",
+      "pronunciation": "ˈroʊzməri",
+      "level": "MIXED",
+      "category": "spices and herbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "biberiye",
+          "example": {
+            "en": "Rub the lamb with garlic and fresh rosemary before roasting.",
+            "tr": "Kuzu etini fırınlamadan önce sarımsak ve taze biberiye ile ovalayın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5283,
+      "english": "thyme",
+      "pronunciation": "taɪm",
+      "level": "MIXED",
+      "category": "spices and herbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kekik",
+          "example": {
+            "en": "Add a few sprigs of thyme to the roasting pan.",
+            "tr": "Fırın tepsisine birkaç dal kekik ekleyin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5284,
+      "english": "roast",
+      "pronunciation": "roʊst",
+      "level": "MIXED",
+      "category": "cooking methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fırında kızartmak",
+          "example": {
+            "en": "Roast the vegetables at 200°C for thirty minutes.",
+            "tr": "Sebzeleri 200°C'de otuz dakika fırında kızartın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5285,
+      "english": "simmer",
+      "pronunciation": "ˈsɪmər",
+      "level": "MIXED",
+      "category": "cooking methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kısık ateşte pişirmek",
+          "example": {
+            "en": "Let the sauce simmer for twenty minutes to thicken.",
+            "tr": "Sosu koyulaşması için kısık ateşte yirmi dakika pişirin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5288,
+      "english": "crispy",
+      "pronunciation": "ˈkrɪspi",
+      "level": "MIXED",
+      "category": "food adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çıtır",
+          "example": {
+            "en": "The fried chicken had a perfectly crispy golden crust.",
+            "tr": "Kızarmış tavuğun mükemmel çıtır altın rengi bir kabuğu vardı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5289,
+      "english": "bland",
+      "pronunciation": "blænd",
+      "level": "MIXED",
+      "category": "food adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yavan",
+          "example": {
+            "en": "The soup tasted bland without enough salt and spices.",
+            "tr": "Çorba yeterli tuz ve baharat olmadan yavan bir tat verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5290,
+      "english": "brunch",
+      "pronunciation": "brʌntʃ",
+      "level": "MIXED",
+      "category": "meal types",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "geç kahvaltı",
+          "example": {
+            "en": "We had a leisurely brunch with eggs and fresh fruit.",
+            "tr": "Yumurta ve taze meyvelerle keyifli bir geç kahvaltı yaptık."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5291,
+      "english": "dough",
+      "pronunciation": "doʊ",
+      "level": "MIXED",
+      "category": "baking",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hamur",
+          "example": {
+            "en": "Knead the dough for ten minutes until smooth and elastic.",
+            "tr": "Hamuru pürüzsüz ve elastik olana kadar on dakika yoğurun."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5292,
+      "english": "glaze",
+      "pronunciation": "ɡleɪz",
+      "level": "MIXED",
+      "category": "baking",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "parlatıcı sos sürmek",
+          "example": {
+            "en": "Brush a honey glaze over the pastry before baking.",
+            "tr": "Hamur işinin üzerine fırınlamadan önce bal sosu sürün."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5293,
+      "english": "smoothie",
+      "pronunciation": "ˈsmuːði",
+      "level": "MIXED",
+      "category": "drinks",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "smoothie",
+          "example": {
+            "en": "She blended banana and spinach into a green smoothie.",
+            "tr": "Muz ve ıspanağı blender'da karıştırarak yeşil bir smoothie yaptı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5305,
+      "english": "pastry",
+      "pronunciation": "ˈpeɪstri",
+      "level": "MIXED",
+      "category": "grains and carbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hamur işi",
+          "example": {
+            "en": "The bakery sells fresh pastry every morning.",
+            "tr": "Fırın her sabah taze hamur işi satar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5308,
+      "english": "basil",
+      "pronunciation": "ˈbæzəl",
+      "level": "MIXED",
+      "category": "spices and herbs",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fesleğen",
+          "example": {
+            "en": "Tear fresh basil leaves over the pizza before serving.",
+            "tr": "Servis etmeden önce pizzanın üzerine taze fesleğen yaprakları yırtarak koyun."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5310,
+      "english": "broil",
+      "pronunciation": "brɔɪl",
+      "level": "MIXED",
+      "category": "cooking methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ızgara yapmak",
+          "example": {
+            "en": "Broil the fish for eight minutes under high heat.",
+            "tr": "Balığı yüksek ateşte sekiz dakika ızgarada pişirin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5311,
+      "english": "deep-fry",
+      "pronunciation": "diːp fraɪ",
+      "level": "MIXED",
+      "category": "cooking methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "derin yağda kızartmak",
+          "example": {
+            "en": "Deep-fry the chicken wings until perfectly crispy.",
+            "tr": "Tavuk kanatlarını mükemmel çıtırlığa ulaşana kadar derin yağda kızartın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5312,
+      "english": "rolling pin",
+      "pronunciation": "ˈroʊlɪŋ pɪn",
+      "level": "MIXED",
+      "category": "kitchen tools",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "oklava",
+          "example": {
+            "en": "Use a rolling pin to flatten the dough evenly.",
+            "tr": "Hamuru eşit şekilde açmak için oklava kullanın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5315,
+      "english": "ripe",
+      "pronunciation": "raɪp",
+      "level": "MIXED",
+      "category": "food adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "olgun",
+          "example": {
+            "en": "Choose ripe tomatoes for the best flavor in sauce.",
+            "tr": "Sos için en iyi lezzeti elde etmek amacıyla olgun domates seçin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5317,
+      "english": "decaf",
+      "pronunciation": "ˈdiːkæf",
+      "level": "MIXED",
+      "category": "drinks",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kafeinsiz kahve",
+          "example": {
+            "en": "She orders decaf coffee in the evenings to sleep better.",
+            "tr": "Daha iyi uyumak için akşamları kafeinsiz kahve sipariş eder."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5336,
+      "english": "stir-fry",
+      "pronunciation": "ˈstɜːfraɪ",
+      "level": "MIXED",
+      "category": "cooking methods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yüksek ateşte karıştırarak kavurmak",
+          "example": {
+            "en": "Stir-fry the vegetables on high heat for two minutes.",
+            "tr": "Sebzeleri yüksek ateşte iki dakika karıştırarak kavurun."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5340,
+      "english": "grater",
+      "pronunciation": "ˈɡreɪtər",
+      "level": "MIXED",
+      "category": "kitchen tools",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "rende",
+          "example": {
+            "en": "Use the fine side of the grater to zest the lemon.",
+            "tr": "Limon kabuğunu rendelemek için rendenin ince tarafını kullanın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5341,
+      "english": "tender",
+      "pronunciation": "ˈtɛndər",
+      "level": "MIXED",
+      "category": "food adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yumuşak ve lezzetli",
+          "example": {
+            "en": "The slow-cooked beef was incredibly tender and flavorful.",
+            "tr": "Yavaş pişirilen et inanılmaz derecede yumuşak ve lezzetliydi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5364,
+      "english": "stale",
+      "pronunciation": "steɪl",
+      "level": "MIXED",
+      "category": "food adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bayat",
+          "example": {
+            "en": "The bread was stale so I threw it away.",
+            "tr": "Ekmek bayatlamıştı, bu yüzden attım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5365,
+      "english": "undercooked",
+      "pronunciation": "ˌʌndərˈkʊkt",
+      "level": "MIXED",
+      "category": "food adjectives",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "az pişmiş",
+          "example": {
+            "en": "The chicken was undercooked in the middle.",
+            "tr": "Tavuğun ortası az pişmişti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5366,
+      "english": "portion",
+      "pronunciation": "ˈpɔːrʃən",
+      "level": "MIXED",
+      "category": "dietary terms",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "porsiyon",
+          "example": {
+            "en": "The portion size at this restaurant is very generous.",
+            "tr": "Bu restoranda porsiyon boyutu çok cömert."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5368,
+      "english": "sparkling",
+      "pronunciation": "ˈspɑːrklɪŋ",
+      "level": "MIXED",
+      "category": "drinks",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gazlı",
+          "example": {
+            "en": "Would you like still or sparkling water?",
+            "tr": "Düz su mu yoksa gazlı su mu istersiniz?"
+          }
+        }
+      ]
+    },
+    {
+      "id": 5369,
+      "english": "almond",
+      "pronunciation": "ˈɑːmənd",
+      "level": "MIXED",
+      "category": "Nuts & Dried Fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "badem",
+          "example": {
+            "en": "She added crushed almonds to the cake batter.",
+            "tr": "Kek hamuruna ezilmiş badem ekledi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5370,
+      "english": "walnut",
+      "pronunciation": "ˈwɔːlnʌt",
+      "level": "MIXED",
+      "category": "Nuts & Dried Fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ceviz",
+          "example": {
+            "en": "The brownie recipe calls for chopped walnuts.",
+            "tr": "Brownie tarifi doğranmış ceviz gerektiriyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5371,
+      "english": "pistachio",
+      "pronunciation": "pɪˈstɑːʃiˌoʊ",
+      "level": "MIXED",
+      "category": "Nuts & Dried Fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fıstık",
+          "example": {
+            "en": "Turkish baklava is often made with ground pistachios.",
+            "tr": "Türk baklavası genellikle öğütülmüş fıstıkla yapılır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5372,
+      "english": "raisin",
+      "pronunciation": "ˈreɪzən",
+      "level": "MIXED",
+      "category": "Nuts & Dried Fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kuru üzüm",
+          "example": {
+            "en": "He stirred raisins and cinnamon into the oatmeal.",
+            "tr": "Yulaf ezmesine kuru üzüm ve tarçın karıştırdı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5373,
+      "english": "apricot",
+      "pronunciation": "ˈeɪprɪkɒt",
+      "level": "MIXED",
+      "category": "Nuts & Dried Fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kayısı",
+          "example": {
+            "en": "Dried apricots make a great snack on the go.",
+            "tr": "Kuru kayısı yolda harika bir atıştırmalık olur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5374,
+      "english": "lobster",
+      "pronunciation": "ˈlɒbstər",
+      "level": "MIXED",
+      "category": "Seafood",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ıstakoz",
+          "example": {
+            "en": "The restaurant served grilled lobster with garlic butter.",
+            "tr": "Restoran sarımsaklı tereyağıyla ızgara ıstakoz servis etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5375,
+      "english": "squid",
+      "pronunciation": "skwɪd",
+      "level": "MIXED",
+      "category": "Seafood",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kalamar",
+          "example": {
+            "en": "Fried squid rings are a popular appetiser in coastal towns.",
+            "tr": "Kızarmış kalamar halkaları sahil kasabalarında popüler bir mezedir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5376,
+      "english": "anchovy",
+      "pronunciation": "ˈæntʃəvi",
+      "level": "MIXED",
+      "category": "Seafood",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hamsi",
+          "example": {
+            "en": "Anchovies are often added to Caesar salad dressing.",
+            "tr": "Hamsi genellikle Sezar salatası sosuna eklenir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5377,
+      "english": "mackerel",
+      "pronunciation": "ˈmækrəl",
+      "level": "MIXED",
+      "category": "Seafood",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "uskumru",
+          "example": {
+            "en": "Smoked mackerel pairs beautifully with cream cheese on toast.",
+            "tr": "Füme uskumru, krem peynirli tost ile çok güzel uyum sağlar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5378,
+      "english": "fillet",
+      "pronunciation": "ˈfɪlɪt",
+      "level": "MIXED",
+      "category": "Meat Cuts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fileto",
+          "example": {
+            "en": "She pan-fried a salmon fillet with lemon and herbs.",
+            "tr": "Limon ve otlarla tavada bir somon fileto kızarttı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5379,
+      "english": "mince",
+      "pronunciation": "mɪns",
+      "level": "MIXED",
+      "category": "Meat Cuts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kıyma",
+          "example": {
+            "en": "Brown the mince in a hot pan before adding the sauce.",
+            "tr": "Sosu eklemeden önce kıymayı kızgın tavada kavurun."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5380,
+      "english": "drumstick",
+      "pronunciation": "ˈdrʌmstɪk",
+      "level": "MIXED",
+      "category": "Meat Cuts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tavuk budu",
+          "example": {
+            "en": "Marinated drumsticks were grilled over charcoal for an hour.",
+            "tr": "Marine edilmiş tavuk butları bir saat mangalda pişirildi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5381,
+      "english": "charred",
+      "pronunciation": "tʃɑːrd",
+      "level": "MIXED",
+      "category": "Cooking States",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kömürleşmiş",
+          "example": {
+            "en": "The charred edges of the bread added a smoky flavour.",
+            "tr": "Ekmeğin kömürleşmiş kenarları dumanlı bir lezzet kattı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5382,
+      "english": "al dente",
+      "pronunciation": "æl ˈdɛnteɪ",
+      "level": "MIXED",
+      "category": "Cooking States",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hafif çiğ kıvamlı",
+          "example": {
+            "en": "Cook the pasta al dente so it holds its texture in the sauce.",
+            "tr": "Makarnayı sosun içinde kıvamını korusun diye hafif çiğ kıvamlı pişirin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5383,
+      "english": "pickled",
+      "pronunciation": "ˈpɪkəld",
+      "level": "MIXED",
+      "category": "Cooking States",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "turşulanmış",
+          "example": {
+            "en": "Pickled vegetables are served as a side dish in many cuisines.",
+            "tr": "Turşulanmış sebzeler pek çok mutfakta garnitür olarak servis edilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5384,
+      "english": "drizzle",
+      "pronunciation": "ˈdrɪzəl",
+      "level": "MIXED",
+      "category": "Kitchen Actions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gezdirmek",
+          "example": {
+            "en": "Drizzle olive oil over the salad just before serving.",
+            "tr": "Servis etmeden hemen önce salatanın üzerine zeytinyağı gezdirin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5385,
+      "english": "deglaze",
+      "pronunciation": "diːˈɡleɪz",
+      "level": "MIXED",
+      "category": "Kitchen Actions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tavayı sulandırmak",
+          "example": {
+            "en": "Deglaze the pan with white wine to lift the caramelised bits.",
+            "tr": "Karamelize parçaları çözmek için tavayı beyaz şarapla sulandırın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5386,
+      "english": "baste",
+      "pronunciation": "beɪst",
+      "level": "MIXED",
+      "category": "Kitchen Actions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yağlamak",
+          "example": {
+            "en": "Baste the turkey every thirty minutes to keep it moist.",
+            "tr": "Hindinin nemli kalması için her otuz dakikada bir yağlayın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5387,
+      "english": "gooey",
+      "pronunciation": "ˈɡuːi",
+      "level": "MIXED",
+      "category": "Textures",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yapışkan ve yumuşak",
+          "example": {
+            "en": "The gooey chocolate centre melted on my tongue instantly.",
+            "tr": "Yapışkan ve yumuşak çikolata merkezi dilimde anında eridi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5388,
+      "english": "crumbly",
+      "pronunciation": "ˈkrʌmbli",
+      "level": "MIXED",
+      "category": "Textures",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ufalanan",
+          "example": {
+            "en": "The crumbly shortbread dissolved perfectly with each bite.",
+            "tr": "Ufalanan kurabiye her ısırmada mükemmel şekilde dağıldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5389,
+      "english": "pungent",
+      "pronunciation": "ˈpʌndʒənt",
+      "level": "MIXED",
+      "category": "Tastes & Aromas",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "keskin kokulu",
+          "example": {
+            "en": "The pungent smell of blue cheese filled the entire kitchen.",
+            "tr": "Küflü peynirin keskin kokusu tüm mutfağı kapladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5390,
+      "english": "wok",
+      "pronunciation": "wɒk",
+      "level": "MIXED",
+      "category": "Kitchen Items",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "wok tavası",
+          "example": {
+            "en": "Heat the wok until it is smoking before adding the oil.",
+            "tr": "Yağı eklemeden önce wok tavasını duman çıkana kadar ısıtın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5391,
+      "english": "scone",
+      "pronunciation": "skɒn",
+      "level": "MIXED",
+      "category": "Baked Goods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "scone",
+          "example": {
+            "en": "She served warm scones with clotted cream and jam.",
+            "tr": "Kaymak ve reçelle birlikte sıcak scone servis etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5392,
+      "english": "marinade",
+      "pronunciation": "ˌmærɪˈneɪd",
+      "level": "MIXED",
+      "category": "Food Prep",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "marine sosu",
+          "example": {
+            "en": "Leave the chicken in the marinade overnight for best flavour.",
+            "tr": "En iyi lezzet için tavuğu bir gece marine sosunda bırakın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5393,
+      "english": "beetroot",
+      "pronunciation": "ˈbiːtruːt",
+      "level": "MIXED",
+      "category": "Vegetables",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kırmızı pancar",
+          "example": {
+            "en": "Roasted beetroot adds a sweet earthiness to winter salads.",
+            "tr": "Fırında kırmızı pancar, kış salatalarına tatlı ve toprak bir lezzet katar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5394,
+      "english": "hazelnut",
+      "pronunciation": "ˈheɪzəlnʌt",
+      "level": "MIXED",
+      "category": "Nuts and Dried Fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fındık",
+          "example": {
+            "en": "She spread hazelnut cream on her toast every morning.",
+            "tr": "Her sabah toastının üzerine fındık kreması sürdü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5395,
+      "english": "cashew",
+      "pronunciation": "ˈkæʃuː",
+      "level": "MIXED",
+      "category": "Nuts and Dried Fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kaju",
+          "example": {
+            "en": "Roasted cashews make a great snack with drinks.",
+            "tr": "Kavrulmuş kajular içeceklerle harika bir atıştırmalık olur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5396,
+      "english": "coconut",
+      "pronunciation": "ˈkoʊkənʌt",
+      "level": "MIXED",
+      "category": "Nuts and Dried Fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hindistancevizi",
+          "example": {
+            "en": "Add grated coconut to the cake batter for extra flavour.",
+            "tr": "Ekstra lezzet için kek hamurunа rendelenmiş hindistancevizi ekleyin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5397,
+      "english": "cranberry",
+      "pronunciation": "ˈkrænbɛri",
+      "level": "MIXED",
+      "category": "Nuts and Dried Fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kızılcık",
+          "example": {
+            "en": "Dried cranberries add a tart sweetness to salads.",
+            "tr": "Kurutulmuş kızılcıklar salatalara ekşi bir tatlılık katar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5398,
+      "english": "raspberry",
+      "pronunciation": "ˈræzbɛri",
+      "level": "MIXED",
+      "category": "Fresh Fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ahududu",
+          "example": {
+            "en": "Fresh raspberries are perfect on top of yogurt.",
+            "tr": "Taze ahududular yoğurdun üzerine mükemmel gelir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5399,
+      "english": "blackberry",
+      "pronunciation": "ˈblækbɛri",
+      "level": "MIXED",
+      "category": "Fresh Fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "böğürtlen",
+          "example": {
+            "en": "We picked wild blackberries and made jam.",
+            "tr": "Yabani böğürtlen toplayıp reçel yaptık."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5400,
+      "english": "kiwi",
+      "pronunciation": "ˈkiːwiː",
+      "level": "MIXED",
+      "category": "Fresh Fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kivi",
+          "example": {
+            "en": "Slice the kiwi in half and scoop out the flesh.",
+            "tr": "Kiviyi ikiye bölüp içini kaşıkla çıkarın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5401,
+      "english": "oyster",
+      "pronunciation": "ˈɔɪstər",
+      "level": "MIXED",
+      "category": "Seafood",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "istiridye",
+          "example": {
+            "en": "Fresh oysters are best served with a squeeze of lemon.",
+            "tr": "Taze istiridyeler bir sıkım limonla en iyi şekilde servis edilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5402,
+      "english": "octopus",
+      "pronunciation": "ˈɒktəpəs",
+      "level": "MIXED",
+      "category": "Seafood",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ahtapot",
+          "example": {
+            "en": "Grilled octopus with olive oil is a classic Mediterranean dish.",
+            "tr": "Zeytinyağlı ızgara ahtapot klasik bir Akdeniz yemeğidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5403,
+      "english": "sardine",
+      "pronunciation": "sɑːrˈdiːn",
+      "level": "MIXED",
+      "category": "Seafood",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sardalya",
+          "example": {
+            "en": "Sardines on toast make a quick and nutritious lunch.",
+            "tr": "Toasт üzerinde sardalya hızlı ve besleyici bir öğle yemeği olur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5404,
+      "english": "trout",
+      "pronunciation": "traʊt",
+      "level": "MIXED",
+      "category": "Seafood",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "alabalık",
+          "example": {
+            "en": "Pan-fried trout with herbs is delicious and easy to prepare.",
+            "tr": "Otlu tavada kızartılmış alabalık lezzetli ve hazırlaması kolaydır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5405,
+      "english": "crab",
+      "pronunciation": "kræb",
+      "level": "MIXED",
+      "category": "Seafood",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yengeç",
+          "example": {
+            "en": "She ordered crab cakes as a starter at the seafood restaurant.",
+            "tr": "Deniz ürünleri restoranında başlangıç olarak yengeç köftesi ısmarladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5406,
+      "english": "steak",
+      "pronunciation": "steɪk",
+      "level": "MIXED",
+      "category": "Meat Cuts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "biftek",
+          "example": {
+            "en": "He ordered his steak medium-rare with a side of fries.",
+            "tr": "Bifteğini az pişmiş olarak, yanında patates kızartmasıyla ısmarladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5407,
+      "english": "bacon",
+      "pronunciation": "ˈbeɪkən",
+      "level": "MIXED",
+      "category": "Meat Cuts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "pastırma",
+          "example": {
+            "en": "Crispy bacon strips are a popular breakfast ingredient.",
+            "tr": "Çıtır pastırma dilimleri popüler bir kahvaltı malzemesidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5408,
+      "english": "sausage",
+      "pronunciation": "ˈsɒsɪdʒ",
+      "level": "MIXED",
+      "category": "Meat Cuts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sosis",
+          "example": {
+            "en": "Grill the sausages until they are browned on all sides.",
+            "tr": "Sosisleri her tarafı kızarana kadar ızgara yapın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5409,
+      "english": "burnt",
+      "pronunciation": "bɜːrnt",
+      "level": "MIXED",
+      "category": "Cooking States",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yanmış",
+          "example": {
+            "en": "The toast was burnt because she left it in too long.",
+            "tr": "Tost çok uzun süre bırakıldığı için yanmıştı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5410,
+      "english": "smoked",
+      "pronunciation": "smoʊkt",
+      "level": "MIXED",
+      "category": "Cooking States",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "füme",
+          "example": {
+            "en": "Smoked salmon is delicious on a bagel with cream cheese.",
+            "tr": "Füme somon, krem peynirli bir simitin üzerinde çok lezzetlidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5411,
+      "english": "fermented",
+      "pronunciation": "fərˈmɛntɪd",
+      "level": "MIXED",
+      "category": "Cooking States",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fermente edilmiş",
+          "example": {
+            "en": "Fermented foods like yogurt are great for gut health.",
+            "tr": "Yoğurt gibi fermente edilmiş gıdalar bağırsak sağlığı için harikadır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5412,
+      "english": "dice",
+      "pronunciation": "daɪs",
+      "level": "MIXED",
+      "category": "Kitchen Actions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "küp küp doğramak",
+          "example": {
+            "en": "Dice the onion into small, even pieces for the sauce.",
+            "tr": "Soğanı sos için küçük, eşit parçalar halinde küp küp doğrayın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5413,
+      "english": "whip",
+      "pronunciation": "wɪp",
+      "level": "MIXED",
+      "category": "Kitchen Actions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çırpmak",
+          "example": {
+            "en": "Whip the cream until it forms stiff peaks.",
+            "tr": "Kremayı sert tepecikler oluşana kadar çırpın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5414,
+      "english": "silky",
+      "pronunciation": "ˈsɪlki",
+      "level": "MIXED",
+      "category": "Textures",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ipeksi",
+          "example": {
+            "en": "The chocolate mousse had a silky, smooth texture.",
+            "tr": "Çikolatalı mus ipeksi ve pürüzsüz bir dokuya sahipti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5415,
+      "english": "fluffy",
+      "pronunciation": "ˈflʌfi",
+      "level": "MIXED",
+      "category": "Textures",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kabarık",
+          "example": {
+            "en": "She made fluffy pancakes for Sunday breakfast.",
+            "tr": "Pazar kahvaltısı için kabarık pankek yaptı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5416,
+      "english": "zesty",
+      "pronunciation": "ˈzɛsti",
+      "level": "MIXED",
+      "category": "Tastes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "keskin aromalı",
+          "example": {
+            "en": "The zesty lemon dressing gave the salad a refreshing flavour.",
+            "tr": "Keskin aromalı limon sosu salataya ferahlatıcı bir tat verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5417,
+      "english": "skillet",
+      "pronunciation": "ˈskɪlɪt",
+      "level": "MIXED",
+      "category": "Kitchen Items",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "saplı tava",
+          "example": {
+            "en": "Heat the skillet over medium heat before adding the butter.",
+            "tr": "Tereyağını eklemeden önce saplı tavayı orta ateşte ısıtın."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5418,
+      "english": "croissant",
+      "pronunciation": "kwɑːˈsɒ̃",
+      "level": "MIXED",
+      "category": "Baked Goods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kruvasan",
+          "example": {
+            "en": "A warm croissant with butter is perfect for breakfast.",
+            "tr": "Tereyağlı sıcak bir kruvasan kahvaltı için mükemmeldir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5420,
+      "english": "peanut",
+      "pronunciation": "ˈpiːnʌt",
+      "level": "MIXED",
+      "category": "Nuts & Dried Fruits",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fıstık",
+          "example": {
+            "en": "He spread peanut butter thickly on his toast.",
+            "tr": "Toastının üzerine kalınca fıstık ezmesi sürdü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5422,
+      "english": "chop",
+      "pronunciation": "tʃɒp",
+      "level": "MIXED",
+      "category": "Meat Cuts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "pirzola",
+          "example": {
+            "en": "She grilled two lamb chops with rosemary and garlic.",
+            "tr": "Biberiye ve sarımsakla iki kuzu pirzolası ızgara yaptı."
+          }
+        },
+        {
+          "turkish": "doğramak",
+          "example": {
+            "en": "Chop the onions finely before adding them to the pan.",
+            "tr": "Soğanları tavaya eklemeden önce ince ince doğra."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5425,
+      "english": "cod",
+      "pronunciation": "kɒd",
+      "level": "MIXED",
+      "category": "Seafood",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "morina",
+          "example": {
+            "en": "Fish and chips is traditionally made with cod.",
+            "tr": "Balık ve patates kızartması geleneksel olarak morina ile yapılır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5426,
+      "english": "glazed",
+      "pronunciation": "ɡleɪzd",
+      "level": "MIXED",
+      "category": "Cooking States",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sırlı",
+          "example": {
+            "en": "The glazed doughnuts shone under the bakery lights.",
+            "tr": "Sırlı çörekler fırının ışıkları altında parlıyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5427,
+      "english": "thawed",
+      "pronunciation": "θɔːd",
+      "level": "MIXED",
+      "category": "Cooking States",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çözülmüş",
+          "example": {
+            "en": "Make sure the chicken is fully thawed before cooking.",
+            "tr": "Pişirmeden önce tavuğun tamamen çözülmüş olduğundan emin ol."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5428,
+      "english": "fold",
+      "pronunciation": "fəʊld",
+      "level": "MIXED",
+      "category": "Kitchen Actions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yavaşça karıştırmak",
+          "example": {
+            "en": "Gently fold the egg whites into the chocolate batter.",
+            "tr": "Yumurta beyazlarını çikolatalı hamura yavaşça karıştır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5429,
+      "english": "strain",
+      "pronunciation": "streɪn",
+      "level": "MIXED",
+      "category": "Kitchen Actions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "süzmek",
+          "example": {
+            "en": "Strain the pasta through a colander over the sink.",
+            "tr": "Makarnayı lavabonun üzerindeki süzgeçten süz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5430,
+      "english": "mushy",
+      "pronunciation": "ˈmʌʃi",
+      "level": "MIXED",
+      "category": "Food Textures",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "lapa gibi",
+          "example": {
+            "en": "The overcooked vegetables turned completely mushy.",
+            "tr": "Fazla pişirilmiş sebzeler tamamen lapa gibi oldu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5431,
+      "english": "chewy",
+      "pronunciation": "ˈtʃuːi",
+      "level": "MIXED",
+      "category": "Food Textures",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çiğnenmesi güç",
+          "example": {
+            "en": "These cookies are soft and chewy in the center.",
+            "tr": "Bu kurabiyeler ortasında yumuşak ve çiğnenmesi güçtür."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5432,
+      "english": "grainy",
+      "pronunciation": "ˈɡreɪni",
+      "level": "MIXED",
+      "category": "Food Textures",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kumlu",
+          "example": {
+            "en": "The sauce tasted grainy because the sugar didn't dissolve.",
+            "tr": "Şeker erimediği için sos kumlu bir tat verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5433,
+      "english": "muffin tin",
+      "pronunciation": "ˈmʌfɪn tɪn",
+      "level": "MIXED",
+      "category": "Kitchen Items",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "muffin kalıbı",
+          "example": {
+            "en": "Grease the muffin tin before pouring in the batter.",
+            "tr": "Hamuru dökmeden önce muffin kalıbını yağla."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5434,
+      "english": "sieve",
+      "pronunciation": "sɪv",
+      "level": "MIXED",
+      "category": "Kitchen Items",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "elek",
+          "example": {
+            "en": "Sift the flour through a sieve to remove any lumps.",
+            "tr": "Topakları gidermek için unu elekten geçir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5435,
+      "english": "bun",
+      "pronunciation": "bʌn",
+      "level": "MIXED",
+      "category": "Baked Goods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "küçük ekmek",
+          "example": {
+            "en": "She placed the burger patty inside a toasted bun.",
+            "tr": "Burger köftesini kızartılmış küçük ekmeğin içine koydu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5436,
+      "english": "tart",
+      "pronunciation": "tɑːt",
+      "level": "MIXED",
+      "category": "Baked Goods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tart",
+          "example": {
+            "en": "The lemon tart had a perfectly crisp pastry shell.",
+            "tr": "Limonlu tartın hamur kabuğu mükemmel derecede çıtırdı."
+          }
+        },
+        {
+          "turkish": "ekşi",
+          "example": {
+            "en": "The green apples gave the juice a tart flavour.",
+            "tr": "Yeşil elmalar suya ekşi bir tat verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5437,
+      "english": "stock",
+      "pronunciation": "stɒk",
+      "level": "MIXED",
+      "category": "Food Prep",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "et suyu",
+          "example": {
+            "en": "Add chicken stock to the pan for a richer sauce.",
+            "tr": "Daha zengin bir sos için tavaya tavuk suyu ekle."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5438,
+      "english": "chickpea",
+      "pronunciation": "ˈtʃɪkpiː",
+      "level": "MIXED",
+      "category": "Vegetables & Legumes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "nohut",
+          "example": {
+            "en": "She made a creamy hummus from blended chickpeas.",
+            "tr": "Blenderdan geçirilmiş nohuttan kremsi bir humus yaptı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5439,
+      "english": "turnip",
+      "pronunciation": "ˈtɜːnɪp",
+      "level": "MIXED",
+      "category": "Vegetables & Legumes",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "şalgam",
+          "example": {
+            "en": "Turnip is commonly used in winter soups and stews.",
+            "tr": "Şalgam kış çorbalarında ve yahni yemeklerinde sıkça kullanılır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 5449,
+      "english": "brownie",
+      "pronunciation": "ˈbraʊni",
+      "level": "MIXED",
+      "category": "baked goods",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çikolatalı kek",
+          "example": {
+            "en": "She baked a batch of fudgy brownies for the party.",
+            "tr": "Parti için bir tepsi ıslak çikolatalı kek pişirdi."
+          }
+        }
+      ]
+    }
+  ]
+}

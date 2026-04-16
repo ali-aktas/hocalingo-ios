@@ -51,21 +51,21 @@ struct MainTabView: View {
                     
                     // Study Tab
                     tabBarButton(
-                        icon: "play.fill",
+                        icon: "bolt.circle",
                         label: "tab_study",
                         index: 1
                     )
                     
                     // AI Story Tab
                     tabBarButton(
-                        icon: "sparkle",
+                        icon: "quote.bubble",
                         label: "tab_ai",
                         index: 2
                     )
                     
                     // Settings Tab
                     tabBarButton(
-                        icon: "gearshape.fill",
+                        icon: "slider.horizontal.3",
                         label: "settings_title",
                         index: 3
                     )

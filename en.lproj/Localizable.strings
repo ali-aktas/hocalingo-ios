@@ -39,8 +39,8 @@
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 "tab_home"           = "Home";
-"tab_study"          = "Study";
-"tab_ai"             = "AI Stories";
+"tab_study"          = "Learn";
+"tab_ai"             = "AI Reading";
 "tab_profile"        = "Profile";
 "ai_assistant_title" = "AI Assistant";
 
@@ -309,7 +309,9 @@
 "premium_package_business" = "Business & Interview";
 "premium_package_travel"   = "Travel & Tourism";
 "premium_package_idioms"   = "Idioms & Expressions";
-
+"premium_package_slang" = "Internet Slang";
+"premium_package_food" = "Food & Kitchen";
+"premium_package_idioms" = "Idioms & Patterns";
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Level Labels

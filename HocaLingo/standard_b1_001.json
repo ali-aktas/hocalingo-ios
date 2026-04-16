@@ -1,0 +1,3684 @@
+{
+  "package_info": {
+    "id": "standard_b1_001",
+    "version": "2.0.0",
+    "level": "B1",
+    "language_pair": "en_tr",
+    "total_words": 200,
+    "updated_at": "2026-03-24",
+    "description": "B1 level English-Turkish vocabulary - Intermediate communication",
+    "attribution": "HocaLingo vocabulary database"
+  },
+  "words": [
+    {
+      "id": 1406,
+      "english": "apply for",
+      "pronunciation": "əˈplaɪ fɔːr",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "başvurmak",
+          "example": {
+            "en": "She decided to apply for the marketing manager position.",
+            "tr": "Pazarlama müdürü pozisyonuna başvurmaya karar verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1407,
+      "english": "deadline",
+      "pronunciation": "ˈdedlaɪn",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "son teslim tarihi",
+          "example": {
+            "en": "We need to finish the report before the deadline tomorrow.",
+            "tr": "Raporu yarınki son teslim tarihinden önce bitirmemiz gerekiyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1408,
+      "english": "colleague",
+      "pronunciation": "ˈkɒliːɡ",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iş arkadaşı",
+          "example": {
+            "en": "My colleague helped me prepare for the big presentation.",
+            "tr": "İş arkadaşım büyük sunum için hazırlanmama yardım etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1409,
+      "english": "promote",
+      "pronunciation": "prəˈməʊt",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "terfi ettirmek",
+          "example": {
+            "en": "The manager was promoted to director after five years.",
+            "tr": "Müdür, beş yılın ardından direktörlüğe terfi ettirildi."
+          }
+        },
+        {
+          "turkish": "tanıtmak",
+          "example": {
+            "en": "They used social media to promote their new product.",
+            "tr": "Yeni ürünlerini tanıtmak için sosyal medyayı kullandılar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1410,
+      "english": "resign",
+      "pronunciation": "rɪˈzaɪn",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "istifa etmek",
+          "example": {
+            "en": "He resigned from his job to start his own business.",
+            "tr": "Kendi işini kurmak için işinden istifa etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1411,
+      "english": "check in",
+      "pronunciation": "tʃek ɪn",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "giriş yapmak",
+          "example": {
+            "en": "We need to check in at the hotel before three o'clock.",
+            "tr": "Saatten önce otelde giriş yapmamız gerekiyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1412,
+      "english": "itinerary",
+      "pronunciation": "aɪˈtɪnərəri",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "seyahat programı",
+          "example": {
+            "en": "The travel agent sent us a detailed itinerary for the trip.",
+            "tr": "Seyahat acentesi bize gezi için ayrıntılı bir seyahat programı gönderdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1413,
+      "english": "customs",
+      "pronunciation": "ˈkʌstəmz",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gümrük",
+          "example": {
+            "en": "We had to declare our goods at customs when we arrived.",
+            "tr": "Geldiğimizde gümrükte eşyalarımızı beyan etmek zorunda kaldık."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1414,
+      "english": "accommodation",
+      "pronunciation": "əˌkɒməˈdeɪʃən",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "konaklama",
+          "example": {
+            "en": "We booked affordable accommodation near the city centre.",
+            "tr": "Şehir merkezine yakın uygun fiyatlı bir konaklama yeri ayarladık."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1415,
+      "english": "get around",
+      "pronunciation": "ɡet əˈraʊnd",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dolaşmak",
+          "example": {
+            "en": "It is easy to get around the city by public transport.",
+            "tr": "Şehirde toplu taşımayla dolaşmak çok kolay."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1416,
+      "english": "take notes",
+      "pronunciation": "teɪk nəʊts",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "not almak",
+          "example": {
+            "en": "Students are expected to take notes during every lecture.",
+            "tr": "Öğrencilerin her derste not alması bekleniyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1417,
+      "english": "assignment",
+      "pronunciation": "əˈsaɪnmənt",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ödev",
+          "example": {
+            "en": "The teacher gave us a difficult assignment to complete at home.",
+            "tr": "Öğretmen bize evde tamamlamamız için zor bir ödev verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1418,
+      "english": "graduate",
+      "pronunciation": "ˈɡrædʒuət",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "mezun olmak",
+          "example": {
+            "en": "She will graduate from university next spring.",
+            "tr": "Gelecek ilkbaharda üniversiteden mezun olacak."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1419,
+      "english": "scholarship",
+      "pronunciation": "ˈskɒləʃɪp",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "burs",
+          "example": {
+            "en": "He received a full scholarship to study engineering abroad.",
+            "tr": "Yurt dışında mühendislik okumak için tam burs aldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1420,
+      "english": "revise",
+      "pronunciation": "rɪˈvaɪz",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tekrar çalışmak",
+          "example": {
+            "en": "I need to revise all my notes before the final exam.",
+            "tr": "Final sınavından önce bütün notlarımı tekrar çalışmam gerekiyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1421,
+      "english": "frustrated",
+      "pronunciation": "frʌˈstreɪtɪd",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sinirli",
+          "example": {
+            "en": "She felt frustrated when nobody listened to her ideas.",
+            "tr": "Kimse fikirlerini dinlemeyince sinirlendiğini hissetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1422,
+      "english": "relieved",
+      "pronunciation": "rɪˈliːvd",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "rahatlamış",
+          "example": {
+            "en": "He was relieved to hear that everyone was safe after the accident.",
+            "tr": "Kazadan sonra herkesin güvende olduğunu duyunca rahatlayıp içi geçti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1423,
+      "english": "disappointed",
+      "pronunciation": "ˌdɪsəˈpɔɪntɪd",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hayal kırıklığına uğramış",
+          "example": {
+            "en": "The fans were disappointed when their team lost the final.",
+            "tr": "Taraftarlar takımları finali kaybedince hayal kırıklığına uğradı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1424,
+      "english": "jealous",
+      "pronunciation": "ˈdʒeləs",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kıskanç",
+          "example": {
+            "en": "He felt jealous when his friend got a better grade than him.",
+            "tr": "Arkadaşı kendisinden daha iyi not alınca kıskanç hissetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1425,
+      "english": "ashamed",
+      "pronunciation": "əˈʃeɪmd",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "utanmış",
+          "example": {
+            "en": "She felt ashamed after she lied to her parents about the exam.",
+            "tr": "Sınav hakkında ebeveynlerine yalan söyleyince utandığını hissetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1426,
+      "english": "freedom",
+      "pronunciation": "ˈfriːdəm",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "özgürlük",
+          "example": {
+            "en": "Living abroad gave her a great sense of freedom and independence.",
+            "tr": "Yurt dışında yaşamak ona büyük bir özgürlük ve bağımsızlık hissi verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1427,
+      "english": "responsibility",
+      "pronunciation": "rɪˌspɒnsəˈbɪlɪti",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sorumluluk",
+          "example": {
+            "en": "Taking care of a pet is a big responsibility for children.",
+            "tr": "Bir evcil hayvana bakmak çocuklar için büyük bir sorumluluktur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1428,
+      "english": "opportunity",
+      "pronunciation": "ˌɒpəˈtjuːnɪti",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fırsat",
+          "example": {
+            "en": "Working abroad gave him the opportunity to improve his language skills.",
+            "tr": "Yurt dışında çalışmak ona dil becerilerini geliştirme fırsatı verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1429,
+      "english": "progress",
+      "pronunciation": "ˈprəʊɡres",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ilerleme",
+          "example": {
+            "en": "She made great progress in her English after joining the course.",
+            "tr": "Kursa katıldıktan sonra İngilizcesinde büyük ilerleme kaydetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1430,
+      "english": "challenge",
+      "pronunciation": "ˈtʃælɪndʒ",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zorluk",
+          "example": {
+            "en": "Learning a new language is always an interesting challenge.",
+            "tr": "Yeni bir dil öğrenmek her zaman ilginç bir zorluktur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1431,
+      "english": "headline",
+      "pronunciation": "ˈhedlaɪn",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "manşet",
+          "example": {
+            "en": "The accident made the headline of every major newspaper today.",
+            "tr": "Kaza bugün her büyük gazetenin manşetine girdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1432,
+      "english": "broadcast",
+      "pronunciation": "ˈbrɔːdkɑːst",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yayınlamak",
+          "example": {
+            "en": "The match will be broadcast live on national television tonight.",
+            "tr": "Maç bu gece ulusal televizyonda canlı yayınlanacak."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1433,
+      "english": "subscribe",
+      "pronunciation": "səbˈskraɪb",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "abone olmak",
+          "example": {
+            "en": "Many people subscribe to streaming services instead of watching TV.",
+            "tr": "Pek çok kişi televizyon izlemek yerine yayın platformlarına abone oluyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1434,
+      "english": "documentary",
+      "pronunciation": "ˌdɒkjʊˈmentri",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "belgesel",
+          "example": {
+            "en": "We watched an interesting documentary about ocean pollution last night.",
+            "tr": "Dün gece okyanus kirliliği hakkında ilginç bir belgesel izledik."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1435,
+      "english": "influence",
+      "pronunciation": "ˈɪnfluəns",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "etkilemek",
+          "example": {
+            "en": "Social media can strongly influence the opinions of young people.",
+            "tr": "Sosyal medya genç insanların görüşlerini güçlü biçimde etkileyebilir."
+          }
+        },
+        {
+          "turkish": "etki",
+          "example": {
+            "en": "Her music had a great influence on an entire generation of artists.",
+            "tr": "Müziği tüm bir sanatçı kuşağı üzerinde büyük bir etki yarattı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1436,
+      "english": "recycle",
+      "pronunciation": "ˌriːˈsaɪkəl",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "geri dönüştürmek",
+          "example": {
+            "en": "It is important to recycle plastic and glass bottles regularly.",
+            "tr": "Plastik ve cam şişeleri düzenli olarak geri dönüştürmek önemlidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1437,
+      "english": "pollution",
+      "pronunciation": "pəˈluːʃən",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kirlilik",
+          "example": {
+            "en": "Air pollution in large cities is becoming a serious health problem.",
+            "tr": "Büyük şehirlerdeki hava kirliliği ciddi bir sağlık sorununa dönüşüyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1438,
+      "english": "climate change",
+      "pronunciation": "ˈklaɪmɪt tʃeɪndʒ",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iklim değişikliği",
+          "example": {
+            "en": "Scientists warn that climate change will affect food production worldwide.",
+            "tr": "Bilim insanları iklim değişikliğinin dünya genelinde gıda üretimini etkileyeceği konusunda uyarıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1439,
+      "english": "endangered",
+      "pronunciation": "ɪnˈdeɪndʒərd",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "nesli tehlikede olan",
+          "example": {
+            "en": "Many endangered species may disappear if we do not protect them.",
+            "tr": "Onları koruyamazsak nesli tehlikede olan pek çok tür yok olabilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1440,
+      "english": "sustainable",
+      "pronunciation": "səˈsteɪnəbəl",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sürdürülebilir",
+          "example": {
+            "en": "We should use more sustainable energy sources like solar and wind power.",
+            "tr": "Güneş ve rüzgar gibi daha sürdürülebilir enerji kaynakları kullanmalıyız."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1441,
+      "english": "get along with",
+      "pronunciation": "ɡet əˈlɒŋ wɪð",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "geçinmek",
+          "example": {
+            "en": "She gets along well with all her neighbours in the building.",
+            "tr": "Binasındaki tüm komşularıyla iyi geçiniyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1442,
+      "english": "trust",
+      "pronunciation": "trʌst",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "güvenmek",
+          "example": {
+            "en": "It takes time to trust someone you have just met.",
+            "tr": "Az önce tanıştığınız birine güvenmek zaman alır."
+          }
+        },
+        {
+          "turkish": "güven",
+          "example": {
+            "en": "Trust is the most important thing in a good friendship.",
+            "tr": "Güven, iyi bir dostluktaki en önemli şeydir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1443,
+      "english": "argue",
+      "pronunciation": "ˈɑːɡjuː",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tartışmak",
+          "example": {
+            "en": "They often argue about small things but always make up quickly.",
+            "tr": "Küçük şeyler hakkında sık sık tartışırlar ama hep çabuk barışırlar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1444,
+      "english": "support",
+      "pronunciation": "səˈpɔːt",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "desteklemek",
+          "example": {
+            "en": "Her family supported her decision to move to a different city.",
+            "tr": "Ailesi farklı bir şehre taşınma kararını destekledi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1445,
+      "english": "break up",
+      "pronunciation": "breɪk ʌp",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ayrılmak",
+          "example": {
+            "en": "They decided to break up after two years of dating each other.",
+            "tr": "İki yıllık birlikteliklerinin ardından ayrılmaya karar verdiler."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1446,
+      "english": "in my opinion",
+      "pronunciation": "ɪn maɪ əˈpɪnjən",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bence",
+          "example": {
+            "en": "In my opinion, public transport should be completely free for everyone.",
+            "tr": "Bence toplu taşıma herkes için tamamen ücretsiz olmalı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1447,
+      "english": "agree with",
+      "pronunciation": "əˈɡriː wɪð",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "katılmak",
+          "example": {
+            "en": "I totally agree with your point about reducing plastic waste.",
+            "tr": "Plastik atıkları azaltma konusundaki görüşüne tamamen katılıyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1448,
+      "english": "tend to",
+      "pronunciation": "tend tuː",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "eğiliminde olmak",
+          "example": {
+            "en": "People tend to spend more money during the holiday season.",
+            "tr": "İnsanlar tatil döneminde daha fazla para harcama eğiliminde olur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1449,
+      "english": "point of view",
+      "pronunciation": "pɔɪnt əv vjuː",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bakış açısı",
+          "example": {
+            "en": "From my point of view, working from home has many advantages.",
+            "tr": "Benim bakış açımdan evden çalışmanın pek çok avantajı var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1450,
+      "english": "strongly believe",
+      "pronunciation": "ˈstrɒŋli bɪˈliːv",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kesinlikle inanmak",
+          "example": {
+            "en": "I strongly believe that education is the key to a better life.",
+            "tr": "Eğitimin daha iyi bir yaşamın anahtarı olduğuna kesinlikle inanıyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1451,
+      "english": "unforgettable",
+      "pronunciation": "ˌʌnfəˈɡetəbəl",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "unutulmaz",
+          "example": {
+            "en": "Our trip to Japan was an absolutely unforgettable experience for us.",
+            "tr": "Japonya gezimiz bizim için kesinlikle unutulmaz bir deneyimdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1452,
+      "english": "take part in",
+      "pronunciation": "teɪk pɑːt ɪn",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "katılmak",
+          "example": {
+            "en": "Over two hundred students took part in the science competition.",
+            "tr": "İkiyüzden fazla öğrenci bilim yarışmasına katıldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1453,
+      "english": "overcome",
+      "pronunciation": "ˌəʊvəˈkʌm",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "üstesinden gelmek",
+          "example": {
+            "en": "She worked hard to overcome her fear of speaking in public.",
+            "tr": "Topluluk önünde konuşma korkusunun üstesinden gelmek için çok çalıştı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1454,
+      "english": "look back on",
+      "pronunciation": "lʊk bæk ɒn",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "geriye dönüp bakmak",
+          "example": {
+            "en": "When I look back on my childhood, I feel very grateful and happy.",
+            "tr": "Çocukluğuma geriye dönüp baktığımda çok minnettar ve mutlu hissediyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1455,
+      "english": "worthwhile",
+      "pronunciation": "ˌwɜːθˈwaɪl",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "değerli",
+          "example": {
+            "en": "Learning to play the guitar is difficult but completely worthwhile in the end.",
+            "tr": "Gitar çalmayı öğrenmek zordur ama sonunda tamamen değerlidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1456,
+      "english": "negotiate",
+      "pronunciation": "nɪˈɡəʊʃieɪt",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "müzakere etmek",
+          "example": {
+            "en": "They negotiated a better salary before accepting the job.",
+            "tr": "İşi kabul etmeden önce daha iyi bir maaş için müzakere ettiler."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1457,
+      "english": "overtime",
+      "pronunciation": "ˈəʊvətaɪm",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fazla mesai",
+          "example": {
+            "en": "She worked overtime to finish the project on time.",
+            "tr": "Projeyi zamanında bitirmek için fazla mesai yaptı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1458,
+      "english": "apply for a job",
+      "pronunciation": "əˈplaɪ fər ə dʒɒb",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iş başvurusu yapmak",
+          "example": {
+            "en": "He applied for a job at the local newspaper last week.",
+            "tr": "Geçen hafta yerel gazeteye iş başvurusu yaptı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1459,
+      "english": "handout",
+      "pronunciation": "ˈhændaʊt",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ders notu kağıdı",
+          "example": {
+            "en": "The teacher gave us a handout with the key vocabulary.",
+            "tr": "Öğretmen bize temel kelimelerle ilgili bir ders notu kağıdı verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1460,
+      "english": "curriculum",
+      "pronunciation": "kəˈrɪkjʊləm",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "müfredat",
+          "example": {
+            "en": "The new curriculum includes more science and technology lessons.",
+            "tr": "Yeni müfredat daha fazla fen ve teknoloji dersi içeriyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1461,
+      "english": "tuition",
+      "pronunciation": "tjuˈɪʃən",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "öğrenim ücreti",
+          "example": {
+            "en": "University tuition fees have risen significantly in recent years.",
+            "tr": "Üniversite öğrenim ücretleri son yıllarda önemli ölçüde arttı."
+          }
+        },
+        {
+          "turkish": "özel ders",
+          "example": {
+            "en": "She received private tuition in mathematics before the exam.",
+            "tr": "Sınavdan önce matematikte özel ders aldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1462,
+      "english": "stand out",
+      "pronunciation": "stænd aʊt",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "öne çıkmak",
+          "example": {
+            "en": "Her creative ideas helped her stand out in the interview.",
+            "tr": "Yaratıcı fikirleri mülakatta öne çıkmasına yardımcı oldu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1463,
+      "english": "jet lag",
+      "pronunciation": "dʒet læɡ",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "uçuş yorgunluğu",
+          "example": {
+            "en": "After the long flight, she suffered from terrible jet lag.",
+            "tr": "Uzun uçuşun ardından korkunç bir uçuş yorgunluğu yaşadı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1464,
+      "english": "book in advance",
+      "pronunciation": "bʊk ɪn ədˈvɑːns",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "önceden rezervasyon yapmak",
+          "example": {
+            "en": "It is cheaper to book your hotel room in advance.",
+            "tr": "Otel odanızı önceden rezervasyon yapmanız daha ucuzdur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1465,
+      "english": "local cuisine",
+      "pronunciation": "ˈləʊkəl kwɪˈziːn",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yerel mutfak",
+          "example": {
+            "en": "We always try the local cuisine when we travel abroad.",
+            "tr": "Yurt dışına seyahat ettiğimizde her zaman yerel mutfağı deneriz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1466,
+      "english": "go sightseeing",
+      "pronunciation": "ɡəʊ ˈsaɪtsiːɪŋ",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gezmeye çıkmak",
+          "example": {
+            "en": "We went sightseeing in Rome and visited the Colosseum.",
+            "tr": "Roma'da gezmeye çıktık ve Kolezyum'u ziyaret ettik."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1467,
+      "english": "nervous",
+      "pronunciation": "ˈnɜːvəs",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gergin",
+          "example": {
+            "en": "She felt very nervous before giving her first public speech.",
+            "tr": "İlk halka açık konuşmasını yapmadan önce çok gergin hissetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1468,
+      "english": "overwhelmed",
+      "pronunciation": "ˌəʊvəˈwelmd",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bunalmış",
+          "example": {
+            "en": "He felt overwhelmed by the amount of work he had to do.",
+            "tr": "Yapması gereken iş miktarından bunalmış hissetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1469,
+      "english": "confident",
+      "pronunciation": "ˈkɒnfɪdənt",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kendinden emin",
+          "example": {
+            "en": "She was confident that she would pass the driving test.",
+            "tr": "Direksiyon sınavını geçeceğinden kendinden emindi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1470,
+      "english": "peer pressure",
+      "pronunciation": "pɪə ˈpreʃə",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "akran baskısı",
+          "example": {
+            "en": "Teenagers often make bad choices due to peer pressure.",
+            "tr": "Gençler sıklıkla akran baskısı nedeniyle kötü kararlar alır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1471,
+      "english": "make up",
+      "pronunciation": "meɪk ʌp",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "barışmak",
+          "example": {
+            "en": "After a big argument, the friends quickly made up.",
+            "tr": "Büyük bir tartışmanın ardından arkadaşlar hemen barıştı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1472,
+      "english": "keep in touch",
+      "pronunciation": "kiːp ɪn tʌtʃ",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iletişimde kalmak",
+          "example": {
+            "en": "We promised to keep in touch after moving to different cities.",
+            "tr": "Farklı şehirlere taşındıktan sonra iletişimde kalmaya söz verdik."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1473,
+      "english": "fall out with",
+      "pronunciation": "fɔːl aʊt wɪð",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "küsmek",
+          "example": {
+            "en": "She fell out with her best friend over a misunderstanding.",
+            "tr": "Bir yanlış anlama yüzünden en yakın arkadaşına küstü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1474,
+      "english": "attitude",
+      "pronunciation": "ˈætɪtjuːd",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tutum",
+          "example": {
+            "en": "His positive attitude made a big difference at work.",
+            "tr": "Olumlu tutumu işte büyük bir fark yarattı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1475,
+      "english": "consequence",
+      "pronunciation": "ˈkɒnsɪkwəns",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sonuç",
+          "example": {
+            "en": "Every decision you make has a consequence you must face.",
+            "tr": "Verdiğin her kararın yüzleşmen gereken bir sonucu vardır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1476,
+      "english": "awareness",
+      "pronunciation": "əˈweənəs",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "farkındalık",
+          "example": {
+            "en": "The campaign raised awareness about mental health issues.",
+            "tr": "Kampanya, ruh sağlığı sorunları hakkında farkındalık yarattı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1477,
+      "english": "benefit",
+      "pronunciation": "ˈbenɪfɪt",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fayda",
+          "example": {
+            "en": "Regular exercise has many benefits for your physical health.",
+            "tr": "Düzenli egzersizin fiziksel sağlığınız için birçok faydası vardır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1478,
+      "english": "go viral",
+      "pronunciation": "ɡəʊ ˈvaɪərəl",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "viral olmak",
+          "example": {
+            "en": "The funny video went viral and got millions of views overnight.",
+            "tr": "Komik video viral oldu ve bir gecede milyonlarca izlenme aldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1479,
+      "english": "fake news",
+      "pronunciation": "feɪk njuːz",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sahte haber",
+          "example": {
+            "en": "It is important to check sources before sharing fake news online.",
+            "tr": "Sahte haberleri çevrimiçi paylaşmadan önce kaynakları kontrol etmek önemlidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1480,
+      "english": "social media",
+      "pronunciation": "ˈsəʊʃəl ˈmiːdiə",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sosyal medya",
+          "example": {
+            "en": "Many young people spend hours on social media every day.",
+            "tr": "Pek çok genç her gün sosyal medyada saatler geçiriyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1481,
+      "english": "stream",
+      "pronunciation": "striːm",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yayın akışıyla izlemek",
+          "example": {
+            "en": "We streamed the latest series on our laptop last night.",
+            "tr": "Dün gece dizüstü bilgisayarımızda en yeni diziyi yayın akışıyla izledik."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1482,
+      "english": "carbon footprint",
+      "pronunciation": "ˈkɑːbən ˈfʊtprɪnt",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "karbon ayak izi",
+          "example": {
+            "en": "Taking the bus instead of driving reduces your carbon footprint.",
+            "tr": "Araba kullanmak yerine otobüse binmek karbon ayak izinizi azaltır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1483,
+      "english": "renewable energy",
+      "pronunciation": "rɪˈnjuːəbl ˈenədʒi",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yenilenebilir enerji",
+          "example": {
+            "en": "Many countries are now investing in renewable energy sources.",
+            "tr": "Birçok ülke artık yenilenebilir enerji kaynaklarına yatırım yapıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1484,
+      "english": "deforestation",
+      "pronunciation": "diːˌfɒrɪˈsteɪʃən",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ormansızlaşma",
+          "example": {
+            "en": "Deforestation is destroying the natural habitats of many animals.",
+            "tr": "Ormansızlaşma birçok hayvanın doğal yaşam alanını yok ediyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1485,
+      "english": "cope with",
+      "pronunciation": "kəʊp wɪð",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "başa çıkmak",
+          "example": {
+            "en": "It was hard to cope with the stress of working two jobs.",
+            "tr": "İki işte çalışmanın stressiyle başa çıkmak zordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1486,
+      "english": "broaden one's horizons",
+      "pronunciation": "ˈbrɔːdən wʌnz həˈraɪzənz",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ufkunu genişletmek",
+          "example": {
+            "en": "Studying abroad is a great way to broaden your horizons.",
+            "tr": "Yurt dışında okumak ufkunu genişletmenin harika bir yoludur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1487,
+      "english": "give it a go",
+      "pronunciation": "ɡɪv ɪt ə ɡəʊ",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bir şeyi denemek",
+          "example": {
+            "en": "I had never tried surfing before, but I decided to give it a go.",
+            "tr": "Daha önce hiç sörf yapmamıştım ama denemek için karar verdim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1488,
+      "english": "draw a conclusion",
+      "pronunciation": "drɔː ə kənˈkluːʒən",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sonuç çıkarmak",
+          "example": {
+            "en": "It is too early to draw a conclusion from the research results.",
+            "tr": "Araştırma sonuçlarından sonuç çıkarmak için çok erken."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1489,
+      "english": "as far as I know",
+      "pronunciation": "æz fɑːr æz aɪ nəʊ",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bildiğim kadarıyla",
+          "example": {
+            "en": "As far as I know, the meeting has not been cancelled yet.",
+            "tr": "Bildiğim kadarıyla toplantı henüz iptal edilmedi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1490,
+      "english": "it seems to me",
+      "pronunciation": "ɪt siːmz tə miː",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bana göre",
+          "example": {
+            "en": "It seems to me that working from home is more productive.",
+            "tr": "Bana göre evden çalışmak daha verimli."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1491,
+      "english": "on the other hand",
+      "pronunciation": "ɒn ðə ˈʌðə hænd",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "öte yandan",
+          "example": {
+            "en": "City life is exciting; on the other hand, it can be very stressful.",
+            "tr": "Şehir hayatı heyecan verici; öte yandan çok stresli olabilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1492,
+      "english": "look forward to",
+      "pronunciation": "lʊk ˈfɔːwəd tə",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dört gözle beklemek",
+          "example": {
+            "en": "I am really looking forward to my holiday next month.",
+            "tr": "Gelecek aydaki tatilimi gerçekten dört gözle bekliyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1494,
+      "english": "deal with",
+      "pronunciation": "diːl wɪð",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ilgilenmek",
+          "example": {
+            "en": "She deals with customer complaints every day at her job.",
+            "tr": "İşinde her gün müşteri şikayetleriyle ilgileniyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1495,
+      "english": "teamwork",
+      "pronunciation": "ˈtiːmwɜːk",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "takım çalışması",
+          "example": {
+            "en": "Good teamwork is essential for completing large projects successfully.",
+            "tr": "Büyük projeleri başarıyla tamamlamak için iyi bir takım çalışması şarttır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1496,
+      "english": "put off",
+      "pronunciation": "pʊt ɒf",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ertelemek",
+          "example": {
+            "en": "Stop putting off your homework and start studying now.",
+            "tr": "Ödevini ertelemeyi bırak ve şimdi çalışmaya başla."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1497,
+      "english": "take on",
+      "pronunciation": "teɪk ɒn",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "üstlenmek",
+          "example": {
+            "en": "She was happy to take on more responsibilities at the office.",
+            "tr": "Ofiste daha fazla sorumluluk üstlenmekten memnundu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1498,
+      "english": "set a goal",
+      "pronunciation": "set ə ɡəʊl",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hedef belirlemek",
+          "example": {
+            "en": "It is important to set clear goals before starting a new project.",
+            "tr": "Yeni bir projeye başlamadan önce net hedefler belirlemek önemlidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1499,
+      "english": "make a difference",
+      "pronunciation": "meɪk ə ˈdɪfərəns",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "fark yaratmak",
+          "example": {
+            "en": "Even small actions can make a big difference to the environment.",
+            "tr": "Küçük eylemler bile çevre için büyük bir fark yaratabilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1500,
+      "english": "debate",
+      "pronunciation": "dɪˈbeɪt",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tartışma",
+          "example": {
+            "en": "The students held a debate about the benefits of technology in schools.",
+            "tr": "Öğrenciler okulda teknolojinin faydaları hakkında bir tartışma yaptı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1501,
+      "english": "distance learning",
+      "pronunciation": "ˈdɪstəns ˈlɜːnɪŋ",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "uzaktan eğitim",
+          "example": {
+            "en": "Distance learning became very popular during the global pandemic.",
+            "tr": "Uzaktan eğitim, küresel salgın döneminde çok popüler hale geldi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1502,
+      "english": "waste",
+      "pronunciation": "weɪst",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "atık",
+          "example": {
+            "en": "Reducing food waste is one way to help the environment.",
+            "tr": "Gıda atığını azaltmak çevreye yardımcı olmanın bir yoludur."
+          }
+        },
+        {
+          "turkish": "israf etmek",
+          "example": {
+            "en": "We should not waste water by leaving the tap running.",
+            "tr": "Musluğu açık bırakarak suyu israf etmemeliyiz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1503,
+      "english": "get used to",
+      "pronunciation": "ɡet juːst tə",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "alışmak",
+          "example": {
+            "en": "It took me a while to get used to waking up so early.",
+            "tr": "Bu kadar erken uyanmaya alışmam biraz zaman aldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1504,
+      "english": "turn down",
+      "pronunciation": "tɜːn daʊn",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "reddetmek",
+          "example": {
+            "en": "She turned down the job offer because the salary was too low.",
+            "tr": "Maaş çok düşük olduğu için iş teklifini reddetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1505,
+      "english": "bring up",
+      "pronunciation": "brɪŋ ʌp",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yetiştirmek",
+          "example": {
+            "en": "She was brought up in a small town in the countryside.",
+            "tr": "Kırsal kesimde küçük bir kasabada yetiştirildi."
+          }
+        },
+        {
+          "turkish": "gündeme getirmek",
+          "example": {
+            "en": "He brought up an important issue during the team meeting.",
+            "tr": "Ekip toplantısında önemli bir konuyu gündeme getirdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1506,
+      "english": "commute",
+      "pronunciation": "kəˈmjuːt",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "işe gidip gelmek",
+          "example": {
+            "en": "She commutes to work by train every morning.",
+            "tr": "Her sabah işe trenle gidip geliyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1507,
+      "english": "remote work",
+      "pronunciation": "rɪˈmoʊt wɜːrk",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "uzaktan çalışma",
+          "example": {
+            "en": "Remote work has become very popular in recent years.",
+            "tr": "Uzaktan çalışma son yıllarda çok popüler hale geldi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1508,
+      "english": "interview",
+      "pronunciation": "ˈɪntərvjuː",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iş görüşmesi",
+          "example": {
+            "en": "He prepared carefully for his job interview yesterday.",
+            "tr": "Dün iş görüşmesi için dikkatli bir şekilde hazırlandı."
+          }
+        },
+        {
+          "turkish": "röportaj",
+          "example": {
+            "en": "The journalist did an interview with the famous director.",
+            "tr": "Gazeteci ünlü yönetmenle bir röportaj yaptı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1509,
+      "english": "salary",
+      "pronunciation": "ˈsæləri",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "maaş",
+          "example": {
+            "en": "Her salary increased significantly after her promotion.",
+            "tr": "Terfisinin ardından maaşı önemli ölçüde arttı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1510,
+      "english": "take time off",
+      "pronunciation": "teɪk taɪm ɒf",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "izin almak",
+          "example": {
+            "en": "I need to take some time off to rest properly.",
+            "tr": "Gereği gibi dinlenmek için biraz izin almam gerekiyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1511,
+      "english": "backpack",
+      "pronunciation": "ˈbækpæk",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sırt çantası",
+          "example": {
+            "en": "She carried all her belongings in a small backpack.",
+            "tr": "Tüm eşyalarını küçük bir sırt çantasında taşıdı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1512,
+      "english": "delay",
+      "pronunciation": "dɪˈleɪ",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gecikme",
+          "example": {
+            "en": "There was a two-hour delay due to bad weather.",
+            "tr": "Kötü hava nedeniyle iki saatlik bir gecikme yaşandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1513,
+      "english": "guided tour",
+      "pronunciation": "ˈɡaɪdɪd tʊər",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "rehberli tur",
+          "example": {
+            "en": "We joined a guided tour of the old city centre.",
+            "tr": "Eski şehir merkezinin rehberli turuna katıldık."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1514,
+      "english": "exchange rate",
+      "pronunciation": "ɪksˈtʃeɪndʒ reɪt",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "döviz kuru",
+          "example": {
+            "en": "Always check the exchange rate before changing money abroad.",
+            "tr": "Yurt dışında para bozdururken her zaman döviz kurunu kontrol edin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1515,
+      "english": "homesick",
+      "pronunciation": "ˈhoʊmsɪk",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yurt özlemi çeken",
+          "example": {
+            "en": "She felt homesick after a month living abroad alone.",
+            "tr": "Yurt dışında yalnız yaşadığı bir ayın ardından yurt özlemi çekti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1516,
+      "english": "semester",
+      "pronunciation": "sɪˈmɛstər",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dönem",
+          "example": {
+            "en": "The new semester begins at the start of September.",
+            "tr": "Yeni dönem Eylül başında başlıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1517,
+      "english": "compulsory",
+      "pronunciation": "kəmˈpʌlsəri",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zorunlu",
+          "example": {
+            "en": "Attendance at the final lecture is compulsory for all students.",
+            "tr": "Son derse katılım tüm öğrenciler için zorunludur."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1518,
+      "english": "pass an exam",
+      "pronunciation": "pɑːs ən ɪɡˈzæm",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sınavı geçmek",
+          "example": {
+            "en": "He studied hard and managed to pass every exam.",
+            "tr": "Çok çalıştı ve tüm sınavları geçmeyi başardı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1519,
+      "english": "syllabus",
+      "pronunciation": "ˈsɪləbəs",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ders programı",
+          "example": {
+            "en": "The teacher handed out the syllabus on the first day.",
+            "tr": "Öğretmen ilk gün ders programını dağıttı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1520,
+      "english": "fail",
+      "pronunciation": "feɪl",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "başarısız olmak",
+          "example": {
+            "en": "She failed her driving test for the second time.",
+            "tr": "Ehliyet sınavını ikinci kez geçemedi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1521,
+      "english": "anxious",
+      "pronunciation": "ˈæŋkʃəs",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "endişeli",
+          "example": {
+            "en": "He felt anxious about speaking in front of the class.",
+            "tr": "Sınıfın önünde konuşmak konusunda endişeli hissetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1522,
+      "english": "proud",
+      "pronunciation": "praʊd",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "gururlu",
+          "example": {
+            "en": "Her parents were very proud of her achievements.",
+            "tr": "Ailesi onun başarılarıyla çok gurur duydu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1523,
+      "english": "loneliness",
+      "pronunciation": "ˈloʊnlinəs",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yalnızlık",
+          "example": {
+            "en": "Moving to a new city can cause feelings of loneliness.",
+            "tr": "Yeni bir şehre taşınmak yalnızlık hissine yol açabilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1524,
+      "english": "mood",
+      "pronunciation": "muːd",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ruh hali",
+          "example": {
+            "en": "Music can change your mood in a very powerful way.",
+            "tr": "Müzik ruh halinizi çok güçlü bir şekilde değiştirebilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1525,
+      "english": "regret",
+      "pronunciation": "rɪˈɡrɛt",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "pişmanlık duymak",
+          "example": {
+            "en": "She regretted not studying harder for her final exam.",
+            "tr": "Final sınavı için daha fazla çalışmadığı için pişmanlık duydu."
+          }
+        },
+        {
+          "turkish": "pişmanlık",
+          "example": {
+            "en": "He lived his life without any regret or sadness.",
+            "tr": "Hiçbir pişmanlık veya üzüntü duymadan yaşadı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1526,
+      "english": "identity",
+      "pronunciation": "aɪˈdɛntɪti",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kimlik",
+          "example": {
+            "en": "Language plays an important role in cultural identity.",
+            "tr": "Dil, kültürel kimlikte önemli bir rol oynar."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1527,
+      "english": "decision",
+      "pronunciation": "dɪˈsɪʒən",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "karar",
+          "example": {
+            "en": "Making the right decision can sometimes be very difficult.",
+            "tr": "Doğru kararı vermek bazen çok zor olabilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1528,
+      "english": "ambition",
+      "pronunciation": "æmˈbɪʃən",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hırs",
+          "example": {
+            "en": "Her ambition drove her to work harder every single day.",
+            "tr": "Hırsı onu her gün daha çok çalışmaya yöneltti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1529,
+      "english": "value",
+      "pronunciation": "ˈvæljuː",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "değer",
+          "example": {
+            "en": "Honesty is a value that many people consider very important.",
+            "tr": "Dürüstlük, pek çok insanın çok önemli bulduğu bir değerdir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1530,
+      "english": "purpose",
+      "pronunciation": "ˈpɜːrpəs",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "amaç",
+          "example": {
+            "en": "Everyone needs a clear sense of purpose in their life.",
+            "tr": "Herkesin hayatında net bir amaç duygusuna ihtiyacı vardır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1531,
+      "english": "review",
+      "pronunciation": "rɪˈvjuː",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "eleştiri yazısı",
+          "example": {
+            "en": "The film received mostly positive reviews from critics worldwide.",
+            "tr": "Film, dünya genelinde eleştirmenlerden ağırlıklı olarak olumlu eleştiriler aldı."
+          }
+        },
+        {
+          "turkish": "incelemek",
+          "example": {
+            "en": "She reviewed all her notes before the big presentation.",
+            "tr": "Büyük sunumdan önce tüm notlarını inceledi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1532,
+      "english": "column",
+      "pronunciation": "ˈkɒləm",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "köşe yazısı",
+          "example": {
+            "en": "She writes a weekly column about technology for the newspaper.",
+            "tr": "Gazete için haftalık bir teknoloji köşe yazısı yazıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1533,
+      "english": "advertise",
+      "pronunciation": "ˈædvərtaɪz",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "reklam yapmak",
+          "example": {
+            "en": "Many companies advertise their products on social media platforms.",
+            "tr": "Pek çok şirket ürünlerini sosyal medya platformlarında tanıtıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1534,
+      "english": "episode",
+      "pronunciation": "ˈɛpɪsoʊd",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bölüm",
+          "example": {
+            "en": "I watched three episodes of the series in one evening.",
+            "tr": "Bir akşamda dizinin üç bölümünü izledim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1535,
+      "english": "publish",
+      "pronunciation": "ˈpʌblɪʃ",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yayımlamak",
+          "example": {
+            "en": "The author published her first novel at the age of thirty.",
+            "tr": "Yazar ilk romanını otuz yaşında yayımladı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1536,
+      "english": "habitat",
+      "pronunciation": "ˈhæbɪtæt",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yaşam alanı",
+          "example": {
+            "en": "Deforestation is destroying the natural habitat of many animals.",
+            "tr": "Ormansızlaşma pek çok hayvanın doğal yaşam alanını yok ediyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1537,
+      "english": "conservation",
+      "pronunciation": "ˌkɒnsəˈveɪʃən",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "koruma",
+          "example": {
+            "en": "Wildlife conservation efforts have saved several endangered species.",
+            "tr": "Yaban hayatı koruma çalışmaları birçok nesli tükenmekte olan türü kurtardı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1538,
+      "english": "drought",
+      "pronunciation": "draʊt",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kuraklık",
+          "example": {
+            "en": "The severe drought destroyed crops across the whole region.",
+            "tr": "Şiddetli kuraklık tüm bölgedeki ürünleri mahvetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1539,
+      "english": "flood",
+      "pronunciation": "flʌd",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sel",
+          "example": {
+            "en": "Heavy rain caused a serious flood in the town centre.",
+            "tr": "Şiddetli yağmur şehir merkezinde ciddi bir sele yol açtı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1540,
+      "english": "natural resources",
+      "pronunciation": "ˈnætʃərəl rɪˈsɔːrsɪz",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "doğal kaynaklar",
+          "example": {
+            "en": "We must use natural resources wisely to protect our planet.",
+            "tr": "Gezegenimizi korumak için doğal kaynakları akıllıca kullanmalıyız."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1541,
+      "english": "make friends",
+      "pronunciation": "meɪk frɛndz",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "arkadaş edinmek",
+          "example": {
+            "en": "It can be hard to make friends when you move abroad.",
+            "tr": "Yurt dışına taşındığınızda arkadaş edinmek zor olabilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1542,
+      "english": "mentor",
+      "pronunciation": "ˈmɛntɔːr",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "rehber",
+          "example": {
+            "en": "Having a good mentor can help you grow professionally and personally.",
+            "tr": "İyi bir rehbere sahip olmak mesleki ve kişisel gelişiminize yardımcı olabilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1543,
+      "english": "respect",
+      "pronunciation": "rɪˈspɛkt",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "saygı",
+          "example": {
+            "en": "Mutual respect is the foundation of any healthy relationship.",
+            "tr": "Karşılıklı saygı, her sağlıklı ilişkinin temelidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1544,
+      "english": "generation",
+      "pronunciation": "ˌdʒɛnəˈreɪʃən",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "nesil",
+          "example": {
+            "en": "Each generation faces its own unique set of challenges.",
+            "tr": "Her nesil kendine özgü bir dizi zorlukla karşı karşıya kalır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1545,
+      "english": "role model",
+      "pronunciation": "roʊl ˈmɒdəl",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "rol model",
+          "example": {
+            "en": "Teachers can be very important role models for young children.",
+            "tr": "Öğretmenler küçük çocuklar için çok önemli rol modeller olabilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1546,
+      "english": "as a result",
+      "pronunciation": "æz ə rɪˈzʌlt",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sonuç olarak",
+          "example": {
+            "en": "She trained every day; as a result, she won the race.",
+            "tr": "Her gün antrenman yaptı; sonuç olarak yarışı kazandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1547,
+      "english": "in contrast",
+      "pronunciation": "ɪn ˈkɒntræst",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "buna karşın",
+          "example": {
+            "en": "In contrast, the second group showed much better results overall.",
+            "tr": "Buna karşın, ikinci grup genel olarak çok daha iyi sonuçlar gösterdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1548,
+      "english": "raise awareness",
+      "pronunciation": "reɪz əˈweənəs",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "farkındalık yaratmak",
+          "example": {
+            "en": "The campaign aims to raise awareness about mental health issues.",
+            "tr": "Kampanya, ruh sağlığı sorunları konusunda farkındalık yaratmayı amaçlıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1549,
+      "english": "justify",
+      "pronunciation": "ˈdʒʌstɪfaɪ",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "haklı çıkarmak",
+          "example": {
+            "en": "It is hard to justify spending so much money on that.",
+            "tr": "Buna bu kadar para harcamayı haklı çıkarmak zor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1550,
+      "english": "personally speaking",
+      "pronunciation": "ˈpɜːrsənəli ˈspiːkɪŋ",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "şahsen konuşacak olursam",
+          "example": {
+            "en": "Personally speaking, I think travelling alone is very rewarding.",
+            "tr": "Şahsen konuşacak olursam, yalnız seyahat etmenin çok kazandırıcı olduğunu düşünüyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1551,
+      "english": "milestone",
+      "pronunciation": "ˈmaɪlstoʊn",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "dönüm noktası",
+          "example": {
+            "en": "Graduating from university was a real milestone in her life.",
+            "tr": "Üniversiteden mezun olmak onun hayatında gerçek bir dönüm noktasıydı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1552,
+      "english": "turn out",
+      "pronunciation": "tɜːrn aʊt",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sonuçlanmak",
+          "example": {
+            "en": "The trip turned out to be more fun than we expected.",
+            "tr": "Gezi beklediğimizden çok daha eğlenceli sonuçlandı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1553,
+      "english": "end up",
+      "pronunciation": "ɛnd ʌp",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sonunda olmak",
+          "example": {
+            "en": "We got lost and ended up in a completely different neighbourhood.",
+            "tr": "Yolumuzu kaybettik ve sonunda bambaşka bir semtte bulduk kendimizi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1554,
+      "english": "go through",
+      "pronunciation": "ɡoʊ θruː",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yaşamak",
+          "example": {
+            "en": "Going through difficult times can make you much stronger eventually.",
+            "tr": "Zor zamanlar yaşamak sizi sonunda çok daha güçlü kılabilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1555,
+      "english": "broaden",
+      "pronunciation": "ˈbrɔːdən",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "genişletmek",
+          "example": {
+            "en": "Travelling abroad can really broaden your perspective on life.",
+            "tr": "Yurt dışında seyahat etmek hayata bakış açınızı gerçekten genişletebilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1556,
+      "english": "pension",
+      "pronunciation": "ˈpenʃən",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "emekli maaşı",
+          "example": {
+            "en": "She receives a pension after forty years of work.",
+            "tr": "Kırk yıllık çalışmanın ardından emekli maaşı alıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1557,
+      "english": "promotion",
+      "pronunciation": "prəˈməʊʃən",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "terfi",
+          "example": {
+            "en": "He got a promotion after working hard all year.",
+            "tr": "Bütün yıl sıkı çalıştıktan sonra terfi aldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1558,
+      "english": "transfer",
+      "pronunciation": "ˈtrænsfɜː",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "aktarma",
+          "example": {
+            "en": "We need to make a transfer at Istanbul airport.",
+            "tr": "İstanbul havalimanında aktarma yapmamız gerekiyor."
+          }
+        },
+        {
+          "turkish": "nakil",
+          "example": {
+            "en": "His transfer to the new office was unexpected.",
+            "tr": "Yeni ofise nakli beklenmedikti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1559,
+      "english": "boarding pass",
+      "pronunciation": "ˈbɔːdɪŋ pɑːs",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "biniş kartı",
+          "example": {
+            "en": "Please show your boarding pass at the gate.",
+            "tr": "Lütfen kapıda biniş kartınızı gösterin."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1560,
+      "english": "tutor",
+      "pronunciation": "ˈtjuːtə",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "özel öğretmen",
+          "example": {
+            "en": "She hired a tutor to help her with mathematics.",
+            "tr": "Matematik konusunda yardım almak için özel öğretmen tuttu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1561,
+      "english": "lecture",
+      "pronunciation": "ˈlektʃə",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ders",
+          "example": {
+            "en": "The professor gave an interesting lecture on history.",
+            "tr": "Profesör tarih üzerine ilgi çekici bir ders verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1562,
+      "english": "embarrassed",
+      "pronunciation": "ɪmˈbærəst",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "utanmış",
+          "example": {
+            "en": "She felt embarrassed when she forgot his name.",
+            "tr": "Adını unutunca utanmış hissetti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1563,
+      "english": "grateful",
+      "pronunciation": "ˈɡreɪtfʊl",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "minnettar",
+          "example": {
+            "en": "I am very grateful for all your help today.",
+            "tr": "Bugünkü tüm yardımlarınız için çok minnettarım."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1564,
+      "english": "jealousy",
+      "pronunciation": "ˈdʒeləsi",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kıskançlık",
+          "example": {
+            "en": "Jealousy can destroy even the strongest relationships.",
+            "tr": "Kıskançlık en güçlü ilişkileri bile mahvedebilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1565,
+      "english": "justice",
+      "pronunciation": "ˈdʒʌstɪs",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "adalet",
+          "example": {
+            "en": "Everyone deserves to be treated with justice.",
+            "tr": "Herkes adaletle muamele görmeyi hak eder."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1567,
+      "english": "trend",
+      "pronunciation": "trend",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "trend",
+          "example": {
+            "en": "That dance became a trend on social media platforms.",
+            "tr": "O dans sosyal medya platformlarında trend oldu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1568,
+      "english": "comment",
+      "pronunciation": "ˈkɒment",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yorum",
+          "example": {
+            "en": "She left a positive comment on the video.",
+            "tr": "Videoya olumlu bir yorum bıraktı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1569,
+      "english": "species",
+      "pronunciation": "ˈspiːʃiːz",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tür",
+          "example": {
+            "en": "Many species of animals are threatened by deforestation.",
+            "tr": "Pek çok hayvan türü ormansızlaşma nedeniyle tehdit altında."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1570,
+      "english": "ecosystem",
+      "pronunciation": "ˈiːkəʊˌsɪstəm",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ekosistem",
+          "example": {
+            "en": "Pollution can seriously damage a delicate ecosystem.",
+            "tr": "Kirlilik hassas bir ekosisteme ciddi zarar verebilir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1572,
+      "english": "neighbourhood",
+      "pronunciation": "ˈneɪbəhʊd",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "mahalle",
+          "example": {
+            "en": "We have lived in this neighbourhood for ten years.",
+            "tr": "Bu mahallede on yıldır yaşıyoruz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1573,
+      "english": "take sides",
+      "pronunciation": "teɪk saɪdz",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "taraf tutmak",
+          "example": {
+            "en": "I prefer not to take sides in family arguments.",
+            "tr": "Aile tartışmalarında taraf tutmamayı tercih ederim."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1574,
+      "english": "go back on",
+      "pronunciation": "ɡəʊ bæk ɒn",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sözünden dönmek",
+          "example": {
+            "en": "He went back on his promise to help us move.",
+            "tr": "Bizi taşımamıza yardım etme sözünden döndü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1575,
+      "english": "memorable",
+      "pronunciation": "ˈmemərəbəl",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "unutulmaz",
+          "example": {
+            "en": "The concert was a truly memorable experience for everyone.",
+            "tr": "Konser herkes için gerçekten unutulmaz bir deneyimdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1576,
+      "english": "run out of",
+      "pronunciation": "rʌn aʊt əv",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tükenmek",
+          "example": {
+            "en": "We ran out of water during the long hike.",
+            "tr": "Uzun yürüyüş sırasında suyumuz tükendi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1577,
+      "english": "pay rise",
+      "pronunciation": "peɪ raɪz",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "zam",
+          "example": {
+            "en": "She asked her manager for a pay rise last week.",
+            "tr": "Geçen hafta yöneticisinden zam istedi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1578,
+      "english": "contract",
+      "pronunciation": "ˈkɒntrækt",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sözleşme",
+          "example": {
+            "en": "Please read the contract carefully before you sign it.",
+            "tr": "Lütfen imzalamadan önce sözleşmeyi dikkatlice okuyun."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1579,
+      "english": "currency",
+      "pronunciation": "ˈkʌrənsi",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "para birimi",
+          "example": {
+            "en": "You should exchange currency before you leave the country.",
+            "tr": "Ülkeyi terk etmeden önce para birimi değiştirmelisiniz."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1580,
+      "english": "visa",
+      "pronunciation": "ˈviːzə",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "vize",
+          "example": {
+            "en": "She applied for a visa to visit Canada next summer.",
+            "tr": "Gelecek yaz Kanada'yı ziyaret etmek için vize başvurusunda bulundu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1581,
+      "english": "enrol",
+      "pronunciation": "ɪnˈrəʊl",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kayıt olmak",
+          "example": {
+            "en": "He decided to enrol in an online language course.",
+            "tr": "Çevrimiçi bir dil kursuna kayıt olmaya karar verdi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1582,
+      "english": "academic",
+      "pronunciation": "ˌækəˈdemɪk",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "akademik",
+          "example": {
+            "en": "Her academic performance improved greatly this semester.",
+            "tr": "Akademik performansı bu dönem büyük ölçüde gelişti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1583,
+      "english": "anxiously",
+      "pronunciation": "ˈæŋkʃəsli",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "endişeyle",
+          "example": {
+            "en": "She waited anxiously for the exam results to arrive.",
+            "tr": "Sınav sonuçlarının gelmesini endişeyle bekledi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1584,
+      "english": "calm down",
+      "pronunciation": "kɑːm daʊn",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sakinleşmek",
+          "example": {
+            "en": "Take a deep breath and try to calm down now.",
+            "tr": "Derin bir nefes al ve şimdi sakinleşmeye çalış."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1585,
+      "english": "equality",
+      "pronunciation": "ɪˈkwɒlɪti",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "eşitlik",
+          "example": {
+            "en": "We should all work towards greater equality in society.",
+            "tr": "Hepimiz toplumda daha fazla eşitlik için çalışmalıyız."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1586,
+      "english": "diversity",
+      "pronunciation": "daɪˈvɜːsɪti",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "çeşitlilik",
+          "example": {
+            "en": "The diversity of cultures in this city is remarkable.",
+            "tr": "Bu şehirdeki kültür çeşitliliği dikkat çekicidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1587,
+      "english": "podcast",
+      "pronunciation": "ˈpɒdkɑːst",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "podcast",
+          "example": {
+            "en": "I listen to a language learning podcast every morning.",
+            "tr": "Her sabah dil öğrenme podcastı dinliyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1588,
+      "english": "viewer",
+      "pronunciation": "ˈvjuːə",
+      "level": "B1",
+      "category": "media",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "izleyici",
+          "example": {
+            "en": "The show attracted millions of viewers on its first night.",
+            "tr": "Program ilk gecesinde milyonlarca izleyici çekti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1590,
+      "english": "compost",
+      "pronunciation": "ˈkɒmpɒst",
+      "level": "B1",
+      "category": "environment",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "kompost",
+          "example": {
+            "en": "She uses compost from food scraps in her garden.",
+            "tr": "Bahçesinde yemek artıklarından elde ettiği kompost kullanıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1591,
+      "english": "bond",
+      "pronunciation": "bɒnd",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bağ",
+          "example": {
+            "en": "There is a strong bond between the two old friends.",
+            "tr": "İki eski arkadaş arasında güçlü bir bağ var."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1592,
+      "english": "peer",
+      "pronunciation": "pɪə",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "akran",
+          "example": {
+            "en": "It is important to be accepted by your peers at school.",
+            "tr": "Okulda akranlarınız tarafından kabul görmek önemlidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1593,
+      "english": "disagree",
+      "pronunciation": "ˌdɪsəˈɡriː",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "katılmamak",
+          "example": {
+            "en": "I disagree with the idea that money brings happiness.",
+            "tr": "Paranın mutluluk getirdiği fikrine katılmıyorum."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1594,
+      "english": "reconsider",
+      "pronunciation": "ˌriːkənˈsɪdə",
+      "level": "B1",
+      "category": "opinions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "yeniden düşünmek",
+          "example": {
+            "en": "She asked him to reconsider his decision to leave.",
+            "tr": "Ondan ayrılma kararını yeniden düşünmesini istedi."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1595,
+      "english": "reflect on",
+      "pronunciation": "rɪˈflekt ɒn",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "üzerinde düşünmek",
+          "example": {
+            "en": "Take some time to reflect on what you have achieved.",
+            "tr": "Ne başardığın üzerinde biraz düşünmek için zaman ayır."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1596,
+      "english": "first-hand",
+      "pronunciation": "ˌfɜːstˈhænd",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "bizzat",
+          "example": {
+            "en": "She experienced the effects of the storm first-hand.",
+            "tr": "Fırtınanın etkilerini bizzat yaşadı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1597,
+      "english": "workforce",
+      "pronunciation": "ˈwɜːkfɔːs",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iş gücü",
+          "example": {
+            "en": "The company plans to expand its workforce this year.",
+            "tr": "Şirket bu yıl iş gücünü genişletmeyi planlıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1598,
+      "english": "take charge",
+      "pronunciation": "teɪk tʃɑːdʒ",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "sorumluluğu üstlenmek",
+          "example": {
+            "en": "She had to take charge when the manager was absent.",
+            "tr": "Müdür olmayınca sorumluluğu üstlenmek zorunda kaldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1599,
+      "english": "souvenir",
+      "pronunciation": "ˌsuːvəˈnɪə",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hediyelik eşya",
+          "example": {
+            "en": "He bought a souvenir for his sister from Rome.",
+            "tr": "Roma'dan kız kardeşi için bir hediyelik eşya aldı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1600,
+      "english": "layover",
+      "pronunciation": "ˈleɪəʊvə",
+      "level": "B1",
+      "category": "travel",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "ara durak",
+          "example": {
+            "en": "We had a six-hour layover in Dubai on our way home.",
+            "tr": "Eve dönerken Dubai'de altı saatlik ara durağımız vardı."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1601,
+      "english": "thesis",
+      "pronunciation": "ˈθiːsɪs",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tez",
+          "example": {
+            "en": "She is working on her thesis about climate change.",
+            "tr": "İklim değişikliği hakkında tezi üzerinde çalışıyor."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1602,
+      "english": "assessment",
+      "pronunciation": "əˈsesmənt",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "değerlendirme",
+          "example": {
+            "en": "The final assessment will include a written and oral test.",
+            "tr": "Final değerlendirmesi yazılı ve sözlü sınav içerecek."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1603,
+      "english": "upset",
+      "pronunciation": "ʌpˈset",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "üzgün",
+          "example": {
+            "en": "She was very upset when she missed the final exam.",
+            "tr": "Final sınavını kaçırdığında çok üzgündü."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1604,
+      "english": "content",
+      "pronunciation": "kənˈtent",
+      "level": "B1",
+      "category": "emotions",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "memnun",
+          "example": {
+            "en": "He felt content with his simple but peaceful life.",
+            "tr": "Basit ama huzurlu hayatından memnun hissediyordu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1605,
+      "english": "tolerance",
+      "pronunciation": "ˈtɒlərəns",
+      "level": "B1",
+      "category": "abstract concepts",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "hoşgörü",
+          "example": {
+            "en": "Tolerance is essential for a peaceful and united society.",
+            "tr": "Hoşgörü, huzurlu ve birleşik bir toplum için gereklidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1606,
+      "english": "hand in",
+      "pronunciation": "hænd ɪn",
+      "level": "B1",
+      "category": "education",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "teslim etmek",
+          "example": {
+            "en": "She handed in her assignment before the deadline.",
+            "tr": "Ödevi son teslim tarihinden önce teslim etti."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1607,
+      "english": "work-life balance",
+      "pronunciation": "wɜːk laɪf ˈbæləns",
+      "level": "B1",
+      "category": "work",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "iş-yaşam dengesi",
+          "example": {
+            "en": "Finding a good work-life balance is important for mental health.",
+            "tr": "İyi bir iş-yaşam dengesi bulmak ruh sağlığı için önemlidir."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1608,
+      "english": "packed",
+      "pronunciation": "pækt",
+      "level": "B1",
+      "category": "experiences",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "tıklım tıklım dolu",
+          "example": {
+            "en": "The train was completely packed during rush hour.",
+            "tr": "Tren yoğun saatlerde tıklım tıklım doluydu."
+          }
+        }
+      ]
+    },
+    {
+      "id": 1609,
+      "english": "settle in",
+      "pronunciation": "ˈsɛtəl ɪn",
+      "level": "B1",
+      "category": "social relationships",
+      "reversible": true,
+      "userAdded": false,
+      "meanings": [
+        {
+          "turkish": "alışmak, uyum sağlamak",
+          "example": {
+            "en": "It took her a few weeks to settle in at the new school.",
+            "tr": "Yeni okula uyum sağlaması birkaç hafta sürdü."
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -189,9 +189,19 @@
 				Models/UserStats.swift,
 				Models/VocabularyPackage.swift,
 				Models/Word.swift,
+				premium_academic_001.json,
+				premium_business_001.json,
+				premium_food_001.json,
+				premium_idioms_001.json,
+				premium_slang_001.json,
+				premium_social_001.json,
 				premium_travel_001.json,
 				standard_a1_001.json,
 				standard_a2_001.json,
+				standard_b1_001.json,
+				standard_b2_001.json,
+				standard_c1_001.json,
+				standard_c2_001.json,
 			);
 			target = 0EC909CD2F18743E00FEBC67 /* HocaLingo */;
 		};
@@ -247,9 +257,19 @@
 				Models/UserStats.swift,
 				Models/VocabularyPackage.swift,
 				Models/Word.swift,
+				premium_academic_001.json,
+				premium_business_001.json,
+				premium_food_001.json,
+				premium_idioms_001.json,
+				premium_slang_001.json,
+				premium_social_001.json,
 				premium_travel_001.json,
 				standard_a1_001.json,
 				standard_a2_001.json,
+				standard_b1_001.json,
+				standard_b2_001.json,
+				standard_c1_001.json,
+				standard_c2_001.json,
 			);
 			target = 0EC909DA2F18743F00FEBC67 /* HocaLingoTests */;
 		};
