@@ -39,15 +39,18 @@ struct HeroCardView: View {
     var body: some View {
         Button(action: onTap) {
             ZStack {
+                // Glow background (reduced intensity)
                 RoundedRectangle(cornerRadius: 30)
                     .fill(glowGradient)
                     .scaleEffect(heroBreathe)
-                    .blur(radius: 16)
-                    .opacity(0.6)
+                    .blur(radius: 12)
+                    .opacity(0.35)
 
+                // Card gradient fill
                 RoundedRectangle(cornerRadius: 28)
                     .fill(cardGradient)
 
+                // Light sheen overlay
                 RoundedRectangle(cornerRadius: 28)
                     .fill(
                         LinearGradient(
@@ -73,28 +76,20 @@ struct HeroCardView: View {
                 .allowsHitTesting(false)
                 .clipped()
 
+                // Content: Big play button (left) + rotating content (right)
                 HStack(alignment: .center, spacing: 0) {
-                    VStack(alignment: .leading, spacing: 10) {
-                        streakBadge
-                        Text(LocalizedStringKey("home_cta_title"))
-                            .font(.system(size: 22, weight: .black, design: .rounded))
-                            .foregroundColor(.white)
-                            .lineLimit(2)
-                            .fixedSize(horizontal: false, vertical: true)
-                        startPill
-                    }
-                    .padding(.leading, 20)
-                    .padding(.vertical, 20)
+                    playButton
+                        .padding(.leading, 16)
 
                     Spacer()
 
                     rotatingContent
-                        .padding(.trailing, 10)
+                        .padding(.trailing, 8)
                 }
             }
             .frame(height: 158)
             .clipShape(RoundedRectangle(cornerRadius: 28))
-            .shadow(color: shadowColor.opacity(0.45), radius: 22, y: 10)
+            .shadow(color: shadowColor.opacity(0.25), radius: 16, y: 8)
         }
         .buttonStyle(SpringButtonStyle())
         .onAppear { startParticleLoop() }
@@ -128,38 +123,21 @@ struct HeroCardView: View {
         }
     }
 
-    // MARK: - Sub-views
-    private var streakBadge: some View {
-        let streak = uiState.currentStreak
-        return HStack(spacing: 5) {
-            Image(systemName: "flame.fill")
-                .font(.system(size: 11, weight: .black))
-                .foregroundColor(streakFlameColor(for: streak))
-            Text("\(streak)")
-                .font(.system(size: 12, weight: .black, design: .rounded))
-                .foregroundColor(.white.opacity(0.95))
-        }
-        .padding(.horizontal, 10)
-        .padding(.vertical, 5)
-        .background(streakBadgeBackground(for: streak))
-        .clipShape(Capsule())
-    }
+    private var playButton: some View {
+        ZStack {
+            Image("play")
+                .resizable()
+                .scaledToFit()
 
-    private var startPill: some View {
-        HStack(spacing: 6) {
-            Image(systemName: "play.fill")
-                .font(.system(size: 11, weight: .black))
             Text(LocalizedStringKey("home_start_btn"))
-                .font(.system(size: 13, weight: .black, design: .rounded))
+                .font(.system(size: 18, weight: .black, design: .rounded))
+                .foregroundColor(pillForeground)
+                .offset(x: -4)
         }
-        .foregroundColor(pillForeground)
-        .padding(.horizontal, 16)
-        .padding(.vertical, 8)
-        .background(Color.white)
-        .clipShape(Capsule())
-        .shadow(color: Color.white.opacity(0.28), radius: 8, y: 3)
+        .frame(width: 130, height: 130)
     }
 
+    // MARK: - Rotating Content (mascot / motivation text)
     private var rotatingContent: some View {
         Group {
             switch currentContentType {
@@ -171,9 +149,6 @@ struct HeroCardView: View {
                     .scaleEffect(1.30)
 
             case .text(let index):
-                // FIX: LocalizedStringKey with string interpolation doesn't trigger
-                // localization lookup at runtime. Pre-compute the key as String,
-                // then use NSLocalizedString so the bundle lookup fires correctly.
                 let key = "motivation_\(index + 1)"
                 Text(NSLocalizedString(key, comment: ""))
                     .font(.system(size: 14, weight: .semibold, design: .rounded))
@@ -200,40 +175,16 @@ struct HeroCardView: View {
 
     private var glowGradient: LinearGradient {
         let c = isDark ? Color(hex: "9333EA") : Color(hex: "FB9322")
-        return LinearGradient(colors: [c.opacity(0.45), c.opacity(0.1)], startPoint: .top, endPoint: .bottom)
+        return LinearGradient(colors: [c.opacity(0.40), c.opacity(0.08)], startPoint: .top, endPoint: .bottom)
     }
 
     private var shadowColor: Color { isDark ? Color(hex: "9333EA") : Color(hex: "FB9322") }
     private var pillForeground: Color { isDark ? Color(hex: "7C3AED") : Color(hex: "E05F00") }
-
-    private func streakFlameColor(for streak: Int) -> Color {
-        switch streak {
-        case 0:        return .white.opacity(0.6)
-        case 1...4:    return Color(hex: "FCD34D")
-        case 5...9:    return Color(hex: "FBBF24")
-        case 10...14:  return Color(hex: "F59E0B")
-        case 15...19:  return Color(hex: "F97316")
-        case 20...29:  return Color(hex: "EF4444")
-        default:       return Color(hex: "DC2626")
-        }
-    }
-
-    private func streakBadgeBackground(for streak: Int) -> Color {
-        switch streak {
-        case 0:        return .white.opacity(0.15)
-        case 1...4:    return .white.opacity(0.22)
-        case 5...9:    return Color(hex: "FBBF24").opacity(0.25)
-        case 10...14:  return Color(hex: "F59E0B").opacity(0.30)
-        case 15...19:  return Color(hex: "F97316").opacity(0.35)
-        case 20...29:  return Color(hex: "EF4444").opacity(0.35)
-        default:       return Color(hex: "DC2626").opacity(0.40)
-        }
-    }
 }
 
 
 // MARK: ─────────────────────────────────────────────────────────
-// MARK: STAT CARD
+// MARK: STAT CARD (with touch feedback)
 // MARK: ─────────────────────────────────────────────────────────
 
 struct StatCardWithChart: View {
@@ -245,6 +196,9 @@ struct StatCardWithChart: View {
     let chartData: [Double]
 
     private var primaryColor: Color { gradient.first ?? .blue }
+
+    // Touch feedback state
+    @State private var isPressed = false
 
     var body: some View {
         VStack(alignment: .leading, spacing: 5) {
@@ -274,8 +228,9 @@ struct StatCardWithChart: View {
 
             Spacer(minLength: 0)
 
+            // Chart — safe for zero values (flat line)
             Chart {
-                ForEach(Array(chartData.enumerated()), id: \.offset) { i, point in
+                ForEach(Array(safeChartData.enumerated()), id: \.offset) { i, point in
                     AreaMark(x: .value("i", i), y: .value("v", point))
                         .interpolationMethod(.catmullRom)
                         .foregroundStyle(
@@ -300,12 +255,29 @@ struct StatCardWithChart: View {
         .clipShape(RoundedRectangle(cornerRadius: 15))
         .overlay(RoundedRectangle(cornerRadius: 15).stroke(primaryColor.opacity(0.2), lineWidth: 1.1))
         .frame(height: 115)
+        // Touch feedback — spring scale like hero card
+        .scaleEffect(isPressed ? 0.95 : 1.0)
+        .animation(.spring(response: 0.3, dampingFraction: 0.6), value: isPressed)
+        .onLongPressGesture(minimumDuration: .infinity, pressing: { pressing in
+            isPressed = pressing
+        }, perform: {})
+    }
+
+    /// Prevents ugly descending chart when value is zero
+    private var safeChartData: [Double] {
+        let allZero = chartData.allSatisfy { $0 == 0 }
+        if allZero {
+            // Return tiny baseline so chart renders a flat line at bottom
+            return Array(repeating: 0.01, count: chartData.count)
+        }
+        // Clamp negatives just in case
+        return chartData.map { max($0, 0) }
     }
 }
 
 
 // MARK: ─────────────────────────────────────────────────────────
-// MARK: ACTION BUTTONS SECTION
+// MARK: ACTION BUTTONS SECTION (slightly shorter height)
 // MARK: ─────────────────────────────────────────────────────────
 
 struct HomeActionButtonsSection: View {
@@ -322,7 +294,7 @@ struct HomeActionButtonsSection: View {
     var body: some View {
         HStack(alignment: .center, spacing: 12) {
 
-            // ── PRIMARY: Package Selection — solid teal, single label ──
+            // ── PRIMARY: Package Selection — solid orange, single label ──
             Button(action: onPackageSelect) {
                 HStack(spacing: 16) {
                     Image(systemName: "rectangle.portrait.on.rectangle.portrait.angled.fill")
@@ -334,30 +306,29 @@ struct HomeActionButtonsSection: View {
                         .foregroundColor(.white)
 
                     Spacer()
-
                 }
                 .padding(.horizontal, 20)
-                .padding(.vertical, 18)
+                .padding(.vertical, 14)
                 .background(orange)
                 .clipShape(RoundedRectangle(cornerRadius: 18))
-                .shadow(color: orange.opacity(0.3), radius: 12, y: 5)
+                .shadow(color: orange.opacity(0.25), radius: 10, y: 4)
             }
             .buttonStyle(ScaleButtonStyle())
             .frame(maxWidth: .infinity)
 
-            // ── SECONDARY: Add Word — icon only, no text, no PNG ──────
+            // ── SECONDARY: Add Word — icon only ──────
             Button(action: onAddWord) {
                 Image(systemName: "plus")
                     .font(.system(size: 22, weight: .bold, design: .rounded))
                     .foregroundColor(teal)
-                    .frame(width: 72, height: 72)
+                    .frame(width: 72, height: 62)
                     .background(Color.themeCard)
                     .clipShape(RoundedRectangle(cornerRadius: 18))
                     .overlay(
                         RoundedRectangle(cornerRadius: 18)
                             .strokeBorder(teal.opacity(isDark ? 0.45 : 0.35), lineWidth: 1.8)
                     )
-                    .shadow(color: teal.opacity(0.15), radius: 8, y: 3)
+                    .shadow(color: teal.opacity(0.12), radius: 6, y: 3)
             }
             .buttonStyle(SpringButtonStyle())
         }
@@ -366,7 +337,7 @@ struct HomeActionButtonsSection: View {
 
 
 // MARK: ─────────────────────────────────────────────────────────
-// MARK: VAULT PREVIEW ROW
+// MARK: VAULT PREVIEW ROW (tappable title)
 // MARK: ─────────────────────────────────────────────────────────
 
 struct VaultPreviewRow: View {
@@ -378,16 +349,19 @@ struct VaultPreviewRow: View {
 
     var body: some View {
         VStack(spacing: 10) {
-            // Section header
+            // Section header — title is now tappable (same as "show all")
             HStack {
-                HStack(spacing: 6) {
-                    Image(systemName: "archivebox.fill")
-                        .font(.system(size: 13, weight: .bold))
-                        .foregroundColor(accent)
-                    Text(LocalizedStringKey("vault_section_title"))
-                        .font(.system(size: 15, weight: .bold, design: .rounded))
-                        .foregroundColor(.primary)
+                Button(action: onShowAll) {
+                    HStack(spacing: 6) {
+                        Image(systemName: "archivebox.fill")
+                            .font(.system(size: 13, weight: .bold))
+                            .foregroundColor(accent)
+                        Text(LocalizedStringKey("vault_section_title"))
+                            .font(.system(size: 15, weight: .bold, design: .rounded))
+                            .foregroundColor(.primary)
+                    }
                 }
+                .buttonStyle(PlainButtonStyle())
 
                 Spacer()
 
@@ -500,6 +474,69 @@ struct VaultPreviewCard: View {
     }
 }
 
+// MARK: ─────────────────────────────────────────────────────────
+// MARK: PLAY TRIANGLE SHAPE (Bezier-based, clean Apple-style)
+// MARK: ─────────────────────────────────────────────────────────
+ 
+/// A right-pointing play triangle with smooth rounded corners via quadratic bezier curves.
+/// Much cleaner than arc-tangent approach — no distorted corners at sharp angles.
+struct PlayTriangleShape: Shape {
+    var cornerRadius: CGFloat = 10
+ 
+    func path(in rect: CGRect) -> Path {
+        let width = rect.width
+        let height = rect.height
+ 
+        // Three vertices of the play triangle
+        let p1 = CGPoint(x: width * 0.22, y: height * 0.12) // top-left
+        let p2 = CGPoint(x: width * 0.82, y: height * 0.50) // right tip
+        let p3 = CGPoint(x: width * 0.22, y: height * 0.88) // bottom-left
+ 
+        let radius = min(cornerRadius, width * 0.12, height * 0.12)
+ 
+        // Helper: point along edge at 'distance' from 'start' toward 'end'
+        func point(from start: CGPoint, to end: CGPoint, distance: CGFloat) -> CGPoint {
+            let dx = end.x - start.x
+            let dy = end.y - start.y
+            let length = sqrt(dx * dx + dy * dy)
+            guard length > 0 else { return start }
+            return CGPoint(
+                x: start.x + dx / length * distance,
+                y: start.y + dy / length * distance
+            )
+        }
+ 
+        // Offset points around each vertex
+        let p1a = point(from: p1, to: p2, distance: radius)
+        let p1b = point(from: p1, to: p3, distance: radius)
+ 
+        let p2a = point(from: p2, to: p3, distance: radius)
+        let p2b = point(from: p2, to: p1, distance: radius)
+ 
+        let p3a = point(from: p3, to: p1, distance: radius)
+        let p3b = point(from: p3, to: p2, distance: radius)
+ 
+        var path = Path()
+ 
+        path.move(to: p1a)
+ 
+        // Top-left → right tip
+        path.addLine(to: p2b)
+        path.addQuadCurve(to: p2a, control: p2)
+ 
+        // Right tip → bottom-left
+        path.addLine(to: p3b)
+        path.addQuadCurve(to: p3a, control: p3)
+ 
+        // Bottom-left → top-left
+        path.addLine(to: p1b)
+        path.addQuadCurve(to: p1a, control: p1)
+ 
+        path.closeSubpath()
+        return path
+    }
+}
+ 
 
 // MARK: ─────────────────────────────────────────────────────────
 // MARK: BUTTON STYLES

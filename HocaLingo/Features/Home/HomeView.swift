@@ -4,6 +4,7 @@
 //
 //  Thin orchestrator — all heavy UI lives in HomeComponents.swift
 //  ✅ FIXED: @AppStorage added for reactive language switching
+//  ✅ UPDATED: Streak badge moved to stats header, glow reduced, chart data safe
 //  Location: Features/Home/HomeView.swift
 //
 
@@ -44,8 +45,9 @@ struct HomeView: View {
                 )
                 .ignoresSafeArea()
 
+                // Ambient glow circle (reduced intensity)
                 Circle()
-                    .fill(Color.accentPurple.opacity(isDarkMode ? 0.15 : 0.08))
+                    .fill(Color.accentPurple.opacity(isDarkMode ? 0.10 : 0.05))
                     .frame(width: 350, height: 350)
                     .blur(radius: 60)
                     .offset(x: 120, y: -250)
@@ -121,11 +123,8 @@ struct HomeView: View {
                     onTap: { viewModel.onEvent(.startStudy) }
                 )
 
-                // Monthly stats title
-                Text(LocalizedStringKey("stat_monthly_stats"))
-                    .font(.system(size: 15, weight: .bold, design: .rounded))
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                // Monthly stats title + streak badge (moved here from hero card)
+                statsHeader
 
                 // Stats 2×2 grid
                 statsGrid
@@ -147,6 +146,64 @@ struct HomeView: View {
             .padding(.top, 12)
             .padding(.bottom, 52)
         }
+    }
+
+    // MARK: - Stats Header (title + streak badge)
+    private var statsHeader: some View {
+        HStack {
+            Text(LocalizedStringKey("stat_monthly_stats"))
+                .font(.system(size: 15, weight: .bold, design: .rounded))
+                .foregroundColor(.secondary)
+
+            Spacer()
+
+            // Streak badge (relocated from hero card)
+            streakBadge
+        }
+    }
+
+    // MARK: - Streak Badge
+    private var streakBadge: some View {
+        let streak = viewModel.uiState.currentStreak
+        return HStack(spacing: 5) {
+            Image(systemName: "flame.fill")
+                .font(.system(size: 11, weight: .black))
+                .foregroundColor(streakFlameColor(for: streak))
+            Text("\(streak)")
+                .font(.system(size: 12, weight: .black, design: .rounded))
+                .foregroundColor(.primary.opacity(0.85))
+        }
+        .padding(.horizontal, 10)
+        .padding(.vertical, 5)
+        .background(streakBadgeBackground(for: streak))
+        .clipShape(Capsule())
+    }
+
+    // MARK: - Streak Colors
+    private func streakFlameColor(for streak: Int) -> Color {
+        switch streak {
+        case 0:        return .secondary
+        case 1...4:    return Color(hex: "FCD34D")
+        case 5...9:    return Color(hex: "FBBF24")
+        case 10...14:  return Color(hex: "F59E0B")
+        case 15...19:  return Color(hex: "F97316")
+        case 20...29:  return Color(hex: "EF4444")
+        default:       return Color(hex: "DC2626")
+        }
+    }
+
+    private func streakBadgeBackground(for streak: Int) -> Color {
+        let base: Color
+        switch streak {
+        case 0:        base = .secondary
+        case 1...4:    base = Color(hex: "FCD34D")
+        case 5...9:    base = Color(hex: "FBBF24")
+        case 10...14:  base = Color(hex: "F59E0B")
+        case 15...19:  base = Color(hex: "F97316")
+        case 20...29:  base = Color(hex: "EF4444")
+        default:       base = Color(hex: "DC2626")
+        }
+        return base.opacity(isDarkMode ? 0.20 : 0.12)
     }
 
     // MARK: - Stats Grid
@@ -203,20 +260,29 @@ struct HomeView: View {
         }
     }
 
-    // Sparkline data generators
+    // MARK: - Sparkline Data Generators (safe for zero values)
+
     private func generateStreakChartData() -> [Double] {
-        [3, 4, 5, 6, 7, Double(viewModel.uiState.streakDays)]
+        let v = Double(viewModel.uiState.streakDays)
+        guard v > 0 else { return [0, 0, 0, 0, 0, 0] }
+        return [v * 0.3, v * 0.5, v * 0.65, v * 0.8, v * 0.92, v]
     }
+
     private func generateActiveDaysData() -> [Double] {
         let d = Double(viewModel.uiState.monthlyStats.activeDaysThisMonth)
-        return [d*0.3, d*0.5, d*0.7, d*0.85, d*0.95, d]
+        guard d > 0 else { return [0, 0, 0, 0, 0, 0] }
+        return [d * 0.3, d * 0.5, d * 0.7, d * 0.85, d * 0.95, d]
     }
+
     private func generateStudyTimeData() -> [Double] {
         let t = Double(viewModel.uiState.monthlyStats.studyTimeThisMonth)
-        return [t*0.2, t*0.4, t*0.6, t*0.8, t*0.9, t]
+        guard t > 0 else { return [0, 0, 0, 0, 0, 0] }
+        return [t * 0.2, t * 0.4, t * 0.6, t * 0.8, t * 0.9, t]
     }
+
     private func generateDisciplineData() -> [Double] {
         let s = Double(viewModel.uiState.monthlyStats.disciplineScore)
-        return [s*0.4, s*0.6, s*0.75, s*0.85, s*0.92, s]
+        guard s > 0 else { return [0, 0, 0, 0, 0, 0] }
+        return [s * 0.4, s * 0.6, s * 0.75, s * 0.85, s * 0.92, s]
     }
 }
