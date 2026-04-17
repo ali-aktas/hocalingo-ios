@@ -305,6 +305,7 @@ class StudyViewModel: ObservableObject {
         requeueAndContinue()
     }
 
+    
     private func requeueAndContinue() {
         withAnimation(.spring(response: 0.4, dampingFraction: 0.8)) {
             isCardFlipped = false
@@ -312,20 +313,16 @@ class StudyViewModel: ObservableObject {
         
         self.cardsCompletedCount += 1
         
-        // ✅ SUSPENDED: checkAdDisplay()
+        // ✅ FIX: Use same filter as loadStudyQueue — include review-due words too
+        let availableWords = allWords.filter { shouldShowCard(for: $0.id) }
         
-        let learningWords = allWords.filter { word in
-            guard let progress = currentProgress[word.id] else { return false }
-            return progress.learningPhase && shouldShowCard(for: word.id)
-        }
-        
-        if learningWords.isEmpty {
+        if availableWords.isEmpty {
             isSessionComplete = true
             SoundManager.shared.playSuccess()
             return
         }
         
-        let sortedWords = prioritizeWordsForStudy(learningWords)
+        let sortedWords = prioritizeWordsForStudy(availableWords)
         
         self.studyQueue = sortedWords.map { word in
             StudyCard(
