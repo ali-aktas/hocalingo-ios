@@ -2,8 +2,10 @@
 //  FirstWordSelectionView.swift
 //  HocaLingo
 //
-//  ✅ NEW: One-time post-onboarding word selection
-//  OnboardingBackground + mascot intro + soft 20-word limit
+//  ✅ V2: Soft limit reduced 20 → 15 (better first-session pacing)
+//  🐛 V2 FIX: Soft-limit overlay now renders INSIDE the fullScreenCover
+//            (was behind WordSelectionView — invisible to user)
+//  One-time post-onboarding word selection with mascot intro + 15-word soft limit
 //  Location: Features/Selection/FirstWordSelectionView.swift
 //
 
@@ -23,7 +25,10 @@ struct FirstWordSelectionView: View {
     @State private var showWordSelection: Bool = false
     
     // MARK: - Constants
-    private let softLimit = 20
+    /// ✅ V2: Reduced from 20 → 15 (tighter first-session pacing)
+    /// Only right-swipes count (saved as `selections.selected`)
+    /// Left-swipes (hidden) and undo actions are NOT counted
+    private let softLimit = 15
     
     // MARK: - Package from Onboarding
     private var packageId: String {
@@ -39,32 +44,38 @@ struct FirstWordSelectionView: View {
             } else {
                 Color.clear
             }
-            
-            // Soft limit dialog overlay
-            if showSoftLimitDialog {
-                softLimitOverlay
-                    .transition(.opacity)
-                    .zIndex(20)
-            }
         }
         .preferredColorScheme(.dark)
         .animation(.easeInOut(duration: 0.3), value: showIntro)
+        // 🐛 V2 FIX: Wrap WordSelectionView in a ZStack and render the soft-limit
+        //           overlay INSIDE the fullScreenCover so it appears ON TOP of the
+        //           word cards instead of behind them.
         .fullScreenCover(isPresented: $showWordSelection) {
             NavigationStack {
-                WordSelectionView(packageId: packageId, selectedTab: $dummyTab)
+                ZStack {
+                    // Main word selection UI
+                    WordSelectionView(packageId: packageId, selectedTab: $dummyTab)
+                    
+                    // ✅ Soft-limit dialog rendered on top of WordSelectionView
+                    if showSoftLimitDialog {
+                        softLimitOverlay
+                            .transition(.opacity)
+                            .zIndex(20)
+                    }
+                }
+                .animation(.easeInOut(duration: 0.25), value: showSoftLimitDialog)
             }
         }
         .onChange(of: showWordSelection) { _, newValue in
             if !newValue { completeFirstSelection() }
         }
-        .animation(.easeInOut(duration: 0.25), value: showSoftLimitDialog)
         // Intercept tab change (WordSelectionView sets tab=1 when "Start Learning")
         .onChange(of: dummyTab) { _, newValue in
             if newValue != 0 {
                 completeFirstSelection()
             }
         }
-        // Track selections via notification
+        // Track selections via notification (posted on every swipe right)
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("WordsChanged"))) { _ in
             checkSelectionCount()
         }
@@ -116,6 +127,7 @@ struct FirstWordSelectionView: View {
                 
                 // Start button (reuses onboarding style)
                 Button(action: {
+                    SoundManager.shared.playClickSound()
                     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
                     withAnimation {
                         showIntro = false
@@ -138,6 +150,7 @@ struct FirstWordSelectionView: View {
                 
                 // Skip text
                 Button(action: {
+                    SoundManager.shared.playClickSound()
                     completeFirstSelection()
                 }) {
                     Text(LocalizedStringKey("first_selection_skip"))
@@ -205,8 +218,11 @@ struct FirstWordSelectionView: View {
                 
                 // Primary: Start learning → goes to Study tab
                 Button(action: {
+                    SoundManager.shared.playClickSound()
                     showSoftLimitDialog = false
-                    completeFirstSelection()
+                    // Dismiss the fullScreenCover first, then complete.
+                    // onChange(of: showWordSelection) will call completeFirstSelection().
+                    showWordSelection = false
                 }) {
                     HStack(spacing: 8) {
                         Image(systemName: "book.fill")
@@ -223,6 +239,7 @@ struct FirstWordSelectionView: View {
                 
                 // Secondary: Continue selecting
                 Button(action: {
+                    SoundManager.shared.playClickSound()
                     showSoftLimitDialog = false
                 }) {
                     Text(LocalizedStringKey("first_selection_continue"))
@@ -242,14 +259,28 @@ struct FirstWordSelectionView: View {
     
     // MARK: - Logic
     
+    /// Called on every `"WordsChanged"` notification (posted from WordSelectionViewModel.swipeRight).
+    /// Shows the soft-limit dialog exactly once, the moment the user crosses the threshold.
     private func checkSelectionCount() {
         let selections = UserDefaultsManager.shared.getWordSelections(packageId: packageId)
         let count = selections.selected.count
         
-        // Show soft limit dialog at 20 (only once per crossing)
+        #if DEBUG
+        print("🎯 FirstSelection check → count=\(count), tracker=\(selectedCountTracker), limit=\(softLimit), dialogShown=\(showSoftLimitDialog)")
+        #endif
+        
+        // Show dialog at the moment of crossing the threshold (fires only once).
+        // Condition:
+        //   - count reached/exceeded the limit
+        //   - dialog not already visible
+        //   - previous tracker was BELOW the limit (ensures single-fire)
         if count >= softLimit && !showSoftLimitDialog && selectedCountTracker < softLimit {
             showSoftLimitDialog = true
             UINotificationFeedbackGenerator().notificationOccurred(.success)
+            
+            #if DEBUG
+            print("🎉 Soft limit reached! Showing dialog at \(count) words.")
+            #endif
         }
         
         selectedCountTracker = count
