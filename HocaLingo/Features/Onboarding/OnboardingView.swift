@@ -2,8 +2,10 @@
 //  OnboardingView.swift
 //  HocaLingo
 //
-//  ✅ REDESIGNED: Premium 5-screen onboarding container
-//  Dark theme, smooth transitions, skip support, completion overlay
+//  ✅ V2: Back button added (screens 2-4)
+//  ✅ V2: Skip button hidden on Promise screen (full brand focus)
+//  ✅ V2: Bidirectional screen transition (reads isMovingBack flag)
+//  Dark theme, smooth transitions, completion overlay
 //  Location: HocaLingo/Features/Onboarding/OnboardingView.swift
 //
 
@@ -46,12 +48,41 @@ struct OnboardingView: View {
             }
             .animation(.spring(response: 0.45, dampingFraction: 0.85), value: viewModel.currentStep)
 
-            // Skip button (visible on screens 1-4, not on summary)
-            if viewModel.currentStep != .summary {
+            // ✅ V2: Top bar — Back (left) + Skip (right)
+            // Both hidden on Promise (full brand focus) and Summary (can't back/skip)
+            if viewModel.currentStep != .promise && viewModel.currentStep != .summary {
                 VStack {
                     HStack {
+                        // Back button — only when allowed
+                        if viewModel.canGoBack {
+                            Button(action: {
+                                SoundManager.shared.playClickSound()
+                                UIImpactFeedbackGenerator(style: .light).impactOccurred()
+                                viewModel.previousStep()
+                            }) {
+                                HStack(spacing: 4) {
+                                    Image(systemName: "chevron.left")
+                                        .font(.system(size: 13, weight: .bold))
+                                    Text("onboarding_button_back")
+                                        .font(.system(size: 14, weight: .semibold, design: .rounded))
+                                }
+                                .foregroundColor(Color.white.opacity(0.55))
+                                .padding(.horizontal, 14)
+                                .padding(.vertical, 8)
+                                .background(
+                                    Capsule()
+                                        .fill(Color.white.opacity(0.06))
+                                )
+                            }
+                            .padding(.leading, 16)
+                            .padding(.top, 12)
+                        }
+                        
                         Spacer()
+                        
+                        // Skip button
                         Button(action: {
+                            SoundManager.shared.playClickSound()
                             viewModel.skipOnboarding()
                         }) {
                             Text("onboarding_button_skip")
@@ -85,11 +116,21 @@ struct OnboardingView: View {
     }
 
     // MARK: - Transition
+    /// ✅ V2: Bidirectional — reads isMovingBack flag from ViewModel
+    /// Forward: new screen enters from trailing (right), old exits to leading (left)
+    /// Backward: new screen enters from leading (left), old exits to trailing (right)
     private var screenTransition: AnyTransition {
-        .asymmetric(
-            insertion: .move(edge: .trailing).combined(with: .opacity),
-            removal: .move(edge: .leading).combined(with: .opacity)
-        )
+        if viewModel.isMovingBack {
+            return .asymmetric(
+                insertion: .move(edge: .leading).combined(with: .opacity),
+                removal: .move(edge: .trailing).combined(with: .opacity)
+            )
+        } else {
+            return .asymmetric(
+                insertion: .move(edge: .trailing).combined(with: .opacity),
+                removal: .move(edge: .leading).combined(with: .opacity)
+            )
+        }
     }
 
     // MARK: - Dynamic Blob Position (shifts per screen)

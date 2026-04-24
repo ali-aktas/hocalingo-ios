@@ -19,7 +19,10 @@ struct GlassCard: View {
     let onTap: () -> Void
 
     var body: some View {
-        Button(action: onTap) {
+        Button(action: {
+            SoundManager.shared.playClickSound()
+            onTap()
+        }) {
             HStack(spacing: 16) {
                 // Icon circle
                 ZStack {

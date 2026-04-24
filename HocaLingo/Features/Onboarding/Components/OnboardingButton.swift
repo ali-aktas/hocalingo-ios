@@ -17,6 +17,7 @@ struct OnboardingButton: View {
     var body: some View {
         Button(action: {
             guard isEnabled else { return }
+            SoundManager.shared.playClickSound()
             UIImpactFeedbackGenerator(style: .medium).impactOccurred()
             action()
         }) {

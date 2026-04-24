@@ -622,6 +622,18 @@
 "onboarding_difficulty_medium" = "Medium";
 "onboarding_difficulty_easy"   = "Easy";
 
+// MARK: - Onboarding: Empathy personalized responses
+"onboarding_empathy_response_quitter" = "This time will be different. We'll finish together 💪";
+"onboarding_empathy_response_forgetful" = "Spaced repetition is designed exactly for you. Forgetting is hard!";
+"onboarding_empathy_response_no_time" = "10 minutes a day is enough. I promise.";
+
+// MARK: - Onboarding: Goal mascot responses
+"onboarding_goal_response_understand" = "Understanding is freedom. You can change this later.";
+"onboarding_goal_response_speak" = "Speaking takes courage! You can change this later.";
+
+// MARK: - Onboarding: Back button
+"onboarding_button_back" = "Back";
+
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Premium / Paywall

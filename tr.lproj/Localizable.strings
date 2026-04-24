@@ -623,6 +623,18 @@
 "onboarding_difficulty_medium" = "Orta";
 "onboarding_difficulty_easy"   = "Kolay";
 
+// MARK: - Onboarding: Empathy personalized responses
+"onboarding_empathy_response_quitter" = "Bu sefer farklı olacak. Birlikte bitireceğiz 💪";
+"onboarding_empathy_response_forgetful" = "Akıllı tekrar tam senin için tasarlandı. Unutman çok zor!";
+"onboarding_empathy_response_no_time" = "Günde 10 dakika yeter. Söz veriyorum.";
+
+// MARK: - Onboarding: Goal mascot responses
+"onboarding_goal_response_understand" = "Kartları İngilizce görüp Türkçesini hatırlamaya çalışacaksın.";
+"onboarding_goal_response_speak" = "Kartları Türkçe görüp İngilizcesini hatırlamaya çalışacaksın.";
+
+// MARK: - Onboarding: Back button
+"onboarding_button_back" = "Geri";
+
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Premium / Paywall

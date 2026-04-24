@@ -2,9 +2,10 @@
 //  GoalScreen.swift
 //  HocaLingo
 //
+//  ✅ V2: Mascot + speech bubble (matching Empathy/Level pattern)
+//  ✅ V2: Removed static explanation text block — mascot now carries the message
+//  ✅ V2: Click sound added to GoalCard tap
 //  Onboarding Screen 3: Learning goal → StudyDirection mapping
-//  "Anlamak" = EN→TR (reading, listening, exams)
-//  "Konuşmak" = TR→EN (speaking, recall)
 //  Location: HocaLingo/Features/Onboarding/Screens/GoalScreen.swift
 //
 
@@ -15,7 +16,6 @@ struct GoalScreen: View {
     @ObservedObject var viewModel: OnboardingViewModel
 
     @State private var contentOpacity: Double = 0
-    @State private var showExplanation = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -40,7 +40,6 @@ struct GoalScreen: View {
                     isSelected: viewModel.onboardingData.learningGoal == .understand,
                     onTap: {
                         viewModel.selectGoal(.understand)
-                        showExplanationWithDelay()
                     }
                 )
 
@@ -53,29 +52,26 @@ struct GoalScreen: View {
                     isSelected: viewModel.onboardingData.learningGoal == .speak,
                     onTap: {
                         viewModel.selectGoal(.speak)
-                        showExplanationWithDelay()
                     }
                 )
             }
             .padding(.horizontal, 24)
 
-            // Dynamic explanation based on selection
-            if showExplanation, let goal = viewModel.onboardingData.learningGoal {
-                VStack(spacing: 8) {
-                    // Direction explanation
-                    Text(goalExplanation(for: goal))
-                        .font(.system(size: 15, weight: .medium, design: .rounded))
-                        .foregroundColor(Color.white.opacity(0.8))
-                        .multilineTextAlignment(.center)
+            // ✅ V2: Mascot response area (replaces old static explanation text)
+            // Pattern matches Empathy + Level screens for visual consistency
+            if let message = viewModel.mascotMessage,
+               viewModel.currentStep == .goal {
+                HStack(alignment: .bottom, spacing: 8) {
+                    Image("lingohoca_nod")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 120, height: 120)
 
-                    // Changeable note
-                    Text("onboarding_goal_changeable")
-                        .font(.system(size: 12, weight: .regular, design: .rounded))
-                        .foregroundColor(Color.white.opacity(0.35))
+                    SpeechBubble(message: message)
                 }
-                .padding(.horizontal, 32)
-                .padding(.top, 24)
-                .transition(.opacity.combined(with: .move(edge: .bottom)))
+                .padding(.horizontal, 24)
+                .padding(.top, 20)
+                .transition(.move(edge: .bottom).combined(with: .opacity))
             }
 
             Spacer()
@@ -91,6 +87,7 @@ struct GoalScreen: View {
                     title: "onboarding_button_continue",
                     isEnabled: viewModel.onboardingData.learningGoal != nil
                 ) {
+                    viewModel.clearMascotMessage()
                     viewModel.nextStep()
                 }
             }
@@ -102,22 +99,6 @@ struct GoalScreen: View {
             withAnimation(.easeOut(duration: 0.4).delay(0.1)) {
                 contentOpacity = 1.0
             }
-        }
-    }
-
-    // MARK: - Helpers
-    private func showExplanationWithDelay() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            withAnimation(.spring(response: 0.4)) {
-                showExplanation = true
-            }
-        }
-    }
-
-    private func goalExplanation(for goal: LearningGoal) -> LocalizedStringKey {
-        switch goal {
-        case .understand: return "onboarding_goal_explain_understand"
-        case .speak:      return "onboarding_goal_explain_speak"
         }
     }
 }
@@ -132,7 +113,11 @@ private struct GoalCard: View {
     let onTap: () -> Void
 
     var body: some View {
-        Button(action: onTap) {
+        // ✅ Click sound added here (applied from previous session, kept intact)
+        Button(action: {
+            SoundManager.shared.playClickSound()
+            onTap()
+        }) {
             VStack(spacing: 16) {
                 // Icon
                 ZStack {

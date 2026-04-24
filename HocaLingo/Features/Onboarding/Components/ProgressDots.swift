@@ -2,8 +2,9 @@
 //  ProgressDots.swift
 //  HocaLingo
 //
+//  ✅ V2: Bounce pulse when a dot transitions from active → completed
+//  ✅ V2: Pulse only fires on forward navigation (not on back)
 //  Minimal dot progress indicator for onboarding
-//  Active dot is larger and teal, inactive dots are small and dim
 //  Location: HocaLingo/Features/Onboarding/Components/ProgressDots.swift
 //
 
@@ -13,6 +14,9 @@ import SwiftUI
 struct ProgressDots: View {
     let currentStep: Int
     let totalSteps: Int
+    
+    // ✅ V2: Tracks which dot should play the "just completed" pulse
+    @State private var pulsingIndex: Int? = nil
 
     var body: some View {
         HStack(spacing: 8) {
@@ -23,7 +27,22 @@ struct ProgressDots: View {
                         width: index == currentStep ? 24 : 8,
                         height: 8
                     )
+                    .scaleEffect(pulsingIndex == index ? 1.4 : 1.0)
                     .animation(.spring(response: 0.35, dampingFraction: 0.8), value: currentStep)
+                    .animation(.spring(response: 0.28, dampingFraction: 0.5), value: pulsingIndex)
+            }
+        }
+        // ✅ V2: Pulse the just-completed dot on forward navigation
+        .onChange(of: currentStep) { oldValue, newValue in
+            guard newValue > oldValue else { return }  // Forward only — no pulse on back
+            let completedDot = oldValue
+            pulsingIndex = completedDot
+            
+            // Reset pulse after animation finishes
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                if pulsingIndex == completedDot {
+                    pulsingIndex = nil
+                }
             }
         }
     }

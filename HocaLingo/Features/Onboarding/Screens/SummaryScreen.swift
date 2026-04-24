@@ -2,8 +2,9 @@
 //  SummaryScreen.swift
 //  HocaLingo
 //
+//  ✅ V2: Success sound synced with confetti (plays on screen entry)
+//  ✅ V2: Staggered row animations (goal → level → ready sequentially)
 //  Onboarding Screen 5: Personalized summary + celebration + launch
-//  Shows recap of selections and routes to word selection after onboarding
 //  Location: HocaLingo/Features/Onboarding/Screens/SummaryScreen.swift
 //
 
@@ -19,6 +20,11 @@ struct SummaryScreen: View {
     @State private var mascotOpacity: Double = 0
     @State private var buttonOpacity: Double = 0
     @State private var showConfetti = false
+    
+    // ✅ V2: Per-row animation states for staggered reveal
+    // Index 0 = Goal row, 1 = Level row, 2 = Ready row
+    @State private var rowOpacities: [Double] = [0, 0, 0]
+    @State private var rowOffsets: [CGFloat] = [10, 10, 10]
 
     var body: some View {
         VStack(spacing: 0) {
@@ -87,29 +93,35 @@ struct SummaryScreen: View {
                 .fill(Color.white.opacity(0.1))
                 .frame(height: 1)
 
-            // Goal row
+            // Goal row — staggered (index 0)
             SummaryRow(
                 icon: goalIcon,
                 iconColor: goalColor,
                 label: "onboarding_summary_goal",
                 value: goalText
             )
+            .opacity(rowOpacities[0])
+            .offset(y: rowOffsets[0])
 
-            // Level row
+            // Level row — staggered (index 1)
             SummaryRow(
                 icon: viewModel.onboardingData.englishLevel?.iconName ?? "book.fill",
                 iconColor: Color(hex: viewModel.onboardingData.englishLevel?.iconColor ?? "6366F1"),
                 label: "onboarding_summary_level",
                 value: levelText
             )
+            .opacity(rowOpacities[1])
+            .offset(y: rowOffsets[1])
 
-            // Ready row
+            // Ready row — staggered (index 2)
             SummaryRow(
                 icon: "sparkles",
                 iconColor: Color(hex: "4ECDC4"),
                 label: "onboarding_summary_ready",
                 value: "onboarding_summary_ready_value"
             )
+            .opacity(rowOpacities[2])
+            .offset(y: rowOffsets[2])
         }
         .padding(24)
         .background(
@@ -152,15 +164,25 @@ struct SummaryScreen: View {
     }
 
     // MARK: - Entry Animations
+    /// ✅ V2: Full timeline with staggered row reveal
+    ///
+    ///   0.2s  → Mascot fades in
+    ///   0.4s  → Confetti fires + success sound plays (dopamine hit)
+    ///   0.5s  → Summary card scales in
+    ///   0.9s  → Row 1 (Goal) reveals
+    ///   1.05s → Row 2 (Level) reveals
+    ///   1.20s → Row 3 (Ready) reveals
+    ///   1.40s → Launch button fades in
     private func runEntryAnimations() {
         // Mascot appears
         withAnimation(.spring(response: 0.5, dampingFraction: 0.7).delay(0.2)) {
             mascotOpacity = 1.0
         }
 
-        // Confetti fires
+        // Confetti fires — synced with success sound for dopamine hit
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
             showConfetti = true
+            SoundManager.shared.playSuccess()
         }
 
         // Card scales in
@@ -168,9 +190,18 @@ struct SummaryScreen: View {
             cardScale = 1.0
             cardOpacity = 1.0
         }
+        
+        // ✅ V2: Staggered row reveal — each row pops in 150ms after the previous
+        for index in 0..<3 {
+            let delay = 0.9 + Double(index) * 0.15
+            withAnimation(.spring(response: 0.45, dampingFraction: 0.7).delay(delay)) {
+                rowOpacities[index] = 1.0
+                rowOffsets[index] = 0
+            }
+        }
 
-        // Button appears
-        withAnimation(.easeOut(duration: 0.4).delay(0.9)) {
+        // Button appears last
+        withAnimation(.easeOut(duration: 0.4).delay(1.4)) {
             buttonOpacity = 1.0
         }
     }
