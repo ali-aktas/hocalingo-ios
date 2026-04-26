@@ -146,6 +146,14 @@
 "quiz_continue_studying" = "Çalışmaya Devam";
 "quiz_done" = "Tamam";
 
+// MARK: - Hard Words Free Tier + Nudge
+"hard_words_free_left"       = "ücretsiz";
+"hard_words_cta_premium"     = "Premium";
+"hard_words_cta_remaining"   = "ücretsiz denemen kaldı";
+"hard_words_cta_exhausted"   = "Ücretsiz denemeler bitti";
+"hard_words_cta_unlock"      = "Premium ile sınırsız aç";
+"hard_words_nudge_title"     = "Zor Kelimelerin Birikti";
+"hard_words_nudge_subtitle"  = "Zor kelimelerini quiz ile pekiştir — dokun ve başla";
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Study Screen
@@ -667,6 +675,17 @@
 "onboarding_premium_subtitle" = "Premium özellikleri 7 gün ücretsiz dene";
 "onboarding_premium_skip"     = "Belki Daha Sonra";
 
+// MARK: - Paywall Hardcoded → Localized
+"paywall_title"               = "Premium ile Hızlan";
+"paywall_subtitle"            = "Tüm özelliklerin kilidini aç ve premium kalitede öğren!";
+"paywall_feature_words"       = "Binlerce yeni kelime ve kalıp öğren";
+"paywall_feature_unlimited"   = "Limitleri kaldır ve diğerlerine fark at";
+"paywall_feature_ai"          = "Yapay zeka ile öğrendiklerini pekiştir";
+"paywall_plan_annual"         = "Yıllık";
+"paywall_plan_weekly"         = "Haftalık";
+"paywall_badge_popular"       = "EN POPÜLER";
+"paywall_annual_subtitle"     = "Sadece yıllık %@";
+"paywall_per_week"            = "/ hafta";
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Notifications

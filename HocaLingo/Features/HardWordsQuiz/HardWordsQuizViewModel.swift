@@ -223,6 +223,9 @@ class HardWordsQuizViewModel: ObservableObject {
         if nextIndex >= questions.count {
             sessionState = .sessionComplete
             soundManager.playClickSound()
+            // ✅ V2: Record this session against the free-tier lifetime allowance.
+            // No-op for premium users; the manager handles gating internally.
+            HardWordsQuizLimitManager.shared.recordSessionCompletedIfFree()
             return
         }
 

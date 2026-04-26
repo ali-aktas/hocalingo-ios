@@ -2,7 +2,9 @@
 //  WordVaultSheet.swift
 //  HocaLingo
 //
-//  ✅ REDESIGNED: Multi-meaning review cards, hard words button, premium gate
+//  ✅ V2: Free-tier quiz access (3 lifetime sessions) + remaining counter on flame button
+//  ✅ V2: Paywall triggered ONLY when free limit exhausted; otherwise feature is open
+//  Multi-meaning review cards + hard words button + premium gate
 //  Location: Features/Home/WordVault/WordVaultSheet.swift
 //
 
@@ -15,6 +17,10 @@ struct WordVaultSheet: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.themeViewModel) private var themeViewModel
+    
+    // ✅ V2: Observe limit manager so the "X left" chip stays reactive.
+    @ObservedObject private var limitManager = HardWordsQuizLimitManager.shared
+    @ObservedObject private var premiumManager = PremiumManager.shared
 
     @State private var flippedWordId: Int? = nil
     @State private var showReview = false
@@ -24,6 +30,8 @@ struct WordVaultSheet: View {
     private var isDark: Bool { themeViewModel.isDarkMode(in: colorScheme) }
     private var accent: Color { Color(hex: "4ECDC4") }
     private var premiumGold: Color { Color(hex: "FFD700") }
+    private var flameOrange: Color { Color(hex: "F97316") }
+    private var flameRed: Color { Color(hex: "EF4444") }
 
     // MARK: - Body
     var body: some View {
@@ -116,7 +124,10 @@ struct WordVaultSheet: View {
     private var actionButtons: some View {
         HStack(spacing: 12) {
             // Review All
-            Button(action: { showReview = true }) {
+            Button(action: {
+                SoundManager.shared.playClickSound()
+                showReview = true
+            }) {
                 VStack(spacing: 8) {
                     Image(systemName: "bolt.fill")
                         .font(.system(size: 20, weight: .bold))
@@ -143,13 +154,14 @@ struct WordVaultSheet: View {
                 .shadow(color: accent.opacity(0.3), radius: 10, y: 4)
             }
 
-            // Hard Words (Premium)
+            // Hard Words — access depends on premium status + lifetime free sessions
             Button(action: { handleHardWordsTap() }) {
                 VStack(spacing: 8) {
                     ZStack(alignment: .topTrailing) {
                         Image(systemName: "flame.fill")
                             .font(.system(size: 20, weight: .bold))
-                        if !PremiumManager.shared.isPremium {
+                        // Show lock ONLY when the free trial has been fully consumed
+                        if limitManager.isFreeLimitExhausted {
                             Image(systemName: "lock.fill")
                                 .font(.system(size: 8, weight: .bold))
                                 .foregroundColor(isDark ? premiumGold : Color(hex: "8B5CF6"))
@@ -158,12 +170,9 @@ struct WordVaultSheet: View {
                     }
                     Text(LocalizedStringKey("vault_hard_words"))
                         .font(.system(size: 13, weight: .bold, design: .rounded))
-                    Text("\(vaultVM.hardWordsCount)")
-                        .font(.system(size: 11, weight: .semibold, design: .rounded))
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 2)
-                        .background(Color.white.opacity(0.2))
-                        .clipShape(Capsule())
+                    
+                    // Badge: count of hard words OR free-tier remaining count
+                    hardWordsButtonBadge
                 }
                 .foregroundColor(isDark ? premiumGold : Color(hex: "8B5CF6"))
                 .frame(maxWidth: .infinity)
@@ -184,14 +193,74 @@ struct WordVaultSheet: View {
             }
         }
     }
-
-    private func handleHardWordsTap() {
-        if !PremiumManager.shared.isPremium {
-            showPremiumPaywall = true
-        } else if vaultVM.hardWordsCount > 0 {
-            showHardReview = true
+    
+    // MARK: - Button Badge
+    /// Shows either:
+    ///  • Hard-word count (premium users, or free users who still have sessions & hard words)
+    ///  • "X free left" chip (free users with remaining free sessions — subtle scarcity)
+    ///  • "Premium" chip (free users with exhausted free sessions)
+    @ViewBuilder
+    private var hardWordsButtonBadge: some View {
+        if premiumManager.isPremium {
+            // Premium: just show the hard-word count
+            Text("\(vaultVM.hardWordsCount)")
+                .font(.system(size: 11, weight: .semibold, design: .rounded))
+                .padding(.horizontal, 8)
+                .padding(.vertical, 2)
+                .background(Color.white.opacity(0.2))
+                .clipShape(Capsule())
+        } else if limitManager.isFreeLimitExhausted {
+            // Free limit exhausted: premium CTA chip
+            Text(LocalizedStringKey("hard_words_cta_premium"))
+                .font(.system(size: 10, weight: .heavy, design: .rounded))
+                .foregroundColor(Color(hex: "1A1428"))
+                .padding(.horizontal, 8)
+                .padding(.vertical, 2)
+                .background(
+                    LinearGradient(
+                        colors: [premiumGold, Color(hex: "D4A017")],
+                        startPoint: .leading, endPoint: .trailing
+                    )
+                )
+                .clipShape(Capsule())
+        } else {
+            // Free with trials remaining: "2 free left" chip (scarcity nudge)
+            Text("\(limitManager.remainingFreeSessions) " + NSLocalizedString("hard_words_free_left", comment: ""))
+                .font(.system(size: 10, weight: .heavy, design: .rounded))
+                .padding(.horizontal, 8)
+                .padding(.vertical, 2)
+                .background(
+                    LinearGradient(
+                        colors: [flameOrange, flameRed],
+                        startPoint: .leading, endPoint: .trailing
+                    )
+                )
+                .foregroundColor(.white)
+                .clipShape(Capsule())
         }
-        // If premium but 0 hard words — button shows 0, nothing happens
+    }
+
+    // MARK: - Handle Hard Words Tap
+    /// Gate logic:
+    ///  • Premium → open quiz directly
+    ///  • Free with trials remaining → open quiz (will record on completion)
+    ///  • Free with trials exhausted → paywall
+    ///  • 0 hard words → do nothing (button is informational only)
+    private func handleHardWordsTap() {
+        SoundManager.shared.playClickSound()
+        
+        // Route free-tier-exhausted users straight to paywall (even with 0 hard words —
+        // they're asking to unlock the feature).
+        if limitManager.isFreeLimitExhausted {
+            showPremiumPaywall = true
+            return
+        }
+        
+        // No hard words to quiz on: do nothing (button shows "0").
+        guard vaultVM.hardWordsCount > 0 else { return }
+        
+        // Access granted (premium OR free with remaining sessions).
+        showHardReview = true
     }
 
     // MARK: - Empty State
@@ -276,294 +345,9 @@ struct VaultWordRow: View {
             .background(
                 RoundedRectangle(cornerRadius: 14)
                     .fill(isDark ? Color.white.opacity(0.06) : Color.white.opacity(0.8))
-                    .shadow(color: .black.opacity(isDark ? 0.2 : 0.06), radius: 6, y: 2)
+                    .shadow(color: .black.opacity(isDark ? 0.2 : 0.05), radius: 4, y: 2)
             )
         }
         .buttonStyle(PlainButtonStyle())
-        .animation(.easeInOut(duration: 0.25), value: isFlipped)
-    }
-}
-
-
-// MARK: - Sequential Review View
-struct SequentialReviewView: View {
-    let words: [VaultWord]
-    let accent: Color
-    let titleKey: String
-
-    @State private var currentIndex: Int = 0
-    @State private var isFlipped: Bool = false
-    @State private var flipDegrees: Double = 0
-    @Environment(\.dismiss) var dismiss
-    @Environment(\.colorScheme) var colorScheme
-    @Environment(\.themeViewModel) private var themeViewModel
-
-    private var isDark: Bool { themeViewModel.isDarkMode(in: colorScheme) }
-
-    private var currentWord: VaultWord {
-        guard currentIndex < words.count else {
-            return words.last ?? VaultWord(
-                id: 0, english: "", turkish: "", allMeanings: "",
-                meanings: [], addedOrder: 0, isUserAdded: false, hardPresses: 0
-            )
-        }
-        return words[currentIndex]
-    }
-
-    var body: some View {
-        ZStack {
-            // Theme-aware background
-            LinearGradient(
-                colors: isDark
-                    ? [Color(hex: "1A1625"), Color(hex: "211A2E")]
-                    : [Color(hex: "FBF2FF"), Color(hex: "FAF1FF")],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
-            )
-            .ignoresSafeArea()
-
-            VStack(spacing: 0) {
-                // Top bar: title + close
-                HStack {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(LocalizedStringKey(titleKey))
-                            .font(.system(size: 18, weight: .bold, design: .rounded))
-                            .foregroundColor(.primary)
-                        Text("\(currentIndex + 1) / \(words.count)")
-                            .font(.system(size: 13, weight: .medium, design: .rounded))
-                            .foregroundColor(.secondary)
-                    }
-                    Spacer()
-                    Button(action: { dismiss() }) {
-                        Image(systemName: "xmark")
-                            .font(.system(size: 15, weight: .bold))
-                            .foregroundColor(.secondary)
-                            .frame(width: 36, height: 36)
-                            .background(Color.gray.opacity(0.12))
-                            .clipShape(Circle())
-                    }
-                }
-                .padding(.horizontal, 28)
-                .padding(.top, 20)
-
-                // Progress bar
-                GeometryReader { geo in
-                    ZStack(alignment: .leading) {
-                        RoundedRectangle(cornerRadius: 3)
-                            .fill(Color.primary.opacity(0.1))
-                            .frame(height: 4)
-                        RoundedRectangle(cornerRadius: 3)
-                            .fill(accent)
-                            .frame(
-                                width: geo.size.width * (Double(currentIndex + 1) / Double(max(words.count, 1))),
-                                height: 4
-                            )
-                            .animation(.easeInOut(duration: 0.3), value: currentIndex)
-                    }
-                }
-                .frame(height: 4)
-                .padding(.horizontal, 28)
-                .padding(.top, 16)
-
-                Spacer()
-
-                // Flip card
-                ZStack {
-                    // Back: Turkish meanings + examples
-                    reviewBackFace
-                        .opacity(isFlipped ? 1 : 0)
-                        .rotation3DEffect(.degrees(flipDegrees - 180), axis: (x: 0, y: 1, z: 0))
-
-                    // Front: English
-                    reviewFrontFace
-                        .opacity(isFlipped ? 0 : 1)
-                        .rotation3DEffect(.degrees(flipDegrees), axis: (x: 0, y: 1, z: 0))
-                }
-                .frame(height: 300)
-                .padding(.horizontal, 28)
-                .onTapGesture { if !isFlipped { flipCard() } }
-
-                Spacer()
-
-                // Navigation buttons
-                navigationButtons
-                    .padding(.horizontal, 28)
-                    .padding(.bottom, 36)
-            }
-        }
-    }
-
-    // MARK: - Front Face (English)
-    private var reviewFrontFace: some View {
-        RoundedRectangle(cornerRadius: 24)
-            .fill(
-                LinearGradient(
-                    colors: isDark
-                        ? [Color(hex: "5C6BC0"), Color(hex: "3949AB")]
-                        : [Color(hex: "6366F1"), Color(hex: "4F46E5")],
-                    startPoint: .topLeading,
-                    endPoint: .bottomTrailing
-                )
-            )
-            .overlay(
-                VStack(spacing: 12) {
-                    Text(currentWord.english)
-                        .font(.system(size: 32, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
-                        .multilineTextAlignment(.center)
-                    if !isFlipped {
-                        Text(LocalizedStringKey("vault_tap_to_reveal"))
-                            .font(.system(size: 13))
-                            .foregroundColor(.white.opacity(0.5))
-                            .padding(.top, 8)
-                    }
-                }
-                .padding(24)
-            )
-            .shadow(color: Color(hex: "6366F1").opacity(0.3), radius: 12, y: 6)
-    }
-
-    // MARK: - Back Face (Turkish meanings + examples)
-        private var reviewBackFace: some View {
-            RoundedRectangle(cornerRadius: 24)
-                .fill(
-                    LinearGradient(
-                        colors: isDark
-                            ? [accent.opacity(0.85), accent.opacity(0.55)]
-                            : [accent.opacity(0.9), accent.opacity(0.65)],
-                        startPoint: .topLeading,
-                        endPoint: .bottomTrailing
-                    )
-                )
-                .overlay(
-                    VStack(spacing: 0) {
-                        Spacer()
-
-                        // All meanings with examples
-                        ForEach(Array(currentWord.meanings.enumerated()), id: \.offset) { index, meaning in
-                            if index > 0 {
-                                Rectangle()
-                                    .fill(Color.white.opacity(0.25))
-                                    .frame(width: 80, height: 1)
-                                    .padding(.vertical, 14)
-                            }
-
-                            VStack(spacing: 6) {
-                                Text(meaning.turkish)
-                                    .font(.system(
-                                        size: index == 0 ? 28 : 22,
-                                        weight: index == 0 ? .bold : .medium,
-                                        design: .rounded
-                                    ))
-                                    .foregroundColor(.white)
-                                    .multilineTextAlignment(.center)
-
-                                if !meaning.example.en.isEmpty {
-                                    Text(meaning.example.en)
-                                        .font(.system(size: 13, weight: .regular, design: .rounded))
-                                        .italic()
-                                        .foregroundColor(.white.opacity(0.6))
-                                        .multilineTextAlignment(.center)
-                                        .lineLimit(2)
-                                        .padding(.top, 2)
-                                }
-                                if !meaning.example.tr.isEmpty {
-                                    Text(meaning.example.tr)
-                                        .font(.system(size: 13, weight: .regular, design: .rounded))
-                                        .italic()
-                                        .foregroundColor(.white.opacity(0.5))
-                                        .multilineTextAlignment(.center)
-                                        .lineLimit(2)
-                                }
-                            }
-                        }
-
-                        Spacer()
-                    }
-                    .padding(.horizontal, 24)
-                )
-                .shadow(color: accent.opacity(0.3), radius: 12, y: 6)
-        }
-
-    // MARK: - Navigation Buttons
-    private var navigationButtons: some View {
-        HStack(spacing: 16) {
-            if currentIndex > 0 {
-                Button(action: previousWord) {
-                    Image(systemName: "arrow.left")
-                        .font(.system(size: 18, weight: .bold))
-                        .foregroundColor(.secondary)
-                        .frame(width: 54, height: 54)
-                        .background(Color.primary.opacity(0.08))
-                        .clipShape(Circle())
-                }
-            }
-
-            if !isFlipped {
-                Button(action: flipCard) {
-                    Text(LocalizedStringKey("vault_reveal"))
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 54)
-                        .background(accent)
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
-                        .shadow(color: accent.opacity(0.3), radius: 8, y: 3)
-                }
-            } else {
-                Button(action: nextWord) {
-                    HStack(spacing: 8) {
-                        Text(currentIndex < words.count - 1
-                             ? LocalizedStringKey("vault_next")
-                             : LocalizedStringKey("vault_finish"))
-                            .font(.system(size: 16, weight: .bold, design: .rounded))
-                        Image(systemName: currentIndex < words.count - 1 ? "arrow.right" : "checkmark")
-                            .font(.system(size: 15, weight: .bold))
-                    }
-                    .foregroundColor(.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 54)
-                    .background(
-                        LinearGradient(
-                            colors: [Color(hex: "66BB6A"), Color(hex: "43A047")],
-                            startPoint: .leading,
-                            endPoint: .trailing
-                        )
-                    )
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
-                    .shadow(color: Color(hex: "66BB6A").opacity(0.3), radius: 8, y: 3)
-                }
-            }
-        }
-    }
-
-    // MARK: - Actions
-    private func flipCard() {
-        withAnimation(.spring(response: 0.45, dampingFraction: 0.85)) {
-            flipDegrees = 180
-            isFlipped = true
-        }
-        UIImpactFeedbackGenerator(style: .light).impactOccurred()
-    }
-
-    private func nextWord() {
-        if currentIndex < words.count - 1 {
-            withAnimation(.easeInOut(duration: 0.2)) {
-                currentIndex += 1
-                flipDegrees = 0
-                isFlipped = false
-            }
-        } else {
-            dismiss()
-        }
-    }
-
-    private func previousWord() {
-        guard currentIndex > 0 else { return }
-        withAnimation(.easeInOut(duration: 0.2)) {
-            currentIndex -= 1
-            flipDegrees = 0
-            isFlipped = false
-        }
     }
 }

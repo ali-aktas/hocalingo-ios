@@ -16,6 +16,10 @@ struct HardWordsQuizView: View {
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
     @Environment(\.themeViewModel) private var themeViewModel
+    // ✅ V2: Observe limit manager + premium status for result-screen CTA
+    @ObservedObject private var limitManager = HardWordsQuizLimitManager.shared
+    @ObservedObject private var premiumManager = PremiumManager.shared
+    @State private var showPaywallFromResult = false
 
     // Animation states
     @State private var questionScale: CGFloat = 1.0
@@ -63,6 +67,10 @@ struct HardWordsQuizView: View {
                     .transition(.opacity)
                     .zIndex(100)
             }
+        }
+        // ✅ V2: Paywall from "Get Premium" CTA on result screen
+        .sheet(isPresented: $showPaywallFromResult) {
+            PremiumPaywallView()
         }
     }
 
@@ -482,6 +490,13 @@ struct HardWordsQuizView: View {
                 .padding(.horizontal, 32)
             }
 
+            // ✅ V2: Free-tier status CTA — shown only to free users
+            if !premiumManager.isPremium {
+                freeTierResultCTA
+                    .padding(.top, 20)
+                    .padding(.horizontal, 24)
+            }
+
             Spacer()
 
             // Action buttons
@@ -525,6 +540,60 @@ struct HardWordsQuizView: View {
         return "book.fill"
     }
 
+    // MARK: - Free Tier Result CTA (V2)
+        /// Appears on the result screen for free users:
+        ///  • Shows remaining free sessions OR "out of tries" message
+        ///  • Offers a direct paywall button
+        /// Also records the completed session when this view renders (once per session).
+        @ViewBuilder
+        private var freeTierResultCTA: some View {
+            let remaining = limitManager.remainingFreeSessions
+            let isLast = remaining == 0
+            
+            VStack(spacing: 12) {
+                // Scarcity message
+                HStack(spacing: 8) {
+                    Image(systemName: isLast ? "lock.fill" : "hourglass")
+                        .font(.system(size: 14, weight: .bold))
+                        .foregroundColor(isLast ? Color(hex: "EF4444") : Color(hex: "F97316"))
+                    
+                    if isLast {
+                        Text(LocalizedStringKey("hard_words_cta_exhausted"))
+                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                            .foregroundColor(.primary)
+                    } else {
+                        (Text("\(remaining) ") + Text(LocalizedStringKey("hard_words_cta_remaining")))
+                            .font(.system(size: 14, weight: .semibold, design: .rounded))
+                            .foregroundColor(.primary)
+                    }
+                }
+                
+                // Premium CTA button
+                Button(action: {
+                    SoundManager.shared.playClickSound()
+                    showPaywallFromResult = true
+                }) {
+                    HStack(spacing: 8) {
+                        Image(systemName: "crown.fill")
+                            .font(.system(size: 14, weight: .bold))
+                        Text(LocalizedStringKey("hard_words_cta_unlock"))
+                            .font(.system(size: 15, weight: .bold, design: .rounded))
+                    }
+                    .foregroundColor(Color(hex: "1A1428"))
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 48)
+                    .background(
+                        LinearGradient(
+                            colors: [Color(hex: "FFD700"), Color(hex: "D4A017")],
+                            startPoint: .leading, endPoint: .trailing
+                        )
+                    )
+                    .clipShape(RoundedRectangle(cornerRadius: 14))
+                    .shadow(color: Color(hex: "FFD700").opacity(0.4), radius: 10, y: 4)
+                }
+            }
+        }
+    
     // MARK: - Stat Card
     private func statCard(icon: String, value: String, labelKey: String, color: Color) -> some View {
         VStack(spacing: 8) {

@@ -18,6 +18,8 @@ struct HomeView: View {
 
     @StateObject private var viewModel = HomeViewModel()
     @StateObject private var vaultVM   = WordVaultViewModel()
+    // ✅ V2: Observed for reactive nudge banner show/hide
+    @ObservedObject private var hardWordsLimit = HardWordsQuizLimitManager.shared
 
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.themeViewModel) private var themeViewModel
@@ -135,7 +137,20 @@ struct HomeView: View {
                     onAddWord:       { viewModel.onEvent(.showAddWordDialog) }
                 )
 
-                // Kelime Kasam preview row
+                // ✅ V2: Hard Words nudge banner — free users only, after 5+ hard words, pre-first-try
+                if hardWordsLimit.shouldShowNudge(for: vaultVM.hardWordsCount) {
+                    HardWordsNudgeBanner(
+                        hardWordsCount: vaultVM.hardWordsCount,
+                        onTap: { showVaultSheet = true },
+                        onDismiss: {
+                            hardWordsLimit.dismissNudge(at: vaultVM.hardWordsCount)
+                        }
+                    )
+                    .padding(.horizontal, 16)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                }
+                
+                // Vault preview row
                 VaultPreviewRow(
                     vaultVM: vaultVM,
                     onShowAll: { showVaultSheet = true },

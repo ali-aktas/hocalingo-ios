@@ -185,15 +185,15 @@ struct PremiumPaywallView: View {
     }
 
     // MARK: - Title Section
-    private var titleSection: some View {
-        VStack(spacing: 8) {
-            Text("Premium ile Hızlan")
-                .font(.system(size: 32, weight: .black, design: .rounded))
-                .foregroundStyle(accentGradient)
-                .multilineTextAlignment(.center)
-                .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
-            
-            Text("Tüm özelliklerin kilidini aç ve premium kalitede öğren!")
+        private var titleSection: some View {
+            VStack(spacing: 8) {
+                Text(LocalizedStringKey("paywall_title"))
+                    .font(.system(size: 32, weight: .black, design: .rounded))
+                    .foregroundStyle(accentGradient)
+                    .multilineTextAlignment(.center)
+                    .shadow(color: .black.opacity(0.2), radius: 4, x: 0, y: 2)
+                
+                Text(LocalizedStringKey("paywall_subtitle"))
                 .font(.system(size: 14))
                 .foregroundColor(.themeSecondary)
                 .multilineTextAlignment(.center)
@@ -201,71 +201,72 @@ struct PremiumPaywallView: View {
     }
     
     // MARK: - Features Section
-    private var featuresSection: some View {
-        VStack(spacing: 10) {
-            featureLine(icon: "book.fill", text: "Binlerce yeni kelime ve kalıp öğren")
-            featureLine(icon: "infinity", text: "Limitleri kaldır ve diğerlerine fark at")
-            featureLine(icon: "sparkles", text: "Yapay zeka ile öğrendiklerini pekiştir")
-        }
-        .padding(.vertical, 6)
-    }
-    
-    // MARK: - Feature Line
-    private func featureLine(icon: String, text: String) -> some View {
-        HStack(spacing: 12) {
-            ZStack {
-                Circle()
-                    .fill(accentGradientDiagonal)
-                    .frame(width: 24, height: 24)
-                    .blur(radius: 6)
-                    .opacity(0.6)
-                
-                Circle()
-                    .fill(accentGradientDiagonal)
-                    .frame(width: 24, height: 24)
-                
-                Image(systemName: icon)
-                    .foregroundColor(.white)
-                    .font(.system(size: 13, weight: .bold))
+        private var featuresSection: some View {
+            VStack(spacing: 10) {
+                featureLine(icon: "book.fill",  textKey: "paywall_feature_words")
+                featureLine(icon: "infinity",   textKey: "paywall_feature_unlimited")
+                featureLine(icon: "sparkles",   textKey: "paywall_feature_ai")
             }
-            
-            Text(text)
-                .font(.system(size: 15, weight: .medium, design: .rounded))
-                .foregroundColor(.themePrimary)
-                .lineLimit(2)
-                .fixedSize(horizontal: false, vertical: true)
-            
-            Spacer()
+            .padding(.vertical, 6)
         }
-    }
+    
+   
+    // MARK: - Feature Line
+        private func featureLine(icon: String, textKey: String) -> some View {
+            HStack(spacing: 12) {
+                ZStack {
+                    Circle()
+                        .fill(accentGradientDiagonal)
+                        .frame(width: 24, height: 24)
+                        .blur(radius: 6)
+                        .opacity(0.6)
+                    
+                    Circle()
+                        .fill(accentGradientDiagonal)
+                        .frame(width: 24, height: 24)
+                    
+                    Image(systemName: icon)
+                        .foregroundColor(.white)
+                        .font(.system(size: 13, weight: .bold))
+                }
+                
+                Text(LocalizedStringKey(textKey))
+                    .font(.system(size: 15, weight: .medium, design: .rounded))
+                    .foregroundColor(.themePrimary)
+                    .lineLimit(2)
+                    .fixedSize(horizontal: false, vertical: true)
+                
+                Spacer()
+            }
+        }
     
     // MARK: - Pricing Section
-    private var pricingSection: some View {
-        VStack(spacing: 10) {
-            // Annual Plan FIRST (Best Value)
-            if let annualPackage = getRevenueCatPackage(for: .annual) {
-                pricingPlanCard(
-                    plan: .annual,
-                    package: annualPackage,
-                    title: "Yıllık",
-                    badge: "EN POPÜLER",
-                    isSelected: selectedPlan == .annual
-                )
+        private var pricingSection: some View {
+            VStack(spacing: 10) {
+                // Annual Plan FIRST (Best Value)
+                if let annualPackage = getRevenueCatPackage(for: .annual) {
+                    pricingPlanCard(
+                        plan: .annual,
+                        package: annualPackage,
+                        titleKey: "paywall_plan_annual",
+                        badgeKey: "paywall_badge_popular",
+                        isSelected: selectedPlan == .annual
+                    )
+                }
+                
+                // Weekly Plan SECOND
+                if let weeklyPackage = getRevenueCatPackage(for: .weekly) {
+                    pricingPlanCard(
+                        plan: .weekly,
+                        package: weeklyPackage,
+                        titleKey: "paywall_plan_weekly",
+                        badgeKey: nil,
+                        isSelected: selectedPlan == .weekly
+                    )
+                }
             }
-            
-            // Weekly Plan SECOND
-            if let weeklyPackage = getRevenueCatPackage(for: .weekly) {
-                pricingPlanCard(
-                    plan: .weekly,
-                    package: weeklyPackage,
-                    title: "Haftalık",
-                    badge: nil,
-                    isSelected: selectedPlan == .weekly
-                )
-            }
+            .padding(.top, 4)
         }
-        .padding(.top, 4)
-    }
     
     // MARK: - Get RevenueCat Package
     private func getRevenueCatPackage(for plan: PricingPlan) -> RevenueCat.Package? {
@@ -277,52 +278,55 @@ struct PremiumPaywallView: View {
     }
     
     // MARK: - Pricing Plan Card
-    private func pricingPlanCard(plan: PricingPlan, package: RevenueCat.Package, title: String, badge: String?, isSelected: Bool) -> some View {
-        Button(action: {
-            withAnimation(.spring(response: 0.3)) {
-                selectedPlan = plan
-            }
-        }) {
-            HStack(spacing: 12) {
-                // Radio button
-                ZStack {
-                    Circle()
-                        .stroke(isSelected ? accentStart : .themeSecondary, lineWidth: 2)
-                        .frame(width: 22, height: 22)
-                    
-                    if isSelected {
-                        Circle()
-                            .fill(accentStart)
-                            .frame(width: 12, height: 12)
-                    }
+    // MARK: - Pricing Plan Card
+        private func pricingPlanCard(plan: PricingPlan, package: RevenueCat.Package, titleKey: String, badgeKey: String?, isSelected: Bool) -> some View {
+            Button(action: {
+                withAnimation(.spring(response: 0.3)) {
+                    selectedPlan = plan
                 }
-                
-                // Plan info
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(title)
-                        .font(.system(size: 16, weight: .bold, design: .rounded))
-                        .foregroundColor(.themePrimary)
+            }) {
+                HStack(spacing: 12) {
+                    // Radio button
+                    ZStack {
+                        Circle()
+                            .stroke(isSelected ? accentStart : .themeSecondary, lineWidth: 2)
+                            .frame(width: 22, height: 22)
+                        
+                        if isSelected {
+                            Circle()
+                                .fill(accentStart)
+                                .frame(width: 12, height: 12)
+                        }
+                    }
                     
-                    if plan == .annual {
-                        Text("Sadece yıllık \(package.storeProduct.localizedPriceString)")
-                            .font(.system(size: 14, weight: .medium))
+                    // Plan info
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(LocalizedStringKey(titleKey))
+                            .font(.system(size: 16, weight: .bold, design: .rounded))
+                            .foregroundColor(.themePrimary)
+                        
+                        if plan == .annual {
+                            // Localized format: TR "Sadece yıllık $X", EN "Only $X per year"
+                            Text(String(format: NSLocalizedString("paywall_annual_subtitle", comment: ""),
+                                        package.storeProduct.localizedPriceString))
+                                .font(.system(size: 14, weight: .medium))
+                                .foregroundColor(.themeSecondary)
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    // Price
+                    VStack(alignment: .trailing, spacing: 2) {
+                        Text(getWeeklyPriceString(package: package, plan: plan))
+                            .font(.system(size: 18, weight: .heavy, design: .rounded))
+                            .foregroundColor(.themePrimary)
+                        
+                        Text(LocalizedStringKey("paywall_per_week"))
+                            .font(.system(size: 13, weight: .medium))
                             .foregroundColor(.themeSecondary)
                     }
                 }
-                
-                Spacer()
-                
-                // Price
-                VStack(alignment: .trailing, spacing: 2) {
-                    Text(getWeeklyPriceString(package: package, plan: plan))
-                        .font(.system(size: 18, weight: .heavy, design: .rounded))
-                        .foregroundColor(.themePrimary)
-                    
-                    Text("/ hafta")
-                        .font(.system(size: 13, weight: .medium))
-                        .foregroundColor(.themeSecondary)
-                }
-            }
             .padding(.horizontal, 16)
             .padding(.vertical, 14)
             .background(
@@ -355,8 +359,8 @@ struct PremiumPaywallView: View {
             )
             .overlay(
                 Group {
-                    if let badge = badge {
-                        Text(badge)
+                    if let badgeKey = badgeKey {
+                        Text(LocalizedStringKey(badgeKey))
                             .font(.system(size: 10, weight: .bold, design: .rounded))
                             .foregroundColor(.white)
                             .padding(.horizontal, 8)
@@ -364,7 +368,7 @@ struct PremiumPaywallView: View {
                             .background(
                                 Capsule().fill(accentGradient)
                             )
-                    }
+                        }
                 }
                 .offset(x: -8, y: -8),
                 alignment: .topTrailing
@@ -410,9 +414,11 @@ struct PremiumPaywallView: View {
             formatter.maximumFractionDigits = 2
             
             let weeklyString = formatter.string(from: weeklyPrice as NSNumber) ?? "\(weeklyPrice)"
-            return "\(weeklyString) / hafta"
+            // Note: The "/ week" suffix is rendered separately in pricingPlanCard via paywall_per_week.
+            // Returning the price alone here for cleaner composition.
+            return weeklyString
         }
-        
+                
         return ""
     }
     

@@ -145,6 +145,15 @@
 "quiz_continue_studying" = "Continue Studying";
 "quiz_done" = "Done";
 
+// MARK: - Hard Words Free Tier + Nudge
+"hard_words_free_left"       = "free left";
+"hard_words_cta_premium"     = "Premium";
+"hard_words_cta_remaining"   = "free tries remaining";
+"hard_words_cta_exhausted"   = "Free tries exhausted";
+"hard_words_cta_unlock"      = "Unlock unlimited with Premium";
+"hard_words_nudge_title"     = "Hard Words Piling Up";
+"hard_words_nudge_subtitle"  = "Master your tough words with a quick quiz — tap to start";
+
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Study Screen
@@ -665,6 +674,17 @@
 "onboarding_premium_subtitle" = "Try Premium features free for 7 days";
 "onboarding_premium_skip"     = "Maybe Later";
 
+// MARK: - Paywall Hardcoded → Localized
+"paywall_title"               = "Speed Up with Premium";
+"paywall_subtitle"            = "Unlock all features and learn in premium quality!";
+"paywall_feature_words"       = "Learn thousands of new words and phrases";
+"paywall_feature_unlimited"   = "Remove limits and stand out from the rest";
+"paywall_feature_ai"          = "Reinforce your learning with AI";
+"paywall_plan_annual"         = "Annual";
+"paywall_plan_weekly"         = "Weekly";
+"paywall_badge_popular"       = "MOST POPULAR";
+"paywall_annual_subtitle"     = "Only %@ per year";
+"paywall_per_week"            = "/ week";
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 // MARK: - Notifications
